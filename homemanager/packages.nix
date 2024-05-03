@@ -34,6 +34,7 @@ in {
     gnome.gnome-tweaks
     gparted
     htop
+    jq
     keepassxc
     lazygit
     libreoffice
