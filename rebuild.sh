@@ -7,8 +7,6 @@
 #     or
 #     bash rebuild.sh home
 
-set -e
-
 # where do you keep your *.nix files?
 directory_nixconfig=~/.config/nixfiles/system # should contain hardware-configuration.nix
 filename_nixconfig=configuration.nix  # should be in above folder
@@ -56,6 +54,8 @@ if [ $? -eq 0 ]; then
   git status --short --untracked-files=normal "*.nix" | rg "\?\?"
   echo "Changes to these files will not be detected."
 fi
+
+set -e
 
 # Early return if no changes were detected (thanks @singiamtel!)
 if git diff --quiet '*.nix'; then
