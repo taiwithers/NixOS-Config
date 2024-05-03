@@ -2,21 +2,36 @@
 # modified from https://gist.github.com/0atman/1a5133b842f929ba4c1e195ee67599d5
 
 # A rebuild script that commits on a successful build
+# useage: 
+#     bash rebuild.sh nix
+#     or
+#     bash rebuild.sh home
+
 set -e
+
+# where do you keep your *.nix files?
+directory_nixconfig=~/.config/nixfiles/system # should contain hardware-configuration.nix
+filename_nixconfig=configuration.nix  # should be in above folder
+
+directory_hmconfig=~/.config/nixfiles/homemanager
+filename_hmconfig=home.nix # should be in above folder
+
+logfile=nixos-switch.log # path relative to this file
+
 
 case $1 in 
   'nix')
-    directory=~/.config/nixfiles/system
+    directory=$directory_nixconfig
     build() {
-      sudo nixos-rebuild switch -I nixos-config=configuration.nix &>nixos-switch.log || (bat nixos-switch.log | rg error && exit 1)
+      sudo nixos-rebuild switch -I nixos-config=$filename_nixconfig &>$logfile || (bat $logfile | rg error && exit 1)
       current=$(nixos-rebuild list-generations | rg current)
     }
   ;;
 
   'home')
-    directory=~/.config/nixfiles/homemanager
+    directory=$directory_hmconfig
     build() {
-      home-manager -f home.nix switch &>nixos-switch.log || (bat nixos-switch.log | rg error && exit 1)
+      home-manager -f $filename_hmconfig switch &>$logfile || (bat $logfile | rg error && exit 1)
       current=$(home-manager generations | sed -n 1p)
     }
   ;;
@@ -32,6 +47,7 @@ esac
 pushd $directory
 
 # Early return if no changes were detected (thanks @singiamtel!)
+# ^HEAD ensures that new files are detected as a change
 if git diff --quiet ^HEAD '*.nix'; then
     echo "No changes detected, exiting."
     popd
@@ -53,4 +69,4 @@ git commit -am "$current"
 # Back to where you were
 popd
 
-echo "NixOS Rebuilt OK!" 
+echo "Rebuilt OK!" 
