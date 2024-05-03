@@ -42,6 +42,9 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".bashrc".text = ''
+      export MAMBA_NO_BANNER = 1
+    '';
   };
 
   # Home Manager can also manage your environment variables through
