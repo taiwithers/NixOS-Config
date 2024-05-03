@@ -72,6 +72,7 @@ alejandra . &>/dev/null \
 git diff -U0 '*.nix'
 
 # call nixos-rebuild or home-manager as appropriate
+echo "Building..."
 build 
 
 # Commit all changes with the generation metadata

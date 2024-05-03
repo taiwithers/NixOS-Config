@@ -24,6 +24,4 @@ in {
         };
     })
     autostartPrograms);
-
-  # test edit
 }
