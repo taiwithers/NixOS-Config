@@ -20,7 +20,7 @@ case $1 in
   'nix')
     directory=$directory_nixconfig
     build() {
-      sudo nixos-rebuild switch -I nixos-config=$filename_nixconfig &>$logfile || (bat $logfile | rg error && exit 1)
+      sudo nixos-rebuild switch -I nixos-config=$filename_nixconfig &>$logfile || (cat $logfile | rg error && exit 1)
       current=$(nixos-rebuild list-generations | rg current)
     }
   ;;
@@ -28,7 +28,7 @@ case $1 in
   'home')
     directory=$directory_hmconfig
     build() {
-      home-manager -f $filename_hmconfig switch &>$logfile || (bat $logfile | rg error && exit 1)
+      home-manager -f $filename_hmconfig switch &>$logfile || (cat $logfile | rg error && exit 1)
       current=$(home-manager generations | sed -n 1p)
     }
   ;;
