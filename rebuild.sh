@@ -13,7 +13,7 @@ action=$1
 pushd ~/.config/nixfiles
 
 # Early return if no changes were detected (thanks @singiamtel!)
-if git diff --quiet '*.nix'; then
+if git diff --quiet ^HEAD '*.nix'; then
     echo "No changes detected, exiting."
     popd
     exit 0
@@ -31,7 +31,7 @@ case $action in
     echo "NixOS Rebuilding..."
 
     # Rebuild, output simplified errors, log tracebacks
-    sudo nixos-rebuild switch -I nixos-config=configuration.nix &>nixos-switch.log || (bat nixos-switch.log | rg --color error && exit 1)
+    sudo nixos-rebuild switch -I nixos-config=configuration.nix &>nixos-switch.log || (bat nixos-switch.log | rg error && exit 1)
 
     # Get current generation metadata
     current=$(nixos-rebuild list-generations | rg current)
