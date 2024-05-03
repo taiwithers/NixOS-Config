@@ -19,5 +19,6 @@
     gnome.totem # video player
     epiphany # web browser
     xterm
+    evince
   ];
 }
