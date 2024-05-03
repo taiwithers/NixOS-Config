@@ -138,6 +138,7 @@ in {
           dark = true;
           features = "mellow-barbet"; # delta theme
           side-by-side = true;
+          file-style = "omit";
         };
       };
     };
