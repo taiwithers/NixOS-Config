@@ -194,6 +194,9 @@ in {
         ms-vscode-remote.remote-ssh
         vscode-icons-team.vscode-icons
       ];
+
+      keybindings = [];
+      userSettings = builtins.fromJSON (builtins.readFile ./vscodium-settings.json);
     };
   };
 
