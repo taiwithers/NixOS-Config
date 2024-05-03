@@ -43,7 +43,7 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".bashrc".text = ''
-      export MAMBA_NO_BANNER = 1
+      export $MAMBA_NO_BANNER=1
     '';
   };
 
