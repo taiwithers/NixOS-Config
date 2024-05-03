@@ -2,9 +2,7 @@
   config,
   pkgs,
   ...
-}: let
-  unstable = import <nixos-unstable> {};
-in {
+}: {
   imports = [
     ./packages.nix
     ./autostart.nix
