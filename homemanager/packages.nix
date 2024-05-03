@@ -76,7 +76,26 @@ in {
     bash = {
       enable = true;
       enableCompletion = true;
-      bashrcExtra = "eval '$(ssh-agent)'";
+      bashrcExtra = ''
+              eval '$(ssh-agent)
+              # >>> mamba initialize >>>
+        # !! Contents within this block are managed by 'mamba init' !!
+        export MAMBA_EXE="/nix/store/dl7cr9z41j3dsfcdiz170pgxd7pkaxih-micromamba-1.4.4/bin/micromamba";
+        export MAMBA_ROOT_PREFIX="/home/tai/micromamba";
+        __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__mamba_setup"
+        else
+            if [ -f "/home/tai/micromamba/etc/profile.d/micromamba.sh" ]; then
+                . "/home/tai/micromamba/etc/profile.d/micromamba.sh"
+            else
+                export  PATH="/home/tai/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+            fi
+        fi
+        unset __mamba_setup
+        # <<< mamba initialize <<<
+
+      '';
     };
 
     bat = {
