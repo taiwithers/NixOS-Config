@@ -127,7 +127,7 @@ in {
       userName = "taiwithers";
 
       extraConfig = {
-        commit.gpgsign = true;
+        # commit.gpgsign = true;
         gpg.format = "ssh";
         pull.rebase = false;
       };
