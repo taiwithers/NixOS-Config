@@ -16,7 +16,7 @@ filename_nixconfig=configuration.nix  # should be in above folder
 directory_hmconfig=~/.config/nixfiles/homemanager
 filename_hmconfig=home.nix # should be in above folder
 
-logfile=nixos-switch.log # path relative to this file
+logfile=nixos-switch.log # logfile will be in the above directories
 
 
 case $1 in 
