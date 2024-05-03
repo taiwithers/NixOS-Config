@@ -31,16 +31,6 @@ in {
     gfortran
     git
     github-desktop
-    gnomeExtensions.all-windows
-    gnomeExtensions.alphabetical-app-grid
-    gnomeExtensions.appindicator
-    gnomeExtensions.click-to-close-overview
-    gnomeExtensions.desktop-icons-ng-ding
-    gnomeExtensions.dock-from-dash
-    gnomeExtensions.favourites-in-appgrid
-    gnomeExtensions.gtile
-    gnomeExtensions.start-overlay-in-application-view
-    gnomeExtensions.steal-my-focus-window
     gnome.gnome-tweaks
     gparted
     htop
