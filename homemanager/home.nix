@@ -53,6 +53,14 @@
     EDITOR = "vim";
   };
 
+  dconf.settings = {
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "firefox.desktop"
+      ];
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
