@@ -11,23 +11,23 @@
     mutableExtensionsDir = true;
     extensions = with pkgs.vscode-extensions;
       [
-        # njpwerner.autodocstring
-        # vscodevim.vim
-        # ms-python.isort
-        # ms-python.python
-        # ms-toolsai.jupyter
-        # ms-pyright.pyright
-        # kamadorueda.alejandra
-        # jellyedwards.gitsweep
-        # gruntfuggly.todo-tree
-        # file-icons.file-icons
-        # ms-python.vscode-pylance
-        # mechatroner.rainbow-csv
-        # johnpapa.vscode-peacock
-        # james-yu.latex-workshop
-        # yzhang.markdown-all-in-one
-        # ms-vscode-remote.remote-ssh
-        # vscode-icons-team.vscode-icons
+        njpwerner.autodocstring
+        vscodevim.vim
+        ms-python.isort
+        ms-python.python
+        ms-toolsai.jupyter
+        ms-pyright.pyright
+        kamadorueda.alejandra
+        jellyedwards.gitsweep
+        gruntfuggly.todo-tree
+        file-icons.file-icons
+        ms-python.vscode-pylance
+        mechatroner.rainbow-csv
+        johnpapa.vscode-peacock
+        james-yu.latex-workshop
+        yzhang.markdown-all-in-one
+        ms-vscode-remote.remote-ssh
+        vscode-icons-team.vscode-icons
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # additional extensions that aren't in nixpkgs
@@ -46,6 +46,18 @@
           publisher = "egomobile";
           version = "0.67.4";
           sha256 = "0wl86x8rq6dssjcj74b9xr2bpjicdaciva24kvckqpfmxmslylz7";
+        }
+        {
+          name = "path-autocomplete";
+          publisher = "ionutvmi";
+          version = "1.25.0";
+          sha256 = "0jjqh3p456p1aafw1gl6xgxw4cqqzs3hssr74mdsmh77bjizcgcb";
+        }
+        {
+          name = "fix-all-json";
+          publisher = "zardoy";
+          version = "0.1.5";
+          sha256 = "0jpdwy18yzm7apnazbwg0112rnilzrv8666fk5afkjqgsp0pjjly";
         }
       ];
 
