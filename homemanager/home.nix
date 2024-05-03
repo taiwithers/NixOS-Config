@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./packages.nix
+    ./gnome.nix
     ./autostart.nix
     ./fonts.nix
   ];
@@ -51,17 +52,6 @@
   #  /etc/profiles/per-user/tai/etc/profile.d/hm-session-vars.sh
   home.sessionVariables = {
     EDITOR = "vim";
-  };
-
-  dconf.settings = {
-    "org/gnome/shell" = {
-      favorite-apps = [
-        "firefox.desktop"
-        "nautilus.desktop"
-        "codium.desktop"
-        "obsidian.desktop"
-      ];
-    };
   };
 
   # Let Home Manager install and manage itself.
