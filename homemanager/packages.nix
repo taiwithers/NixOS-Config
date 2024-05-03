@@ -195,7 +195,7 @@ in {
         vscode-icons-team.vscode-icons
       ];
 
-      keybindings = [];
+      keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
       userSettings = builtins.fromJSON (builtins.readFile ./vscodium-settings.json);
     };
   };
