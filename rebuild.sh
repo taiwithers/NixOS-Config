@@ -46,9 +46,19 @@ esac
 # cd to your config dir
 pushd $directory
 
+# check for untracked .nix files, exit code 0 if any exist, exist code 1 if none do
+{ 
+  git status --short --untracked-files=normal "*.nix" | rg "\?\?" 
+} > /dev/null
+
+if [ $? -eq 0 ]; then
+  echo "WARNING: The following untracked .nix files exist in "$directory 
+  git status --short --untracked-files=normal "*.nix" | rg "\?\?"
+  echo "Changes to these files will not be detected."
+fi
+
 # Early return if no changes were detected (thanks @singiamtel!)
-# ^HEAD ensures that new files are detected as a change
-if git diff --quiet ^HEAD '*.nix'; then
+if git diff --quiet '*.nix'; then
     echo "No changes detected, exiting."
     popd
     exit 0
@@ -61,6 +71,7 @@ alejandra . &>/dev/null \
 # Shows your changes
 git diff -U0 '*.nix'
 
+# call nixos-rebuild or home-manager as appropriate
 build 
 
 # Commit all changes with the generation metadata
