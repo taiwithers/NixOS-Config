@@ -77,7 +77,7 @@ in {
       enable = true;
       enableCompletion = true;
       bashrcExtra = ''
-              eval '$(ssh-agent)
+              eval '$(ssh-agent)'
               # >>> mamba initialize >>>
         # !! Contents within this block are managed by 'mamba init' !!
         export MAMBA_EXE="/nix/store/dl7cr9z41j3dsfcdiz170pgxd7pkaxih-micromamba-1.4.4/bin/micromamba";
