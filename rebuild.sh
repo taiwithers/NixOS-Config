@@ -16,7 +16,6 @@ filename_hmconfig=home.nix # should be in above folder
 
 logfile=nixos-switch.log # logfile will be in the above directories
 
-
 case $1 in 
   'nix')
     directory=$directory_nixconfig
@@ -55,7 +54,7 @@ if [ $? -eq 0 ]; then
   echo "Changes to these files will not be detected."
 fi
 
-set -e
+set -e # needed to move this down because of the git status section
 
 # Early return if no changes were detected (thanks @singiamtel!)
 if git diff --quiet '*.nix'; then
@@ -78,7 +77,7 @@ build
 # Commit all changes with the generation metadata
 git commit -am "$current"
 
+echo "Rebuilt OK!" 
+
 # Back to where you were
 popd
-
-echo "Rebuilt OK!" 
