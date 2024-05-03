@@ -31,7 +31,6 @@ in {
     gfortran
     git
     github-desktop
-    # gnome-extension-manager
     gnomeExtensions.all-windows
     gnomeExtensions.alphabetical-app-grid
     gnomeExtensions.appindicator

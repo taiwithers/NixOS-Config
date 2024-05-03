@@ -4,7 +4,7 @@
   ...
 }: let
   unstable = import <nixos-unstable> {};
-  autostartPrograms = [pkgs.teams-for-linux unstable.copyq];
+  autostartPrograms = [pkgs.teams-for-linux unstable.copyq pkgs.onedrivegui];
 in {
   home.file = builtins.listToAttrs (map
     (pkg: {
