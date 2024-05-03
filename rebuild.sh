@@ -21,14 +21,13 @@ fi
 
 # Autoformat your nix files
 alejandra . &>/dev/null \
-  || ( alejandra . ; echo "formatting failed!" && exit 1)
+  || ( alejandra . ; echo "Formatting failed!" && exit 1)
 
 # Shows your changes
 git diff -U0 '*.nix'
 
 case $action in 
   'nix')
-    # Using nixos-rebuild:
     echo "NixOS Rebuilding..."
 
     # Rebuild, output simplified errors, log tracebacks
@@ -39,20 +38,20 @@ case $action in
   ;;
 
   'home')
-    # Using home-manager
     echo "Home Manager Rebuilding..."
 
     # Rebuild, output simplified errors, log tracebacks
-    home-manager -f home.nix switch &>nixos-switch.log || (bat nixos-switch.log | rg --color error && exit 1)
+    home-manager -f home.nix switch &>nixos-switch.log || (bat nixos-switch.log | rg error && exit 1)
 
     # Get current generation metadata
     current=$(home-manager generations | sed -n 1p)
   ;;
 
   *)
-    echo "Usage: bash rebuild.sh [nix|home]"
+    echo "Usage: bash rebuild.sh [nix|home]" && exit 1
   ;;
 esac
+
 
 # Commit all changes with the generation metadata
 git commit -am "$current"

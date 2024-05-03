@@ -6,8 +6,8 @@
   unstable = import <nixos-unstable> {};
 in {
   imports = [
-    "/home/tai/.config/nixfiles/autostart.nix"
-    "/home/tai/.config/nixfiles/fonts.nix"
+    ./autostart.nix
+    ./fonts.nix
   ];
   home.username = "tai";
   home.homeDirectory = "/home/tai";
