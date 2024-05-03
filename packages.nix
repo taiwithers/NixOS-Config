@@ -137,6 +137,8 @@ in {
         {path = builtins.fetchurl "https://raw.githubusercontent.com/dandavison/delta/master/themes.gitconfig";}
       ];
 
+      # making a change here
+
       delta = {
         enable = true;
         options = {

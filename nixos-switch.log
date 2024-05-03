@@ -5,7 +5,7 @@ Activating checkLinkTargets
 Activating writeBoundary
 Activating linkGeneration
 Cleaning up orphan links from /home/tai
-Creating profile generation 29
+No change so reusing latest profile generation 29
 Creating home file links in /home/tai
 Activating batCache
 No themes were found in '/home/tai/.config/bat/themes', using the default set
