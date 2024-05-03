@@ -1,18 +1,18 @@
 these 3 derivations will be built:
-  /nix/store/9y95yim9k2a8vyzdynq54ghra2rm19qd-hm_gitconfig.drv
-  /nix/store/vz1ydxgwiyyjpw0mddh0zgxd8npiyakm-home-manager-files.drv
-  /nix/store/syd7axpy9xb60lhr1fp74kp76sfvjflw-home-manager-generation.drv
-building '/nix/store/9y95yim9k2a8vyzdynq54ghra2rm19qd-hm_gitconfig.drv'...
-building '/nix/store/vz1ydxgwiyyjpw0mddh0zgxd8npiyakm-home-manager-files.drv'...
-building '/nix/store/syd7axpy9xb60lhr1fp74kp76sfvjflw-home-manager-generation.drv'...
-/nix/store/2ncwvhzfk2mc2sp0bbw5lrz74xd1gas2-home-manager-generation
+  /nix/store/c94fynnjg5wqr9ycsgn2snhmq8p71y0c-hm_gitconfig.drv
+  /nix/store/p39gzgiiyd9nfgfcq5v9rcqdflcp3l5y-home-manager-files.drv
+  /nix/store/ccfm1j8zgg4i9sxfhg36nan0pf3bs67q-home-manager-generation.drv
+building '/nix/store/c94fynnjg5wqr9ycsgn2snhmq8p71y0c-hm_gitconfig.drv'...
+building '/nix/store/p39gzgiiyd9nfgfcq5v9rcqdflcp3l5y-home-manager-files.drv'...
+building '/nix/store/ccfm1j8zgg4i9sxfhg36nan0pf3bs67q-home-manager-generation.drv'...
+/nix/store/lpdsphckp23hir25d5z03rrd5fw2pdhy-home-manager-generation
 Starting Home Manager activation
 Activating checkFilesChanged
 Activating checkLinkTargets
 Activating writeBoundary
 Activating linkGeneration
 Cleaning up orphan links from /home/tai
-Creating profile generation 30
+Creating profile generation 31
 Creating home file links in /home/tai
 Activating batCache
 No themes were found in '/home/tai/.config/bat/themes', using the default set
