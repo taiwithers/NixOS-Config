@@ -44,6 +44,7 @@ in {
     htop
     keepassxc
     lazygit
+    libnotify
     libreoffice
     micromamba
     obsidian
