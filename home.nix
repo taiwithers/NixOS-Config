@@ -44,7 +44,6 @@ in {
     htop
     keepassxc
     lazygit
-    libnotify
     libreoffice
     micromamba
     obsidian
@@ -122,10 +121,16 @@ in {
     git = {
       enable = true;
       delta.enable = true;
-      signing.key = null; # lets GnuPG decide, in .gitconfig is /home/tai/.ssh/id_ed25519_github.pub
+      signing.key = "/home/tai/.ssh/id_ed25519_github.pub";
       signing.signByDefault = true;
-      userEmail = "taiwithers@users.noerply.github.com";
+      userEmail = "59430904+taiwithers@users.noreply.github.com";
       userName = "taiwithers";
+
+      extraConfig = {
+        commit.gpgsign = true;
+        gpg.format = "ssh";
+        pull.rebase = false;
+      };
     };
 
     htop = {
