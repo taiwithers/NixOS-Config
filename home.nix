@@ -8,6 +8,7 @@
     ./autostart.nix
     ./fonts.nix
   ];
+
   home.username = "tai";
   home.homeDirectory = "/home/tai";
 

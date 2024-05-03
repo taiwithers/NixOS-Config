@@ -11,6 +11,8 @@
     ./hardware-configuration.nix
     # add home manager
     <home-manager/nixos>
+
+    ./gnome.nix
   ];
 
   # Bootloader.
