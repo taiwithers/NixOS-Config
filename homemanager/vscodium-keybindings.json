@@ -1,0 +1,90 @@
+[
+    {
+        "key": "ctrl+shift+up",
+        "command": "-editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "-workbench.action.terminal.scrollUp",
+        "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "-workbench.action.terminal.selectToPreviousCommand",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+down",
+        "command": "-editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+down",
+        "command": "editor.action.moveLinesDownAction"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+up",
+        "command": "-editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+down",
+        "command": "markdown.extension.onMoveLineDown",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+    },
+    {
+        "key": "alt+down",
+        "command": "-markdown.extension.onMoveLineDown",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "markdown.extension.onMoveLineUp",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+    },
+    {
+        "key": "alt+up",
+        "command": "-markdown.extension.onMoveLineUp",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+    },
+    {
+        "key": "F1",
+        "command": "toggle",
+        "args": {
+            "id": "dimUnfocused",
+            "value": [
+                {
+                    "accessibility.dimUnfocused.enabled": true
+                },
+                {
+                    "accessibility.dimUnfocused.enabled": false
+                }
+            ]
+        }
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-editor.action.insertLineAfter",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "python.execInTerminal-icon"
+    },
+    {
+        "key": "escape",
+        "command": "extension.vim_escape",
+        "when": "editorTextFocus && vim.active && !inDebugRepl && !parameterHintsVisible && !suggestWidgetVisible"
+    },
+    {
+        "key": "escape",
+        "command": "-extension.vim_escape",
+        "when": "editorTextFocus && vim.active && !inDebugRepl"
+    }
+]
