@@ -58,7 +58,6 @@ in {
     trashy
     unzip
     vim
-    vscodium-fhs
     wget
     zip
     zoom-us
@@ -170,33 +169,6 @@ in {
           identityFile = "~/.ssh/id_ed25519_groupmachine";
         };
       };
-    };
-
-    vscode = {
-      enable = true;
-      package = pkgs.vscodium-fhs;
-      extensions = with pkgs.vscode-extensions; [
-        njpwerner.autodocstring
-        vscodevim.vim
-        ms-python.isort
-        ms-python.python
-        ms-toolsai.jupyter
-        ms-pyright.pyright
-        kamadorueda.alejandra
-        jellyedwards.gitsweep
-        gruntfuggly.todo-tree
-        file-icons.file-icons
-        ms-python.vscode-pylance
-        mechatroner.rainbow-csv
-        johnpapa.vscode-peacock
-        james-yu.latex-workshop
-        yzhang.markdown-all-in-one
-        ms-vscode-remote.remote-ssh
-        vscode-icons-team.vscode-icons
-      ];
-
-      keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
-      userSettings = builtins.fromJSON (builtins.readFile ./vscodium-settings.json);
     };
   };
 

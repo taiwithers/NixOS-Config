@@ -8,6 +8,7 @@
     ./gnome.nix
     ./autostart.nix
     ./fonts.nix
+    ./vscodium.nix
   ];
 
   home.username = "tai";

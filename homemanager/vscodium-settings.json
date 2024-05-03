@@ -168,9 +168,6 @@
     "workbench.tree.enableStickyScroll": true,
     "workbench.view.alwaysShowHeaderActions": true,
     "customizeUI.font.regular": "Symbols Nerd Font",
-    "vscode_custom_css.imports": [
-        "file:///home/tai/opt/VSCodium_Extensions/vscode-powerline/powerline.css"
-    ],
     "window.commandCenter": false,
     "customizeUI.statusBarPosition": "bottom",
     "vim.foldfix": true,
