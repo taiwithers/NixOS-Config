@@ -1,18 +1,11 @@
-these 3 derivations will be built:
-  /nix/store/lnizpgw3s3zswwpy967f5n65mw35l52w-hm_gitconfig.drv
-  /nix/store/shlmxyfrg9xnl2acby1wyy88jxigbk80-home-manager-files.drv
-  /nix/store/hbqpg9d8sg82rqk4zq90h6q2nxhjj3ib-home-manager-generation.drv
-building '/nix/store/lnizpgw3s3zswwpy967f5n65mw35l52w-hm_gitconfig.drv'...
-building '/nix/store/shlmxyfrg9xnl2acby1wyy88jxigbk80-home-manager-files.drv'...
-building '/nix/store/hbqpg9d8sg82rqk4zq90h6q2nxhjj3ib-home-manager-generation.drv'...
-/nix/store/m1ss80f00w6cjv857zkzhyx4fj0g8y80-home-manager-generation
+/nix/store/brcharfm4qlqi7ph23j87y0dadcdjckx-home-manager-generation
 Starting Home Manager activation
 Activating checkFilesChanged
 Activating checkLinkTargets
 Activating writeBoundary
 Activating linkGeneration
 Cleaning up orphan links from /home/tai
-Creating profile generation 28
+Creating profile generation 29
 Creating home file links in /home/tai
 Activating batCache
 No themes were found in '/home/tai/.config/bat/themes', using the default set

@@ -133,15 +133,15 @@ in {
         pull.rebase = false;
       };
 
-      # includes = [
-      #   {path= builtins.fetchurl "https://raw.githubusercontent.com/dandavison/delta/master/themes.gitconfig";}
-      # ];
+      includes = [
+        {path = builtins.fetchurl "https://raw.githubusercontent.com/dandavison/delta/master/themes.gitconfig";}
+      ];
 
       delta = {
         enable = true;
         options = {
           dark = true;
-          #   features = "mellow-barbet"; # delta theme
+          features = "mellow-barbet"; # delta theme
           side-by-side = true;
         };
       };
