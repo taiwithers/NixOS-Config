@@ -171,6 +171,30 @@ in {
         };
       };
     };
+
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium-fhs;
+      extensions = with pkgs.vscode-extensions; [
+        njpwerner.autodocstring
+        vscodevim.vim
+        ms-python.isort
+        ms-python.python
+        ms-toolsai.jupyter
+        ms-pyright.pyright
+        kamadorueda.alejandra
+        jellyedwards.gitsweep
+        gruntfuggly.todo-tree
+        file-icons.file-icons
+        ms-python.vscode-pylance
+        mechatroner.rainbow-csv
+        johnpapa.vscode-peacock
+        james-yu.latex-workshop
+        yzhang.markdown-all-in-one
+        ms-vscode-remote.remote-ssh
+        vscode-icons-team.vscode-icons
+      ];
+    };
   };
 
   services.copyq.enable = true;
