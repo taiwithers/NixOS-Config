@@ -21,6 +21,7 @@
     "ls" = "eza --long --colour=always --icons=always --hyperlink --all --group-directories-first --header --time-style iso --no-permissions --no-user --git";
     "tree" = "eza --tree --colour=always --icons=always --hyperlink --all --group-directories-first --header --time-style iso --no-permissions --no-user --git";
     "rebuild" = "bash ~/.config/nixfiles/rebuild.sh";
+    "mamba" = "micromamba";
   };
 
   # https://nix-community.github.io/home-manager/options.xhtml#opt-nix.settings
@@ -42,9 +43,6 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".bashrc".text = ''
-      export $MAMBA_NO_BANNER=1
-    '';
   };
 
   # Home Manager can also manage your environment variables through
