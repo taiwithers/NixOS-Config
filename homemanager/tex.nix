@@ -12,6 +12,7 @@
       revtex4-1 # for aastex
       standalone
       epsf # for graphics
+      svn-prov
       ;
   };
 in {
