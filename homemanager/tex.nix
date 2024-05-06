@@ -5,6 +5,7 @@
 }: let
   mytex = pkgs.texliveMinimal.withPackages (ps:
     with ps; [
+      latexmk
       standalone
     ]);
 in {
