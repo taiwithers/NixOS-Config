@@ -14,7 +14,7 @@
 
     ./gnome.nix
   ];
-  
+
   # Bootloader.
   boot.loader = {
     efi = {

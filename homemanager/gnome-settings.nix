@@ -16,8 +16,6 @@
     steal-my-focus-window
   ];
 
-  # programs.dconf = {};
-
   dconf.settings = {
     "org/gnome/shell" = {
       # taskbar apps
