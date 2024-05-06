@@ -62,7 +62,7 @@ set -e # needed to move this down because of the git status section
 # Early return if no changes were detected (thanks @singiamtel!)
 if git diff --quiet '*.nix'; then
 
-  if [[ ( ! -z $1 ) && ( $1 = "force" ) ]]; then
+  if [[ ( ! -z $1 ) && ( $2 = "force" ) ]]; then
     echo "No changes detected, but force flag was set."
   else
     echo "No changes detected, exiting."
