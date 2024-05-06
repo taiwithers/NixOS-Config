@@ -56,7 +56,7 @@ in {
     speedtest-rs
     sublime4
     teams-for-linux
-    texliveMinimal
+    texliveMedium
     # tlp # no use on dell :(
     trashy
     unzip
@@ -80,7 +80,6 @@ in {
       enableCompletion = true;
       bashrcExtra = ''
         eval '$(ssh-agent)'
-        export PATH=$PATH:$(which tex)
       '';
     };
 
