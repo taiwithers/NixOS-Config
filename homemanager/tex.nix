@@ -9,6 +9,7 @@
     inherit
       (pkgs.texlive)
       scheme-small # small is required over minimal for pdflatex which can't be installed as a package
+      derivative
       enumitem
       latexmk
       revtex4-1 # for aastex
