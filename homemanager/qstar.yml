@@ -1,0 +1,45 @@
+name: qstar
+channels:
+  - defaults
+  - anaconda
+  - astropy
+  - plotly
+  - conda-forge
+dependencies:
+  - python=3.11
+  - astropy
+  - cmcrameri
+  - cycler
+  - ipykernel
+  - ipython
+  - ipywidgets
+  - jupyter
+  - jupyterlab
+  - lmfit
+  - matplotlib
+  - numpy
+  - pandas
+  - pillow
+  - pip
+  - plotly
+  - requests
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - setuptools
+  - uncertainties
+  - wheel
+  - yaml
+  # - pip:
+  #     - astrodendro
+  #     - astropy-healpix
+  #     - casa-formats-io
+  #     - coloredlogs
+  #     - fits-tools
+  #     - gdown
+  #     - radio-beam
+  #     - reproject
+  #     - spectral-cube
+  #     - wget
+
+# update environment with mamba env update --file filename.yml --prune

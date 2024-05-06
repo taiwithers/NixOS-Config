@@ -5,7 +5,7 @@
 }: {
   imports = [
     ./packages.nix
-    ./gnome.nix
+    ./gnome-settings.nix
     ./autostart.nix
     ./fonts.nix
     ./vscodium.nix

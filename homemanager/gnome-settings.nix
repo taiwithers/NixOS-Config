@@ -16,17 +16,19 @@
     steal-my-focus-window
   ];
 
+  # programs.dconf = {};
+
   dconf.settings = {
     "org/gnome/shell" = {
       # taskbar apps
       favorite-apps = [
         "firefox.desktop"
         "nautilus.desktop"
+        "sublime_text.desktop"
+        "org.gnome.Console.desktop"
         "codium.desktop"
         "obsidian.desktop"
-        "sublime_text.desktop"
         # "zotero.desktop"
-        "org.gnome.Console.desktop"
       ];
 
       disable-user-extensions = false;

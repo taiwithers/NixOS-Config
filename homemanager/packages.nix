@@ -22,6 +22,7 @@ in {
     unstable.copyq
     conda
     curl
+    dconf # gnome settings
     dell-command-configure # provides cctk command: https://dl.dell.com/content/manual29368104-dell-command-configure-version-4-x-command-line-interface-reference-guide.pdf?language=en-us
     discord
     eza # better ls
@@ -49,7 +50,6 @@ in {
     pomodoro
     python3
     realvnc-vnc-viewer
-    # redshift # doesn't work on wayland
     rename
     ripgrep
     slack-dark
@@ -57,7 +57,6 @@ in {
     sublime4
     teams-for-linux
     texliveMedium
-    # tlp # no use on dell :(
     trashy
     unzip
     vim
