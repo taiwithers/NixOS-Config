@@ -12,6 +12,7 @@
       derivative
       enumitem
       latexmk
+      hyphenat
       revtex4-1 # for aastex
       siunitx
       standalone
