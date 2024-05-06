@@ -51,5 +51,27 @@
       color-sceme = "prefer-dark";
       enable-hot-corners = false;
     };
+
+    # media and accessibility keybindings
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      screenreader = [];
+      magnifier = [];
+      magnifier-zoom-in = [];
+      magnifier-zoom-out = [];
+      help = [];
+    };
+
+    # window managment keybindings
+    "org/gnome/desktop/wm/keybindings" = {
+      move-to-monitor-down = [];
+      move-to-monitor-left = [];
+      move-to-monitor-right = [];
+      move-to-monitor-up = [];
+      move-to-workspace-left = [];
+      move-to-workspace-right = [];
+      move-to-workspace-last = [];
+      move-to-workspace-1 = [];
+      move-to-workspace-2 = [];
+    };
   };
 }
