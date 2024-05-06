@@ -56,7 +56,6 @@ in {
     speedtest-rs
     sublime4
     teams-for-linux
-    texliveMedium
     trashy
     unzip
     vim

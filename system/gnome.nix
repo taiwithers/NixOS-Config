@@ -21,6 +21,4 @@
     xterm
     evince
   ];
-
-  programs.dconf = {};
 }
