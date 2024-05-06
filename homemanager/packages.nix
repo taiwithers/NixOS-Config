@@ -56,6 +56,7 @@ in {
     speedtest-rs
     sublime4
     teams-for-linux
+    texliveMinimal
     # tlp # no use on dell :(
     trashy
     unzip
