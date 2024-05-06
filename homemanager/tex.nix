@@ -4,15 +4,14 @@
   ...
 }: let
   # for packages not included in texlive: https://github.com/NixOS/nixpkgs/issues/21334
-  
   mytex = pkgs.texlive.combine {
     inherit
       (pkgs.texlive)
       scheme-small # small is required over minimal for pdflatex which can't be installed as a package
       latexmk
-      revtex4-1
+      revtex4-1 # for aastex
       standalone
-      dvips # for graphics
+      epsf # for graphics
       ;
   };
 in {
