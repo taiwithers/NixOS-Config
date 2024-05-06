@@ -79,7 +79,8 @@ in {
       enable = true;
       enableCompletion = true;
       bashrcExtra = ''
-        eval "$(ssh-agent)"
+        eval '$(ssh-agent)'
+        export PATH=$PATH:$(which tex)
       '';
     };
 
