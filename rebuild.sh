@@ -6,6 +6,9 @@
 #     bash rebuild.sh nix
 #     or
 #     bash rebuild.sh home
+# optional command: force
+# forces a build even when no changes are detected (e.g. if you've modified a .json file)
+# use with care! changes to untracked .nix files will be silently included
 
 # where do you keep your *.nix files?
 directory_nixconfig=~/.config/nixfiles/system # should contain hardware-configuration.nix
@@ -58,9 +61,14 @@ set -e # needed to move this down because of the git status section
 
 # Early return if no changes were detected (thanks @singiamtel!)
 if git diff --quiet '*.nix'; then
+
+  if [[ ( ! -z $1 ) && ( $1 = "force" ) ]]; then
+    echo "No changes detected, but force flag was set."
+  else
     echo "No changes detected, exiting."
     popd
     exit 0
+  fi
 fi
 
 # Autoformat your nix files
