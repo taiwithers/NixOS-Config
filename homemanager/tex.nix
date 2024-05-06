@@ -8,15 +8,10 @@
       (pkgs.texlive)
       scheme-small # small is required over minimal for pdflatex which can't be installed as a package
       latexmk
+      revtex4-1
       standalone
-      revtex
       ;
   };
-  # mytex = pkgs.texliveSmall.withPackages (ps:
-  #   with ps; [
-  #     latexmk
-  #     standalone
-  #   ]);
 in {
   home.packages = [mytex];
 }
