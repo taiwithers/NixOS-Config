@@ -13,9 +13,10 @@
       enumitem
       latexmk
       revtex4-1 # for aastex
+      siunitx
       standalone
       epsf # for graphics
-      svn-prov
+      svn-prov # required macros
       ;
   };
 in {
