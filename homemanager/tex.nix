@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: let
+  # for packages not included in texlive: https://github.com/NixOS/nixpkgs/issues/21334
+  
   mytex = pkgs.texlive.combine {
     inherit
       (pkgs.texlive)
@@ -10,6 +12,7 @@
       latexmk
       revtex4-1
       standalone
+      dvips # for graphics
       ;
   };
 in {
