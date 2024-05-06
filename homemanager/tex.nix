@@ -18,6 +18,7 @@
       standalone
       epsf # for graphics
       svn-prov # required macros
+      astro
       ;
   };
 in {
