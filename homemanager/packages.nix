@@ -78,7 +78,9 @@ in {
     bash = {
       enable = true;
       enableCompletion = true;
-      bashrcExtra = "eval '$(ssh-agent)'";
+      bashrcExtra = ''
+        eval "$(ssh-agent)"
+      '';
     };
 
     bat = {
