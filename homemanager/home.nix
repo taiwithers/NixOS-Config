@@ -9,6 +9,7 @@
     ./autostart.nix
     ./fonts.nix
     ./vscodium.nix
+    ./tex.nix
   ];
 
   home.username = "tai";
