@@ -40,6 +40,7 @@ in {
     appimage-run # allows nixos to run appimages
     bash
     bat # cat with syntax highlighting
+    btop
     unstable.copyq
     conda
     curl
@@ -56,7 +57,7 @@ in {
     github-desktop
     gnome.gnome-tweaks
     gparted
-    htop
+    # htop
     jq
     keepassxc
     lazygit
@@ -165,10 +166,6 @@ in {
 
     gpg = {
       homedir = "${config.xdg.dataHome}/gnupg";
-    };
-
-    htop = {
-      enable = true;
     };
 
     # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
