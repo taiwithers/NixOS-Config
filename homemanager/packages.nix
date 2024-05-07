@@ -40,6 +40,7 @@ in {
     keepassxc
     lazygit
     libreoffice
+    libsForQt5.dolphin
     # micromamba
     obsidian
     onedrive

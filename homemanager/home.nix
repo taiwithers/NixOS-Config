@@ -14,6 +14,7 @@
 
   home.username = "tai";
   home.homeDirectory = "/home/tai";
+  home.preferXdgDirectories = true;
 
   # https://nix-community.github.io/home-manager/options.xhtml#opt-home.shellAliases
   home.shellAliases = {
