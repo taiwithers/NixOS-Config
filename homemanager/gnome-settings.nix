@@ -141,9 +141,10 @@
       binding = "<Super>e";
     };
 
+    # not supported under wayland
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       name = "Open Tilix Drop-Down";
-      command = "tilix --quake";
+      command = "env GDK_BACKEND=x11 tilix --quake";
       binding = "<Shift><Control>q";
     };
   };
