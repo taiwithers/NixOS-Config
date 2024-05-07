@@ -12,6 +12,7 @@
       derivative
       enumitem
       latexmk
+      psnfss # postscript fonts
       hyphenat
       revtex4-1 # for aastex
       siunitx
