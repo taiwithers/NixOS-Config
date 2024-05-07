@@ -216,10 +216,12 @@ in {
       # autosuggestion.highlight = true;
       dotDir = ".config/zsh";
       history.path = "${config.xdg.dataHome}/zsh/zsh_history";
-      plugins = []; # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.plugins
 
       oh-my-zsh = {
         enable = true;
+        plugins = [
+          "git"
+        ];
       };
     };
   };

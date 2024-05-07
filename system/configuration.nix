@@ -78,6 +78,7 @@
     packages = with pkgs; [
       firefox
     ];
+    # shell = pkgs.zsh;
   };
 
   # Enable automatic login for the user.
