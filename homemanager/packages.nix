@@ -216,18 +216,30 @@ in {
       # autosuggestion.highlight = true;
       dotDir = ".config/zsh";
       history.path = "${config.xdg.dataHome}/zsh/zsh_history";
-      plugins = [
-        {
-          # will source zsh-autosuggestions.plugin.zsh
-          name = "zsh-autosuggestions";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-autosuggestions";
-            rev = "v0.4.0";
-            sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
-          };
-        }
-      ];
+      # plugins = [
+      #   {
+      #     # will source zsh-autosuggestions.plugin.zsh
+      #     # available from nix!
+      #     name = "zsh-autosuggestions";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "zsh-users";
+      #       repo = "zsh-autosuggestions";
+      #       rev = "v0.7.0";
+      #       # sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+      #     };
+      #   }
+
+      #   {
+      #     # will source
+      #     name = "zsh-you-should-use";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "MichaelAquilina";
+      #       repo = "zsh-you-should-use";
+      #       rev = "1.7.3";
+      #       # sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+      #     };
+      #   }
+      # ];
       oh-my-zsh = {
         enable = true;
         plugins = [
