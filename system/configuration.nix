@@ -94,6 +94,13 @@
     home-manager
   ];
 
+  environment.sessionVariables = {
+    EDITOR = "vim";
+    XDG_DATA_HOME = "~/.local/share";
+    XDG_STATE_HOME = "~/.local/state";
+    XDG_CONFIG_HOME = "~/.config";
+    XDG_CACHE_HOME = "~/.cache";
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
