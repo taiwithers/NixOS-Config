@@ -83,8 +83,8 @@
       move-to-monitor-left = [];
       move-to-monitor-right = [];
       move-to-monitor-up = [];
-      move-to-workspace-left = [];
-      move-to-workspace-right = [];
+      move-to-workspace-left = ["<Super><Shift>Left"];
+      move-to-workspace-right = ["<Super><Shift>Right"];
       move-to-workspace-last = [];
       move-to-workspace-1 = [];
       move-to-workspace-2 = [];
