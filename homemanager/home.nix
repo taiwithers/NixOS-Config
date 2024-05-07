@@ -60,8 +60,8 @@
     XDG_STATE_HOME = "~/.local/state";
     XDG_CONFIG_HOME = "~/.config";
     XDG_CACHE_HOME = "~/.cache";
-    # IPYTHONDIR = "{$XDG_CONFIG_HOME}/ipython";
-    # JUPYTER_CONFIG_DIR = "${XDG_CONFIG_HOME}/jupyter";
+    IPYTHONDIR = "${config.home.sessionVariables.XDG_CONFIG_HOME}/ipython";
+    JUPYTER_CONFIG_DIR = "${config.home.sessionVariables.XDG_CONFIG_HOME}/jupyter";
   };
 
   # Let Home Manager install and manage itself.
