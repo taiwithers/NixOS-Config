@@ -21,4 +21,5 @@
     xterm
     evince
   ];
+  services.xserver.excludePackages = [pkgs.xterm];
 }
