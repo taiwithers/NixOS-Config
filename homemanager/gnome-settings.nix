@@ -17,6 +17,9 @@
     steal-my-focus-window
   ];
 
+  # change extension settings programmatically
+  # https://github.com/forge-ext/forge/issues/165#issuecomment-1713499010
+  # dconf list /org/gnome/shell/extensions/
   dconf.settings = {
     "org/gnome/shell" = {
       # taskbar apps
@@ -141,7 +144,6 @@
       binding = "<Super>e";
     };
 
-    # not supported under wayland
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       name = "Open Tilix Drop-Down";
       command = "env GDK_BACKEND=x11 tilix --quake";
