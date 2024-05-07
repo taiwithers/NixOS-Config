@@ -47,6 +47,7 @@
         "appindicatorsupport@rgcjonas.gmail.com"
         "all-windows@ezix.org"
         "dash-to-panel@jderose9.github.com"
+        "forge@jmmaranan.com"
       ];
     };
 

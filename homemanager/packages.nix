@@ -84,6 +84,7 @@ in {
     unzip
     vim
     wget
+    xdg-ninja
     zip
     zoom-us
     unstable.zotero_7
