@@ -62,6 +62,7 @@ in {
     lazygit
     libreoffice
     libsForQt5.dolphin
+    libsForQt5.dolphin-plugins
     # micromamba
     obsidian
     onedrive
