@@ -9,7 +9,7 @@
     appindicator
     click-to-close-overview
     desktop-icons-ng-ding
-    dock-from-dash
+    dash-to-panel
     favourites-in-appgrid
     gtile
     start-overlay-in-application-view
@@ -41,7 +41,6 @@
         "click-to-close-overview@l3nn4rt.github.io"
         "ding@rastersoft.com"
         "steal-my-focus-window@steal-my-focus-window"
-        "dock-from-dash@fthx"
         "appindicatorsupport@rgcjonas.gmail.com"
         "all-windows@ezix.org"
       ];
