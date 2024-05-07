@@ -83,8 +83,8 @@
       move-to-monitor-left = [];
       move-to-monitor-right = [];
       move-to-monitor-up = [];
-      move-to-workspace-left = ["<Super><Shift>Left"];
-      move-to-workspace-right = ["<Super><Shift>Right"];
+      move-to-workspace-left = [];
+      move-to-workspace-right = [];
       move-to-workspace-last = [];
       move-to-workspace-1 = [];
       move-to-workspace-2 = [];
@@ -94,8 +94,8 @@
       cycle-panels-backward = []; # ??
       switch-to-workspace-last = [];
       switch-to-workspace-1 = [];
-      switch-to-workspace-left = [];
-      switch-to-workspace-right = [];
+      switch-to-workspace-left = ["<Super><Shift>Left"];
+      switch-to-workspace-right = ["<Super><Shift>Right"];
       cycle-windows = []; # "switch windows directly"
       cycle-windows-backward = []; # ??
       cycle-group = []; # "switch windows of an app directly"
