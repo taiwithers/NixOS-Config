@@ -64,6 +64,12 @@
     JUPYTER_CONFIG_DIR = "${config.home.sessionVariables.XDG_CONFIG_HOME}/jupyter";
   };
 
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly"; # default
+    options = "--delete-older-than 14d";
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 

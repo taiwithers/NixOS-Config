@@ -11,7 +11,7 @@
     ./hardware-configuration.nix
     # add home manager
     <home-manager/nixos>
-    
+
     ./gnome.nix
   ];
 
@@ -93,6 +93,16 @@
   environment.systemPackages = with pkgs; [
     home-manager
   ];
+
+  nix.optimise = {
+    automatic = true;
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
