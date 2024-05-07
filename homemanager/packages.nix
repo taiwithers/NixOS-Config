@@ -1,12 +1,33 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
-  unstable = import <nixos-unstable> {};
+  unstable = import <nixos-unstable> {
+    config = {
+      allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) [
+          "sublimetext4"
+        ];
+      permittedInsecurePackages = [
+        "openssl-1.1.1w"
+      ];
+    };
+  };
 in {
-  # allow proprietary packages
-  nixpkgs.config.allowUnfree = true;
+  # allow specific proprietary packages
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "dell-command-configure"
+      "discord"
+      "obsidian"
+      "realvnc-vnc-viewer"
+      "slack"
+      "vscode-extension-MS-python-vscode-pylance"
+      "vscode-extension-ms-vscode-remote-remote-ssh"
+      "zoom"
+    ];
 
   # allow select insecure packages
   nixpkgs.config.permittedInsecurePackages = [
@@ -55,7 +76,7 @@ in {
     ripgrep
     slack-dark
     speedtest-rs
-    sublime4
+    unstable.sublime4
     teams-for-linux
     trashy
     unzip
