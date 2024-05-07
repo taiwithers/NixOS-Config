@@ -56,6 +56,10 @@
   #  /etc/profiles/per-user/tai/etc/profile.d/hm-session-vars.sh
   home.sessionVariables = {
     EDITOR = "vim";
+    XDG_DATA_HOME = "~/.local/share";
+    XDG_STATE_HOME = "~/.local/state";
+    XDG_CONFIG_HOME = "~/.config";
+    XDG_CACHE_HOME = "~/.cache";
   };
 
   # Let Home Manager install and manage itself.
