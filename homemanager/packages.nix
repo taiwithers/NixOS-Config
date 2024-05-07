@@ -48,6 +48,7 @@ in {
     dell-command-configure # provides cctk command: https://dl.dell.com/content/manual29368104-dell-command-configure-version-4-x-command-line-interface-reference-guide.pdf?language=en-us
     discord
     eza # better ls
+    unstable.fastfetch
     fd # better find
     filezilla
     firefox
@@ -112,9 +113,6 @@ in {
 
     bat = {
       enable = true;
-      config = {
-        shown_boxes = "proc cpu mem";
-      };
     };
 
     btop = {
