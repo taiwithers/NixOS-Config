@@ -79,6 +79,7 @@ in {
     speedtest-rs
     unstable.sublime4
     teams-for-linux
+    tilix
     trashy
     unzip
     vim
