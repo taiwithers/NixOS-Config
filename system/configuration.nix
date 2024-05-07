@@ -70,6 +70,9 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.zsh.enable = true;
+  users.users.tai.shell = pkgs.zsh;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tai = {
     isNormalUser = true;
@@ -78,7 +81,6 @@
     packages = with pkgs; [
       firefox
     ];
-    # shell = pkgs.zsh;
   };
 
   # Enable automatic login for the user.
