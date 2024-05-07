@@ -223,6 +223,7 @@ in {
           "git"
           "branch"
           "catimg"
+          "themes"
         ];
       };
     };
