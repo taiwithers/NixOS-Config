@@ -11,6 +11,7 @@
     desktop-icons-ng-ding
     dash-to-panel
     favourites-in-appgrid
+    forge
     gtile
     start-overlay-in-application-view
     steal-my-focus-window
