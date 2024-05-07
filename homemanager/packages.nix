@@ -101,6 +101,9 @@ in {
     bash = {
       enable = true;
       enableCompletion = true;
+      initExtra = ''
+        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      '';
       bashrcExtra = ''
         eval '$(ssh-agent)'
       '';
