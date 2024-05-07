@@ -112,7 +112,13 @@ in {
 
     bat = {
       enable = true;
-      config = {};
+      config = {
+        shown_boxes = "proc cpu mem";
+      };
+    };
+
+    btop = {
+      enable = true;
     };
 
     eza = {
