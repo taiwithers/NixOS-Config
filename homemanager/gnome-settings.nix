@@ -132,12 +132,19 @@
     "org/gnome/desktop/wm/keybindings" = {
       custom-keybindings = [
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      name = "Open Nautilus";
-      command = "nautilus";
+      name = "Open Dolphin";
+      command = "dolphin";
       binding = "<Super>e";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      name = "Open Tilix Drop-Down";
+      command = "tilix --quake";
+      binding = "<Shift><Control>q";
     };
   };
 }
