@@ -21,10 +21,11 @@
       # taskbar apps
       favorite-apps = [
         "firefox.desktop"
-        "nautilus.desktop"
+        # "nautilus.desktop"
+        "org.kde.dolphin.desktop"
         "sublime_text.desktop"
         # "org.gnome.Console.desktop"
-        "tilix.desktop"
+        "com.gexperts.Tilix.desktop"
         "codium.desktop"
         "obsidian.desktop"
         # "zotero.desktop"

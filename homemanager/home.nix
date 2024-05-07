@@ -20,7 +20,7 @@
   home.shellAliases = {
     "grep" = "rg";
     "untar" = "tar -xvf";
-    "ls" = "eza --long --colour=always --icons=always --hyperlink --all --group-directories-first --header --time-style iso --no-permissions --no-user --git --dereference";
+    "ls" = "eza --long --colour=always --icons=always --hyperlink --all --group-directories-first --header --time-style iso --no-permissions --no-user --git";
     "tree" = "eza --tree --colour=always --icons=always --hyperlink --all --group-directories-first --header --time-style iso --no-permissions --no-user --git";
     "rebuild" = "bash ~/.config/nixfiles/rebuild.sh";
     "mamba" = "micromamba";
