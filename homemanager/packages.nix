@@ -160,6 +160,10 @@ in {
       };
     };
 
+    gpg = {
+      homedir = "${config.xdg.dataHome}/gnupg";
+    };
+
     htop = {
       enable = true;
     };
