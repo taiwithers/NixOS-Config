@@ -222,6 +222,7 @@ in {
         plugins = [
           "git"
           "branch"
+          "catimg"
         ];
       };
     };
