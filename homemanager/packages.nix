@@ -207,6 +207,17 @@ in {
         };
       };
     };
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autocd = true;
+      # autosuggestion.enable = true;
+      # autosuggestion.highlight = true;
+      dotDir = ".config/zsh";
+      history.path = "${config.xdg.dataHome}/zsh/zsh_history";
+      plugins = []; # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.plugins
+    };
   };
 
   services.copyq.enable = true;
