@@ -221,6 +221,7 @@ in {
         enable = true;
         plugins = [
           "git"
+          "branch"
         ];
       };
     };
