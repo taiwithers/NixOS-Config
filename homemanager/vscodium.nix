@@ -64,4 +64,8 @@
     keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
     userSettings = builtins.fromJSON (builtins.readFile ./vscodium-settings.json);
   };
+
+  home.shellAliases = {
+    "code" = "codium";
+  };
 }
