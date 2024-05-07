@@ -104,9 +104,9 @@ in {
       initExtra = ''
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
       '';
-      bashrcExtra = ''
-        eval '$(ssh-agent)'
-      '';
+      # bashrcExtra = ''
+      #   eval '$(ssh-agent)'
+      # '';
     };
 
     bat = {
