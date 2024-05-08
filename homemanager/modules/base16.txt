@@ -21,3 +21,42 @@ programs
 - lazygit
 - obsidian
 - zsh/oh-my-zsh
+
+
+
+
+gh: ThomasKliszowski/json_reindent
+gh: wmertens/sublime-nix
+gh: titoBouzout/SideBarEnhancements
+
+nix-channel
+nixos-rebuild
+nix-env
+nix-collect-garbage
+nixos-options
+nix repl
+nix-instantiate
+nix-build
+nix shell
+nix-store
+
+services.gnome.core-utilities.enable = false;
+gnome.gedit
+gnome.seahorse
+gnome.gnome-screenshot
+gnome.gnome-terminal
+
+
+
+If your /boot partition runs out of space, after clearing old profiles you must rebuild your system with nixos-rebuild boot or nixos-rebuild switch to update the /boot partition and clear space.
+
+builtins.currentSystem
+
+https://mynixos.com/
+pkg - important!: https://github.com/snowfallorg/nixos-conf-editor
+pkg: https://github.com/utdemir/nix-tree
+pkg: https://github.com/snowfallorg/nix-software-center
+additional packages: https://nur.nix-community.org/
+
+official wiki: https://wiki.nixos.org/wiki/NixOS_Wiki
+community wiki: https://nixos.wiki/wiki/Resources
