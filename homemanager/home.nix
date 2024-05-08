@@ -1,9 +1,11 @@
 {
   config,
   pkgs,
+  inputs, # since we have @inputs in the flake
   ...
 }: {
   imports = [
+    inputs.nix-colors.homeManagerModules.default
     ./packages.nix
     ./gnome-settings.nix
     ./autostart.nix
@@ -15,6 +17,8 @@
   home.username = "tai";
   home.homeDirectory = "/home/tai";
   # home.preferXdgDirectories = true; # doesn't seem to work?
+
+  colorScheme = inputs.nix-colors.colorSchemes.hardcore;
 
   # https://nix-community.github.io/home-manager/options.xhtml#opt-home.shellAliases
   home.shellAliases = {
@@ -62,6 +66,25 @@
     XDG_CACHE_HOME = "~/.cache";
     IPYTHONDIR = "${config.home.sessionVariables.XDG_CONFIG_HOME}/ipython";
     JUPYTER_CONFIG_DIR = "${config.home.sessionVariables.XDG_CONFIG_HOME}/jupyter";
+  };
+
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = ["sublime_text.desktop"];
+    "application/pdf" = ["firefox.desktop"];
+  };
+
+  # colours are defined in .config/gtk-4.0
+  # ln -s ~/.config/gtk-4.0/gtk.css  ~/.config/gtk-3.0/gtk.css 
+  gtk = {
+    enable = true;
+    theme.package = pkgs.adw-gtk3;
+    theme.name = "adw-gtk3";
+  };
+  qt = {
+    enable = true;
+    platformTheme = "gtk"; # gtk or gnome
+    style.name = "adwaita-dark"; # one of the default themes
+    style.package = pkgs.adwaita-qt;
   };
 
   # Let Home Manager install and manage itself.

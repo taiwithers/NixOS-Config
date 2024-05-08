@@ -66,6 +66,8 @@ in {
     libsForQt5.dolphin
     libsForQt5.dolphin-plugins
     # micromamba
+    # nix-prefetch-scripts # run nix-prefetch-url urlgoeshere to get hashes
+    nurl # run nurl "git repo url here" to get nix language fetch code
     obsidian
     onedrive
     onedrivegui
@@ -114,6 +116,10 @@ in {
 
     bat = {
       enable = true;
+      config = {
+        theme = "${config.colorScheme}";
+      };
+
     };
 
     btop = {
@@ -212,6 +218,7 @@ in {
       enable = true;
       enableCompletion = true;
       autocd = true;
+      enableAutosuggestions = true;
       # autosuggestion.enable = true;
       # autosuggestion.highlight = true;
       dotDir = ".config/zsh";

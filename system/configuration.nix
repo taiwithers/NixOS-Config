@@ -10,12 +10,10 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     # add home manager
-    <home-manager/nixos>
-
-    ./gnome.nix
+    # <home-manager/nixos>
   ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -70,8 +68,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  programs.zsh.enable = true;
-  users.users.tai.shell = pkgs.zsh;
+  # programs.zsh.enable = true;
+  # users.users.tai.shell = pkgs.zsh;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tai = {
@@ -90,6 +88,9 @@
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
+
+  # enable flakes
+  nix.settings.experimenal-features = ["nix-command" "flakes"];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -134,4 +135,24 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
+
+    environment.gnome.excludePackages = with pkgs; [
+    gnome-connections # remote desktop
+    gnome-tour
+    gnome.geary # mail app
+    gnome.yelp # help viewer
+    gnome.gnome-calendar
+    gnome.gnome-characters
+    gnome.gnome-contacts
+    gnome.gnome-logs
+    gnome.gnome-maps
+    gnome.gnome-music
+    gnome.gnome-weather
+    gnome.simple-scan
+    gnome.totem # video player
+    epiphany # web browser
+    xterm
+    evince
+  ];
+  services.xserver.excludePackages = [pkgs.xterm];
 }
