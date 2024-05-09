@@ -51,6 +51,7 @@ in {
     (import ./modules/custom-keyboard-shortcuts.nix {inherit custom-keyboard-shortcuts;})
     ./modules/default-keyboard-shortcuts.nix
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
+    ./modules/fonts.nix
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";

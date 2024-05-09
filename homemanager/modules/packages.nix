@@ -107,10 +107,6 @@ in {
     unstable-pkgs.zotero_7
     unstable-pkgs.vivaldi
 
-    cm_unicode
-    intel-one-mono
-    (nerdfonts.override {fonts = ["SpaceMono"];})
-
     texlive-pkgs
   ];
 }
