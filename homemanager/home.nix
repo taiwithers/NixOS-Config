@@ -113,7 +113,10 @@ in {
     "rebuild" = "bash ~/.config/NixOS-Config/rebuild.sh";
     "mamba" = "micromamba";
   };
-  programs.bash.enable = true; # apply home.shellAliases to bash
+  programs.bash = {
+    enable = true; # apply home.shellAliases to bash
+    historyFile = "${config.xdg.stateHome}/bash/history";
+  };
 
   dconf.settings = {
     "org/gnome/shell" = {
@@ -143,5 +146,10 @@ in {
     "org/gnome/mutter".dynamic-workspaces = true;
     "org/gnome/mutter".workspaces-only-on-primary = false;
     "org/gnome/shell/app-switcher".current-workspace-only = true;
+  };
+
+  programs.gpg = {
+    enable = true;
+    homedir = "${config.xdg.dataHome}/gnupg";
   };
 }
