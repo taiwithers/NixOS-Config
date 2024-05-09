@@ -100,8 +100,14 @@ in {
     desktopEntries = {};
 
     mimeApps = {
-      # enable = true;
-      # defaultApplications = {"mimetype" = ["a.desktop" "b.desktop"];};
+      enable = true;
+      defaultApplications = {
+        "inode/directory" = ["org.kde.dolphin.desktop"];
+        "application/pdf" = ["firefox.desktop"];
+
+        "x-scheme-handler/msteams" = ["teams-for-linux.desktop"];
+        "x-scheme-handler/zoom-mtg" = ["zoom.desktop"]; # not sure if correct
+      };
     };
   };
 
