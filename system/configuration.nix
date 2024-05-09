@@ -46,6 +46,8 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  services.gnome.core-shell.enable = true;
+
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -92,8 +94,11 @@
   services.gnome.core-utilities.enable = false;
   services.xserver.excludePackages = with pkgs; [xterm];
   environment.gnome.excludePackages = with pkgs; [
-    # gnome-tour
+    gnome-tour
   ];
+
+  services.dbus.packages = [ pkgs.dconf ];
+  programs.dconf.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

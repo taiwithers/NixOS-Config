@@ -20,24 +20,32 @@ filename_hmconfig=home.nix # should be in above folder
 logfile=nixos-switch.log # logfile will be in the above directories
 
 directory_hmflake=~/.config/NixOS-Config/homemanager
+directory_nixflake=~/.config/NixOS-Config/system
 
 case $1 in 
   'nix')
-    directory=$directory_nixconfig
+    # directory=$directory_nixconfig
+    # build() {
+    #   sudo nixos-rebuild switch -I nixos-config=$filename_nixconfig &>$logfile || (cat $logfile | rg error && exit 1)
+    #   current=$(nixos-rebuild list-generations | rg current)
+    # }
+    directory=$directory_nixflake
     build() {
-      sudo nixos-rebuild switch -I nixos-config=$filename_nixconfig &>$logfile || (cat $logfile | rg error && exit 1)
+      sudo nixos-rebuild switch --flake $directory_nixflake --show-trace &>$logfile || (cat $logfile | rg error && exit 1)
       current=$(nixos-rebuild list-generations | rg current)
     }
+
   ;;
 
   'home')
-    directory=$directory_hmconfig
+    # directory=$directory_hmconfig
+    # build() {
+    #   home-manager -f $filename_hmconfig switch &>$logfile || (cat $logfile | rg error && exit 1)
+    #   current=$(home-manager generations | sed -n 1p)
+    # }
+    directory=$directory_hmflake
     build() {
-      home-manager -f $filename_hmconfig switch &>$logfile || (cat $logfile | rg error && exit 1)
-      current=$(home-manager generations | sed -n 1p)
-    }
-    build() {
-      home-manager --flake $directory_hmflake switch &>$logfile || (cat $logfile | rg error && exit 1)
+      home-manager --flake $directory_hmflake --show-trace switch &>$logfile || (cat $logfile | rg error && exit 1)
       current=$(home-manager generations | sed -n 1p)
     }
   ;;

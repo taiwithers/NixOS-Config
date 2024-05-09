@@ -6,7 +6,7 @@
   user,
   system,
   ...
-}: let
+} @ args: let
   unstable-pkgs =
     import (builtins.fetchTarball {
       url = "github.com/nixos/nixpkgs/archive/nixos-unstable.tar.gz";
@@ -16,140 +16,46 @@
       system = system;
     };
 
-  autostart-pkgs = [
-    pkgs.teams-for-linux
+  autostart-pkgs = with pkgs; [
+    teams-for-linux
     unstable-pkgs.copyq
-    pkgs.onedrivegui
+    onedrivegui
   ];
 
-  texlive-pkgs = pkgs.texlive.combine {
-    inherit
-      (pkgs.texlive)
-      scheme-small
-      derivative
-      enumitem
-      latexmk
-      psnfss # postscript fonts
-      hyphenat
-      revtex4-1 # for aastex
-      siunitx
-      standalone
-      epsf # for graphics
-      svn-prov # required macros
-      astro
-      ;
-  };
+  taskbar-pkgs = with pkgs; [
+    firefox
+    dolphin
+    sublime4
+    tilix
+    # vscodium
+    obsidian
+  ];
+
+  custom-keyboard-shortcuts = [
+    {
+      name = "Open Dolphin";
+      command = "dolphin";
+      binding = "<Super>e";
+    }
+    {
+      name = "Open Settings";
+      command = "gnome-control-center";
+      binding = "<Super>i";
+    }
+  ];
 in {
   imports = [
     inputs.nix-colors.homeManagerModules.default # inputs is an input to this function
+    (import ./modules/packages.nix {inherit pkgs lib unstable-pkgs;})
+    (import ./modules/autostart.nix {inherit autostart-pkgs;})
+    (import ./modules/custom-keyboard-shortcuts.nix {inherit custom-keyboard-shortcuts;})
+    ./modules/default-keyboard-shortcuts.nix
+    (import ./modules/gnome-extensions.nix {inherit pkgs;})
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
-
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
-
-  nixpkgs.config = {
-    allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
-        "dell-command-configure"
-        "discord"
-        "obsidian"
-        "realvnc-vnc-viewer"
-        "slack"
-        "sublimetext4"
-        "zoom"
-      ];
-    permittedInsecurePackages = [
-      "electron-25.9.0"
-      "openssl-1.1.1w"
-    ];
-  };
-
-  home.packages = with pkgs; [
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello'
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-
-    alejandra
-    nix-prefetch-scripts
-    nurl 
-    # appimage-run
-
-    bash
-    bat
-    btop
-    curl
-    dconf
-    eza
-    fd
-    fzf
-    git
-    jq
-    lazygit
-    rename
-    ripgrep
-    speedtest-rs
-    trashy
-    unzip
-    wget
-    xdg-ninja
-    zip
-    zsh
-    oh-my-zsh
-    gfortran
-    openssh
-    pandoc
-    parallel
-    pomodoro
-    python3
-
-    dell-command-configure
-    discord
-    filezilla
-    github-desktop
-    gparted
-    keepassxc
-    libsForQt5.dolphin
-    obsidian
-    onedrive
-    onedrivegui
-    realvnc-vnc-viewer
-    teams-for-linux
-    tilix
-    zoom-us
-    gnome.gnome-tweaks
-    libreoffice
-    slack-dark
-    gnome.gnome-screenshot
-
-    unstable-pkgs.copyq
-    unstable-pkgs.fastfetch
-    unstable-pkgs.sublime4
-    unstable-pkgs.zotero_7
-
-    cm_unicode
-    intel-one-mono
-    (nerdfonts.override {fonts = ["SpaceMono"];})
-
-    gnomeExtensions.all-windows
-    gnomeExtensions.alphabetical-app-grid
-    gnomeExtensions.appindicator
-    gnomeExtensions.click-to-close-overview
-    gnomeExtensions.desktop-icons-ng-ding
-    gnomeExtensions.dash-to-panel
-    gnomeExtensions.favourites-in-appgrid
-    gnomeExtensions.forge
-    # gnomeExtensions.gtile
-    gnomeExtensions.start-overlay-in-application-view
-    gnomeExtensions.steal-my-focus-window
-
-    texlive-pkgs
-  ];
 
   programs.git = {
     enable = true;
@@ -176,12 +82,60 @@ in {
     package = unstable-pkgs.copyq;
   };
 
-  home.file = builtins.listToAttrs (map (pkg: {
-      name = ".config/autostart/${pkg.pname}.desktop";
-      value =
-        if pkg ? desktopItem
-        then {text = pkg.desktopItem.text;}
-        else {source = "${pkg}/share/applications/${pkg.pname}.desktop";};
-    })
-    autostart-pkgs);
+  home.file = {};
+
+  xdg = {
+    enable = true;
+    cacheHome = "/home/tai/.cache"; # default
+    configHome = "/home/tai/.config"; # default
+    dataHome = "/home/tai/.local/share"; # default
+    stateHome = "/home/tai/.local/state"; # default
+
+    desktopEntries = {};
+
+    mimeApps = {
+      # enable = true;
+      # defaultApplications = {"mimetype" = ["a.desktop" "b.desktop"];};
+    };
+  };
+
+  home.shellAliases = {
+    "grep" = "rg";
+    "untar" = "tar -xvf";
+    "ls" = "eza --long --colour=always --icons=always --hyperlink --all --group-directories-first --header --time-style iso --no-permissions --no-user --git";
+    "tree" = "eza --tree --colour=always --icons=always --hyperlink --all --group-directories-first --header --time-style iso --no-permissions --no-user --git";
+    "rebuild" = "bash ~/.config/NixOS-Config/rebuild.sh";
+    "mamba" = "micromamba";
+  };
+  programs.bash.enable = true; # apply home.shellAliases to bash
+
+  dconf.settings = {
+    "org/gnome/shell" = {
+      # taskbar apps
+      favorite-apps =
+        map (
+          pkg:
+            if pkg ? desktopItem
+            then "${pkg.pname}.desktop"
+            else "${pkg}/share/applications/${pkg.pname}.desktop"
+        )
+        taskbar-pkgs;
+    };
+
+    "org/gnome/desktop/interface" = {
+      color-sceme = "prefer-dark";
+      show-battery-percentage = true;
+      overlay-scrolling = true;
+      locate-pointer = true;
+    };
+
+    "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
+
+    # multitasking
+    "org/gnome/desktop/interface".enable-hot-corners = false;
+    "org/gnome/mutter".edge-tiling = true;
+    "org/gnome/mutter".dynamic-workspaces = true;
+    "org/gnome/mutter".workspaces-only-on-primary = false;
+    "org/gnome/shell/app-switcher".current-workspace-only = true;
+  };
 }
