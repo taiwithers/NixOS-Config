@@ -7,13 +7,10 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # add home manager
-    # <home-manager/nixos>
   ];
 
-  # Bootloader
+  # Bootloader.
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -24,9 +21,13 @@
       efiSupport = true;
       devices = ["nodev"];
       useOSProber = true;
+      configurationLimit = 16;
     };
   };
-  networking.hostName = "tai-nixos"; # Define your hostname.
+
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
@@ -68,9 +69,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # programs.zsh.enable = true;
-  # users.users.tai.shell = pkgs.zsh;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tai = {
     isNormalUser = true;
@@ -81,34 +79,22 @@
     ];
   };
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "tai";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
-
-  # enable flakes
-  nix.settings.experimenal-features = ["nix-command" "flakes"];
+  # Allow unfree packages
+  # nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    home-manager
+    vim
+    gnome.gnome-terminal # always have an editor and terminal!
+    gnome.gedit
+  ];
+  services.gnome.core-utilities.enable = false;
+  services.xserver.excludePackages = with pkgs; [xterm];
+  environment.gnome.excludePackages = with pkgs; [
+    # gnome-tour
   ];
 
-  nix.optimise = {
-    automatic = true;
-  };
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
-  };
-
-  programs.ssh.startAgent = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -128,6 +114,16 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  nix.optimise = {
+    automatic = true;
+    dates = ["weekly"];
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -135,24 +131,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
-    environment.gnome.excludePackages = with pkgs; [
-    gnome-connections # remote desktop
-    gnome-tour
-    gnome.geary # mail app
-    gnome.yelp # help viewer
-    gnome.gnome-calendar
-    gnome.gnome-characters
-    gnome.gnome-contacts
-    gnome.gnome-logs
-    gnome.gnome-maps
-    gnome.gnome-music
-    gnome.gnome-weather
-    gnome.simple-scan
-    gnome.totem # video player
-    epiphany # web browser
-    xterm
-    evince
-  ];
-  services.xserver.excludePackages = [pkgs.xterm];
 }

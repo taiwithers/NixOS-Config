@@ -19,6 +19,8 @@ filename_hmconfig=home.nix # should be in above folder
 
 logfile=nixos-switch.log # logfile will be in the above directories
 
+directory_hmflake=~/.config/NixOS-Config/homemanager
+
 case $1 in 
   'nix')
     directory=$directory_nixconfig
@@ -32,6 +34,10 @@ case $1 in
     directory=$directory_hmconfig
     build() {
       home-manager -f $filename_hmconfig switch &>$logfile || (cat $logfile | rg error && exit 1)
+      current=$(home-manager generations | sed -n 1p)
+    }
+    build() {
+      home-manager --flake $directory_hmflake switch &>$logfile || (cat $logfile | rg error && exit 1)
       current=$(home-manager generations | sed -n 1p)
     }
   ;;
