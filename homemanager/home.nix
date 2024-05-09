@@ -27,7 +27,7 @@
     dolphin
     sublime4
     tilix
-    # vscodium
+    vscodium-fhs
     obsidian
   ];
 
@@ -52,11 +52,14 @@ in {
     ./modules/default-keyboard-shortcuts.nix
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
     ./modules/fonts.nix
+    (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
+
+  nixpkgs.config.allowUnfree = true; # having issues w/ vscode extensions...
 
   programs.git = {
     enable = true;

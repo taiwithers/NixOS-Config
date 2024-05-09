@@ -100,6 +100,7 @@ in {
     tilix
     zoom-us
     vte # for tilix
+    vscodium-fhs
 
     unstable-pkgs.copyq
     unstable-pkgs.fastfetch

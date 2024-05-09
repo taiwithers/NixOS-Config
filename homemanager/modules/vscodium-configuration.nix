@@ -1,9 +1,14 @@
 {
-  config,
   pkgs,
+  lib,
   ...
-}: {
-  home.packages = [pkgs.vscodium-fhs];
+}: let
+in {
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "vscode-extension-MS-python-vscode-pylance"
+      "vscode-extension-ms-vscode-remote-remote-ssh"
+    ];
 
   programs.vscode = {
     enable = true;
@@ -61,8 +66,8 @@
         }
       ];
 
-    keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
-    userSettings = builtins.fromJSON (builtins.readFile ./vscodium-settings.json);
+    keybindings = builtins.fromJSON (builtins.readFile ../non-nix/vscodium-keybindings.json);
+    userSettings = builtins.fromJSON (builtins.readFile ../non-nix/vscodium-settings.json);
   };
 
   home.shellAliases = {
