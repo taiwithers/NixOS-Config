@@ -43,9 +43,11 @@
       binding = "<Super>i";
     }
   ];
+
+  nix-colors = import inputs.nix-colors.homeManagerModules.default;
+  colorScheme = nix-colors.colorSchemes.hardcore;
 in {
   imports = [
-    inputs.nix-colors.homeManagerModules.default # inputs is an input to this function
     (import ./modules/packages.nix {inherit pkgs lib unstable-pkgs;})
     (import ./modules/autostart.nix {inherit autostart-pkgs;})
     (import ./modules/custom-keyboard-shortcuts.nix {inherit custom-keyboard-shortcuts;})
@@ -127,7 +129,7 @@ in {
     };
 
     "org/gnome/desktop/interface" = {
-      color-sceme = "prefer-dark";
+      color-scheme = "prefer-dark";
       show-battery-percentage = true;
       overlay-scrolling = true;
       locate-pointer = true;

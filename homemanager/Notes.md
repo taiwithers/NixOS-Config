@@ -1,7 +1,6 @@
 # Packages
 
-`gsettings list-schemas`
-https://github.com/smashstate/gnome-manager
+
 
 ## To Configure (Declaratively)
 - *CopyQ*
@@ -12,6 +11,10 @@ https://github.com/smashstate/gnome-manager
 - *Sublime Text*
 - eza
 - *dconf, gnome, gnome-tweaks, gnome-extensions*
+	- https://github.com/forge-ext/forge/issues/165#issuecomment-1713499010
+	- `dconf list /org/gnome/shell/extensions/`
+	- `gsettings list-schemas`
+	- https://github.com/smashstate/gnome-manager
 - *tilix*
 	- https://gnunn1.github.io/tilix-web/manual/vteconfig/
 - Bate
