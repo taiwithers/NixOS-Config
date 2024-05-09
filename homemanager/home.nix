@@ -104,6 +104,10 @@ in {
       defaultApplications = {
         "inode/directory" = ["org.kde.dolphin.desktop"];
         "application/pdf" = ["firefox.desktop"];
+        "text/html" = ["firefox.desktop"];
+        "application/xhtml+xml" = ["firefox.desktop"];
+        "x-scheme-handler/http" = ["firefox.desktop"];
+        "x-scheme-handler/https" = ["firefox.desktop"];
 
         "x-scheme-handler/msteams" = ["teams-for-linux.desktop"];
         "x-scheme-handler/zoom-mtg" = ["zoom.desktop"]; # not sure if correct
