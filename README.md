@@ -7,3 +7,7 @@
 - nix run home-manager/release-23.11 -- init --switch
 - edit until this succeeds
 - should now be able to run home-manager switch
+
+
+`home-manager switch --flake ~/.config/NixOS-Config/homemanager --show-trace`
+`sudo nixos-rebuild switch --flake ~/.config/NixOS-Config/system --show-trace`
