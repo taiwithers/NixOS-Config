@@ -115,7 +115,7 @@ in {
   };
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
-    historyFile = "${config.xdg.stateHome}/bash/history";
+    historyFile = "${config.xdg.stateHome}/bash/history"; # clean up homedir
   };
 
   dconf.settings = {
@@ -150,6 +150,6 @@ in {
 
   programs.gpg = {
     enable = true;
-    homedir = "${config.xdg.dataHome}/gnupg";
+    homedir = "${config.xdg.dataHome}/gnupg"; # clean up homedir
   };
 }
