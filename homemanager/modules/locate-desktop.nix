@@ -12,4 +12,4 @@ else let
 in
   if builtins.length fileList > 0
   then builtins.elemAt fileList 0
-  else null
+  else throw "Cannot locate .desktop file for package ${pkg.pname}"
