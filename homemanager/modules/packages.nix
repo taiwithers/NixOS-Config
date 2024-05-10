@@ -54,6 +54,7 @@ in {
 
     bash
     bat
+    bat-extras.batman
     btop
     curl
     dconf

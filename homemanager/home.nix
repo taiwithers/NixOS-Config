@@ -92,6 +92,9 @@ in {
 
   home.file = {
     # ".ssh/config".source = ./non-nix/ssh-config;
+    # "${config.xdg.configHome}/dolphinrc".source = ./non-nix/dolphinrc;
+    # "${config.xdg.stateHome}/kxmlgui5/dolphinui.rc".source = ./non-nix/dolphinui.rc;
+    # "${config.xdg.configHome}/copyq/copyq.conf".source = /.non-nix/copyq.conf;
   };
 
   xdg = {
@@ -122,8 +125,8 @@ in {
   home.shellAliases = {
     "grep" = "rg";
     "untar" = "tar -xvf";
-    "ls" = "eza --long --colour=always --icons=always --hyperlink --all --group-directories-first --header --time-style iso --no-permissions --no-user --git";
-    "tree" = "eza --tree --colour=always --icons=always --hyperlink --all --group-directories-first --header --time-style iso --no-permissions --no-user --git";
+    "ls" = "eza";
+    "tree" = "eza --tree";
     "rebuild" = "bash ~/.config/NixOS-Config/rebuild.sh";
     "mamba" = "micromamba";
   };
@@ -158,5 +161,22 @@ in {
   programs.gpg = {
     enable = true;
     homedir = "${config.xdg.dataHome}/gnupg"; # clean up homedir
+  };
+
+  programs.eza = {
+    enable = true;
+    extraOptions = [
+      "--long"
+      "--colour=always"
+      "--hyperlink"
+      "--all"
+      "--group-directories-first"
+      "--header"
+      "--time-style iso"
+      "--no-permissions"
+      "--no-user"
+    ];
+    git = true;
+    icons = true;
   };
 }
