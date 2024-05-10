@@ -46,6 +46,8 @@
 
   nix-colors = import inputs.nix-colors.homeManagerModules.default;
   colorScheme = nix-colors.colorSchemes.hardcore;
+
+  locateDesktop = import ./modules/locate-desktop.nix;
 in {
   imports = [
     (import ./modules/packages.nix {inherit pkgs lib unstable-pkgs;})
@@ -133,14 +135,7 @@ in {
   dconf.settings = {
     "org/gnome/shell" = {
       # taskbar apps
-      favorite-apps =
-        map (
-          pkg:
-            if pkg ? desktopItem
-            then "${pkg.pname}.desktop"
-            else "${pkg}/share/applications/${pkg.pname}.desktop"
-        )
-        taskbar-pkgs;
+      favorite-apps = map (pkg: locateDesktop pkg) taskbar-pkgs;
     };
 
     "org/gnome/desktop/interface" = {
