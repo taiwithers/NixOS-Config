@@ -129,6 +129,7 @@ in {
     "tree" = "eza --tree";
     "rebuild" = "bash ~/.config/NixOS-Config/rebuild.sh";
     "mamba" = "micromamba";
+    "man" = "batman";
   };
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
