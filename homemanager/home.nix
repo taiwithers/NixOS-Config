@@ -89,7 +89,7 @@ in {
   };
 
   home.file = {
-    ".ssh/config".source = ./non-nix/ssh-config;
+    # ".ssh/config".source = ./non-nix/ssh-config;
   };
 
   xdg = {
