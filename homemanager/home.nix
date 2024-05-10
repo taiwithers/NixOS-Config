@@ -51,7 +51,7 @@
 in {
   imports = [
     (import ./modules/packages.nix {inherit pkgs lib unstable-pkgs;})
-    (import ./modules/autostart.nix {inherit autostart-pkgs;})
+    # (import ./modules/autostart.nix {inherit autostart-pkgs;})
     (import ./modules/custom-keyboard-shortcuts.nix {inherit custom-keyboard-shortcuts;})
     ./modules/default-keyboard-shortcuts.nix
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
