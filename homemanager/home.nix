@@ -135,6 +135,7 @@ in {
     enable = true; # apply home.shellAliases to bash
     historyFile = "${config.xdg.stateHome}/bash/history"; # clean up homedir
   };
+  xsession.profileExtra = "export $EDITOR=vim";
 
   dconf.settings = {
     "org/gnome/shell" = {
