@@ -88,7 +88,9 @@ in {
     package = unstable-pkgs.copyq;
   };
 
-  home.file = {};
+  home.file = {
+    ".ssh/config".source = ./non-nix/ssh-config;
+  };
 
   xdg = {
     enable = true;

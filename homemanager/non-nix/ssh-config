@@ -1,0 +1,4 @@
+# add this file to git so it can be imported by flakes
+# commit the empty file (or this version with comments)
+# git update-index --assume-unchanged filepath
+# edit and add info that should not be pushed to git
