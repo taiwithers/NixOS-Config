@@ -3,8 +3,10 @@ pkg:
 if builtins.hasAttr "desktopItem" pkg
 then "${pkg.pname}.desktop"
 else let
-  filelist = builtins.attrNames (builtins.readDir "${pkg}/share/applications");
+  # search for any files in the pkg.outPath/share/applications directory, catch for directory not existing
+  filelist =
+    builtins.tryEval (builtins.attrNames (builtins.readDir "${pkg}/share/applications"));
 in
-  if builtins.length filelist == 0
-  then null
-  else builtins.elemAt filelist 0
+  if filelist.success && builtins.length filelist.value > 0
+  then builtins.elemAt filelist.value 0
+  else null
