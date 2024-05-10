@@ -1,0 +1,30 @@
+[General]
+EditableUrl=true
+RememberOpenedTabs=false
+ShowFullPath=true
+ShowSpaceInfo=false
+ShowZoomSlider=false
+SplitView=true
+Version=202
+ViewPropsTimestamp=2024,5,9,9,31,19.348
+
+[IconsMode]
+IconSize=16
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[KPropertiesDialog]
+2 screens: Height=640
+2 screens: Width=608
+
+[MainWindow]
+ToolBarsMovable=Disabled
+
+[PreviewSettings]
+Plugins=
+
+[ViewPropertiesDialog]
+2 screens: Height=333
+2 screens: Width=395
