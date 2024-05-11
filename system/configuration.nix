@@ -22,6 +22,9 @@
       devices = ["nodev"];
       useOSProber = true;
       configurationLimit = 16;
+      backgroundColor = "#000000";
+      # memtest86.enable = true;#
+      # fontSize = 16; 
     };
   };
 
