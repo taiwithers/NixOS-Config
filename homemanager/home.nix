@@ -244,7 +244,7 @@ in {
     #   url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
     #   hash = "sha256-UEit9XxoZUmcb5ZRnYYWt9Pe1V+nD20Yl4klGOLwiSY=";
     # };
-    # attrs = ["all" "args" "drvPath" "name" "out" "outPath" "outputName" "outputs" "showURLs" "stdenv" "system" "type" "url" "urls"];
+    attrs = ["all" "args" "drvPath" "name" "out" "outPath" "outputName" "outputs" "showURLs" "stdenv" "system" "type" "url" "urls"];
     # meta
     drv = pkgs.fetchFromGitHub {
       owner = "karlding";
@@ -253,8 +253,8 @@ in {
       hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
     };
   in
-    builtins.toString (builtins.attrNames drv);
-  # builtins.concatStringsSep "\n" (map (attr: "${attr}: ${builtins.toString (builtins.getAttr attr drv)}") attrs);
+    # builtins.toString (builtins.attrNames drv);
+    builtins.concatStringsSep "\n" (map (attr: "${attr}: ${builtins.toString (builtins.getAttr attr drv)}") attrs);
 
   # download selected base 16 theme to tilix theme directory
   # xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${colourScheme}.json".source = pkgs.fetchurl {
