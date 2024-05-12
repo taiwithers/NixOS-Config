@@ -244,9 +244,9 @@ in {
     hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
   };
 
-  home.file."testoutput".text = builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${colourScheme}.json";
+  # home.file."testoutput".source = builtins.fromJSON (builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${colourScheme}.json");
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
-  # dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = {};
+  dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = builtins.fromJSON (builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${colourScheme}.json");
 
   # download all themes for sublime
   # xdg.configFile."${config.xdg.configHome}/sublime-text/Packages/User/Base16".source = pkgs.fetchFromGithub {
