@@ -36,7 +36,7 @@
       hash = "sha256-ojb9xg26OL0kOZfcYXWIIS0efpHPFwlIwKklclmrUTc="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
     {
-      name = "tinted_theming";
+      name = "Tinted Theming";
       owner = "tinted-theming";
       repo = "tinted-sublime-text";
       rev = "e001ce1";
@@ -52,7 +52,7 @@
 in {
   # download packages to .config/ST/Packages/User
   xdg.configFile = builtins.listToAttrs (map (package: {
-      name = "${packagesPath}/${package.name}";
+      name = "${packagesPath}/${package.repo}";
       value = {source = pkgs.fetchFromGitHub package;};
     })
     packages);
