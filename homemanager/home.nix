@@ -253,7 +253,7 @@ in {
       hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
     };
   in
-    builtins.toString (drv.out);
+    builtins.toString (builtins.attrNames drv);
   # builtins.concatStringsSep "\n" (map (attr: "${attr}: ${builtins.toString (builtins.getAttr attr drv)}") attrs);
 
   # download selected base 16 theme to tilix theme directory
