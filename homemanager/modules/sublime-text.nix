@@ -91,6 +91,18 @@ in {
         ]
       }
     '';
+
+    "${packagesPath}/Preferences.sublime-settings".text = ''
+          {
+        "ignored_packages":
+        [
+          "Vintage",
+        ],
+        "font_size": 11,
+        "color_scheme": "base16-hardcore.sublime-color-scheme",
+      }
+
+    '';
   };
   # home.file."${packagesPath}/Preferences.sublime-settings".source = ./non-nix/Preferences.sublime-settings;
   # home.file."${packagesPath}/Default.sublime-keymap".source = ./non-nix/Default.sublime-keymap;
