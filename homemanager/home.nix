@@ -48,11 +48,11 @@
     # nix-colors = import inputs.nix-colors.homeManagerModules.default;
     # colours = nix-colors."${name}";
     names = [
-      "da-one-ocean"
+      "da-one-ocean" # dark vibrant
+      "horizon-terminal-dark" # vibrant, good!
       "framer"
       "ayu-dark"
       "hardcore"
-      "horizon-terminal-dark" # vibrant, good!
       "porple" # washed out, grey-blue background
       "qualia" # black + vibrant pastels
       "rose-pine" # purple
