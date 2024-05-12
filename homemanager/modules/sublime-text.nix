@@ -49,6 +49,7 @@
     # 	hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";  # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     # }
   ];
+
   selectAvailableTheme = functionGetThemePath: let
     themes = theme-config.names;
     checkTheme = name: builtins.pathExists (functionGetThemePath name);
@@ -106,7 +107,7 @@ in {
         ],
         "font_size": 11,
         "color_scheme": "base16-${sublimeTheme}.sublime-color-scheme",
-        "theme": "Adaptive.sublime-theme",
+        "theme": "base16-${sublimeColourScheme}.sublime-theme",
       }
     '';
 
