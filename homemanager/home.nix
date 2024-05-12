@@ -239,28 +239,13 @@ in {
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   # dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = {};
 
-  home.file."testoutput".text = let
-    # drv = pkgs.fetchurl {
-    #   url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
-    #   hash = "sha256-UEit9XxoZUmcb5ZRnYYWt9Pe1V+nD20Yl4klGOLwiSY=";
-    # };
-    attrs = ["all" "args" "drvPath" "name" "out" "outPath" "outputName" "outputs" "showURLs" "stdenv" "system" "type" "url" "urls"];
-    # meta
-    drv = pkgs.fetchFromGitHub {
-      owner = "karlding";
-      repo = "base16-tilix";
-      rev = "72602d8";
-      hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
-    };
-  in
-    # builtins.toString (builtins.attrNames drv);
-    builtins.concatStringsSep "\n" (map (attr: "${attr}: ${builtins.toString (builtins.getAttr attr drv)}") attrs);
-
-  # download selected base 16 theme to tilix theme directory
-  # xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${colourScheme}.json".source = pkgs.fetchurl {
-  #   url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
-  #   hash = "sha256-UEit9XxoZUmcb5ZRnYYWt9Pe1V+nD20Yl4klGOLwiSY=";
-  # };
+  # download all base 16 themes to tilix theme directory
+  xdg.configFile."${config.xdg.configHome}/tilix/schemes/".source = pkgs.fetchFromGitHub {
+    owner = "karlding";
+    repo = "base16-tilix";
+    rev = "72602d8";
+    hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
+  };
 
   # download all themes for sublime
   # xdg.configFile."${config.xdg.configHome}/sublime-text/Packages/User/Base16".source = pkgs.fetchFromGithub {
