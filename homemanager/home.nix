@@ -48,8 +48,6 @@
     # nix-colors = import inputs.nix-colors.homeManagerModules.default;
     # colours = nix-colors."${name}";
     names = [
-      "zenbones"
-      "rose-pine" # purple
       "qualia" # black + pastels
       "porple" # more washed out
 
@@ -58,6 +56,8 @@
       "framer"
       "ayu-dark"
       "hardcore"
+      "rose-pine" # purple
+      "zenbones" # orange/green/blue on black
     ];
   };
 
