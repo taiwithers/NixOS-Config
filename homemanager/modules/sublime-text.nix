@@ -56,7 +56,7 @@ in {
   };
 
   home.file."testoutput".text = ''
-    ${builtins.concatStringsSep "," (builtins.catAttrs "name" packages)}
+    ${builtins.concatStringsSep "," (map (name: "${name}") (builtins.catAttrs "name" packages))}
   '';
 
   # xdg.configFile results in source already defined...?
