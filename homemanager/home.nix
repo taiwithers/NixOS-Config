@@ -244,17 +244,19 @@ in {
     hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
   };
 
-  # home.file."testoutput".source = builtins.fromJSON (builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${colourScheme}.json");
+  # set tilix theme
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
-  dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = builtins.fromJSON (builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${colourScheme}.json");
+  dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = builtins.fromJSON (
+    builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${colourScheme}.json"
+  );
 
   # download all themes for sublime
-  # xdg.configFile."${config.xdg.configHome}/sublime-text/Packages/User/Base16".source = pkgs.fetchFromGithub {
-  #   owner = "chriskempson";
-  #   repo = "base16-textmate";
-  #   rev = "latest"; # 0e51ddd / 0e51ddd568bdbe17189ac2a07eb1c5f55727513e
-  #   hash = "";
-  # };
+  xdg.configFile."${config.xdg.configHome}/sublime-text/Packages/User/Base16".source = pkgs.fetchFromGitHub {
+    owner = "chriskempson";
+    repo = "base16-textmate";
+    rev = "0e51ddd";
+    hash = "sha256-reYGXrhhHNSp/1k6YJ2hxj4jnJQCDgy2Nzxse2PviTA=";
+  };
 
   # not sure this is actually the extension I want to use
   # programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [
