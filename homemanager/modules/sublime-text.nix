@@ -107,7 +107,7 @@ in {
         ],
         "font_size": 11,
         "color_scheme": "base16-${sublimeTheme}.sublime-color-scheme",
-        "theme": "base16-${sublimeColourScheme}.sublime-theme",
+        "theme": "Adaptive.sublime-theme",
       }
     '';
 
