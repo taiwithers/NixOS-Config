@@ -239,10 +239,10 @@ in {
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   # dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = {};
 
-  home.file."testoutput".source = pkgs.fetchurl {
+  home.file."testoutput".text = builtins.readFile (pkgs.fetchurl {
     url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
     hash = "sha256-UEit9XxoZUmcb5ZRnYYWt9Pe1V+nD20Yl4klGOLwiSY=";
-  };
+  });
 
   # download selected base 16 theme to tilix theme directory
   # xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${colourScheme}.json".source = pkgs.fetchurl {
