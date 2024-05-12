@@ -239,10 +239,14 @@ in {
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   # dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = {};
 
-  home.file."testoutput".text = builtins.toString (builtins.attrNames (pkgs.fetchurl {
-    url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
-    hash = "sha256-UEit9XxoZUmcb5ZRnYYWt9Pe1V+nD20Yl4klGOLwiSY=";
-  }));
+  home.file."testoutput".text = let
+    drv = pkgs.fetchurl {
+      url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
+      hash = "sha256-UEit9XxoZUmcb5ZRnYYWt9Pe1V+nD20Yl4klGOLwiSY=";
+    };
+    attrs = ["all"]; # "args" "drvPath" "meta" "name" "out" "outPath" "outputName" "outputs" "show" "URLs" "stdenv" "system" "type" "url" "urls"];
+  in
+    builtins.concatStringsSep "\n" (map (attr: "${attr}: ${builtins.toString (builtins.getAttr attr drv)}") attrs);
 
   # download selected base 16 theme to tilix theme directory
   # xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${colourScheme}.json".source = pkgs.fetchurl {
