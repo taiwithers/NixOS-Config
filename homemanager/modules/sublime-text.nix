@@ -60,7 +60,7 @@ in {
       "bootstrapped": true,
       "installed_packages":
         [
-      	${builtins.concatStringsSep ",\n\t\t" (map (name: "\"${name}\"") (builtins.catAttrs "name" packages))}
+      	${builtins.concatStringsSep ",\n\t" (map (name: "\"${name}\"") (builtins.catAttrs "name" packages))}
         ],
       "in_process_packages": [],
     }
