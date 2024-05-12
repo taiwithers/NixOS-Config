@@ -250,10 +250,10 @@ in {
       owner = "karlding";
       repo = "base16-tilix";
       rev = "72602d8";
-      hash = "";
+      hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
     };
   in
-    builtins.toString (builtins.attrNames drv);
+    builtins.toString (drv.out);
   # builtins.concatStringsSep "\n" (map (attr: "${attr}: ${builtins.toString (builtins.getAttr attr drv)}") attrs);
 
   # download selected base 16 theme to tilix theme directory
