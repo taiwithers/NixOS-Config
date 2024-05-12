@@ -217,4 +217,29 @@ in {
     git = true;
     icons = true;
   };
+
+  # Themeing
+
+  # download selected base 16 theme to tilix theme directory
+  xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${config.colourScheme}.json".source = pkgs.fetchurl {
+    url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${config.colourScheme}.json";
+    hash = ""; 
+  };
+
+  # download all themes for sublime
+  xdg.configFile."${config.xdg.configHome}/sublime-text/Packages/User/Base16".source = pkgs.fetchFromGithub {
+    owner = "chriskempson";
+    repo = "base16-textmate";
+    rev = "latest"; # 0e51ddd / 0e51ddd568bdbe17189ac2a07eb1c5f55727513e
+    hash = "";
+  };
+
+  programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [
+  { name = "Base16 Theme Switcher";
+    publisher = "";
+    version = ""; 
+    sha256 = "";}];
+
+
+
 }
