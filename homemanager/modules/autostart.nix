@@ -1,5 +1,8 @@
 # https://github.com/nix-community/home-manager/issues/3447#issuecomment-1328294558
-{config, autostart-pkgs}: let
+{
+  config,
+  autostart-pkgs,
+}: let
   locateDesktop = import ./locate-desktop.nix;
 in {
   xdg.configFile = builtins.listToAttrs (map (pkg: {

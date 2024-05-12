@@ -57,7 +57,7 @@ in {
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
     ./modules/fonts.nix
     (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
-    (import ./modules/sublime-text.nix {inherit config pkgs ;})
+    # (import ./modules/sublime-text.nix {inherit config pkgs;})
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
@@ -76,6 +76,9 @@ in {
       gpg.format = "ssh";
       pull.rebase = "false";
       init.defaultBranch = "main";
+      core.whitespace.blank-at-eol = false;
+      core.whitespace.blank-at-eof = false;
+      # ignore-space-at-eol = true;
     };
     delta = {
       enable = true;
@@ -121,7 +124,7 @@ in {
         "application/x-tex" = []; # .tex
         "application/xhtml+xml" = ["firefox.desktop"];
         "application/yaml" = []; # yaml, yml
-        
+
         "application/vnd.oasis.opendocument.graphics" = []; # .odg
         "application/vnd.oasis.opendocument.graphics-template" = []; # .otg
         "application/vnd.oasis.opendocument.presentation" = []; # .odp
@@ -132,7 +135,7 @@ in {
         "application/vnd.oasis.opendocument.text-template" = []; # .ott
         "application/vnd.openxmlformats-officedocument.presentationml.presentation" = []; # .pptx
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = []; # .docx
-        
+
         "image/gif" = []; # .gif
         "image/ico" = []; # .ico
         "image/jpeg" = []; # .jpeg
@@ -140,14 +143,14 @@ in {
         "image/webp" = []; # .webp
 
         "inode/directory" = ["org.kde.dolphin.desktop"];
-        
+
         "text/calendar" = []; # .ics .ifb
         "text/csv" = []; # .csv
         "text/html" = ["firefox.desktop"];
         "text/plain" = []; # .conf, .def, .diff, .in, .ksh, .list, .log, .pl, .text, .txt
         "text/x-markdown" = []; # .md, .markdown, .mdown, .markdn
         "text/x-py" = []; # .py
-        
+
         "x-scheme-handler/http" = ["firefox.desktop"];
         "x-scheme-handler/https" = ["firefox.desktop"];
         "x-scheme-handler/msteams" = ["teams-for-linux.desktop"];
@@ -175,7 +178,7 @@ in {
     "org/gnome/shell" = {
       # taskbar apps
       favorite-apps = map (pkg: locateDesktop pkg) taskbar-pkgs;
-      user-theme.name = "";
+      # user-theme.name = "";
     };
 
     "org/gnome/desktop/interface" = {
@@ -221,25 +224,26 @@ in {
   # Themeing
 
   # download selected base 16 theme to tilix theme directory
-  xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${config.colourScheme}.json".source = pkgs.fetchurl {
-    url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${config.colourScheme}.json";
-    hash = ""; 
-  };
+  # xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${colourScheme}.json".source = pkgs.fetchurl {
+  #   url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
+  #   hash = "";
+  # };
 
   # download all themes for sublime
-  xdg.configFile."${config.xdg.configHome}/sublime-text/Packages/User/Base16".source = pkgs.fetchFromGithub {
-    owner = "chriskempson";
-    repo = "base16-textmate";
-    rev = "latest"; # 0e51ddd / 0e51ddd568bdbe17189ac2a07eb1c5f55727513e
-    hash = "";
-  };
+  # xdg.configFile."${config.xdg.configHome}/sublime-text/Packages/User/Base16".source = pkgs.fetchFromGithub {
+  #   owner = "chriskempson";
+  #   repo = "base16-textmate";
+  #   rev = "latest"; # 0e51ddd / 0e51ddd568bdbe17189ac2a07eb1c5f55727513e
+  #   hash = "";
+  # };
 
-  programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [
-  { name = "Base16 Theme Switcher";
-    publisher = "";
-    version = ""; 
-    sha256 = "";}];
-
-
-
+  # not sure this is actually the extension I want to use
+  # programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [
+  #   {
+  #     name = "Base16 Theme Switcher";
+  #     publisher = "";
+  #     version = "";
+  #     sha256 = "";
+  #   }
+  # ];
 }
