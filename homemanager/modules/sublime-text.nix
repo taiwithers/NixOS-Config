@@ -10,15 +10,14 @@
       repo = "package_control";
       rev = "4.0.6";
       hash = "sha256-aaVm0F2hVeVvySKXWuirF7hwm7VQbGExzoJsz9VcIKY=";
-      # hash = "sha256-aaVm0F2hVeVvySKXWuirF7hwm7VQbGExzoJsz9VcIKY=";
       # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
-    # {
-    #   owner = "ThomasKliszowski";
-    #   repo = "json_reindent";
-    #   rev = "2.0.4";
-    #   hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjsonreindent="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
-    # }
+    {
+      owner = "ThomasKliszowski";
+      repo = "json_reindent";
+      rev = "2.0.4";
+      hash = "sha256-aaVm0F2hVeVvySKXWuirF7hwm7VQbGExzoJsz9VcIKY="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
+    }
     # {
     #   owner = "titoBouzout";
     #   repo = "SideBarEnhancements";
