@@ -186,7 +186,7 @@ in {
       show-battery-percentage = true;
       overlay-scrolling = true;
       locate-pointer = true;
-      cursor-theme = "";
+      # cursor-theme = "";
     };
 
     "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
