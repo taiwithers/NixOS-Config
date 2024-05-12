@@ -6,48 +6,34 @@
   packagesPath = "${config.xdg.configHome}/sublime-text/Packages/User";
   packages = [
     {
+      name = "Package Control";
       owner = "wbond";
       repo = "package_control";
       rev = "4.0.6";
-      hash = "sha256-aaVm0F2hVeVvySKXWuirF7hwm7VQbGExzoJsz9VcIKY=";
+      hash = "sha256-Ep46FhcPOxND+U/fjAHz/+qDseik7/pPxTARY0EGe9o=";
       # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
     {
+      name = "JSON Reindent";
       owner = "ThomasKliszowski";
       repo = "json_reindent";
       rev = "2.0.4";
       hash = "sha256-aaVm0F2hVeVvySKXWuirF7hwm7VQbGExzoJsz9VcIKY="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
     {
+      name = "SideBarEnhancements";
       owner = "titoBouzout";
       repo = "SideBarEnhancements";
       rev = "12.0.4"; #
       hash = "sha256-FzhC691BQI5XnYfMHft39Wz1Mu+AYvegfrF0VPwRRxE="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
     {
+      name = "Nix";
       owner = "wmertens";
       repo = "sublime-nix";
       rev = "9032bd6";
       hash = "sha256-ojb9xg26OL0kOZfcYXWIIS0efpHPFwlIwKklclmrUTc="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
-    # {
-    #   owner = "SublimeText";
-    #   repo = "AFileIcon";
-    #   rev = "3.27.0";
-    #   hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfileicon="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
-    # }
-    # {
-    # 	owner = "kemayo";
-    # 	repo = "sublime-text-git";
-    # 	rev = "latest"; # f649fe4 / f649fe4ba657ce9c132cadb91f97c6f8d98834c2
-    # 	hash = "";  # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
-    # }
-    # {
-    #   owner = "SublimeText";
-    #   repo = "Origami";
-    #   rev = "7369b11"; #  / 7369b117290d72629cf2d226e90998b8ec22fb82
-    #   hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAorigami="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
-    # }
     # {
     # 	owner = "";
     # 	repo = "";
@@ -69,18 +55,8 @@ in {
     hash = "sha256-gXk3FEw0yEyIzUO4UxiyZW+cP6wC+PcsvBg2Cywm0Tk=";
   };
 
-  home.file."${packagesPath}/Package Control.sublime-settings".text = ''
-      {
-    	"bootstrapped": true,
-    	"installed_packages":
-    	[
-    		"Package Control",
-    		"Nix"
-    	],
-    	"in_process_packages":
-    	[
-    	],
-    }
+  home.file."testoutput".text = ''
+    ${builtins.concatStringsSep "," (builtins.catAttrs "name" packages)}
   '';
 
   # xdg.configFile results in source already defined...?
