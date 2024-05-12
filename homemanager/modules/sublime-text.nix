@@ -24,6 +24,12 @@
       rev = "12.0.4"; #
       hash = "sha256-FzhC691BQI5XnYfMHft39Wz1Mu+AYvegfrF0VPwRRxE="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
+    {
+      owner = "wmertens";
+      repo = "sublime-nix";
+      rev = "9032bd6";
+      hash = "sha256-ojb9xg26OL0kOZfcYXWIIS0efpHPFwlIwKklclmrUTc="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
+    }
     # {
     #   owner = "SublimeText";
     #   repo = "AFileIcon";
@@ -46,7 +52,7 @@
     # 	owner = "";
     # 	repo = "";
     # 	rev = "latest";
-    # 	hash = "";  # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
+    # 	hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";  # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     # }
   ];
 in {
