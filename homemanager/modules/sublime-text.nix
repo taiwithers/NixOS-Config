@@ -93,22 +93,21 @@ in {
     #   }
     # '';
 
-    "${packagesPath}/Preferences.sublime-settings".text = ''
-      {
-        "ignored_packages":
-        [
-          "Vintage",
-        ],
-        "font_size": 11,
-        "color_scheme": "base16-hardcore.sublime-color-scheme",
-      }
+    # "${packagesPath}/Preferences.sublime-settings".text = ''
+    #   {
+    #     "ignored_packages":
+    #     [
+    #       "Vintage",
+    #     ],
+    #     "font_size": 11,
+    #     "color_scheme": "base16-hardcore.sublime-color-scheme",
+    #   }
+    # '';
 
-    '';
-
-    "${packagesPath}/Default.sublime-keymap".text = ''
-      [
-        { "keys": ["ctrl+shift+n"], "command": "new_window" }
-      ]
-    '';
+    # "${packagesPath}/Default.sublime-keymap".text = ''
+    #   [
+    #     { "keys": ["ctrl+shift+n"], "command": "new_window" }
+    #   ]
+    # '';
   };
 }
