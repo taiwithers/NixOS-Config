@@ -58,8 +58,9 @@
   #   firstAvailableTheme;
 
   selectAvailableTheme = functionGetThemePath: let
-    firstAvailableTheme = functionGetThemePath (builtins.head theme-config.names);
-    # checkTheme = name: builtins.pathExists (functionGetThemePath name);
+    checkTheme = name: builtins.pathExists (functionGetThemePath name);
+    availableThemes = builtins.filter checkTheme theme-config.names;
+    firstAvailableTheme = builtins.head availableThemes;
     # themes = theme-config.names;
     # firstAvailableTheme = import ./modules/choose-option-or-backup.nix checkTheme themes;
   in
