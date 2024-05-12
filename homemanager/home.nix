@@ -48,7 +48,6 @@
     # nix-colors = import inputs.nix-colors.homeManagerModules.default;
     # colours = nix-colors."${name}";
     names = [
-      "qualia" # black + pastels
       "porple" # more washed out
 
       "horizon-terminal-dark" # vibrant
@@ -56,6 +55,7 @@
       "framer"
       "ayu-dark"
       "hardcore"
+      "qualia" # black + vibrant pastels
       "rose-pine" # purple
       "zenbones" # orange/green/blue on black
     ];
