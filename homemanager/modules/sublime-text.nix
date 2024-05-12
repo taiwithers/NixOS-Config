@@ -93,16 +93,17 @@ in {
     #   }
     # '';
 
-    # "${packagesPath}/Preferences.sublime-settings".text = ''
-    #   {
-    #     "ignored_packages":
-    #     [
-    #       "Vintage",
-    #     ],
-    #     "font_size": 11,
-    #     "color_scheme": "base16-hardcore.sublime-color-scheme",
-    #   }
-    # '';
+    "${packagesPath}/Preferences.sublime-settings".text = ''
+      {
+        "ignored_packages":
+        [
+          "Vintage",
+        ],
+        "font_size": 11,
+        "color_scheme": "base16-hardcore.sublime-color-scheme",
+        "theme": "Adaptive.sublime-theme",
+      }
+    '';
 
     # "${packagesPath}/Default.sublime-keymap".text = ''
     #   [
