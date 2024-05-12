@@ -55,7 +55,7 @@ in
 	# 		name = "${packagesPath}/${package.repo}";
 	# 		value = { source = fetchFromGithub package; };
 	# 		}) packages);
-	xdg.configFile = map ( "${packagesPath}/${package.repo}".source: fetchFromGithub package ) packages;
+	xdg.configFile = map ( "${packagesPath}/${package.repo}".source: pkgs.fetchFromGithub package ) packages;
 
 	xdg.configFile."${packagesPath}/Preferences.sublime-settings".source = ./non-nix/Preferences.sublime-settings;
 	xdg.configFile."${packagesPath}/Default.sublime-keymap".source = ./non-nix/Default.sublime-keymap;
