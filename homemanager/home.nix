@@ -45,7 +45,7 @@
   ];
 
   nix-colors = import inputs.nix-colors.homeManagerModules.default;
-  colorScheme = nix-colors.colorSchemes.hardcore;
+  colourScheme = nix-colors.colorSchemes.hardcore;
 
   locateDesktop = import ./modules/locate-desktop.nix;
 in {
