@@ -51,7 +51,7 @@
 in {
   imports = [
     (import ./modules/packages.nix {inherit pkgs lib unstable-pkgs;})
-    (import ./modules/autostart.nix {inherit autostart-pkgs;})
+    (import ./modules/autostart.nix {inherit config autostart-pkgs;})
     (import ./modules/custom-keyboard-shortcuts.nix {inherit custom-keyboard-shortcuts;})
     ./modules/default-keyboard-shortcuts.nix
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
@@ -169,7 +169,7 @@ in {
     enable = true; # apply home.shellAliases to bash
     historyFile = "${config.xdg.stateHome}/bash/history"; # clean up homedir
   };
-  xsession.profileExtra = "export $EDITOR=vim";
+  xsession.profileExtra = "export $EDITOR=vim"; # TEST ME
 
   dconf.settings = {
     "org/gnome/shell" = {

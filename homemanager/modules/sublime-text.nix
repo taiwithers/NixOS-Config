@@ -50,8 +50,8 @@ let
 
 in
 {
-	home.file = map ( "${packagesPath}/${package.repo}".source: fetchFromGithub package ) packages;
+	xdg.configFile = map ( "${packagesPath}/${package.repo}".source: fetchFromGithub package ) packages;
 
-	home.file."${packagesPath}/Preferences.sublime-settings".source = ./non-nix/Preferences.sublime-settings;
-	home.file."${packagesPath}/Default.sublime-keymap".source = ./non-nix/Default.sublime-keymap;
+	xdg.configFile."${packagesPath}/Preferences.sublime-settings".source = ./non-nix/Preferences.sublime-settings;
+	xdg.configFile."${packagesPath}/Default.sublime-keymap".source = ./non-nix/Default.sublime-keymap;
 }

@@ -1,9 +1,9 @@
 # https://github.com/nix-community/home-manager/issues/3447#issuecomment-1328294558
-{autostart-pkgs}: let
+{config, autostart-pkgs}: let
   locateDesktop = import ./locate-desktop.nix;
 in {
   xdg.configFile = builtins.listToAttrs (map (pkg: {
-      name = ".config/autostart/${pkg.pname}.desktop";
+      name = "${config.xdg.configHome}/autostart/${pkg.pname}.desktop";
       value = {source = "${pkg}/share/applications/${locateDesktop pkg}";};
       # if pkg ? desktopItem
       # then {
