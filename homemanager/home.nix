@@ -45,9 +45,10 @@
   ];
 
   theme-config = rec {
-    nix-colors = import inputs.nix-colors.homeManagerModules.default;
-    name = "atelier-dune";
-    colours = nix-colors."${name}";
+    # nix-colors = import inputs.nix-colors.homeManagerModules.default;
+    # colours = nix-colors."${name}";
+    name = "ayu-dark";
+    backup = "hardcore";
   };
 
   locateDesktop = import ./modules/locate-desktop.nix;
@@ -249,9 +250,14 @@ in {
 
   # set tilix theme
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
-  dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = builtins.fromJSON (
-    builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${theme-config.name}.json"
-  );
+  dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
+    getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
+    tilixTheme =
+      if builtins.pathExists (getThemePath theme-config.name)
+      then getThemePath theme-config.name
+      else getThemePath theme-config.backup;
+  in
+    builtins.fromJSON (builtins.readFile tilixTheme);
 
   # not sure this is actually the extension I want to use
   # programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [
