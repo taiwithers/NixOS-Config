@@ -57,12 +57,15 @@
   # in
   #   firstAvailableTheme;
 
+  chooseOptionOrBackup = import ./modules/choose-option-or-backup.nix;
+
   selectAvailableTheme = functionGetThemePath: let
-    themes = theme-config.names;
-    checkTheme = name: builtins.pathExists (functionGetThemePath name);
-    availableThemes = builtins.filter checkTheme themes;
-    firstAvailableTheme = builtins.head availableThemes;
-    # firstAvailableTheme = import ./modules/choose-option-or-backup.nix checkTheme themes;
+    # themes = theme-config.names;
+    # checkTheme = ;
+    # availableThemes = builtins.filter checkTheme themes;
+    # firstAvailableTheme = builtins.head availableThemes;
+    # firstAvailableTheme = chooseOptionOrBackup (name: builtins.pathExists (functionGetThemePath name)) theme-config.names;
+    firstAvailableTheme = builtins.typeOf functionGetThemePath;
   in
     firstAvailableTheme;
 
