@@ -50,12 +50,21 @@
     names = ["ayu-dark" "hardcore"];
   };
 
+  # selectAvailableTheme = functionGetThemePath: let
+  #   checkTheme = name: builtins.pathExists (functionGetThemePath name);
+  #   availableThemes = builtins.filter checkTheme theme-config.names;
+  #   firstAvailableTheme = builtins.head availableThemes;
+  # in
+  #   firstAvailableTheme;
+
   selectAvailableTheme = functionGetThemePath: let
     checkTheme = name: builtins.pathExists (functionGetThemePath name);
-    availableThemes = builtins.filter checkTheme theme-config.names;
-    firstAvailableTheme = builtins.head availableThemes;
+    themes = theme-config.names;
+    firstAvailableTheme = import ./modules/choose-option-or-backup.nix checkTheme themes;
   in
     firstAvailableTheme;
+
+  # making a change??/
 
   locateDesktop = import ./modules/locate-desktop.nix;
 in {
@@ -254,13 +263,16 @@ in {
     hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
   };
 
+  home.file."testoutput".text = let
+    getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
+  in "${selectAvailableTheme getThemePath}";
   # set tilix theme
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
-  dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
-    getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-    tilixTheme = getThemePath (selectAvailableTheme getThemePath);
-  in
-    builtins.fromJSON (builtins.readFile tilixTheme);
+  # dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
+  #   getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
+  #   tilixTheme = getThemePath (selectAvailableTheme getThemePath);
+  # in
+  #   builtins.fromJSON (builtins.readFile tilixTheme);
 
   # not sure this is actually the extension I want to use
   # programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [

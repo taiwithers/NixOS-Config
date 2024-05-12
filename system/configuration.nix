@@ -24,7 +24,7 @@
       configurationLimit = 16;
       backgroundColor = "#000000";
       # memtest86.enable = true;#
-      # fontSize = 16; 
+      # fontSize = 16;
     };
   };
 
@@ -100,7 +100,7 @@
     gnome-tour
   ];
 
-  services.dbus.packages = [ pkgs.dconf ];
+  services.dbus.packages = [pkgs.dconf];
   programs.dconf.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
