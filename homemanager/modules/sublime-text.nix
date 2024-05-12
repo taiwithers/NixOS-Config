@@ -57,9 +57,12 @@ in {
     packages);
 
   # download Package Control.sublime-package to .config/ST/Installed Packages/
-  home.file."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package".source = pkgs.fetchurl {
-    url = "https://packagecontrol.io/Package%20Control.sublime-package";
-    hash = "sha256-gXk3FEw0yEyIzUO4UxiyZW+cP6wC+PcsvBg2Cywm0Tk=";
+  home.file."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package" = {
+    enable = false; # only do this once
+    source = pkgs.fetchurl {
+      url = "https://packagecontrol.io/Package%20Control.sublime-package";
+      hash = "sha256-gXk3FEw0yEyIzUO4UxiyZW+cP6wC+PcsvBg2Cywm0Tk=";
+    };
   };
 
   # list installed packages in .config/ST/Packages/User/Package Control.sublime-settings
@@ -80,7 +83,7 @@ in {
           {
         "variables":
         {
-          "sidebar_bg": "#FFFFFF"
+          "sidebar_bg": "var(ui_bg)"
         },
         "rules":
         [
