@@ -46,7 +46,7 @@
 
   theme-config = rec {
     nix-colors = import inputs.nix-colors.homeManagerModules.default;
-    name = "hardcore";
+    name = "espresso";
     colours = nix-colors."${name}";
   };
 
