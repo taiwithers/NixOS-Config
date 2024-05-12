@@ -79,18 +79,18 @@ in {
   '';
 
   home.file = {
-    "${packagesPath}/Default.sublime-theme".text = ''
-          {
-        "variables":
-        {
-          "ui_bg" = ""
-        },
-        "rules":
-        [
+    # "${packagesPath}/Default.sublime-theme".text = ''
+    #       {
+    #     "variables":
+    #     {
+    #       "ui_bg" = "$"
+    #     },
+    #     "rules":
+    #     [
 
-        ]
-      }
-    '';
+    #     ]
+    #   }
+    # '';
 
     "${packagesPath}/Preferences.sublime-settings".text = ''
       {
@@ -105,7 +105,7 @@ in {
     '';
 
     "${packagesPath}/Default.sublime-keymap".text = ''
-            [
+      [
         { "keys": ["ctrl+shift+n"], "command": "new_window" }
       ]
     '';
