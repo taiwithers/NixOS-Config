@@ -64,6 +64,10 @@ in {
     packages);
   # xdg.configFile = map ( "${packagesPath}/${package.repo}".source: pkgs.fetchFromGithub package ) packages;
 
+  home.file."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package".source = pkgs.fetchurl {
+    url = "https://packagecontrol.io/Package%20Control.sublime-package";
+    hash = "sha256-gXk3FEw0yEyIzUO4UxiyZW+cP6wC+PcsvBg2Cywm0Tk=";
+  };
   # xdg.configFile results in source already defined...?
   # home.file."${packagesPath}/Preferences.sublime-settings".source = ./non-nix/Preferences.sublime-settings;
   # home.file."${packagesPath}/Default.sublime-keymap".source = ./non-nix/Default.sublime-keymap;
