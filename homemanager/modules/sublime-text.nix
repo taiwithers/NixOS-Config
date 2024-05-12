@@ -58,9 +58,10 @@ in {
   home.file."testoutput".text = ''
     {
       "bootstrapped": true,
-      "installed_packages":
-        [
-      	${builtins.concatStringsSep ",\n\t" (map (name: "\"${name}\"") (builtins.catAttrs "name" packages))}
+      "installed_packages": [
+      	${builtins.concatStringsSep ",\n\t" (
+      map (name: "\"${name}\"") (builtins.catAttrs "name" packages)
+    )}
         ],
       "in_process_packages": [],
     }
