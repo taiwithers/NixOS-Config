@@ -50,6 +50,11 @@ let
 
 in
 {
+	# either of these should work i'm pretty sure?
+	# xdg.configFile = builtins.listToAttrs ( map (package: {
+	# 		name = "${packagesPath}/${package.repo}";
+	# 		value = { source = fetchFromGithub package; };
+	# 		}) packages);
 	xdg.configFile = map ( "${packagesPath}/${package.repo}".source: fetchFromGithub package ) packages;
 
 	xdg.configFile."${packagesPath}/Preferences.sublime-settings".source = ./non-nix/Preferences.sublime-settings;
