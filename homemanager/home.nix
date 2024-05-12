@@ -65,7 +65,7 @@
     # availableThemes = builtins.filter checkTheme themes;
     # firstAvailableTheme = builtins.head availableThemes;
     # firstAvailableTheme = chooseOptionOrBackup (name: builtins.pathExists (functionGetThemePath name)) theme-config.names;
-    firstAvailableTheme = builtins.typeOf functionGetThemePath;
+    firstAvailableTheme = builtins.typeOf chooseOptionOrBackup;
   in
     firstAvailableTheme;
 
