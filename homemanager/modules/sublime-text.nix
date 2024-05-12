@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  colourScheme,
   ...
 }: let
   packagesPath = "${config.xdg.configHome}/sublime-text/Packages/User";
@@ -33,6 +34,12 @@
       repo = "sublime-nix";
       rev = "9032bd6";
       hash = "sha256-ojb9xg26OL0kOZfcYXWIIS0efpHPFwlIwKklclmrUTc="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
+    }
+    {
+      owner = "chriskempson";
+      repo = "base16-textmate";
+      rev = "0e51ddd";
+      hash = "sha256-reYGXrhhHNSp/1k6YJ2hxj4jnJQCDgy2Nzxse2PviTA=";
     }
     # {
     # 	owner = "";

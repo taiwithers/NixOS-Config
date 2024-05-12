@@ -57,7 +57,7 @@ in {
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
     ./modules/fonts.nix
     (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
-    (import ./modules/sublime-text.nix {inherit config pkgs;})
+    (import ./modules/sublime-text.nix {inherit config pkgs colourScheme;})
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
@@ -249,14 +249,6 @@ in {
   dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = builtins.fromJSON (
     builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${colourScheme}.json"
   );
-
-  # download all themes for sublime
-  xdg.configFile."${config.xdg.configHome}/sublime-text/Packages/User/Base16".source = pkgs.fetchFromGitHub {
-    owner = "chriskempson";
-    repo = "base16-textmate";
-    rev = "0e51ddd";
-    hash = "sha256-reYGXrhhHNSp/1k6YJ2hxj4jnJQCDgy2Nzxse2PviTA=";
-  };
 
   # not sure this is actually the extension I want to use
   # programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [
