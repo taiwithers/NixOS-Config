@@ -67,7 +67,7 @@ in {
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
     ./modules/fonts.nix
     (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
-    # (import ./modules/sublime-text.nix {inherit config pkgs theme-config;})
+    (import ./modules/sublime-text.nix {inherit config pkgs theme-config;})
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
@@ -254,17 +254,13 @@ in {
     hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
   };
 
-  home.file."testoutput".text = let
-    getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-  in
-    selectAvailableTheme getThemePath;
   # set tilix theme
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
-  # dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
-  #   getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-  #   tilixTheme = selectAvailableTheme getThemePath;
-  # in
-  #   builtins.fromJSON (builtins.readFile tilixTheme);
+  dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
+    getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
+    tilixTheme = getThemePath (selectAvailableTheme getThemePath);
+  in
+    builtins.fromJSON (builtins.readFile tilixTheme);
 
   # not sure this is actually the extension I want to use
   # programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [

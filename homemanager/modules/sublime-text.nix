@@ -89,7 +89,7 @@ in {
           "Vintage",
         ],
         "font_size": 11,
-        "color_scheme": "base16-${theme-config.name}.sublime-color-scheme",
+        "color_scheme": "base16-hardcore.sublime-color-scheme",
         "theme": "Adaptive.sublime-theme",
       }
     '';
