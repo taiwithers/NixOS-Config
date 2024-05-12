@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  colourScheme,
+  theme-config,
   ...
 }: let
   packagesPath = "${config.xdg.configHome}/sublime-text/Packages/User";

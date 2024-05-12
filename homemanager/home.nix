@@ -44,8 +44,11 @@
     }
   ];
 
-  nix-colors = import inputs.nix-colors.homeManagerModules.default;
-  colourScheme = "hardcore";
+  theme-config = rec {
+    nix-colors = import inputs.nix-colors.homeManagerModules.default;
+    name = "hardcore";
+    colours = nix-colors."${name}";
+  };
 
   locateDesktop = import ./modules/locate-desktop.nix;
 in {
@@ -57,7 +60,7 @@ in {
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
     ./modules/fonts.nix
     (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
-    (import ./modules/sublime-text.nix {inherit config pkgs colourScheme;})
+    (import ./modules/sublime-text.nix {inherit config pkgs theme-config;})
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
@@ -247,7 +250,7 @@ in {
   # set tilix theme
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = builtins.fromJSON (
-    builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${colourScheme}.json"
+    builtins.readFile "${config.xdg.configHome}/tilix/schemes/tilix/base16-${theme-config.name}.json"
   );
 
   # not sure this is actually the extension I want to use
