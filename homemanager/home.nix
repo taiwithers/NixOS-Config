@@ -221,6 +221,19 @@ in {
     icons = true;
   };
 
+  dconf.settings."com/gexperts/Tilix" = {
+    control-scroll-zoom = true;
+    enable-wide-handle = true;
+    middle-click-close = true;
+    new-instance-mode = "focus-window";
+    paste-strip-first-char = true;
+    paste-strip-trailing-whitespace = true;
+    prompt-on-close = true;
+    terminal-title-style = "small";
+    theme-variant = "dark";
+    use-tabs = true;
+  };
+
   # Themeing
 
   # download selected base 16 theme to tilix theme directory
