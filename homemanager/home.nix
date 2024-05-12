@@ -244,7 +244,7 @@ in {
       url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
       hash = "sha256-UEit9XxoZUmcb5ZRnYYWt9Pe1V+nD20Yl4klGOLwiSY=";
     };
-    attrs = ["all" "args" "drvPath" "name" "out" "outPath" "outputName" "outputs" "show" "URLs" "stdenv" "system" "type" "url" "urls"];
+    attrs = ["all" "args" "drvPath" "name" "out" "outPath" "outputName" "outputs" "showURLs" "stdenv" "system" "type" "url" "urls"];
     # meta
   in
     builtins.concatStringsSep "\n" (map (attr: "${attr}: ${builtins.toString (builtins.getAttr attr drv)}") attrs);
