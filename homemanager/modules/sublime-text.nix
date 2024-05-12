@@ -68,6 +68,21 @@ in {
     url = "https://packagecontrol.io/Package%20Control.sublime-package";
     hash = "sha256-gXk3FEw0yEyIzUO4UxiyZW+cP6wC+PcsvBg2Cywm0Tk=";
   };
+
+  home.file."${packagesPath}/Package Control.sublime-settings".text = ''
+      {
+    	"bootstrapped": true,
+    	"installed_packages":
+    	[
+    		"Package Control",
+    		"Nix"
+    	],
+    	"in_process_packages":
+    	[
+    	],
+    }
+  '';
+
   # xdg.configFile results in source already defined...?
   # home.file."${packagesPath}/Preferences.sublime-settings".source = ./non-nix/Preferences.sublime-settings;
   # home.file."${packagesPath}/Default.sublime-keymap".source = ./non-nix/Default.sublime-keymap;
