@@ -47,7 +47,7 @@
   theme-config = rec {
     # nix-colors = import inputs.nix-colors.homeManagerModules.default;
     # colours = nix-colors."${name}";
-    names = ["horizon-dark" "da-one-ocean" "framer" "ayu-dark" "hardcore"];
+    names = ["horizon-terminal-dark" "da-one-ocean" "framer" "ayu-dark" "hardcore"];
   };
 
   # selectAvailableTheme = functionGetThemePath: let
