@@ -49,6 +49,17 @@
     # 	hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";  # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     # }
   ];
+  selectAvailableTheme = functionGetThemePath: let
+    themes = theme-config.names;
+    checkTheme = name: builtins.pathExists (functionGetThemePath name);
+    firstAvailableTheme =
+      import ./choose-option-or-backup.nix
+      {
+        functionOptionIsValid = checkTheme;
+        allOptions = themes;
+      };
+  in
+    firstAvailableTheme;
 in {
   # download packages to .config/ST/Packages/User
   xdg.configFile = builtins.listToAttrs (map (package: {
@@ -82,14 +93,19 @@ in {
   home.file = {
     "${packagesPath}/Default.sublime-theme".text = ''{"variables": {}, "rules": [] } '';
 
-    "${packagesPath}/Preferences.sublime-settings".text = ''
+    "${packagesPath}/Preferences.sublime-settings".text = let
+      getThemePath = name: "${packagesPath}/tinted-sublime-text/base16-${name}.sublime-theme";
+      sublimeTheme = selectAvailableTheme getThemePath;
+      getColourSchemePath = name: "${packagesPath}/tinted-sublime-text/color-schemes/base16-${name}.sublime-color-scheme";
+      sublimeColourScheme = selectAvailableTheme getColourSchemePath;
+    in ''
       {
         "ignored_packages":
         [
           "Vintage",
         ],
         "font_size": 11,
-        "color_scheme": "base16-hardcore.sublime-color-scheme",
+        "color_scheme": "base16-${sublimeTheme}.sublime-color-scheme",
         "theme": "Adaptive.sublime-theme",
       }
     '';
