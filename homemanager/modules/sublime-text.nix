@@ -68,7 +68,6 @@ in {
     }
   '';
 
-  # xdg.configFile results in source already defined...?
   # home.file."${packagesPath}/Preferences.sublime-settings".source = ./non-nix/Preferences.sublime-settings;
   # home.file."${packagesPath}/Default.sublime-keymap".source = ./non-nix/Default.sublime-keymap;
 }
