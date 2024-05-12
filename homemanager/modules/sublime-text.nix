@@ -42,20 +42,21 @@
     # }
   ];
 in {
-  # either of these should work i'm pretty sure?
+  # download packages to .config/ST/Packages/User
   xdg.configFile = builtins.listToAttrs (map (package: {
       name = "${packagesPath}/${package.repo}";
       value = {source = pkgs.fetchFromGitHub package;};
     })
     packages);
-  # xdg.configFile = map ( "${packagesPath}/${package.repo}".source: pkgs.fetchFromGithub package ) packages;
 
+  # download Package Control.sublime-package to .config/ST/Installed Packages/
   home.file."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package".source = pkgs.fetchurl {
     url = "https://packagecontrol.io/Package%20Control.sublime-package";
     hash = "sha256-gXk3FEw0yEyIzUO4UxiyZW+cP6wC+PcsvBg2Cywm0Tk=";
   };
 
-  home.file."testoutput".text = ''
+  # list installed packages in .config/ST/Packages/User/Package Control.sublime-settings
+  home.file."${packagesPath}/Package Control.sublime-settings".text = ''
     {
       "bootstrapped": true,
       "installed_packages": [
