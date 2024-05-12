@@ -57,15 +57,15 @@
   # in
   #   firstAvailableTheme;
 
-  chooseOptionOrBackup = import ./modules/choose-option-or-backup.nix;
-
   selectAvailableTheme = functionGetThemePath: let
-    # themes = theme-config.names;
-    # checkTheme = ;
-    # availableThemes = builtins.filter checkTheme themes;
-    # firstAvailableTheme = builtins.head availableThemes;
-    # firstAvailableTheme = chooseOptionOrBackup (name: builtins.pathExists (functionGetThemePath name)) theme-config.names;
-    firstAvailableTheme = builtins.typeOf chooseOptionOrBackup;
+    themes = theme-config.names;
+    checkTheme = name: builtins.pathExists (functionGetThemePath name);
+    firstAvailableTheme =
+      import ./modules/choose-option-or-backup.nix
+      {
+        functionOptionIsValid = checkTheme;
+        allOptions = themes;
+      };
   in
     firstAvailableTheme;
 
@@ -268,16 +268,13 @@ in {
     hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
   };
 
-  home.file."testoutput".text = let
-    getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-  in "${selectAvailableTheme getThemePath}";
   # set tilix theme
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
-  # dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
-  #   getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-  #   tilixTheme = getThemePath (selectAvailableTheme getThemePath);
-  # in
-  #   builtins.fromJSON (builtins.readFile tilixTheme);
+  dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
+    getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
+    tilixTheme = getThemePath (selectAvailableTheme getThemePath);
+  in
+    builtins.fromJSON (builtins.readFile tilixTheme);
 
   # not sure this is actually the extension I want to use
   # programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [
