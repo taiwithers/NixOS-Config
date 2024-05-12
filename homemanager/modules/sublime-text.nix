@@ -18,12 +18,12 @@
       rev = "2.0.4";
       hash = "sha256-aaVm0F2hVeVvySKXWuirF7hwm7VQbGExzoJsz9VcIKY="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
-    # {
-    #   owner = "titoBouzout";
-    #   repo = "SideBarEnhancements";
-    #   rev = "12.0.4"; #
-    #   hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsidebarenhan="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
-    # }
+    {
+      owner = "titoBouzout";
+      repo = "SideBarEnhancements";
+      rev = "12.0.4"; #
+      hash = "sha256-FzhC691BQI5XnYfMHft39Wz1Mu+AYvegfrF0VPwRRxE="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
+    }
     # {
     #   owner = "SublimeText";
     #   repo = "AFileIcon";
