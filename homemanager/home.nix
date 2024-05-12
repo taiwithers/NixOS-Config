@@ -45,7 +45,7 @@
   ];
 
   nix-colors = import inputs.nix-colors.homeManagerModules.default;
-  colourScheme = nix-colors.colorSchemes.hardcore;
+  colourScheme = "hardcore";
 
   locateDesktop = import ./modules/locate-desktop.nix;
 in {
@@ -224,15 +224,10 @@ in {
   # Themeing
 
   # download selected base 16 theme to tilix theme directory
-  home.file."testoutput".text = ''${builtins.toString (builtins.attrNames (pkgs.fetchurl {
-      url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
-      hash = "";
-    }))}'';
-
-  # xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${colourScheme}.json".source = pkgs.fetchurl {
-  #   url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
-  #   hash = "";
-  # };
+  xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${colourScheme}.json".source = pkgs.fetchurl {
+    url = "https://github.com/karlding/base16-tilix/blob/master/tilix/base16-${colourScheme}.json";
+    hash = "sha256-UEit9XxoZUmcb5ZRnYYWt9Pe1V+nD20Yl4klGOLwiSY=";
+  };
 
   # download all themes for sublime
   # xdg.configFile."${config.xdg.configHome}/sublime-text/Packages/User/Base16".source = pkgs.fetchFromGithub {
