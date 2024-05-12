@@ -47,7 +47,7 @@
   theme-config = rec {
     # nix-colors = import inputs.nix-colors.homeManagerModules.default;
     # colours = nix-colors."${name}";
-    names = ["ayu-dark" "hardcore"];
+    names = ["ayu-mirage" "ayu-dark" "hardcore"];
   };
 
   # selectAvailableTheme = functionGetThemePath: let
@@ -68,8 +68,6 @@
       };
   in
     firstAvailableTheme;
-
-  # making a change??/
 
   locateDesktop = import ./modules/locate-desktop.nix;
 in {
