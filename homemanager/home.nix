@@ -46,7 +46,7 @@
 
   theme-config = rec {
     nix-colors = import inputs.nix-colors.homeManagerModules.default;
-    name = "espresso";
+    name = "circus";
     colours = nix-colors."${name}";
   };
 
