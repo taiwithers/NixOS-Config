@@ -247,7 +247,8 @@ in {
     attrs = ["all" "args" "drvPath" "name" "out" "outPath" "outputName" "outputs" "showURLs" "stdenv" "system" "type" "url" "urls"];
     # meta
   in
-    builtins.concatStringsSep "\n" (map (attr: "${attr}: ${builtins.toString (builtins.getAttr attr drv)}") attrs);
+    builtins.readFile drv.out;
+  # builtins.concatStringsSep "\n" (map (attr: "${attr}: ${builtins.toString (builtins.getAttr attr drv)}") attrs);
 
   # download selected base 16 theme to tilix theme directory
   # xdg.configFile."${config.xdg.configHome}/tilix/schemes/base16-${colourScheme}.json".source = pkgs.fetchurl {
