@@ -36,10 +36,10 @@
       hash = "sha256-ojb9xg26OL0kOZfcYXWIIS0efpHPFwlIwKklclmrUTc="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
     {
-      owner = "chriskempson";
-      repo = "base16-textmate";
-      rev = "0e51ddd";
-      hash = "sha256-reYGXrhhHNSp/1k6YJ2hxj4jnJQCDgy2Nzxse2PviTA=";
+      owner = "tinted-theming";
+      repo = "tinted-sublime-text";
+      rev = "e001ce1";
+      hash = "sha256-S41mxSCAbERUdhaaKZYb7tr1mkE84a3fekTY70r5LL4=";
     }
     # {
     # 	owner = "";
@@ -83,7 +83,7 @@ in {
           {
         "variables":
         {
-          "sidebar_bg": "var(ui_bg)"
+          "ui_bg" = ""
         },
         "rules":
         [
