@@ -59,13 +59,11 @@ in {
     {
       "bootstrapped": true,
       "installed_packages":
-      [
-      ${builtins.concatStringsSep ",\n" (map (name: "\"${name}\"") (builtins.catAttrs "name" packages))}
-          ],
-      "in_process_packages":
-      [
-      ],
-      }
+        [
+      	${builtins.concatStringsSep ",\n\t\t" (map (name: "\"${name}\"") (builtins.catAttrs "name" packages))}
+        ],
+      "in_process_packages": [],
+    }
   '';
 
   # xdg.configFile results in source already defined...?
