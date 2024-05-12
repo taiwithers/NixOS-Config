@@ -57,7 +57,7 @@ in {
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
     ./modules/fonts.nix
     (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
-    # (import ./modules/sublime-text.nix {inherit config pkgs;})
+    (import ./modules/sublime-text.nix {inherit config pkgs;})
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
