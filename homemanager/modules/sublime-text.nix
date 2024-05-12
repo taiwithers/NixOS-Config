@@ -93,7 +93,7 @@ in {
     '';
 
     "${packagesPath}/Preferences.sublime-settings".text = ''
-          {
+      {
         "ignored_packages":
         [
           "Vintage",
@@ -103,7 +103,11 @@ in {
       }
 
     '';
+
+    "${packagesPath}/Default.sublime-keymap".text = ''
+            [
+        { "keys": ["ctrl+shift+n"], "command": "new_window" }
+      ]
+    '';
   };
-  # home.file."${packagesPath}/Preferences.sublime-settings".source = ./non-nix/Preferences.sublime-settings;
-  # home.file."${packagesPath}/Default.sublime-keymap".source = ./non-nix/Default.sublime-keymap;
 }
