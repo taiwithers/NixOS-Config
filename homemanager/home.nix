@@ -213,7 +213,7 @@ in {
       "--all"
       "--group-directories-first"
       "--header"
-      "--time-style iso"
+      "--time-style=iso"
       "--no-permissions"
       "--no-user"
     ];
