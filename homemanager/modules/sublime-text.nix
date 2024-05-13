@@ -8,6 +8,7 @@
   packages = [
     {
       name = "Package Control";
+      function = pkgs.fetchFromGitHub;
       owner = "wbond";
       repo = "package_control";
       rev = "4.0.6";
@@ -16,6 +17,7 @@
     }
     {
       name = "JSON Reindent";
+      function = pkgs.fetchFromGitHub;
       owner = "ThomasKliszowski";
       repo = "json_reindent";
       rev = "2.0.4";
@@ -23,6 +25,7 @@
     }
     {
       name = "SideBarEnhancements";
+      function = pkgs.fetchFromGitHub;
       owner = "titoBouzout";
       repo = "SideBarEnhancements";
       rev = "12.0.4"; #
@@ -30,6 +33,7 @@
     }
     {
       name = "Nix";
+      function = pkgs.fetchFromGitHub;
       owner = "wmertens";
       repo = "sublime-nix";
       rev = "9032bd6";
@@ -37,10 +41,17 @@
     }
     {
       name = "Tinted Theming";
+      function = pkgs.fetchFromGitHub;
       owner = "tinted-theming";
       repo = "tinted-sublime-text";
       rev = "e001ce1";
       hash = "sha256-S41mxSCAbERUdhaaKZYb7tr1mkE84a3fekTY70r5LL4=";
+    }
+    {
+      name = "SFTP";
+      function = path: "${config.xdg.configHome}/sublime-text/Packages/User/SFTP_Manual";
+      url = "https://codexns.io/packages/sftp/2.0.0-st4-posix/SFTP.sublime-package";
+      hash = "";
     }
     # {
     # 	owner = "";
@@ -64,8 +75,12 @@
 in {
   # download packages to .config/ST/Packages/User
   xdg.configFile = builtins.listToAttrs (map (package: {
-      name = "${packagesPath}/${package.repo}";
-      value = {source = pkgs.fetchFromGitHub package;};
+      name = "${packagesPath}/${
+        if builtins.hasAttr "repo" package
+        then package.repo
+        else package.name
+      }";
+      value = {source = package.function (builtins.removeAttrs package ["function" "name"]);};
     })
     packages);
 
