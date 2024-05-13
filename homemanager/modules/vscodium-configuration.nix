@@ -66,19 +66,15 @@ in {
           version = "0.1.5";
           sha256 = "0jpdwy18yzm7apnazbwg0112rnilzrv8666fk5afkjqgsp0pjjly";
         }
-        # {
-        #   name = "tinted-vscode";
-        #   publisher = "tintedtheming";
-        #   version = "0.8.0";
-        #   sha256 = "";
-        # }
+        {
+          name = "base16-generator";
+          publisher = "golf1052";
+          version = "1.19.1";
+          sha256 = "0g5lcy064zm88wcik2n6c7i5g50rk0zbz722l65lzv8wggnr2gqk";
+        }
       ];
 
     keybindings = builtins.fromJSON (builtins.readFile ../non-nix/vscodium-keybindings.json);
     userSettings = builtins.fromJSON (builtins.readFile ../non-nix/vscodium-settings.json);
-  };
-
-  home.shellAliases = {
-    "code" = "codium";
   };
 }
