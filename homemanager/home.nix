@@ -310,7 +310,6 @@ in {
   dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
     getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
     tilixTheme = getThemePath (selectAvailableTheme getThemePath);
-    # tilixTheme = getThemePath "horizon-terminal-dark"; #(selectAvailableTheme getThemePath);
   in
     builtins.fromJSON (builtins.readFile tilixTheme);
 
@@ -321,10 +320,10 @@ in {
     rev = "87368a6";
     hash = "sha256-Lo5++1pOD9i62ahI3Ta2s/F/U80LXOu0sWMLUng3GbQ=";
   };
-  # programs.bash.bashrcExtra = let
-  #   getThemePath = name: "${config.xdg.configHome}/fzf-themes/sh/base16-${name}.sh";
-  #   fzfTheme = getThemePath (selectAvailableTheme getThemePath);
-  # in ["source ${fzfTheme}"];
+  programs.bash.bashrcExtra = let
+    getThemePath = name: "${config.xdg.configHome}/fzf-themes/sh/base16-${name}.sh";
+    fzfTheme = getThemePath (selectAvailableTheme getThemePath);
+  in "source ${fzfTheme}";
 
   # not sure this is actually the extension I want to use
   # programs.vscode.extensions = with pkgs.vscode-utils.extensionsFromVscodeMarketplace; [
