@@ -4,7 +4,9 @@
         "base16-horizon-dark",
         "base16-horizon-terminal-dark",
         "base16-qualia",
-        "base16-rose-pine-dark"
+        "base16-rose-pine-dark",
+        "base16-rose-pine-moon-dark",
+        "base16-rose-pine-dawn-dark"
     ],
     "breadcrumbs.filePath": "last",
     "debug.allowBreakpointsEverywhere": true,
