@@ -65,7 +65,7 @@
     themes = theme-config.names;
     checkTheme = name: builtins.pathExists (functionGetThemePath name);
     firstAvailableTheme =
-      import ./modules/choose-option-or-backup.nix
+      import ../nix-scripts/choose-option-or-backup.nix
       {
         functionOptionIsValid = checkTheme;
         allOptions = themes;
@@ -73,7 +73,7 @@
   in
     firstAvailableTheme;
 
-  locateDesktop = import ./modules/locate-desktop.nix;
+  locateDesktop = import ../nix-scripts/locate-desktop.nix;
 
   vscode-server = builtins.fetchTarball {
     url = "https://github.com/msteen/nixos-vscode-server/tarball/master";
@@ -82,7 +82,7 @@
 in {
   imports = [
     (import ./modules/packages.nix {inherit pkgs lib unstable-pkgs;})
-    (import ./modules/autostart.nix {inherit config autostart-pkgs;})
+    (import ../nix-scripts/autostart.nix {inherit config autostart-pkgs;})
     (import ./modules/custom-keyboard-shortcuts.nix {inherit custom-keyboard-shortcuts;})
     ./modules/default-keyboard-shortcuts.nix
     (import ./modules/gnome-extensions.nix {inherit pkgs;})

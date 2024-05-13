@@ -65,7 +65,7 @@
     themes = theme-config.names;
     checkTheme = name: builtins.pathExists (functionGetThemePath name);
     firstAvailableTheme =
-      import ./choose-option-or-backup.nix
+      import ../../nix-scripts/choose-option-or-backup.nix
       {
         functionOptionIsValid = checkTheme;
         allOptions = themes;
