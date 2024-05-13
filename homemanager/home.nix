@@ -206,10 +206,10 @@ in {
     "untar" = "tar -xvf";
     "ls" = "eza";
     "tree" = "eza --tree";
-    "rebuild" = "bash ~/.config/NixOS-Config/rebuild.sh";
+    "rebuild" = "bash ${config.xdg.configHome}/NixOS-Config/bash-scripts/rebuild.sh";
     "mamba" = "micromamba";
     "man" = "batman";
-    "get-package-dir" = "bash ~/.config/NixOS-Config/homemanager/non-nix/get-package-dir.sh";
+    "get-package-dir" = "bash ${config.xdg.configHome}/NixOS-Config/bash-scripts/get-package-dir.sh";
   };
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
