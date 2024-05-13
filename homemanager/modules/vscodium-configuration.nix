@@ -1,3 +1,4 @@
+# To use the remote-ssh plugin: on the remote machine run `ln -s ~/.vscodium-server/ ~/.vscode-server`
 {
   pkgs,
   lib,
@@ -33,6 +34,7 @@ in {
         yzhang.markdown-all-in-one
         ms-vscode-remote.remote-ssh
         vscode-icons-team.vscode-icons
+        # tomoki1207-pdf
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # additional extensions that aren't in nixpkgs
@@ -64,6 +66,12 @@ in {
           version = "0.1.5";
           sha256 = "0jpdwy18yzm7apnazbwg0112rnilzrv8666fk5afkjqgsp0pjjly";
         }
+        # {
+        #   name = "tinted-vscode";
+        #   publisher = "tintedtheming";
+        #   version = "0.8.0";
+        #   sha256 = "";
+        # }
       ];
 
     keybindings = builtins.fromJSON (builtins.readFile ../non-nix/vscodium-keybindings.json);

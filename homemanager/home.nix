@@ -199,6 +199,7 @@ in {
     "rebuild" = "bash ~/.config/NixOS-Config/rebuild.sh";
     "mamba" = "micromamba";
     "man" = "batman";
+    "get-package-dir" = "bash ~/.config/NixOS-Config/homemanager/non-nix/get-package-dir.sh";
   };
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
