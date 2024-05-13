@@ -10,7 +10,8 @@
   unstable-pkgs =
     import (builtins.fetchTarball {
       url = "github.com/nixos/nixpkgs/archive/nixos-unstable.tar.gz";
-      sha256 = "1506hd482n7qb55niqjx4789swjrqyng21xvzfwagq1nr173kd88";
+      # sha256 = "1506hd482n7qb55niqjx4789swjrqyng21xvzfwagq1nr173kd88";
+      sha256 = "0gdi0awmqd14ii472ghxh1f2q6br0qq359i35jsw9zd30d8l1ian";
     }) {
       config = config.nixpkgs.config;
       system = system;
@@ -219,6 +220,24 @@ in {
       overlay-scrolling = true;
       locate-pointer = true;
       # cursor-theme = "";
+    };
+
+    "org/gnome/desktop/background" = {
+      color-shading-type = "solid";
+      picture-options = "zoom";
+      picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-l.svg";
+      picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-d.svg";
+      primary-color = "#241f31";
+      secondary-color = "#000000";
+    };
+
+    "org/gnome/desktop/screensaver" = {
+      color-shading-type = "solid";
+      picture-options = "zoom";
+      picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-l.svg";
+      picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-d.svg";
+      primary-color = "#241f31";
+      secondary-color = "#000000";
     };
 
     "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
