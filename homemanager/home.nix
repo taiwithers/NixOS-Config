@@ -312,5 +312,6 @@ in {
   #     sha256 = "";
   #   }
   # ];
-  # services.vscode-server.enable = true;
+
+  services.vscode-server.enable = true;
 }
