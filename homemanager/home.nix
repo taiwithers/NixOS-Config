@@ -117,6 +117,7 @@ in {
       options = {
         dark = true;
         side-by-side = true;
+        hunk-header-style = "omit";
       };
     };
   };
