@@ -10,6 +10,9 @@
 # forces a build even when no changes are detected (e.g. if you've modified a .json file)
 # use with care! changes to untracked .nix files will be silently included
 
+# todo: switch to --option syntax
+# add build/test options
+
 # where do you keep your *.nix files?
 directory_nixconfig=~/.config/nixfiles/system # should contain hardware-configuration.nix
 filename_nixconfig=configuration.nix  # should be in above folder
@@ -45,7 +48,7 @@ case $1 in
     # }
     directory=$directory_hmflake
     build() {
-      home-manager --flake $directory_hmflake --show-trace --impure switch &>$logfile || (cat $logfile | rg error && exit 1)
+      home-manager --flake $directory_hmflake --show-trace --impure build &>$logfile || (cat $logfile | rg error && exit 1)
       current=$(home-manager generations | sed -n 1p)
     }
   ;;

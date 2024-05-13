@@ -47,12 +47,12 @@
       rev = "e001ce1";
       hash = "sha256-S41mxSCAbERUdhaaKZYb7tr1mkE84a3fekTY70r5LL4=";
     }
-    {
-      name = "SFTP";
-      function = path: "${config.xdg.configHome}/sublime-text/Packages/User/SFTP_Manual";
-      url = "https://codexns.io/packages/sftp/2.0.0-st4-posix/SFTP.sublime-package";
-      hash = "";
-    }
+    # {
+    #   name = "SFTP";
+    #   function = path: "${config.xdg.configHome}/sublime-text/Packages/User/SFTP_Manual";
+    #   url = "https://codexns.io/packages/sftp/2.0.0-st4-posix/SFTP.sublime-package";
+    #   hash = "";
+    # }
     # {
     # 	owner = "";
     # 	repo = "";
@@ -74,7 +74,7 @@
     firstAvailableTheme;
 in {
   # download packages to .config/ST/Packages/User
-  xdg.configFile = builtins.listToAttrs (map (package: {
+  home.file = builtins.listToAttrs (map (package: {
       name = "${packagesPath}/${
         if builtins.hasAttr "repo" package
         then package.repo
@@ -85,7 +85,7 @@ in {
     packages);
 
   # download Package Control.sublime-package to .config/ST/Installed Packages/
-  home.file."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package" = {
+  xdg.configFile."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package" = {
     enable = false; # only do this once
     source = pkgs.fetchurl {
       url = "https://packagecontrol.io/Package%20Control.sublime-package";
@@ -94,7 +94,7 @@ in {
   };
 
   # list installed packages in .config/ST/Packages/User/Package Control.sublime-settings
-  home.file."${packagesPath}/Package Control.sublime-settings".text = ''
+  xdg.configFile."${packagesPath}/Package Control.sublime-settings".text = ''
     {
       "bootstrapped": true,
       "installed_packages": [
@@ -106,30 +106,22 @@ in {
     }
   '';
 
-  home.file = {
-    "${packagesPath}/Default.sublime-theme".text = ''{"variables": {}, "rules": [] } '';
-
-    "${packagesPath}/Preferences.sublime-settings".text = let
-      getThemePath = name: "${packagesPath}/tinted-sublime-text/base16-${name}.sublime-theme";
-      sublimeTheme = selectAvailableTheme getThemePath;
-      getColourSchemePath = name: "${packagesPath}/tinted-sublime-text/color-schemes/base16-${name}.sublime-color-scheme";
-      sublimeColourScheme = selectAvailableTheme getColourSchemePath;
-    in ''
-      {
-        "ignored_packages":
-        [
-          "Vintage",
-        ],
-        "font_size": 11,
-        "color_scheme": "base16-${sublimeTheme}.sublime-color-scheme",
-        "theme": "Adaptive.sublime-theme",
-      }
-    '';
-
-    "${packagesPath}/Default.sublime-keymap".text = ''
+  xdg.configFile."${packagesPath}/Default.sublime-theme".text = ''{"variables": {}, "rules": [] } '';
+  xdg.configFile."${packagesPath}/Default.sublime-keymap".text = ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
+  xdg.configFile."${packagesPath}/Preferences.sublime-settings".text = let
+    getThemePath = name: "${packagesPath}/tinted-sublime-text/base16-${name}.sublime-theme";
+    # sublimeTheme = selectAvailableTheme getThemePath;
+    getColourSchemePath = name: "${packagesPath}/tinted-sublime-text/color-schemes/base16-${name}.sublime-color-scheme";
+    # sublimeColourScheme = selectAvailableTheme getColourSchemePath;
+  in ''
+    {
+      "ignored_packages":
       [
-        { "keys": ["ctrl+shift+n"], "command": "new_window" }
-      ]
-    '';
-  };
+        "Vintage",
+      ],
+      "font_size": 11,
+    }
+  '';
+  # "color_scheme": "base16-${sublimeTheme}.sublime-color-scheme",
+  # "theme": "Adaptive.sublime-theme",
 }

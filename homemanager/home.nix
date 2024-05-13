@@ -90,8 +90,8 @@ in {
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
     ./modules/fonts.nix
     (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
-    "${builtins.fetchTarball "https://github.com/msteen/nixos-vscode-server/tarball/master"}/modules/vscode-server/home.nix"
-    # (import ./modules/sublime-text.nix {inherit config pkgs theme-config;})
+    # "${builtins.fetchTarball "https://github.com/msteen/nixos-vscode-server/tarball/master"}/modules/vscode-server/home.nix"
+    (import ./modules/sublime-text.nix {inherit config pkgs theme-config;})
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
@@ -300,7 +300,8 @@ in {
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
     getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-    tilixTheme = getThemePath (selectAvailableTheme getThemePath);
+    # tilixTheme = getThemePath (selectAvailableTheme getThemePath);
+    tilixTheme = getThemePath "horizon-terminal-dark"; #(selectAvailableTheme getThemePath);
   in
     builtins.fromJSON (builtins.readFile tilixTheme);
 
@@ -313,5 +314,5 @@ in {
   #     sha256 = "";
   #   }
   # ];
-  services.vscode-server.enable = true;
+  # services.vscode-server.enable = true;
 }
