@@ -346,5 +346,6 @@
     "outline.showTypeParameters": false,
     "outline.showVariables": false,
     "workbench.iconTheme": "vscode-icons",
-    "workbench.colorTheme": "Moegi Black"
+    "workbench.colorTheme": "Moegi Black",
+    "base16.generator.activatedThemes" : ["base16-da-one-ocean-dark"]
 }
