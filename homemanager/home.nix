@@ -61,13 +61,6 @@
     ];
   };
 
-  # selectAvailableTheme = functionGetThemePath: let
-  #   checkTheme = name: builtins.pathExists (functionGetThemePath name);
-  #   availableThemes = builtins.filter checkTheme theme-config.names;
-  #   firstAvailableTheme = builtins.head availableThemes;
-  # in
-  #   firstAvailableTheme;
-
   selectAvailableTheme = functionGetThemePath: let
     themes = theme-config.names;
     checkTheme = name: builtins.pathExists (functionGetThemePath name);
@@ -81,6 +74,11 @@
     firstAvailableTheme;
 
   locateDesktop = import ./modules/locate-desktop.nix;
+
+  vscode-server = builtins.fetchTarball {
+    url = "https://github.com/msteen/nixos-vscode-server/tarball/master";
+    sha256 = "1rq8mrlmbzpcbv9ys0x88alw30ks70jlmvnfr2j8v830yy5wvw7h";
+  };
 in {
   imports = [
     (import ./modules/packages.nix {inherit pkgs lib unstable-pkgs;})
@@ -90,8 +88,8 @@ in {
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
     ./modules/fonts.nix
     (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
-    # "${builtins.fetchTarball "https://github.com/msteen/nixos-vscode-server/tarball/master"}/modules/vscode-server/home.nix"
     (import ./modules/sublime-text.nix {inherit config pkgs theme-config;})
+    "${vscode-server}/modules/vscode-server/home.nix"
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
