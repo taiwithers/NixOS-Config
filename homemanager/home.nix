@@ -89,7 +89,7 @@ in {
     ./modules/fonts.nix
     (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
     (import ./modules/sublime-text.nix {inherit config pkgs theme-config;})
-    "${vscode-server}/modules/vscode-server/home.nix"
+    # "${vscode-server}/modules/vscode-server/home.nix"
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
@@ -313,6 +313,6 @@ in {
   #   }
   # ];
 
-  services.vscode-server.enable = true;
-  services.vscode-server.enableFHS = true;
+  # services.vscode-server.enable = true;
+  # services.vscode-server.enableFHS = true;
 }
