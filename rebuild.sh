@@ -48,7 +48,7 @@ case $1 in
     # }
     directory=$directory_hmflake
     build() {
-      home-manager --flake $directory_hmflake --show-trace --impure build &>$logfile || (cat $logfile | rg error && exit 1)
+      home-manager --flake $directory_hmflake --show-trace --impure switch &>$logfile || (cat $logfile | rg error && exit 1)
       current=$(home-manager generations | sed -n 1p)
     }
   ;;
