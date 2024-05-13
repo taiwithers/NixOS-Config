@@ -309,8 +309,8 @@ in {
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
     getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-    # tilixTheme = getThemePath (selectAvailableTheme getThemePath);
-    tilixTheme = getThemePath "horizon-terminal-dark"; #(selectAvailableTheme getThemePath);
+    tilixTheme = getThemePath (selectAvailableTheme getThemePath);
+    # tilixTheme = getThemePath "horizon-terminal-dark"; #(selectAvailableTheme getThemePath);
   in
     builtins.fromJSON (builtins.readFile tilixTheme);
 
