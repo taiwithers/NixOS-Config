@@ -1,7 +1,10 @@
 {   
     "base16.generator.activatedThemes": [
-        "base16-3024-dark",
-        "base16-da-one-ocean-dark"
+        "base16-da-one-ocean-dark",
+        "base16-horizon-dark",
+        "base16-horizon-terminal-dark",
+        "base16-qualia",
+        "base16-rose-pine-dark"
     ],
     "breadcrumbs.filePath": "last",
     "debug.allowBreakpointsEverywhere": true,
