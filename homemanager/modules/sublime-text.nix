@@ -120,8 +120,8 @@ in {
         "Vintage",
       ],
       "font_size": 11,
+      "color_scheme": "base16-${sublimeColourScheme}.sublime-color-scheme",
+      "theme": "Adaptive.sublime-theme",
     }
   '';
-  # "color_scheme": "base16-${sublimeColourScheme}.sublime-color-scheme",
-  # "theme": "Adaptive.sublime-theme",
 }
