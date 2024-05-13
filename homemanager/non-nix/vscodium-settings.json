@@ -1,4 +1,8 @@
-{
+{   
+    "base16.generator.activatedThemes": [
+        "base16-3024-dark",
+        "base16-da-one-ocean-dark"
+    ],
     "breadcrumbs.filePath": "last",
     "debug.allowBreakpointsEverywhere": true,
     "debug.autoExpandLazyVariables": true,
@@ -346,6 +350,5 @@
     "outline.showTypeParameters": false,
     "outline.showVariables": false,
     "workbench.iconTheme": "vscode-icons",
-    "workbench.colorTheme": "Base16 Da One Ocean Dark",
-    "base16.generator.activatedThemes" : ["base16-da-one-ocean-dark"]
+    "workbench.colorTheme": "Base16 Da One Ocean Dark"
 }

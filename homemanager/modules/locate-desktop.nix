@@ -15,7 +15,7 @@ in
       else [];
   in
     if builtins.length fileList > 0
-    then builtins.head (builtins.sort stringIsShorter fileList) # return last .desktop file found (if any)
+    then builtins.head (builtins.sort stringIsShorter fileList) # return .desktop file found with shortest name (if any)
     else throw "Cannot locate .desktop file for package ${pkg.pname}"
 # throw error if none found
 
