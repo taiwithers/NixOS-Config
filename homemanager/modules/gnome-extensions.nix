@@ -34,4 +34,9 @@
       "forge@jmmaranan.com"
     ];
   };
+
+  # dconf.settings."org/gnome/shell/extensions/dash-to-panel" = {};
+  # dconf.settings."org/gnome/shell/extensions/forge" = {
+  #   keybindings = {};
+  # };
 }
