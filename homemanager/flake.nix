@@ -9,11 +9,13 @@
     };
 
     nix-colors.url = "github:misterio77/nix-colors";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
+    vscode-server,
     ...
   } @ inputs: let
     user = "tai";

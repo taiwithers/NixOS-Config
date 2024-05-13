@@ -90,7 +90,8 @@ in {
     (import ./modules/gnome-extensions.nix {inherit pkgs;})
     ./modules/fonts.nix
     (import ./modules/vscodium-configuration.nix {inherit config pkgs lib;})
-    (import ./modules/sublime-text.nix {inherit config pkgs theme-config;})
+    "${builtins.fetchTarball "https://github.com/msteen/nixos-vscode-server/tarball/master"}/modules/vscode-server/home.nix"
+    # (import ./modules/sublime-text.nix {inherit config pkgs theme-config;})
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
@@ -312,4 +313,5 @@ in {
   #     sha256 = "";
   #   }
   # ];
+  services.vscode-server.enable = true;
 }
