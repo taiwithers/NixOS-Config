@@ -112,7 +112,7 @@ in {
     getThemePath = name: "${packagesPath}/tinted-sublime-text/base16-${name}.sublime-theme";
     sublimeTheme = selectAvailableTheme getThemePath;
     getColourSchemePath = name: "${packagesPath}/tinted-sublime-text/color-schemes/base16-${name}.sublime-color-scheme";
-    # sublimeColourScheme = selectAvailableTheme getColourSchemePath;
+    sublimeColourScheme = selectAvailableTheme getColourSchemePath;
   in ''
     {
       "ignored_packages":
@@ -122,6 +122,6 @@ in {
       "font_size": 11,
     }
   '';
-  # "color_scheme": "base16-${sublimeTheme}.sublime-color-scheme",
+  # "color_scheme": "base16-${sublimeColourScheme}.sublime-color-scheme",
   # "theme": "Adaptive.sublime-theme",
 }
