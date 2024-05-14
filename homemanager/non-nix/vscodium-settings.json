@@ -271,7 +271,7 @@
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorStyleInactive": "line",
     "terminal.integrated.focusAfterRun": "terminal",
-    "terminal.integrated.fontFamily": "Intel One Mono, Symbols Nerd Font",
+    "terminal.integrated.fontFamily": "Intel One Mono, SpaceMono",
     "terminal.integrated.hideOnStartup": "always",
     "todo-tree.filtering.useBuiltInExcludes": "file and search excludes",
     "todo-tree.general.showIconsInsteadOfTagsInStatusBar": true,
