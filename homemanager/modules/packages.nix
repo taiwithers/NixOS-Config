@@ -85,7 +85,7 @@ in {
     dell-command-configure
     discord
     filezilla
-    fontpreview
+    font-manager
     github-desktop
     gnome.gnome-screenshot
     gnome.gnome-tweaks
