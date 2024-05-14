@@ -86,7 +86,7 @@ in {
     discord
     filezilla
     # font-manager
-    fontconfig
+    # fontconfig
     github-desktop
     gnome.gnome-screenshot
     gnome.gnome-tweaks
