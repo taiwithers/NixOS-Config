@@ -7,6 +7,6 @@
   home.packages = with pkgs; [
     cm_unicode
     intel-one-mono
-    (nerdfonts.override {fonts = ["SpaceMono"];})
+    (nerdfonts.override {fonts = ["SpaceMono" "NerdFontsSymbolsOnly"];})
   ];
 }
