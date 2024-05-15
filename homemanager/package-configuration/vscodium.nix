@@ -74,7 +74,7 @@ in {
         }
       ];
 
-    keybindings = builtins.fromJSON (builtins.readFile ../non-nix/vscodium-keybindings.json);
-    userSettings = builtins.fromJSON (builtins.readFile ../non-nix/vscodium-settings.json);
+    keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
+    userSettings = builtins.fromJSON (builtins.readFile ./vscodium-settings.json);
   };
 }

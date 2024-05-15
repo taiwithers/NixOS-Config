@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  theme-config,
+  selectAvailableTheme,
   ...
 }: let
   packagesPath = "${config.xdg.configHome}/sublime-text/Packages/User";
@@ -47,6 +47,14 @@
       rev = "e001ce1";
       hash = "sha256-S41mxSCAbERUdhaaKZYb7tr1mkE84a3fekTY70r5LL4=";
     }
+    {
+      name = "TOML";
+      function = pkgs.fetchFromGitHub;
+      owner = "jasonwilliams";
+      repo = "sublime_toml_highlighting";
+      rev = "fd0bf3e";
+      hash = "sha256-/9RCQNWpp2j/u4o6jBCPN3HEuuR4ow3h+0Zj+Cbteyc=";
+    }
     # {
     #   name = "SFTP";
     #   function = path: "${config.xdg.configHome}/sublime-text/Packages/User/SFTP_Manual";
@@ -60,18 +68,6 @@
     # 	hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";  # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     # }
   ];
-
-  selectAvailableTheme = functionGetThemePath: let
-    themes = theme-config.names;
-    checkTheme = name: builtins.pathExists (functionGetThemePath name);
-    firstAvailableTheme =
-      import ../../nix-scripts/choose-option-or-backup.nix
-      {
-        functionOptionIsValid = checkTheme;
-        allOptions = themes;
-      };
-  in
-    firstAvailableTheme;
 in {
   # download packages to .config/ST/Packages/User
   home.file = builtins.listToAttrs (map (package: {

@@ -8,14 +8,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-colors.url = "github:misterio77/nix-colors";
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    # nix-colors.url = "github:misterio77/nix-colors";
+    # vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
-    vscode-server,
+    # vscode-server,
     ...
   } @ inputs: let
     user = "tai";
@@ -25,7 +25,7 @@
     homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
-        inherit inputs; # for nix-colors
+        # inherit inputs; # for nix-colors
         inherit user system;
       };
 

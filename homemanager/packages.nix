@@ -51,10 +51,16 @@ in {
     nix-prefetch-scripts
     nurl
     # appimage-run
+    nix-diff
+    nix-tree
+    nix-search-cli # provides nix-search
+    unstable-pkgs.deadnix
+    dconf2nix
+    unstable-pkgs.nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
 
     bash
     bat
-    bat-extras.batman
+    # bat-extras.batman
     btop
     curl
     dconf
@@ -89,6 +95,7 @@ in {
     github-desktop
     gnome.gnome-screenshot
     gnome.gnome-tweaks
+    gnome-extension-manager
     gparted
     keepassxc
     libreoffice
@@ -101,7 +108,6 @@ in {
     teams-for-linux
     tilix
     zoom-us
-    vte # for tilix
     vscodium-fhs
 
     unstable-pkgs.copyq

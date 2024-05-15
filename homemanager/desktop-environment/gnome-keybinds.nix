@@ -1,4 +1,22 @@
-{...}: {
+# TODO: add all keybinds here, not just modified ones
+{...}: let
+  custom-keyboard-shortcuts = [
+    {
+      name = "Open Dolphin";
+      command = "dolphin";
+      binding = "<Super>e";
+    }
+    {
+      name = "Open Settings";
+      command = "gnome-control-center";
+      binding = "<Super>i";
+    }
+  ];
+in {
+  imports = [
+    (import ../../nix-scripts/set-custom-gnome-keybinds.nix {inherit custom-keyboard-shortcuts;})
+  ];
+
   dconf.settings = {
     # media and accessibility keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
