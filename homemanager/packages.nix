@@ -41,21 +41,22 @@ in {
   };
 
   services.flatpak = {
-    remotes = [
-      {
-        name = "starlink";
-        location = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";
-      }
-      # {
-      #   name = "flathub";
-      #   location = "https://flathub.org/repo/flathub.flatpakrepo";
-      # }
-    ];
+    # remotes = [
+    #   {
+    #     name = "starlink";
+    #     location = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";
+    #   }
+    #   # {
+    #   #   name = "flathub";
+    #   #   location = "https://flathub.org/repo/flathub.flatpakrepo";
+    #   # }
+    # ];
     packages = [
-      {
-        appId = "edu.hawaii.eao.starlink.Starlink";
-        origin = "starlink";
-      }
+      # {
+      #   appId = "edu.hawaii.eao.starlink.Starlink";
+      #   origin = "starlink";
+      # }
+      "org.inkscape.Inkscape"
     ];
   };
 
