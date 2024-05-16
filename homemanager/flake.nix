@@ -33,6 +33,7 @@
       };
 
       modules = [
+        nix-flatpak.homeManagerModules.nix-flatpak
         ./home.nix
       ];
     };
