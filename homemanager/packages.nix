@@ -46,13 +46,16 @@ in {
         name = "starlink";
         location = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";
       }
-      {
-        name = "flathub";
-        location = "https://flathub.org/repo/flathub.flatpakrepo";
-      }
+      # {
+      #   name = "flathub";
+      #   location = "https://flathub.org/repo/flathub.flatpakrepo";
+      # }
     ];
     packages = [
-      "edu.hawaii.eao.starlink.Starlink"
+      {
+        appId = "edu.hawaii.eao.starlink.Starlink";
+        origin = "starlink";
+      }
     ];
   };
 
