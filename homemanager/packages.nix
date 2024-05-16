@@ -41,24 +41,27 @@ in {
   };
 
   services.flatpak = {
-    # remotes = [
-    #   {
-    #     name = "starlink";
-    #     location = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";
-    #   }
-    #   # {
-    #   #   name = "flathub";
-    #   #   location = "https://flathub.org/repo/flathub.flatpakrepo";
-    #   # }
-    # ];
-    packages = [
-      # {
-      #   appId = "edu.hawaii.eao.starlink.Starlink";
-      #   origin = "starlink";
-      # }
-      "org.inkscape.Inkscape"
-    ];
+    enableModule = true;
   };
+  # services.flatpak = {
+  #   # remotes = [
+  #   #   {
+  #   #     name = "starlink";
+  #   #     location = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";
+  #   #   }
+  #   #   # {
+  #   #   #   name = "flathub";
+  #   #   #   location = "https://flathub.org/repo/flathub.flatpakrepo";
+  #   #   # }
+  #   # ];
+  #   packages = [
+  #     # {
+  #     #   appId = "edu.hawaii.eao.starlink.Starlink";
+  #     #   origin = "starlink";
+  #     # }
+  #     "org.inkscape.Inkscape"
+  #   ];
+  # };
 
   home.packages = with pkgs; [
     # # You can also create simple shell scripts directly inside your

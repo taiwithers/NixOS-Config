@@ -8,7 +8,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
+    # nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
+    nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
+
     # nix-colors.url = "github:misterio77/nix-colors";
     # vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
@@ -31,6 +33,7 @@
       };
 
       modules = [
+        nix-flatpak.homeManagerModules.default
         ./home.nix
       ];
     };
