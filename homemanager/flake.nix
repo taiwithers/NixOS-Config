@@ -27,9 +27,7 @@
     homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
-        inherit nix-flatpak;
-        # inherit inputs; # for nix-colors
-        inherit user system;
+        inherit nix-flatpak user system;
       };
 
       modules = [
