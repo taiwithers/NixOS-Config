@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
     # nix-colors.url = "github:misterio77/nix-colors";
     # vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
@@ -15,6 +16,7 @@
   outputs = {
     nixpkgs,
     home-manager,
+    nix-flatpak,
     # vscode-server,
     ...
   } @ inputs: let
@@ -25,6 +27,7 @@
     homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
+        inherit nix-flatpak;
         # inherit inputs; # for nix-colors
         inherit user system;
       };

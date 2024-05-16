@@ -7,7 +7,10 @@
 
     mimeApps = {
       enable = true;
-      defaultApplications = {
+      defaultApplications = let
+        browser = "firefox.desktop";
+        # pull in locate desktop
+      in {
         "application/gzip" = []; # .gz , .tgz
         "application/json" = []; # .json
         "application/pdf" = ["firefox.desktop"];

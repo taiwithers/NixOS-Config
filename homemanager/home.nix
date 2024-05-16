@@ -5,6 +5,7 @@
   inputs,
   user,
   system,
+  nix-flatpak,
   ...
 }: let
   unstable-pkgs =

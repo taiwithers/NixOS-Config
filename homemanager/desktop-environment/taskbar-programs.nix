@@ -9,6 +9,5 @@ in {
       tilix
       vscodium-fhs
       obsidian
-      copyq
     ];
 }

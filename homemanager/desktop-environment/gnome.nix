@@ -1,10 +1,13 @@
 {...}: {
   dconf.settings = {
+    "org/gtk/settings/file-chooser" = {clock-format = "12h";};
+
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       show-battery-percentage = true;
       overlay-scrolling = true;
       locate-pointer = true;
+      clock-format = "12h";
       # cursor-theme = "";
     };
 
