@@ -51,10 +51,10 @@ in {
   nixpkgs.config.allowUnfree = true; # having trouble with vscode extensions
 
   imports = [
+    nix-flatpak.homeManagerModules.nix-flatpak
     (import ./packages.nix {inherit pkgs lib unstable-pkgs;})
     (import ./desktop-environment {inherit config pkgs unstable-pkgs;})
     (import ./package-configuration {inherit config pkgs unstable-pkgs lib selectAvailableTheme;})
-    nix-flatpak.homeManagerModules.nix-flatpak
   ];
 
   home.username = user;
