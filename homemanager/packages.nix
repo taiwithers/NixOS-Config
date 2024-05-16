@@ -40,9 +40,21 @@ in {
     ];
   };
 
-  services.flatpak.packages = [
-    "edu.hawaii.eao.starlink.Starlink"
-  ];
+  services.flatpak = {
+    remotes = [
+      {
+        name = "starlink";
+        location = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";
+      }
+      {
+        name = "flathub";
+        location = "https://flathub.org/repo/flathub.flatpakrepo";
+      }
+    ];
+    packages = [
+      "edu.hawaii.eao.starlink.Starlink"
+    ];
+  };
 
   home.packages = with pkgs; [
     # # You can also create simple shell scripts directly inside your
