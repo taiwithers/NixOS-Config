@@ -54,7 +54,7 @@ in {
     (import ./packages.nix {inherit pkgs lib unstable-pkgs;})
     (import ./desktop-environment {inherit config pkgs unstable-pkgs;})
     (import ./package-configuration {inherit config pkgs unstable-pkgs lib selectAvailableTheme;})
-    # nix-flatpak.homeManagerModules.nix-flatpak
+    nix-flatpak.homeManagerModules.nix-flatpak
   ];
 
   home.username = user;
