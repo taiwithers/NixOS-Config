@@ -40,6 +40,10 @@ in {
     ];
   };
 
+  services.flatpak.packages = [
+    "edu.hawaii.eao.starlink.Starlink"
+  ];
+
   home.packages = with pkgs; [
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello'
