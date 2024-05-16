@@ -30,12 +30,12 @@
 
   nix = {
     settings.experimental-features = ["nix-command" "flakes"];
-    
+
     optimise = {
       automatic = true;
       dates = ["weekly"];
     };
-    
+
     gc = {
       automatic = true;
       dates = "weekly";
@@ -52,7 +52,6 @@
   i18n.defaultLocale = "en_CA.UTF-8";
 
   services = {
-
     xserver = {
       enable = true;
 
@@ -100,10 +99,14 @@
     gnome.gnome-terminal # always have an editor and terminal!
     gnome.gedit
   ];
-  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
+  environment.gnome.excludePackages = [pkgs.gnome-tour];
 
   programs.dconf.enable = true;
 
+  # flatpak https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
+  services.flatpak.enable = true;
+  # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  xdg.portal.config.common.default = "gtk";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
