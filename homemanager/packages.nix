@@ -23,18 +23,18 @@
   };
 in {
   nixpkgs.config = {
-    # allowUnfreePredicate = pkg:
-    #   builtins.elem (lib.getName pkg) [
-    #     "dell-command-configure"
-    #     "discord"
-    #     "obsidian"
-    #     "realvnc-vnc-viewer"
-    #     "slack"
-    #     "sublimetext4"
-    #     "sublime4"
-    #     "vivaldi"
-    #     "zoom"
-    #   ];
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "dell-command-configure"
+        "discord"
+        "obsidian"
+        "realvnc-vnc-viewer"
+        "slack"
+        "sublimetext4"
+        "sublime4"
+        "vivaldi"
+        "zoom"
+      ];
     allowUnfree = true;
     permittedInsecurePackages = [
       "electron-25.9.0"
@@ -132,7 +132,7 @@ in {
     keepassxc
     libreoffice
     libsForQt5.dolphin
-    obsidian
+    unstable.obsidian
     onedrive
     onedrivegui
     realvnc-vnc-viewer

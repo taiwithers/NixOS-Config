@@ -26,17 +26,45 @@
   } @ inputs: let
     user = "tai";
     system = "x86_64-linux";
-    # pkgs = nixpkgs.legacyPackages.${system};
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [
-        (
-          final: prev: {
-            unstable = nixpkgs-unstable.legacyPackages.${prev.system};
-          }
-        )
+
+    pkgs-config = {
+      allowUnfreePredicate = pkg:
+        builtins.elem (nixpkgs.lib.getName pkg) [
+          "dell-command-configure"
+          "discord"
+          "obsidian"
+          "realvnc-vnc-viewer"
+          "slack"
+          "sublimetext4"
+          "vivaldi"
+          "zoom"
+        ];
+      permittedInsecurePackages = [
+        "electron-25.9.0"
+        "openssl-1.1.1w"
       ];
     };
+
+    unstable-overlay = self: super: {
+      unstable = import nixpkgs-unstable {
+        system = system;
+        # config = pkgs-config;
+        config.allowUnfree = true;
+        config.permittedInsecurePackages = ["openssl-1.1.1w"];
+      };
+    };
+
+    pkgs = import nixpkgs {
+      overlays = [unstable-overlay];
+    };
+    # pkgs.overlays = [unstable-overlay];
+    # pkgs = import nixpkgs {
+    #   inherit system;
+    #   # config = pkgs-config;
+    #   # config.allowUnfree = true;
+    #   # config.permittedInsecurePackages = ["openssl-1.1.1w"];
+    #   overlays = [unstable-overlay];
+    # };
   in {
     homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;

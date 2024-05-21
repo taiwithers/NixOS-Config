@@ -46,8 +46,6 @@
 
   homeDirectory = "/home/${user}";
 in {
-  nixpkgs.config.allowUnfree = true; # having trouble with vscode extensions
-
   imports = [
     # nix-flatpak.homeManagerModules.nix-flatpak
     # (import ./packages.nix {inherit pkgs lib unstable-pkgs;})
