@@ -48,9 +48,9 @@
     unstable-overlay = self: super: {
       unstable = import nixpkgs-unstable {
         system = system;
-        # config = pkgs-config;
-        config.allowUnfree = true;
-        config.permittedInsecurePackages = ["openssl-1.1.1w"];
+        config = pkgs-config;
+        # config.allowUnfree = true;
+        # config.permittedInsecurePackages = ["openssl-1.1.1w"];
       };
     };
 
