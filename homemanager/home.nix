@@ -9,14 +9,6 @@
   pkgs-config,
   ...
 }: let
-  # unstable-pkgs =
-  #   import (builtins.fetchTarball {
-  #     url = "github.com/nixos/nixpkgs/archive/nixos-unstable.tar.gz";
-  #     sha256 = "1wxx1h7w47gpg7lkycz51dlrwcm1wb2vcmdbjq3gyhjbxd9hz35j";
-  #   }) {
-  #     config = config.nixpkgs.config;
-  #     system = system;
-  #   };
   theme-config = rec {
     # nix-colors = import inputs.nix-colors.homeManagerModules.default;
     # colours = nix-colors."${name}";
@@ -49,9 +41,6 @@
 in {
   imports = [
     # nix-flatpak.homeManagerModules.nix-flatpak
-    # (import ./packages.nix {inherit pkgs lib unstable-pkgs;})
-    # (import ./desktop-environment {inherit config pkgs unstable-pkgs;})
-    # (import ./package-configuration {inherit config pkgs unstable-pkgs lib selectAvailableTheme;})
     (import ./packages.nix {inherit pkgs pkgs-config lib;})
     (import ./desktop-environment {inherit config pkgs;})
     (import ./package-configuration {inherit config pkgs lib selectAvailableTheme;})

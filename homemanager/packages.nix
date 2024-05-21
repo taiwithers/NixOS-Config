@@ -78,6 +78,7 @@ in {
     btop
     curl
     dconf
+    duf
     eza
     fd
     fzf
@@ -94,6 +95,7 @@ in {
     python3
     rename
     ripgrep
+    sd
     speedtest-rs
     trashy
     unzip
@@ -102,6 +104,7 @@ in {
     xdg-ninja
     zip
     zsh
+    unstable.zoxide
 
     dell-command-configure
     discord
