@@ -1,5 +1,21 @@
 {pkgs, ...}: let
-  t = pkgs.desktops.gnome.extensions.buildGnomeExtension.nix;
+
+  owner = "rustysec";
+  repo = "tidalwm";
+  version = 0;
+  rev = "bbf055a";
+  hash = "";
+
+  ext = pkgs.stdenv.mkDerivation {
+    pname = "gnome-shell-extension-${repo}";
+    version = builtins.toString version;
+    src = pkgs.fetchFromGitHub {
+      owner = owner;
+      repo = repo;
+      rev = rev;
+      hash = hash;
+    };
+  };
 in rec {
   home.packages = with pkgs.gnomeExtensions; [
     all-windows
