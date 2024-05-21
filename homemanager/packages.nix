@@ -100,6 +100,7 @@ in {
     git
     jq
     lazygit
+    loupe # gnome imager viewer
     oh-my-zsh
     openssh
     pandoc

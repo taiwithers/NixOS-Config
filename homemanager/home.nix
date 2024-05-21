@@ -11,8 +11,7 @@
   unstable-pkgs =
     import (builtins.fetchTarball {
       url = "github.com/nixos/nixpkgs/archive/nixos-unstable.tar.gz";
-      # sha256 = "1506hd482n7qb55niqjx4789swjrqyng21xvzfwagq1nr173kd88";
-      sha256 = "0gdi0awmqd14ii472ghxh1f2q6br0qq359i35jsw9zd30d8l1ian";
+      sha256 = "1wxx1h7w47gpg7lkycz51dlrwcm1wb2vcmdbjq3gyhjbxd9hz35j";
     }) {
       config = config.nixpkgs.config;
       system = system;
