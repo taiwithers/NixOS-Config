@@ -6,6 +6,7 @@
   user,
   system,
   nix-flatpak,
+  pkgs-config,
   ...
 }: let
   # unstable-pkgs =
@@ -51,7 +52,7 @@ in {
     # (import ./packages.nix {inherit pkgs lib unstable-pkgs;})
     # (import ./desktop-environment {inherit config pkgs unstable-pkgs;})
     # (import ./package-configuration {inherit config pkgs unstable-pkgs lib selectAvailableTheme;})
-    (import ./packages.nix {inherit pkgs lib;})
+    (import ./packages.nix {inherit pkgs pkgs-config lib;})
     (import ./desktop-environment {inherit config pkgs;})
     (import ./package-configuration {inherit config pkgs lib selectAvailableTheme;})
   ];

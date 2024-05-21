@@ -38,6 +38,8 @@
           "sublimetext4"
           "vivaldi"
           "zoom"
+          "vscode-extension-MS-python-vscode-pylance"
+          "vscode-extension-ms-vscode-remote-remote-ssh"
         ];
       permittedInsecurePackages = [
         "electron-25.9.0"
@@ -48,28 +50,21 @@
     unstable-overlay = self: super: {
       unstable = import nixpkgs-unstable {
         system = system;
+
+        # this won't work in the pkgs declaration
+        # so pkgs-config gets applied in packages.nix
         config = pkgs-config;
-        # config.allowUnfree = true;
-        # config.permittedInsecurePackages = ["openssl-1.1.1w"];
       };
     };
 
     pkgs = import nixpkgs {
       overlays = [unstable-overlay];
     };
-    # pkgs.overlays = [unstable-overlay];
-    # pkgs = import nixpkgs {
-    #   inherit system;
-    #   # config = pkgs-config;
-    #   # config.allowUnfree = true;
-    #   # config.permittedInsecurePackages = ["openssl-1.1.1w"];
-    #   overlays = [unstable-overlay];
-    # };
   in {
     homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
-        inherit nix-flatpak user system;
+        inherit nix-flatpak user system pkgs-config;
       };
 
       modules = [

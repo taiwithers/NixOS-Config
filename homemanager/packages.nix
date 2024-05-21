@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  pkgs-config,
   # unstable,
   ...
 }: let
@@ -22,25 +23,7 @@
       ;
   };
 in {
-  nixpkgs.config = {
-    allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
-        "dell-command-configure"
-        "discord"
-        "obsidian"
-        "realvnc-vnc-viewer"
-        "slack"
-        "sublimetext4"
-        "sublime4"
-        "vivaldi"
-        "zoom"
-      ];
-    allowUnfree = true;
-    permittedInsecurePackages = [
-      "electron-25.9.0"
-      "openssl-1.1.1w"
-    ];
-  };
+  nixpkgs.config = pkgs-config;
 
   services.flatpak = {
     enableModule = true;
