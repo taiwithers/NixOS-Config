@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  unstable-pkgs,
+  # unstable-pkgs,
   lib,
   selectAvailableTheme,
   ...
@@ -19,7 +19,7 @@
       "vscodium"
     ]
     ++ [
-      (import ./copyq.nix {inherit unstable-pkgs;})
+      (import ./copyq.nix {inherit pkgs;})
       (import ./sublime-text.nix {inherit config pkgs selectAvailableTheme;})
       (import ./tilix.nix {inherit config pkgs selectAvailableTheme;})
     ];

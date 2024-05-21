@@ -1,10 +1,10 @@
 # TODO: add in additional configuration
 {
-  unstable-pkgs,
+  pkgs,
   ... # just pass in copyq package?
 }: {
   services.copyq = {
     enable = true;
-    package = unstable-pkgs.copyq;
+    package = pkgs.copyq;
   };
 }

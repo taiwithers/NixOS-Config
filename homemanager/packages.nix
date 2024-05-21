@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  unstable-pkgs,
+  # unstable,
   ...
 }: let
   texlive-pkgs = pkgs.texlive.combine {
@@ -23,17 +23,19 @@
   };
 in {
   nixpkgs.config = {
-    allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
-        "dell-command-configure"
-        "discord"
-        "obsidian"
-        "realvnc-vnc-viewer"
-        "slack"
-        "sublimetext4"
-        "vivaldi"
-        "zoom"
-      ];
+    # allowUnfreePredicate = pkg:
+    #   builtins.elem (lib.getName pkg) [
+    #     "dell-command-configure"
+    #     "discord"
+    #     "obsidian"
+    #     "realvnc-vnc-viewer"
+    #     "slack"
+    #     "sublimetext4"
+    #     "sublime4"
+    #     "vivaldi"
+    #     "zoom"
+    #   ];
+    allowUnfree = true;
     permittedInsecurePackages = [
       "electron-25.9.0"
       "openssl-1.1.1w"
@@ -83,9 +85,9 @@ in {
     nix-diff
     nix-tree
     nix-search-cli # provides nix-search
-    unstable-pkgs.deadnix
+    unstable.deadnix
     dconf2nix
-    unstable-pkgs.nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
+    unstable.nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
 
     bash
     bat
@@ -140,11 +142,11 @@ in {
     zoom-us
     vscodium-fhs
 
-    unstable-pkgs.copyq
-    unstable-pkgs.fastfetch
-    unstable-pkgs.sublime4
-    unstable-pkgs.zotero_7
-    unstable-pkgs.vivaldi
+    unstable.copyq
+    unstable.fastfetch
+    unstable.sublime4
+    unstable.zotero_7
+    unstable.vivaldi
 
     texlive-pkgs
   ];

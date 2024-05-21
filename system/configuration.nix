@@ -100,6 +100,7 @@
     gnome.gedit
   ];
   environment.gnome.excludePackages = [pkgs.gnome-tour];
+  nixpkgs.config.allowUnfree = true;
 
   programs.dconf.enable = true;
 

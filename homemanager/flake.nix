@@ -3,20 +3,22 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
     nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
 
     # nix-colors.url = "github:misterio77/nix-colors";
-    # vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = {
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     nix-flatpak,
     # vscode-server,
@@ -24,7 +26,17 @@
   } @ inputs: let
     user = "tai";
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    # pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [
+        (
+          final: prev: {
+            unstable = nixpkgs-unstable.legacyPackages.${prev.system};
+          }
+        )
+      ];
+    };
   in {
     homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;

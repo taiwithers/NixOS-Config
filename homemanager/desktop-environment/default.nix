@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  unstable-pkgs,
+  # unstable-pkgs,
   ...
 }: {
   imports = map (fname: ./. + "/${fname}" + ".nix") [
