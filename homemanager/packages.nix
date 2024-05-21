@@ -86,7 +86,6 @@ in {
     git
     jq
     lazygit
-    loupe # gnome imager viewer
     oh-my-zsh
     openssh
     pandoc
@@ -118,6 +117,7 @@ in {
     keepassxc
     libreoffice
     libsForQt5.dolphin
+    loupe # gnome imager viewer
     unstable.obsidian
     onedrive
     onedrivegui
