@@ -37,9 +37,9 @@
           "slack"
           "sublimetext4"
           "vivaldi"
-          "zoom"
           "vscode-extension-MS-python-vscode-pylance"
           "vscode-extension-ms-vscode-remote-remote-ssh"
+          "zoom"
         ];
       permittedInsecurePackages = [
         "electron-25.9.0"
