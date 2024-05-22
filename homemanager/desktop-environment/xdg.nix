@@ -3,6 +3,8 @@
   locateDesktop = import ../../nix-scripts/locate-desktop.nix;
 
   browser = locateDesktop pkgs.firefox;
+  imageviewer = locateDesktop pkgs.loupe;
+  texteditor = locateDesktop pkgs.unstable.sublime4;
 in {
   xdg = {
     enable = true;
@@ -15,7 +17,7 @@ in {
         # pull in locate desktop
       in {
         "application/gzip" = []; # .gz , .tgz
-        "application/json" = []; # .json
+        "application/json" = [texteditor]; # .json
         "application/pdf" = [browser];
         "application/zip-compressed" = []; # .zip
         "application/x-debian-package" = []; # .deb, .udeb
