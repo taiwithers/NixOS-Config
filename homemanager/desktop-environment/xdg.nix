@@ -6,6 +6,7 @@
   defaults = builtins.mapAttrs (name: value: (getDesktopFiles value)) (with pkgs; {
     browsers = [
       firefox
+      unstable.vivaldi
     ];
 
     imageviewers = [
@@ -22,6 +23,10 @@
     filebrowsers = [
       libsForQt5.dolphin
     ];
+
+    archivemanagers = [
+      gnome.file-roller
+    ];
   });
 in {
   xdg = {
@@ -32,14 +37,14 @@ in {
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/gzip" = []; # .gz , .tgz
+        "application/gzip" = defaults.archivemanagers; # .gz , .tgz
         "application/json" = defaults.texteditors; # .json
         "application/pdf" = defaults.browsers;
-        "application/zip-compressed" = []; # .zip
+        "application/zip-compressed" = defaults.archivemanagers; # .zip
         "application/x-debian-package" = []; # .deb, .udeb
         "application/x-font-ttf" = []; # .ttc, .ttf
         "application/x-shellscript" = defaults.texteditors; # .sh
-        "application/x-tar" = []; # .tar
+        "application/x-tar" = defaults.archivemanagers; # .tar
         "application/x-tex" = defaults.texteditors; # .tex
         "application/xhtml+xml" = defaults.browsers;
         "application/yaml" = defaults.texteditors; # yaml, yml
