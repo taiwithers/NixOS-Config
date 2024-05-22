@@ -44,8 +44,8 @@ in {
         "application/xhtml+xml" = defaults.browsers;
         "application/yaml" = defaults.texteditors; # yaml, yml
 
-        "application/vnd.oasis.opendocument.graphics" = []; # .odg
-        "application/vnd.oasis.opendocument.graphics-template" = []; # .otg
+        "application/vnd.oasis.opendocument.graphics*" = ["draw.desktop"]; # .odg
+        # "application/vnd.oasis.opendocument.graphics-template" = []; # .otg
         "application/vnd.oasis.opendocument.presentation" = []; # .odp
         "application/vnd.oasis.opendocument.presentation-template" = []; # .otp
         "application/vnd.oasis.opendocument.spreadsheet" = []; # .ods
