@@ -16,7 +16,7 @@ in {
       in {
         "application/gzip" = []; # .gz , .tgz
         "application/json" = []; # .json
-        "application/pdf" = ["firefox.desktop"];
+        "application/pdf" = [browser];
         "application/zip-compressed" = []; # .zip
         "application/x-debian-package" = []; # .deb, .udeb
         "application/x-font-ttf" = []; # .ttc, .ttf
