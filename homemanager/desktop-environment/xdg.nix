@@ -46,21 +46,21 @@ in {
 
         "application/vnd.oasis.opendocument.graphics*" = ["draw.desktop"]; # .odg
         # "application/vnd.oasis.opendocument.graphics-template" = []; # .otg
-        "application/vnd.oasis.opendocument.presentation" = []; # .odp
-        "application/vnd.oasis.opendocument.presentation-template" = []; # .otp
-        "application/vnd.oasis.opendocument.spreadsheet" = []; # .ods
-        "application/vnd.oasis.opendocument.spreadsheet-template" = []; # .ots
-        "application/vnd.oasis.opendocument.text" = []; # .odt
-        "application/vnd.oasis.opendocument.text-template" = []; # .ott
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = []; # .pptx
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = []; # .docx
+        "application/vnd.oasis.opendocument.presentation*" = ["impress.desktop"]; # .odp
+        # "application/vnd.oasis.opendocument.presentation-template" = []; # .otp
+        "application/vnd.oasis.opendocument.spreadsheet*" = ["calc.desktop"]; # .ods
+        # "application/vnd.oasis.opendocument.spreadsheet-template" = []; # .ots
+        "application/vnd.oasis.opendocument.text*" = ["writer.desktop"]; # .odt
+        # "application/vnd.oasis.opendocument.text-template" = []; # .ott
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = ["impress.desktop"]; # .pptx
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = ["writer.desktop"]; # .docx
 
         "image/*" = defaults.imageviewers;
 
         "inode/directory" = defaults.filebrowsers;
 
-        "text/calendar" = []; # .ics .ifb
-        "text/csv" = []; # .csv
+        "text/calendar" = defaults.browsers; # .ics .ifb
+        "text/csv" = builtins.concatLists [["calc.desktop"] defaults.texteditors]; # .csv
         "text/html" = defaults.browsers;
         "text/plain" = defaults.texteditors; # .conf, .def, .diff, .in, .ksh, .list, .log, .pl, .text, .txt
         "text/x-markdown" = defaults.texteditors; # .md, .markdown, .mdown, .markdn

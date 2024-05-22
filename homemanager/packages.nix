@@ -112,6 +112,7 @@ in {
     github-desktop
     gnome.gnome-screenshot
     gnome.gnome-tweaks
+    gnome.file-roller
     gnome-extension-manager
     gparted
     keepassxc
