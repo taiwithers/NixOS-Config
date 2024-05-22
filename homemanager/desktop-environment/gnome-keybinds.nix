@@ -1,4 +1,5 @@
 # TODO: add all keybinds here, not just modified ones
+# waiting on dconf2nix update nixpkgs
 {...}: let
   custom-keyboard-shortcuts = [
     {

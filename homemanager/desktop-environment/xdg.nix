@@ -1,4 +1,3 @@
-# TODO: clean up MIME types
 {pkgs, ...}: let
   locateDesktop = import ../../nix-scripts/locate-desktop.nix;
   getDesktopFiles = list: map (p: "${locateDesktop p}") list;

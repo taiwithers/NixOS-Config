@@ -5,8 +5,7 @@
 }: let
   autostart-pkgs = with pkgs; [
     teams-for-linux
-    # unstable-pkgs.copyq
-    copyq
+    # copyq
     onedrivegui
   ];
 in {
