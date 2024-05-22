@@ -4,7 +4,12 @@
 
   browser = locateDesktop pkgs.firefox;
   imageviewer = locateDesktop pkgs.loupe;
-  texteditor = locateDesktop pkgs.unstable.sublime4;
+  texteditor = map (p: "${locateDesktop p}") (with pkgs; [
+    unstable.sublime4
+    vscodium-fhs
+    gnome.gedit
+  ]);
+  filebrowser = locateDesktop pkgs.libsForQt5.dolphin;
 in {
   xdg = {
     enable = true;
@@ -13,20 +18,18 @@ in {
 
     mimeApps = {
       enable = true;
-      defaultApplications = let
-        # pull in locate desktop
-      in {
+      defaultApplications = {
         "application/gzip" = []; # .gz , .tgz
-        "application/json" = [texteditor]; # .json
+        "application/json" = texteditor; # .json
         "application/pdf" = [browser];
         "application/zip-compressed" = []; # .zip
         "application/x-debian-package" = []; # .deb, .udeb
         "application/x-font-ttf" = []; # .ttc, .ttf
-        "application/x-shellscript" = []; # .sh
+        "application/x-shellscript" = texteditor; # .sh
         "application/x-tar" = []; # .tar
-        "application/x-tex" = []; # .tex
-        "application/xhtml+xml" = ["firefox.desktop"];
-        "application/yaml" = []; # yaml, yml
+        "application/x-tex" = texteditor; # .tex
+        "application/xhtml+xml" = [browser];
+        "application/yaml" = texteditor; # yaml, yml
 
         "application/vnd.oasis.opendocument.graphics" = []; # .odg
         "application/vnd.oasis.opendocument.graphics-template" = []; # .otg
@@ -39,20 +42,16 @@ in {
         "application/vnd.openxmlformats-officedocument.presentationml.presentation" = []; # .pptx
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = []; # .docx
 
-        "image/*" = []; # .gif
-        "image/ico" = []; # .ico
-        "image/jpeg" = []; # .jpeg
-        "image/png" = []; # .png
-        "image/webp" = []; # .webp
+        "image/*" = [imageviewer];
 
-        "inode/directory" = ["org.kde.dolphin.desktop"];
+        "inode/directory" = [filebrowser];
 
         "text/calendar" = []; # .ics .ifb
         "text/csv" = []; # .csv
-        "text/html" = ["firefox.desktop"];
-        "text/plain" = []; # .conf, .def, .diff, .in, .ksh, .list, .log, .pl, .text, .txt
-        "text/x-markdown" = []; # .md, .markdown, .mdown, .markdn
-        "text/x-py" = []; # .py
+        "text/html" = [browser];
+        "text/plain" = texteditor; # .conf, .def, .diff, .in, .ksh, .list, .log, .pl, .text, .txt
+        "text/x-markdown" = texteditor; # .md, .markdown, .mdown, .markdn
+        "text/x-py" = texteditor; # .py
 
         "x-scheme-handler/http" = ["firefox.desktop"];
         "x-scheme-handler/https" = ["firefox.desktop"];
