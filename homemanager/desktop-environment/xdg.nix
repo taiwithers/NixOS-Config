@@ -1,5 +1,9 @@
 # TODO: clean up MIME types
-{...}: {
+{pkgs, ...}: let
+  locateDesktop = import ../../nix-scripts/locate-desktop.nix;
+
+  browser = locateDesktop pkgs.firefox;
+in {
   xdg = {
     enable = true;
 
@@ -8,7 +12,6 @@
     mimeApps = {
       enable = true;
       defaultApplications = let
-        browser = "firefox.desktop";
         # pull in locate desktop
       in {
         "application/gzip" = []; # .gz , .tgz
@@ -34,7 +37,7 @@
         "application/vnd.openxmlformats-officedocument.presentationml.presentation" = []; # .pptx
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = []; # .docx
 
-        "image/gif" = []; # .gif
+        "image/*" = []; # .gif
         "image/ico" = []; # .ico
         "image/jpeg" = []; # .jpeg
         "image/png" = []; # .png
