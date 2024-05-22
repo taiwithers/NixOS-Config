@@ -5,6 +5,7 @@
   config,
   pkgs,
   hostName,
+  flake-inputs,
   ...
 }: {
   imports = [
@@ -33,8 +34,8 @@
     settings.experimental-features = ["nix-command" "flakes"];
 
     # hyprland
-    settings.substituters = ["https://hyprland.cachix.org"];
-    settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    # settings.substituters = ["https://hyprland.cachix.org"];
+    # settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
 
     optimise = {
       automatic = true;
@@ -48,8 +49,13 @@
     };
   };
 
+  programs.hyprland = {
+    enable = true;
+    # package = flake-inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
+
   networking = {
-    hostName = hostName; # Define your hostname.
+    hostName = hostName; # hostname defined in flake.nix
     networkmanager.enable = true;
   };
 
@@ -61,7 +67,7 @@
       enable = true;
 
       # Enable the GNOME Desktop Environment.
-      displayManager.gdm.enable = true;
+      # displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
 
       # Configure keymap in X11
@@ -69,6 +75,17 @@
       xkbVariant = "";
 
       excludePackages = [pkgs.xterm];
+      displayManager = {
+        autoLogin = {
+          enable = true;
+          user = "tai";
+        };
+        sddm = {
+          enable = true;
+          wayland.enable = true;
+          # autoNumlock = true;
+        };
+      };
     };
 
     gnome.core-shell.enable = true;
