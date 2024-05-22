@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  hostName,
   ...
 }: {
   imports = [
@@ -48,7 +49,7 @@
   };
 
   networking = {
-    hostName = "nixos"; # Define your hostname.
+    hostName = hostName; # Define your hostname.
     networkmanager.enable = true;
   };
 

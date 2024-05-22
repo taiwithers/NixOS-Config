@@ -13,9 +13,10 @@
     ...
   } @ inputs: let
     # pkgs = import nixpkgs;
+    hostName = "nixos";
   in {
-    nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+    nixosConfigurations."${hostName}" = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs hostName;};
       modules = [./configuration.nix];
     };
   };
