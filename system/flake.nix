@@ -12,7 +12,7 @@
     nixpkgs,
     ...
   } @ inputs: let
-    pkgs = import nixpkgs;
+    # pkgs = import nixpkgs;
   in {
     nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
