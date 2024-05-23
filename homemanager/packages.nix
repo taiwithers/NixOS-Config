@@ -137,6 +137,8 @@ in {
 
     texlive-pkgs
 
+    # hyprland extras
     swaybg
+    unstable.eww
   ];
 }
