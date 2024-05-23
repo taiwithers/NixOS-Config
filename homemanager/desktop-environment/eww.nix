@@ -10,7 +10,6 @@
            :stacking "fg"
            :exclusive true
            :focusable true
-    "example content"
     (greeter :text "Hi"
              :name "Tai"))
 
