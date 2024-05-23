@@ -136,5 +136,7 @@ in {
     unstable.vivaldi
 
     texlive-pkgs
+
+    swaybg
   ];
 }

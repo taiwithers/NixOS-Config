@@ -16,5 +16,4 @@
       "disable_hyprland_logo" = true;
     };
   };
-
 }
