@@ -52,9 +52,16 @@ echo $(getChannelSearchResults $stable $@) > $stableResultsFile
 echo $(getChannelSearchResults $unstable $@) > $unstableResultsFile
 
 # merge results from search
-merged=$(jq  "add | . * (input | .[])" $stableResultsFile $unstableResultsFile)
+merged=$(jq '. + (input | .) | group_by(.name) | 
+				foreach .[] as $i (0; 
+					if ($i | length == 2) then 
+						($i.[0]*$i.[1]) 
+					else 
+						$i.[0] 
+					end)' $stableResultsFile $unstableResultsFile)
 
-# run through each result
+# echo $merged | jq
+# # run through each result
 (echo $merged | jq -c "[.]") | while read item; do		
 
 	# extract information
@@ -66,8 +73,13 @@ merged=$(jq  "add | . * (input | .[])" $stableResultsFile $unstableResultsFile)
 
 	# add formatting/colours
 	nameString="${link_style}$(makeLink $name $url)${END_FMT}"
-	stableString="${stable}:${stable_style}${stableVersion}${END_FMT}"
-	unstableString="${unstable}:${unstable_style}${unstableVersion}${END_FMT}"
+	
+	stableString=""
+	if [ ! $stableVersion == "null" ]; then stableString="${stable}:${stable_style}${stableVersion}${END_FMT}"; fi
+	
+	unstableString=""
+	if [ ! $unstableVersion == "null" ]; then unstableString="${unstable}:${unstable_style}${unstableVersion}${END_FMT}"; fi
+	
 	providesString=""
 	if [ ${#provides} -gt 2 ]; then providesString="-> ${programs_style}${provides}${END_FMT}"; fi
 
