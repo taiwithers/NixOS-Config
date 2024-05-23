@@ -20,6 +20,8 @@
       # on startup
       exec-once = [
         "swaybg --mode=fill --image=/run/current-system/sw/share/backgrounds/gnome/adwaita-d.jpg"
+        "eww daemon"
+        "eww open example"
       ];
     };
   };

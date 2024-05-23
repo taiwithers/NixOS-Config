@@ -139,6 +139,7 @@ in {
 
     # hyprland extras
     swaybg
-    unstable.eww
+    # unstable.eww
+    eww-wayland
   ];
 }
