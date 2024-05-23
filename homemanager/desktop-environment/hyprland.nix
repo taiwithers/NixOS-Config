@@ -23,5 +23,3 @@
     };
   };
 }
-# swaybg --mode fill -image /run/current-system/sw/share/background/gnome/adwaita-d.jpg
-
