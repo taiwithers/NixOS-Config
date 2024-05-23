@@ -84,7 +84,6 @@ in {
     fzf
     gfortran
     git
-    jd-diff-patch
     jq
     lazygit
     oh-my-zsh
