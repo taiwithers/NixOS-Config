@@ -1,4 +1,7 @@
 {config, ...}: {
+  # https://elkowar.github.io/eww/configuration.html
+
+  # first work through https://wiki.hyprland.org/Useful-Utilities/Must-have/
   xdg.configFile."${config.xdg.configHome}/eww/eww.yuck".text = ''
     (defwindow example
            :monitor 0

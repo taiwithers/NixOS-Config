@@ -141,5 +141,8 @@ in {
     swaybg
     eww-wayland
     unstable.dunst
+    xdg-desktop-portal-hyprland
+    # libsForQt5.qt5.wayland
+    # qt6.qtwayland
   ];
 }
