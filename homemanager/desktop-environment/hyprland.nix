@@ -14,7 +14,7 @@
         "$mainMod, I, exec, gnome-control-center"
       ];
 
-      "disable_hyprland_logo" = true;
+      misc."disable_hyprland_logo" = true;
 
       # on startup
       exec-once = [
