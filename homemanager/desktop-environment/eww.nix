@@ -8,10 +8,19 @@
                                :height "30px"
                                :anchor "top center")
            :stacking "fg"
-           :reserve (struts :distance "40px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-    "example content")
+           :exclusive true
+           :focusable true
+    "example content"
+    (greeter :text "Hi"
+             :name "Tai"))
+
+
+    (defwidget greeter [?text name]
+      (box :orientation "horizontal"
+           :halign "center"
+        text
+        (button :onclick "notify-send 'Hello' 'Hello, ''${name}'"
+          "Greet")))
 
   '';
 
