@@ -9,10 +9,12 @@
 
       # keybindings
       bind = [
-        "$mainMod, M, exit"
+        "$mainMod, M, exit" # super + M : exit hyprland
+        "$mainMod, E, exec, $fileManager" # super + E : open filemanager
       ];
+
+      "disable_hyprland_logo" = true;
     };
   };
 
-  # home.file."testoutput".
 }
