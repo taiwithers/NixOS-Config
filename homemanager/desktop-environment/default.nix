@@ -9,6 +9,7 @@
     "gnome"
     "gnome-extensions"
     "gnome-keybinds"
+    "hyprland"
     "shell"
     "taskbar-programs"
     "xdg"

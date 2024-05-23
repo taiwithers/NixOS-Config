@@ -49,10 +49,7 @@
     };
   };
 
-  programs.hyprland = {
-    enable = true;
-    # package = flake-inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
+  programs.hyprland.enable = true;
 
   networking = {
     hostName = hostName; # hostname defined in flake.nix
@@ -67,7 +64,7 @@
       enable = true;
 
       # Enable the GNOME Desktop Environment.
-      # displayManager.gdm.enable = true;
+      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
 
       # Configure keymap in X11
@@ -75,17 +72,19 @@
       xkbVariant = "";
 
       excludePackages = [pkgs.xterm];
-      displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "tai";
-        };
-        sddm = {
-          enable = true;
-          wayland.enable = true;
-          # autoNumlock = true;
-        };
-      };
+      
+      # displayManager.sddm.enable = true;
+      # displayManager = {
+        # autoLogin = {
+        #   enable = true;
+        #   user = "tai";
+        # };
+        # sddm = {
+        #   enable = true;
+        #   wayland.enable = true;
+        #   # autoNumlock = true;
+        # };
+      # };
     };
 
     gnome.core-shell.enable = true;
