@@ -3,13 +3,16 @@
     enable = true;
     plugins = [];
     settings = {
+      "$mainMod" = "SUPER"; # set windows key as primary modifier
       "$terminal" = "tilix";
       "$fileManager" = "dolphin";
+
+      # keybindings
+      bind = [
+        "$mainMod, M, exit"
+      ];
     };
   };
 
-  # xdg.configFile."${config.xdg.configHome}/hypr/hyprland.conf".text = ''
-
-  #   $terminal = tilix
-  # '';
+  # home.file."testoutput".
 }
