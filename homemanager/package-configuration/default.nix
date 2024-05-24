@@ -12,6 +12,7 @@
       "bat"
       # dash-to-panel
       # dolphin
+      "dunst"
       "eza"
       # forge
       "git"

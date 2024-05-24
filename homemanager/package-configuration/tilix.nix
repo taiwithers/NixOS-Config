@@ -8,7 +8,8 @@
     control-scroll-zoom = true;
     enable-wide-handle = true;
     middle-click-close = true;
-    new-instance-mode = "focus-window";
+    new-instance-mode = "new-session";
+    # new-instance-mode = "focus-window";
     paste-strip-first-char = true;
     paste-strip-trailing-whitespace = true;
     prompt-on-close = true;
