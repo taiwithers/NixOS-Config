@@ -142,6 +142,7 @@ in {
     eww-wayland
     # unstable.dunst
     xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
     # libsForQt5.qt5.wayland
     # qt6.qtwayland
   ];
