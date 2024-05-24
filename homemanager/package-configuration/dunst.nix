@@ -1,5 +1,6 @@
 {...}: {
   services.dunst.enable = true;
+  services.dunst.waylandDisplay = "wayland-0";
 
   # see default config: bat $(get-package-dir)/etc/dunst/dunstrc
   services.dunst.settings = {
