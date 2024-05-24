@@ -30,16 +30,21 @@ dependencies:
   - uncertainties
   - wheel
   - yaml
-  # - pip:
-  #     - astrodendro
-  #     - astropy-healpix
-  #     - casa-formats-io
-  #     - coloredlogs
-  #     - fits-tools
-  #     - gdown
-  #     - radio-beam
-  #     - reproject
-  #     - spectral-cube
-  #     - wget
+  - pip:
+      - astrodendro
+      - astropy-healpix
+      - casa-formats-io
+      - coloredlogs
+      - fits-tools
+      - gdown
+      - radio-beam
+      - reproject
+      - spectral-cube
+      - wget
 
-# update environment with mamba env update --file filename.yml --prune
+# update environment with conda env update --file filename.yml --prune
+
+# pip install git+https://github.com/jdhenshaw/acorns.git
+# pip install git+https://github.com/pyspeckit/pyspeckit.git
+# pip install git+https://github.com/taiwithers/mufasa_tai.git@multicore_options
+
