@@ -18,7 +18,7 @@
         "$mainMod, M, exit" # super + M : exit hyprland
         "$mainMod, E, exec, $fileManager" # super + E : open filemanager
         "$mainMod, I, exec, gnome-control-center"
-        "$mainMod, Q, exec, $terminal"
+        "$mainMod, Q, exec, gnome-terminal"
       ];
 
       misc."disable_hyprland_logo" = true;
