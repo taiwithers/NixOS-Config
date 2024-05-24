@@ -74,8 +74,8 @@ in {
 
     bash
     bat
-    # bat-extras.batman
     btop
+    conda
     curl
     dconf
     duf
@@ -91,7 +91,7 @@ in {
     pandoc
     parallel
     pomodoro
-    python3
+    # python3
     rename
     ripgrep
     sd
@@ -144,7 +144,5 @@ in {
     xdg-desktop-portal-hyprland
     # libsForQt5.qt5.wayland
     # qt6.qtwayland
-
-    unstable.micromamba
   ];
 }
