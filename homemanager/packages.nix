@@ -144,5 +144,7 @@ in {
     xdg-desktop-portal-hyprland
     # libsForQt5.qt5.wayland
     # qt6.qtwayland
+
+    unstable.micromamba
   ];
 }
