@@ -1,4 +1,10 @@
 {config, ...}: {
+  xdg.desktopEntries.hyprland = {
+    name = "hyprland";
+    exec = "Hyprland";
+    terminal = false;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [];
