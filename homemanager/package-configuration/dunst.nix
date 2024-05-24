@@ -1,5 +1,5 @@
 {...}: {
-  services.dunst.enable = false;
+  services.dunst.enable = true;
 
   # see default config: bat $(get-package-dir)/etc/dunst/dunstrc
   services.dunst.settings = {
@@ -7,6 +7,7 @@
       monitor = 0;
       notification_limit = 0; # 0 -> no limit
       show_indicators = "yes";
+      force_xwayland = false;
 
       # geometry/positioning
       origin = "top-right";
