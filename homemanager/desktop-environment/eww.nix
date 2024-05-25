@@ -16,9 +16,14 @@
       (topbar))
 
     (defwidget topbar []
-      (box :orientation "horizontal"
-           :halign "right"
-           EWW_TIME)
+      (box
+        (box :orientation "horizontal"
+             :halign "center"
+             EWW_TIME)
+        (box :orientation "horizontal"
+             :halign "right"
+             EWW_BATTERY)
+      )
     )
   '';
   # (greeter :text "Hi"
