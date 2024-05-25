@@ -16,17 +16,23 @@
 
     (defwindow topbar-window
            :monitor 0
-           :geometry (geometry :x "50%"
+           :geometry (geometry :x "0%"
                                :y "0%"
                                :width "100%"
                                :height "30px"
-                               :anchor "top center")
+                               :anchor "top left")
            :stacking "fg"
            :exclusive true
            :focusable false
       (topbar))
 
-
+    (defwindow bottombar-window
+        :monitor 0
+        :geometry (geometry :x "0%"
+                            :y "0%"
+                            :height "50px"
+                            :anchor "bottom left")
+    )
 
     (defwidget topbar []
       (box  :orientation "horizontal"
