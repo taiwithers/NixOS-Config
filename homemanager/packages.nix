@@ -77,6 +77,7 @@ in {
     btop
     conda
     curl
+    unstable.cloc
     dconf
     duf
     eza

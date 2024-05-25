@@ -22,7 +22,6 @@ stable_style="\e[32m" # foreground green
 unstable_style="\e[34m" # foreground blue
 programs_style=
 
-
 getChannelSearchResults () {
 	# echo "Searching channel $1 with args ${@:2}"
 	local results="$(nix-search --channel=$1 --json ${@:2})"
