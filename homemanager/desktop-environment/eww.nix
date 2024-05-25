@@ -5,6 +5,8 @@
   xdg.configFile."${config.xdg.configHome}/eww/eww.yuck".text = ''
     ;; Variable Definitions
     (defpoll DATETIME :interval "5s" `date + \"%A %-d %B   %-I:%-M%p\"`)
+    (defpoll SPEAKERVOLUME :interval "5s" `amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
+    (defpoll MICVOLUME :interval "5s" `amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
 
     ;; Fancy version: https://github.com/adi1090x/widgets/blob/c16e32c8786d67d91d6c11b50c2e183d26054186/eww/arin/eww.yuck#L29C16-L31C30
     (defpoll BATTERYCHARGE :interval "5s" `cat /sys/class/power_supply/BAT0/capacity`)
@@ -12,40 +14,40 @@
 
     ;; Network https://github.com/adi1090x/widgets/blob/c16e32c8786d67d91d6c11b50c2e183d26054186/eww/arin/eww.yuck#L37
 
+    (defwindow topbar-window
+           :monitor 0
+           :geometry (geometry :x "50%"
+                               :y "0%"
+                               :width "100%"
+                               :height "30px"
+                               :anchor "top center")
+           :stacking "fg"
+           :exclusive true
+           :focusable false
+      (topbar))
 
-    (defpoll SPEAKERVOLUME :interval "5s" `amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
-    (defpoll MICVOLUME :interval "5s" `amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
+    (defwindow bottombar-window
+        :monitor 0
+        :geometry (geometry :x "0%")
+    )
 
+    (defwidget topbar []
+      (box  :orientation "horizontal"
+            :halign "center"
+            :valign "center"
+            :space-evenly "true"
+            :spacing 16
+            :hexpand "false"
 
-      (defwindow topbar-window
-             :monitor 0
-             :geometry (geometry :x "0%"
-                                 :y "0%"
-                                 :width "100%"
-                                 :height "30px"
-                                 :anchor "top center")
-             :stacking "fg"
-             :exclusive true
-             :focusable false
-        (topbar))
-
-      (defwidget topbar []
-        (box  :orientation "horizontal"
-              :halign "center"
-              :valign "center"
-              :space-evenly "true"
-              :spacing 16
-              :hexpand "false"
-
-              (box :orientation "horizontal"
-                   :halign "center"
-                   DATETIME)
-              (box :orientation "horizontal"
-                   :halign "right"
-                   :space-evenly "true"
-                   BATTERYSTATUS BATTERYCHARGE)
-        )
+            (box :orientation "horizontal"
+                 :halign "center"
+                 DATETIME)
+            (box :orientation "horizontal"
+                 :halign "right"
+                 :space-evenly "true"
+                 BATTERYSTATUS BATTERYCHARGE)
       )
+    )
   '';
   # (greeter :text "Hi"
   #          :name "Tai"))
