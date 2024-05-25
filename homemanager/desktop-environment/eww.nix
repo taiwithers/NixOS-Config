@@ -32,8 +32,10 @@
       (defwidget topbar []
         (box  :orientation "horizontal"
               :halign "center"
+              :valign "center"
               :space-evenly "true"
               :spacing 16
+              :hexpand "false"
 
               (box :orientation "horizontal"
                    :halign "center"
