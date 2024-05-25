@@ -3,28 +3,42 @@
 
   # first work through https://wiki.hyprland.org/Useful-Utilities/Must-have/
   xdg.configFile."${config.xdg.configHome}/eww/eww.yuck".text = ''
-    (defwindow example
-           :monitor 0
-           :geometry (geometry :x "0%"
-                               :y "0%"
-                               :width "100%"
-                               :height "30px"
-                               :anchor "top center")
-           :stacking "fg"
-           :exclusive true
-           :focusable false
-      (topbar))
+    ;; Variable Definitions
+    (defpoll DATETIME :interval "5s" `date + \"%A %-d %B   %-I:%-M%p\"`)
 
-    (defwidget topbar []
-      (box
-        (box :orientation "horizontal"
-             :halign "center"
-             EWW_TIME)
-        (box :orientation "horizontal"
-             :halign "right"
-             EWW_BATTERY)
+    ;; Fancy version: https://github.com/adi1090x/widgets/blob/c16e32c8786d67d91d6c11b50c2e183d26054186/eww/arin/eww.yuck#L29C16-L31C30
+    (defpoll BATTERYCHARGE :interval "5s" `cat /sys/class/power_supply/BAT0/capacity`)
+    (defpoll BATTERYSTATUS :interval "5s" `cat /sys/class/power_supply/BAT0/status`)
+
+    ;; Network https://github.com/adi1090x/widgets/blob/c16e32c8786d67d91d6c11b50c2e183d26054186/eww/arin/eww.yuck#L37
+
+
+    (defpoll SPEAKERVOLUME :interval "5s" `amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
+    (defpoll MICVOLUME :interval "5s" `amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
+
+
+      (defwindow example
+             :monitor 0
+             :geometry (geometry :x "0%"
+                                 :y "0%"
+                                 :width "100%"
+                                 :height "30px"
+                                 :anchor "top center")
+             :stacking "fg"
+             :exclusive true
+             :focusable false
+        (topbar))
+
+      (defwidget topbar []
+        (box
+          (box :orientation "horizontal"
+               :halign "center"
+               DATETIME)
+          (box :orientation "horizontal"
+               :halign "right"
+               BATTERYSTATUS BATTERYCHARGE)
+        )
       )
-    )
   '';
   # (greeter :text "Hi"
   #          :name "Tai"))
