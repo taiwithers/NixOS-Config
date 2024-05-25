@@ -33,12 +33,14 @@
         (box  :orientation "horizontal"
               :halign "center"
               :space-evenly "true"
+              :spacing 16
 
               (box :orientation "horizontal"
                    :halign "center"
                    DATETIME)
               (box :orientation "horizontal"
                    :halign "right"
+                   :space-evenly "true"
                    BATTERYSTATUS BATTERYCHARGE)
         )
       )
