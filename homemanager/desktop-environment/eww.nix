@@ -14,10 +14,10 @@
            :exclusive true
            :focusable false
       topbar)
-    (defwidget topbar
-      box :orientation "horizontal"
-          :halign "right"
-          EWW_TIME
+    (defwidget topbar []
+      (box :orientation "horizontal"
+           :halign "right"
+           EWW_TIME)
     )
   '';
   # (greeter :text "Hi"
