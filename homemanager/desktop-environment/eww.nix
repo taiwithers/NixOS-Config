@@ -24,7 +24,7 @@
            :stacking "fg"
            :exclusive true
            :focusable false
-      (topbar))
+      (topbar-widget))
 
     (defwindow bottombar-window
         :monitor 0
@@ -36,9 +36,9 @@
         :stacking "fg"
         :exclusive true
         :focusable false
-        (topbar))
+        (bottombar-widget))
 
-    (defwidget topbar []
+    (defwidget topbar-widget []
       (box  :orientation "horizontal"
             :halign "center"
             :valign "center"
@@ -55,6 +55,18 @@
                  BATTERYSTATUS BATTERYCHARGE)
       )
     )
+
+    (defwidget bottombar-widget [](
+      box :orientation "horizontal"
+          :halign "center"
+          :space-evenly "true"
+          :spacing 16
+          :hexpand "false"
+
+          (button :onclick `firefox` "Firefox")
+
+
+    ))
   '';
   # (greeter :text "Hi"
   #          :name "Tai"))
