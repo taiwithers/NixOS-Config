@@ -17,7 +17,7 @@
     (defpoll MICVOLUME :interval "5s" `amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
 
 
-      (defwindow example
+      (defwindow topbar-window
              :monitor 0
              :geometry (geometry :x "0%"
                                  :y "0%"
