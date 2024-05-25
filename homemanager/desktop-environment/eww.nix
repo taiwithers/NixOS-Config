@@ -30,13 +30,16 @@
         (topbar))
 
       (defwidget topbar []
-        (box
-          (box :orientation "horizontal"
-               :halign "center"
-               DATETIME)
-          (box :orientation "horizontal"
-               :halign "right"
-               BATTERYSTATUS BATTERYCHARGE)
+        (box  :orientation "horizontal"
+              :halign "center"
+              :space-evenly "true"
+
+              (box :orientation "horizontal"
+                   :halign "center"
+                   DATETIME)
+              (box :orientation "horizontal"
+                   :halign "right"
+                   BATTERYSTATUS BATTERYCHARGE)
         )
       )
   '';
