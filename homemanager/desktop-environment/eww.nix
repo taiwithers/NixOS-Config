@@ -26,10 +26,7 @@
            :focusable false
       (topbar))
 
-    (defwindow bottombar-window
-        :monitor 0
-        :geometry (geometry :x "0%")
-    )
+
 
     (defwidget topbar []
       (box  :orientation "horizontal"
