@@ -32,6 +32,10 @@
                             :y "0%"
                             :height "50px"
                             :anchor "bottom left")
+        :stacking "fg"
+        :exclusive true
+        :focusable false
+        ()
     )
 
     (defwidget topbar []
