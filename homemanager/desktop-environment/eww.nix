@@ -30,6 +30,7 @@
         :monitor 0
         :geometry (geometry :x "0%"
                             :y "0%"
+                            :width "100%"
                             :height "50px"
                             :anchor "bottom left")
         :stacking "fg"
