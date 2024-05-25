@@ -43,7 +43,7 @@
             :halign "center"
             :valign "center"
             :space-evenly "true"
-            :spacing 16
+            :spacing 0
             :hexpand "false"
 
             (box :orientation "horizontal"
@@ -64,8 +64,11 @@
           :hexpand "false"
 
           (button :onclick `firefox` "Firefox")
-
-
+          (button :onclick `dolphin` "Dolphin")
+          (button :onclick `sublime4` "Sublime Text")
+          (button :onclick `tilix` "Tilix")
+          (button :onclick `codium` "VSCodium")
+          (button :onclick `obsidian` "Obsidian")
     ))
   '';
   # (greeter :text "Hi"
