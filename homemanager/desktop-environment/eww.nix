@@ -36,8 +36,7 @@
         :stacking "fg"
         :exclusive true
         :focusable false
-        ()
-    )
+        (topbar))
 
     (defwidget topbar []
       (box  :orientation "horizontal"
