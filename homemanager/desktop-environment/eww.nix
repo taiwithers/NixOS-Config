@@ -13,7 +13,8 @@
            :stacking "fg"
            :exclusive true
            :focusable false
-      topbar)
+      (topbar))
+
     (defwidget topbar []
       (box :orientation "horizontal"
            :halign "right"
