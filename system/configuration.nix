@@ -75,6 +75,12 @@
 
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
+      libinput.touchpad = {
+        tappingButtonMap = "lrm";
+        tapping = true;
+        disableWhileTyping = true;
+        clickMethod = "clickfinger";
+      };
 
       # displayManager.sddm.enable = true;
       # displayManager = {
