@@ -72,18 +72,21 @@
       xkbVariant = "";
 
       excludePackages = [pkgs.xterm];
-      
+
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
+
       # displayManager.sddm.enable = true;
       # displayManager = {
-        # autoLogin = {
-        #   enable = true;
-        #   user = "tai";
-        # };
-        # sddm = {
-        #   enable = true;
-        #   wayland.enable = true;
-        #   # autoNumlock = true;
-        # };
+      # autoLogin = {
+      #   enable = true;
+      #   user = "tai";
+      # };
+      # sddm = {
+      #   enable = true;
+      #   wayland.enable = true;
+      #   # autoNumlock = true;
+      # };
       # };
     };
 
