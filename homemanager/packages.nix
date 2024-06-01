@@ -92,7 +92,7 @@ in {
     pandoc
     parallel
     pomodoro
-    # python3
+    python3
     rename
     ripgrep
     sd
