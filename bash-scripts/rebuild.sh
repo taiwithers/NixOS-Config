@@ -84,7 +84,7 @@ if git diff --quiet '*.nix'; then
   else
     echo "No changes detected, exiting."
     popd
-    exit 0
+    exit 2
   fi
 fi
 

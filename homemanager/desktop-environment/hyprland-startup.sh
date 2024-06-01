@@ -2,7 +2,8 @@
 
 swaybg --mode=fill --image=/run/current-system/sw/share/backgrounds/gnome/adwaita-d.jpg &
 
-# eww daemon
+eww daemon
+eww open notification-window
 # eww open topbar-window
 # eww open bottombar-window
 
