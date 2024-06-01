@@ -1,3 +1,8 @@
+  `xdg.configFile."${config.xdg.configHome}/hypr/eww.yuck".source = "./eww-vimjoyer-${ewwVersion}.yuck";`
+  `xdg.configFile."${config.xdg.configHome}/hypr/eww.yuck".source = "./eww-vimjoyer.py";`
+  `xdg.configFile."${config.xdg.configHome}/hypr/eww.scss".source = "./eww-vimjoyer-${ewwVersion}.scss";`
+
+
 - [ ] add eww-vimjoyer-1.yuck config file
 - [ ] start eww
 - [ ] open eww notification-window -> should see pop-up

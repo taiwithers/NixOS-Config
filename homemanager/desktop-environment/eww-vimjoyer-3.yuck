@@ -1,6 +1,6 @@
 (deflisten notification-listener 
 			:initial ""
-			"python ~/.config/eww/eww-vimjoyer-3.py"
+			"python ~/.config/eww/eww-vimjoyer.py"
 )
 
 (defwindow notification-window
