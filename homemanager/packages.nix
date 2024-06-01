@@ -97,6 +97,7 @@ in {
     ripgrep
     sd
     speedtest-rs
+    sxiv
     trashy
     unzip
     vim
