@@ -150,10 +150,10 @@ in {
     kitty # hyprland default
     unstable.rofi-wayland
 
-    (unstable.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    (
+      unstable.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
       })
     )
-
   ];
 }

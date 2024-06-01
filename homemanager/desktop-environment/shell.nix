@@ -2,17 +2,18 @@
   home.shellAliases = let
     bashScripts = "${config.xdg.configHome}/NixOS-Config/bash-scripts";
   in {
+    # use new programs
     "grep" = "rg";
-    "untar" = "tar -xvf";
     "ls" = "eza";
     "tree" = "eza --tree";
-    "rebuild" = "bash ${bashScripts}/rebuild.sh";
-    "mamba" = "micromamba";
-    "man" = "batman";
-    "get-package-dir" = "bash ${bashScripts}/get-package-dir.sh";
+    "man" = "batman --no-hyphenation --no-justification";
 
+    # simplify commands
+    "untar" = "tar -xvf";
+
+    # personal bash scripts -> move these to pkgs.writeShellScriptBin
+    "rebuild" = "bash ${bashScripts}/rebuild.sh";
+    "get-package-dir" = "bash ${bashScripts}/get-package-dir.sh";
     "search" = "bash ${bashScripts}/nix-search-wrapper.sh";
-    # "search" = "echo 'searching nixpkgs:23.11'; nix-search --channel=23.11";
-    # "search-unstable" = "echo 'searching nixpkgs:unstable'; nix-search --channel=unstable";
   };
 }

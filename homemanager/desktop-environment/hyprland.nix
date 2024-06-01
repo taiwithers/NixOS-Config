@@ -3,6 +3,7 @@
     name = "hyprland";
     exec = "Hyprland";
     terminal = false;
+  };
 
   xdg.configFile."${config.xdg.configHome}/hypr/hyprland-startup.sh".source = ./hyprland-startup.sh;
 
@@ -21,7 +22,6 @@
         "$mainMod, I, exec, gnome-control-center"
         "$mainMod, Q, exec, $terminal"
         "$mainMod, S, exec, rofi -show drun -show-icons"
-
       ];
 
       misc."disable_hyprland_logo" = true;
