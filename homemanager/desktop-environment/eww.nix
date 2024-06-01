@@ -6,7 +6,7 @@ in {
   # first work through https://wiki.hyprland.org/Useful-Utilities/Must-have/
   xdg.configFile."${config.xdg.configHome}/eww/eww.yuck".text = ''
     ;; Variable Definitions
-    (defpoll DATETIME :interval "5s" `date + \"%A %-d %B   %-I:%-M%p\"`)
+    (defpoll DATETIME :interval "5s" `date + \"+%A %-d %B  %-I:%-M%p\"`)
     (defpoll SPEAKERVOLUME :interval "5s" `amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
     (defpoll MICVOLUME :interval "5s" `amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
 
