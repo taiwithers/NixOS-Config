@@ -28,6 +28,8 @@ in {
            :focusable false
       (topbar-widget))
 
+
+    (defvar bottombar-content "python bottombar.py")
     (defwindow bottombar-window
         :monitor 0
         :geometry (geometry :x "0%"
@@ -38,7 +40,9 @@ in {
         :stacking "fg"
         :exclusive true
         :focusable false
-        (bottombar-widget))
+        (literal :content bottombar-content)
+        ;;(bottombar-widget)
+        )
 
     (defwidget topbar-widget []
       (box  :orientation "horizontal"
@@ -65,7 +69,9 @@ in {
           :spacing 16
           :hexpand "false"
 
-          (button :onclick `firefox` :style "background-image: url('/nix/store/0fb2lck2ih5y6hi242ja8wzpvgvhv5im-firefox-unwrapped-125.0.3/lib/firefox/browser/chrome/icons/default/default32.png');")
+          (button :onclick `firefox`
+                  :class "taskbar-icon"
+                  :style "background-image: url('/nix/store/0fb2lck2ih5y6hi242ja8wzpvgvhv5im-firefox-unwrapped-125.0.3/lib/firefox/browser/chrome/icons/default/default32.png');")
           (button :onclick `dolphin` "Dolphin")
           (button :onclick `sublime4` "Sublime Text")
           (button :onclick `tilix` "Tilix")
@@ -82,5 +88,5 @@ in {
   #     (button :onclick "dunstify 'Hello' 'Hello, ''${name}'"
   #       "Greet")))
 
-  # xdg.configFile."${config.xdg.configHome}/eww/eww.css".text = '''';
+  xdg.configFile."${config.xdg.configHome}/eww/eww.scss".source = ./eww.scss;
 }
