@@ -29,7 +29,7 @@ in {
       (topbar-widget))
 
 
-    (defvar bottombar-content `python /home/tai/.config/eww/bottombar.py`)
+    (defvar bottombar-content "python /home/tai/.config/eww/bottombar.py")
     (defwindow bottombar-window
         :monitor 0
         :geometry (geometry :x "0%"
