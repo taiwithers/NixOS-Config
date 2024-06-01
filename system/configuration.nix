@@ -67,7 +67,7 @@
 
       # Enable the GNOME Desktop Environment.
       displayManager.gdm.enable = true;
-      # desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable = true; # comment this out to switch to hyprland
 
       # Configure keymap in X11
       layout = "us";
