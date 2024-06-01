@@ -12,4 +12,4 @@ swaybg --mode=fill --image=/run/current-system/sw/share/backgrounds/gnome/adwait
 # add pkgs.networkmanagerapplet
 # nm-applet --indicator &
 
-waybar &
+# waybar &
