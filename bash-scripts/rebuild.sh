@@ -80,9 +80,9 @@ set -e # needed to move this down because of the git status section
 if git diff --quiet '*.nix'; then
 
   if [[ ( ! -z $1 ) && ( $2 = "force" ) ]]; then
-    echo "No changes detected, but force flag was set."
+    echo "No changes detected in *.nix files, but force flag was set."
   else
-    echo "No changes detected, exiting."
+    echo "No changes detected in *.nix files, exiting."
     popd
     exit 2
   fi
