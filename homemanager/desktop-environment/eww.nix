@@ -65,7 +65,7 @@ in {
           :spacing 16
           :hexpand "false"
 
-          (button :onclick `firefox` :style "background-image url('/nix/store/0fb2lck2ih5y6hi242ja8wzpvgvhv5im-firefox-unwrapped-125.0.3/lib/firefox/browser/chrome/icons/default/default32.png')";)
+          (button :onclick `firefox` :style "background-image: url('/nix/store/0fb2lck2ih5y6hi242ja8wzpvgvhv5im-firefox-unwrapped-125.0.3/lib/firefox/browser/chrome/icons/default/default32.png');")
           (button :onclick `dolphin` "Dolphin")
           (button :onclick `sublime4` "Sublime Text")
           (button :onclick `tilix` "Tilix")
