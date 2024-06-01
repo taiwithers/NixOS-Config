@@ -1,0 +1,16 @@
+(deflisten notification-listener 
+			:initial ""
+			"python ~/.config/eww/eww-vimjoyer-3.py"
+)
+
+(defwindow notification-window
+			:monitor 0
+			:geometry (geometry :x "20px"
+								:y "20px"
+								:anchor "top right"
+					  )
+			:stacking "overlay"
+
+			(literal :content notification-listener)
+)
+
