@@ -8,11 +8,9 @@
   flake-inputs,
   ...
 }: {
-
   programs.hyprland.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;
-
 
   imports = [
     ./hardware-configuration.nix
@@ -54,7 +52,6 @@
       options = "--delete-older-than 14d";
     };
   };
-
 
   networking = {
     hostName = hostName; # hostname defined in flake.nix
@@ -119,8 +116,9 @@
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
-  systemd.sysusers.enable = true; # create users with systemd-sysusers instead of a perl script
-  
+  # enable this when on 24.05
+  # systemd.sysusers.enable = true; # create users with systemd-sysusers instead of a perl script
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tai = {
     isNormalUser = true;
