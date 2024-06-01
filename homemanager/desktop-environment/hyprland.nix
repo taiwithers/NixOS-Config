@@ -3,7 +3,8 @@
     name = "hyprland";
     exec = "Hyprland";
     terminal = false;
-  };
+
+  xdg.configFile."${config.xdg.configHome}/hypr/hyprland-startup.sh".source = ./hyprland-startup.sh;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -19,18 +20,14 @@
         "$mainMod, E, exec, $fileManager" # super + E : open filemanager
         "$mainMod, I, exec, gnome-control-center"
         "$mainMod, Q, exec, $terminal"
+        "$mainMod, S, exec, rofi -show drun -show-icons"
+
       ];
 
       misc."disable_hyprland_logo" = true;
 
       # on startup
-      exec-once = [
-        "swaybg --mode=fill --image=/run/current-system/sw/share/backgrounds/gnome/adwaita-d.jpg"
-        "eww daemon"
-        "eww open topbar-window"
-        "eww open bottombar-window"
-      ];
-      # "dunstify 'testing!!!'"
+      exec-once = "bash ${config.xdg.configHome}/hypr/hyprland-startup.sh";
     };
   };
 }

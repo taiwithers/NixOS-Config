@@ -141,10 +141,19 @@ in {
     # hyprland extras
     swaybg
     eww-wayland
+    # unstable.eww
     # unstable.dunst
     xdg-desktop-portal-hyprland
-    xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gtk # in configuration.nix
     # libsForQt5.qt5.wayland
     # qt6.qtwayland
+    kitty # hyprland default
+    unstable.rofi-wayland
+
+    (unstable.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      })
+    )
+
   ];
 }
