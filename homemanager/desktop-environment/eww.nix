@@ -49,13 +49,9 @@ in {
     )
 
     (defwidget topbar-widget []
-      (box  :orientation "horizontal"
-            :halign "center"
-            :valign "center"
-            :space-evenly "true"
-            :spacing 0
-            :hexpand "false"
-
+      (centerbox  :orientation "horizontal"
+            (box :orientation "horizontal"
+                  left side box)
             (box :orientation "horizontal"
                  :halign "center"
                  DATETIME)
