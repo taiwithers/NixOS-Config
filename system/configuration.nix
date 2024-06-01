@@ -8,6 +8,12 @@
   flake-inputs,
   ...
 }: {
+
+  programs.hyprland.enable = true;
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  xdg.portal.enable = true;
+
+
   imports = [
     ./hardware-configuration.nix
   ];
@@ -49,7 +55,6 @@
     };
   };
 
-  programs.hyprland.enable = true;
 
   networking = {
     hostName = hostName; # hostname defined in flake.nix
@@ -65,7 +70,7 @@
 
       # Enable the GNOME Desktop Environment.
       displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+      # desktopManager.gnome.enable = true;
 
       # Configure keymap in X11
       layout = "us";
@@ -105,6 +110,8 @@
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
+  systemd.sysusers.enable = true; # create users with systemd-sysusers instead of a perl script
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tai = {
     isNormalUser = true;
@@ -126,8 +133,16 @@
 
   # flatpak https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
   services.flatpak.enable = true;
-  # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.config.common.default = "gtk";
+
+  system.autoUpgrade = {
+    enable = true;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--commit-lock-file"
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
