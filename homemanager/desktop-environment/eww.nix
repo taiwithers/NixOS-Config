@@ -50,8 +50,7 @@ in {
 
     (defwidget topbar-widget []
       (centerbox  :orientation "horizontal"
-            (box :orientation "horizontal"
-                  left side box)
+            (box :orientation "horizontal")
             (box :orientation "horizontal"
                  :halign "center"
                  DATETIME)
