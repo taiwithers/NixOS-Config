@@ -30,7 +30,7 @@ in {
 
 
     (defpoll bottombar-content
-        :initial ""
+        :initial "python /home/tai/.config/eww/bottombar.py"
         :interval "10s"
         "python /home/tai/.config/eww/bottombar.py")
     (defwindow bottombar-window
@@ -43,9 +43,10 @@ in {
         :stacking "fg"
         :exclusive true
         :focusable false
+
+        :class taskbar-window
         (literal :content bottombar-content)
-        ;;(bottombar-widget)
-        )
+    )
 
     (defwidget topbar-widget []
       (box  :orientation "horizontal"
@@ -64,23 +65,6 @@ in {
                  BATTERYSTATUS BATTERYCHARGE)
       )
     )
-
-    (defwidget bottombar-widget [](
-      box :orientation "horizontal"
-          :halign "center"
-          :space-evenly "true"
-          :spacing 16
-          :hexpand "false"
-
-          (button :onclick `firefox`
-                  :class "taskbar-icon"
-                  :style "background-image: url('/nix/store/0fb2lck2ih5y6hi242ja8wzpvgvhv5im-firefox-unwrapped-125.0.3/lib/firefox/browser/chrome/icons/default/default32.png');")
-          (button :onclick `dolphin` "Dolphin")
-          (button :onclick `sublime4` "Sublime Text")
-          (button :onclick `tilix` "Tilix")
-          (button :onclick `codium` "VSCodium")
-          (button :onclick `obsidian` "Obsidian")
-    ))
   '';
   # (greeter :text "Hi"
   #          :name "Tai"))
