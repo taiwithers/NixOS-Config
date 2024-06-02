@@ -2,7 +2,6 @@
   pkgs,
   lib,
   pkgs-config,
-  # unstable,
   ...
 }: let
   texlive-pkgs = pkgs.texlive.combine {
@@ -27,12 +26,8 @@ in {
 
   services.flatpak = {
     enableModule = true;
-    remotes = {
-      "starlink" = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";
-    };
-    packages = [
-      "starlink:app/edu.hawaii.eao.starlink.Starlink//2023A"
-    ];
+    remotes = {"starlink" = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";};
+    packages = ["starlink:app/edu.hawaii.eao.starlink.Starlink//2023A"];
   };
   # services.flatpak = {
   #   # remotes = [
@@ -55,33 +50,32 @@ in {
   # };
 
   home.packages = with pkgs; [
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello'
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-
-    alejandra
-    nix-prefetch-scripts
-    nurl
+    # nix programs
     # appimage-run
-    nix-diff
-    nix-tree
-    nix-search-cli # provides nix-search
-    unstable.deadnix
+    alejandra
     dconf2nix
-    unstable.nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
+    deadnix
+    nix-diff
+    nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
+    nix-prefetch-scripts
+    nix-search-cli # provides nix-search
+    nix-tree
+    nurl
 
+    # cli programs
     bash
     bat
     btop
+    cloc
     conda
     curl
-    unstable.cloc
     dconf
+    dell-command-configure
     duf
     eza
+    fastfetch
     fd
+    fontconfig
     fzf
     gfortran
     git
@@ -104,55 +98,53 @@ in {
     wget
     xdg-ninja
     zip
+    zoxide
     zsh
-    unstable.zoxide
 
-    dell-command-configure
+    # gui programs
+    # copyq # "installed" via services in copyq.nix
     discord
     filezilla
-    fontconfig
     github-desktop
+    gnome-extension-manager
+    gnome.file-roller
     gnome.gnome-screenshot
     gnome.gnome-tweaks
-    gnome.file-roller
-    gnome-extension-manager
     gparted
     keepassxc
     libreoffice
     libsForQt5.dolphin
     loupe # gnome imager viewer
-    unstable.obsidian
+    obsidian
     onedrive
     onedrivegui
     realvnc-vnc-viewer
     slack-dark
+    starship
+    sublime4
     teams-for-linux
     tilix
-    zoom-us
+    vivaldi
     vscodium-fhs
-
-    unstable.copyq
-    unstable.fastfetch
-    unstable.sublime4
-    unstable.zotero_7
-    unstable.vivaldi
+    zoom-us
+    zotero_7
 
     texlive-pkgs
 
     # hyprland extras
-    swaybg
-    eww-wayland
-    # unstable.eww
-    # unstable.dunst
-    xdg-desktop-portal-hyprland
-    # xdg-desktop-portal-gtk # in configuration.nix
     # libsForQt5.qt5.wayland
     # qt6.qtwayland
+    # rofi-calc
+    # unstable.dunst
+    # xdg-desktop-portal-gtk # in configuration.nix
+    eww # eww-wayland is not necessary
     kitty # hyprland default
-    unstable.rofi-wayland
+    rofi-wayland
+    swaybg
+    xdg-desktop-portal-hyprland
 
     (
-      unstable.waybar.overrideAttrs (oldAttrs: {
+      waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
       })
     )

@@ -5,8 +5,9 @@ if [ -z $1 ]; then
 	exit 1
 fi
 
-system="x86_64-linux"
-stable="23.11"
+kernel=$(uname --kernel-name)
+system="$(uname --machine)-${kernel,,}"
+stable="$(nixos-version | cut -c 1-5)"
 unstable="unstable"
 
 stableResultsFile="/tmp/stableResults.json"

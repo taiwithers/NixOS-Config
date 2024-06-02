@@ -62,6 +62,14 @@
   i18n.defaultLocale = "en_CA.UTF-8";
 
   services = {
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.enable = true;
+    libinput.touchpad = {
+      tappingButtonMap = "lrm";
+      tapping = true;
+      disableWhileTyping = true;
+      clickMethod = "clickfinger";
+    };
     xserver = {
       enable = true;
 
@@ -70,19 +78,10 @@
       desktopManager.gnome.enable = true; # comment this out to switch to hyprland
 
       # Configure keymap in X11
-      layout = "us";
-      xkbVariant = "";
+      xkb.layout = "us";
+      xkb.variant = "";
 
       excludePackages = [pkgs.xterm];
-
-      # Enable touchpad support (enabled default in most desktopManager).
-      libinput.enable = true;
-      libinput.touchpad = {
-        tappingButtonMap = "lrm";
-        tapping = true;
-        disableWhileTyping = true;
-        clickMethod = "clickfinger";
-      };
 
       # displayManager.sddm.enable = true;
       # displayManager = {
@@ -131,8 +130,8 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    gedit
     gnome.gnome-terminal # always have an editor and terminal!
-    gnome.gedit
   ];
   environment.gnome.excludePackages = [pkgs.gnome-tour];
 

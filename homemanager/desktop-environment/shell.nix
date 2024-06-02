@@ -10,6 +10,7 @@
 
     # simplify commands
     "untar" = "tar -xvf";
+    "confdir" = "cd ~/.config/NixOS-Config";
 
     # personal bash scripts -> move these to pkgs.writeShellScriptBin
     "rebuild" = "bash ${bashScripts}/rebuild.sh";

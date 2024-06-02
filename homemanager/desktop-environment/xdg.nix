@@ -5,7 +5,7 @@
   defaults = builtins.mapAttrs (name: value: (getDesktopFiles value)) (with pkgs; {
     browsers = [
       firefox
-      unstable.vivaldi
+      vivaldi
     ];
 
     imageviewers = [
@@ -14,9 +14,9 @@
     ];
 
     texteditors = [
-      unstable.sublime4
+      sublime4
       vscodium-fhs
-      gnome.gedit
+      gedit
     ];
 
     filebrowsers = [
