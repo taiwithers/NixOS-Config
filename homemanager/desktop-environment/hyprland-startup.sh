@@ -2,6 +2,7 @@
 
 swaybg --mode=fill --image=/run/current-system/sw/share/backgrounds/gnome/adwaita-d.jpg &
 
+eww kill
 eww daemon
 eww open topbar-window
 eww open bottombar-window
