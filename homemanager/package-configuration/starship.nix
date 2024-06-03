@@ -1,5 +1,5 @@
 {...}: {
-  programs.bash.bashrcExtra = "ble-attach";
+  programs.bash.bashrcExtra = "source \"$(blesh-share)\"/ble.sh && ble-attach";
 
   programs.starship.enable = true;
 
