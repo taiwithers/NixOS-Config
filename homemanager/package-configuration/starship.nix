@@ -60,7 +60,7 @@
 
     conda = {
       disabled = false;
-      style = "dimmed bright-green";
+      style = "bright-green";
       format = "[$symbol $environment ]($style)";
       ignore_base = true;
       symbol = "";
