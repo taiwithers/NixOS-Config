@@ -149,7 +149,7 @@
       style = "bold yellow";
     };
 
-    user = {
+    username = {
       disabled = false;
       format = "[$user]($style) in ";
     };
