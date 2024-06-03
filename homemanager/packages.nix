@@ -65,7 +65,7 @@ in {
     # cli programs
     bash
     bat
-    blesh
+    # blesh
     btop
     cloc
     conda

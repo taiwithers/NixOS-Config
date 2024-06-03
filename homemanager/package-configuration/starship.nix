@@ -1,9 +1,14 @@
-{...}: {
+{config, ...}: {
   # activate ble.sh
-  programs.bash.bashrcExtra = ''
-    source "$(blesh-share)"/ble.sh # --attach=none
-    [[ ''${BLE_VERSION-}  ]] && ble-attach
-  '';
+  # programs.bash.bashrcExtra = ''
+  #   source "$(blesh-share)"/ble.sh --rcfile=${config.xdg.configHome}/blerc
+  #   [[ ''${BLE_VERSION-}  ]] && ble-attach
+  # '';
+
+  # xdg.configFile."${config.xdg.configHome}/blerc".text = ''
+  # bleopt pager=bat
+  # bleopt editor=vim
+  # '';
 
   # style strings (not case sensitive)
   # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
