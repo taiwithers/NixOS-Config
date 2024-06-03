@@ -82,7 +82,7 @@
     git_branch = {
       disabled = false;
       format = "on [$symbol$branch(:$remote_branch)]($style) ";
-      style = "dimmed purple";
+      style = "bright purple";
       ignore_branches = ["master" "main"];
     };
 
