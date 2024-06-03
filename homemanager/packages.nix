@@ -143,6 +143,7 @@ in {
     rofi-wayland
     swaybg
     xdg-desktop-portal-hyprland
+    rofi-calc
 
     (
       waybar.overrideAttrs (oldAttrs: {

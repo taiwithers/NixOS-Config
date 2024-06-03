@@ -19,5 +19,8 @@
 in {
   programs.bash.bashrcExtra = ''
     ${conda-init}
-    export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc'';
+    export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
+
+    conda-shell # activate conda in the base environment
+  '';
 }
