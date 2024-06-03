@@ -65,6 +65,7 @@ in {
     # cli programs
     bash
     bat
+    blesh
     btop
     cloc
     conda
@@ -91,6 +92,7 @@ in {
     ripgrep
     sd
     speedtest-rs
+    starship
     sxiv
     trashy
     unzip
@@ -120,7 +122,6 @@ in {
     onedrivegui
     realvnc-vnc-viewer
     slack-dark
-    starship
     sublime4
     teams-for-linux
     tilix
