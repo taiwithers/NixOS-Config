@@ -1,5 +1,5 @@
 {...}: {
-  # programs.bash.bashrcExtra = "eval \"$(starship init bash)\"";
+  programs.bash.bashrcExtra = "ble-attach";
 
   programs.starship.enable = true;
 
