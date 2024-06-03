@@ -44,7 +44,7 @@
     character = {
       disabled = false;
       # enter text prompt, shows output of last command
-      format = "$symbol";
+      format = "$symbol ";
       success_symbol = "[❯](bold green)";
       error_symbol = "[❯](bold red)";
     };
