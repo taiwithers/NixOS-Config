@@ -60,7 +60,7 @@
 
     conda = {
       disabled = false;
-      style = "dimmed green";
+      style = "dimmed bright-green";
       format = "[$symbol $environment ]($style)";
       ignore_base = true;
       symbol = "";
@@ -83,7 +83,7 @@
     git_branch = {
       disabled = false;
       format = "on [$symbol$branch(:$remote_branch)]($style) ";
-      style = "purple";
+      style = "bright-purple";
       ignore_branches = ["master" "main"];
     };
 
