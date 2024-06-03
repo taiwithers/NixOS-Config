@@ -2,8 +2,11 @@
   # activate ble.sh
   programs.bash.bashrcExtra = "source \"$(blesh-share)\"/ble.sh && ble-attach";
 
-  programs.starship.enable = true;
+  # style strings (not case sensitive)
+  # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
+  # colors: black, red, green, blue, yellow, pruple, cyan, white, bright-<any of previous>, #hexcode, 0-255 ANSI code
 
+  programs.starship.enable = true;
   programs.starship.settings = {
     format = "$username$hostname$battery$conda$custom$directory$git_branch$git_state$git_metrics$jobs$nix_shell$status$sudo$character";
     right_format = "$time";
