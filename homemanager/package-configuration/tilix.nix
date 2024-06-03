@@ -34,8 +34,8 @@ in {
     getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
     tilixTheme = getThemePath (selectAvailableTheme getThemePath);
   in
-    # (builtins.fromJSON (builtins.readFile tilixTheme)) +
-    {font = "SpaceMono Nerd Font 12";};
+    {font = "SpaceMono Nerd Font 12";}
+    // (builtins.fromJSON (builtins.readFile tilixTheme));
 
   # dconf.settings."com/gexperts/Tilix/profiles/${profileString}".font = "SpaceMono Nerd Font 12";
 }
