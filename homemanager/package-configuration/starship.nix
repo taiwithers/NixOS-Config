@@ -52,7 +52,7 @@
       home_symbol = "~";
 
       truncation_length = 3;
-      turncate_to_repo = true;
+      truncate_to_repo = true;
       truncation_symbol = ".../";
 
       # read_only = ""; # copy/pasting emoji into sublime doesn't work too well
