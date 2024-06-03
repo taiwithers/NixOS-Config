@@ -4,8 +4,8 @@
   programs.starship.enable = true;
 
   programs.starship.settings = {
-    format = ''      $username$hostname$battery$conda$custom$directory$git_branch$git_state$git_metrics$jobs$nix_shell$status$sudo$time$character
-    '';
+    format = "$username$hostname$battery$conda$custom$directory$git_branch$git_state$git_metrics$jobs$nix_shell$status$sudo$time$character";
+    right_format = "$time";
 
     battery = {
       disabled = false;
