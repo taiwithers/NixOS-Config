@@ -1,6 +1,9 @@
 {...}: {
   # activate ble.sh
-  programs.bash.bashrcExtra = "source \"$(blesh-share)\"/ble.sh && ble-attach";
+  programs.bash.bashrcExtra = ''
+    source "$(blesh-share)"/ble.sh # --attach=none
+    [[ ''${BLE_VERSION-}  ]] && ble-attach
+  '';
 
   # style strings (not case sensitive)
   # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
