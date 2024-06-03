@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-swaybg --mode=fill --image=/run/current-system/sw/share/backgrounds/gnome/fold-l.jxl &
+swaybg --mode=fill --image=/run/current-system/sw/share/backgrounds/gnome/blobs-l.svg &
 
 eww kill
 eww daemon
