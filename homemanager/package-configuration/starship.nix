@@ -4,25 +4,7 @@
   programs.starship.enable = true;
 
   programs.starship.settings = {
-    format = ''      $username$hostname\
-                    $battery\
-                    $conda\
-                    $custom\
-                    $directory\
-                    $git_branch$git_state$git_metrics\
-                    $jobs\
-                    $nix_shell\
-                    $os\
-                    $package\
-                    $python\
-                    $shell\
-                    $shlvl\
-                    $singularity\
-                    $status\
-                    $sudo\
-                    $time\
-                    $vcsh\
-                    $character
+    format = ''      $username$hostname$battery$conda$custom$directory$git_branch$git_state$git_metrics$jobs$nix_shell$os$package$python$shell$shlvl$singularity$status$sudo$time$vcsh$character
     '';
 
     battery = {
@@ -117,6 +99,9 @@
     hostname = {
       ssh_only = true;
       ssh_symbol = "\udb82\udcb9 ";
+      trim_at = "";
+      format = "[$ssh_symbol$hostname]($style) in ";
+      style = "bold dimmed green";
     };
   };
 }
