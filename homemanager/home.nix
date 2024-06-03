@@ -46,6 +46,7 @@ in {
     (import ./package-configuration {inherit config pkgs lib selectAvailableTheme;})
   ];
 
+  # ""nix.extraOptions = "use-xdg-base-directories = true";
   home.username = user;
   home.homeDirectory = homeDirectory;
   home.stateVersion = "23.11";

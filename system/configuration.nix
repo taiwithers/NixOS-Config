@@ -36,6 +36,7 @@
 
   nix = {
     settings.experimental-features = ["nix-command" "flakes"];
+    settings.use-xdg-base-directories = true;
 
     # hyprland
     # settings.substituters = ["https://hyprland.cachix.org"];
