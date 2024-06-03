@@ -63,7 +63,7 @@
       style = "dimmed green";
       format = "[$symbol$environment]($style)";
       ignore_base = true;
-      symbol = "\\ue73c";
+      symbol = "";
     };
 
     directory = {
