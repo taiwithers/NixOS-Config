@@ -3,7 +3,10 @@
   pkgs,
   selectAvailableTheme,
   ...
-}: {
+}: let
+  # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
+  profileString = "2b7c4080-0ddd-46c5-8f23-563fd3ba789d";
+in {
   dconf.settings."com/gexperts/Tilix" = {
     control-scroll-zoom = true;
     enable-wide-handle = true;
@@ -27,10 +30,12 @@
   };
 
   # set tilix theme
-  # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
-  dconf.settings."com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = let
+  dconf.settings."com/gexperts/Tilix/profiles/${profileString}" = let
     getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
     tilixTheme = getThemePath (selectAvailableTheme getThemePath);
   in
-    builtins.fromJSON (builtins.readFile tilixTheme);
+    # (builtins.fromJSON (builtins.readFile tilixTheme)) +
+    {font = "SpaceMono Nerd Font 12";};
+
+  # dconf.settings."com/gexperts/Tilix/profiles/${profileString}".font = "SpaceMono Nerd Font 12";
 }
