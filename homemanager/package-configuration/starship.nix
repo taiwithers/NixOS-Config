@@ -1,4 +1,5 @@
 {...}: {
+  # activate ble.sh
   programs.bash.bashrcExtra = "source \"$(blesh-share)\"/ble.sh && ble-attach";
 
   programs.starship.enable = true;
@@ -7,6 +8,9 @@
     format = "$username$hostname$battery$conda$custom$directory$git_branch$git_state$git_metrics$jobs$nix_shell$status$sudo$character";
     right_format = "$time";
 
+    continuation_prompt = ">";
+
+    # modules
     battery = {
       disabled = false;
       format = "[$symbol$percentage]($style)";
