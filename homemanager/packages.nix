@@ -73,6 +73,7 @@ in {
     dconf
     dell-command-configure
     duf
+    dust
     eza
     fastfetch
     fd
