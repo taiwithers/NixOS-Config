@@ -8,10 +8,20 @@
 
     battery = {
       format = "[$symbol$percentage]($style)";
-      display = {
-        threshold = 50;
-        style = "bold red";
-      };
+      display = [
+        {
+          threshold = 50;
+          style = "bold green";
+        }
+        {
+          threshold = 30;
+          style = "bold yellow";
+        }
+        {
+          threshold = 10;
+          style = "bold red";
+        }
+      ];
       # display.threshold = 50;
       # display.style = "bold red";
     };
