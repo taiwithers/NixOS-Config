@@ -8,8 +8,12 @@
 
     battery = {
       format = "[$symbol$percentage]($style)";
-      display.threshold = 50;
-      display.style = "bold red";
+      display = {
+        threshold = 50;
+        style = "bold red";
+      };
+      # display.threshold = 50;
+      # display.style = "bold red";
     };
 
     character = {
@@ -21,6 +25,7 @@
 
     cmd_duration = {
       min_time = 500;
+      format = "";
     };
   };
 }
