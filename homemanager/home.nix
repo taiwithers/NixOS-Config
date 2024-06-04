@@ -11,8 +11,8 @@
   ...
 }: let
   theme-config = rec {
-    nix-colors = import nix-colors.homeManagerModules.default;
-    colours = nix-colors."${builtins.head names}";
+    # nix-colors = ;
+    colours = (import nix-colors.homeManagerModules.default)."${builtins.head names}".palette;
     names = [
       "da-one-ocean" # dark vibrant
       "horizon-terminal-dark" # vibrant, good!
