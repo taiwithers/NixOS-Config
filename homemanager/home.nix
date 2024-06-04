@@ -50,8 +50,8 @@ in {
 
   # colorScheme = ;
 
-  home.file."testoutput".text = builtins.concatStringsSep ", " (builtins.attrNames nix-colors.colorSchemes.da-one-ocean.palette);
-  # home.file."testoutput".text = builtins.concatStringsSep ", " (builtins.attrNames theme-config.nix-colors-module.colorSchemes.da-one-ocean.palette);
+  home.file."testoutput".text = "imports list" + builtins.concatStringsSep ", " (builtins.attrNames nix-colors.colorSchemes.da-one-ocean.palette);
+  # home.file."testoutput".text = "in-set import" + builtins.concatStringsSep ", " (builtins.attrNames theme-config.nix-colors-module.colorSchemes.da-one-ocean.palette);
 
   home.username = user;
   home.homeDirectory = homeDirectory;
