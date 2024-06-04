@@ -12,7 +12,6 @@
 }: let
   theme-config = rec {
     nix-colors-module = import nix-colors.homeManagerModules.default;
-    colours = nix-colors-module."${builtins.head names}".palette;
     names = [
       "da-one-ocean" # dark vibrant
       "horizon-terminal-dark" # vibrant, good!
@@ -48,7 +47,9 @@ in {
     (import ./package-configuration {inherit config pkgs lib theme-config;})
   ];
 
-  home.file."testoutput".text = builtins.concatStringsSep "," (builtins.attrNames theme-config); #.nix-colors-module.da-one-ocean.palette.base00; # infinite recursion
+  # home.file."testoutput".text = builtins.concatStringsSep ", " (builtins.attrNames theme-config.nix-colors-module."${builtins.head theme-config.names}"); #.nix-colors-module.da-one-ocean.palette.base00; # infinite recursion
+  home.file."testoutput".text = "${builtins.head theme-config.names}";
+  # home.file."testoutput".text = builtins.isAttrs theme-config.colours; #.nix-colors-module.da-one-ocean.palette.base00; # infinite recursion
 
   home.username = user;
   home.homeDirectory = homeDirectory;
