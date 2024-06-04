@@ -1,6 +1,6 @@
 {theme-config, ...}: let
   # colours = builtins.mapAttrs (name: value: "#" + value) theme-config.colours.palette;
-  # colours = theme-config.colours.palette;
+  colours = theme-config.colours;
 in {
   # style strings (not case sensitive)
   # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
@@ -23,7 +23,7 @@ in {
           threshold = 50;
           charging_symbol = "󰂉";
           discharging_symbol = "󰁿";
-          style = "bold ${theme-config.colours.base00}";
+          style = "bold green";
         }
         {
           threshold = 30;
@@ -44,8 +44,8 @@ in {
       disabled = false;
       # enter text prompt, shows output of last command
       format = "$symbol ";
-      success_symbol = "[❯](bold green)";
-      error_symbol = "[❯](bold green)";
+      success_symbol = "[❯](bold ${theme-config.colours.base00})";
+      error_symbol = "[❯](bold ${theme-config.colours.base00})";
     };
 
     cmd_duration = {
