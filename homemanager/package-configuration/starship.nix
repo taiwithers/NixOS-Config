@@ -152,7 +152,7 @@
 
     nix_shell = {
       disabled = false;
-      format = "via [$symbol$state( \($name\))]($style) ";
+      format = ''via [$symbol$state( \($name\))]($style) '';
       symbol = "";
       style = "bold blue";
     };
