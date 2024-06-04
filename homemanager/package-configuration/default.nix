@@ -3,7 +3,7 @@
   pkgs,
   # unstable-pkgs,
   # lib,
-  selectAvailableTheme,
+  theme-config,
   ...
 }: {
   imports =
@@ -22,7 +22,8 @@
     ]
     ++ [
       (import ./copyq.nix {inherit pkgs;})
-      (import ./sublime-text.nix {inherit config pkgs selectAvailableTheme;})
-      (import ./tilix.nix {inherit config pkgs selectAvailableTheme;})
+      (import ./copyq.nix {inherit pkgs;})
+      (import ./sublime-text.nix {inherit config pkgs theme-config;})
+      (import ./tilix.nix {inherit config pkgs theme-config;})
     ];
 }

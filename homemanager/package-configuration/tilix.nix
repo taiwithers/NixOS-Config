@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  selectAvailableTheme,
+  theme-config,
   ...
 }: let
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
@@ -32,7 +32,7 @@ in {
   # set tilix theme
   dconf.settings."com/gexperts/Tilix/profiles/${profileString}" = let
     getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-    tilixTheme = getThemePath (selectAvailableTheme getThemePath);
+    tilixTheme = getThemePath (theme-config.selectAvailableTheme getThemePath);
   in
     {font = "SpaceMono Nerd Font 12";} # items here have priority
     // (builtins.fromJSON (builtins.readFile tilixTheme));

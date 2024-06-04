@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  selectAvailableTheme,
+  theme-config,
   ...
 }: let
   packagesPath = "${config.xdg.configHome}/sublime-text/Packages/User";
@@ -106,9 +106,9 @@ in {
   xdg.configFile."${packagesPath}/Default.sublime-keymap".text = ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
   xdg.configFile."${packagesPath}/Preferences.sublime-settings".text = let
     getThemePath = name: "${packagesPath}/tinted-sublime-text/base16-${name}.sublime-theme";
-    sublimeTheme = selectAvailableTheme getThemePath;
+    sublimeTheme = theme-config.selectAvailableTheme getThemePath;
     getColourSchemePath = name: "${packagesPath}/tinted-sublime-text/color-schemes/base16-${name}.sublime-color-scheme";
-    sublimeColourScheme = selectAvailableTheme getColourSchemePath;
+    sublimeColourScheme = theme-config.selectAvailableTheme getColourSchemePath;
   in ''
     {
       "ignored_packages":

@@ -5,6 +5,6 @@
 }: {
   services.copyq = {
     enable = true;
-    package = pkgs.copyq;
+    # package = pkgs.copyq;
   };
 }

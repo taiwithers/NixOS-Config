@@ -24,19 +24,20 @@
       "rose-pine" # purple
       "zenbones" # orange/green/blue on black
     ];
-  };
 
-  selectAvailableTheme = functionGetThemePath: let
-    themes = theme-config.names;
-    checkTheme = name: builtins.pathExists (functionGetThemePath name);
-    firstAvailableTheme =
-      import ../nix-scripts/choose-option-or-backup.nix
-      {
-        functionOptionIsValid = checkTheme;
-        allOptions = themes;
-      };
-  in
-    firstAvailableTheme;
+    # function: select available theme
+    selectAvailableTheme = functionGetThemePath: let
+      themes = theme-config.names;
+      checkTheme = name: builtins.pathExists (functionGetThemePath name);
+      firstAvailableTheme =
+        import ../nix-scripts/choose-option-or-backup.nix
+        {
+          functionOptionIsValid = checkTheme;
+          allOptions = themes;
+        };
+    in
+      firstAvailableTheme;
+  };
 
   homeDirectory = "/home/${user}";
 in {
@@ -44,7 +45,7 @@ in {
     # nix-flatpak.homeManagerModules.nix-flatpak
     (import ./packages.nix {inherit pkgs pkgs-config lib;})
     (import ./desktop-environment {inherit config pkgs;})
-    (import ./package-configuration {inherit config pkgs lib selectAvailableTheme;})
+    (import ./package-configuration {inherit config pkgs lib theme-config;})
   ];
 
   home.username = user;
