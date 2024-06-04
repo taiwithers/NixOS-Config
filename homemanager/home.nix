@@ -27,13 +27,12 @@
 
     # function: select available theme
     selectAvailableTheme = functionGetThemePath: let
-      themes = theme-config.names;
       checkTheme = name: builtins.pathExists (functionGetThemePath name);
       firstAvailableTheme =
         import ../nix-scripts/choose-option-or-backup.nix
         {
           functionOptionIsValid = checkTheme;
-          allOptions = themes;
+          allOptions = names;
         };
     in
       firstAvailableTheme;
@@ -43,15 +42,16 @@
 in {
   imports = [
     # nix-flatpak.homeManagerModules.nix-flatpak
+    nix-colors.homeManagerModules.default
     (import ./packages.nix {inherit pkgs pkgs-config lib;})
     (import ./desktop-environment {inherit config pkgs;})
     (import ./package-configuration {inherit config pkgs lib theme-config;})
-    nix-colors.homeManagerModules.default
   ];
 
   # colorScheme = ;
 
   home.file."testoutput".text = builtins.concatStringsSep ", " (builtins.attrNames nix-colors.colorSchemes.da-one-ocean.palette);
+  # home.file."testoutput".text = builtins.concatStringsSep ", " (builtins.attrNames theme-config.nix-colors-module.colorSchemes.da-one-ocean.palette);
 
   home.username = user;
   home.homeDirectory = homeDirectory;
