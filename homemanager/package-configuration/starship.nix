@@ -23,7 +23,7 @@ in {
           threshold = 50;
           charging_symbol = "󰂉";
           discharging_symbol = "󰁿";
-          style = "bold green";
+          style = "bold ${theme-config.colours.base00}";
         }
         {
           threshold = 30;
