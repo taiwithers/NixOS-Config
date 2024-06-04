@@ -1,15 +1,6 @@
-{theme-config, ...}: {
-  # activate ble.sh
-  # programs.bash.bashrcExtra = ''
-  #   source "$(blesh-share)"/ble.sh --rcfile=${config.xdg.configHome}/blerc
-  #   [[ ''${BLE_VERSION-}  ]] && ble-attach
-  # '';
-
-  # xdg.configFile."${config.xdg.configHome}/blerc".text = ''
-  # bleopt pager=bat
-  # bleopt editor=vim
-  # '';
-
+{theme-config, ...}: let
+  colours = builtins.mapAttrs (name: value: "#" + value) theme-config.colours.palette;
+in {
   # style strings (not case sensitive)
   # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
   # colors: black, red, green, blue, yellow, purple, cyan, white, bright-<any of previous>, #hexcode, 0-255 ANSI code
@@ -75,9 +66,8 @@
     directory = {
       disabled = false;
       format = "[$path ]($style)[$read_only]($read_only_style)";
-      style = "bold cyan";
+      # style = "bold ${colours.base00}";
       home_symbol = "~";
-
       truncation_length = 3;
       truncate_to_repo = true;
       truncation_symbol = ".../";
