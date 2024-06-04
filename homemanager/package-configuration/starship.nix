@@ -1,7 +1,4 @@
-{
-  # config,
-  ...
-}: {
+{theme-config, ...}: {
   # activate ble.sh
   # programs.bash.bashrcExtra = ''
   #   source "$(blesh-share)"/ble.sh --rcfile=${config.xdg.configHome}/blerc
@@ -15,7 +12,7 @@
 
   # style strings (not case sensitive)
   # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
-  # colors: black, red, green, blue, yellow, pruple, cyan, white, bright-<any of previous>, #hexcode, 0-255 ANSI code
+  # colors: black, red, green, blue, yellow, purple, cyan, white, bright-<any of previous>, #hexcode, 0-255 ANSI code
 
   programs.starship.enable = true;
   programs.starship.settings = {
