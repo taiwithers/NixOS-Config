@@ -17,7 +17,6 @@
       # forge
       "git"
       "gpg"
-      "starship"
       "vscodium"
     ]
     ++ [
