@@ -31,17 +31,20 @@
       display = [
         {
           threshold = 50;
-          symbol = "󰁿";
+          charging_symbol = "󰂉";
+          discharging_symbol = "󰁿";
           style = "bold green";
         }
         {
           threshold = 30;
-          symbol = "󰁻";
+          charging_symbol = "󰂇";
+          discharging_symbol = "󰁻";
           style = "bold yellow";
         }
         {
           threshold = 10;
-          symbol = "󰂃";
+          charging_symbol = "󰢜";
+          discharging_symbol = "󰂃";
           style = "bold red";
         }
       ];
@@ -150,7 +153,7 @@
     nix_shell = {
       disabled = false;
       format = "via [$symbol$state( \($name\))]($style) ";
-      symbol = "<U+db81><U+DF17>";
+      symbol = "";
       style = "bold blue";
     };
 
