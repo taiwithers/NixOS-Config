@@ -31,15 +31,17 @@
       display = [
         {
           threshold = 50;
-          # symbol = "";
+          symbol = "󰁿";
           style = "bold green";
         }
         {
           threshold = 30;
+          symbol = "󰁻";
           style = "bold yellow";
         }
         {
           threshold = 10;
+          symbol = "󰂃";
           style = "bold red";
         }
       ];
@@ -92,12 +94,14 @@
       ignore_branches = ["master" "main"];
     };
 
+    # shows operations in progress (rebase, cherry-pick, etc.)
     git_state = {
       disabled = false;
       style = "bold yellow";
       format = "\([$state( $progress_current/$progress_total)]($style)\) ";
     };
 
+    # changed lines
     git_metrics = {
       disabled = false;
       added_style = "bold green"; # style for number of added lines
@@ -112,7 +116,7 @@
       format = "([\[$all_status$ahead_behind\]]($style) )";
       style = "bold red";
       ignore_submodules = true;
-      conflicted = "x";
+      conflicted = "="; # merge conflicts
       ahead = "⇡$count";
       behind = "⇣$count";
       diverged = "⇕⇡$ahead_count⇣$behind_count";
@@ -146,7 +150,7 @@
     nix_shell = {
       disabled = false;
       format = "via [$symbol$state( \($name\))]($style) ";
-      symbol = "\udb81\udf17";
+      symbol = "<U+db81><U+DF17>";
       style = "bold blue";
     };
 
