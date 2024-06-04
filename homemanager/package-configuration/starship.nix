@@ -150,7 +150,7 @@
 
     status = {
       disabled = false;
-      format = "[[$status $common_meaning]]($style) ";
+      format = "\[[$status $common_meaning]\]($style) ";
       map_symbol = false;
       style = "red";
     };
