@@ -49,7 +49,7 @@
       # enter text prompt, shows output of last command
       format = "$symbol ";
       success_symbol = "[❯](bold green)";
-      error_symbol = "[❯](bold red)";
+      error_symbol = "[❯](bold green)";
     };
 
     cmd_duration = {
@@ -150,9 +150,9 @@
 
     status = {
       disabled = false;
-      format = "[$status \($common_meaning\)]($style) ";
+      format = "[[$status $common_meaning]]($style) ";
       map_symbol = false;
-      style = "bold red";
+      style = "red";
     };
 
     sudo = {
