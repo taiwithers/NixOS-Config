@@ -24,30 +24,28 @@
 in {
   nixpkgs.config = pkgs-config;
 
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     dconf2nix = prev.dconf2nix.overrideAttrs (old: {
+  #       src = prev.fetchFromGitHub {
+  #         owner = "nix-community";
+  #         repo = "dconf2nix";
+  #         rev = "63c7eab";
+  #         hash = "sha256-kjxRPIPfkX+nzGNaJdEpwmxOeWmfz9ArXNGrCtMs+EI=";
+  #         fetchSubmodules = true;
+  #       };
+  #       libraryHaskellDepends = (old.libraryHaskellDepends or []) ++ [pkgs.haskellPackages.utf8-string];
+  #       testHaskellDepends = (old.testHaskellDepends or []) ++ [pkgs.haskellPackages.utf8-string];
+  #       executableHaskellDepends = (old.executableHaskellDepends or []) ++ [pkgs.haskellPackages.utf8-string];
+  #     });
+  #   })
+  # ];
+
   services.flatpak = {
     enableModule = true;
     remotes = {"starlink" = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";};
     packages = ["starlink:app/edu.hawaii.eao.starlink.Starlink//2023A"];
   };
-  # services.flatpak = {
-  #   # remotes = [
-  #   #   {
-  #   #     name = "starlink";
-  #   #     location = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";
-  #   #   }
-  #   #   # {
-  #   #   #   name = "flathub";
-  #   #   #   location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-  #   #   # }
-  #   # ];
-  #   packages = [
-  #     # {
-  #     #   appId = "edu.hawaii.eao.starlink.Starlink";
-  #     #   origin = "starlink";
-  #     # }
-  #     "org.inkscape.Inkscape"
-  #   ];
-  # };
 
   home.packages = with pkgs; [
     # nix programs
