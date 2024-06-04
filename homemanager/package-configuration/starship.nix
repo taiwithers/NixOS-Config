@@ -5,7 +5,7 @@ in {
   # style strings (not case sensitive)
   # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
   # colors: black, red, green, blue, yellow, purple, cyan, white, bright-<any of previous>, #hexcode, 0-255 ANSI code
-  home.file."testoutput".text = builtins.typeOf theme-config;
+  # home.file."testoutput".text = theme-config.colours.base00;
 
   programs.starship.enable = true;
   programs.starship.settings = {
