@@ -12,7 +12,7 @@
 
     # additional flake inputs
     nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
-    # nix-colors.url = "github:misterio77/nix-colors";
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {
@@ -20,6 +20,7 @@
     nixpkgs-unstable,
     home-manager,
     nix-flatpak,
+    nix-colors,
     # vscode-server,
     ...
   } @ inputs: let
@@ -63,7 +64,7 @@
     homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
-        inherit nix-flatpak user system pkgs-config;
+        inherit nix-flatpak nix-colors user system pkgs-config;
       };
 
       modules = [

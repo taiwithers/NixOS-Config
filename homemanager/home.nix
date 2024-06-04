@@ -4,14 +4,15 @@
   lib,
   # inputs,
   user,
+  nix-colors,
   # system,
   # nix-flatpak,
   pkgs-config,
   ...
 }: let
   theme-config = rec {
-    # nix-colors = import inputs.nix-colors.homeManagerModules.default;
-    # colours = nix-colors."${name}";
+    nix-colors = import nix-colors.homeManagerModules.default;
+    colours = nix-colors."${builtins.head names}";
     names = [
       "da-one-ocean" # dark vibrant
       "horizon-terminal-dark" # vibrant, good!

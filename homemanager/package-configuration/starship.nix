@@ -183,6 +183,7 @@
     username = {
       disabled = false;
       format = "[$user]($style) in ";
+      show_always = false; # if false, only shows if: root, not same as login, in ssh
     };
   };
 }
