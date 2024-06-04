@@ -2,10 +2,10 @@
   config,
   pkgs,
   lib,
-  inputs,
+  # inputs,
   user,
-  system,
-  nix-flatpak,
+  # system,
+  # nix-flatpak,
   pkgs-config,
   ...
 }: let

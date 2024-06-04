@@ -2,7 +2,7 @@
   config,
   pkgs,
   # unstable-pkgs,
-  lib,
+  # lib,
   selectAvailableTheme,
   ...
 }: {

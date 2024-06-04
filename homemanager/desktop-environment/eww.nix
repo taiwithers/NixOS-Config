@@ -1,6 +1,4 @@
-{config, ...}: let
-  version = "1";
-in {
+{config, ...}: {
   # https://elkowar.github.io/eww/configuration.html
 
   # first work through https://wiki.hyprland.org/Useful-Utilities/Must-have/

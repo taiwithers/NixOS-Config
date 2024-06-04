@@ -1,4 +1,6 @@
-{config, ...}: {
+{
+  # config, 
+  ...}: {
   # activate ble.sh
   # programs.bash.bashrcExtra = ''
   #   source "$(blesh-share)"/ble.sh --rcfile=${config.xdg.configHome}/blerc

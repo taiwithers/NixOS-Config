@@ -5,7 +5,7 @@
   config,
   pkgs,
   hostName,
-  flake-inputs,
+  # flake-inputs,
   ...
 }: {
   programs.hyprland.enable = true;
