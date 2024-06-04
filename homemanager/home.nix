@@ -51,7 +51,7 @@ in {
 
   # colorScheme = ;
 
-  home.file."testoutput".text = builtins.typeOf nix-colors.colorSchemes.da-one-ocean; # infinite recursion
+  home.file."testoutput".text = builtins.typeOf nix-colors.colorSchemes.da-one-ocean.palette; # infinite recursion
   # home.file."testoutput".text = builtins.typeOf (theme-config.colours);
 
   home.username = user;
