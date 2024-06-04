@@ -51,8 +51,7 @@ in {
 
   # colorScheme = ;
 
-  home.file."testoutput".text = builtins.typeOf nix-colors.colorSchemes.da-one-ocean.palette; # infinite recursion
-  # home.file."testoutput".text = builtins.typeOf (theme-config.colours);
+  home.file."testoutput".text = builtins.concatStringsSep ", " (builtins.attrNames nix-colors.colorSchemes.da-one-ocean.palette);
 
   home.username = user;
   home.homeDirectory = homeDirectory;
