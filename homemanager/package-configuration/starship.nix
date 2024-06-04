@@ -152,9 +152,12 @@
 
     nix_shell = {
       disabled = false;
-      format = ''via [$symbol$state( \($name\))]($style) '';
+      format = ''via [$symbol $name$state ]($style) '';
       symbol = "";
       style = "bold blue";
+      impure_msg = " (impure)";
+      pure_msg = "";
+      unknown_msg = " (purity?)";
     };
 
     status = {
