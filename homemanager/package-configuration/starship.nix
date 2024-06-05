@@ -23,7 +23,7 @@ in {
           threshold = 50;
           charging_symbol = "󰂉";
           discharging_symbol = "󰁿";
-          style = "bold green";
+          style = "green";
         }
         {
           threshold = 30;
@@ -44,8 +44,8 @@ in {
       disabled = false;
       # enter text prompt, shows output of last command
       format = "$symbol ";
-      success_symbol = "[❯](bold ${theme-config.colours.base00})";
-      error_symbol = "[❯](bold ${theme-config.colours.base00})";
+      success_symbol = "[❯](bold ${colours.base00})";
+      error_symbol = "[❯](bold ${colours.base00})";
     };
 
     cmd_duration = {
