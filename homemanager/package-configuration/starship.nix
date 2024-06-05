@@ -12,7 +12,7 @@ in {
     format = "$username$hostname$battery$conda$custom$directory$git_branch$git_state$git_metrics$jobs$nix_shell$status$sudo$character";
     right_format = "$time";
 
-    continuation_prompt = "> ";
+    continuation_prompt = "\t❯ ";
 
     # modules
     battery = {
