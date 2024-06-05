@@ -20,6 +20,7 @@
         side-by-side = true;
         hunk-header-style = "omit";
         tabs = 4;
+        syntax-theme = "base16";
       };
     };
   };
