@@ -26,38 +26,6 @@ in {
     use-tabs = true;
   };
 
-  # https://github.com/karlding/base16-tilix/blob/master/templates/default.mustache
-  xdg.configFile."${tilixThemeFile}".text = ''
-    {   "background-color": "#${colours.base00}",
-        "badge-color": "#${colours.base08}",
-        "comment": "",
-        "cursor-background-color": "#${colours.base04}",
-        "cursor-foreground-color": "#${colours.base04}",
-        "dim-color": "#${colours.base01}",
-        "foreground-color": "#${colours.base04}",
-        "highlight-background-color": "#${colours.base01}",
-        "highlight-foreground-color": "#${colours.base04}",
-        "name": "base16",
-        "palette": [
-            "#${colours.base00}",
-            "#${colours.base08}",
-            "#${colours.base0B}",
-            "#${colours.base0A}",
-            "#${colours.base0D}",
-            "#${colours.base0E}",
-            "#${colours.base0C}",
-            "#${colours.base05}",
-            "#${colours.base03}",
-            "#${colours.base08}",
-            "#${colours.base0B}",
-            "#${colours.base0A}",
-            "#${colours.base0D}",
-            "#${colours.base0E}",
-            "#${colours.base0C}",
-            "#${colours.base07}"
-        ]}
-  '';
-
   dconf.settings."com/gexperts/Tilix/profiles/${profileString}" =
     # items here have priority
     {
@@ -68,5 +36,34 @@ in {
       badge-color-set = true;
       bold-is-bright = false;
     }
-    // (builtins.fromJSON (builtins.readFile tilixThemeFile));
+    # https://github.com/karlding/base16-tilix/blob/master/templates/default.mustache
+    // (builtins.fromJSON ''
+      {   "background-color": "#${colours.base00}",
+          "badge-color": "#${colours.base08}",
+          "comment": "",
+          "cursor-background-color": "#${colours.base04}",
+          "cursor-foreground-color": "#${colours.base04}",
+          "dim-color": "#${colours.base01}",
+          "foreground-color": "#${colours.base04}",
+          "highlight-background-color": "#${colours.base01}",
+          "highlight-foreground-color": "#${colours.base04}",
+          "name": "base16",
+          "palette": [
+              "#${colours.base00}",
+              "#${colours.base08}",
+              "#${colours.base0B}",
+              "#${colours.base0A}",
+              "#${colours.base0D}",
+              "#${colours.base0E}",
+              "#${colours.base0C}",
+              "#${colours.base05}",
+              "#${colours.base03}",
+              "#${colours.base08}",
+              "#${colours.base0B}",
+              "#${colours.base0A}",
+              "#${colours.base0D}",
+              "#${colours.base0E}",
+              "#${colours.base0C}",
+              "#${colours.base07}"
+          ]}'');
 }
