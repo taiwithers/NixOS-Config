@@ -11,7 +11,7 @@
   # tilixTheme = getThemePath (theme-config.selectAvailableTheme getThemePath);
 
   tilixThemeFile = "${config.xdg.configHome}/tilix/schemes/base16-theme.json";
-  colours = theme-config.colour-palette;
+  colours = theme-config.app-themes.tilix;
 in {
   dconf.settings."com/gexperts/Tilix" = {
     control-scroll-zoom = true;
@@ -38,7 +38,7 @@ in {
         "foreground-color": "#${colours.base04}",
         "highlight-background-color": "#${colours.base01}",
         "highlight-foreground-color": "#${colours.base04}",
-        "name": "${builtins.head theme-config.names} (base16)",
+        "name": "base16",
         "palette": [
             "#${colours.base00}",
             "#${colours.base08}",

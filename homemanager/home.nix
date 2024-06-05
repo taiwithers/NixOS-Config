@@ -15,7 +15,7 @@
     colour-palette = nix-colors.colorSchemes."${builtins.head names}".palette;
     names = [
       "da-one-ocean" # dark vibrant
-      "jabuti"
+      "jabuti" # not available in nix-colors
       "horizon-terminal-dark" # vibrant, good!
       "framer"
       "ayu-dark"
@@ -25,6 +25,10 @@
       "rose-pine" # purple
       "zenbones" # orange/green/blue on black
     ];
+
+    app-themes = builtins.mapAttrs (appName: appTheme: nix-colors.colorSchemes."${appTheme}".palette) {
+      tilix = "horizon-terminal-dark";
+    };
 
     # function: select available theme
     selectAvailableTheme = functionGetThemePath: let
