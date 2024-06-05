@@ -19,7 +19,7 @@
       "vscodium"
     ]
     ++ [
-      (import ./bat.nix {inherit config pkgs theme-config;})
+      (import ./bat.nix {inherit pkgs;})
       (import ./copyq.nix {inherit pkgs;})
       (import ./starship.nix {inherit theme-config;})
       (import ./sublime-text.nix {inherit config pkgs theme-config;})
