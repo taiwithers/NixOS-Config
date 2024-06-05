@@ -19,6 +19,7 @@
         dark = true;
         side-by-side = true;
         hunk-header-style = "omit";
+        tabs = 4;
       };
     };
   };

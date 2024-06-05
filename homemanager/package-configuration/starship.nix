@@ -1,6 +1,6 @@
 {theme-config, ...}: let
   # colours = builtins.mapAttrs (name: value: "#" + value) theme-config.colours.palette;
-  colours = theme-config.colour-palette;
+  colours = theme-config.app-themes.starship;
 in {
   # style strings (not case sensitive)
   # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
@@ -44,8 +44,8 @@ in {
       disabled = false;
       # enter text prompt, shows output of last command
       format = "$symbol ";
-      success_symbol = "[❯](bold ${colours.base00})";
-      error_symbol = "[❯](bold ${colours.base02})";
+      success_symbol = "[❯](bold green)";
+      error_symbol = "[❯](bold green)";
     };
 
     cmd_duration = {

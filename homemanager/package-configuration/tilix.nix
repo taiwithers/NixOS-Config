@@ -4,11 +4,10 @@
   theme-config,
   ...
 }: let
-  getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-
+  # getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
+  # tilixTheme = getThemePath (theme-config.selectAvailableTheme getThemePath);
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   profileString = "2b7c4080-0ddd-46c5-8f23-563fd3ba789d";
-  # tilixTheme = getThemePath (theme-config.selectAvailableTheme getThemePath);
 
   tilixThemeFile = "${config.xdg.configHome}/tilix/schemes/base16-theme.json";
   colours = theme-config.app-themes.tilix;

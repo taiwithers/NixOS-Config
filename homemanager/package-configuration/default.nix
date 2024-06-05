@@ -9,7 +9,6 @@
   imports =
     map (fname: ./. + "/${fname}" + ".nix") [
       "bash"
-      "bat"
       # dash-to-panel
       # dolphin
       "dunst"
@@ -20,6 +19,7 @@
       "vscodium"
     ]
     ++ [
+      (import ./bat.nix {inherit config pkgs theme-config;})
       (import ./copyq.nix {inherit pkgs;})
       (import ./starship.nix {inherit theme-config;})
       (import ./sublime-text.nix {inherit config pkgs theme-config;})
