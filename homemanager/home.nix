@@ -12,7 +12,7 @@
 }: let
   theme-config = rec {
     # nix-colors-module = import nix-colors.homeManagerModules.default;
-    colours = nix-colors.colorSchemes."${builtins.head names}".palette;
+    colour-palette = nix-colors.colorSchemes."${builtins.head names}".palette;
     names = [
       "da-one-ocean" # dark vibrant
       "jabuti"
@@ -54,7 +54,7 @@ in {
   # home.file."testoutput".text = "imports list " + builtins.concatStringsSep ", " (builtins.attrNames nix-colors.colorSchemes.da-one-ocean.palette);
   # home.file."testoutput".text = "in-set import " + builtins.concatStringsSep ", " (builtins.attrNames theme-config.nix-colors-module.colorSchemes.da-one-ocean.palette);
 
-  home.file."testoutput".text = builtins.concatStringsSep ", " (builtins.attrNames theme-config.colours);
+  # home.file."testoutput".text = builtins.concatStringsSep ", " (builtins.attrNames theme-config.colours);
 
   home.username = user;
   home.homeDirectory = homeDirectory;

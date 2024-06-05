@@ -4,8 +4,14 @@
   theme-config,
   ...
 }: let
+  getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
+
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   profileString = "2b7c4080-0ddd-46c5-8f23-563fd3ba789d";
+  # tilixTheme = getThemePath (theme-config.selectAvailableTheme getThemePath);
+
+  tilixThemeFile = "${config.xdg.configHome}/tilix/schemes/base16-theme.json";
+  colours = theme-config.colour-palette;
 in {
   dconf.settings."com/gexperts/Tilix" = {
     control-scroll-zoom = true;
@@ -21,21 +27,46 @@ in {
     use-tabs = true;
   };
 
-  # download all base 16 themes to tilix theme directory
-  xdg.configFile."${config.xdg.configHome}/tilix/schemes/".source = pkgs.fetchFromGitHub {
-    owner = "karlding";
-    repo = "base16-tilix";
-    rev = "72602d8";
-    hash = "sha256-QFNiQNGD6ceE1HkLESx+gV0q/pKyr478k2zVy9cc7xI=";
-  };
+  # https://github.com/karlding/base16-tilix/blob/master/templates/default.mustache
+  xdg.configFile."${tilixThemeFile}".text = ''
+    {
+        "background-color": "#${colours.base00}",
+        "badge-color": "#${colours.base08}",
+        "comment": "",
+        "cursor-background-color": "#${colours.base04}",
+        "cursor-foreground-color": "#${colours.base04}",
+        "dim-color": "#${colours.base01}",
+        "foreground-color": "#${colours.base04}",
+        "highlight-background-color": "#${colours.base01}",
+        "highlight-foreground-color": "#${colours.base04}",
+        "name": "${builtins.head theme-config.names} (base16)",
+        "palette": [
+            "#${colours.base00}",
+            "#${colours.base08}",
+            "#${colours.base0B}",
+            "#${colours.base0A}",
+            "#${colours.base0D}",
+            "#${colours.base0E}",
+            "#${colours.base0C}",
+            "#${colours.base05}",
+            "#${colours.base03}",
+            "#${colours.base08}",
+            "#${colours.base0B}",
+            "#${colours.base0A}",
+            "#${colours.base0D}",
+            "#${colours.base0E}",
+            "#${colours.base0C}",
+            "#${colours.base07}"
+        ],
+    }
+  '';
+  # "use-badge-color": false,
+  # "use-cursor-color": false,
+  # "use-dim-color": false,
+  # "use-highlight-color": false,
+  # "use-theme-colors": false
 
-  # set tilix theme
-  dconf.settings."com/gexperts/Tilix/profiles/${profileString}" = let
-    getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-    tilixTheme = getThemePath (theme-config.selectAvailableTheme getThemePath);
-  in
-    {font = "SpaceMono Nerd Font 12";} # items here have priority
-    // (builtins.fromJSON (builtins.readFile tilixTheme));
-
-  # dconf.settings."com/gexperts/Tilix/profiles/${profileString}".font = "SpaceMono Nerd Font 12";
+  # dconf.settings."com/gexperts/Tilix/profiles/${profileString}" =
+  #   {font = "SpaceMono Nerd Font 12";} # items here have priority
+  #   // (builtins.fromJSON (builtins.readFile tilixThemeFile));
 }

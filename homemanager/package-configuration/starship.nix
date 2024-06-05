@@ -1,6 +1,6 @@
 {theme-config, ...}: let
   # colours = builtins.mapAttrs (name: value: "#" + value) theme-config.colours.palette;
-  colours = theme-config.colours;
+  colours = theme-config.colour-palette;
 in {
   # style strings (not case sensitive)
   # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
