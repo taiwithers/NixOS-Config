@@ -64,7 +64,7 @@ in {
   # "use-highlight-color": false,
   # "use-theme-colors": false
 
-  # dconf.settings."com/gexperts/Tilix/profiles/${profileString}" =
-  #   {font = "SpaceMono Nerd Font 12";} # items here have priority
-  #   // (builtins.fromJSON (builtins.readFile tilixThemeFile));
+  dconf.settings."com/gexperts/Tilix/profiles/${profileString}" =
+    {font = "SpaceMono Nerd Font 12";} # items here have priority
+    // (builtins.fromJSON (builtins.readFile tilixThemeFile));
 }
