@@ -9,8 +9,8 @@ in {
 
   programs.starship.enable = true;
   programs.starship.settings = {
-    format = "$username$hostname$battery$conda$custom$directory$git_branch$git_state$git_metrics$jobs$nix_shell$status$sudo$character";
-    right_format = "$time";
+    format = "$username$hostname$conda$directory$git_branch$git_state$git_metrics$jobs$nix_shell$status$sudo$character";
+    right_format = "$time | $battery";
 
     continuation_prompt = "\t❯ ";
 
@@ -44,8 +44,8 @@ in {
       disabled = false;
       # enter text prompt, shows output of last command
       format = "$symbol ";
-      success_symbol = "[❯](bold ${colours.base00})";
-      error_symbol = "[❯](bold ${colours.base00})";
+      success_symbol = "[❯](bold ${colours.base01})";
+      error_symbol = "[❯](bold ${colours.base01})";
     };
 
     cmd_duration = {
