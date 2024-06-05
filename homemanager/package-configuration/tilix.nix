@@ -58,13 +58,16 @@ in {
             "#${colours.base07}"
         ]}
   '';
-  # "use-badge-color": false,
-  # "use-cursor-color": false,
-  # "use-dim-color": false,
-  # "use-highlight-color": false,
-  # "use-theme-colors": false
 
   dconf.settings."com/gexperts/Tilix/profiles/${profileString}" =
-    {font = "SpaceMono Nerd Font 12";} # items here have priority
+    # items here have priority
+    {
+      font = "SpaceMono Nerd Font 12";
+      cursor-colors-set = true;
+      highlight-colors-set = true;
+      bold-color-set = true;
+      badge-color-set = true;
+      bold-is-bright = false;
+    }
     // (builtins.fromJSON (builtins.readFile tilixThemeFile));
 }
