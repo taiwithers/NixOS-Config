@@ -20,16 +20,16 @@ in {
       format = "[$symbol$percentage]($style)";
       display = [
         {
-          threshold = 50;
+          threshold = 60;
           charging_symbol = "󰂉";
           discharging_symbol = "󰁿";
           style = "green";
         }
         {
-          threshold = 30;
+          threshold = 40;
           charging_symbol = "󰂇";
           discharging_symbol = "󰁻";
-          style = "bold yellow";
+          style = "yellow";
         }
         {
           threshold = 10;
