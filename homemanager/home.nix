@@ -15,6 +15,7 @@
     colours = nix-colors.colorSchemes."${builtins.head names}".palette;
     names = [
       "da-one-ocean" # dark vibrant
+      "jabuti"
       "horizon-terminal-dark" # vibrant, good!
       "framer"
       "ayu-dark"

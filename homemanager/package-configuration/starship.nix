@@ -44,8 +44,8 @@ in {
       disabled = false;
       # enter text prompt, shows output of last command
       format = "$symbol ";
-      success_symbol = "[❯](bold ${colours.base01})";
-      error_symbol = "[❯](bold ${colours.base01})";
+      success_symbol = "[❯](bold ${colours.base00})";
+      error_symbol = "[❯](bold ${colours.base02})";
     };
 
     cmd_duration = {
