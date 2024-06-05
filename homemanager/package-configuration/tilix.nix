@@ -29,7 +29,7 @@ in {
 
   # https://github.com/karlding/base16-tilix/blob/master/templates/default.mustache
   xdg.configFile."${tilixThemeFile}".text = ''
-    {    "background-color": "#${colours.base00}",
+    {   "background-color": "#${colours.base00}",
         "badge-color": "#${colours.base08}",
         "comment": "",
         "cursor-background-color": "#${colours.base04}",

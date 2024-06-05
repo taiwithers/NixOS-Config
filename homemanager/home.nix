@@ -27,7 +27,7 @@
     ];
 
     app-themes = builtins.mapAttrs (appName: appTheme: nix-colors.colorSchemes."${appTheme}".palette) {
-      tilix = "horizon-terminal-dark";
+      tilix = "da-one-ocean";
     };
 
     # function: select available theme
