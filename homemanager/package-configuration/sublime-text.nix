@@ -1,3 +1,4 @@
+# https://github.com/SublimeText/PackageDev
 {
   config,
   pkgs,
