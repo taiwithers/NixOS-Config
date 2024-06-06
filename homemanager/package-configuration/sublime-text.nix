@@ -56,6 +56,14 @@
       rev = "fd0bf3e";
       hash = "sha256-/9RCQNWpp2j/u4o6jBCPN3HEuuR4ow3h+0Zj+Cbteyc=";
     }
+    {
+      name = "PackageDev";
+      function = pkgs.fetchFromGitHub;
+      owner = "SublimeText";
+      repo = "PackageDev";
+      rev = "e1df004";
+      hash = "sha256-WQW6QHOfahh3BB4+Xm+mh1Jjfhdapu7bgOCnHNbaHPY=";
+    }
     # {
     #   name = "SFTP";
     #   function = path: "${config.xdg.configHome}/sublime-text/Packages/User/SFTP_Manual";
