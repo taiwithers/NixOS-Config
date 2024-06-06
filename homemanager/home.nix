@@ -64,6 +64,11 @@ in {
     # theme = {};
   };
 
+  qt = {
+    enable = true;
+    style.name = "adwaita-dark";
+  };
+
   home.username = user;
   home.homeDirectory = homeDirectory;
   home.stateVersion = "23.11";
