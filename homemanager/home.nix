@@ -54,13 +54,13 @@ in {
     (import ./package-configuration {inherit config pkgs lib theme-config;})
   ];
 
-  gtk = {
+  gtk = rec {
     enable = true; # enable gtk 2/3 config
     theme = {
       name = "Adwaita-dark";
-      # package = pkgs.gnome.adwaita-icon-theme;
       package = pkgs.gnome.gnome-themes-extra;
     };
+    iconTheme = theme;
     # theme = {};
   };
 
