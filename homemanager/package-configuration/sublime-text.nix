@@ -121,4 +121,6 @@ in {
       "theme": "Adaptive.sublime-theme",
     }
   '';
+
+  xdg.configFile."${packagesPath}/yuck.tmLanguage".source = ./yuck.tmLanguage;
 }
