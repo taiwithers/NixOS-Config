@@ -1,0 +1,42 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: yuck
+scope: source.yuck
+contexts:
+  main:
+    - include: keywords
+    - include: comments
+    - include: names
+    - include: primatives
+    - include: arguments
+    - include: strings
+  arguments:
+    - match: '\[(.*)\]'
+      captures:
+        1: entity.name.type
+    - match: '{(.+?)\s'
+      captures:
+        1: entity.name.type
+  comments:
+    - match: ;.*$
+      scope: comment.line
+  keywords:
+    - match: \b(defwidget|defwindow|defpoll|defvar|deflisten|geometry|struts|include)\b
+      scope: keyword.control.yuck
+  names:
+    - match: ':[\w-]+?\s'
+      scope: variable
+  primatives:
+    - match: (false|true)
+      scope: constant.language.bool
+    - match: \d+
+      scope: constant.language.numbers
+  strings:
+    - match: '"'
+      push:
+        - meta_scope: string.quoted.double.yuck
+        - match: '"'
+          pop: true
+        - match: \\.
+          scope: constant.character.escape.yuck

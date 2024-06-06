@@ -122,5 +122,6 @@ in {
     }
   '';
 
-  xdg.configFile."${packagesPath}/yuck.tmLanguage".source = ./yuck.tmLanguage;
+  # xdg.configFile."${packagesPath}/yuck.tmLanguage".source = ./yuck.tmLanguage;
+  xdg.configFile."${packagesPath}/yuck.sublime-syntax".source = ./yuck.sublime-syntax;
 }
