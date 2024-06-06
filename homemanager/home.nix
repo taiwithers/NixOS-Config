@@ -56,7 +56,7 @@ in {
 
   gtk = {
     enable = true; # enable gtk 2/3 config
-    iconTheme = {
+    theme = {
       name = "Adwaita-dark";
       # package = pkgs.gnome.adwaita-icon-theme;
       package = pkgs.gnome.gnome-themes-extra;
