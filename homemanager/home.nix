@@ -57,8 +57,8 @@ in {
   gtk = rec {
     enable = true; # enable gtk 2/3 config
     theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome.gnome-themes-extra;
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
     };
     iconTheme = theme;
     # theme = {};
@@ -66,7 +66,7 @@ in {
 
   qt = {
     enable = true;
-    platformTheme = "gnome";
+    platformTheme = "gtk";
     style.name = "adwaita-dark";
   };
 
