@@ -1,0 +1,5 @@
+download https://raw.githubusercontent.com/owenrumney/yuck-vscode/master/syntaxes/yuck.tmLanguage.json
+packageDev Convert to YAML and Rearrange Syntax Definition [Creates yuck.tmLanguage.YAML-tmLanguage]
+packageDev Convert (YAML, JSON, PList) to... [Creates yuck.tmLanguage.tmLanguage]
+rename to yuck.tmLanguage
+place in user packages folder
