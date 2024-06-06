@@ -54,6 +54,15 @@ in {
     (import ./package-configuration {inherit config pkgs lib theme-config;})
   ];
 
+  gtk = {
+    enable = true; # enable gtk 2/3 config
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+    };
+    # theme = {};
+  };
+
   home.username = user;
   home.homeDirectory = homeDirectory;
   home.stateVersion = "23.11";
