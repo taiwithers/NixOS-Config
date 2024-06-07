@@ -4,6 +4,7 @@
   in {
     # use new programs
     "grep" = "rg";
+    "du" = "duf";
     "ls" = "eza";
     "tree" = "eza --tree";
     "man" = "batman --no-hyphenation --no-justification";

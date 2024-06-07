@@ -69,11 +69,19 @@ in {
     style.name = "adwaita-dark";
   };
 
-  sops = {};
+  sops = {
+    defaultSopsFile = "${config.xdg.configHome}/sops/secrets/example-secrets.yaml";
+    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+    secrets.example-key = {};
+    validateSopsFiles = false; # do not require sops files to be in the nix store
+  };
   # mkdir --parents ~/.config/sops/age
   # age-keygen --output ~/.config/sops/age/keys.txt
   # to get public key:
   # age-keygen -y ~/.config/sops/age/keys.txt
+  # mkdir ~/.config/sops/secrets
+  # sops ~/.config/sops/secrets/example-secrets.yaml
+  # vim ~/.config/sops/secrets/example-secrets.yaml
 
   home.username = user;
   home.homeDirectory = homeDirectory;
