@@ -70,6 +70,8 @@ in {
   };
 
   sops = {};
+  # gpg --full-generate-key
+  # RSA & RSA
 
   home.username = user;
   home.homeDirectory = homeDirectory;

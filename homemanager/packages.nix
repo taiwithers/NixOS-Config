@@ -61,6 +61,7 @@ in {
     nurl
 
     # cli programs
+    age # encryption
     bash
     bat
     # blesh
