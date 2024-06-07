@@ -9,7 +9,7 @@ in rec {
     dash-to-panel
     favourites-in-appgrid
     forge
-    # gtile
+    gtile
     start-overlay-in-application-view
     steal-my-focus-window
   ];

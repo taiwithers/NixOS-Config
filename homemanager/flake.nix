@@ -13,6 +13,7 @@
     # additional flake inputs
     nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
     nix-colors.url = "github:misterio77/nix-colors";
+    # sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
@@ -21,6 +22,7 @@
     home-manager,
     nix-flatpak,
     nix-colors,
+    # sops-nix,
     # vscode-server,
     ...
   } @ inputs: let
@@ -69,6 +71,7 @@
 
       modules = [
         nix-flatpak.homeManagerModules.default
+        # sops-nix.nixosModules.sops
         ./home.nix
       ];
     };
