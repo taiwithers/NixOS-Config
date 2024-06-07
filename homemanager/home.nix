@@ -75,8 +75,10 @@ in {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     validateSopsFiles = false; # do not require sops files to be in the nix store
 
-    secrets.example_key = {
-      path = "%r/example-key.txt";
+    secrets = {
+      example_key = {
+        path = "%r/example-key.txt";
+      };
     };
   };
 
