@@ -72,7 +72,9 @@ in {
   sops = {
     defaultSopsFile = "${config.xdg.configHome}/sops/secrets/example-secrets.yaml";
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-    secrets.example-key = {};
+    secrets.example-key = {
+      path = "%r/example-key.txt";
+    };
     validateSopsFiles = false; # do not require sops files to be in the nix store
   };
   # mkdir --parents ~/.config/sops/age
