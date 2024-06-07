@@ -72,7 +72,6 @@
         nix-flatpak.homeManagerModules.default
         sops-nix.homeManagerModules.sops
         nix-colors.homeManagerModules.default
-
         ./home.nix
       ];
     };

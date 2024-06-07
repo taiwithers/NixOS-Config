@@ -5,7 +5,7 @@
   # inputs,
   user,
   nix-colors,
-  sops-nix,
+  # sops-nix,
   # system,
   # nix-flatpak,
   pkgs-config,
@@ -49,7 +49,6 @@
 in {
   imports = [
     # nix-flatpak.homeManagerModules.nix-flatpak
-    nix-colors.homeManagerModules.default
     # sops-nix.homeManagerModules.sops
     (import ./packages.nix {inherit pkgs pkgs-config lib;})
     (import ./desktop-environment {inherit config pkgs;})
