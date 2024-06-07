@@ -71,13 +71,16 @@ in {
 
   sops = {
     defaultSopsFile = "${config.xdg.configHome}/sops/secrets/example-secrets.yaml";
+    defaultSopsFormat = "yaml";
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+    validateSopsFiles = false; # do not require sops files to be in the nix store
+
     secrets.example_key = {
-      format = "yaml";
       path = "%r/example-key.txt";
     };
-    validateSopsFiles = false; # do not require sops files to be in the nix store
   };
+
+  home.file."testoutput".text = "${config.sops.secrets.example_key.key}";
   # mkdir --parents ~/.config/sops/age
   # age-keygen --output ~/.config/sops/age/keys.txt
   # to get public key:
