@@ -70,8 +70,10 @@ in {
   };
 
   sops = {};
-  # gpg --full-generate-key
-  # RSA & RSA
+  # mkdir --parents ~/.config/sops/age
+  # age-keygen --output ~/.config/sops/age/keys.txt
+  # to get public key:
+  # age-keygen -y ~/.config/sops/age/keys.txt
 
   home.username = user;
   home.homeDirectory = homeDirectory;

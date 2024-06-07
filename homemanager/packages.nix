@@ -91,6 +91,7 @@ in {
     rename
     ripgrep
     sd
+    sops
     speedtest-rs
     starship
     sxiv
