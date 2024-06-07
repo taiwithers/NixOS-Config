@@ -82,6 +82,9 @@ in {
     };
   };
 
+  home.activation.custom-sops-nix = let 
+    systemctl = config.systemd.user.systemctlPath; 
+    in "${systemctl} --user reload-or-restart sops-nix";
   home.file."testoutput".text = "${config.sops.secrets.example_key.key}";
   # mkdir --parents ~/.config/sops/age
   # age-keygen --output ~/.config/sops/age/keys.txt
