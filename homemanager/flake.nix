@@ -22,7 +22,7 @@
     home-manager,
     nix-flatpak,
     nix-colors,
-    # sops-nix,
+    sops-nix,
     # vscode-server,
     ...
   } @ inputs: let
@@ -44,7 +44,6 @@
           "zoom"
         ];
       permittedInsecurePackages = [
-        # "electron-25.9.0"
         "openssl-1.1.1w"
       ];
     };
