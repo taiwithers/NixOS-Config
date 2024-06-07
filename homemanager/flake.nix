@@ -13,7 +13,7 @@
     # additional flake inputs
     nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
     nix-colors.url = "github:misterio77/nix-colors";
-    # sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
