@@ -49,7 +49,6 @@
 in {
   imports = [
     # nix-flatpak.homeManagerModules.nix-flatpak
-    # sops-nix.homeManagerModules.sops
     (import ./packages.nix {inherit pkgs pkgs-config lib;})
     (import ./desktop-environment {inherit config pkgs;})
     (import ./package-configuration {inherit config pkgs lib theme-config;})
@@ -69,6 +68,8 @@ in {
     platformTheme.name = "gtk";
     style.name = "adwaita-dark";
   };
+
+  sops = {};
 
   home.username = user;
   home.homeDirectory = homeDirectory;
