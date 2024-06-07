@@ -130,12 +130,12 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim
     gedit
     gnome.gnome-terminal # always have an editor and terminal!
   ];
   environment.gnome.excludePackages = [pkgs.gnome-tour];
 
+  programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
 
   # flatpak https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
