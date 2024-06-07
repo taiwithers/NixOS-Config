@@ -70,7 +70,7 @@
 
       modules = [
         nix-flatpak.homeManagerModules.default
-        # sops-nix.nixosModules.sops
+        sops-nix.homeManagerModules.sops
         ./home.nix
       ];
     };
