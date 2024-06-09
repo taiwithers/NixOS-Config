@@ -19,7 +19,7 @@ in {
     };
   };
 
-  home.activation.custom-sops-nix = let
-    systemctl = config.systemd.user.systemctlPath;
-  in "${systemctl} --user reload-or-restart sops-nix";
+  # home.activation.custom-sops-nix = let
+  #   systemctl = config.systemd.user.systemctlPath;
+  # in "${systemctl} --user reload-or-restart sops-nix";
 }
