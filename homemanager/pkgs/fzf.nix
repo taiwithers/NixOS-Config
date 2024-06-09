@@ -26,10 +26,10 @@ in {
 
   programs.bash.bashrcExtra = let
     getThemePath = name: "${fzfThemeDirectory}/sh/base16-${name}.sh";
-    fzfTheme = getThemePath (theme-config.selectAvailableTheme getThemePath);
+    fzfThemeName = theme-config.selectAvailableTheme getThemePath;
   in (
-    if (builtins.stringLength fzfTheme) == 0
+    if (builtins.stringLength fzfThemeName) == 0
     then ""
-    else "source ${fzfTheme}"
+    else "source ${getThemePath fzfThemeName}"
   );
 }
