@@ -5,24 +5,35 @@
   # lib,
   theme-config,
   ...
-}: {
+} @ inputs: {
   imports =
-    map (fname: ./. + "/${fname}" + ".nix") [
-      "bash"
+    map (fname: (import (./. + "/${fname}") {inherit inputs;})) [
+      "bat.nix"
+      "bash.nix"
+      "copyq/copyq.nix"
       # dash-to-panel
       # dolphin
-      "dunst"
-      "eza"
+      "dunst.nix"
+      # "eww"
+      "eza.nix"
+      "fzf.nix"
       # forge
-      "git"
-      "gpg"
-      "vscodium"
+      "gnome"
+      "git.nix"
+      "gpg.nix"
+      "hyprland/hyprland.nix"
+      "python/python.nix"
+      "sops/sops.nix"
+      "starship.nix"
+      "sublime-text/sublime-text.nix"
+      # "tilix.nix"
+      "vscodium/vscodium.nix"
     ]
     ++ [
-      (import ./bat.nix {inherit pkgs;})
-      (import ./copyq.nix {inherit pkgs;})
-      (import ./starship.nix {inherit theme-config;})
-      (import ./sublime-text.nix {inherit config pkgs theme-config;})
-      (import ./tilix.nix {inherit config pkgs theme-config;})
+      # (import ./bat.nix {inherit pkgs;})
+      # (import ./copyq/copyq.nix {inherit pkgs;})
+      # (import ./starship.nix {inherit theme-config;})
+      # (import ./sublime-text {inherit config pkgs theme-config;})
+      # (import ./tilix.nix {inherit config pkgs theme-config;})
     ];
 }

@@ -2,6 +2,7 @@
   config,
   pkgs,
   selectAvailableTheme,
+  ...
 }: {
   programs.fzf = {
     enable = true;

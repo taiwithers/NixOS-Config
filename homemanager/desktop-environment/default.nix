@@ -5,12 +5,7 @@
 }: {
   imports = map (fname: ./. + "/${fname}" + ".nix") [
     "autostart-programs"
-    "eww"
     "fonts"
-    "gnome"
-    "gnome-extensions"
-    "gnome-keybinds"
-    "hyprland"
     "shell"
     "taskbar-programs"
     "xdg"
