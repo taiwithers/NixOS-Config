@@ -11,6 +11,7 @@ in {
     defaultSopsFile = "${config.xdg.configHome}/NixOS-Config/secrets/secrets.yaml";
     defaultSopsFormat = "yaml";
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+    validateSopsFiles = false;
 
     secrets = {
       group_hostname = {};

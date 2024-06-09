@@ -4,7 +4,8 @@
   in {
     # use new programs
     "grep" = "rg";
-    "du" = "duf";
+    "du" = "echo 'Consider using dust instead'";
+    "df" = "echo 'Consider using duf instead'";
     "ls" = "eza";
     "tree" = "eza --tree";
     "man" = "batman --no-hyphenation --no-justification";
@@ -13,6 +14,7 @@
     "untar" = "tar -xvf";
     "confdir" = "cd ~/.config/NixOS-Config";
     "lg" = "lazygit";
+    "dust" = "dust --reverse";
 
     # personal bash scripts -> move these to pkgs.writeShellScriptBin
     "rebuild" = "bash ${bashScripts}/rebuild.sh";

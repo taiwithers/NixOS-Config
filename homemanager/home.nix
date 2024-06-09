@@ -69,8 +69,6 @@ in {
     style.name = "adwaita-dark";
   };
 
-  home.file."testoutput".text = "${builtins.readFile config.sops.secrets.example_key.path}";
-
   home.username = user;
   home.homeDirectory = homeDirectory;
   home.stateVersion = "23.11";

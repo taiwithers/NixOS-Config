@@ -1,12 +1,8 @@
 # To use the remote-ssh plugin: on the remote machine run `ln -s ~/.vscodium-server/ ~/.vscode-server`
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
 in {
   nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
+    builtins.elem (pkgs.lib.getName pkg) [
       "vscode-extension-MS-python-vscode-pylance"
       "vscode-extension-ms-vscode-remote-remote-ssh"
     ];

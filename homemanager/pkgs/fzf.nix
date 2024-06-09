@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  selectAvailableTheme,
+  theme-config,
   ...
 }: {
   programs.fzf = {
@@ -21,8 +21,9 @@
     rev = "87368a6";
     hash = "sha256-Lo5++1pOD9i62ahI3Ta2s/F/U80LXOu0sWMLUng3GbQ=";
   };
-  programs.bash.bashrcExtra = let
-    getThemePath = name: "${config.xdg.configHome}/fzf-themes/sh/base16-${name}.sh";
-    fzfTheme = getThemePath (selectAvailableTheme getThemePath);
-  in "source ${fzfTheme}";
+
+  # programs.bash.bashrcExtra = let
+  #   getThemePath = name: "${config.xdg.configHome}/fzf-themes/sh/base16-${name}.sh";
+  #   fzfTheme = getThemePath (theme-config.selectAvailableTheme getThemePath);
+  # in "source ${fzfTheme}";
 }

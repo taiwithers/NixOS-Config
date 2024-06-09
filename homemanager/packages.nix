@@ -71,8 +71,8 @@ in {
     curl
     dconf
     dell-command-configure
-    duf
-    dust
+    duf # view general info for entire system
+    dust # view specific info for directories
     eza
     fastfetch
     fd
@@ -100,6 +100,7 @@ in {
     vim
     wget
     xdg-ninja
+    zellij
     zip
     zoxide
     zsh

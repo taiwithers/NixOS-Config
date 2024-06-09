@@ -5,9 +5,9 @@
   # lib,
   theme-config,
   ...
-} @ inputs: {
+}: {
   imports =
-    map (fname: (import (./. + "/${fname}") {inherit inputs;})) [
+    map (fname: (import (./. + "/${fname}") {inherit config pkgs theme-config;})) [
       "bat.nix"
       "bash.nix"
       "copyq/copyq.nix"
