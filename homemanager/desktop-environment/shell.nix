@@ -12,6 +12,7 @@
     # simplify commands
     "untar" = "tar -xvf";
     "confdir" = "cd ~/.config/NixOS-Config";
+    "lg" = "lazygit";
 
     # personal bash scripts -> move these to pkgs.writeShellScriptBin
     "rebuild" = "bash ${bashScripts}/rebuild.sh";
