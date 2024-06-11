@@ -11,7 +11,7 @@
       init.defaultBranch = "main";
       core.whitespace.blank-at-eol = false;
       core.whitespace.blank-at-eof = false;
-      # credential.credentialStore = "cache";
+      credential.credentialStore = "cache";
       credential.helper = "${pkgs.git-credential-manager}/lib/git-credential-manager/git-credential-manager";
       # ignore-space-at-eol = true;
     };
