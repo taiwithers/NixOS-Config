@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   home.shellAliases = let
     bashScripts = "${config.xdg.configHome}/NixOS-Config/bash-scripts";
   in {
@@ -21,4 +25,6 @@
     "get-package-dir" = "bash ${bashScripts}/get-package-dir.sh";
     "search" = "bash ${bashScripts}/nix-search-wrapper.sh";
   };
+
+  programs.bash.bashrcExtra = "export $DOTNET_ROOT = ${pkgs.dotnet-sdk_7}";
 }
