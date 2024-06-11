@@ -114,12 +114,12 @@ in {
     gnome.file-roller
     gnome.gnome-screenshot
     gnome.gnome-tweaks
-    gnome.nautilus
     gparted
     keepassxc
     libreoffice
     libsForQt5.dolphin
     loupe # gnome imager viewer
+    mucommander
     obsidian
     onedrive
     onedrivegui
