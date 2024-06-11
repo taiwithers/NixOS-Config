@@ -71,6 +71,7 @@ in {
     curl
     dconf
     dell-command-configure
+    dotnet-runtime_7
     duf # view general info for entire system
     dust # view specific info for directories
     eza
