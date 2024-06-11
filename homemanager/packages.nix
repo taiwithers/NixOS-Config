@@ -130,6 +130,7 @@ in {
     tilix
     vivaldi
     vscodium-fhs
+    xplorer
     zoom-us
     zotero_7
 
