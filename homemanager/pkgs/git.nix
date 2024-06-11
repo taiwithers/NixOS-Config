@@ -11,6 +11,7 @@
       init.defaultBranch = "main";
       core.whitespace.blank-at-eol = false;
       core.whitespace.blank-at-eof = false;
+      credential.credentialStore = "cache";
       # ignore-space-at-eol = true;
     };
     delta = {
