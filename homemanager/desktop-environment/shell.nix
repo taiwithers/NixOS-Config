@@ -26,5 +26,5 @@
     "search" = "bash ${bashScripts}/nix-search-wrapper.sh";
   };
 
-  programs.bash.bashrcExtra = "export $DOTNET_ROOT = ${pkgs.dotnet-sdk_7}";
+  programs.bash.bashrcExtra = "export DOTNET_ROOT = ${pkgs.dotnet-sdk_7}";
 }
