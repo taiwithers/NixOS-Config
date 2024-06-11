@@ -80,6 +80,7 @@ in {
     fzf
     gfortran
     git
+    git-credential-manager
     jq
     lazygit
     oh-my-zsh
