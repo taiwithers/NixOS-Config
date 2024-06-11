@@ -134,7 +134,7 @@ in {
     vscodium-fhs
     xplorer
     zoom-us
-    zotero_7
+    unstable.zotero-beta
 
     texlive-pkgs
 

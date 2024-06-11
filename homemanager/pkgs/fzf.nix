@@ -12,7 +12,7 @@ in {
       "--height=60%"
       "--border=sharp"
       "--preview 'bat {}'"
-      "--preint-query"
+      # "--preint-query"
     ];
   };
 
