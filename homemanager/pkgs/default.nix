@@ -26,7 +26,7 @@
       "sops/sops.nix"
       "starship.nix"
       "sublime-text/sublime-text.nix"
-      # "tilix.nix"
+      "tilix.nix"
       "vscodium/vscodium.nix"
     ]
     ++ [
