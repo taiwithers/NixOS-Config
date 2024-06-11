@@ -71,7 +71,7 @@ in {
     curl
     dconf
     dell-command-configure
-    dotnet-runtime_7
+    # dotnet-runtime_7 # for gcm
     duf # view general info for entire system
     dust # view specific info for directories
     eza
@@ -81,7 +81,7 @@ in {
     fzf
     gfortran
     git
-    git-credential-manager # git-credential-manager github login
+    # git-credential-manager # git-credential-manager github login
     jq
     lazygit
     oh-my-zsh
