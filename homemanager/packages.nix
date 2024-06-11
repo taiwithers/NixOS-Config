@@ -114,6 +114,7 @@ in {
     gnome.file-roller
     gnome.gnome-screenshot
     gnome.gnome-tweaks
+    gnome.nautilus
     gparted
     keepassxc
     libreoffice
