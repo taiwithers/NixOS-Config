@@ -22,6 +22,8 @@
         "$mainMod, I, exec, gnome-control-center"
         "$mainMod, Q, exec, $terminal"
         "$mainMod, S, exec, rofi -show drun -show-icons"
+
+        "$mainMod, C, killactive"
       ];
 
       misc."disable_hyprland_logo" = true;

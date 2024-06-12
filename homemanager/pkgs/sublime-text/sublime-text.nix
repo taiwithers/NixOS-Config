@@ -78,7 +78,7 @@
     #   hash = "";
     # }
     # {
-    # function = pkgs.fetchFromGitHub;
+    #   function = pkgs.fetchFromGitHub;
     # 	owner = "";
     # 	repo = "";
     # 	rev = "latest";
