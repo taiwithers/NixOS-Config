@@ -14,7 +14,7 @@
       # dash-to-panel
       # dolphin
       "dunst"
-      # "eww"
+      "eww/eww"
       "eza"
       "fzf"
       # forge
