@@ -21,6 +21,13 @@ in {
     ${conda-init}
     export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 
+    conda_active = "$(conda)"
+    if [[ $? -eq 127 ]]; then
+      conda-shell
+      echo "activating conda"
+    else
+      echo "not activating conda"
+    fi
     # conda-shell # activate conda in the base environment
   '';
 }
