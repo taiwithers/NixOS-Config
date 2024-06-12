@@ -2,11 +2,13 @@
 
 swaybg --mode=fill --image=/run/current-system/sw/share/backgrounds/gnome/blobs-l.svg &
 
+(
+conda-shell
 eww kill
 eww daemon
 eww open topbar-window
 eww open bottombar-window
-
+)
 # dunstify "sending notification w/ dunstify"
 
 # add pkgs.networkmanagerapplet
