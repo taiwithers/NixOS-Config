@@ -59,7 +59,7 @@ in {
       disabled = false;
       style = "bright-green";
       format = "[$symbol $environment ]($style)";
-      ignore_base = true;
+      ignore_base = false;
       symbol = "";
     };
 
