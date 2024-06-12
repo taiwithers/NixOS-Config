@@ -12,7 +12,7 @@
     plugins = [];
     settings = {
       "$mainMod" = "SUPER"; # set windows key as primary modifier
-      "$terminal" = "tilix";
+      "$terminal" = "kitty";
       "$fileManager" = "dolphin";
 
       # keybindings
