@@ -53,8 +53,8 @@ in {
 
     # ========= File Panel Special Items =========
     file_panel_top_directory_icon = "#${colours.base0B}"
-    file_panel_top_path = "#${colours.base0E}"
-    file_panel_item_selected_fg = "#${colours.base0F}"
+    file_panel_top_path = "#${colours.base0D}"
+    file_panel_item_selected_fg = "#${colours.base0E}"
     file_panel_item_selected_bg = "#${colours.base00}"
 
     # ========= Sidebar Special Items =========
@@ -64,14 +64,14 @@ in {
     sidebar_divider = "#${colours.base04}"
 
     # ========= Modal Special Items =========
-    modal_cancel_fg = "#${colours.base01}"
+    modal_cancel_fg = "#${colours.base06}"
     modal_cancel_bg = "#${colours.base0A}"
 
-    modal_confirm_fg = "#${colours.base01}"
+    modal_confirm_fg = "#${colours.base06}"
     modal_confirm_bg = "#${colours.base03}"
 
     # ========= Help Menu =========
-    help_menu_hotkey = "#${colours.base03}"
+    help_menu_hotkey = "#${colours.base0C}"
     help_menu_title = "#${colours.base0A}"
   '';
 }
