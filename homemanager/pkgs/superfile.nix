@@ -5,6 +5,8 @@
 }: let
   spfDir = "${config.xdg.configHome}/superfile";
 in {
+  home.shellAliases."spf" = "superfile";
+  # main config file
   xdg.configFile."${spfDir}/config.toml".text = ''
     # More details are at https://superfile.netlify.app/configure/superfile-config/
 
