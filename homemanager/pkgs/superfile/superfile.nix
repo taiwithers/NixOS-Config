@@ -5,7 +5,7 @@
 }: let
   spfDir = "${config.xdg.configHome}/superfile";
   colours = theme-config.app-themes.superfile;
-  chroma-highlighting-theme = "autumn";
+  chroma-highlighting-theme = "average";
   # api
   # https://github.com/alecthomas/chroma/tree/master/styles
 in {
