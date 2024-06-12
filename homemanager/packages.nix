@@ -84,6 +84,7 @@ in {
     # git-credential-manager # git-credential-manager github login
     jq
     lazygit
+    lua
     mpv
     oh-my-zsh
     openssh
