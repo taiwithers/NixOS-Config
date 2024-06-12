@@ -1,15 +1,9 @@
 {
   config,
   pkgs,
-  # lib,
   flake-inputs,
   user,
   pkgs-config,
-  # nix-colors,
-  # sops-nix,
-  # system,
-  # nix-flatpak,
-  # superfile,
   ...
 }: let
   theme-config = rec {
