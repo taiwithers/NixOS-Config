@@ -49,7 +49,7 @@ in {
 
   home.packages = with pkgs; [
     # nix programs
-    # appimage-run
+    appimage-run
     alejandra
     dconf2nix
     deadnix
@@ -137,7 +137,6 @@ in {
     mucommander # ugly af but works, weird shortcuts
     superfile # looks nice, no mouse support
     nnn # ugly but plugin-friendly? has mouse support
-    spacedrive
 
     texlive-pkgs
 
