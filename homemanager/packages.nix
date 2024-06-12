@@ -121,7 +121,6 @@ in {
     libreoffice
     libsForQt5.dolphin
     loupe # gnome imager viewer
-    mucommander
     obsidian
     onedrive
     onedrivegui
@@ -132,9 +131,12 @@ in {
     tilix
     vivaldi
     vscodium-fhs
-    xplorer
     zoom-us
     unstable.zotero-beta
+
+    mucommander
+    xplorer
+    superfile
 
     texlive-pkgs
 
