@@ -19,6 +19,8 @@
 in {
   programs.bash.bashrcExtra = ''
     ${conda-init}
+
+    # clean up ~
     export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
   '';
   programs.bash.initExtra = ''
@@ -32,6 +34,7 @@ in {
   '';
 
   programs.bash.logoutExtra = ''
+    echo "running conda deactivate"
     conda deactivate
     exit
   '';
