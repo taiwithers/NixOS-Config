@@ -134,9 +134,9 @@ in {
     zoom-us
     unstable.zotero-beta
 
-    mucommander
-    xplorer
-    superfile
+    mucommander # ugly af but works, weird shortcuts
+    superfile # looks nice, no mouse support
+    nnn
 
     texlive-pkgs
 
