@@ -13,6 +13,7 @@
     "ls" = "eza";
     "tree" = "eza --tree";
     "man" = "batman --no-hyphenation --no-justification";
+    "printscr" = "grim -g \"$(slurp)\" | wl-copy && wl-paste | swappy -f";
 
     # simplify commands
     "untar" = "tar -xvf";
