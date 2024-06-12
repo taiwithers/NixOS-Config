@@ -35,11 +35,11 @@ in {
     modal_bg = "#${colours.base00}"
 
     # ========= Foreground (fg) =========
-    full_screen_fg = "#${colours.base06}"
-    file_panel_fg = "#${colours.base06}"
-    sidebar_fg = "#${colours.base06}"
-    footer_fg = "#${colours.base06}"
-    modal_fg = "#${colours.base06}"
+    full_screen_fg = "#${colours.base05}"
+    file_panel_fg = "#${colours.base05}"
+    sidebar_fg = "#${colours.base05}"
+    footer_fg = "#${colours.base05}"
+    modal_fg = "#${colours.base05}"
 
     # ========= Special Color =========
     cursor = "#${colours.base0C}"
