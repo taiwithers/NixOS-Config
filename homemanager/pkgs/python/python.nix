@@ -36,6 +36,5 @@ in {
   programs.bash.logoutExtra = ''
     echo "running conda deactivate"
     conda deactivate
-    exit
   '';
 }
