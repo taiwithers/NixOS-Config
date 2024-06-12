@@ -31,4 +31,9 @@ in {
     fi
     # conda-shell # activate conda in the base environment
   '';
+
+  programs.bash.logoutExtra = ''
+    conda deactivate
+    exit
+  '';
 }
