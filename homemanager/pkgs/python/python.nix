@@ -20,7 +20,8 @@ in {
   programs.bash.bashrcExtra = ''
     ${conda-init}
     export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
-
+  '';
+  programs.bash.initExtra = ''
     conda_active="$(conda)"
     if [[ $? -eq 127 ]]; then
       conda-shell
