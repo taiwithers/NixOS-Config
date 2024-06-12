@@ -5,7 +5,7 @@
 }: let
   spfDir = "${config.xdg.configHome}/superfile";
   colours = theme-config.app-themes.superfile;
-  chroma-highlighting-theme = "tokyonight-night";
+  chroma-highlighting-theme = "tokyonight-storm";
   # api, base16-snazzy, catppuccin-mocha, gruvbox, monokai
   # https://github.com/alecthomas/chroma/tree/master/styles
 in {
@@ -14,10 +14,6 @@ in {
   xdg.configFile."${spfDir}/config.toml".source = ./config.toml;
   xdg.configFile."${spfDir}/hotkeys.toml".source = ./hotkeys.toml;
   xdg.configFile."${spfDir}/theme/base16.toml".text = ''
-
-    # If you want to make sidebar border display just set it same as sidebar background color
-
-    # Code syntax highlight theme (you can go to https://github.com/alecthomas/chroma/blob/master/styles to find one you like)
     code_syntax_highlight = "${chroma-highlighting-theme}"
 
     # ========= Border =========
