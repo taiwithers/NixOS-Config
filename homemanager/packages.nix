@@ -1,8 +1,7 @@
 {
   pkgs,
-  lib,
   pkgs-config,
-  superfile,
+  flake-inputs,
   ...
 }: let
   texlive-pkgs = pkgs.texlive.combine {
@@ -138,7 +137,7 @@ in {
     mucommander # ugly af but works, weird shortcuts
     # superfile # looks nice, no mouse support
     nnn # ugly but plugin-friendly? has mouse support
-    superfile.packages.${system}.default
+    flake-inputs.superfile.packages.${system}.default
     texlive-pkgs
 
     # hyprland extras

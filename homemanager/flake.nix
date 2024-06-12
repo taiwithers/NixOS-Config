@@ -1,6 +1,13 @@
 {
   description = "Home Manager Configuration";
 
+  # extra-flakes = {
+  #   nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
+  #   nix-colors.url = "github:misterio77/nix-colors";
+  #   sops-nix.url = "github:Mic92/sops-nix";
+  #   superfile.url = "github:yorukot/superfile";
+  # };
+
   inputs = {
     # update on version change
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -9,8 +16,8 @@
     # leave alone
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # additional flake inputs
+    # }
+    # // {
     nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
     nix-colors.url = "github:misterio77/nix-colors";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -21,15 +28,15 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
-    nix-flatpak,
-    nix-colors,
-    sops-nix,
-    superfile,
+    # extra-flakes,
+    # nix-flatpak,
+    # nix-colors,
+    # sops-nix,
+    # superfile,
     # vscode-server,
     ...
-  } @ inputs: let
+  } @ flake-inputs: let
     user = "tai";
-    system = "x86_64-linux";
 
     pkgs-config = {
       allowUnfreePredicate = pkg:
@@ -52,7 +59,7 @@
 
     unstable-overlay = self: super: {
       unstable = import nixpkgs-unstable {
-        system = system;
+        system = builtins.currentSystem;
 
         # this won't work in the pkgs declaration
         # so pkgs-config gets applied in packages.nix
@@ -60,17 +67,13 @@
       };
     };
 
-    pkgs = import nixpkgs {
-      overlays = [unstable-overlay];
-    };
+    pkgs = import nixpkgs {overlays = [unstable-overlay];};
   in {
     homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = {
-        inherit nix-flatpak nix-colors superfile user system pkgs-config;
-      };
+      extraSpecialArgs = {inherit flake-inputs user pkgs-config;};
 
-      modules = [
+      modules = with flake-inputs; [
         nix-flatpak.homeManagerModules.default
         sops-nix.homeManagerModules.sops
         nix-colors.homeManagerModules.default

@@ -1,18 +1,19 @@
 {
   config,
   pkgs,
-  lib,
-  # inputs,
+  # lib,
+  flake-inputs,
   user,
-  nix-colors,
+  pkgs-config,
+  # nix-colors,
   # sops-nix,
   # system,
   # nix-flatpak,
-  superfile,
-  pkgs-config,
+  # superfile,
   ...
 }: let
   theme-config = rec {
+    nix-colors = flake-inputs.nix-colors;
     # nix-colors-module = import nix-colors.homeManagerModules.default;
     colour-palette = nix-colors.colorSchemes."${builtins.head names}".palette;
     names = [
@@ -50,9 +51,9 @@
 in {
   imports = [
     # nix-flatpak.homeManagerModules.nix-flatpak
-    (import ./packages.nix {inherit pkgs pkgs-config lib superfile;})
+    (import ./packages.nix {inherit pkgs pkgs-config flake-inputs;})
     (import ./desktop-environment {inherit config pkgs;})
-    (import ./pkgs {inherit config pkgs lib theme-config;})
+    (import ./pkgs {inherit config pkgs theme-config;})
   ];
 
   gtk = rec {
