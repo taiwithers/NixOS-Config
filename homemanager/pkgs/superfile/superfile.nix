@@ -54,8 +54,8 @@ in {
     # ========= File Panel Special Items =========
     file_panel_top_directory_icon = "#${colours.base0B}"
     file_panel_top_path = "#${colours.base0D}"
-    file_panel_item_selected_fg = "#${colours.base0E}"
-    file_panel_item_selected_bg = "#${colours.base00}"
+    file_panel_item_selected_fg = "#${colours.base0F}"
+    file_panel_item_selected_bg = "#${colours.base01}"
 
     # ========= Sidebar Special Items =========
     sidebar_title = "#${colours.base0F}"
