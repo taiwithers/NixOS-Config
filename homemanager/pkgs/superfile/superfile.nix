@@ -15,7 +15,7 @@ in {
     # If you want to make sidebar border display just set it same as sidebar background color
 
     # Code syntax highlight theme (you can go to https://github.com/alecthomas/chroma/blob/master/styles to find one you like)
-    code_syntax_highlight = "catppuccin-mocha"
+    code_syntax_highlight = "abap"
 
     # ========= Border =========
     file_panel_border = "#${colours.base02}"
