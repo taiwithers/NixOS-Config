@@ -24,12 +24,11 @@ in {
   programs.bash.initExtra = ''
     conda_active="$(conda)"
     if [[ $? -eq 127 ]]; then
-      conda-shell
+      # conda-shell
       echo "activating conda"
     else
       echo "not activating conda"
     fi
-    # conda-shell # activate conda in the base environment
   '';
 
   programs.bash.logoutExtra = ''
