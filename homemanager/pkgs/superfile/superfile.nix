@@ -5,8 +5,8 @@
 }: let
   spfDir = "${config.xdg.configHome}/superfile";
   colours = theme-config.app-themes.superfile;
-  chroma-highlighting-theme = "fruity";
-  # api, base16-snazzy, catppuccin-mocha
+  chroma-highlighting-theme = "igor";
+  # api, base16-snazzy, catppuccin-mocha, gruvbox
   # https://github.com/alecthomas/chroma/tree/master/styles
 in {
   home.shellAliases."spf" = "superfile";
