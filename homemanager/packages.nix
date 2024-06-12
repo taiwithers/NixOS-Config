@@ -155,5 +155,6 @@ in {
     grim
     slurp
     wl-clipboard
+    swappy
   ];
 }
