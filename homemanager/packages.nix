@@ -2,6 +2,7 @@
   pkgs,
   lib,
   pkgs-config,
+  superfile,
   ...
 }: let
   texlive-pkgs = pkgs.texlive.combine {
@@ -135,9 +136,9 @@ in {
     unstable.zotero-beta
 
     mucommander # ugly af but works, weird shortcuts
-    superfile # looks nice, no mouse support
+    # superfile # looks nice, no mouse support
     nnn # ugly but plugin-friendly? has mouse support
-
+    superfile.packages.${system}.default
     texlive-pkgs
 
     # hyprland extras

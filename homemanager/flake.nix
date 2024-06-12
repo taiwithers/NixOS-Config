@@ -14,6 +14,7 @@
     nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
     nix-colors.url = "github:misterio77/nix-colors";
     sops-nix.url = "github:Mic92/sops-nix";
+    superfile.url = "github:yorukot/superfile";
   };
 
   outputs = {
@@ -23,6 +24,7 @@
     nix-flatpak,
     nix-colors,
     sops-nix,
+    superfile,
     # vscode-server,
     ...
   } @ inputs: let
@@ -65,7 +67,7 @@
     homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
-        inherit nix-flatpak nix-colors user system pkgs-config;
+        inherit nix-flatpak nix-colors superfile user system pkgs-config;
       };
 
       modules = [

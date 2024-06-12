@@ -8,6 +8,7 @@
   # sops-nix,
   # system,
   # nix-flatpak,
+  superfile,
   pkgs-config,
   ...
 }: let
@@ -49,7 +50,7 @@
 in {
   imports = [
     # nix-flatpak.homeManagerModules.nix-flatpak
-    (import ./packages.nix {inherit pkgs pkgs-config lib;})
+    (import ./packages.nix {inherit pkgs pkgs-config lib superfile;})
     (import ./desktop-environment {inherit config pkgs;})
     (import ./pkgs {inherit config pkgs lib theme-config;})
   ];
