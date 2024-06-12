@@ -5,6 +5,8 @@
 }: let
   spfDir = "${config.xdg.configHome}/superfile";
   colours = theme-config.app-themes.superfile;
+  chroma-highlighting-theme = "algol";
+  # https://github.com/alecthomas/chroma/tree/master/styles
 in {
   home.shellAliases."spf" = "superfile";
 
@@ -15,7 +17,7 @@ in {
     # If you want to make sidebar border display just set it same as sidebar background color
 
     # Code syntax highlight theme (you can go to https://github.com/alecthomas/chroma/blob/master/styles to find one you like)
-    code_syntax_highlight = "abap"
+    code_syntax_highlight = "${chroma-highlighting-theme}"
 
     # ========= Border =========
     file_panel_border = "#${colours.base02}"
