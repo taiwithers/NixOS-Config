@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-conda-shell
-
 swaybg --mode=fill --image=/run/current-system/sw/share/backgrounds/gnome/blobs-l.svg &
 
 # eww kill
