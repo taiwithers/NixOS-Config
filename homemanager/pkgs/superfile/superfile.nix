@@ -36,24 +36,24 @@ in {
     modal_bg = "#${colours.base00}"
 
     # ========= Foreground (fg) =========
-    full_screen_fg = "#${colours.base05}"
-    file_panel_fg = "#${colours.base05}"
-    sidebar_fg = "#${colours.base05}"
-    footer_fg = "#${colours.base05}"
-    modal_fg = "#${colours.base05}"
+    full_screen_fg = "#${colours.base06}"
+    file_panel_fg = "#${colours.base06}"
+    sidebar_fg = "#${colours.base06}"
+    footer_fg = "#${colours.base06}"
+    modal_fg = "#${colours.base06}"
 
     # ========= Special Color =========
-    cursor = "#${colours.base06}"
-    correct = "#${colours.base0B}"
+    cursor = "#${colours.base0C}"
+    correct = "#${colours.base0C}"
     error = "#${colours.base08}"
-    hint = "#${colours.base0C}"
+    hint = "#${colours.base05}"
     cancel = "#${colours.base0A}"
     # Gradient color can only have two color!
     gradient_color = ["#${colours.base0D}", "#${colours.base0E}"]
 
     # ========= File Panel Special Items =========
     file_panel_top_directory_icon = "#${colours.base0B}"
-    file_panel_top_path = "#${colours.base0F}"
+    file_panel_top_path = "#${colours.base0E}"
     file_panel_item_selected_fg = "#${colours.base0F}"
     file_panel_item_selected_bg = "#${colours.base00}"
 
