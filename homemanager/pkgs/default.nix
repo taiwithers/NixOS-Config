@@ -23,7 +23,7 @@
       "gpg.nix"
       "hyprland/hyprland.nix"
       "python/python.nix"
-      "sops/sops.nix"
+      # "sops/sops.nix"
       "starship.nix"
       "sublime-text/sublime-text.nix"
       "tilix.nix"
