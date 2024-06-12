@@ -26,7 +26,7 @@
       # "sops/sops"
       "starship"
       "sublime-text/sublime-text"
-      "superfile"
+      "superfile/superfile"
       "tilix"
       "vscodium/vscodium"
     ]
