@@ -4,7 +4,7 @@
   ...
 }: let
   spfDir = "${config.xdg.configHome}/superfile";
-  colours = theme-config.app-themes.tilix;
+  colours = theme-config.app-themes.superfile;
 in {
   home.shellAliases."spf" = "superfile";
 
@@ -26,7 +26,7 @@ in {
     file_panel_border_active = "#${colours.base07}"
     sidebar_border_active = "#${colours.base08}"
     footer_border_active = "#${colours.base0B}"
-    modal_border_active = "#${colours.base04}"
+    modal_border_active = "#${colours.base0F}"
 
     # ========= Background (bg) =========
     full_screen_bg = "#${colours.base00}"

@@ -25,6 +25,7 @@
 
     app-themes = builtins.mapAttrs (appName: appTheme: nix-colors.colorSchemes."${appTheme}".palette) {
       tilix = "da-one-ocean"; # change this once nix-colors supports base 24
+      superfile = "gruvbox-dark-hard";
     };
 
     # function: select available theme
