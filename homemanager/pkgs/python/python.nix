@@ -21,6 +21,6 @@ in {
     ${conda-init}
     export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 
-    conda-shell # activate conda in the base environment
+    # conda-shell # activate conda in the base environment
   '';
 }
