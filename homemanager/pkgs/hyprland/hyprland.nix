@@ -27,7 +27,7 @@
       misc."disable_hyprland_logo" = true;
 
       # on startup
-      exec-once = "bash ${config.xdg.configHome}/hypr/hyprland-startup.sh; conda-shell";
+      exec-once = "bash ${config.xdg.configHome}/hypr/hyprland-startup.sh";
     };
   };
 }
