@@ -64,6 +64,13 @@
       rev = "e1df004";
       hash = "sha256-WQW6QHOfahh3BB4+Xm+mh1Jjfhdapu7bgOCnHNbaHPY=";
     }
+    {
+      owner = "MarioRicalde";
+      function = pkgs.fetchFromGitHub;
+      repo = "SCSS.tmbundle";
+      rev = "49a7457";
+      hash = "sha256-ctGCJH2a5rRrNNr8p93RamyTXD7iGTwY8SgMy7MUk7k="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
+    }
     # {
     #   name = "SFTP";
     #   function = path: "${config.xdg.configHome}/sublime-text/Packages/User/SFTP_Manual";
@@ -71,6 +78,7 @@
     #   hash = "";
     # }
     # {
+    # function = pkgs.fetchFromGitHub;
     # 	owner = "";
     # 	repo = "";
     # 	rev = "latest";
