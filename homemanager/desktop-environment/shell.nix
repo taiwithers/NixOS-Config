@@ -13,7 +13,6 @@
     "ls" = "eza";
     "tree" = "eza --tree";
     "man" = "batman --no-hyphenation --no-justification";
-    "printscr" = "grim -g \"$(slurp)\" | wl-copy && wl-paste | swappy -f";
 
     # simplify commands
     "untar" = "tar -xvf";
@@ -25,6 +24,7 @@
     "rebuild" = "bash ${bashScripts}/rebuild.sh";
     "get-package-dir" = "bash ${bashScripts}/get-package-dir.sh";
     "search" = "bash ${bashScripts}/nix-search-wrapper.sh";
+    "printscreen" = "bash ${bashScripts}/printscreen.sh";
   };
 
   # programs.bash.bashrcExtra = "export DOTNET_ROOT=${pkgs.dotnet-sdk_7}";
