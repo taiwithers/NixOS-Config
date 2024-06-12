@@ -22,7 +22,7 @@ in {
     export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
   '';
   programs.bash.initExtra = ''
-    conda_active="$(conda)"
+    conda_active="$(conda > /dev/null)"
     if [[ $? -eq 127 ]]; then
       # conda-shell
       echo "activating conda"
