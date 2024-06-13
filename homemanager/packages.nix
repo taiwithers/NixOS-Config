@@ -67,7 +67,8 @@ in {
     # blesh
     btop
     cloc
-    conda
+    # conda
+    python312Packages.conda
     curl
     dconf
     dell-command-configure

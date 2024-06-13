@@ -38,3 +38,5 @@ in {
   #     conda deactivate
   #   '';
 }
+# conda env update --file ~/.config/NixOS-Config/homemanager/pkgs/python/python-qstar.yml
+

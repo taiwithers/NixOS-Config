@@ -37,6 +37,7 @@ dependencies:
       - coloredlogs
       - fits-tools
       - gdown
+      - PyQt6
       - radio-beam
       - reproject
       - spectral-cube
