@@ -8,14 +8,14 @@ in {
   programs.starship.enable = true;
   programs.starship.settings = {
     format = "$username$hostname$conda$directory$git_branch$git_state$git_metrics$jobs$nix_shell$status$sudo$character";
-    right_format = "$time | $battery";
+    right_format = "$time | $shell $battery";
 
     continuation_prompt = "\t❯ ";
 
     # modules
     battery = {
       disabled = false;
-      format = "[$symbol$percentage]($style)";
+      format = "| [$symbol$percentage]($style)";
       display = [
         {
           threshold = 60;
@@ -122,7 +122,7 @@ in {
     hostname = {
       disabled = false;
       ssh_only = true;
-      ssh_symbol = "\udb82\udcb9 ";
+      ssh_symbol = "󰢹 ";
       trim_at = "";
       format = "[$ssh_symbol$hostname]($style) in ";
       style = "bold dimmed green";
