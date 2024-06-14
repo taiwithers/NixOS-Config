@@ -27,7 +27,7 @@
     "printscreen" = "bash ${bashScripts}/printscreen.sh";
 
     # other hacks and fixes
-    "clear" = "./run/current-system/sw/bin/clear"; # don't use ~/.conda/bin/clear which doesn't work outside conda-shell
+    "clear" = "/run/current-system/sw/bin/clear"; # don't use ~/.conda/bin/clear which doesn't work outside conda-shell
   };
 
   # programs.bash.bashrcExtra = "export DOTNET_ROOT=${pkgs.dotnet-sdk_7}";
