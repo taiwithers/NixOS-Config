@@ -1,9 +1,9 @@
-{...}: {
+{config, ...}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true; # true by default
     enableVteIntegration = true;
-    dotDir = "$XDG_CONFIG_HOME/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
 
     autocd = true;
     autosuggestion = {
@@ -29,7 +29,7 @@
     history = {
       extended = true;
       ignoreDups = false;
-      path = "$XDG_STATE_HOME/.zsh_history";
+      path = "${config.xdg.stateHome}/.zsh_history";
     };
 
     # plugins = {};
