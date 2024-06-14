@@ -7,10 +7,10 @@ in {
 
   programs.starship.enable = true;
   programs.starship.settings = {
-    format = "$username$hostname$conda$directory$git_branch$git_state$git_metrics$jobs$nix_shell$status$sudo$character";
-    right_format = "$time | $shell $battery";
+    format = "$username$hostname$conda$directory$git_branch$git_state$git_metrics$jobs$nix_shell$sudo$character";
+    right_format = "$time $status $shell $battery";
 
-    continuation_prompt = "\t❯ ";
+    continuation_prompt = " ❯ ";
 
     # modules
     battery = {
@@ -164,7 +164,7 @@ in {
 
     sudo = {
       disabled = false;
-      format = "as root($style)";
+      format = "as root ($style)";
       style = "bold blue";
     };
 
