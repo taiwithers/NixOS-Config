@@ -14,7 +14,9 @@ in {
     validateSopsFiles = false;
 
     secrets = {
-      group_hostname = {};
+      group_hostname = {
+        path = "$HOME/hostname";
+      };
       group_username = {};
     };
   };
