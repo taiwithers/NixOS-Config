@@ -29,6 +29,7 @@
       "superfile/superfile"
       "tilix"
       "vscodium/vscodium"
+      "zsh"
     ]
     ++ [
       # (import ./bat {inherit pkgs;})
