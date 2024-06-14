@@ -147,6 +147,14 @@ in {
       unknown_msg = " (purity?)";
     };
 
+    shell = {
+      disabled = false;
+      bash_indicator = "bash";
+      zsh_indicator = "zsh";
+      format = "[$indicator]($style)";
+      style = "white";
+    };
+
     status = {
       disabled = false;
       format = ''[\[$status $common_meaning\]]($style) '';
