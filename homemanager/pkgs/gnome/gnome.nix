@@ -12,7 +12,7 @@
       overlay-scrolling = true;
       locate-pointer = true;
       clock-format = "12h";
-      # cursor-theme = "";
+      gtk-enable-primary-paste = false; # disable middle click paste
     };
 
     "org/gnome/desktop/background" = {
@@ -41,5 +41,11 @@
     "org/gnome/mutter".dynamic-workspaces = true;
     "org/gnome/mutter".workspaces-only-on-primary = false;
     "org/gnome/shell/app-switcher".current-workspace-only = true;
+    "org/gnome/desktop/wm/preferences".button-layout = "appmenu:minimize,maximise,close";
+    "org/gnome/desktop/wm/preferences".focus-mode = "click";
+
+    # themeing
+    "org/gnome/desktop/interface".icon-theme = "Adwaita";
+    "org/gnome/desktop/interface".gtk-theme = "adw-gtk3-dark";
   };
 }

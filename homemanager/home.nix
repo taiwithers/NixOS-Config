@@ -50,15 +50,6 @@ in {
     (import ./pkgs {inherit config pkgs theme-config;})
   ];
 
-  gtk = rec {
-    enable = true; # enable gtk 2/3 config
-    theme = {
-      name = "adw-gtk3";
-      package = pkgs.adw-gtk3;
-    };
-    iconTheme = theme;
-  };
-
   qt = {
     enable = true;
     platformTheme.name = "gtk";

@@ -18,7 +18,7 @@ in {
         ms-python.isort
         ms-python.python
         ms-toolsai.jupyter
-        ms-pyright.pyright
+        # ms-pyright.pyright
         kamadorueda.alejandra
         jellyedwards.gitsweep
         gruntfuggly.todo-tree
