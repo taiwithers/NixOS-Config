@@ -19,6 +19,7 @@
     "confdir" = "cd ~/.config/NixOS-Config";
     "lg" = "lazygit";
     "dust" = "dust --reverse";
+    "wget" = "wget --hsts-file=''$XDG_DATA_HOME/wget_hsts";
 
     # personal bash scripts -> move these to pkgs.writeShellScriptBin
     "rebuild" = "bash ${bashScripts}/rebuild.sh";
