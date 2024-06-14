@@ -25,6 +25,9 @@
     "get-package-dir" = "bash ${bashScripts}/get-package-dir.sh";
     "search" = "bash ${bashScripts}/nix-search-wrapper.sh";
     "printscreen" = "bash ${bashScripts}/printscreen.sh";
+
+    # other hacks and fixes
+    "clear" = "./run/current-syste/sw/bin/clear"; # don't use ~/.conda/bin/clear which doesn't work outside conda-shell
   };
 
   # programs.bash.bashrcExtra = "export DOTNET_ROOT=${pkgs.dotnet-sdk_7}";

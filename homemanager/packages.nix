@@ -67,7 +67,7 @@ in {
     # blesh
     btop
     cloc
-    # conda
+    conda
     curl
     dconf
     dell-command-configure
