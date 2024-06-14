@@ -18,7 +18,7 @@
   '';
 in {
   programs.bash.bashrcExtra = ''
-    ${conda-init}
+    # ${conda-init}
 
     # clean up ~
     export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
