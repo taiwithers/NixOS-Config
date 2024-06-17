@@ -7,6 +7,8 @@
   # setup secrets
   # sops ~/.config/NixOS-Config/secrets/secrets.yaml
   source-script = "variables.sh";
+  source-path = "/run/secrets-rendered/${source-script}";
+  local-username = config.users.users.tai.name;
 in {
   sops = {
     defaultSopsFile = builtins.toString ./secrets.yaml;
@@ -15,12 +17,8 @@ in {
     validateSopsFiles = false;
 
     secrets = {
-      group_hostname = {
-        owner = config.users.users.tai.name;
-      };
-      group_username = {
-        owner = config.users.users.tai.name;
-      };
+      group_hostname.owner = local-username;
+      group_username.owner = local-username;
     };
 
     templates."${source-script}" = {
@@ -32,8 +30,8 @@ in {
     };
   };
 
-  environment.shellInit = "source /run/secrets-rendered/${source-script}";
-  environment.shellAliases."source-secrets" = "source /run/secrets-rendered/${source-script}";
+  environment.shellInit = "source ${source-path}";
+  environment.shellAliases."source-secrets" = "source ${source-path}";
 
   # home.activation.custom-sops-nix = let
   #   systemctl = config.systemd.user.systemctlPath;
