@@ -14,6 +14,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    ./sops/sops.nix
   ];
 
   # Bootloader.

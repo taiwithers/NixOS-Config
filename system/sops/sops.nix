@@ -8,9 +8,9 @@
   # sops ~/.config/NixOS-Config/secrets/secrets.yaml
 in {
   sops = {
-    defaultSopsFile = "${config.xdg.configHome}/NixOS-Config/secrets/secrets.yaml";
+    defaultSopsFile = "/home/tai/.config/NixOS-Config/system/sops/secrets.yaml";
     defaultSopsFormat = "yaml";
-    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+    age.keyFile = "/home/tai/.config/sops/age/keys.txt";
     validateSopsFiles = false;
 
     secrets = {
@@ -25,7 +25,7 @@ in {
   #   systemctl = config.systemd.user.systemctlPath;
   # in "${systemctl} --user reload-or-restart sops-nix";
 
-  home.activation.setupEtc = config.lib.dag.entryAfter ["writeBoundary"] ''
-    /run/current-system/sw/bin/systemctl start --user sops-nix
-  '';
+  # home.activation.setupEtc = config.lib.dag.entryAfter ["writeBoundary"] ''
+  #   /run/current-system/sw/bin/systemctl start --user sops-nix
+  # '';
 }

@@ -16,11 +16,10 @@
     # leave alone
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # }
-    # // {
+
+    # additional inputs
     nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
     nix-colors.url = "github:misterio77/nix-colors";
-    sops-nix.url = "github:Mic92/sops-nix";
     superfile.url = "github:yorukot/superfile";
   };
 
@@ -31,7 +30,6 @@
     # extra-flakes,
     # nix-flatpak,
     # nix-colors,
-    # sops-nix,
     # superfile,
     # vscode-server,
     ...
@@ -75,7 +73,6 @@
 
       modules = with flake-inputs; [
         nix-flatpak.homeManagerModules.default
-        sops-nix.homeManagerModules.sops
         nix-colors.homeManagerModules.default
         ./home.nix
       ];
