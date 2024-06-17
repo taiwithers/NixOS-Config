@@ -33,6 +33,7 @@ in {
   };
 
   environment.shellInit = "source /run/secrets-rendered/${source-script}";
+  environment.shellAliases."source-secrets" = "source /run/secrets-rendered/${source-script}";
   # environment.variables = {
   #   GROUP_USERNAME = "${config.sops.placeholder.group_username}";
   # };
