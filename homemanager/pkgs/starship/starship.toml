@@ -141,12 +141,12 @@ continuation_prompt = " ❯ "
 	disabled = false
 	bash_indicator = "bash"
 	zsh_indicator = "zsh"
-	format = "[$indicator]($style)"
+	format = " [$indicator]($style)"
 	style = "white"
 
 [status]
 	disabled = false
-	format = '[\[$status $common_meaning\]]($style) '
+	format = ' 	[\[$status $common_meaning\]]($style) '
 	map_symbol = false
 	style = "red"
 
@@ -159,7 +159,7 @@ continuation_prompt = " ❯ "
 	disabled = false
 	format = "[$time]($style)"
 	time_format = "%-H:%M%p"
-	style = "bold yellow"
+	style = "bright-black"
 
 [username]
 	disabled = false

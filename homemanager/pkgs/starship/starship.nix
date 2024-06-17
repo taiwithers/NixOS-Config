@@ -12,7 +12,7 @@ in {
   programs.starship.enable = true;
   xdg.configFile."${config.xdg.configHome}/starship.toml" = {
     source = ./starship.toml;
-    onChange = "/run/current-system/sw/bin/rsync --copy-links --chmod=u+rwx ${config.xdg.configHome}/starship.toml $GROUP_USERNAME@$GROUP_HOSTNAME:~/.config/starship.toml";
+    onChange = "/run/current-system/sw/bin/rsync --copy-links --chmod=u+rwx ${config.xdg.configHome}/starship.toml $GROUP_USERNAME@$GROUP_HOSTNAME:~/.config";
   };
   # programs.starship.settings = {
   #   format = "$username$hostname$conda$directory$git_branch$git_state$git_metrics$jobs$nix_shell$sudo$character";
