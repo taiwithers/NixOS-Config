@@ -121,7 +121,7 @@ in {
 
     hostname = {
       disabled = false;
-      ssh_only = false;
+      ssh_only = true;
       ssh_symbol = "󰢹 ";
       trim_at = "";
       format = "[$ssh_symbol$hostname]($style) in ";
