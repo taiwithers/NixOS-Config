@@ -27,6 +27,7 @@
     "get-package-dir" = "bash ${bashScripts}/get-package-dir.sh";
     "search" = "bash ${bashScripts}/nix-search-wrapper.sh";
     "printscreen" = "bash ${bashScripts}/printscreen.sh";
+    "gmv" = "bash ${bashScripts}/git-mv.sh";
 
     # other hacks and fixes
     "clear" = "/run/current-system/sw/bin/clear"; # don't use ~/.conda/bin/clear which doesn't work outside conda-shell
