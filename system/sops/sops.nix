@@ -23,13 +23,14 @@ in {
     };
 
     templates = {
-      "GROUP_USERNAME".content = "${config.sops.placeholder.group_username}";
+      "variables.sh".content = "export GROUP_USERNAME=${config.sops.placeholder.group_username}";
     };
   };
 
-  environment.variables = {
-    GROUP_USERNAME = "${config.sops.placeholder.group_username}";
-  };
+  environment.shellInit = "source /run/secrets-rendered/variables.sh";
+  # environment.variables = {
+  #   GROUP_USERNAME = "${config.sops.placeholder.group_username}";
+  # };
 
   # home.activation.custom-sops-nix = let
   #   systemctl = config.systemd.user.systemctlPath;
