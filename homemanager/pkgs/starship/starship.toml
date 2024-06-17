@@ -157,7 +157,7 @@ continuation_prompt = " ❯ "
 
 [time]
 	disabled = false
-	format = "[$time]($style)"
+	format = " [$time]($style)"
 	time_format = "%-H:%M%p"
 	style = "bright-black"
 
