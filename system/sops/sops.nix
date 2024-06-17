@@ -8,7 +8,7 @@
   # sops ~/.config/NixOS-Config/secrets/secrets.yaml
 in {
   sops = {
-    defaultSopsFile = "/home/tai/.config/NixOS-Config/system/sops/secrets.yaml";
+    defaultSopsFile = builtins.toString ./secrets.yaml;
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/tai/.config/sops/age/keys.txt";
     validateSopsFiles = false;
