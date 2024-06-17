@@ -184,7 +184,8 @@ in {
       disabled = false;
       format = "[$user]($style) ";
       show_always = false; # if false, only shows if: root, not same as login, in ssh
-      style = "";
+      style_user = "";
+      style_root = "";
     };
   };
 }
