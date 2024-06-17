@@ -23,7 +23,10 @@ in {
     };
 
     templates = {
-      "variables.sh".content = "export GROUP_USERNAME=${config.sops.placeholder.group_username}";
+      "variables.sh" = {
+        content = "export GROUP_USERNAME=${config.sops.placeholder.group_username}";
+        owner = config.users.users.tai.name;
+      };
     };
   };
 
