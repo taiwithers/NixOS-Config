@@ -1,4 +1,8 @@
-{theme-config, ...}: let
+{
+  config,
+  theme-config,
+  ...
+}: let
   # colours = builtins.mapAttrs (name: value: "#" + value) theme-config.colours.palette;
 in {
   # style strings (not case sensitive)
@@ -6,6 +10,7 @@ in {
   # colors: black, red, green, blue, yellow, purple, cyan, white, bright-<any of previous>, #hexcode, 0-255 ANSI code
 
   programs.starship.enable = true;
+  # xdg.configFile."${config.xdg.configHome}/starship.toml".onChange = "rsync --copy-links --chmod=u+rwx ${config.xdg.configHome}/starship.toml ${username}@${hostname}:~/.config/starship.toml";
   programs.starship.settings = {
     format = "$username$hostname$conda$directory$git_branch$git_state$git_metrics$jobs$nix_shell$sudo$character";
     right_format = "$time $status $shell $battery";
@@ -58,7 +63,7 @@ in {
     conda = {
       disabled = false;
       style = "bright-green";
-      format = "[$symbol $environment ]($style)";
+      format = "\[[$symbol $environment]($style)\] ";
       ignore_base = false;
       symbol = "";
     };
@@ -124,7 +129,7 @@ in {
       ssh_only = true;
       ssh_symbol = "󰢹 ";
       trim_at = "";
-      format = "[$ssh_symbol$hostname]($style) in ";
+      format = "on [$ssh_symbol$hostname]($style) ";
       style = "bold dimmed green";
     };
 
@@ -177,8 +182,9 @@ in {
 
     username = {
       disabled = false;
-      format = "[$user]($style) in ";
+      format = "[$user]($style) ";
       show_always = false; # if false, only shows if: root, not same as login, in ssh
+      style = "";
     };
   };
 }
