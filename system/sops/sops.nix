@@ -23,8 +23,12 @@ in {
     };
 
     templates = {
-      "username.txt".content = "${config.sops.placeholder.group_username}";
+      "GROUP_USERNAME".content = "${config.sops.placeholder.group_username}";
     };
+  };
+
+  environment.variables = {
+    GROUP_USERNAME = "${config.sops.placeholder.group_username}";
   };
 
   # home.activation.custom-sops-nix = let
