@@ -15,9 +15,15 @@ in {
 
     secrets = {
       group_hostname = {
-        path = "$HOME/hostname";
+        owner = config.users.users.tai.name;
       };
-      group_username = {};
+      group_username = {
+        owner = config.users.users.tai.name;
+      };
+    };
+
+    templates = {
+      "username.txt".content = "${config.sops.placeholder.group_username}";
     };
   };
 
