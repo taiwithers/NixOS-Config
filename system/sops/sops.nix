@@ -6,6 +6,7 @@
   # age-keygen -y ~/.config/sops/age/keys.txt
   # setup secrets
   # sops ~/.config/NixOS-Config/secrets/secrets.yaml
+  source-script = "variables.sh";
 in {
   sops = {
     defaultSopsFile = builtins.toString ./secrets.yaml;
@@ -22,15 +23,16 @@ in {
       };
     };
 
-    templates = {
-      "variables.sh" = {
-        content = "export GROUP_USERNAME=${config.sops.placeholder.group_username}";
-        owner = config.users.users.tai.name;
-      };
+    templates."${source-script}" = {
+      content = ''
+        export GROUP_USERNAME=${config.sops.placeholder.group_username}
+        export GROUP_HOSTNAME=${config.sops.placeholder.group_hostname}
+      '';
+      owner = config.users.users.tai.name;
     };
   };
 
-  environment.shellInit = "source /run/secrets-rendered/variables.sh";
+  environment.shellInit = "source /run/secrets-rendered/${source-script}";
   # environment.variables = {
   #   GROUP_USERNAME = "${config.sops.placeholder.group_username}";
   # };
