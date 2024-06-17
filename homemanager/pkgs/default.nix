@@ -24,7 +24,7 @@
       "hyprland/hyprland"
       "python/python"
       # "sops/sops"
-      "starship"
+      "starship/starship"
       "sublime-text/sublime-text"
       "superfile/superfile"
       "tilix"

@@ -22,11 +22,11 @@ in {
     };
 
     templates."${source-script}" = {
+      owner = local-username;
       content = ''
         export GROUP_USERNAME=${config.sops.placeholder.group_username}
         export GROUP_HOSTNAME=${config.sops.placeholder.group_hostname}
       '';
-      owner = config.users.users.tai.name;
     };
   };
 
