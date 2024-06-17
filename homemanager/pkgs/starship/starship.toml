@@ -13,10 +13,10 @@ $character
 """
 
 right_format = """
-$time\
 $status\
 $shell\
-$battery
+$battery\
+$time
 """
 
 continuation_prompt = " ❯ "
