@@ -3,7 +3,7 @@
     enable = true;
     enableCompletion = true; # true by default
     enableVteIntegration = true;
-    dotDir = "${config.xdg.configHome}/zsh";
+    dotDir = ".config/zsh";
 
     autocd = true;
     autosuggestion = {
