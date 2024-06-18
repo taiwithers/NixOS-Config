@@ -113,6 +113,7 @@ in {
     # gui programs
     # copyq # "installed" via services in copyq.nix
     discord
+    (pkgs.callPackage ../nix-scripts/ds9.nix {}) # build with nix-build --expr 'with import <nixpkgs> {}; callPackage ./ds9.nix {}'
     filezilla
     github-desktop
     gnome-extension-manager
