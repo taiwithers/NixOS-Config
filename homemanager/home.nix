@@ -50,12 +50,6 @@ in {
     (import ./pkgs {inherit config pkgs theme-config;})
   ];
 
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style.name = "adwaita-dark";
-  };
-
   home.username = user;
   home.homeDirectory = homeDirectory;
   home.stateVersion = "23.11";

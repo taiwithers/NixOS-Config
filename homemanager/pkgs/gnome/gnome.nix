@@ -8,7 +8,6 @@
     "org/gtk/settings/file-chooser" = {clock-format = "12h";};
 
     "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
       show-battery-percentage = true;
       overlay-scrolling = true;
       locate-pointer = true;
@@ -47,6 +46,21 @@
 
     # themeing
     "org/gnome/desktop/interface".icon-theme = "Adwaita";
-    "org/gnome/desktop/interface".gtk-theme = "adw-gtk3-dark";
+    "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    # "org/gnome/desktop/interface".gtk-theme = "adw-gtk3-dark";
   };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gnome";
+    style.name = "adwaita-dark";
+  };
+
+  gtk = {
+    enable = true;
+    theme.name = "Adwaita-dark";
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+  };
+
+  home.sessionVariables.GTK_THEME = "adwaita-dark";
 }
