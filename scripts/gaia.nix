@@ -23,6 +23,12 @@ in
 
     #phases = ["unpackPhase" "installPhase" "fixupPhase"];
 
+    postInstall = ''
+      # substituteInPlace $out/bin/gaia/gaia.sh \
+      #                   --replace-warn "$HOME" "$XDG_CACHE_HOME"
+      sed --in-place 's/\$HOME/\$XDG_CACHE_HOME/g' $out/bin/gaia/gaia.sh
+    '';
+
     installPhase = ''
       runHook preInstall
       mkdir -p $out/
@@ -41,10 +47,6 @@ in
                $out/bin/gaia/gaia_wish
     '';
 
-    postInstall = ''
-      substituteInPlace $out/bin/gaia/gaia.sh \
-                        --replace-warn "$HOME" "$XDG_CACHE_HOME"
-    '';
 
     doInstallCheck = true;
   }
