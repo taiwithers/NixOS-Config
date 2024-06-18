@@ -4,7 +4,7 @@
   ...
 }: {
   home.shellAliases = let
-    bashScripts = "${config.xdg.configHome}/NixOS-Config/bash-scripts";
+    bashScripts = "${config.xdg.configHome}/NixOS-Config/scripts";
   in {
     # use new programs
     "grep" = "rg";
