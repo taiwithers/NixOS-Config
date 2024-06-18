@@ -82,6 +82,7 @@ in {
     gfortran
     git
     # git-credential-manager # git-credential-manager github login
+    gnumake42 # provides make
     jq
     lazygit
     lua

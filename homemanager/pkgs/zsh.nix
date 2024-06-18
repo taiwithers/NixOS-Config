@@ -19,7 +19,7 @@
     };
 
     # envExtra = "";
-    initExtra = "bindkey '\t\t' autosuggest-accept";
+    initExtra = "bindkey '$' autosuggest-accept";
     # initExtraBeforeCompInit = "";
     # initExtraFirst = "";
     # loginExtra = "";
