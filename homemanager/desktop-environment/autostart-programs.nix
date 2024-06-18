@@ -10,6 +10,6 @@
   ];
 in {
   imports = [
-    (import ../../nix-scripts/autostart.nix {inherit config autostart-pkgs;})
+    (import ../../scripts/autostart.nix {inherit config autostart-pkgs;})
   ];
 }

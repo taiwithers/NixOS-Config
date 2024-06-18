@@ -41,7 +41,7 @@
     "org/gnome/mutter".dynamic-workspaces = true;
     "org/gnome/mutter".workspaces-only-on-primary = false;
     "org/gnome/shell/app-switcher".current-workspace-only = true;
-    "org/gnome/desktop/wm/preferences".button-layout = "appmenu:minimize,maximise,close";
+    "org/gnome/desktop/wm/preferences".button-layout = "appmenu:minimize,maximize,close";
     "org/gnome/desktop/wm/preferences".focus-mode = "click";
 
     # themeing

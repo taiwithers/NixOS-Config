@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  locateDesktop = import ../../nix-scripts/locate-desktop.nix;
+  locateDesktop = import ../../scripts/locate-desktop.nix;
 in {
   dconf.settings."org/gnome/shell".favorite-apps = with pkgs;
     map (pkg: locateDesktop pkg) [

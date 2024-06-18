@@ -12,7 +12,7 @@
     };
 
     # cdpath = []; # List of paths to autocomplete calls to cd
-    # defaultKeymap = ""; # emacs, vicmd, viins
+    defaultKeymap = "vicmd"; # emacs, vicmd, viins
     dirHashes = {
       Student = "$HOME/OneDrive_Student";
       NixConfig = "$XDG_CONFIG_HOME/NixOS-Config";

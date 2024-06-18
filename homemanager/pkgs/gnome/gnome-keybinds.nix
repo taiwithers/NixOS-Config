@@ -15,7 +15,7 @@
   ];
 in {
   imports = [
-    (import ../../../nix-scripts/set-custom-gnome-keybinds.nix {inherit custom-keyboard-shortcuts;})
+    (import ../../../scripts/set-custom-gnome-keybinds.nix {inherit custom-keyboard-shortcuts;})
   ];
 
   dconf.settings = {

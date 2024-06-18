@@ -32,7 +32,7 @@
     selectAvailableTheme = functionGetThemePath: let
       checkTheme = name: builtins.pathExists (functionGetThemePath name);
       firstAvailableTheme =
-        import ../nix-scripts/choose-option-or-backup.nix
+        import ../scripts/choose-option-or-backup.nix
         {
           functionOptionIsValid = checkTheme;
           allOptions = names;

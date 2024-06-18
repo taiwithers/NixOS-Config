@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  locateDesktop = import ../../nix-scripts/locate-desktop.nix;
+  locateDesktop = import ../../scripts/locate-desktop.nix;
   getDesktopFiles = list: map (p: "${locateDesktop p}") list;
 
   defaults = builtins.mapAttrs (name: value: (getDesktopFiles value)) (with pkgs; {
