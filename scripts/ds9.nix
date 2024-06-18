@@ -16,12 +16,14 @@
     libxml2.out
   ];
 in
-  stdenv.mkDerivation {
-    name = "ds9";
+  stdenv.mkDerivation rec {
+    pname = "ds9";
+    version = "8.6b1";
+    distribution = "ubuntu22x86";
 
     src = fetchzip {
-      url = "https://ds9.si.edu/download/ubuntu22x86/ds9.ubuntu22x86.8.5.tar.gz";
-      sha256 = "GwmY+JPGG8PnCfnw30zU6CTE0zboNK3ZGGZhtPoyeq8=";
+      url = "https://ds9.si.edu/download/${distribution}/ds9.${distribution}.${version}.tar.gz";
+      sha256 = "BFQfxIesSOCUI35mF5ADmV27TlO+WZvXjh1ULXcQlRA=";
     };
 
     phases = ["unpackPhase" "installPhase" "fixupPhase"];

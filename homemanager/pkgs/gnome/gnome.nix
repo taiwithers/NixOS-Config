@@ -1,3 +1,4 @@
+# powerprofilesctl get/list/set
 {...}: {
   imports = [
     ./gnome-extensions.nix

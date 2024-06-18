@@ -82,7 +82,6 @@ in {
     gfortran
     git
     # git-credential-manager # git-credential-manager github login
-    gnumake42 # provides make
     jq
     lazygit
     lua
@@ -114,6 +113,7 @@ in {
     # copyq # "installed" via services in copyq.nix
     discord
     (pkgs.callPackage ../scripts/ds9.nix {}) # build with nix-build --expr 'with import <nixpkgs> {}; callPackage ./ds9.nix {}'
+    (pkgs.callPackage ../scripts/gaia.nix {}) # build with nix-build --expr 'with import <nixpkgs> {}; callPackage ./ds9.nix {}'
     filezilla
     github-desktop
     gnome-extension-manager
