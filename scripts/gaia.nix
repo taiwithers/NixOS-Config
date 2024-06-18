@@ -43,7 +43,7 @@ in
 
     postInstall = ''
       substituteInPlace $out/bin/gaia/gaia.sh \
-                        --replace-quiet "$HOME" "$XDG_CACHE_HOME"
+                        --replace-warn "$HOME" "$XDG_CACHE_HOME"
     '';
 
     doInstallCheck = true;
