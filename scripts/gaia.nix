@@ -3,6 +3,7 @@
   stdenv,
   lib,
   pkgs,
+  makeDesktopItem,
 }: let
   libpath = lib.makeLibraryPath (with pkgs; [
     xorg.libX11 # provides libX11.so.6
@@ -49,6 +50,15 @@ in
 
 
     doInstallCheck = true;
+
+    desktopItems = [(
+            makeDesktopItem {
+              desktopName = "gaia";
+              name = "gaia";
+              exec = "gaia";
+              icon = "gaia_small_logo.gif";
+            })];
+
   }
 # no space:
 # nix-store --delete /nix/store/*-gaia-2023A
