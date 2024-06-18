@@ -142,8 +142,8 @@
   environment.pathsToLink = ["/share/zsh"]; # for zsh completion
 
   # flatpak https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
-  services.flatpak.enable = true;
-  xdg.portal.config.common.default = "gtk";
+  # services.flatpak.enable = true;
+  # xdg.portal.config.common.default = "gtk";
 
   system.autoUpgrade = {
     enable = true;
