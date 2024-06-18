@@ -18,7 +18,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # additional inputs
-    nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
+    # nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
     nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
   };
@@ -72,7 +72,7 @@
       extraSpecialArgs = {inherit flake-inputs user pkgs-config;};
 
       modules = with flake-inputs; [
-        nix-flatpak.homeManagerModules.default
+        # nix-flatpak.homeManagerModules.default
         nix-colors.homeManagerModules.default
         ./home.nix
       ];

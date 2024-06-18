@@ -41,12 +41,6 @@ in {
   #   })
   # ];
 
-  services.flatpak = {
-    enableModule = true;
-    remotes = {"starlink" = "https://ftp.eao.hawaii.edu/starlink/flatpak/starlink.flatpakrepo";};
-    packages = ["starlink:app/edu.hawaii.eao.starlink.Starlink//2023A"];
-  };
-
   home.packages = with pkgs; [
     # nix programs
     appimage-run
