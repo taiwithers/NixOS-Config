@@ -21,7 +21,7 @@ in
       sha256 = "LDbPeKFntZT/2Flw3bX+TPkso8NihmezLyEL6h+YN20=";
     };
 
-    phases = ["unpackPhase" "installPhase" "fixupPhase"];
+    #phases = ["unpackPhase" "installPhase" "fixupPhase"];
 
     installPhase = ''
       mkdir -p $out/
@@ -37,6 +37,11 @@ in
                --add-needed libz.so.1 \
                --add-needed libXext.so.6 \
                $out/bin/gaia/gaia_wish
+    '';
+
+    postInstall = ''
+      substituteInPlace $out/bin/gaia/gaia.sh \
+                        --subst-var-by "HOME" "$XDG_CACHE_HOME"
     '';
 
     doInstallCheck = true;
