@@ -29,16 +29,14 @@ in
     '';
 
     fixupPhase = ''
-      chmod 755 $out/
+      chmod 755 $out/bin/*
       patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
                --add-rpath ${libpath} \
                --add-needed libX11.so.6 \
                --add-needed libstdc++.so.6 \
                --add-needed libz.so.1 \
                --add-needed libXext.so.6 \
-               --print-needed \
                $out/bin/gaia/gaia_wish
-      # patchelf --print-needed $out/bin/gaia/gaia_wish
     '';
 
     doInstallCheck = true;
