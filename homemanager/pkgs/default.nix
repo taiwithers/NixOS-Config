@@ -16,10 +16,11 @@
       "dunst"
       "eww/eww"
       "eza"
-      "fzf"
       # forge
-      "gnome/gnome"
+      "fzf"
+      "gaia"
       "git"
+      "gnome/gnome"
       "gpg"
       "hyprland/hyprland"
       "python/python"
