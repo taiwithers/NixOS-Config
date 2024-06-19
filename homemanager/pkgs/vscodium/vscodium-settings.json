@@ -355,5 +355,6 @@
     "outline.showTypeParameters": false,
     "outline.showVariables": false,
     "workbench.iconTheme": "vscode-icons",
-    "workbench.colorTheme": "Base16 Da One Ocean Dark"
+    "workbench.colorTheme": "Base16 Da One Ocean Dark",
+    "window.confirmSaveUntitledWorkspace": false
 }
