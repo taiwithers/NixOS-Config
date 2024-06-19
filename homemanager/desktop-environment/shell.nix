@@ -20,7 +20,7 @@
     "lg" = "lazygit";
     "dust" = "dust --reverse";
     "wget" = "wget --hsts-file=''$XDG_DATA_HOME/wget_hsts";
-    "group" = "ssh $GROUP_USERNAME@$GROUP_HOSTNAME";
+    "group" = "ssh $GROUP_USERNAME@$GROUP_HOSTNAME -XY";
     "groupscp" = "scp -r $GROUP_USERNAME@$GROUP_HOSTNAME";
 
     # personal bash scripts -> move these to pkgs.writeShellScriptBin
