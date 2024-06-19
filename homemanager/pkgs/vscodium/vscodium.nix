@@ -14,7 +14,7 @@ in {
     extensions = with pkgs.vscode-extensions;
       [
         njpwerner.autodocstring
-        vscodevim.vim
+        # vscodevim.vim
         ms-python.isort
         ms-python.python
         ms-toolsai.jupyter
