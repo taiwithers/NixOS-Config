@@ -9,10 +9,12 @@
       gpg.format = "ssh";
       pull.rebase = "false";
       init.defaultBranch = "main";
-      core.whitespace.blank-at-eol = false;
-      core.whitespace.blank-at-eof = false;
+      core.whitespace.trailing-space = false;
       credential.credentialStore = "cache";
-      credential.helper = "${pkgs.git-credential-manager}/lib/git-credential-manager/git-credential-manager";
+      # credential.helper = "${pkgs.git-credential-manager}/lib/git-credential-manager/git-credential-manager";
+      diff.context = 1;
+      diff.renames = true;
+      status.relativePaths = false;
       # ignore-space-at-eol = true;
     };
     delta = {
@@ -21,8 +23,11 @@
         dark = true;
         side-by-side = true;
         hunk-header-style = "omit";
+        line-numbers-left-format = "{nm}│"; # not pipes! taller!
+        line-numbers-right-format = "{np}│";
         tabs = 4;
         syntax-theme = "base16";
+        hyperlinks = true;
       };
     };
   };
