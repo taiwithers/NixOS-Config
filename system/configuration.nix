@@ -10,7 +10,7 @@
 }: {
   programs.hyprland.enable = true;
   # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk]; # add in when switching to hyprland
-  xdg.portal.enable = true;
+  # xdg.portal.enable = true;
 
   imports = [
     ./hardware-configuration.nix
