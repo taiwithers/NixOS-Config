@@ -24,7 +24,7 @@ in {
             export SPF_LAST_DIR="$HOME/Library/Application Support/superfile/lastdir"
         fi
 
-        command spf "$@"
+        command superfile "$@"
 
         [ ! -f "$SPF_LAST_DIR" ] || {
             . "$SPF_LAST_DIR"
