@@ -14,9 +14,9 @@
     }
   ];
 in {
-  # imports = [
-  #   (import ../../../scripts/set-custom-gnome-keybinds.nix {inherit custom-keyboard-shortcuts;})
-  # ];
+  imports = [
+    (import ../../../scripts/set-custom-gnome-keybinds.nix {inherit custom-keyboard-shortcuts;})
+  ];
 
   dconf.settings = {
     # media and accessibility keybindings
