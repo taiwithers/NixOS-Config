@@ -56,7 +56,7 @@ in {
 
     # cli programs
     age # encryption
-    bash # programs.bash.enable
+    # bash # programs.bash.enable
     # bat # programs.bat.enable
     # blesh
     btop

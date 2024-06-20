@@ -10,6 +10,7 @@ in {
   # colors: black, red, green, blue, yellow, purple, cyan, white, bright-<any of previous>, #hexcode, 0-255 ANSI code
 
   programs.starship.enable = true;
+  programs.starship.enableZshIntegration = false;
   xdg.configFile."${config.xdg.configHome}/starship.toml" = {
     source = ./starship.toml;
     # onChange = "/run/current-system/sw/bin/rsync --copy-links --chmod=u+rwx ${config.xdg.configHome}/starship.toml $GROUP_USERNAME@$GROUP_HOSTNAME:~/.config";
