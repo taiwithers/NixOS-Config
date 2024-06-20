@@ -22,7 +22,7 @@
       "git"
       "gnome/gnome"
       "gpg"
-      "hyprland/hyprland"
+      # "hyprland/hyprland"
       "python/python"
       # "sops/sops"
       "starship/starship"
