@@ -50,7 +50,7 @@ in {
     (import ./pkgs {inherit config pkgs theme-config;})
   ];
 
-  systemd.user.enable = true;
+  # systemd.user.enable = true;
 
   home.username = user;
   home.homeDirectory = homeDirectory;

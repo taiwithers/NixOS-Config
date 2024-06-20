@@ -21,6 +21,6 @@ in rec {
   dconf.settings."org/gnome/shell" = {
     disable-user-extensions = false;
     enabled-extensions = map (ext: ext.extensionUuid) home.packages;
-    disabled-extensions = [];
+    # disabled-extensions = [];
   };
 }
