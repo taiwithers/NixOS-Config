@@ -114,7 +114,7 @@ in {
     gnome.file-roller
     gnome.gnome-screenshot
     gnome.gnome-tweaks
-    gnome.gnome-settings-daemon
+    # gnome.gnome-settings-daemon
     gparted
     keepassxc
     libreoffice

@@ -151,7 +151,7 @@ continuation_prompt = " ❯ "
 	style = "red"
 
 [sudo]
-	disabled = false
+	disabled = true
 	format = "as root ($style)"
 	style = "bold blue"
 

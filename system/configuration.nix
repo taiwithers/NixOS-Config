@@ -9,7 +9,7 @@
   ...
 }: {
   programs.hyprland.enable = true;
-  # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk]; # add in when switching to hyprland
+  # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk]; # add in when switching to hyprland, gnome adds this by default
   # xdg.portal.enable = true;
 
   imports = [
@@ -101,6 +101,7 @@
 
     gnome.core-shell.enable = true;
     gnome.core-utilities.enable = false;
+    gnome.gnome-settings-daemon.enable = true;
     printing.enable = true;
     dbus.packages = [pkgs.dconf];
 
