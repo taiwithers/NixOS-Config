@@ -133,6 +133,7 @@
   environment.systemPackages = with pkgs; [
     gedit
     gnome.gnome-terminal # always have an editor and terminal!
+    git
   ];
   environment.gnome.excludePackages = [pkgs.gnome-tour];
 
