@@ -125,7 +125,7 @@
   users.users.tai = {
     isNormalUser = true;
     description = "Tai";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "input"]; # input for waybar on hyprland
     packages = with pkgs; [
       firefox
     ];
