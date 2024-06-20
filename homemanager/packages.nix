@@ -151,6 +151,7 @@ in {
     xdg-desktop-portal-hyprland
     rofi-calc
     waybar
+    socat
 
     grim
     slurp
