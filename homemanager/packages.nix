@@ -150,6 +150,7 @@ in {
     swaybg
     xdg-desktop-portal-hyprland
     rofi-calc
+    waybar
 
     grim
     slurp
