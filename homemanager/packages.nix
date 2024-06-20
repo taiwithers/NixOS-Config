@@ -56,8 +56,8 @@ in {
 
     # cli programs
     age # encryption
-    bash
-    bat
+    bash # programs.bash.enable
+    # bat # programs.bat.enable
     # blesh
     btop
     cloc
@@ -68,13 +68,13 @@ in {
     # dotnet-runtime_7 # for gcm
     duf # view general info for entire system
     dust # view specific info for directories
-    eza
+    # eza # programs.eza.enable
     fastfetch
     fd
     fontconfig
     fzf
     gfortran
-    git
+    # git # programs.git.enable and configuration.nix
     # git-credential-manager # git-credential-manager github login
     jq
     lazygit
@@ -89,9 +89,8 @@ in {
     rename
     ripgrep
     sd
-    sops
     speedtest-rs
-    starship
+    # starship # programs.starship.enable
     sxiv
     trashy
     unzip
@@ -101,7 +100,7 @@ in {
     zellij
     zip
     zoxide
-    zsh
+    # zsh # programs.zsh.enable
 
     # gui programs
     # copyq # "installed" via services in copyq.nix
@@ -133,7 +132,7 @@ in {
     zoom-us
     unstable.zotero-beta
 
-    mucommander # ugly af but works, weird shortcuts
+    # mucommander # ugly af but works, weird shortcuts
     flake-inputs.superfile.packages.${system}.default
 
     texlive-pkgs
@@ -151,7 +150,7 @@ in {
     xdg-desktop-portal-hyprland
     rofi-calc
     waybar
-    socat
+    # socat
 
     grim
     slurp

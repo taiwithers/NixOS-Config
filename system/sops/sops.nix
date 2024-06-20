@@ -1,4 +1,4 @@
-{config, ...}: let
+{config, pkgs, ...}: let
   # setup sops and age
   # mkdir --parents ~/.config/sops/age
   # age-keygen --output ~/.config/sops/age/keys.txt
@@ -33,6 +33,7 @@ in {
   environment.shellInit = "source ${source-path}";
   environment.shellAliases."source-secrets" = "source ${source-path}";
 
+  environment.systemPackages = [ pkgs.sops ];
   # home.activation.custom-sops-nix = let
   #   systemctl = config.systemd.user.systemctlPath;
   # in "${systemctl} --user reload-or-restart sops-nix";
