@@ -50,6 +50,7 @@
     # "org/gnome/desktop/interface".gtk-theme = "adw-gtk3-dark";
   };
 
+  # qt.enable = true;
   # qt = {
   #   enable = true;
   #   platformTheme.name = "adwaita-dark";

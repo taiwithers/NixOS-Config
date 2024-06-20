@@ -143,7 +143,7 @@
 
   # flatpak https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
   # services.flatpak.enable = true;
-  # xdg.portal.config.common.default = "gtk";
+  xdg.portal.config.common.default = "gtk";
 
   system.autoUpgrade = {
     enable = true;
