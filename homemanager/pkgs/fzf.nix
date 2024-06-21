@@ -18,7 +18,7 @@ in {
       "--height ~60%"
       "--border sharp"
       "--preview '${previewFile} {}'"
-      "--margin 0,1%"
+      "--margin 0,3%"
       "--info inline"
       "--tabstop 4"
       "--preview-window border-sharp"
