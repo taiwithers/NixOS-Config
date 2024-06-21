@@ -10,8 +10,10 @@
       export HISTFILE="${config.xdg.stateHome}/bash/history"
       mkdir -p "$(dirname $HISTFILE)"
 
-      alias "brc"="source ~/.bashrc"
+      source <(cod init $$ bash) # cod completion
     '';
-    # bashrcExtra = "export HISTFILE=\"\${XDG_STATE_HOME}\"/bash/history";
+    shellAliases = {
+      brc = "source ~/.bashrc";
+    };
   };
 }
