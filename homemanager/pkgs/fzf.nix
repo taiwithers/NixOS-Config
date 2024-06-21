@@ -7,15 +7,29 @@
   fzfThemeDirectory = "${config.xdg.configHome}/fzf-themes/";
   previewFile = "${config.xdg.configHome}/fzf-preview.sh";
 in {
-  programs.fzf = {
+  programs.fzf = rec {
     enable = true;
+    colors = {};
+
+    # typing "fzf" as a command
     defaultCommand = "fd --type f";
     defaultOptions = [
-      "--reverse"
-      "--height 60%"
+      "--layout reverse"
+      "--height ~60%"
       "--border sharp"
       "--preview '${previewFile} {}'"
     ];
+
+    # alt-c
+    changeDirWidgetCommand = "";
+    changeDirWidgetOptions = [];
+
+    # ctrl-t
+    fileWidgetCommand = defaultCommand;
+    fileWidgetOptions = defaultOptions;
+
+    # ctrl-r
+    historyWidgetOptions = defaultOptions;
   };
 
   xdg.configFile."${previewFile}".source = builtins.fetchurl "https://raw.githubusercontent.com/junegunn/fzf/master/bin/fzf-preview.sh";
