@@ -14,7 +14,6 @@ in {
       "--height=60%"
       "--border=sharp"
       "--preview '${previewFile} {}'"
-      # "--preint-query"
     ];
   };
 
