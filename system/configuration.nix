@@ -97,7 +97,6 @@
     extraGroups = [
       "wheel"
       "input" # input for waybar on hyprland
-      "video" # for backlight control with light
     ];
     packages = with pkgs; [
       firefox
@@ -117,7 +116,6 @@
   environment.pathsToLink = ["/share/zsh"]; # for zsh completion
   programs.hyprland.enable = true;
   # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gdk]; # add in when switching to hyprland
-  programs.light.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

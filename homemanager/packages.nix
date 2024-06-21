@@ -59,6 +59,7 @@ in {
     # bash # programs.bash.enable
     # bat # programs.bat.enable
     # blesh
+    brightnessctl
     btop
     chafa # cli images
     cloc
@@ -137,7 +138,6 @@ in {
     zoom-us
     unstable.zotero-beta
 
-    brightnessctl
 
     # mucommander # ugly af but works, weird shortcuts
     flake-inputs.superfile.packages.${system}.default
