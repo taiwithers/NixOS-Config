@@ -94,7 +94,11 @@
   users.users.tai = {
     isNormalUser = true;
     description = "Tai";
-    extraGroups = ["wheel" "input"]; # input for waybar on hyprland
+    extraGroups = [
+      "wheel"
+      "input" # input for waybar on hyprland
+      "video" # for backlight control with light
+    ];
     packages = with pkgs; [
       firefox
     ];
