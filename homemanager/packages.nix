@@ -75,10 +75,11 @@ in {
     fd
     file
     fontconfig
-    fzf
+    # fzf # programs.fzf.enable
     gfortran
     # git # programs.git.enable and configuration.nix
     # git-credential-manager # git-credential-manager github login
+    imv
     jq
     lazygit
     lua
@@ -95,7 +96,7 @@ in {
     sd
     speedtest-rs
     # starship # programs.starship.enable
-    sxiv
+    # sxiv
     trashy
     unzip
     vim
