@@ -62,6 +62,7 @@ in {
     btop
     chafa # cli images
     cloc
+    cod # completion from --help
     conda
     curl
     dconf
@@ -86,7 +87,7 @@ in {
     openssh
     pandoc
     parallel
-    unstable.pistol
+    # unstable.pistol # integrate into fzf preview for archive viewing, otherwise unnecesary
     pomodoro
     python3
     rename
