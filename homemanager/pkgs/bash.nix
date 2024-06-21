@@ -7,7 +7,7 @@
       export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
       export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
       export HISTFILE="${config.xdg.stateHome}/bash/history"
-      mkdir -p "$(dirname $HISTFILE)" 
+      mkdir -p "$(dirname $HISTFILE)"
 
       alias "brc"="source ~/.bashrc"
     '';

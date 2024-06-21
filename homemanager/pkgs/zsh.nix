@@ -19,7 +19,7 @@
     };
 
     # envExtra = "";
-    
+
     # zshrc
     initExtra = ''
       bindkey "\t" autosuggest-accept

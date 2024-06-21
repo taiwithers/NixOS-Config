@@ -25,8 +25,6 @@
       useOSProber = true;
       configurationLimit = 16;
       backgroundColor = "#000000";
-      # memtest86.enable = true;#
-      # fontSize = 16;
     };
   };
 
@@ -52,8 +50,9 @@
     dates = "weekly";
     options = "--delete-older-than 14d";
   };
+  nix.settings.auto-optimise-store = true;
 
-  networking = {};
+  networking.hostName = hostName;
 
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
@@ -76,13 +75,13 @@
   # services.desktopManager.plasma6.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # services.displayManager.defaultSession = "plasma";
+  # environment.plasma6.excludePackages = [];
 
   # keyboard layout
   services.xserver.xkb.layout = "us";
 
   # sound
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -95,7 +94,7 @@
   users.users.tai = {
     isNormalUser = true;
     description = "Tai";
-    extraGroups = ["networkmanager" "wheel" "input"]; # input for waybar on hyprland
+    extraGroups = ["wheel" "input"]; # input for waybar on hyprland
     packages = with pkgs; [
       firefox
     ];
@@ -114,6 +113,16 @@
   environment.pathsToLink = ["/share/zsh"]; # for zsh completion
   programs.hyprland.enable = true;
   # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gdk]; # add in when switching to hyprland
+  
+  # potentially interesting:
+  # services.autosuspend.enable = false;
+  # services.ayatana-indicators.enable = false;
+  # services.blueman.enable = false;
+  # services.clipcat.enable = false;
+  # services.clipmenu.enable = false;
+  # services.colord.enable = false;
+  # services.confd.enable = false;
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
