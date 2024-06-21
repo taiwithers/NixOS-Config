@@ -138,6 +138,7 @@ in {
     unstable.zotero-beta
 
     shotman
+    cliphist
 
     # mucommander # ugly af but works, weird shortcuts
     flake-inputs.superfile.packages.${system}.default
