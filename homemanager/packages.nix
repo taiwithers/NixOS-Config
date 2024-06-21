@@ -137,8 +137,6 @@ in {
     zoom-us
     unstable.zotero-beta
 
-    shotman
-    cliphist
 
     # mucommander # ugly af but works, weird shortcuts
     flake-inputs.superfile.packages.${system}.default
@@ -160,7 +158,9 @@ in {
     waybar
     # socat
 
-    grim
+    cliphist # https://github.com/sentriz/cliphist?tab=readme-ov-file#listen-for-clipboard-changes
+    shotman # screenshots when on wayland compositor
+    # grim
     slurp
     wl-clipboard
     swappy

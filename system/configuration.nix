@@ -82,13 +82,13 @@
 
   # sound
   sound.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  # };
 
   # user account
   users.users.tai = {
@@ -113,16 +113,7 @@
   environment.pathsToLink = ["/share/zsh"]; # for zsh completion
   programs.hyprland.enable = true;
   # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gdk]; # add in when switching to hyprland
-  
-  # potentially interesting:
-  # services.autosuspend.enable = false;
-  # services.ayatana-indicators.enable = false;
-  # services.blueman.enable = false;
-  # services.clipcat.enable = false;
-  # services.clipmenu.enable = false;
-  # services.colord.enable = false;
-  # services.confd.enable = false;
-
+  programs.light.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
