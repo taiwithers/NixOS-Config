@@ -86,6 +86,7 @@ in {
     openssh
     pandoc
     parallel
+    unstable.pistol
     pomodoro
     python3
     rename
