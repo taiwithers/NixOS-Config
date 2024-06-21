@@ -21,7 +21,7 @@ in {
       "--margin 5%"
       "--info inline"
       "--tabstop 4"
-      "--preview-window 'border sharp'"
+      "--preview-window border-sharp"
     ];
 
     # alt-c
