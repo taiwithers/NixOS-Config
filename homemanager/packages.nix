@@ -137,6 +137,8 @@ in {
     zoom-us
     unstable.zotero-beta
 
+    shotman
+
     # mucommander # ugly af but works, weird shortcuts
     flake-inputs.superfile.packages.${system}.default
 
