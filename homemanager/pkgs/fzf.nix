@@ -5,35 +5,35 @@
   ...
 }: let
   fzfThemeDirectory = "${config.xdg.configHome}/fzf-themes/";
+  fzfDefaultOptions = [
+    "--layout reverse"
+    "--height ~60%"
+    "--border sharp"
+    "--margin 0,3%"
+    "--info inline"
+    "--tabstop 4"
+  ];
   previewFile = "${config.xdg.configHome}/fzf-preview.sh";
+  fzfPreviewOptions = ["--preview '${previewFile} {}'" "--preview-window border-sharp"];
 in {
   programs.fzf = rec {
     enable = true;
     colors = {};
 
     # typing "fzf" as a command
-    defaultCommand = "fd --type f";
-    defaultOptions = [
-      "--layout reverse"
-      "--height ~60%"
-      "--border sharp"
-      "--preview '${previewFile} {}'"
-      "--margin 0,3%"
-      "--info inline"
-      "--tabstop 4"
-      "--preview-window border-sharp"
-    ];
+    defaultCommand = "fd --type file --type symlink";
+    defaultOptions = fzfDefaultOptions ++ fzfPreviewOptions;
 
     # alt-c
-    changeDirWidgetCommand = "";
-    changeDirWidgetOptions = [];
+    changeDirWidgetCommand = "fd --type directory";
+    changeDirWidgetOptions = fzfDefaultOptions;
 
     # ctrl-t
     fileWidgetCommand = defaultCommand;
     fileWidgetOptions = defaultOptions;
 
     # ctrl-r
-    historyWidgetOptions = defaultOptions;
+    historyWidgetOptions = fzfDefaultOptions;
   };
 
   xdg.configFile."${previewFile}".source = pkgs.fetchurl {
