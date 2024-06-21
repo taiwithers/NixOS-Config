@@ -14,7 +14,7 @@ in {
     # typing "fzf" as a command
     defaultCommand = "fd --type f";
     defaultOptions = [
-      "--layout reverse"
+      # "--layout reverse"
       "--height ~60%"
       "--border sharp"
       "--preview '${previewFile} {}'"
