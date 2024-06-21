@@ -36,7 +36,11 @@ in {
     historyWidgetOptions = defaultOptions;
   };
 
-  xdg.configFile."${previewFile}".source = builtins.fetchurl "https://raw.githubusercontent.com/junegunn/fzf/master/bin/fzf-preview.sh";
+  xdg.configFile."${previewFile}".source = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/junegunn/fzf/master/bin/fzf-preview.sh";
+    sha256 = "FwvZj1lwc08ir23XOehB34giidd5/tyjVYHdA8TUTQE=";
+    executable = true;
+  };
 
   # download all base 16 themes to fzf theme directory
   xdg.configFile."${fzfThemeDirectory}".source = pkgs.fetchFromGitHub {
@@ -46,14 +50,15 @@ in {
     hash = "sha256-Lo5++1pOD9i62ahI3Ta2s/F/U80LXOu0sWMLUng3GbQ=";
   };
 
-  programs.bash.bashrcExtra = let
-    getThemePath = name: "${fzfThemeDirectory}/sh/base16-${name}.sh";
-    fzfThemeName = theme-config.selectAvailableTheme getThemePath;
-  in
-    (
+  programs.bash.bashrcExtra =
+    let
+      getThemePath = name: "${fzfThemeDirectory}/sh/base16-${name}.sh";
+      fzfThemeName = theme-config.selectAvailableTheme getThemePath;
+    in (
       if (builtins.stringLength fzfThemeName) == 0
       then ""
       else "source ${getThemePath fzfThemeName}"
     )
-    + "\nchmod +x ${previewFile}";
+    # + "\nchmod +x ${previewFile}"
+    ;
 }
