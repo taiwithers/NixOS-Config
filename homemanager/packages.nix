@@ -60,6 +60,7 @@ in {
     # bat # programs.bat.enable
     # blesh
     btop
+    chafa # cli images
     cloc
     conda
     curl
