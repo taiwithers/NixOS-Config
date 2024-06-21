@@ -49,9 +49,11 @@ in {
   programs.bash.bashrcExtra = let
     getThemePath = name: "${fzfThemeDirectory}/sh/base16-${name}.sh";
     fzfThemeName = theme-config.selectAvailableTheme getThemePath;
-  in (
-    if (builtins.stringLength fzfThemeName) == 0
-    then ""
-    else "source ${getThemePath fzfThemeName}"
-  );
+  in
+    (
+      if (builtins.stringLength fzfThemeName) == 0
+      then ""
+      else "source ${getThemePath fzfThemeName}"
+    )
+    + "\nchmod +x ${previewFile}";
 }
