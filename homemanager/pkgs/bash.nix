@@ -2,6 +2,7 @@
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
     bashrcExtra = ''
+      source ~/.profile
 
       # clean up ~
       export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
