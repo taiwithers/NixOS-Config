@@ -18,7 +18,7 @@ in {
     ];
   };
 
-  xdg.configFile.previewFile.source = builtins.fetchurl "https://raw.githubusercontent.com/junegunn/fzf/master/bin/fzf-preview.sh";
+  xdg.configFile."${previewFile}".source = builtins.fetchurl "https://raw.githubusercontent.com/junegunn/fzf/master/bin/fzf-preview.sh";
 
   # download all base 16 themes to fzf theme directory
   xdg.configFile."${fzfThemeDirectory}".source = pkgs.fetchFromGitHub {
