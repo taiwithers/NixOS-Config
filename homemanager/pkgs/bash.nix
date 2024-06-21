@@ -2,7 +2,7 @@
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
     bashrcExtra = ''
-      source ~/.profile
+      source ~/.profile # try to get home manager's session variables working
 
       # clean up ~
       export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
