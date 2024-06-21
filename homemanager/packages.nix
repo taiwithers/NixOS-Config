@@ -72,6 +72,7 @@ in {
     # eza # programs.eza.enable
     fastfetch
     fd
+    file
     fontconfig
     fzf
     gfortran
