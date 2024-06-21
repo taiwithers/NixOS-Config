@@ -19,7 +19,15 @@
     };
 
     # envExtra = "";
-    initExtra = "bindkey '$' autosuggest-accept";
+    
+    # zshrc
+    initExtra = ''
+      bindkey "\t" autosuggest-accept
+      bindkey "^[[H" beginning-of-line
+      bindkey "^[[F" end-of-line
+      bindkey "^[[F" vi-end-of-line
+
+    '';
     # initExtraBeforeCompInit = "";
     # initExtraFirst = "";
     # loginExtra = "";

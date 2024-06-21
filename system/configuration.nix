@@ -8,16 +8,11 @@
   # flake-inputs,
   ...
 }: {
-  programs.hyprland.enable = true;
-  # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk]; # add in when switching to hyprland, gnome adds this by default
-  # xdg.portal.enable = true;
-
   imports = [
     ./hardware-configuration.nix
     ./sops/sops.nix
   ];
 
-  # Bootloader.
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -35,93 +30,68 @@
     };
   };
 
-  nix = {
-    settings.experimental-features = ["nix-command" "flakes"];
-    settings.use-xdg-base-directories = true;
+  # use flakes
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
-    # hyprland
-    # settings.substituters = ["https://hyprland.cachix.org"];
-    # settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  # clean up $HOME (moves ~/.nix-* to $XDG_STATE_HOME/nix/*)
+  nix.settings.use-xdg-base-directories = true;
 
-    optimise = {
-      automatic = true;
-      dates = ["weekly"];
-    };
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 14d";
-    };
+  # keep system up to date
+  system.autoUpgrade = {
+    enable = true;
+    flags = ["--update-input" "nixpkgs" "--commit-lock-file"];
   };
 
-  networking = {
-    hostName = hostName; # hostname defined in flake.nix
-    networkmanager.enable = true;
+  # keep system clean :)
+  nix.optimise = {
+    automatic = true;
+    dates = ["weekly"];
   };
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
+  networking = {};
 
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  services = {
-    # Enable touchpad support (enabled default in most desktopManager).
-    libinput.enable = true;
-    libinput.touchpad = {
-      tappingButtonMap = "lrm";
-      tapping = true;
-      disableWhileTyping = true;
-      clickMethod = "clickfinger";
-    };
-    xserver = {
-      enable = true;
+  # touchpad
+  # services.libinput.enable = true; # enabled by default for most desktopManagers
 
-      # Enable the GNOME Desktop Environment.
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true; # comment this out to switch to hyprland
+  # GNOME
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.excludePackages = [pkgs.xterm];
+  services.dbus.packages = [pkgs.dconf];
+  environment.gnome.excludePackages = [pkgs.gnome-tour];
+  services.gnome.core-utilities.enable = false;
 
-      # Configure keymap in X11
-      xkb.layout = "us";
-      xkb.variant = "";
+  # KDE
+  # services.xserver.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
+  # services.displayManager.defaultSession = "plasma";
 
-      excludePackages = [pkgs.xterm];
+  # keyboard layout
+  services.xserver.xkb.layout = "us";
 
-      # displayManager.sddm.enable = true;
-      # displayManager = {
-      # autoLogin = {
-      #   enable = true;
-      #   user = "tai";
-      # };
-      # sddm = {
-      #   enable = true;
-      #   wayland.enable = true;
-      #   # autoNumlock = true;
-      # };
-      # };
-    };
-
-    gnome.core-shell.enable = true;
-    gnome.core-utilities.enable = false;
-    gnome.gnome-settings-daemon.enable = true;
-    printing.enable = true;
-    dbus.packages = [pkgs.dconf];
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-  };
-
-  # Enable sound with pipewire.
+  # sound
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
-  # enable this when on 24.05
-  # systemd.sysusers.enable = true; # create users with systemd-sysusers instead of a perl script
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # user account
   users.users.tai = {
     isNormalUser = true;
     description = "Tai";
@@ -131,30 +101,19 @@
     ];
   };
 
+  # system packages
   environment.systemPackages = with pkgs; [
     gedit
     gnome.gnome-terminal # always have an editor and terminal!
     git
   ];
-  environment.gnome.excludePackages = [pkgs.gnome-tour];
 
+  # program configurations
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
-
   environment.pathsToLink = ["/share/zsh"]; # for zsh completion
-
-  # flatpak https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
-  # services.flatpak.enable = true;
-  # xdg.portal.config.common.default = "gtk";
-
-  system.autoUpgrade = {
-    enable = true;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "--commit-lock-file"
-    ];
-  };
+  programs.hyprland.enable = true;
+  # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gdk]; # add in when switching to hyprland
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
