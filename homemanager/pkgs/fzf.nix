@@ -10,10 +10,10 @@ in {
   programs.fzf = {
     enable = true;
     defaultOptions = [
+      "--reverse"
       "--height=60%"
       "--border=sharp"
       "--preview '${previewFile} {}'"
-      "--reverse"
       # "--preint-query"
     ];
   };
