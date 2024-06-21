@@ -9,10 +9,11 @@
 in {
   programs.fzf = {
     enable = true;
+    defaultCommand = "fd --type f";
     defaultOptions = [
       "--reverse"
-      "--height=60%"
-      "--border=sharp"
+      "--height 60%"
+      "--border sharp"
       "--preview '${previewFile} {}'"
     ];
   };
