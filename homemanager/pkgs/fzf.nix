@@ -5,19 +5,20 @@
   ...
 }: let
   fzfThemeDirectory = "${config.xdg.configHome}/fzf-themes/";
+  previewFile = "${config.xdg.configHome}/fzf-preview.sh";
 in {
   programs.fzf = {
     enable = true;
     defaultOptions = [
       "--height=60%"
       "--border=sharp"
-      "--preview 'bat {}'"
+      "--preview '${previewFile} {}'"
       "--reverse"
       # "--preint-query"
     ];
   };
 
-  xdg.configFile."${config.xdg.configHome}/fzf-preview.sh".source = builtins.fetchurl "https://raw.githubusercontent.com/junegunn/fzf/master/bin/fzf-preview.sh";
+  xdg.configFile.previewFile.source = builtins.fetchurl "https://raw.githubusercontent.com/junegunn/fzf/master/bin/fzf-preview.sh";
 
   # download all base 16 themes to fzf theme directory
   xdg.configFile."${fzfThemeDirectory}".source = pkgs.fetchFromGitHub {
