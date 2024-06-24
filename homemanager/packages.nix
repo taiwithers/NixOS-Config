@@ -27,6 +27,18 @@
     "gaia"
     "starfetch"
   ];
+
+  installed-with-program-enable = with pkgs; [
+    # just noting here that these programs *are* installed
+    bash
+    bat
+    copyq
+    eza
+    fzf
+    git # also installed system-wide
+    starship
+    zsh
+  ];
 in {
   nixpkgs.config = pkgs-config;
   home.packages = with pkgs;
@@ -45,9 +57,6 @@ in {
 
       # cli programs
       age # encryption
-      # bash # programs.bash.enable
-      # bat # programs.bat.enable
-      # blesh
       brightnessctl
       bottom
       chafa # cli images
@@ -57,24 +66,18 @@ in {
       curl
       dconf
       dell-command-configure
-      # dotnet-runtime_7 # for gcm
       duf # view general info for entire system
       dust # view specific info for directories
-      # eza # programs.eza.enable
       fastfetch
       fd
       file
       fontconfig
-      # fzf # programs.fzf.enable
       gfortran
-      # git # programs.git.enable and configuration.nix
-      # git-credential-manager # git-credential-manager github login
       imv
       jq
       lazygit
       lua
       mpv
-      # oh-my-zsh
       onefetch
       openssh
       pandoc
@@ -86,9 +89,6 @@ in {
       ripgrep
       sd
       speedtest-rs
-      # (pkgs.callPackage ../derivations/starfetch.nix {})
-      # starship # programs.starship.enable
-      # sxiv
       unstable.tdf
       trashy
       unzip
@@ -98,20 +98,15 @@ in {
       zellij
       zip
       zoxide
-      # zsh # programs.zsh.enable
 
       # gui programs
-      # copyq # "installed" via services in copyq.nix
       discord
-      # (pkgs.callPackage ../derivations/ds9.nix {}) # build with nix-build --expr 'with import <nixpkgs> {}; callPackage ./ds9.nix {}'
-      # (pkgs.callPackage ../derivations/gaia.nix {}) # build with nix-build --expr 'with import <nixpkgs> {}; callPackage ./ds9.nix {}'
       filezilla
       github-desktop
       gnome-extension-manager
       gnome.file-roller
       gnome.gnome-screenshot
       gnome.gnome-tweaks
-      # gnome.gnome-settings-daemon
       gparted
       keepassxc
       libreoffice

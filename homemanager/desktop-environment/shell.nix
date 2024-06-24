@@ -13,7 +13,6 @@
     "ls" = "eza";
     "tree" = "eza --tree";
     "man" = "batman --no-hyphenation --no-justification";
-    "htop" = "echo 'Did you mean btm?'";
 
     # simplify commands
     "untar" = "tar -xvf";

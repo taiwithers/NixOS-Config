@@ -10,6 +10,7 @@
     map (fname: (import (./. + "/${fname}.nix") {inherit config pkgs theme-config;})) [
       "bat"
       "bash"
+      "bottom/bottom"
       "copyq/copyq"
       # dash-to-panel
       # dolphin
