@@ -89,7 +89,6 @@ in {
       ripgrep
       sd
       speedtest-rs
-      unstable.tdf
       trashy
       unzip
       vim
