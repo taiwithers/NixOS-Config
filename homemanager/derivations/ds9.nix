@@ -1,3 +1,4 @@
+# build with nix-build --expr 'with import <nixpkgs> {}; callPackage ./ds9.nix {}'
 {
   fetchzip,
   xorg,
@@ -25,8 +26,6 @@ in
       url = "https://ds9.si.edu/download/${distribution}/ds9.${distribution}.${version}.tar.gz";
       sha256 = "BFQfxIesSOCUI35mF5ADmV27TlO+WZvXjh1ULXcQlRA=";
     };
-
-    phases = ["unpackPhase" "installPhase" "fixupPhase"];
 
     buildInputs = [
       xorg.libX11.out

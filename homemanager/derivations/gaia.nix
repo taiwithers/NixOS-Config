@@ -22,8 +22,6 @@ in
       sha256 = "LDbPeKFntZT/2Flw3bX+TPkso8NihmezLyEL6h+YN20=";
     };
 
-    #phases = ["unpackPhase" "installPhase" "fixupPhase"];
-
     postInstall = ''
       # substituteInPlace $out/bin/gaia/gaia.sh \
       #                   --replace-warn "$HOME" "$XDG_CACHE_HOME"

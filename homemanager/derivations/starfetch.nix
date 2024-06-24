@@ -29,4 +29,9 @@ stdenv.mkDerivation rec {
     # move to output directory so correct makefile will be used
     cd $out
   '';
+
+  postBuild = ''
+    mkdir $out/bin
+    cp starfetch bin
+  '';
 }
