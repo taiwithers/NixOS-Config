@@ -48,17 +48,18 @@ in
                $out/bin/gaia/gaia_wish
     '';
 
-
     doInstallCheck = true;
 
-    desktopItems = [(
-            makeDesktopItem {
-              desktopName = "gaia";
-              name = "gaia";
-              exec = "gaia";
-              icon = "gaia_small_logo.gif";
-            })];
-
+    desktopItems = [
+      (
+        makeDesktopItem {
+          desktopName = "gaia";
+          name = "gaia";
+          exec = "gaia";
+          icon = "gaia_small_logo.gif";
+        }
+      )
+    ];
   }
 # no space:
 # nix-store --delete /nix/store/*-gaia-2023A

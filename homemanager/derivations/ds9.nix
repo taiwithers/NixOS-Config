@@ -46,5 +46,5 @@ in
       chmod 755 $out/bin/ds9
       patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
         --set-rpath ${libPath}   $out/bin/ds9
-    ''; 
+    '';
   }
