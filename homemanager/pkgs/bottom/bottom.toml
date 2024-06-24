@@ -5,7 +5,7 @@
 [flags]
 hide_avg_cpu = false # Whether to hide the average cpu entry.
 dot_marker = false # Whether to use dot markers rather than braille.
-rate = ".5s" # The update rate of the application.
+rate = "0.5s" # The update rate of the application.
 left_legend = false # Whether to put the CPU legend to the left.
 current_usage = false # Whether to set CPU% on a process to be based on the total CPU or just current usage.
 unnormalized_cpu = false # Whether to set CPU% on a process to be based on the total CPU or per-core CPU% (not divided by the number of cpus).
