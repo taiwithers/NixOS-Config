@@ -60,7 +60,7 @@ in {
     # bat # programs.bat.enable
     # blesh
     brightnessctl
-    btop
+    bottom
     chafa # cli images
     cloc
     cod # completion from --help
@@ -85,7 +85,8 @@ in {
     lazygit
     lua
     mpv
-    oh-my-zsh
+    # oh-my-zsh
+    onefetch
     openssh
     pandoc
     parallel
@@ -98,6 +99,7 @@ in {
     speedtest-rs
     # starship # programs.starship.enable
     # sxiv
+    unstable.tdf
     trashy
     unzip
     vim
@@ -138,7 +140,6 @@ in {
     zoom-us
     unstable.zotero-beta
 
-
     # mucommander # ugly af but works, weird shortcuts
     flake-inputs.superfile.packages.${system}.default
 
@@ -159,7 +160,8 @@ in {
     waybar
     # socat
 
-    cliphist # https://github.com/sentriz/cliphist?tab=readme-ov-file#listen-for-clipboard-changes
+    clipse
+    # cliphist # https://github.com/sentriz/cliphist?tab=readme-ov-file#listen-for-clipboard-changes
     shotman # screenshots when on wayland compositor
     # grim
     slurp
