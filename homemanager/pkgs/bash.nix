@@ -2,6 +2,7 @@
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
     bashrcExtra = ''
+      unset __HM_SESS_VARS_SOURCED
       source ~/.profile # try to get home manager's session variables working
 
       # clean up ~
