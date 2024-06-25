@@ -4,8 +4,8 @@
     bashrcExtra = ''
       source-secrets
 
-      unset __HM_SESS_VARS_SOURCED
-      source ~/.profile # try to get home manager's session variables working
+      # unset __HM_SESS_VARS_SOURCED
+      # source ~/.profile # try to get home manager's session variables working
 
       # clean up ~
       export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority

@@ -7,7 +7,7 @@
     bashScripts = "${config.xdg.configHome}/NixOS-Config/scripts";
   in {
     # use new programs
-    "grep" = "rg";
+    "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
     "du" = "echo 'Consider using dust instead'";
     "df" = "echo 'Consider using duf instead'";
     "ls" = "eza";
