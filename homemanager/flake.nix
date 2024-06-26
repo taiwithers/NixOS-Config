@@ -1,13 +1,6 @@
 {
   description = "Home Manager Configuration";
 
-  # extra-flakes = {
-  #   nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
-  #   nix-colors.url = "github:misterio77/nix-colors";
-  #   sops-nix.url = "github:Mic92/sops-nix";
-  #   superfile.url = "github:yorukot/superfile";
-  # };
-
   inputs = {
     # update on version change
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -18,7 +11,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # additional inputs
-    # nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
     # nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
   };
@@ -27,15 +19,8 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
-    # extra-flakes,
-    # nix-flatpak,
-    # nix-colors,
-    # superfile,
-    # vscode-server,
     ...
   } @ flake-inputs: let
-    user = "twithers";
-
     pkgs-config = {
       allowUnfreePredicate = pkg:
         builtins.elem (nixpkgs.lib.getName pkg) [
@@ -50,32 +35,32 @@
           "vscode-extension-ms-vscode-remote-remote-ssh"
           "zoom"
         ];
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
+      permittedInsecurePackages = ["openssl-1.1.1w"];
+    };
+
+    pkgs = import nixpkgs {
+      overlays = [
+        self: super: {
+          unstable = import nixpkgs-unstable {
+            system = builtins.currentSystem;
+            # this won't work in the pkgs declaration
+            # so pkgs-config gets applied in packages.nix
+            config = pkgs-config;
+          };
+        }
       ];
     };
-
-    unstable-overlay = self: super: {
-      unstable = import nixpkgs-unstable {
-        system = builtins.currentSystem;
-
-        # this won't work in the pkgs declaration
-        # so pkgs-config gets applied in packages.nix
-        config = pkgs-config;
-      };
-    };
-
-    pkgs = import nixpkgs {overlays = [unstable-overlay];};
+    nixpkgs.config = pkgs-config;
   in {
-    homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = {inherit flake-inputs user pkgs-config;};
+    homeConfigurations = {
+      "twithers" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {inherit flake-inputs user pkgs-config;};
 
-      modules = with flake-inputs; [
-        # nix-flatpak.homeManagerModules.default
-        # nix-colors.homeManagerModules.default
-        ./home.nix
-      ];
+        modules = with flake-inputs; [
+          ./home.nix
+        ];
+      };
     };
   };
 }
