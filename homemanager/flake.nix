@@ -40,14 +40,14 @@
 
     pkgs = import nixpkgs {
       overlays = [
-        self: super: {
-          unstable = import nixpkgs-unstable {
-            system = builtins.currentSystem;
-            # this won't work in the pkgs declaration
-            # so pkgs-config gets applied in packages.nix
-            config = pkgs-config;
-          };
-        }
+        (self: super: {
+                  unstable = import nixpkgs-unstable {
+                    system = builtins.currentSystem;
+                    # this won't work in the pkgs declaration
+                    # so pkgs-config gets applied in packages.nix
+                    config = pkgs-config;
+                  };
+                })
       ];
     };
     nixpkgs.config = pkgs-config;
