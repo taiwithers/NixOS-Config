@@ -19,7 +19,7 @@
 
     # additional inputs
     # nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
-    nix-colors.url = "github:misterio77/nix-colors";
+    # nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
   };
 
@@ -34,7 +34,7 @@
     # vscode-server,
     ...
   } @ flake-inputs: let
-    user = "tai";
+    user = "twithers";
 
     pkgs-config = {
       allowUnfreePredicate = pkg:
@@ -73,7 +73,7 @@
 
       modules = with flake-inputs; [
         # nix-flatpak.homeManagerModules.default
-        nix-colors.homeManagerModules.default
+        # nix-colors.homeManagerModules.default
         ./home.nix
       ];
     };

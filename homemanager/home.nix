@@ -9,7 +9,7 @@
   theme-config = rec {
     nix-colors = flake-inputs.nix-colors;
     # nix-colors-module = import nix-colors.homeManagerModules.default;
-    colour-palette = nix-colors.colorSchemes."${builtins.head names}".palette;
+    # colour-palette = nix-colors.colorSchemes."${builtins.head names}".palette;
     names = [
       "da-one-ocean" # dark vibrant
       "jabuti" # not available in nix-colors
@@ -23,10 +23,10 @@
       "zenbones" # orange/green/blue on black
     ];
 
-    app-themes = builtins.mapAttrs (appName: appTheme: nix-colors.colorSchemes."${appTheme}".palette) {
-      tilix = "da-one-ocean"; # change this once nix-colors supports base 24
-      superfile = "da-one-ocean";
-    };
+    # app-themes = builtins.mapAttrs (appName: appTheme: nix-colors.colorSchemes."${appTheme}".palette) {
+    #  tilix = "da-one-ocean"; # change this once nix-colors supports base 24
+    #   superfile = "da-one-ocean";
+    # };
 
     # function: select available theme
     selectAvailableTheme = functionGetThemePath: let
@@ -45,12 +45,16 @@
 in {
   imports = [
     # nix-flatpak.homeManagerModules.nix-flatpak
-    (import ./packages.nix {inherit pkgs pkgs-config flake-inputs;})
-    (import ./desktop-environment {inherit config pkgs;})
-    (import ./pkgs {inherit config pkgs theme-config;})
+    # (import ./packages.nix {inherit pkgs pkgs-config flake-inputs;})
+    # (import ./desktop-environment {inherit config pkgs;})
+    # (import ./pkgs {inherit config pkgs theme-config;})
   ];
 
   # systemd.user.enable = true;
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = ["nix-command" "flakes"];
+};
 
   home.username = user;
   home.homeDirectory = homeDirectory;
