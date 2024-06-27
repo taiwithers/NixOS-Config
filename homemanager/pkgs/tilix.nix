@@ -1,16 +1,12 @@
 {
   config,
   pkgs,
-  theme-config,
+  app-themes,
   ...
 }: let
-  # getThemePath = name: "${config.xdg.configHome}/tilix/schemes/tilix/base16-${name}.json";
-  # tilixTheme = getThemePath (theme-config.selectAvailableTheme getThemePath);
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   profileString = "2b7c4080-0ddd-46c5-8f23-563fd3ba789d";
-
   tilixThemeFile = "${config.xdg.configHome}/tilix/schemes/base16-theme.json";
-  colours = theme-config.app-themes.tilix;
 in {
   dconf.settings."com/gexperts/Tilix" = {
     control-scroll-zoom = true;
@@ -26,7 +22,7 @@ in {
     use-tabs = true;
   };
 
-  dconf.settings."com/gexperts/Tilix/profiles/${profileString}" =
+  dconf.settings."com/gexperts/Tilix/profiles/${profileString}" = with app-themes.palettes.tilix;
     # items here have priority
     {
       font = "SpaceMono Nerd Font 12";
@@ -38,32 +34,32 @@ in {
     }
     # https://github.com/karlding/base16-tilix/blob/master/templates/default.mustache
     // (builtins.fromJSON ''
-      {   "background-color": "#${colours.base00}",
-          "badge-color": "#${colours.base08}",
+      {   "background-color": "#${base00}",
+          "badge-color": "#${base08}",
           "comment": "",
-          "cursor-background-color": "#${colours.base04}",
-          "cursor-foreground-color": "#${colours.base04}",
-          "dim-color": "#${colours.base01}",
-          "foreground-color": "#${colours.base04}",
-          "highlight-background-color": "#${colours.base01}",
-          "highlight-foreground-color": "#${colours.base04}",
+          "cursor-background-color": "#${base04}",
+          "cursor-foreground-color": "#${base04}",
+          "dim-color": "#${base01}",
+          "foreground-color": "#${base04}",
+          "highlight-background-color": "#${base01}",
+          "highlight-foreground-color": "#${base04}",
           "name": "base16",
           "palette": [
-              "#${colours.base00}",
-              "#${colours.base08}",
-              "#${colours.base0B}",
-              "#${colours.base0A}",
-              "#${colours.base0D}",
-              "#${colours.base0E}",
-              "#${colours.base0C}",
-              "#${colours.base05}",
-              "#${colours.base03}",
-              "#${colours.base08}",
-              "#${colours.base0B}",
-              "#${colours.base0A}",
-              "#${colours.base0D}",
-              "#${colours.base0E}",
-              "#${colours.base0C}",
-              "#${colours.base07}"
+              "#${base00}",
+              "#${base08}",
+              "#${base0B}",
+              "#${base0A}",
+              "#${base0D}",
+              "#${base0E}",
+              "#${base0C}",
+              "#${base05}",
+              "#${base03}",
+              "#${base08}",
+              "#${base0B}",
+              "#${base0A}",
+              "#${base0D}",
+              "#${base0E}",
+              "#${base0C}",
+              "#${base07}"
           ]}'');
 }

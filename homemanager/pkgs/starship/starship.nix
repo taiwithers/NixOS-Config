@@ -1,6 +1,5 @@
 {
   config,
-  theme-config,
   ...
 }: let
   # colours = builtins.mapAttrs (name: value: "#" + value) theme-config.colours.palette;
@@ -13,6 +12,5 @@ in {
   programs.starship.enableZshIntegration = false;
   xdg.configFile."${config.xdg.configHome}/starship.toml" = {
     source = ./starship.toml;
-    # onChange = "/run/current-system/sw/bin/rsync --copy-links --chmod=u+rwx ${config.xdg.configHome}/starship.toml $GROUP_USERNAME@$GROUP_HOSTNAME:~/.config";
   };
 }

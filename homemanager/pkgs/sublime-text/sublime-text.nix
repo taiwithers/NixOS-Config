@@ -2,7 +2,7 @@
 {
   config,
   pkgs,
-  theme-config,
+  app-themes,
   ...
 }: let
   packagesPath = "${config.xdg.configHome}/sublime-text/Packages/User";
@@ -122,10 +122,7 @@ in {
   xdg.configFile."${packagesPath}/Default.sublime-theme".text = ''{"variables": {}, "rules": [] } '';
   xdg.configFile."${packagesPath}/Default.sublime-keymap".text = ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
   xdg.configFile."${packagesPath}/Preferences.sublime-settings".text = let
-    getThemePath = name: "${packagesPath}/tinted-sublime-text/base16-${name}.sublime-theme";
-    sublimeTheme = theme-config.selectAvailableTheme getThemePath;
-    getColourSchemePath = name: "${packagesPath}/tinted-sublime-text/color-schemes/base16-${name}.sublime-color-scheme";
-    sublimeColourScheme = theme-config.selectAvailableTheme getColourSchemePath;
+    sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.filenames.sublime-text}.sublime-color-scheme";
   in ''
     {
       "ignored_packages":
@@ -133,7 +130,7 @@ in {
         "Vintage",
       ],
       "font_size": 11,
-      "color_scheme": "base16-${sublimeColourScheme}.sublime-color-scheme",
+      "color_scheme": "${sublimeColourScheme}",
       "theme": "Adaptive.sublime-theme",
     }
   '';

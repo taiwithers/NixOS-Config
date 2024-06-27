@@ -1,10 +1,9 @@
 {
   config,
   pkgs,
-  theme-config,
+  app-themes,
   ...
 }: let
-  fzfThemeDirectory = "${config.xdg.configHome}/fzf-themes/";
   fzfDefaultOptions = [
     "--layout reverse"
     "--height ~60%"
@@ -42,23 +41,14 @@ in {
     executable = true;
   };
 
-  # download all base 16 themes to fzf theme directory
-  xdg.configFile."${fzfThemeDirectory}".source = pkgs.fetchFromGitHub {
-    owner = "tinted-theming";
-    repo = "tinted-fzf";
-    rev = "87368a6";
-    hash = "sha256-Lo5++1pOD9i62ahI3Ta2s/F/U80LXOu0sWMLUng3GbQ=";
-  };
-
-  programs.bash.bashrcExtra =
-    let
-      getThemePath = name: "${fzfThemeDirectory}/sh/base16-${name}.sh";
-      fzfThemeName = theme-config.selectAvailableTheme getThemePath;
-    in (
-      if (builtins.stringLength fzfThemeName) == 0
-      then ""
-      else "source ${getThemePath fzfThemeName}"
-    )
-    # + "\nchmod +x ${previewFile}"
-    ;
+  # source theme in bashrc
+  programs.bash.bashrcExtra = let
+    fzfThemes = pkgs.fetchFromGitHub {
+      owner = "tinted-theming";
+      repo = "tinted-fzf";
+      rev = "87368a6";
+      hash = "sha256-Lo5++1pOD9i62ahI3Ta2s/F/U80LXOu0sWMLUng3GbQ=";
+    };
+    themePath = "${fzfThemes}/sh/${app-themes.filenames.fzf}.sh";
+    in "source ${themePath}";
 }

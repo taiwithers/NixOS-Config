@@ -21,6 +21,7 @@
     # nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
     nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
+    arc.url = "github:arcnmx/nixexprs";
   };
 
   outputs = {
@@ -73,7 +74,7 @@
 
       modules = with flake-inputs; [
         # nix-flatpak.homeManagerModules.default
-        nix-colors.homeManagerModules.default
+        # nix-colors.homeManagerModules.default
         ./home.nix
       ];
     };

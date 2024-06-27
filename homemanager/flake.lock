@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "arc": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1719079655,
+        "narHash": "sha256-FsiySRMULRlNPfP7s/FRj/V6GI+Y4Te4xvUAniaLXqQ=",
+        "owner": "arcnmx",
+        "repo": "nixexprs",
+        "rev": "3b861e91acd3ea56d3eb26bf17f1d3e3acb5b304",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arcnmx",
+        "repo": "nixexprs",
+        "type": "github"
+      }
+    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -117,18 +135,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1718717462,
-        "narHash": "sha256-qddfQLMaWR2gxfEzUM/zFZVK6H1kTv9WBQSBQxbP3MU=",
-        "owner": "nixos",
+        "lastModified": 1683185507,
+        "narHash": "sha256-Wcj09pigMFgj+0borXeoJvVMwH2Rc4gkSq4BwNq3k7s=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "938aa157bbd6e3c6fd7dcb77998b1f92c2ad1631",
+        "rev": "63464b8c2837ec56e1d610f5bd2a9b8e1f532c07",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-24.05",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "type": "indirect"
       }
     },
     "nixpkgs-lib": {
@@ -164,6 +180,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1718717462,
+        "narHash": "sha256-qddfQLMaWR2gxfEzUM/zFZVK6H1kTv9WBQSBQxbP3MU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "938aa157bbd6e3c6fd7dcb77998b1f92c2ad1631",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1715534503,
         "narHash": "sha256-5ZSVkFadZbFP1THataCaSf0JH2cAH3S29hU9rrxTEqk=",
         "owner": "nixos",
@@ -180,9 +212,10 @@
     },
     "root": {
       "inputs": {
+        "arc": "arc",
         "home-manager": "home-manager",
         "nix-colors": "nix-colors",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "superfile": "superfile"
       }
@@ -192,7 +225,7 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "gomod2nix": "gomod2nix",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1718891961,

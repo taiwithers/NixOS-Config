@@ -3,11 +3,11 @@
   pkgs,
   # unstable-pkgs,
   # lib,
-  theme-config,
+  app-themes,
   ...
 }: {
   imports =
-    map (fname: (import (./. + "/${fname}.nix") {inherit config pkgs theme-config;})) [
+    map (fname: (import (./. + "/${fname}.nix") {inherit config pkgs app-themes;})) [
       "bat"
       "bash"
       "bottom/bottom"
@@ -25,7 +25,6 @@
       "gpg"
       # "hyprland/hyprland"
       "python/python"
-      # "sops/sops"
       "starship/starship"
       "sublime-text/sublime-text"
       "superfile/superfile"
@@ -34,10 +33,5 @@
       "zsh"
     ]
     ++ [
-      # (import ./bat {inherit pkgs;})
-      # (import ./copyq/copyq {inherit pkgs;})
-      # (import ./starship {inherit theme-config;})
-      # (import ./sublime-text {inherit config pkgs theme-config;})
-      # (import ./tilix {inherit config pkgs theme-config;})
     ];
 }
