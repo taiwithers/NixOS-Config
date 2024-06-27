@@ -23,6 +23,7 @@ in {
     secrets = {
       group_hostname.owner = local-username;
       group_username.owner = local-username;
+      github_api_pat = {};
     };
 
     templates."${source-script}" = {
@@ -33,6 +34,8 @@ in {
       '';
     };
   };
+
+  nix.extraOptions = "access-tokens = github.com=${builtins.readFile config.sops.secrets.github_api_pat.path}";
 
   environment.shellInit = "source ${source-path}";
   environment.shellAliases."source-secrets" = "source ${source-path}";
