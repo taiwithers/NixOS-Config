@@ -40,6 +40,7 @@ in {
     extraConfig = {
       credential.helper = "${homeDirectory}/miniconda3/envs/qstar-env/bin/gh auth git-credential";
       # credential.helper = "/usr/local/share/gcm-core/git-credential-manager-core";
+      gpg.format = "ssh";
       credential.credentialStore = "gpg";
       core.autocrlf = "input";
       filter.lfs = {
