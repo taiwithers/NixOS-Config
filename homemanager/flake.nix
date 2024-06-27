@@ -11,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # additional inputs
-    # nix-colors.url = "github:misterio77/nix-colors";
+    nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
   };
 
@@ -41,25 +41,21 @@
     pkgs = import nixpkgs {
       overlays = [
         (self: super: {
-                  unstable = import nixpkgs-unstable {
-                    system = builtins.currentSystem;
-                    # this won't work in the pkgs declaration
-                    # so pkgs-config gets applied in packages.nix
-                    config = pkgs-config;
-                  };
-                })
+          unstable = import nixpkgs-unstable {
+            system = builtins.currentSystem;
+            # putting nixpkgs.config = pkgs-config; in this file errors
+            # so pkgs-config gets applied in packages.nix
+            config = pkgs-config;
+          };
+        })
       ];
     };
-    nixpkgs.config = pkgs-config;
   in {
     homeConfigurations = {
       "twithers" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = {inherit flake-inputs user pkgs-config;};
-
-        modules = with flake-inputs; [
-          ./home.nix
-        ];
+        extraSpecialArgs = let user = "twithers"; in {inherit flake-inputs user pkgs-config;};
+        modules = with flake-inputs; [./group-home.nix];
       };
     };
   };
