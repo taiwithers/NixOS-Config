@@ -6,8 +6,8 @@
   programs.bash.bashrcExtra = ''
     # GAIA
     export STARLINK_DIR=$(dirname $(dirname $(readlink $(which starversion))))
-    shopt -u expand-aliases
+    shopt -u expand_aliases
     source $STARLINK_DIR/etc/profile
-    shopt -s expand-aliases
+    shopt -s expand_aliases
   '';
 }
