@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: let
+{config, ...}: let
   # colours = builtins.mapAttrs (name: value: "#" + value) theme-config.colours.palette;
 in {
   # style strings (not case sensitive)

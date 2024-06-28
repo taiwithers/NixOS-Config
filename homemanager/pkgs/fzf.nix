@@ -50,5 +50,5 @@ in {
       hash = "sha256-Lo5++1pOD9i62ahI3Ta2s/F/U80LXOu0sWMLUng3GbQ=";
     };
     themePath = "${fzfThemes}/sh/${app-themes.filenames.fzf}.sh";
-    in "source ${themePath}";
+  in "source ${themePath}";
 }

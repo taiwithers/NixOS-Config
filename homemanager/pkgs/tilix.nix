@@ -23,7 +23,7 @@ in {
   };
 
   dconf.settings."com/gexperts/Tilix/profiles/${profileString}" = with app-themes.palettes.tilix;
-    # items here have priority
+  # items here have priority
     {
       font = "SpaceMono Nerd Font 12";
       cursor-colors-set = true;
