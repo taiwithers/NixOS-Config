@@ -31,9 +31,6 @@
   # use flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # clean up $HOME (moves ~/.nix-* to $XDG_STATE_HOME/nix/*)
-  nix.settings.use-xdg-base-directories = true;
-
   # keep system up to date
   system.autoUpgrade = {
     enable = true;
@@ -51,9 +48,11 @@
     options = "--delete-older-than 14d";
   };
   nix.settings.auto-optimise-store = true;
+  # clean up $HOME (moves ~/.nix-* to $XDG_STATE_HOME/nix/*)
+  nix.settings.use-xdg-base-directories = true;
 
+  # networking
   networking.hostName = hostName;
-
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
 
@@ -109,6 +108,14 @@
     gnome.gnome-terminal # always have an editor and terminal!
     git
   ];
+
+  services.printing.enable = true;
+  # allow printing without downloading drivers, https://nixos.wiki/wiki/Printing
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
 
   # program configurations
   programs.vim.defaultEditor = true;

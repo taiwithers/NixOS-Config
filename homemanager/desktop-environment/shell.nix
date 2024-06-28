@@ -22,8 +22,6 @@
     "wget" = "wget --hsts-file=''$XDG_DATA_HOME/wget_hsts";
     "group" = "ssh -XY $GROUP_USERNAME@$GROUP_HOSTNAME";
     "groupscp" = "scp -r $GROUP_USERNAME@$GROUP_HOSTNAME";
-    "brighter" = "brightnessctl set +10%";
-    "dimmer" = "brightnessctl set '10%-'";
 
     # personal bash scripts -> move these to pkgs.writeShellScriptBin
     "rebuild" = "bash ${bashScripts}/rebuild.sh";

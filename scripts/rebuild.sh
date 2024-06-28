@@ -34,7 +34,7 @@ case $1 in
     # }
     directory=$directory_nixflake
     build() {
-      sudo nixos-rebuild switch --flake $directory_nixflake --show-trace &>$logfile || (cat $logfile | rg error && exit 1)
+      sudo nixos-rebuild switch --flake $directory_nixflake --show-trace --impure &>$logfile || (cat $logfile | rg error && exit 1)
       current=$(nixos-rebuild list-generations | rg current)
     }
 
