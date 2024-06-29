@@ -30,12 +30,12 @@
       surround.enable = true; # https://github.com/tpope/vim-surround/
       trim.enable = true; # https://github.com/cappyzawa/trim.nvim/
       undotree.enable = true; # https://github.com/mbbill/undotree/
-      # treesitter = {
-      #   enable = true;
-      #   ensureInstalled = ["python" "nix" "bash"];
-      #   folding = true;
-      #   indent = true;
-      # };
+      treesitter = {
+        enable = true;
+        ensureInstalled = ["python" "nix" "bash"];
+        folding = true;
+        indent = true;
+      };
       # treesitter-refactor.enable = true;
 
       # otter.enable = true; # https://github.com/jmbuhr/otter.nvim/
