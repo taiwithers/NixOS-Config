@@ -4,6 +4,7 @@
     defaultEditor = true;
     opts = {
       syntax = "off";
+      number = true;
     };
 
     plugins = {
@@ -28,11 +29,13 @@
 
       which-key.enable = true;
 
+      comment.enable = true; # https://github.com/numtostr/comment.nvim/
       multicursors.enable = true; # https://github.com/smoka7/multicursors.nvim
       statuscol.enable = true; # https://github.com/luukvbaal/statuscol.nvim/
       surround.enable = true; # https://github.com/tpope/vim-surround/
       trim.enable = true; # https://github.com/cappyzawa/trim.nvim/
       undotree.enable = true; # https://github.com/mbbill/undotree/
+      barbar.enable = true;
       treesitter = {
         enable = true;
         # folding = true;
