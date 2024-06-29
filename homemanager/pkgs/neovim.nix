@@ -17,6 +17,11 @@
         };
       };
       multicursors.enable = true; # https://github.com/smoka7/multicursors.nvim
+      nvim-tree = {
+        # https://github.com/nvim-tree/nvim-tree.lua
+        enable = true;
+        openOnSetup = true;
+      };
       # otter.enable = true; # https://github.com/jmbuhr/otter.nvim/
       statuscol.enable = true; # https://github.com/luukvbaal/statuscol.nvim/
       surround.enable = true; # https://github.com/tpope/vim-surround/
