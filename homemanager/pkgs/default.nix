@@ -24,6 +24,7 @@
       "gnome/gnome"
       "gpg"
       # "hyprland/hyprland"
+      "neovim"
       "python/python"
       "starship/starship"
       "sublime-text/sublime-text"
