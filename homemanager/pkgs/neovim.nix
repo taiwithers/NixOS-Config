@@ -35,7 +35,8 @@
       surround.enable = true; # https://github.com/tpope/vim-surround/
       trim.enable = true; # https://github.com/cappyzawa/trim.nvim/
       undotree.enable = true; # https://github.com/mbbill/undotree/
-      barbar.enable = true;
+      barbar.enable = true; # https://github.com/romgrk/barbar.nvim/
+      lualine.enable = true; # https://github.com/nvim-lualine/lualine.nvim
       treesitter = {
         enable = true;
         # folding = true;
