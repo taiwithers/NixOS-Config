@@ -35,7 +35,7 @@
       undotree.enable = true; # https://github.com/mbbill/undotree/
       treesitter = {
         enable = true;
-        folding = true;
+        # folding = true;
         indent = true;
 
         ensureInstalled = ["python" "nix" "bash"];
