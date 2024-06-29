@@ -2,6 +2,9 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
+    opts = {
+      syntax = "off";
+    };
 
     plugins = {
       fzf-lua.enable = true;
@@ -32,9 +35,13 @@
       undotree.enable = true; # https://github.com/mbbill/undotree/
       treesitter = {
         enable = true;
-        ensureInstalled = ["python" "nix" "bash"];
         folding = true;
         indent = true;
+
+        ensureInstalled = ["python" "nix" "bash"];
+        # disabledLanguages = [];
+        # grammarPackages = [];
+        # ignoreInstall = [];
       };
       # treesitter-refactor.enable = true;
 
