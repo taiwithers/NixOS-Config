@@ -2,10 +2,10 @@
   programs.nixvim = {
     enable = true;
     # plugins = {};
-    # extraPlugins = with pkgs.vimPlugins; [
-    #   lazygit-nvim
-    #   fzf-lua
-    # ];
+    extraPlugins = with pkgs.vimPlugins; [
+      lazygit-nvim
+      fzf-lua
+    ];
   };
   # programs.neovim = {
   #   enable = true;
