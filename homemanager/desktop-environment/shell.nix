@@ -29,6 +29,7 @@
     "search" = "bash ${bashScripts}/nix-search-wrapper.sh";
     "printscreen" = "bash ${bashScripts}/printscreen.sh";
     "gmv" = "bash ${bashScripts}/git-mv.sh";
+    "bright" = "bash ${bashScripts}/brightness-control.sh";
 
     # other hacks and fixes
     "clear" = "/run/current-system/sw/bin/clear"; # don't use ~/.conda/bin/clear which doesn't work outside conda-shell
