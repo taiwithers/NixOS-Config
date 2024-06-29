@@ -80,6 +80,7 @@
 in {
   imports = [
     # nix-flatpak.homeManagerModules.nix-flatpak
+    flake-inputs.nixvim.homeManagerModules.nixvim
     (import ./packages.nix {inherit pkgs pkgs-config flake-inputs;})
     (import ./desktop-environment {inherit config pkgs;})
     (import ./pkgs {inherit config pkgs app-themes;})

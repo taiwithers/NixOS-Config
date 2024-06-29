@@ -1,13 +1,6 @@
 {
   description = "Home Manager Configuration";
 
-  # extra-flakes = {
-  #   nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
-  #   nix-colors.url = "github:misterio77/nix-colors";
-  #   sops-nix.url = "github:Mic92/sops-nix";
-  #   superfile.url = "github:yorukot/superfile";
-  # };
-
   inputs = {
     # update on version change
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -22,6 +15,9 @@
     nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
     arc.url = "github:arcnmx/nixexprs";
+    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
+    # nixvim.url = "github:nix-community/nixvim";
+    # nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
