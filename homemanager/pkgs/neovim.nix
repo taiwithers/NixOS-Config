@@ -37,6 +37,7 @@
       undotree.enable = true; # https://github.com/mbbill/undotree/
       barbar.enable = true; # https://github.com/romgrk/barbar.nvim/
       lualine.enable = true; # https://github.com/nvim-lualine/lualine.nvim
+      barbecue.enable = true; # https://github.com/utilyre/barbecue.nvim
       treesitter = {
         enable = true;
         # folding = true;
