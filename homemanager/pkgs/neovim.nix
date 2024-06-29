@@ -16,24 +16,24 @@
           pylsp.enable = true;
         };
       };
-      multicursors.enable = true; # https://github.com/smoka7/multicursors.nvim
+      # multicursors.enable = true; # https://github.com/smoka7/multicursors.nvim
       nvim-tree = {
         # https://github.com/nvim-tree/nvim-tree.lua
         enable = true;
         openOnSetup = true;
       };
       # otter.enable = true; # https://github.com/jmbuhr/otter.nvim/
-      statuscol.enable = true; # https://github.com/luukvbaal/statuscol.nvim/
-      surround.enable = true; # https://github.com/tpope/vim-surround/
-      treesitter = {
-        enable = true;
-        ensureInstalled = ["python" "nix" "bash"];
-        folding = true;
-        indent = true;
-      };
-      treesitter-refactor.enable = true;
-      trim.enable = true; # https://github.com/cappyzawa/trim.nvim/
-      undotree.enable = true; # https://github.com/mbbill/undotree/
+      # statuscol.enable = true; # https://github.com/luukvbaal/statuscol.nvim/
+      # surround.enable = true; # https://github.com/tpope/vim-surround/
+      # treesitter = {
+      #   enable = true;
+      #   ensureInstalled = ["python" "nix" "bash"];
+      #   folding = true;
+      #   indent = true;
+      # };
+      # treesitter-refactor.enable = true;
+      # trim.enable = true; # https://github.com/cappyzawa/trim.nvim/
+      # undotree.enable = true; # https://github.com/mbbill/undotree/
       which-key.enable = true;
     };
 
