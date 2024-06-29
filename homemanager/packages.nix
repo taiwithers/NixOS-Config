@@ -114,7 +114,7 @@ in {
       obsidian
       onedrive
       onedrivegui
-      realvnc-vnc-viewer
+      # realvnc-vnc-viewer
       slack-dark
       sublime4
       teams-for-linux

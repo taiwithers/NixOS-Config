@@ -1,11 +1,38 @@
 {pkgs, ...}: {
   programs.nixvim = {
     enable = true;
-    # plugins = {};
-    extraPlugins = with pkgs.vimPlugins; [
-      lazygit-nvim
-      fzf-lua
-    ];
+    defaultEditor = true;
+
+    plugins = {
+      fzf-lua.enable = true;
+      lazygit.enable = true;
+      lsp = {
+        # neovim built-in lsp?
+        enable = true;
+        servers = {
+          bashls.enable = true;
+          jsonls.enable = true;
+          nixd.enable = true;
+          pylsp.enable = true;
+        };
+      };
+      multicursors.enable = true; # https://github.com/smoka7/multicursors.nvim
+      # otter.enable = true; # https://github.com/jmbuhr/otter.nvim/
+      statuscol.enable = true; # https://github.com/luukvbaal/statuscol.nvim/
+      surround.enable = true; # https://github.com/tpope/vim-surround/
+      treesitter = {
+        enable = true;
+        ensureInstalled = ["python" "nix" "bash"];
+        folding = true;
+        indent = true;
+      };
+      treesitter-refactor.enable = true;
+      trim.enable = true; # https://github.com/cappyzawa/trim.nvim/
+      undotree.enable = true; # https://github.com/mbbill/undotree/
+      which-key.enable = true;
+    };
+
+    clipboard.providers.wl-copy.enable = true;
   };
   # programs.neovim = {
   #   enable = true;
