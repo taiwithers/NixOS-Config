@@ -1,9 +1,11 @@
-{...}: {
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     extraConfig = "";
-    plugins = [];
+    plugins = with pkgs.vimPlugins; [
+      nvim-tree-lua
+    ];
 
     # extraLuaConfig = "";
     # extraPackages = [];
