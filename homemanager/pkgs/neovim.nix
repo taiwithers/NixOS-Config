@@ -26,8 +26,8 @@
       which-key.enable = true;
 
       multicursors.enable = true; # https://github.com/smoka7/multicursors.nvim
+      statuscol.enable = true; # https://github.com/luukvbaal/statuscol.nvim/
       # otter.enable = true; # https://github.com/jmbuhr/otter.nvim/
-      # statuscol.enable = true; # https://github.com/luukvbaal/statuscol.nvim/
       # surround.enable = true; # https://github.com/tpope/vim-surround/
       # treesitter = {
       #   enable = true;
