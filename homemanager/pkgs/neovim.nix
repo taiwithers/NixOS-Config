@@ -4,8 +4,9 @@
     defaultEditor = true;
     extraConfig = "";
     plugins = with pkgs.vimPlugins; [
-      nvim-tree-lua
-      telescope-nvim
+      # nvim-tree-lua
+      telescope-nvim # :Telescope find_files
+      nvim-whichkey-setup-lua
     ];
 
     # extraLuaConfig = "";
