@@ -5,6 +5,7 @@
     extraConfig = "";
     plugins = with pkgs.vimPlugins; [
       nvim-tree-lua
+      telescope-nvim
     ];
 
     # extraLuaConfig = "";
