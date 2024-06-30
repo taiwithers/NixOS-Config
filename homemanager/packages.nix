@@ -28,6 +28,14 @@
     "starfetch"
   ];
 
+  shell-scripts = builtins.attrValues (builtins.mapAttrs (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh)) {
+      get-package-dir = "get-package-dir";
+      rebuild = "rebuild";
+      search = "nix-search-wrapper";
+      gmv = "git-mv";
+      bright = "brightness-control";
+    });
+
   installed-with-program-enable = with pkgs; [
     # just noting here that these programs *are* installed
     bash
@@ -39,11 +47,13 @@
     starship
     zsh
   ];
+
 in {
   nixpkgs.config = pkgs-config;
-  home.packages = with pkgs;
-    [
-      # nix programs
+  home.packages = with pkgs; let 
+    zotero = unstable.zotero-beta;
+  in 
+    [# nix programs
       appimage-run
       alejandra
       dconf2nix
@@ -122,10 +132,10 @@ in {
       vivaldi
       vscodium-fhs
       zoom-us
-      unstable.zotero-beta
+      zotero
 
       # mucommander # ugly af but works, weird shortcuts
-      flake-inputs.superfile.packages.${system}.default
+      # flake-inputs.superfile.packages.${system}.default
 
       texlive-pkgs
 
@@ -152,5 +162,5 @@ in {
       wl-clipboard
       swappy
     ]
-    ++ custom-derivations;
+    ++ custom-derivations ++ shell-scripts;
 }

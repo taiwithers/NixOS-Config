@@ -24,6 +24,7 @@
       "git"
       "gnome/gnome"
       "gpg"
+      "lazygit"
       # "hyprland/hyprland"
       "neovim"
       "python/python"
