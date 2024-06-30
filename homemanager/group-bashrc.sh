@@ -1,25 +1,35 @@
+__nix_bin="~/.nix-profile/bin"
+if ! [[ "$PATH" =~ "$__nix_bin" ]]; then
+    export PATH="$__nix_bin:$PATH"
+fi
+unset __nix_bin
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 # ...and home-manager and myself
-__conda_setup="$('${homeDirectory}/.conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-condabin="${homeDirectory}/.conda/bin"
+__conda_path="/1-Data-Fast/miniforge3"
+__conda_setup="$("$__conda_path/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+__conda_profile="$__conda_path/etc/profile.d/conda.sh"
+__conda_bin="$__conda_path/bin"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "${homeDirectory}/.conda/etc/profile.d/conda.sh" ]; then
-    . "${homeDirectory}/.conda/etc/profile.d/conda.sh"
+    if [ -f "$__conda_profile" ]; then
+    . "$__conda_profile"
     else
-        if ! [[ $PATH =~ "$condabin" ]]; then
-        export PATH="$PATH:$condabin"
-    fi
+        if ! [[ "$PATH" =~ "$__conda_bin" ]]; then
+            export PATH="$PATH:$__conda_bin"
+        fi
     fi
 fi
+unset __conda_path
 unset __conda_setup
-unset condabin
+unset __conda_profile
+unset __conda_bin
 # <<< conda initialize <<<
 
 # mamba
-mamba activate qstar
+# mamba activate qstar
 export MAMBA_NO_BANNER=1
 
 # gaia
