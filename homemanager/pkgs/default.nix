@@ -20,7 +20,7 @@
       # forge
       "fzf"
       "gaia"
-      "git"
+      "common-git"
       "gnome/gnome"
       "gpg"
       # "hyprland/hyprland"
@@ -29,6 +29,7 @@
       "starship/starship"
       "sublime-text/sublime-text"
       "superfile/superfile"
+      "superfile/superfile-theme"
       "tilix"
       "vscodium/vscodium"
       "zsh"

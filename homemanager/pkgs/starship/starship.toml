@@ -26,13 +26,13 @@ continuation_prompt = " ❯ "
 [battery]
 	disabled = false
 	format = "| [$symbol$percentage]($style)"
-	
+
 	[[battery.display]]
 	threshold = 60
 	charging_symbol = "󰂉"
 	discharging_symbol = "󰁿"
 	style = "green"
-	
+
 	[[battery.display]]
 	threshold = 40
 	charging_symbol = "󰂇"
@@ -92,7 +92,7 @@ continuation_prompt = " ❯ "
 	added_style = "bold green" # style for number of added lines
 	deleted_style = "bold red" # style for number of deleted lines
 	only_nonzero_diffs = true
-	format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
+	format = '([+$added]($added_style))([-$deleted]($deleted_style) )'
 	ignore_submodules = true # ignore changes to submodules
 
 [git_status]
@@ -117,7 +117,7 @@ continuation_prompt = " ❯ "
 	ssh_only = true
 	ssh_symbol = "󰢹 "
 	trim_at = ""
-	format = "on [$ssh_symbol$hostname]($style) "
+	format = "[$ssh_symbol$hostname]($style) "
 	style = "bold dimmed green"
 
 [jobs]
@@ -162,7 +162,7 @@ continuation_prompt = " ❯ "
 	style = "bright-black"
 
 [username]
-	disabled = false
+	disabled = true
 	format = "[$user]($style) "
 	show_always = false # if false, only shows if: root, not same as login, in ssh
 	style_user = "red"

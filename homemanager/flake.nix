@@ -37,9 +37,7 @@
           "vscode-extension-ms-vscode-remote-remote-ssh"
           "zoom"
         ];
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
-      ];
+      permittedInsecurePackages = ["openssl-1.1.1w"];
     };
 
     pkgs = import nixpkgs {

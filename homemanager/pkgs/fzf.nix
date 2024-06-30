@@ -6,7 +6,7 @@
 }: let
   fzfDefaultOptions = [
     "--layout reverse"
-    "--height ~60%"
+    "--height '~60%'"
     "--border sharp"
     "--margin 0,3%"
     "--info inline"
