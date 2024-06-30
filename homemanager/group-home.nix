@@ -6,7 +6,20 @@
   pkgs-config,
   ...
 }: let
-  theme-config = import ./theme-config.nix {inherit (flake-inputs) nix-colors;};
+  app-themes = with (import ../scripts/theme-config.nix {
+        inherit pkgs;
+        inherit (flake-inputs) arc;
+      }); let
+      defaultTheme = "base16/da-one-ocean";
+    in {
+      palettes = makePaletteSet {
+        superfile = defaultTheme;
+      };
+      filenames = makePathSet {
+        fzf = defaultTheme;
+      };
+    };
+
   homeDirectory = "/home/${user}";
 in {
   imports = map (fname: import ./pkgs/${fname}.nix {inherit config pkgs theme-config;}) [
@@ -19,19 +32,19 @@ in {
     "bat"
     "lazygit"
   ];
-  home.packages = with pkgs; [
+  home.packages = with pkgs; let 
+    superfile = flake-inputs.superfile.packages.${system}.default;
+  in [
     alejandra
     bottom
     cod
     dust
     fastfetch
-    trashy
-    xdg-ninja
-    flake-inputs.superfile.packages.${system}.default
-
-    # new
     fd
     fzf
+    superfile
+    trashy
+    xdg-ninja
   ];
 
   programs.bash = {
