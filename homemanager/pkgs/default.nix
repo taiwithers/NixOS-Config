@@ -10,7 +10,7 @@
     map (fname: (import (./. + "/${fname}.nix") {inherit config pkgs app-themes;})) [
       "bat"
       "bash"
-      "bottom/bottom"
+      "bottom"
       "copyq/copyq"
       # dash-to-panel
       # dolphin
@@ -28,10 +28,9 @@
       # "hyprland/hyprland"
       "neovim"
       "python/python"
-      "starship/starship"
+      "starship"
       "sublime-text/sublime-text"
-      "superfile/superfile"
-      # "superfile/superfile-theme"
+      "superfile"
       "tilix"
       "vscodium/vscodium"
       "zsh"

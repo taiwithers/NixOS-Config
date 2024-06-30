@@ -1,11 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
-  home.shellAliases = let
-    bashScripts = "${config.xdg.configHome}/NixOS-Config/scripts";
-  in {
+{...}: {
+  home.shellAliases = {
     # use new programs
     "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
     "du" = "echo 'Consider using dust instead'";

@@ -1,9 +1,0 @@
-{
-	"ignored_packages":
-	[
-		"Vintage",
-	],
-	"font_size": 9,
-	"theme": "auto",
-	"color_scheme": "Packages/User/base16-textmate/Themes/base16-monokai.tmTheme",
-}

@@ -29,32 +29,34 @@
   ];
 
   shell-scripts = builtins.attrValues (builtins.mapAttrs (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh)) {
-      get-package-dir = "get-package-dir";
-      rebuild = "rebuild";
-      search = "nix-search-wrapper";
-      gmv = "git-mv";
-      bright = "brightness-control";
-    });
+    get-package-dir = "get-package-dir";
+    rebuild = "rebuild";
+    search = "nix-search-wrapper";
+    gmv = "git-mv";
+    bright = "brightness-control";
+  });
 
   installed-with-program-enable = with pkgs; [
     # just noting here that these programs *are* installed
     bash
     bat
+    bottom
     copyq
     eza
     fzf
     git # also installed system-wide
+    gpg
     starship
     zsh
   ];
-
 in {
   nixpkgs.config = pkgs-config;
-  home.packages = with pkgs; let 
+  home.packages = with pkgs; let
     zotero = unstable.zotero-beta;
     superfile = flake-inputs.superfile.packages.${system}.default;
-  in 
-    [# nix programs
+  in
+    [
+      # nix programs
       appimage-run
       alejandra
       dconf2nix
@@ -69,7 +71,6 @@ in {
       # cli programs
       age # encryption
       brightnessctl
-      bottom
       chafa # cli images
       cloc
       cod # completion from --help
@@ -136,7 +137,6 @@ in {
       zoom-us
       zotero
 
-
       texlive-pkgs
 
       # hyprland extras
@@ -162,5 +162,6 @@ in {
       wl-clipboard
       swappy
     ]
-    ++ custom-derivations ++ shell-scripts;
+    ++ custom-derivations
+    ++ shell-scripts;
 }

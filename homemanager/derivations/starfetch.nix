@@ -13,25 +13,33 @@ stdenv.mkDerivation rec {
     hash = "sha256-HQxtEdfV+nENmhCVyl/RdciQFSbMIMtJCr5eIV1nA4k=";
   };
 
-  preBuild = ''
-    # create (writable) output directory
-    mkdir --parents $out
+  preBuild =
+    /*
+    bash
+    */
+    ''
+      # create (writable) output directory
+      mkdir --parents $out
 
-    # create $BIN_DIR for makefile
-    mkdir --parents $out/local/bin
+      # create $BIN_DIR for makefile
+      mkdir --parents $out/local/bin
 
-    # copy source to output
-    cp --recursive --dereference $src/* $out/
+      # copy source to output
+      cp --recursive --dereference $src/* $out/
 
-    # patch files
-    substituteInPlace $(grep --recursive --files-with-matches "/usr" $out) --replace-fail "/usr" "$out"
+      # patch files
+      substituteInPlace $(grep --recursive --files-with-matches "/usr" $out) --replace-fail "/usr" "$out"
 
-    # move to output directory so correct makefile will be used
-    cd $out
-  '';
+      # move to output directory so correct makefile will be used
+      cd $out
+    '';
 
-  postBuild = ''
-    mkdir $out/bin
-    cp starfetch bin
-  '';
+  postBuild =
+    /*
+    bash
+    */
+    ''
+      mkdir $out/bin
+      cp starfetch bin
+    '';
 }

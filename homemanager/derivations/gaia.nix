@@ -22,11 +22,15 @@ in
       sha256 = "LDbPeKFntZT/2Flw3bX+TPkso8NihmezLyEL6h+YN20=";
     };
 
-    postInstall = ''
-      # substituteInPlace $out/bin/gaia/gaia.sh \
-      #                   --replace-warn "$HOME" "$XDG_CACHE_HOME"
-      sed --in-place 's/\$HOME/\$XDG_CACHE_HOME/g' $out/bin/gaia/gaia.sh
-    '';
+    postInstall =
+      /*
+      bash
+      */
+      ''
+        # substituteInPlace $out/bin/gaia/gaia.sh \
+        #                   --replace-warn "$HOME" "$XDG_CACHE_HOME"
+        sed --in-place 's/\$HOME/\$XDG_CACHE_HOME/g' $out/bin/gaia/gaia.sh
+      '';
 
     installPhase = ''
       runHook preInstall

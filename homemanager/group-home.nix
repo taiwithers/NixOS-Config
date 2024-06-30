@@ -7,36 +7,35 @@
   ...
 }: let
   app-themes = with (import ../scripts/theme-config.nix {
-        inherit pkgs;
-        inherit (flake-inputs) arc;
-      }); let
-      defaultTheme = "base16/da-one-ocean";
-    in {
-      palettes = makePaletteSet {
-        superfile = defaultTheme;
-      };
-      filenames = makePathSet {
-        fzf = defaultTheme;
-      };
+    inherit pkgs;
+    inherit (flake-inputs) arc;
+  }); let
+    defaultTheme = "base16/da-one-ocean";
+  in {
+    palettes = makePaletteSet {
+      superfile = defaultTheme;
     };
+    filenames = makePathSet {
+      fzf = defaultTheme;
+    };
+  };
 
   homeDirectory = "/home/${user}";
 in {
   imports = map (fname: import ./pkgs/${fname}.nix {inherit config pkgs theme-config;}) [
-    "bottom/bottom"
-    "starship/starship"
-    "superfile/superfile"
+    "bottom"
+    "starship"
+    "superfile"
     "eza"
     "fzf"
     "common-git"
     "bat"
     "lazygit"
   ];
-  home.packages = with pkgs; let 
+  home.packages = with pkgs; let
     superfile = flake-inputs.superfile.packages.${system}.default;
   in [
     alejandra
-    bottom
     cod
     dust
     fastfetch
@@ -82,12 +81,6 @@ in {
     "untar" = "tar -xvf";
     "confdir" = "cd ~/.config/NixOS-Config";
     "dust" = "dust --reverse";
-
-    # personal bash scripts -> move these to pkgs.writeShellScriptBin
-    "rebuild" = "bash ${bashScripts}/rebuild.sh";
-    "get-package-dir" = "bash ${bashScripts}/get-package-dir.sh";
-    "search" = "bash ${bashScripts}/nix-search-wrapper.sh";
-    "gmv" = "bash ${bashScripts}/git-mv.sh";
   };
 
   nixpkgs.config = pkgs-config;

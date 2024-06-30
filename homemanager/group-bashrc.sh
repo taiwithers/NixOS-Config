@@ -8,9 +8,9 @@ unset __nix_bin
 # !! Contents within this block are managed by 'conda init' !!
 # ...and home-manager and myself
 __conda_path="/1-Data-Fast/miniforge3"
-__conda_setup="$("$__conda_path/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
-__conda_profile="$__conda_path/etc/profile.d/conda.sh"
 __conda_bin="$__conda_path/bin"
+__conda_setup="$("$__conda_bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+__conda_profile="$__conda_path/etc/profile.d/conda.sh"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else

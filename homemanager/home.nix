@@ -7,9 +7,9 @@
   ...
 }: let
   app-themes = with (import ../scripts/theme-config.nix {
-      inherit pkgs;
-      inherit (flake-inputs) arc;
-    }); let
+    inherit pkgs;
+    inherit (flake-inputs) arc;
+  }); let
     defaultTheme = "base16/da-one-ocean";
   in {
     palettes = makePaletteSet {

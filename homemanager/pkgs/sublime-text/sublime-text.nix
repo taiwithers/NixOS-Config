@@ -119,11 +119,11 @@ in {
     }
   '';
 
-  xdg.configFile."${packagesPath}/Default.sublime-theme".text = ''{"variables": {}, "rules": [] } '';
-  xdg.configFile."${packagesPath}/Default.sublime-keymap".text = ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
+  xdg.configFile."${packagesPath}/Default.sublime-theme".text = /* JSON */ ''{"variables": {}, "rules": [] } '';
+  xdg.configFile."${packagesPath}/Default.sublime-keymap".text = /* JSON */ ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
   xdg.configFile."${packagesPath}/Preferences.sublime-settings".text = let
     sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.filenames.sublime-text}.sublime-color-scheme";
-  in ''
+  in /* JSON */ ''
     {
       "ignored_packages":
       [

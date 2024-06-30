@@ -1,4 +1,5 @@
-nix-colors: with (import nix-colors.homeManagerModules.default {}); rec {
+nix-colors:
+with (import nix-colors.homeManagerModules.default {}); rec {
   # nix-colors-module = import ;
   colour-palette = nix-colors.colorSchemes."${builtins.head names}".palette;
   names = [
