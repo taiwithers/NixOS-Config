@@ -11,28 +11,18 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # additional inputs
-    # nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
     nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
     arc.url = "github:arcnmx/nixexprs";
     nixvim.url = "github:nix-community/nixvim/nixos-24.05";
-    # nixvim.url = "github:nix-community/nixvim";
-    # nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
-    # extra-flakes,
-    # nix-flatpak,
-    # nix-colors,
-    # superfile,
-    # vscode-server,
     ...
   } @ flake-inputs: let
-    user = "tai";
-
     pkgs-config = {
       allowUnfreePredicate = pkg:
         builtins.elem (nixpkgs.lib.getName pkg) [
@@ -52,27 +42,30 @@
       ];
     };
 
-    unstable-overlay = self: super: {
-      unstable = import nixpkgs-unstable {
-        system = builtins.currentSystem;
-
-        # this won't work in the pkgs declaration
-        # so pkgs-config gets applied in packages.nix
-        config = pkgs-config;
-      };
-    };
-
-    pkgs = import nixpkgs {overlays = [unstable-overlay];};
-  in {
-    homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = {inherit flake-inputs user pkgs-config;};
-
-      modules = with flake-inputs; [
-        # nix-flatpak.homeManagerModules.default
-        # nix-colors.homeManagerModules.default
-        ./home.nix
+    pkgs = import nixpkgs {
+      overlays = [
+        (self: super: {
+          unstable = import nixpkgs-unstable {
+            system = builtins.currentSystem;
+            # putting nixpkgs.config = pkgs-config; in this file errors
+            # so pkgs-config gets applied in packages.nix
+            config = pkgs-config;
+          };
+        })
       ];
+    };
+  in {
+    homeConfigurations = {
+      "tai" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = let user = "tai"; in {inherit flake-inputs user pkgs-config;};
+        modules = with flake-inputs; [./home.nix];
+      };
+      "twithers" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = let user = "twithers"; in {inherit flake-inputs user pkgs-config;};
+        modules = with flake-inputs; [./group-home.nix];
+      };
     };
   };
 }
