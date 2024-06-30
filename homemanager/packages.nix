@@ -52,6 +52,7 @@ in {
   nixpkgs.config = pkgs-config;
   home.packages = with pkgs; let 
     zotero = unstable.zotero-beta;
+    superfile = flake-inputs.superfile.packages.${system}.default;
   in 
     [# nix programs
       appimage-run
@@ -127,6 +128,7 @@ in {
       # realvnc-vnc-viewer
       slack-dark
       sublime4
+      superfile
       teams-for-linux
       tilix
       vivaldi
@@ -134,8 +136,6 @@ in {
       zoom-us
       zotero
 
-      # mucommander # ugly af but works, weird shortcuts
-      # flake-inputs.superfile.packages.${system}.default
 
       texlive-pkgs
 
