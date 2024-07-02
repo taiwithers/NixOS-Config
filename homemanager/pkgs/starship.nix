@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # style strings (not case sensitive)
   # bold, italic, underline, dimmed, inverted, blink, hidden, strikethrough, <color>, fg:<color>, bg:<color>, none
   # colors: black, red, green, blue, yellow, purple, cyan, white, bright-<any of previous>,; #hexcode, 0-255 ANSI code
@@ -95,7 +96,10 @@
         format = "on [$symbol $branch(:$remote_branch)]($style) ";
         symbol = "";
         style = "bright-purple";
-        ignore_branches = ["master" "main"];
+        ignore_branches = [
+          "master"
+          "main"
+        ];
       };
       git_metrics = {
         disabled = false;

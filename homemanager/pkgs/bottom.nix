@@ -1,10 +1,11 @@
-{config, ...}: {
-  home.shellAliases = {"htop" = "echo 'Did you mean btm?'";};
+{ config, ... }:
+{
+  home.shellAliases = {
+    "htop" = "echo 'Did you mean btm?'";
+  };
   programs.bottom.enable = true;
   xdg.configFile."${config.xdg.configHome}/bottom/bottom.toml".text =
-    /*
-    TOML
-    */
+    # TOML
     ''
         # This group of options represents a command-line flag/option.  Flags explicitly
       # added when running (ie: btm -a) will override this config file if an option

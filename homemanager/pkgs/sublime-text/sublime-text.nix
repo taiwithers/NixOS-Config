@@ -4,7 +4,8 @@
   pkgs,
   app-themes,
   ...
-}: let
+}:
+let
   packagesPath = "${config.xdg.configHome}/sublime-text/Packages/User";
   packages = [
     {
@@ -29,7 +30,7 @@
       function = pkgs.fetchFromGitHub;
       owner = "titoBouzout";
       repo = "SideBarEnhancements";
-      rev = "12.0.4"; #
+      rev = "12.0.4";
       hash = "sha256-FzhC691BQI5XnYfMHft39Wz1Mu+AYvegfrF0VPwRRxE="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
     {
@@ -85,17 +86,22 @@
     # 	hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";  # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     # }
   ];
-in {
+in
+{
   # download packages to .config/ST/Packages/User
-  home.file = builtins.listToAttrs (map (package: {
-      name = "${packagesPath}/${
-        if builtins.hasAttr "repo" package
-        then package.repo
-        else package.name
-      }";
-      value = {source = package.function (builtins.removeAttrs package ["function" "name"]);};
-    })
-    packages);
+  home.file = builtins.listToAttrs (
+    map (package: {
+      name = "${packagesPath}/${if builtins.hasAttr "repo" package then package.repo else package.name}";
+      value = {
+        source = package.function (
+          builtins.removeAttrs package [
+            "function"
+            "name"
+          ]
+        );
+      };
+    }) packages
+  );
 
   # download Package Control.sublime-package to .config/ST/Installed Packages/
   xdg.configFile."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package" = {
@@ -111,30 +117,25 @@ in {
     {
       "bootstrapped": true,
       "installed_packages": [
-      	${builtins.concatStringsSep ",\n\t" (
-      map (name: "\"${name}\"") (builtins.catAttrs "name" packages)
-    )}
+      	${
+         builtins.concatStringsSep ",\n\t" (map (name: "\"${name}\"") (builtins.catAttrs "name" packages))
+       }
         ],
       "in_process_packages": [],
     }
   '';
 
   xdg.configFile."${packagesPath}/Default.sublime-theme".text =
-    /*
-    JSON
-    */
+    # JSON
     ''{"variables": {}, "rules": [] } '';
   xdg.configFile."${packagesPath}/Default.sublime-keymap".text =
-    /*
-    JSON
-    */
+    # JSON
     ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
-  xdg.configFile."${packagesPath}/Preferences.sublime-settings".text = let
-    sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.filenames.sublime-text}.sublime-color-scheme";
-  in
-    /*
-    JSON
-    */
+  xdg.configFile."${packagesPath}/Preferences.sublime-settings".text =
+    let
+      sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.filenames.sublime-text}.sublime-color-scheme";
+    in
+    # JSON
     ''
       {
         "ignored_packages":

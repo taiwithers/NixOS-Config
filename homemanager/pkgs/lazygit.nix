@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.lazygit = {
     enable = true;
     settings = {
@@ -11,5 +12,7 @@
       promptToReturnFromSubprocess = false;
     };
   };
-  home.shellAliases = {lg = "lazygit";};
+  home.shellAliases = {
+    lg = "lazygit";
+  };
 }

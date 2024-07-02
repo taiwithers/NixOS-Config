@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -44,8 +45,15 @@
         # folding = true;
         indent = true;
 
-        ensureInstalled = ["python" "nix" "bash"];
-        disabledLanguages = ["ada" "agda"];
+        ensureInstalled = [
+          "python"
+          "nix"
+          "bash"
+        ];
+        disabledLanguages = [
+          "ada"
+          "agda"
+        ];
         # grammarPackages = [];
         # ignoreInstall = [];
       };

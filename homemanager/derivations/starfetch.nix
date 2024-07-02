@@ -1,7 +1,4 @@
-{
-  fetchFromGitHub,
-  stdenv,
-}:
+{ fetchFromGitHub, stdenv }:
 stdenv.mkDerivation rec {
   pname = "starfetch";
   version = "d0aab03";
@@ -14,9 +11,7 @@ stdenv.mkDerivation rec {
   };
 
   preBuild =
-    /*
-    bash
-    */
+    # bash
     ''
       # create (writable) output directory
       mkdir --parents $out
@@ -35,9 +30,7 @@ stdenv.mkDerivation rec {
     '';
 
   postBuild =
-    /*
-    bash
-    */
+    # bash
     ''
       mkdir $out/bin
       cp starfetch bin

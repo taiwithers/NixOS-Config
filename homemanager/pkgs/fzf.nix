@@ -3,7 +3,8 @@
   pkgs,
   app-themes,
   ...
-}: let
+}:
+let
   fzfDefaultOptions = [
     "--layout reverse"
     "--height '~60%'"
@@ -13,11 +14,15 @@
     "--tabstop 4"
   ];
   previewFile = "${config.xdg.configHome}/fzf-preview.sh";
-  fzfPreviewOptions = ["--preview '${previewFile} {}'" "--preview-window border-sharp"];
-in {
+  fzfPreviewOptions = [
+    "--preview '${previewFile} {}'"
+    "--preview-window border-sharp"
+  ];
+in
+{
   programs.fzf = rec {
     enable = true;
-    colors = {};
+    colors = { };
 
     # typing "fzf" as a command
     defaultCommand = "fd --type file --type symlink";
@@ -42,13 +47,15 @@ in {
   };
 
   # source theme in bashrc
-  programs.bash.bashrcExtra = let
-    fzfThemes = pkgs.fetchFromGitHub {
-      owner = "tinted-theming";
-      repo = "tinted-fzf";
-      rev = "87368a6";
-      hash = "sha256-Lo5++1pOD9i62ahI3Ta2s/F/U80LXOu0sWMLUng3GbQ=";
-    };
-    themePath = "${fzfThemes}/sh/${app-themes.filenames.fzf}.sh";
-  in "source ${themePath}";
+  programs.bash.bashrcExtra =
+    let
+      fzfThemes = pkgs.fetchFromGitHub {
+        owner = "tinted-theming";
+        repo = "tinted-fzf";
+        rev = "87368a6";
+        hash = "sha256-Lo5++1pOD9i62ahI3Ta2s/F/U80LXOu0sWMLUng3GbQ=";
+      };
+      themePath = "${fzfThemes}/sh/${app-themes.filenames.fzf}.sh";
+    in
+    "source ${themePath}";
 }

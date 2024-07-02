@@ -1,13 +1,11 @@
-{
-  config,
-  app-themes,
-  ...
-}: let
+{ config, app-themes, ... }:
+let
   spfDir = "${config.xdg.configHome}/superfile";
   chroma-highlighting-theme = "vulcan";
-  # base16-snazzy, catppuccin-mocha, gruvbox, monokai, vulcan
-  # https://github.com/alecthomas/chroma/tree/master/styles
-in {
+in
+# base16-snazzy, catppuccin-mocha, gruvbox, monokai, vulcan
+# https://github.com/alecthomas/chroma/tree/master/styles
+{
   programs.bash.bashrcExtra = ''
     spf() {
         os=$(uname -s)
@@ -32,9 +30,7 @@ in {
   '';
 
   xdg.configFile."${spfDir}/config.toml".text =
-    /*
-    TOML
-    */
+    # TOML
     ''
       # More details are at https://superfile.netlify.app/configure/superfile-config/
 
@@ -76,9 +72,7 @@ in {
     '';
 
   xdg.configFile."${spfDir}/hotkeys.toml".text =
-    /*
-    TOML
-    */
+    # TOML
     ''
       # =================================================================================================
       # Global hotkeys (cannot conflict with other hotkeys)
@@ -135,10 +129,9 @@ in {
       file_panel_select_all_items = ['A', \'\']
     '';
 
-  xdg.configFile."${spfDir}/theme/base16.toml".text = with app-themes.palettes.superfile;
-  /*
-  TOML
-  */
+  xdg.configFile."${spfDir}/theme/base16.toml".text =
+    with app-themes.palettes.superfile;
+    # TOML
     ''
       code_syntax_highlight = "${chroma-highlighting-theme}"
 

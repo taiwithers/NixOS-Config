@@ -1,11 +1,14 @@
 # powerprofilesctl get/list/set
-{...}: {
+{ ... }:
+{
   imports = [
     ./gnome-extensions.nix
     ./gnome-keybinds.nix
   ];
   dconf.settings = {
-    "org/gtk/settings/file-chooser" = {clock-format = "12h";};
+    "org/gtk/settings/file-chooser" = {
+      clock-format = "12h";
+    };
 
     "org/gnome/desktop/interface" = {
       show-battery-percentage = true;
