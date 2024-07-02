@@ -7,25 +7,29 @@
     enable = true;
     enableZshIntegration = false;
     settings = {
-      format = "$" + builtins.concatStringsSep "$" [
-              "username"
-              "hostname"
-              "conda"
-              "directory"
-              "git_branch"
-              "git_state"
-              "git_metrics"
-              "jobs"
-              "nix_shell"
-              "character"
-            ];
+      format =
+        "$"
+        + builtins.concatStringsSep "$" [
+          "username"
+          "hostname"
+          "conda"
+          "directory"
+          "git_branch"
+          "git_state"
+          "git_metrics"
+          "jobs"
+          "nix_shell"
+          "character"
+        ];
 
-      right_format = "$" + builtins.concatStringsSep "$" [
-              "status"
-              "shell"
-              "battery"
-              "time"
-            ];
+      right_format =
+        "$"
+        + builtins.concatStringsSep "$" [
+          "status"
+          "shell"
+          "battery"
+          "time"
+        ];
 
       continuation_prompt = " ❯ ";
 

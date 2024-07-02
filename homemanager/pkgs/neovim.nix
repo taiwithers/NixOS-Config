@@ -38,20 +38,26 @@
       barbar.enable = true; # https://github.com/romgrk/barbar.nvim/
       lualine.enable = true; # https://github.com/nvim-lualine/lualine.nvim
       barbecue.enable = true; # https://github.com/utilyre/barbecue.nvim
+
       treesitter = {
         enable = true;
         # folding = true;
         indent = true;
 
         ensureInstalled = ["python" "nix" "bash"];
-        # disabledLanguages = [];
+        disabledLanguages = ["ada" "agda"];
         # grammarPackages = [];
         # ignoreInstall = [];
       };
       # treesitter-refactor.enable = true;
-
-      # otter.enable = true; # https://github.com/jmbuhr/otter.nvim/
     };
+
+    # extraPlugins = [
+    #   pkgs.unstable.vimPlugins.otter-nvim
+    # ];
+    # extraConfigLua = ''
+    #   require("otter").activate({ "bash", "python", "lua", "nix" }, true, true, nil)
+    # '';
 
     clipboard.providers.wl-copy.enable = true;
   };

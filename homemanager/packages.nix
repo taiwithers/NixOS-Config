@@ -34,6 +34,7 @@
     search = "nix-search-wrapper";
     gmv = "git-mv";
     bright = "brightness-control";
+    clean = "clean";
   });
 
   installed-with-program-enable = with pkgs; [

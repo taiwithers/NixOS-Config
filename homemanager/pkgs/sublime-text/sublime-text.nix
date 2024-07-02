@@ -119,21 +119,33 @@ in {
     }
   '';
 
-  xdg.configFile."${packagesPath}/Default.sublime-theme".text = /* JSON */ ''{"variables": {}, "rules": [] } '';
-  xdg.configFile."${packagesPath}/Default.sublime-keymap".text = /* JSON */ ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
+  xdg.configFile."${packagesPath}/Default.sublime-theme".text =
+    /*
+    JSON
+    */
+    ''{"variables": {}, "rules": [] } '';
+  xdg.configFile."${packagesPath}/Default.sublime-keymap".text =
+    /*
+    JSON
+    */
+    ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
   xdg.configFile."${packagesPath}/Preferences.sublime-settings".text = let
     sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.filenames.sublime-text}.sublime-color-scheme";
-  in /* JSON */ ''
-    {
-      "ignored_packages":
-      [
-        "Vintage",
-      ],
-      "font_size": 11,
-      "color_scheme": "${sublimeColourScheme}",
-      "theme": "Adaptive.sublime-theme",
-    }
-  '';
+  in
+    /*
+    JSON
+    */
+    ''
+      {
+        "ignored_packages":
+        [
+          "Vintage",
+        ],
+        "font_size": 11,
+        "color_scheme": "${sublimeColourScheme}",
+        "theme": "Adaptive.sublime-theme",
+      }
+    '';
 
   # xdg.configFile."${packagesPath}/yuck.tmLanguage".source = ./yuck.tmLanguage;
   xdg.configFile."${packagesPath}/yuck.sublime-syntax".source = ./yuck.sublime-syntax;
