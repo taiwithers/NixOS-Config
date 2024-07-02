@@ -5,10 +5,9 @@
   # lib,
   app-themes,
   ...
-}:
-{
+}: {
   imports =
-    map (fname: (import (./. + "/${fname}.nix") { inherit config pkgs app-themes; })) [
+    map (fname: (import (./. + "/${fname}.nix") {inherit config pkgs app-themes;})) [
       "bat"
       "bash"
       "bottom"
@@ -36,5 +35,5 @@
       "vscodium/vscodium"
       "zsh"
     ]
-    ++ [ ];
+    ++ [];
 }

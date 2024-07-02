@@ -3,13 +3,11 @@
   pkgs,
   app-themes,
   ...
-}:
-let
+}: let
   # get profile string with `dconf dump /com/gexperts/Tilix/profiles`
   profileString = "2b7c4080-0ddd-46c5-8f23-563fd3ba789d";
   tilixThemeFile = "${config.xdg.configHome}/tilix/schemes/base16-theme.json";
-in
-{
+in {
   dconf.settings."com/gexperts/Tilix" = {
     control-scroll-zoom = true;
     enable-wide-handle = true;
@@ -24,9 +22,8 @@ in
     use-tabs = true;
   };
 
-  dconf.settings."com/gexperts/Tilix/profiles/${profileString}" =
-    with app-themes.palettes.tilix;
-    # items here have priority
+  dconf.settings."com/gexperts/Tilix/profiles/${profileString}" = with app-themes.palettes.tilix;
+  # items here have priority
     {
       font = "SpaceMono Nerd Font 12";
       cursor-colors-set = true;

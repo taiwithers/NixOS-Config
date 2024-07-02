@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   home.shellAliases = {
     "htop" = "echo 'Did you mean btm?'";
   };

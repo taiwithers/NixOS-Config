@@ -1,13 +1,10 @@
-{ ... }:
-let
-in
-{
-  programs.bash.bashrcExtra =
-    let
-      conda-path = "/home/tai/.conda";
-      conda-bin = "${conda-path}/bin";
-      conda-profile = "${conda-path}/etc/profile.d/conda.sh";
-    in
+{...}: let
+in {
+  programs.bash.bashrcExtra = let
+    conda-path = "/home/tai/.conda";
+    conda-bin = "${conda-path}/bin";
+    conda-profile = "${conda-path}/etc/profile.d/conda.sh";
+  in
     # bash
     ''
       # >>> conda initialize >>>
@@ -47,3 +44,4 @@ in
   #   '';
 }
 # conda env update --file ~/.config/NixOS-Config/homemanager/pkgs/python/python-qstar.yml
+

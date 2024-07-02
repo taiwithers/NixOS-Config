@@ -1,6 +1,5 @@
 # powerprofilesctl get/list/set
-{ ... }:
-{
+{...}: {
   imports = [
     ./gnome-extensions.nix
     ./gnome-keybinds.nix

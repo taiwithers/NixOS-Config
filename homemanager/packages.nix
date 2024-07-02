@@ -3,10 +3,10 @@
   pkgs-config,
   flake-inputs,
   ...
-}:
-let
+}: let
   texlive-pkgs = pkgs.texlive.combine {
-    inherit (pkgs.texlive)
+    inherit
+      (pkgs.texlive)
       scheme-small
       derivative
       enumitem
@@ -22,7 +22,7 @@ let
       ;
   };
 
-  custom-derivations = map (pname: (pkgs.callPackage ./derivations/${pname}.nix { })) [
+  custom-derivations = map (pname: (pkgs.callPackage ./derivations/${pname}.nix {})) [
     "ds9"
     "gaia"
     "starfetch"
@@ -30,15 +30,15 @@ let
 
   shell-scripts = builtins.attrValues (
     builtins.mapAttrs
-      (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
-      {
-        get-package-dir = "get-package-dir";
-        rebuild = "rebuild";
-        search = "nix-search-wrapper";
-        gmv = "git-mv";
-        bright = "brightness-control";
-        clean = "clean";
-      }
+    (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
+    {
+      get-package-dir = "get-package-dir";
+      rebuild = "rebuild";
+      search = "nix-search-wrapper";
+      gmv = "git-mv";
+      bright = "brightness-control";
+      clean = "clean";
+    }
   );
 
   installed-with-program-enable = with pkgs; [
@@ -54,20 +54,16 @@ let
     starship
     zsh
   ];
-in
-{
+in {
   nixpkgs.config = pkgs-config;
-  home.packages =
-    with pkgs;
-    let
-      zotero = unstable.zotero-beta;
-      superfile = flake-inputs.superfile.packages.${system}.default;
-      nixfmt = unstable.nixfmt-rfc-style;
-    in
+  home.packages = with pkgs; let
+    zotero = unstable.zotero-beta;
+    superfile = flake-inputs.superfile.packages.${system}.default;
+    nixfmt = unstable.nixfmt-rfc-style;
+  in
     [
       # nix programs
       appimage-run
-      alejandra
       dconf2nix
       deadnix
       nix-diff

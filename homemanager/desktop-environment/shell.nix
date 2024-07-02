@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   home.shellAliases = {
     # use new programs
     "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";

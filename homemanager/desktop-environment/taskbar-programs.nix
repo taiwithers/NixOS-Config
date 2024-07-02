@@ -1,10 +1,7 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   locateDesktop = import ../../scripts/locate-desktop.nix;
-in
-{
-  dconf.settings."org/gnome/shell".favorite-apps =
-    with pkgs;
+in {
+  dconf.settings."org/gnome/shell".favorite-apps = with pkgs;
     map (pkg: locateDesktop pkg) [
       firefox
       dolphin

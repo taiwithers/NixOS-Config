@@ -4,8 +4,7 @@
   pkgs,
   app-themes,
   ...
-}:
-let
+}: let
   packagesPath = "${config.xdg.configHome}/sublime-text/Packages/User";
   packages = [
     {
@@ -86,12 +85,15 @@ let
     # 	hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";  # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     # }
   ];
-in
-{
+in {
   # download packages to .config/ST/Packages/User
   home.file = builtins.listToAttrs (
     map (package: {
-      name = "${packagesPath}/${if builtins.hasAttr "repo" package then package.repo else package.name}";
+      name = "${packagesPath}/${
+        if builtins.hasAttr "repo" package
+        then package.repo
+        else package.name
+      }";
       value = {
         source = package.function (
           builtins.removeAttrs package [
@@ -100,7 +102,8 @@ in
           ]
         );
       };
-    }) packages
+    })
+    packages
   );
 
   # download Package Control.sublime-package to .config/ST/Installed Packages/
@@ -118,8 +121,8 @@ in
       "bootstrapped": true,
       "installed_packages": [
       	${
-         builtins.concatStringsSep ",\n\t" (map (name: "\"${name}\"") (builtins.catAttrs "name" packages))
-       }
+      builtins.concatStringsSep ",\n\t" (map (name: "\"${name}\"") (builtins.catAttrs "name" packages))
+    }
         ],
       "in_process_packages": [],
     }
@@ -131,10 +134,9 @@ in
   xdg.configFile."${packagesPath}/Default.sublime-keymap".text =
     # JSON
     ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
-  xdg.configFile."${packagesPath}/Preferences.sublime-settings".text =
-    let
-      sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.filenames.sublime-text}.sublime-color-scheme";
-    in
+  xdg.configFile."${packagesPath}/Preferences.sublime-settings".text = let
+    sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.filenames.sublime-text}.sublime-color-scheme";
+  in
     # JSON
     ''
       {
