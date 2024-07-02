@@ -55,7 +55,7 @@ in {
   home.packages = with pkgs; let
     zotero = unstable.zotero-beta;
     superfile = flake-inputs.superfile.packages.${system}.default;
-    nixfmt = unstable.nix-fmt-classic;
+    nixfmt = unstable.nixfmt-rfc-style;
   in
     [
       # nix programs
@@ -69,6 +69,7 @@ in {
       nix-search-cli # provides nix-search
       nix-tree
       nurl
+      nixfmt
 
       # cli programs
       age # encryption
