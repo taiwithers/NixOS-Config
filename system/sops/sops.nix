@@ -1,8 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config, pkgs, ... }:
+let
   # setup sops and age
   # mkdir --parents ~/.config/sops/age
   # age-keygen --output ~/.config/sops/age/keys.txt
@@ -13,7 +10,8 @@
   source-script = "variables.sh";
   source-path = "/run/secrets-rendered/${source-script}";
   local-username = config.users.users.tai.name;
-in {
+in
+{
   sops = {
     defaultSopsFile = builtins.toString ./secrets.yaml;
     defaultSopsFormat = "yaml";
@@ -23,7 +21,7 @@ in {
     secrets = {
       group_hostname.owner = local-username;
       group_username.owner = local-username;
-      github_api_pat = {};
+      github_api_pat = { };
     };
 
     templates."${source-script}" = {
@@ -40,7 +38,7 @@ in {
   environment.shellInit = "source ${source-path}";
   environment.shellAliases."source-secrets" = "source ${source-path}";
 
-  environment.systemPackages = [pkgs.sops];
+  environment.systemPackages = [ pkgs.sops ];
   # home.activation.custom-sops-nix = let
   #   systemctl = config.systemd.user.systemctlPath;
   # in "${systemctl} --user reload-or-restart sops-nix";

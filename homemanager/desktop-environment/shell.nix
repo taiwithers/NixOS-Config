@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   home.shellAliases = {
     # use new programs
     "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
@@ -16,7 +17,7 @@
     "wget" = "wget --hsts-file=''$XDG_DATA_HOME/wget_hsts";
     "group" = "ssh -XY $GROUP_USERNAME@$GROUP_HOSTNAME";
     "groupscp" = "scp -r $GROUP_USERNAME@$GROUP_HOSTNAME";
-    "which" = "which -a";
+    "which" = "which -a | sort --unique";
 
     # other hacks and fixes
     # "clear" = "/run/current-system/sw/bin/clear"; # don't use ~/.conda/bin/clear which doesn't work outside conda-shell

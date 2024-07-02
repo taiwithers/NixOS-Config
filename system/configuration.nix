@@ -7,7 +7,8 @@
   hostName,
   # flake-inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./sops/sops.nix
@@ -21,7 +22,7 @@
     grub = {
       enable = true;
       efiSupport = true;
-      devices = ["nodev"];
+      devices = [ "nodev" ];
       useOSProber = true;
       configurationLimit = 16;
       backgroundColor = "#000000";
@@ -29,18 +30,25 @@
   };
 
   # use flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # keep system up to date
   system.autoUpgrade = {
     enable = true;
-    flags = ["--update-input" "nixpkgs" "--commit-lock-file"];
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--commit-lock-file"
+    ];
   };
 
   # keep system clean :)
   nix.optimise = {
     automatic = true;
-    dates = ["weekly"];
+    dates = [ "weekly" ];
   };
   nix.gc = {
     automatic = true;
@@ -63,9 +71,9 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.excludePackages = [pkgs.xterm];
-  services.dbus.packages = [pkgs.dconf];
-  environment.gnome.excludePackages = [pkgs.gnome-tour];
+  services.xserver.excludePackages = [ pkgs.xterm ];
+  services.dbus.packages = [ pkgs.dconf ];
+  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
   services.gnome.core-utilities.enable = false;
 
   # KDE
@@ -97,9 +105,7 @@
       "wheel"
       "input" # input for waybar on hyprland
     ];
-    packages = with pkgs; [
-      firefox
-    ];
+    packages = with pkgs; [ firefox ];
   };
 
   # system packages
@@ -120,7 +126,7 @@
   # program configurations
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
-  environment.pathsToLink = ["/share/zsh"]; # for zsh completion
+  environment.pathsToLink = [ "/share/zsh" ]; # for zsh completion
   programs.hyprland.enable = true;
   # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gdk]; # add in when switching to hyprland
 

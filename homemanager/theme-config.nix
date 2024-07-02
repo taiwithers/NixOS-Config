@@ -1,5 +1,4 @@
-nix-colors:
-with (import nix-colors.homeManagerModules.default {}); rec {
+nix-colors: with (import nix-colors.homeManagerModules.default { }); rec {
   # nix-colors-module = import ;
   colour-palette = nix-colors.colorSchemes."${builtins.head names}".palette;
   names = [
@@ -25,12 +24,14 @@ with (import nix-colors.homeManagerModules.default {}); rec {
   };
 
   # function: select available theme
-  selectAvailableTheme = functionGetThemePath: let
-    checkTheme = name: builtins.pathExists (functionGetThemePath name);
-    firstAvailableTheme = import ../scripts/choose-option-or-backup.nix {
-      functionOptionIsValid = checkTheme;
-      allOptions = names;
-    };
-  in
+  selectAvailableTheme =
+    functionGetThemePath:
+    let
+      checkTheme = name: builtins.pathExists (functionGetThemePath name);
+      firstAvailableTheme = import ../scripts/choose-option-or-backup.nix {
+        functionOptionIsValid = checkTheme;
+        allOptions = names;
+      };
+    in
     firstAvailableTheme;
 }

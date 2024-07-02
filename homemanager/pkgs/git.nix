@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  imports = [./common-git.nix];
+{ pkgs, ... }:
+{
+  imports = [ ./common-git.nix ];
   programs.git = {
     enable = true;
     signing.key = "/home/tai/.ssh/id_ed25519_github.pub";
