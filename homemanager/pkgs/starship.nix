@@ -78,7 +78,7 @@
       conda = {
         disabled = false;
         style = "bright-green";
-        format = "\[[$symbol $environment]($style)\] ";
+        format = ''\[[$symbol $environment]($style)\] '';
         ignore_base = false;
         symbol = "";
       };
