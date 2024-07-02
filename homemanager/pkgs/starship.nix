@@ -112,11 +112,11 @@
       git_state = {
         disabled = false;
         style = "bold yellow";
-        format = "\([$state( $progress_current/$progress_total)]($style)\) ";
+        format = ''\([$state( $progress_current/$progress_total)]($style)\) '';
       };
       git_status = {
         disabled = false;
-        format = "([\[$all_status$ahead_behind\]]($style) )";
+        format = ''([\[$all_status$ahead_behind\]]($style) )'';
         style = "bold red";
         ignore_submodules = true;
         conflicted = "="; # merge conflicts;
@@ -165,7 +165,7 @@
       };
       status = {
         disabled = false;
-        format = "  [\[$status $common_meaning\]]($style) ";
+        format = ''[\[$status $common_meaning\]]($style) '';
         map_symbol = false;
         style = "red";
       };
