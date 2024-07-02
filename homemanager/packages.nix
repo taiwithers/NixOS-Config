@@ -55,6 +55,7 @@ in {
   home.packages = with pkgs; let
     zotero = unstable.zotero-beta;
     superfile = flake-inputs.superfile.packages.${system}.default;
+    nixfmt = unstable.nix-fmt-classic;
   in
     [
       # nix programs
