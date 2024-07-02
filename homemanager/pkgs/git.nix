@@ -16,8 +16,7 @@
       # credential.helper = "${pkgs.git-credential-manager}/lib/git-credential-manager/git-credential-manager";
       diff.context = 1;
       diff.renames = true;
-      difftool.prompt = true; # ??
-      diff.tool = "nvimdiff";
+      merge.tool = "nvimdiff";
       status.relativePaths = false;
       # ignore-space-at-eol = true;
     };
