@@ -57,29 +57,22 @@
       };
     in
     {
-      homeConfigurations = {
-        "tai" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs =
-            let
-              user = "tai";
-            in
-            {
-              inherit flake-inputs user pkgs-config;
-            };
-          modules = with flake-inputs; [ ./home.nix ];
-        };
-        "twithers" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs =
-            let
-              user = "twithers";
-            in
-            {
-              inherit flake-inputs user pkgs-config;
-            };
-          modules = with flake-inputs; [ ./group-home.nix ];
-        };
-      };
+
+      homeConfigurations =
+        builtins.mapAttrs
+          (
+            user: files:
+            home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit flake-inputs user pkgs-config;
+              };
+              modules = with flake-inputs; files;
+            }
+          )
+          {
+            tai = [ ./home.nix ];
+            twithers = [ ./group-home.nix ];
+          };
     };
 }
