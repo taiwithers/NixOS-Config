@@ -30,6 +30,7 @@ opt.hlsearch = true -- highlight matches from the last search
 opt.ignorecase = true -- ignore search case by default
 opt.incsearch = true -- show search matches while typing
 opt.infercase = true
+opt.laststatus = 3 -- required for global lualine
 opt.linebreak = true -- don't wrap lines mid-word
 opt.matchpairs = '(:),{:},[:]' -- characters that form pairs
 opt.mouse = 'a' -- mouse support in all modes
@@ -59,6 +60,7 @@ opt.spelloptions = 'camel'
 opt.splitbelow = true
 opt.splitright = true -- where to put new windows
 opt.statusline = '%<%f %h%m%r %= %(%l,%c%V%)' -- format for statusline
+opt.statusline = '' -- format for statusline
 opt.tabline = '' -- tabline content
 opt.tabstop = 8
 opt.termguicolors = true

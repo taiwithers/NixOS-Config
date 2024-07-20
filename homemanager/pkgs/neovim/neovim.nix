@@ -41,22 +41,41 @@ in
         nvim-notify
 
         # in order of plugins.lua appearance
+        better-escape-nvim
         block-nvim
         fzf-lua
         nvim-lspconfig
         lualine-nvim
         mini-nvim
-        neo-tree-nvim
         noice-nvim
         nvim-web-devicons
         tabout-nvim
         toggleterm-nvim
         nvim-spider
+        nvim-scrollbar # change to unstable
+        legendary-nvim # change to unstable
+        # nvim-spectre
+        nvim-treesitter-context
+        nvim-tree-lua
+        # trouble
+        bufferline-nvim
+        # dashboard-nvim
+        persistence-nvim
+        telescope-nvim
+        telescope-ui-select-nvim # required for legendary
+        telescope-file-browser-nvim
+        telescope-fzf-native-nvim
+        telescope-frecency-nvim
       ]
       ++ (with nvim-treesitter-parsers; [
         nix
         python
         regex
+        ssh_config
+        jsonc
+        # jq 
+        # hyprlang
+        comment
       ])
       ++ builtins.map githubPlugin [
         {
@@ -76,6 +95,12 @@ in
           rev = "6e61b09";
           author = "folke";
           hash = "sha256-cI3OzzT7Que15ayqkX0+jCiJsfQz2UI1s5L1rHhM+vU=";
+        }
+        {
+          repo = "Tip.nvim";
+          author = "TobinPalmer";
+          rev = "7e87517";
+          hash = "sha256-9+YjOm2gmTIK6MmAqaAQ5M1IgMX0u5xSLmO+yWtaadk=";
         }
       ];
   };

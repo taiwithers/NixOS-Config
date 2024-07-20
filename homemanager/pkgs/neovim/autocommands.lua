@@ -5,5 +5,5 @@ vim.g.did_load_autocommands_plugin = true
 
 local create = vim.api.nvim_create_autocmd
 
-create('VimEnter', {callback = function() vim.cmd("checkhealth") end})
-create('VimEnter', { command = "Neotree" })
+-- create('VimEnter', {callback = function() vim.cmd("checkhealth") end})
+-- create('VimEnter', { command = "NvimTreeOpen" })

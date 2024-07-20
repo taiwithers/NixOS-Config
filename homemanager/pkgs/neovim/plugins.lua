@@ -1,9 +1,31 @@
 -- additional plugins
 -- nui.nvim, plenary.nvim
+require('better_escape').setup()
 require("block").setup({
   percent = .7, -- .8=20% darker
   -- automatic = true,
 })
+require('bufferline').setup({options={
+  right_mouse_command = false,
+  middle_mouse_command = 'bdelete! %d',
+  indicator = {style='underline'},
+  offsets = { {
+    filetype = 'NvimTree',
+    text = '',
+    text_align = 'center',
+    separator = true,
+  } },
+  show_buffer_close_icons = true,
+  show_close_icon = true,
+  show_duplicate_prefix = true,
+  show_tab_indicators = true,
+  always_show_bufferline = true,
+} })
+-- require('dashboard').setup({
+--   shuffle_letter = false,
+--   disable_move = true,
+--   config = { week_header = {enable = true, }}
+-- })
 require('fzf-lua').setup({})
 require('lspconfig').bashls.setup({})
 require('lspconfig').nixd.setup({})
@@ -14,12 +36,9 @@ require('lualine').setup({
     theme = "moonfly",
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
+    global_status = true,
   },
-  tabline = {
-    lualine_a = {'buffers'},
-    -- lualine_b = {'tabs'},
-  },
-  -- winbar = {lualine_c = {'filename'}},
+  winbar = {lualine_c = {'filename'}},
   extensions = {'fzf'}
 })
 require('mini.animate').setup({scroll={enable=false}})
@@ -27,40 +46,61 @@ require('mini.clue').setup({
   triggers = {{ mode = 'i', keys = '<C-x>' }},
   clues = {require('mini.clue').gen_clues.builtin_completion()}
 })
--- require('mini.completion').setup({set_vim_settings=false,fallback_action='<C-x>s'})
+require('mini.completion').setup()
 require('mini.cursorword').setup()
 -- require('mini.icons').setup() -- still in beta and therefore not on stable branch
 require('mini.indentscope').setup({symbol='│'})
 require('mini.indentscope').gen_animation.none()
 require('mini.move').setup()
 require('mini.pairs').setup()
+-- require('mini.starter').setup()
 require('mini.surround').setup()
 require('modes').setup({
   line_opacity = 0.2,
   set_cursor = false,
 })
-require('neo-tree').setup({
-  hide_root_node = true,
-  sort_case_insensitive=true,
-  source_selector = {
-    statusline = true,
-    show_scrolled_off_parent_node = true,
+-- require('neo-tree').setup({
+--   hide_root_node = true,
+--   sort_case_insensitive=true,
+--   source_selector = {
+--     statusline = true,
+--     show_scrolled_off_parent_node = true,
+--   },
+-- })
+require('nvim-tree').setup()
+require('noice').setup({
+  presets = {
+    long_message_to_split = true,
+    lsp_doc_border = true,
+  },
+  lsp = {
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+    },
   },
 })
-require('noice').setup()
-vim.notify = require('notify')
+vim.notify = require('notify').setup({
+  render = "wrapped-compact",
+  stages = "slide",
+})
 require('nvim-web-devicons').setup({color_icons=true})
-require('precognition').setup({
-  showBlankVirtLine = false,
-  hints = {
-    Caret = {text='H'},
-    Dollar = {text='L'},
-    MatchingPair = {text='M'},
-    w = {prio=0}, -- disable due to spider-overwrite
-    b = {prio=0},
-    e = {prio=0},
-  },
-})
+-- require('treesitter-context').setup({
+  -- multiline_threshold = 4,
+-- })
+-- require('precognition').setup({
+--   showBlankVirtLine = false,
+--   hints = {
+--     Caret = {text='H'},
+--     Dollar = {text='L'},
+--     MatchingPair = {text='M'},
+--     w = {prio=0}, -- disable due to spider-overwrite
+--     b = {prio=0},
+--     e = {prio=0},
+--   },
+-- })
+-- require('persistence').setup()
+require('scrollbar').setup()
 require('tabout').setup({
   tabkey = '<Tab>',
   backwards_tabkey = '<S-Tab>',
@@ -80,6 +120,18 @@ require('tabout').setup({
   },
   exclude = {}, -- filetypes
 })
+require('telescope').setup({
+  extensions = {
+    ['ui-select'] = {require('telescope.themes').get_dropdown({})},
+    file_browser = {follow_symlinks=true},
+    fzf = {},
+  }
+})
+require('telescope').load_extension('ui-select')
+require('telescope').load_extension('file_browser')
+-- require('telescope').load_extension('frecency')
+require('telescope').load_extension('fzf')
+require('tip').setup({seconds=2})
 require('toggleterm').setup()
 require('which-key').setup({
   preset="helix",
@@ -94,4 +146,11 @@ require('which-key').setup({
   spec = {
     {"<leader>",function() require("which-key").show({ global = true }) end, desc="Toggle which-key", mode={'n','v'}}
   }
+})
+require('legendary').setup({
+  extensions = {which_key = {
+    auto_register = true,
+    do_binding = false,
+    use_groups = true,
+  }}
 })
