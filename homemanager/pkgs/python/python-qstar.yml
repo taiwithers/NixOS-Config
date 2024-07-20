@@ -13,15 +13,18 @@ dependencies:
   - ipykernel
   - ipython
   - ipywidgets
+  - isort
   - jupyter
   - jupyterlab
   - lmfit
+  - lsprotocol # for isort
   - matplotlib
   - numpy
   - pandas
-  - pillow
+  - pillow=9.5
   - pip
   - plotly
+  - pygls # for isort
   - requests
   - scikit-image
   - scikit-learn
