@@ -23,7 +23,7 @@ let
   homeDirectory = "/home/${user}";
 in
 {
-  imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs theme-config; }) [
+  imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
     "bottom"
     "starship"
     "superfile"
@@ -48,6 +48,8 @@ in
       superfile
       trashy
       xdg-ninja
+      ripgrep
+      duf
     ];
 
   programs.bash = {
@@ -73,9 +75,6 @@ in
   };
 
   home.shellAliases =
-    let
-      bashScripts = "${config.xdg.configHome}/NixOS-Config/scripts";
-    in
     {
       # use new programs
       "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
