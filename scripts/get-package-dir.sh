@@ -10,7 +10,7 @@ if [ -z $1 ]; then
 fi
 
 # get all potentials (or try to)
-allLinkedDirectories="$(which --all $1 2> /dev/null)"
+allLinkedDirectories="$(which -a $1 2> /dev/null)"
 if [[ $? -eq 1 ]]; then
 	echo "Can't find package $1 in PATH"
 	exit 1

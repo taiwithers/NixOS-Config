@@ -1,13 +1,13 @@
-#!/usr/bin/env bash
+#######!/usr/bin/env bash
 
-if [ -z $1 ]; then 
+if [[ -z $1 ]]; then 
 	echo "Missing search term"
 	exit 1
 fi
 
 kernel=$(uname --kernel-name)
 system="$(uname --machine)-${kernel,,}"
-stable="$(nixos-version | cut -c 1-5)"
+stable="$(nix-instantiate --eval --expr '(import <nixpkgs> {}).lib.version' | cut -c 2-6)"
 unstable="unstable"
 
 stableResultsFile="/tmp/stableResults.json"
@@ -21,11 +21,11 @@ END_FMT="\e[0m"
 link_style="\e[35m" # foreground magenta
 stable_style="\e[32m" # foreground green
 unstable_style="\e[34m" # foreground blue
-programs_style=
+programs_style=	
 
 getChannelSearchResults () {
 	# echo "Searching channel $1 with args ${@:2}"
-	local results="$(nix-search --channel=$1 --json ${@:2})"
+	local results="$(nix-search --channel=$1 --json "${@:2}")"
 	
 	# remove newlines and add commas
 	results=$(echo "$results" | sd "\n\{" ",{")
@@ -48,8 +48,8 @@ removeQuotes() { echo $1 | sd '^"' '' | sd '"$' ''; }
 getJSONValue () { echo $1 | jq ".[0].$2"; }
 
 # save search results to file so they can be piped through jq again
-echo $(getChannelSearchResults $stable $@) > $stableResultsFile
-echo $(getChannelSearchResults $unstable $@) > $unstableResultsFile
+echo $(getChannelSearchResults $stable "$@") > $stableResultsFile
+echo $(getChannelSearchResults $unstable "$@") > $unstableResultsFile
 
 # merge results from search
 merged=$(jq '. + (input | .) | group_by(.name) | 
@@ -75,13 +75,13 @@ merged=$(jq '. + (input | .) | group_by(.name) |
 	nameString="${link_style}$(makeLink $name $url)${END_FMT}"
 	
 	stableString=""
-	if [ ! $stableVersion == "null" ]; then stableString="${stable}:${stable_style}${stableVersion}${END_FMT}"; fi
+	if [[ ! $stableVersion == "null" ]]; then stableString="${stable}:${stable_style}${stableVersion}${END_FMT}"; fi
 	
 	unstableString=""
-	if [ ! $unstableVersion == "null" ]; then unstableString="${unstable}:${unstable_style}${unstableVersion}${END_FMT}"; fi
+	if [[ ! $unstableVersion == "null" ]]; then unstableString="${unstable}:${unstable_style}${unstableVersion}${END_FMT}"; fi
 	
 	providesString=""
-	if [ ${#provides} -gt 2 ]; then providesString="-> ${programs_style}${provides}${END_FMT}"; fi
+	if [[ ${#provides} -gt 2 ]]; then providesString="-> ${programs_style}${provides}${END_FMT}"; fi
 
 	# print :)
 	echo -e "$nameString $stableString $unstableString $providesString"
