@@ -65,6 +65,7 @@
           })
         ];
       };
+
     in
     {
 
@@ -83,6 +84,7 @@
           {
             tai = [ ./home.nix ];
             twithers = [ ./group-home.nix ];
+            tai-wsl = [ ./wsl-home.nix flake-inputs.lix-module.nixosModules.default ];
           };
     };
 }
