@@ -51,6 +51,7 @@ let
     fzf
     git # also installed system-wide
     gpg
+    lazygit
     starship
     zsh
   ];
@@ -96,18 +97,19 @@ in
       gfortran
       imv
       jq
-      lazygit
       lua
       mpv
       onefetch
       openssh
       pandoc
       parallel
+      pdf2svg # for eps file preview
       # unstable.pistol # integrate into fzf preview for archive viewing, otherwise unnecesary
       pomodoro
       python3
       rename
       ripgrep
+      ripgrep-all
       sd
       speedtest-rs
       trashy
