@@ -72,6 +72,9 @@ in
           version = "1.19.1";
           sha256 = "0g5lcy064zm88wcik2n6c7i5g50rk0zbz722l65lzv8wggnr2gqk";
         }
+        # https://marketplace.visualstudio.com/items?itemName=mkvoya.eps-preview
+        # requires https://marketplace.visualstudio.com/items?itemName=mxschmitt.postscript
+        
       ];
 
     keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
