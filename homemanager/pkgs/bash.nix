@@ -2,9 +2,9 @@
 {
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
-    bashrcExtra =
-      # bash
-      ''
+    bashrcExtra = 
+        # bash 
+        ''
         source-secrets
 
         # unset __HM_SESS_VARS_SOURCED
