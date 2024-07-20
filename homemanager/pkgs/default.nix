@@ -27,7 +27,7 @@
       "gpg"
       "lazygit"
       # "hyprland/hyprland"
-      "neovim"
+      "neovim/neovim"
       "python/python"
       "starship"
       "sublime-text/sublime-text"
