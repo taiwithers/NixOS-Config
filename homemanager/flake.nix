@@ -11,6 +11,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # additional inputs
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
     arc.url = "github:arcnmx/nixexprs";
@@ -44,14 +46,22 @@
       };
 
       pkgs = import nixpkgs {
-        overlays = [
-          (self: super: {
+        overlays = let 
+        system = builtins.currentSystem; 
+        in [
+          (self: super: rec {
             unstable = import nixpkgs-unstable {
-              system = builtins.currentSystem;
+              system = system;
               # putting nixpkgs.config = pkgs-config; in this file errors
               # so pkgs-config gets applied in packages.nix
               config = pkgs-config;
             };
+            
+            fzf = unstable.fzf;
+            neovim = unstable.neovim-unwrapped;
+            nixfmt = unstable.nixfmt-rfc-style;
+            superfile = flake-inputs.superfile.packages.${system}.default;
+            zotero = unstable.zotero-beta;
           })
         ];
       };
