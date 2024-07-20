@@ -26,6 +26,7 @@ in
     package = pkgs.neovim; # ensure the version we specify in flake.nix is used
     defaultEditor = true;
     extraPackages = with pkgs; [
+      nodePackages.bash-language-server
       lua-language-server
       nixd # nix LSP for neovim
       ruff # python LSP
@@ -49,6 +50,7 @@ in
         noice-nvim
         nvim-web-devicons
         tabout-nvim
+        toggleterm-nvim
         nvim-spider
       ]
       ++ (with nvim-treesitter-parsers; [

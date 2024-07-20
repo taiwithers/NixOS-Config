@@ -5,6 +5,7 @@ require("block").setup({
   -- automatic = true,
 })
 require('fzf-lua').setup({})
+require('lspconfig').bashls.setup({})
 require('lspconfig').nixd.setup({})
 require('lspconfig').lua_ls.setup({})
 require('lspconfig').ruff.setup({})
@@ -79,6 +80,7 @@ require('tabout').setup({
   },
   exclude = {}, -- filetypes
 })
+require('toggleterm').setup()
 require('which-key').setup({
   preset="helix",
   win={no_overlap=false}, 
