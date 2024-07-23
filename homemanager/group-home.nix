@@ -39,17 +39,17 @@ in
       superfile = flake-inputs.superfile.packages.${system}.default;
     in
     [
-      alejandra
       cod
+      duf
       dust
       fastfetch
       fd
       fzf
+      nixfmt
+      ripgrep
       superfile
       trashy
       xdg-ninja
-      ripgrep
-      duf
     ];
 
   programs.bash = {

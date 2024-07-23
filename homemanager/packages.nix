@@ -22,12 +22,6 @@ let
       ;
   };
 
-  custom-derivations = map (pname: (pkgs.callPackage ./derivations/${pname}.nix { })) [
-    "ds9"
-    "gaia"
-    "starfetch"
-  ];
-
   shell-scripts = builtins.attrValues (
     builtins.mapAttrs
       (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
@@ -60,11 +54,6 @@ in
   nixpkgs.config = pkgs-config;
   home.packages =
     with pkgs;
-    let
-      zotero = unstable.zotero-beta;
-      superfile = flake-inputs.superfile.packages.${system}.default;
-      nixfmt = unstable.nixfmt-rfc-style;
-    in
     [
       # nix programs
       appimage-run
@@ -81,6 +70,7 @@ in
       # cli programs
       age # encryption
       brightnessctl
+      cbonsai
       chafa # cli images
       cloc
       cod # completion from --help
@@ -106,12 +96,14 @@ in
       pdf2svg # for eps file preview
       # unstable.pistol # integrate into fzf preview for archive viewing, otherwise unnecesary
       pomodoro
+      pond
       python3
       rename
       ripgrep
       ripgrep-all
       sd
       speedtest-rs
+      starfetch
       trashy
       unzip
       vim
@@ -123,7 +115,9 @@ in
 
       # gui programs
       discord
+      ds9
       filezilla
+      gaia
       github-desktop
       gnome-extension-manager
       gnome.file-roller
@@ -173,6 +167,5 @@ in
       wl-clipboard
       swappy
     ]
-    ++ custom-derivations
     ++ shell-scripts;
 }

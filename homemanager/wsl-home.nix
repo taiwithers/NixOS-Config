@@ -48,6 +48,7 @@ in
   home.packages =
     with pkgs;
     [
+      cbonsai
       cod
       duf
       dust # view specific info for directories
@@ -55,8 +56,10 @@ in
       fd
       fzf
       gcc
+      gnumake
       nixfmt
       nix-output-monitor
+      pond
       ripgrep
       ripgrep-all
       shellcheck
@@ -107,6 +110,7 @@ in
       # simplify commands
       "untar" = "tar -xvf";
       "confdir" = "cd ~/.config/NixOS-Config";
+      "nvdir" = "cd ~/.config/NixOS-Config/homemanager/pkgs/neovim";
       "dust" = "dust --reverse --ignore-directory mnt";
       "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
     };
