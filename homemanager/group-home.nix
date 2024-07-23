@@ -21,12 +21,17 @@ in {
   ];
   home.packages = with pkgs; [
     alejandra
+    bottom
     cod
     dust
     fastfetch
     trashy
     xdg-ninja
     flake-inputs.superfile.packages.${system}.default
+
+    # new
+    fd
+    fzf
   ];
 
   programs.bash = {
