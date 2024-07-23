@@ -1,4 +1,13 @@
 -- add keymappings with which-key
+local lazygit_terminal = require('toggleterm.terminal').Terminal:new({ 
+  cmd = "lazygit", 
+  hidden = true,
+  display_name = "lazygit",
+  direction = 'float',
+})
+function lazygit_toggle()
+  lazygit_terminal:toggle()
+end
 require('which-key').add({
   -- mode characters: https://neovim.io/doc/user/map.html#map-listing
 
@@ -8,7 +17,7 @@ require('which-key').add({
     {'L', '$', desc='End of line'}, -- overwrites "cursor to line N from bottom of screen"
     {'M', '%', desc='Matching ()[]{}'}, --overwrites cursor to middle of screen
     {'j', [[v:count == 0 ? 'gj' : 'j']], expr=true, desc='Down (visual line)'},
-    {'k', [[v:count == 0 ? 'gk' : 'k']], expr=true, desc='Up (visual line)'},    
+    {'k', [[v:count == 0 ? 'gk' : 'k']], expr=true, desc='Up (visual line)'},
     {'w', '<cmd>lua require("spider").motion("w")<CR>', desc='Next word (spider)'},
     {'e', '<cmd>lua require("spider").motion("e")<CR>', desc='Next end of word (spider)'},
     {'b', '<cmd>lua require("spider").motion("b")<CR>', desc='Previous word (spider)'},
@@ -18,6 +27,7 @@ require('which-key').add({
   { mode = {'n', 'v'},
     {'gy', '"+y', desc = 'Copy to system clipboard'},
     {';', ':', desc='Enter command mode'}, -- save shift key
+    {';ww', '<cmd>w<CR>', desc='Save buffer'},
   },
 
   -- normal and visual modes
@@ -39,6 +49,9 @@ require('which-key').add({
     {'<C-n>', '<cmd>vnew<CR>', desc='Vertical split to new buffer'},
     {'<S-C-n>', '<cmd>enew<CR>', desc='Horizontal split to new buffer'},
     {'<M-n>', '<cmd>new<CR>', desc='New buffer'},
+    {'<leader>f', '<cmd>NvimTreeToggle<CR>', desc='Toggle filetree'},
+    {'<leader>t', '<cmd>ToggleTerm<CR>', desc='Toggle lower terminal'},
+    {'<leader>lg', '<cmd>lua lazygit_toggle()<CR>', desc='Toggle lower terminal'},
   },
 
   -- insert mode
@@ -52,4 +65,9 @@ require('which-key').add({
     {'<C-e>', '<End>', desc='End of line'},
   },
 
+  -- terminal mode
+  { mode = {'t'},
+    {'<C-[>', '<C-\\><C-n>', desc='Go to normal mode'},
+    {'<LeftRelease>', '<LeftRelease><cmd>startinsert<CR>'},
+  }
 })

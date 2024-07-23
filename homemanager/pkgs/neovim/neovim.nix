@@ -38,27 +38,28 @@ in
         nui-nvim
         plenary-nvim
         nvim-treesitter
-        nvim-notify
 
         # in order of plugins.lua appearance
         better-escape-nvim
         block-nvim
-        fzf-lua
+        bufferline-nvim
+        # fzf-lua
+        flatten-nvim
         nvim-lspconfig
         lualine-nvim
         mini-nvim
         noice-nvim
+        nvim-notify
         nvim-web-devicons
         tabout-nvim
         toggleterm-nvim
         nvim-spider
-        nvim-scrollbar # change to unstable
+        nvim-scrollview # change to unstable
         legendary-nvim # change to unstable
         # nvim-spectre
         nvim-treesitter-context
         nvim-tree-lua
         # trouble
-        bufferline-nvim
         # dashboard-nvim
         persistence-nvim
         telescope-nvim
@@ -66,6 +67,7 @@ in
         telescope-file-browser-nvim
         telescope-fzf-native-nvim
         telescope-frecency-nvim
+        nvim-window-picker
       ]
       ++ (with nvim-treesitter-parsers; [
         nix
@@ -102,6 +104,18 @@ in
           rev = "7e87517";
           hash = "sha256-9+YjOm2gmTIK6MmAqaAQ5M1IgMX0u5xSLmO+yWtaadk=";
         }
+        {
+          repo = "f-string-toggle.nvim";
+          author = "roobert";
+          rev = "4e2ad79";
+          hash = "sha256-IMMq4cklHxrhfHALcCamMWT4ekBqOMtkiAUXh8YlaM0=";
+        }
+        {
+          repo = "auto-hlsearch.nvim";
+          author = "asiryk";
+          rev = "8f28246";
+          hash = "sha256-AitkdtKoKNAURrEZuQU/VRLj71qDlI4zwL+vzXUJzew=";
+          }
       ];
   };
 

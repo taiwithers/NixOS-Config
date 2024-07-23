@@ -7,3 +7,5 @@ local create = vim.api.nvim_create_autocmd
 
 -- create('VimEnter', {callback = function() vim.cmd("checkhealth") end})
 -- create('VimEnter', { command = "NvimTreeOpen" })
+create({ 'TermOpen', 'BufEnter' }, {pattern='term://', command='startinsert'})
+

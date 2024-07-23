@@ -1,9 +1,8 @@
 -- additional plugins
--- nui.nvim, plenary.nvim
+require('auto-hlsearch').setup()
 require('better_escape').setup()
 require("block").setup({
   percent = .7, -- .8=20% darker
-  -- automatic = true,
 })
 require('bufferline').setup({options={
   right_mouse_command = false,
@@ -26,7 +25,9 @@ require('bufferline').setup({options={
 --   disable_move = true,
 --   config = { week_header = {enable = true, }}
 -- })
-require('fzf-lua').setup({})
+-- require('fzf-lua').setup({})
+require('f-string-toggle').setup({ key_binding = '<leader>fs' })
+require('flatten').setup({ window = 'alternate', })
 require('lspconfig').bashls.setup({})
 require('lspconfig').nixd.setup({})
 require('lspconfig').lua_ls.setup({})
@@ -52,21 +53,19 @@ require('mini.cursorword').setup()
 require('mini.indentscope').setup({symbol='│'})
 require('mini.indentscope').gen_animation.none()
 require('mini.move').setup()
-require('mini.pairs').setup()
+require('mini.pairs').setup({
+  modes = {insert=true, command=true, terminal=true},
+  mappings = {
+    ['<'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].' },
+    ['>'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].' },
+  }
+})
 -- require('mini.starter').setup()
 require('mini.surround').setup()
 require('modes').setup({
   line_opacity = 0.2,
   set_cursor = false,
 })
--- require('neo-tree').setup({
---   hide_root_node = true,
---   sort_case_insensitive=true,
---   source_selector = {
---     statusline = true,
---     show_scrolled_off_parent_node = true,
---   },
--- })
 require('nvim-tree').setup()
 require('noice').setup({
   presets = {
@@ -84,10 +83,11 @@ vim.notify = require('notify').setup({
   render = "wrapped-compact",
   stages = "slide",
 })
+require('scrollview').setup()
 require('nvim-web-devicons').setup({color_icons=true})
--- require('treesitter-context').setup({
-  -- multiline_threshold = 4,
--- })
+require('treesitter-context').setup({
+  multiline_threshold = 4,
+})
 -- require('precognition').setup({
 --   showBlankVirtLine = false,
 --   hints = {
@@ -100,7 +100,7 @@ require('nvim-web-devicons').setup({color_icons=true})
 --   },
 -- })
 -- require('persistence').setup()
-require('scrollbar').setup()
+-- require('scrollbar').setup()
 require('tabout').setup({
   tabkey = '<Tab>',
   backwards_tabkey = '<S-Tab>',
@@ -132,10 +132,16 @@ require('telescope').load_extension('file_browser')
 -- require('telescope').load_extension('frecency')
 require('telescope').load_extension('fzf')
 require('tip').setup({seconds=2})
-require('toggleterm').setup()
+require('toggleterm').setup({
+  start_in_insert = true,
+  persist_mode = false,
+})
+require('window-picker').setup({
+  hint = 'floating-big-letter',
+})
 require('which-key').setup({
   preset="helix",
-  win={no_overlap=false}, 
+  win={no_overlap=false},
   delay=0,
   expand = 2,
   -- key_labels={"<cr>" = "<return>"}, -- not sure about syntax of <cr> here
