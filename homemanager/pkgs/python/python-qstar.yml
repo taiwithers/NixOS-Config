@@ -10,6 +10,7 @@ dependencies:
   - astropy
   - cmcrameri
   - cycler
+  - extension-helpers
   - ipykernel
   - ipython
   - ipywidgets
@@ -45,7 +46,9 @@ dependencies:
       - reproject
       - spectral-cube
       - wget
-
+      - git+https://github.com/jdhenshaw/acorns.git
+      - git+https://github.com/pyspeckit/pyspeckit.git
+      - git+https://github.com/taiwithers/mufasa.git@multicore_options
 # update environment with conda env update --file filename.yml --prune
 
 # pip install git+https://github.com/jdhenshaw/acorns.git
