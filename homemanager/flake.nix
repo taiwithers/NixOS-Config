@@ -11,8 +11,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # additional inputs
-    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
-    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+    # lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+    # lix-module.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
     arc.url = "github:arcnmx/nixexprs";
@@ -47,7 +47,8 @@
 
       pkgs = import nixpkgs {
         overlays = let 
-        system = builtins.currentSystem; 
+          system = builtins.currentSystem; 
+          custom = fname: pkgs.callPackage fname {};
         in [
           (self: super: rec {
             unstable = import nixpkgs-unstable {
@@ -57,9 +58,15 @@
               config = pkgs-config;
             };
             
+            cbonsai = custom ./derivations/cbonsai.nix;
+            color-oracle = custom ./derivations/color-oracle.nix;
+            ds9 = custom ./derivations/ds9.nix;
             fzf = unstable.fzf;
+            gaia = custom ./derivations/gaia.nix;
             neovim = unstable.neovim-unwrapped;
             nixfmt = unstable.nixfmt-rfc-style;
+            pond = custom ./derivations/pond.nix;
+            starfetch = custom ./derivations/starfetch.nix;
             superfile = flake-inputs.superfile.packages.${system}.default;
             zotero = unstable.zotero-beta;
           })
@@ -84,7 +91,7 @@
           {
             tai = [ ./home.nix ];
             twithers = [ ./group-home.nix ];
-            tai-wsl = [ ./wsl-home.nix flake-inputs.lix-module.nixosModules.default ];
+            tai-wsl = [ ./wsl-home.nix ];
           };
     };
 }
