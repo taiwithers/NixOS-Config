@@ -62,7 +62,6 @@ in
       dust # view specific info for directories
       fastfetch
       fd
-      fzf
       gcc
       gnumake
       lavat
@@ -73,7 +72,6 @@ in
       ripgrep-all
       shellcheck
       starfetch
-      superfile
       trashy
       xdg-ninja
       zellij
@@ -103,8 +101,6 @@ in
   programs.git = {
     signing.key = "~/.ssh/id_ed25519_github";
     extraConfig = {
-      # credential.helper = "${homeDirectory}/miniconda3/envs/qstar-env/bin/gh auth git-credential";
-      # credential.helper = "/usr/local/share/gcm-core/git-credential-manager-core";
       gpg.format = "ssh";
       credential.credentialStore = "gpg";
       core.autocrlf = "input";
@@ -146,21 +142,6 @@ in
     USERXSESSIONRC="${cacheHome}/x11/xsessionrc";
     _JAVA_OPTIONS="-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
   };
-
-  programs.bash.initExtra = ''
-    # https://superuser.com/a/1604662
-    old_PATH=$PATH:; PATH=
-    while [ -n "$old_PATH" ]; do
-      x=''${old_PATH%%:*}       # the first remaining entry
-      case $PATH: in
-        *:"$x":*) ;;          # already there
-        *) PATH=$PATH:$x;;    # not there yet
-      esac
-      old_PATH=''${old_PATH#*:}
-    done
-    PATH=''${PATH#:}
-    unset old_PATH x
-  '';
 
   home.preferXdgDirectories = true;
   targets.genericLinux.enable = true; 

@@ -1,7 +1,6 @@
-{ ... }:
-let
-in
+{pkgs, ... }:
 {
+  home.packages = [ pkgs.conda ];
   programs.bash.bashrcExtra =
     let
       conda-path = "/home/tai/.conda";

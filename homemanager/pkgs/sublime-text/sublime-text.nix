@@ -88,6 +88,8 @@ let
   ];
 in
 {
+  home.packages = [ pkgs.sublime4 ];
+
   # download packages to .config/ST/Packages/User
   home.file = builtins.listToAttrs (
     map (package: {

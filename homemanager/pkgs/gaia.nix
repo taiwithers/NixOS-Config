@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 {
+  home.packages = [pkgs.gaia];
   programs.bash.bashrcExtra = ''
     # GAIA
     export STARLINK_DIR=$(dirname $(dirname $(readlink $(which starversion))))
