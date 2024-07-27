@@ -3,11 +3,6 @@
   home.shellAliases = {
     # use new programs
     "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
-    "du" = "echo 'Consider using dust instead'";
-    "df" = "echo 'Consider using duf instead'";
-    "ls" = "eza";
-    "tree" = "eza --tree";
-    "man" = "batman --no-hyphenation --no-justification";
 
     # simplify commands
     "untar" = "tar -xvf";
@@ -18,6 +13,7 @@
     "group" = "ssh -XY $GROUP_USERNAME@$GROUP_HOSTNAME";
     "groupscp" = "scp -r $GROUP_USERNAME@$GROUP_HOSTNAME";
     "which" = "which -a | sort --unique";
+    "printenv" = "printenv | sort";
 
     # other hacks and fixes
     # "clear" = "/run/current-system/sw/bin/clear"; # don't use ~/.conda/bin/clear which doesn't work outside conda-shell

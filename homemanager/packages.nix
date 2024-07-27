@@ -87,6 +87,7 @@ in
       gfortran
       imv
       jq
+      lavat
       lua
       mpv
       onefetch
@@ -139,6 +140,7 @@ in
       tilix
       vivaldi
       vscodium-fhs
+      zathura
       zoom-us
       zotero
 

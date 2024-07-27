@@ -34,53 +34,71 @@ let
 in
 {
   imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
+    "bash"
     "bat"
     "bottom"
+    "cod"
     "common-git"
+    "duf"
+    "dust"
     "eza"
     "fzf"
     "lazygit"
     "neovim/neovim"
     "starship"
     "superfile"
+    "zoxide"
   ];
+  wayland.windowManager.sway.checkConfig = false;
   home.packages =
     with pkgs;
     [
+      swayfx
+      rofi
+      tilix
+      qtile
+
       cbonsai
-      cod
-      duf
       dust # view specific info for directories
       fastfetch
       fd
       fzf
       gcc
       gnumake
+      lavat
       nixfmt
       nix-output-monitor
       pond
       ripgrep
       ripgrep-all
       shellcheck
+      starfetch
       superfile
       trashy
       xdg-ninja
       zellij
-      zoxide
-    ] ++ shell-scripts ++ [(pkgs.writeShellApplication {
-              name = "search";
-              runtimeInputs = [nix nix-search-cli jq sd ];
-              excludeShellChecks = ["SC2046" "SC2155" "SC2086" "SC2116" "SC2005" "SC2162"];
-              text = builtins.readFile ../scripts/nix-search-wrapper.sh;
-            })];
-
-  programs.bash = {
-    enable = true;
-    bashrcExtra = builtins.readFile ./wsl-bashrc.sh;
-    shellAliases = {
-      brc = "source ~/.bashrc";
-    };
-  };
+    ]
+    ++ shell-scripts
+    ++ [
+      (pkgs.writeShellApplication {
+        name = "search";
+        runtimeInputs = [
+          nix
+          nix-search-cli
+          jq
+          sd
+        ];
+        excludeShellChecks = [
+          "SC2046"
+          "SC2155"
+          "SC2086"
+          "SC2116"
+          "SC2005"
+          "SC2162"
+        ];
+        text = builtins.readFile ../scripts/nix-search-wrapper.sh;
+      })
+    ];
 
   programs.git = {
     signing.key = "~/.ssh/id_ed25519_github";
@@ -96,23 +114,53 @@ in
     };
   };
 
-  home.shellAliases =
-    {
-      # use new programs
-      "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
-      "du" = "echo 'Consider using dust instead'";
-      "df" = "echo 'Consider using duf instead'";
-      "ls" = "eza";
-      "tree" = "eza --tree";
-      "man" = "batman --no-hyphenation --no-justification";
+  home.shellAliases = {
+    # use new programs
+    "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
 
-      # simplify commands
-      "untar" = "tar -xvf";
-      "confdir" = "cd ~/.config/NixOS-Config";
-      "nvdir" = "cd ~/.config/NixOS-Config/homemanager/pkgs/neovim";
-      "dust" = "dust --reverse --ignore-directory mnt";
-      "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
-    };
+    # simplify commands
+    "untar" = "tar -xvf";
+    "confdir" = "cd ~/.config/NixOS-Config";
+    "nvdir" = "cd ~/.config/NixOS-Config/homemanager/pkgs/neovim";
+    "dust" = "dust --reverse --ignore-directory mnt";
+    "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
+    "which" = "which -a | sort --unique";
+    "printenv" = "printenv | sort";
+  };
+
+  home.sessionVariables = with config.xdg; {
+    XDG_CONFIG_HOME="${configHome}";
+    XDG_STATE_HOME="${stateHome}";
+    XDG_DATA_HOME="${dataHome}";
+    XDG_CACHE_HOME="${cacheHome}";
+
+    GNUPGHOME="${dataHome}/GNUPG";
+    ICEAUTHORITY="${cacheHome}/ICEauthority";
+    TERMINFO="${dataHome}/terminfo";
+    TERMINFO_DIRS="${dataHome}/terminfo:/usr/share/terminfo";
+    PARALLEL_HOME="${configHome}/parallel";
+    PASSWORD_STORE_DIR="${dataHome}/pass";
+    KERAS_HOME="${stateHome}/keras";
+    SQLITE_HISTORY="${cacheHome}/sqlite_history";
+    ERRFILE="${cacheHome}/x11/xsession-errors";
+    USERXSESSIONRC="${cacheHome}/x11/xsessionrc";
+    _JAVA_OPTIONS="-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
+  };
+
+  programs.bash.initExtra = ''
+    # https://superuser.com/a/1604662
+    old_PATH=$PATH:; PATH=
+    while [ -n "$old_PATH" ]; do
+      x=''${old_PATH%%:*}       # the first remaining entry
+      case $PATH: in
+        *:"$x":*) ;;          # already there
+        *) PATH=$PATH:$x;;    # not there yet
+      esac
+      old_PATH=''${old_PATH#*:}
+    done
+    PATH=''${PATH#:}
+    unset old_PATH x
+  '';
 
   home.preferXdgDirectories = true;
   targets.genericLinux.enable = true; 

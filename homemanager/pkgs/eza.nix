@@ -10,7 +10,7 @@
       "--group-directories-first"
       "--header"
       "--time-style=iso"
-      "--no-permissions"
+      # "--no-permissions"
       "--no-user"
     ];
     git = true;

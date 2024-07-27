@@ -13,4 +13,5 @@
       theme = "base16";
     };
   };
+  home.shellAliases."man" = "batman --no-hyphenation --no-justification";
 }
