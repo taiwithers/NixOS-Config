@@ -17,7 +17,7 @@ let
         hash = hash;
       };
     });
-  
+
   confdir = "${config.xdg.configHome}/nvim";
 in
 {
@@ -115,7 +115,7 @@ in
           author = "asiryk";
           rev = "8f28246";
           hash = "sha256-AitkdtKoKNAURrEZuQU/VRLj71qDlI4zwL+vzXUJzew=";
-          }
+        }
       ];
   };
 

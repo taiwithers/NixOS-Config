@@ -46,31 +46,33 @@
       };
 
       pkgs = import nixpkgs {
-        overlays = let 
-          system = builtins.currentSystem; 
-          custom = fname: pkgs.callPackage fname {};
-        in [
-          (self: super: rec {
-            unstable = import nixpkgs-unstable {
-              system = system;
-              # putting nixpkgs.config = pkgs-config; in this file errors
-              # so pkgs-config gets applied in packages.nix
-              config = pkgs-config;
-            };
-            
-            cbonsai = custom ./derivations/cbonsai.nix;
-            color-oracle = custom ./derivations/color-oracle.nix;
-            ds9 = custom ./derivations/ds9.nix;
-            fzf = unstable.fzf;
-            gaia = custom ./derivations/gaia.nix;
-            neovim = unstable.neovim-unwrapped;
-            nixfmt = unstable.nixfmt-rfc-style;
-            pond = custom ./derivations/pond.nix;
-            starfetch = custom ./derivations/starfetch.nix;
-            superfile = flake-inputs.superfile.packages.${system}.default;
-            zotero = unstable.zotero-beta;
-          })
-        ];
+        overlays =
+          let
+            system = builtins.currentSystem;
+            custom = fname: pkgs.callPackage fname { };
+          in
+          [
+            (self: super: rec {
+              unstable = import nixpkgs-unstable {
+                system = system;
+                # putting nixpkgs.config = pkgs-config; in this file errors
+                # so pkgs-config gets applied in packages.nix
+                config = pkgs-config;
+              };
+
+              cbonsai = custom ./derivations/cbonsai.nix;
+              color-oracle = custom ./derivations/color-oracle.nix;
+              ds9 = custom ./derivations/ds9.nix;
+              fzf = unstable.fzf;
+              gaia = custom ./derivations/gaia.nix;
+              neovim = unstable.neovim-unwrapped;
+              nixfmt = unstable.nixfmt-rfc-style;
+              pond = custom ./derivations/pond.nix;
+              starfetch = custom ./derivations/starfetch.nix;
+              superfile = flake-inputs.superfile.packages.${system}.default;
+              zotero = unstable.zotero-beta;
+            })
+          ];
       };
 
     in

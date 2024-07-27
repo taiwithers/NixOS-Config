@@ -74,21 +74,20 @@ in
     };
   };
 
-  home.shellAliases =
-    {
-      # use new programs
-      "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
-      "du" = "echo 'Consider using dust instead'";
-      "df" = "echo 'Consider using duf instead'";
-      "ls" = "eza";
-      "tree" = "eza --tree";
-      "man" = "batman --no-hyphenation --no-justification";
+  home.shellAliases = {
+    # use new programs
+    "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
+    "du" = "echo 'Consider using dust instead'";
+    "df" = "echo 'Consider using duf instead'";
+    "ls" = "eza";
+    "tree" = "eza --tree";
+    "man" = "batman --no-hyphenation --no-justification";
 
-      # simplify commands
-      "untar" = "tar -xvf";
-      "confdir" = "cd ~/.config/NixOS-Config";
-      "dust" = "dust --reverse";
-    };
+    # simplify commands
+    "untar" = "tar -xvf";
+    "confdir" = "cd ~/.config/NixOS-Config";
+    "dust" = "dust --reverse";
+  };
 
   nixpkgs.config = pkgs-config;
   nix.package = pkgs.nix;

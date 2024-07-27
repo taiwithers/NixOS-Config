@@ -6,6 +6,7 @@
 
   programs.starship = {
     enable = true;
+    enableBashIntegration = false; # do this manually with bashrcExtra since the bash integration assumes the location of .nix-profile
     enableZshIntegration = false;
     settings = {
       format =
@@ -184,4 +185,10 @@
       };
     };
   };
+
+  programs.bash.bashrcExtra = ''
+  if [[ $TERM != "dumb" ]]; then
+    eval "$( $(which starship) init bash --print-full-init)"
+  fi
+  '';
 }

@@ -16,4 +16,9 @@
     git = true;
     icons = true;
   };
+
+  home.shellAliases = {
+    "ls" = "eza";
+    "tree" = "eza --tree";
+  };
 }
