@@ -35,9 +35,6 @@ in
   ];
   home.packages =
     with pkgs;
-    let
-      superfile = flake-inputs.superfile.packages.${system}.default;
-    in
     [
       cod
       duf
@@ -45,6 +42,7 @@ in
       fastfetch
       fd
       fzf
+      neovim
       nixfmt
       ripgrep
       superfile
@@ -88,6 +86,7 @@ in
       "untar" = "tar -xvf";
       "confdir" = "cd ~/.config/NixOS-Config";
       "dust" = "dust --reverse";
+      "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager";
     };
 
   nixpkgs.config = pkgs-config;
