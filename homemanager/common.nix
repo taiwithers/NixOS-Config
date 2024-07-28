@@ -15,17 +15,18 @@ in
     XDG_DATA_HOME = "${dataHome}";
     XDG_CACHE_HOME = "${cacheHome}";
 
+    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
+    ERRFILE = "${cacheHome}/x11/xsession-errors";
     GNUPGHOME = "${dataHome}/GNUPG";
     ICEAUTHORITY = "${cacheHome}/ICEauthority";
-    TERMINFO = "${dataHome}/terminfo";
-    TERMINFO_DIRS = "${dataHome}/terminfo:/usr/share/terminfo";
+    KERAS_HOME = "${stateHome}/keras";
+    LESSHISTFILE = "${stateHome}/less_history";
     PARALLEL_HOME = "${configHome}/parallel";
     PASSWORD_STORE_DIR = "${dataHome}/pass";
-    KERAS_HOME = "${stateHome}/keras";
     SQLITE_HISTORY = "${cacheHome}/sqlite_history";
-    ERRFILE = "${cacheHome}/x11/xsession-errors";
+    TERMINFO = "${dataHome}/terminfo";
+    TERMINFO_DIRS = "${dataHome}/terminfo:/usr/share/terminfo";
     USERXSESSIONRC = "${cacheHome}/x11/xsessionrc";
-    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
   };
 
   home.packages = [pkgs.coreutils];
