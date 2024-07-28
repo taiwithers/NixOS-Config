@@ -41,9 +41,9 @@
   '';
 
   programs.git = {
-    signing.key = "${homeDirectory}/.ssh/id_ed25519_github.pub";
+    signing.key = "${config.home.homeDirectory}/.ssh/id_ed25519_github.pub";
     extraConfig = {
-      credential.helper = "${homeDirectory}/miniconda3/envs/qstar-env/bin/gh auth git-credential";
+      credential.helper = "${config.home.homeDirectory}/miniconda3/envs/qstar-env/bin/gh auth git-credential";
       gpg.format = "ssh";
       credential.credentialStore = "gpg";
       core.autocrlf = "input";
