@@ -36,7 +36,7 @@ let
   );
 in
 {
-  imports = map (fname: import (./. + "/pkgs/${fname}.nix") {inherit config pkgs app-themes}) [
+  imports = map (fname: import (./. + "/pkgs/${fname}.nix") { inherit config pkgs app-themes; }) [
     # just noting here that these programs *are* installed
     "bash"
     "bat"
@@ -63,7 +63,6 @@ in
     "zsh"
   ];
 
-  nixpkgs.config = pkgs-config;
   home.packages =
     with pkgs;
     [

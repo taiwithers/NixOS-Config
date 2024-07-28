@@ -1,4 +1,9 @@
-{ config, pkgs, app-themes, ... }:
+{
+  config,
+  pkgs,
+  app-themes,
+  ...
+}:
 let
   spfDir = "${config.xdg.configHome}/superfile";
   chroma-highlighting-theme = "vulcan";
@@ -6,7 +11,7 @@ in
 # base16-snazzy, catppuccin-mocha, gruvbox, monokai, vulcan
 # https://github.com/alecthomas/chroma/tree/master/styles
 {
-  home.packages = [ pkgs.superfile ]; 
+  home.packages = [ pkgs.superfile ];
   programs.bash.bashrcExtra = ''
     spf() {
         os=$(uname -s)

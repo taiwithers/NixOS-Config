@@ -187,8 +187,8 @@
   };
 
   programs.bash.bashrcExtra = ''
-  if [[ $TERM != "dumb" ]]; then
-    eval "$( $(which starship) init bash --print-full-init)"
-  fi
+    if [[ $TERM != "dumb" ]]; then
+      eval "$( ${pkgs.starship}/bin/starship init bash --print-full-init)"
+    fi
   '';
 }

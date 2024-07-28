@@ -68,6 +68,7 @@ in
         telescope-fzf-native-nvim
         telescope-frecency-nvim
         nvim-window-picker
+        hmts-nvim
       ]
       ++ (with nvim-treesitter-parsers; [
         nix

@@ -1,8 +1,8 @@
-{config, ... }:
+{ config, ... }:
 {
   programs.zoxide = {
     enable = true;
-    options = [ ];
+    options = [ "--cmd cd" ];
   };
   home.shellAliases."cd" = "echo 'Consider using zoxide [z]'";
   home.sessionVariables = {

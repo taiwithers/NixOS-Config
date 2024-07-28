@@ -75,9 +75,27 @@
           ];
       };
 
+      app-themes =
+        with (import ../scripts/theme-config.nix {
+          inherit pkgs;
+          inherit (flake-inputs) arc;
+        });
+        let
+          defaultTheme = "base16/da-one-ocean";
+        in
+        {
+          palettes = makePaletteSet {
+            tilix = defaultTheme;
+            superfile = defaultTheme;
+          };
+          filenames = makePathSet {
+            fzf = defaultTheme;
+            sublime-text = defaultTheme;
+          };
+        };
+
     in
     {
-
       homeConfigurations =
         builtins.mapAttrs
           (
@@ -85,9 +103,14 @@
             home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               extraSpecialArgs = {
-                inherit flake-inputs user pkgs-config;
+                inherit
+                  flake-inputs
+                  user
+                  pkgs-config
+                  app-themes
+                  ;
               };
-              modules = with flake-inputs; files;
+              modules = with flake-inputs; files ++ [./common.nix];
             }
           )
           {

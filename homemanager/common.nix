@@ -1,10 +1,8 @@
 {
   config,
   pkgs,
-  flake-inputs,
   user,
   pkgs-config,
-  app-themes,
   ...
 }:
 let
@@ -30,8 +28,18 @@ in
     _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
   };
 
-  nixpkgs.config = pkgs-config;
+  home.packages = [pkgs.coreutils];
 
+  home.shellAliases = {
+    "untar" = "tar -xvf";
+    "confdir" = "cd ~/.config/NixOS-Config";
+    "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
+    "nvdir" = "cd ~/.config/NixOS-Config/homemanager/pkgs/neovim";
+    "printenv" = "printenv | sort";
+    "wget" = "wget --hsts-file=''$XDG_DATA_HOME/wget_hsts";
+  };
+
+  nixpkgs.config = pkgs-config;
   home.username = user;
   home.homeDirectory = homeDirectory;
   programs.home-manager.enable = true;

@@ -1,5 +1,5 @@
 { pkgs, ... }:
 {
-  programs.bash.bashrcExtra = "source <( $(which cod) init $$ bash)";
+  programs.bash.bashrcExtra = "source <( ${pkgs.cod}/bin/cod init $$ bash)";
   home.packages = [ pkgs.cod ];
 }

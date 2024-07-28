@@ -10,7 +10,7 @@ let
   tilixThemeFile = "${config.xdg.configHome}/tilix/schemes/base16-theme.json";
 in
 {
-  home.packages = [ pkgs.tilix ]; 
+  home.packages = [ pkgs.tilix ];
 
   dconf.settings."com/gexperts/Tilix" = {
     control-scroll-zoom = true;

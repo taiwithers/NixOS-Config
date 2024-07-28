@@ -28,6 +28,7 @@ require('bufferline').setup({options={
 -- require('fzf-lua').setup({})
 require('f-string-toggle').setup({ key_binding = '<leader>fs' })
 require('flatten').setup({ window = 'alternate', })
+require('hmts')
 require('lspconfig').bashls.setup({})
 require('lspconfig').nixd.setup({})
 require('lspconfig').lua_ls.setup({})
@@ -39,8 +40,15 @@ require('lualine').setup({
     section_separators = { left = '', right = ''},
     global_status = true,
   },
-  winbar = {lualine_c = {'filename'}},
-  extensions = {'fzf'}
+  extensions = {'fzf'},
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename', 'echo nvim_treesitter#statusline(90)'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
 })
 require('mini.animate').setup({scroll={enable=false}})
 require('mini.clue').setup({
@@ -67,6 +75,11 @@ require('modes').setup({
   set_cursor = false,
 })
 require('nvim-tree').setup()
+require('nvim-treesitter.configs').setup({
+  highlight = {enable=true,},
+  incremental_selection = {enable=true,},
+  intentation = {enable=true,},
+})
 require('noice').setup({
   presets = {
     long_message_to_split = true,
@@ -100,7 +113,6 @@ require('treesitter-context').setup({
 --   },
 -- })
 -- require('persistence').setup()
--- require('scrollbar').setup()
 require('tabout').setup({
   tabkey = '<Tab>',
   backwards_tabkey = '<S-Tab>',
@@ -144,7 +156,6 @@ require('which-key').setup({
   win={no_overlap=false},
   delay=0,
   expand = 2,
-  -- key_labels={"<cr>" = "<return>"}, -- not sure about syntax of <cr> here
   icons = {keys={
     M='ALT ',
     C='CTRL '
