@@ -4,22 +4,10 @@
   flake-inputs,
   user,
   pkgs-config,
+  app-themes,
   ...
 }:
 let
-  app-themes =
-    with (import ../scripts/theme-config.nix {
-      inherit pkgs;
-      inherit (flake-inputs) arc;
-    });
-    let
-      defaultTheme = "base16/da-one-ocean";
-    in
-    {
-      palettes = makePaletteSet { superfile = defaultTheme; };
-      filenames = makePathSet { fzf = defaultTheme; };
-    };
-
   shell-scripts = builtins.attrValues (
     builtins.mapAttrs
       (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
@@ -29,65 +17,78 @@ let
         clean = "clean";
       }
   );
-
-
-  homeDirectory = "/home/${user}";
 in
 {
   imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
+    "python/python" 
+    "bash"
     "bat"
     "bottom"
+    "cod"
     "common-git"
+    "duf"
+    "dust"
     "eza"
     "fzf"
+    "gaia"
     "lazygit"
     "neovim/neovim"
     "starship"
     "superfile"
+    "zoxide"
   ];
+  wayland.windowManager.sway.checkConfig = false;
   home.packages =
     with pkgs;
     [
+      swayfx
+      rofi
+      tilix
+      qtile
+
       cbonsai
-      cod
-      duf
       dust # view specific info for directories
       fastfetch
       fd
-      fzf
       gcc
       gnumake
+      lavat
       nixfmt
       nix-output-monitor
       pond
       ripgrep
       ripgrep-all
       shellcheck
-      superfile
+      starfetch
       trashy
       xdg-ninja
       zellij
-      zoxide
-    ] ++ shell-scripts ++ [(pkgs.writeShellApplication {
-              name = "search";
-              runtimeInputs = [nix nix-search-cli jq sd ];
-              excludeShellChecks = ["SC2046" "SC2155" "SC2086" "SC2116" "SC2005" "SC2162"];
-              text = builtins.readFile ../scripts/nix-search-wrapper.sh;
-            })];
-
-  programs.bash = {
-    enable = true;
-    bashrcExtra = builtins.readFile ./wsl-bashrc.sh;
-    shellAliases = {
-      brc = "source ~/.bashrc";
-    };
-  };
+    ]
+    ++ shell-scripts
+    ++ [
+      (pkgs.writeShellApplication {
+        name = "search";
+        runtimeInputs = [
+          nix
+          nix-search-cli
+          jq
+          sd
+        ];
+        excludeShellChecks = [
+          "SC2046"
+          "SC2155"
+          "SC2086"
+          "SC2116"
+          "SC2005"
+          "SC2162"
+        ];
+        text = builtins.readFile ../scripts/nix-search-wrapper.sh;
+      })
+    ];
 
   programs.git = {
     signing.key = "~/.ssh/id_ed25519_github";
     extraConfig = {
-      # credential.helper = "${homeDirectory}/miniconda3/envs/qstar-env/bin/gh auth git-credential";
-      # credential.helper = "/usr/local/share/gcm-core/git-credential-manager-core";
       gpg.format = "ssh";
       credential.credentialStore = "gpg";
       core.autocrlf = "input";
@@ -97,34 +98,21 @@ in
     };
   };
 
-  home.shellAliases =
-    {
-      # use new programs
-      "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
-      "du" = "echo 'Consider using dust instead'";
-      "df" = "echo 'Consider using duf instead'";
-      "ls" = "eza";
-      "tree" = "eza --tree";
-      "man" = "batman --no-hyphenation --no-justification";
 
-      # simplify commands
-      "untar" = "tar -xvf";
-      "confdir" = "cd ~/.config/NixOS-Config";
-      "nvdir" = "cd ~/.config/NixOS-Config/homemanager/pkgs/neovim";
-      "dust" = "dust --reverse --ignore-directory mnt";
-      "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
-    };
+  home.shellAliases = {
+    "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
+  };
 
-  nixpkgs.config = pkgs-config;
-  # nix.package = pkgs.nix;
+  home.preferXdgDirectories = true;
+  targets.genericLinux.enable = true;
+
   nix.package = pkgs.lix;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  home.username = user;
-  home.homeDirectory = homeDirectory;
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    use-xdg-base-directories = true; # throws warning but is needed for correct location of hm-session-variables.sh
+  };
   home.stateVersion = "24.05";
-  programs.home-manager.enable = true;
 }

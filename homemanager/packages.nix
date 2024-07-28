@@ -34,24 +34,35 @@ let
         clean = "clean";
       }
   );
-
-  installed-with-program-enable = with pkgs; [
-    # just noting here that these programs *are* installed
-    bash
-    bat
-    bottom
-    copyq
-    eza
-    fzf
-    git # also installed system-wide
-    gpg
-    lazygit
-    starship
-    zsh
-  ];
 in
 {
-  nixpkgs.config = pkgs-config;
+  imports = map (fname: import (./. + "/pkgs/${fname}.nix") { inherit config pkgs app-themes; }) [
+    # just noting here that these programs *are* installed
+    "bash"
+    "bat"
+    "bottom"
+    "cod"
+    "copyq/copyq"
+    "duf"
+    "dust"
+    "eza"
+    "fzf"
+    "gaia"
+    "git" # also installed system-wide
+    "gnome/gnome"
+    "gpg"
+    "lazygit"
+    "neovim"
+    "python"
+    "starship"
+    "sublime-text/sublime-text"
+    "superfile"
+    "tilix"
+    "vscodium"
+    "zoxide"
+    "zsh"
+  ];
+
   home.packages =
     with pkgs;
     [
@@ -73,13 +84,9 @@ in
       cbonsai
       chafa # cli images
       cloc
-      cod # completion from --help
-      conda
       curl
       dconf
       dell-command-configure
-      duf # view general info for entire system
-      dust # view specific info for directories
       fastfetch
       fd
       file
@@ -87,6 +94,7 @@ in
       gfortran
       imv
       jq
+      lavat
       lua
       mpv
       onefetch
@@ -111,13 +119,11 @@ in
       xdg-ninja
       zellij
       zip
-      zoxide
 
       # gui programs
       discord
       ds9
       filezilla
-      gaia
       github-desktop
       gnome-extension-manager
       gnome.file-roller
@@ -133,12 +139,9 @@ in
       onedrivegui
       # realvnc-vnc-viewer
       slack-dark
-      sublime4
-      superfile
       teams-for-linux
-      tilix
       vivaldi
-      vscodium-fhs
+      zathura
       zoom-us
       zotero
 

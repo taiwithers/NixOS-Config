@@ -74,7 +74,7 @@ in
         }
         # https://marketplace.visualstudio.com/items?itemName=mkvoya.eps-preview
         # requires https://marketplace.visualstudio.com/items?itemName=mxschmitt.postscript
-        
+
       ];
 
     keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);

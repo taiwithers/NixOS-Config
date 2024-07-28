@@ -4,65 +4,46 @@
   flake-inputs,
   user,
   pkgs-config,
+  app-themes,
   ...
 }:
-let
-  app-themes =
-    with (import ../scripts/theme-config.nix {
-      inherit pkgs;
-      inherit (flake-inputs) arc;
-    });
-    let
-      defaultTheme = "base16/da-one-ocean";
-    in
-    {
-      palettes = makePaletteSet { superfile = defaultTheme; };
-      filenames = makePathSet { fzf = defaultTheme; };
-    };
-
-  homeDirectory = "/home/${user}";
-in
 {
   imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
+    "bash"
+    "bat"
     "bottom"
-    "starship"
-    "superfile"
+    "cod"
+    "common-git"
+    "duf"
+    "dust"
     "eza"
     "fzf"
-    "common-git"
-    "bat"
     "lazygit"
+    "python/python"
+    "starship"
+    "superfile"
+    "zoxide"
   ];
-  home.packages =
-    with pkgs;
-    [
-      cod
-      duf
-      dust
-      fastfetch
-      fd
-      fzf
-      neovim
-      nixfmt
-      ripgrep
-      superfile
-      trashy
-      xdg-ninja
-    ];
+  home.packages = with pkgs; [
+    fastfetch
+    fd
+    nixfmt
+    ripgrep
+    trashy
+    xdg-ninja
+  ];
 
-  programs.bash = {
-    enable = true;
-    bashrcExtra = builtins.readFile ./group-bashrc.sh;
-    shellAliases = {
-      brc = "source ~/.bashrc";
-    };
-  };
+  # programs.bash.bashrcExtra = builtins.readFile ./group-bashrc.sh;
+  programs.bash.bashrcExtra = ''
+  # add texlive to path
+  export PATH=/home/twithers/opt/texlive/2023/bin/x86_64-linux:$PATH
+  export GPG_TTY=/dev/pts/0
+  '';
 
   programs.git = {
     signing.key = "${homeDirectory}/.ssh/id_ed25519_github.pub";
     extraConfig = {
       credential.helper = "${homeDirectory}/miniconda3/envs/qstar-env/bin/gh auth git-credential";
-      # credential.helper = "/usr/local/share/gcm-core/git-credential-manager-core";
       gpg.format = "ssh";
       credential.credentialStore = "gpg";
       core.autocrlf = "input";
@@ -72,32 +53,12 @@ in
     };
   };
 
-  home.shellAliases =
-    {
-      # use new programs
-      "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
-      "du" = "echo 'Consider using dust instead'";
-      "df" = "echo 'Consider using duf instead'";
-      "ls" = "eza";
-      "tree" = "eza --tree";
-      "man" = "batman --no-hyphenation --no-justification";
-
-      # simplify commands
-      "untar" = "tar -xvf";
-      "confdir" = "cd ~/.config/NixOS-Config";
-      "dust" = "dust --reverse";
-      "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager";
-    };
-
-  nixpkgs.config = pkgs-config;
   nix.package = pkgs.nix;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
-  home.username = user;
-  home.homeDirectory = homeDirectory;
   home.stateVersion = "24.05";
-  programs.home-manager.enable = true;
+  targets.genericLinux.enable = true;
 }

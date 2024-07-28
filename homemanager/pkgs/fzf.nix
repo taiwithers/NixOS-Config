@@ -26,7 +26,7 @@ in
 
     # typing "fzf" as a command
     defaultCommand = "fd --type file --type symlink";
-    defaultOptions = fzfDefaultOptions ++ fzfPreviewOptions;
+    defaultOptions = fzfDefaultOptions;
 
     # alt-c
     changeDirWidgetCommand = "fd --type directory";

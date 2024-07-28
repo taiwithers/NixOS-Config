@@ -5,7 +5,7 @@
   jdk,
   ant,
   stripJavaArchivesHook,
-  makeWrapper
+  makeWrapper,
 }:
 stdenv.mkDerivation rec {
   pname = "color-oracle";
@@ -42,7 +42,7 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-    
+
     # copy generated jar file(s) to an appropriate location in $out
     install -Dm644 dist/ColorOracle.jar $out/share/color-oracle/ColorOracle.jar
 
@@ -50,7 +50,7 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin
     makeWrapper ${jdk}/bin/java $out/bin/ColorOracle \
       --add-flags "-cp $out/dist/ColorOracle.jar ika.colororacle.ColorOracle"
-  
+
     runHook postInstall
   '';
 

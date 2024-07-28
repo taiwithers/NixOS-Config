@@ -17,7 +17,7 @@ let
         hash = hash;
       };
     });
-  
+
   confdir = "${config.xdg.configHome}/nvim";
 in
 {
@@ -68,6 +68,7 @@ in
         telescope-fzf-native-nvim
         telescope-frecency-nvim
         nvim-window-picker
+        hmts-nvim
       ]
       ++ (with nvim-treesitter-parsers; [
         nix
@@ -115,7 +116,7 @@ in
           author = "asiryk";
           rev = "8f28246";
           hash = "sha256-AitkdtKoKNAURrEZuQU/VRLj71qDlI4zwL+vzXUJzew=";
-          }
+        }
       ];
   };
 

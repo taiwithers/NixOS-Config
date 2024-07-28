@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   programs.bat = {
     enable = true;
@@ -13,4 +13,5 @@
       theme = "base16";
     };
   };
+  home.shellAliases."man" = "batman --no-hyphenation --no-justification";
 }
