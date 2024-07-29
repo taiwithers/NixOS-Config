@@ -42,6 +42,10 @@
 
         history: Path = state_home / 'python_history'
 
+        if not os.path.exists(str(history)):
+          f = open(str(history), mode='a')
+          f.close()
+
         readline.read_history_file(str(history))
         atexit.register(readline.write_history_file, str(history))
 
