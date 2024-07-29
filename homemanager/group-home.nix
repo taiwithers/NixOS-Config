@@ -58,12 +58,5 @@
     "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
   };
 
-  nix.package = pkgs.nix;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   home.stateVersion = "24.05";
-  targets.genericLinux.enable = true;
 }

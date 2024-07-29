@@ -101,17 +101,8 @@ in
   home.shellAliases = {
     "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
   };
-
-  home.preferXdgDirectories = true;
-  targets.genericLinux.enable = true;
-
   nix.package = pkgs.lix;
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    use-xdg-base-directories = true; # throws warning but is needed for correct location of hm-session-variables.sh
-  };
+
+  targets.genericLinux.enable = true;
   home.stateVersion = "24.05";
 }

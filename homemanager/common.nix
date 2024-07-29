@@ -40,6 +40,15 @@ in
     "wget" = "wget --hsts-file=''$XDG_DATA_HOME/wget_hsts";
   };
 
+  home.preferXdgDirectories = true;
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    use-xdg-base-directories = true; # throws warning but is needed for correct location of hm-session-variables.sh
+  };
+
   nixpkgs.config = pkgs-config;
   home.username = user;
   home.homeDirectory = homeDirectory;
