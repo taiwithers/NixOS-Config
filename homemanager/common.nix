@@ -29,7 +29,7 @@ in
     USERXSESSIONRC = "${cacheHome}/x11/xsessionrc";
   };
 
-  home.packages = [pkgs.coreutils];
+  home.packages = [ pkgs.coreutils ];
 
   home.shellAliases = {
     "untar" = "tar -xvf";

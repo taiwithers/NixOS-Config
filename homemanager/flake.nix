@@ -110,7 +110,7 @@
                   app-themes
                   ;
               };
-              modules = with flake-inputs; files ++ [./common.nix];
+              modules = with flake-inputs; files ++ [ ./common.nix ];
             }
           )
           {

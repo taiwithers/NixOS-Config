@@ -20,7 +20,7 @@ let
 in
 {
   imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
-    "python/python" 
+    "python/python"
     "bash"
     "bat"
     "bottom"
@@ -97,7 +97,6 @@ in
       };
     };
   };
-
 
   home.shellAliases = {
     "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
