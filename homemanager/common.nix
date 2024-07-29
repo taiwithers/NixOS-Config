@@ -11,10 +11,10 @@ let
 in
 {
   home.sessionVariables = with config.xdg; {
-    XDG_CONFIG_HOME = "${configHome}";
-    XDG_STATE_HOME = "${stateHome}";
-    XDG_DATA_HOME = "${dataHome}";
-    XDG_CACHE_HOME = "${cacheHome}";
+    XDG_CONFIG_HOME = configHome;
+    XDG_STATE_HOME = stateHome;
+    XDG_DATA_HOME = dataHome;
+    XDG_CACHE_HOME = cacheHome;
 
     _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
     ERRFILE = "${cacheHome}/x11/xsession-errors";
@@ -27,6 +27,7 @@ in
     SQLITE_HISTORY = "${cacheHome}/sqlite_history";
     TERMINFO = "${dataHome}/terminfo";
     TERMINFO_DIRS = "${dataHome}/terminfo:/usr/share/terminfo";
+    TEXMFVAR = "${cacheHome}/texlive/texmf-var";
     USERXSESSIONRC = "${cacheHome}/x11/xsessionrc";
 
     __HM_SESS_VARS_SOURCED = "0"; # "unset" this
@@ -41,7 +42,7 @@ in
     "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
     "nvdir" = "cd ~/.config/NixOS-Config/homemanager/pkgs/neovim";
     "printenv" = "printenv | sort";
-    "wget" = "wget --hsts-file=''$XDG_DATA_HOME/wget_hsts";
+    "wget" = "wget --hsts-file=${config.xdg.stateHome}/wget_hsts";
   };
 
   home.preferXdgDirectories = true;

@@ -1,16 +1,21 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.git = {
     enable = true;
+    signing.key = "${config.home.homeDirectory}/.ssh/id_ed25519_github.pub";
     signing.signByDefault = true;
     userEmail = "59430904+taiwithers@users.noreply.github.com";
     userName = "taiwithers";
     extraConfig = {
-      pull.rebase = "false";
-      init.defaultBranch = "main";
+      core.autocrlf = "input";
+      core.fileMode = false;
       core.whitespace.trailing-space = false;
       diff.context = 1;
       diff.renames = true;
+      filter.lfs = {clean = "gid-lfs clean -- %f";};
+      gpg.format = "ssh";
+      init.defaultBranch = "main";
+      pull.rebase = "false";
       status.relativePaths = false;
     };
     delta = {
