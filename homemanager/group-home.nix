@@ -27,6 +27,7 @@
   home.packages = with pkgs; [
     fastfetch
     fd
+    nix-output-monitor
     nixfmt
     ripgrep
     trashy
@@ -51,6 +52,10 @@
         clean = "git-lfs clean -- %f";
       };
     };
+  };
+
+  home.shellAliases = {
+    "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
   };
 
   nix.package = pkgs.nix;
