@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib, 
   user,
   pkgs-config,
   ...
@@ -27,7 +28,10 @@ in
     TERMINFO = "${dataHome}/terminfo";
     TERMINFO_DIRS = "${dataHome}/terminfo:/usr/share/terminfo";
     USERXSESSIONRC = "${cacheHome}/x11/xsessionrc";
+
+    __HM_SESS_VARS_SOURCED = "0"; # "unset" this
   };
+
 
   home.packages = [ pkgs.coreutils ];
 
