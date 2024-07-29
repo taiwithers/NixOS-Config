@@ -7,18 +7,20 @@
 let
   texlive-pkgs = pkgs.texlive.combine {
     inherit (pkgs.texlive)
-      scheme-small
+      # scheme-small # small is required over minimal for pdflatex which can't be installed as a package
+      scheme-basic 
+      astro
+      aastex
       derivative
       enumitem
+      epsf # for graphics
+      hyphenat
       latexmk
       psnfss # postscript fonts
-      hyphenat
       revtex4-1 # for aastex
       siunitx
       standalone
-      epsf # for graphics
       svn-prov # required macros
-      astro
       ;
   };
 
