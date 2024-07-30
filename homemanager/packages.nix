@@ -5,25 +5,6 @@
   ...
 }:
 let
-  texlive-pkgs = pkgs.texlive.combine {
-    inherit (pkgs.texlive)
-      # scheme-small # small is required over minimal for pdflatex which can't be installed as a package
-      scheme-basic
-      astro
-      aastex
-      derivative
-      enumitem
-      epsf # for graphics
-      hyphenat
-      latexmk
-      psnfss # postscript fonts
-      revtex4-1 # for aastex
-      siunitx
-      standalone
-      svn-prov # required macros
-      ;
-  };
-
   shell-scripts = builtins.attrValues (
     builtins.mapAttrs
       (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
@@ -96,6 +77,7 @@ in
       gfortran
       imv
       jq
+      latex
       lavat
       lua
       mpv
@@ -146,8 +128,6 @@ in
       zathura
       zoom-us
       zotero
-
-      texlive-pkgs
 
       # hyprland extras
       # libsForQt5.qt5.wayland
