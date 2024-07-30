@@ -52,6 +52,7 @@ in
       fd
       gcc
       gnumake
+      latex
       lavat
       nixfmt
       nix-output-monitor
@@ -64,42 +65,6 @@ in
       trashy
       xdg-ninja
       zellij
-
-      (pkgs.texlive.combine {
-              inherit (pkgs.texlive)
-              collection-basic
-              collection-latex
-              collection-latexrecommended
-              aastex
-              astro # planetary symbols
-              babel-english
-              derivative
-              enumitem
-              epsf
-              helvetic
-              hyphen-english
-              hyphenat
-              latexmk
-              layouts # for printing \textwidth etc
-              lipsum
-              lm # latin moden fonts
-              metafont # mf command line util for fonts
-              multirow
-              pgf # tikz
-              physunits
-              revtex4-1 # revtex gives revtex 4.2 which isn't accepted by aastex
-              siunitx
-              standalone
-              svn-prov # required macros (for who??)
-              synctex # engine-level feature synchronizing output and source
-              tikz-ext # libraries (which?)
-              tikzscale # resize pictures while respecting text size
-              tikztosvg
-              times # times new roman font
-              ulem # underlining
-              upquote # Show "realistic" quotes in verbatim
-              wrapfig
-              ;})
     ]
     ++ shell-scripts
     ++ [

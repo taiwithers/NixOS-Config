@@ -27,6 +27,7 @@
   home.packages = with pkgs; [
     fastfetch
     fd
+    latex
     nix-output-monitor
     nixfmt
     ripgrep
@@ -36,8 +37,8 @@
 
   programs.bash.bashrcExtra = ''
     # add texlive to path
-    export PATH=/home/twithers/opt/texlive/2023/bin/x86_64-linux:$PATH
-    export GPG_TTY=/dev/pts/0
+    # export PATH=/home/twithers/opt/texlive/2023/bin/x86_64-linux:$PATH
+    # export GPG_TTY=/dev/pts/0
   '';
 
   programs.git = {
