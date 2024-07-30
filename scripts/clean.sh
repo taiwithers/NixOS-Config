@@ -65,9 +65,7 @@ echo
 read -n 1 -p "Clean conda? y/[n] " confirmation
 echo
 if [[ $confirmation == "y" ]]; then 
-	(
-		conda-shell -c "conda clean --all"
+	micromamba clean --all
 		
-	)
 fi
 echo
