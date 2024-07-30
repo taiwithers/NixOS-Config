@@ -13,7 +13,7 @@
       theme = "base16";
     };
   };
-  home.shellAliases= {
+  home.shellAliases = {
     "man" = "batman --no-hyphenation --no-justification";
     "cat" = "bat";
   };

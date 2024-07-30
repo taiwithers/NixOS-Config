@@ -86,7 +86,7 @@ in
         ];
         text = builtins.readFile ../scripts/nix-search-wrapper.sh;
       })
-    ]    ;
+    ];
 
   programs.git = {
     extraConfig = {

@@ -8,7 +8,7 @@ let
   texlive-pkgs = pkgs.texlive.combine {
     inherit (pkgs.texlive)
       # scheme-small # small is required over minimal for pdflatex which can't be installed as a package
-      scheme-basic 
+      scheme-basic
       astro
       aastex
       derivative

@@ -12,7 +12,9 @@
       core.whitespace.trailing-space = false;
       diff.context = 1;
       diff.renames = true;
-      filter.lfs = {clean = "gid-lfs clean -- %f";};
+      filter.lfs = {
+        clean = "gid-lfs clean -- %f";
+      };
       gpg.format = "ssh";
       init.defaultBranch = "main";
       pull.rebase = "false";

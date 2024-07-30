@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  lib, 
+  lib,
   user,
   pkgs-config,
   ...
@@ -32,7 +32,6 @@ in
 
     __HM_SESS_VARS_SOURCED = "0"; # "unset" this
   };
-
 
   home.packages = [ pkgs.coreutils ];
 
