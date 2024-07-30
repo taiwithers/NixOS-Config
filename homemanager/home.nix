@@ -23,7 +23,7 @@
       in
       import ../scripts/autostart.nix { inherit config autostart-pkgs; }
     )
-  ];  
+  ];
 
   # gnome taskbar
   dconf.settings."org/gnome/shell".favorite-apps =

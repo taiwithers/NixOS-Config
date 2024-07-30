@@ -11,12 +11,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # additional inputs
-    # lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
-    # lix-module.inputs.nixpkgs.follows = "nixpkgs";
-    nix-colors.url = "github:misterio77/nix-colors";
     superfile.url = "github:yorukot/superfile";
     arc.url = "github:arcnmx/nixexprs";
-    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
   };
 
   outputs =
@@ -60,11 +56,11 @@
                 config = pkgs-config;
               };
 
-              cbonsai = custom ./derivations/cbonsai.nix;
+              cbonsai = custom ../derivations/cbonsai.nix;
               color-oracle = custom ./derivations/color-oracle.nix;
-              ds9 = custom ./derivations/ds9.nix;
+              ds9 = custom ../derivations/ds9.nix;
               fzf = unstable.fzf;
-              gaia = custom ./derivations/gaia.nix;
+              gaia = custom ../derivations/gaia.nix;
               latex = super.texlive.combine {
                 inherit (super.texlive)
                   collection-basic
@@ -103,8 +99,8 @@
               };
               neovim = unstable.neovim-unwrapped;
               nixfmt = unstable.nixfmt-rfc-style;
-              pond = custom ./derivations/pond.nix;
-              starfetch = custom ./derivations/starfetch.nix;
+              pond = custom ../derivations/pond.nix;
+              starfetch = custom ../derivations/starfetch.nix;
               superfile = flake-inputs.superfile.packages.${system}.default;
               zotero = unstable.zotero-beta;
             })

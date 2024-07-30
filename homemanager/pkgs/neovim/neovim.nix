@@ -95,9 +95,9 @@ in
         }
         {
           repo = "which-key.nvim";
-          rev = "6e61b09";
+          rev = "6c1584e";
           author = "folke";
-          hash = "sha256-cI3OzzT7Que15ayqkX0+jCiJsfQz2UI1s5L1rHhM+vU=";
+          hash = "sha256-nv9s4/ax2BoL9IQdk42uN7mxIVFYiTK+1FVvWDKRnGM=";
         }
         {
           repo = "Tip.nvim";
