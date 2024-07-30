@@ -130,6 +130,16 @@
           };
         };
 
+      fonts = with pkgs; [
+        cm_unicode
+        (nerdfonts.override {
+          fonts = [
+            "IntoneMono"
+            "SpaceMono"
+            "NerdFontsSymbolsOnly"
+          ];
+        })
+      ];
     in
     {
       homeConfigurations =
