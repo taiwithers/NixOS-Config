@@ -33,13 +33,15 @@
     ripgrep
     trashy
     xdg-ninja
-  ];
-
-  programs.bash.bashrcExtra = ''
-    # add texlive to path
-    # export PATH=/home/twithers/opt/texlive/2023/bin/x86_64-linux:$PATH
-    # export GPG_TTY=/dev/pts/0
-  '';
+  ] ++  builtins.attrValues (
+    builtins.mapAttrs
+      (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
+      {
+        get-package-dir = "get-package-dir";
+        gmv = "git-mv";
+        clean = "clean";
+      }
+  );
 
   programs.git = {
     extraConfig = {
