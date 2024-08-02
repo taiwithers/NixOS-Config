@@ -1,4 +1,4 @@
-#######!/usr/bin/env bash
+#!/usr/bin/env bash
 
 if [[ -z $1 ]]; then 
 	echo "Missing search term"
@@ -7,7 +7,11 @@ fi
 
 kernel=$(uname --kernel-name)
 system="$(uname --machine)-${kernel,,}"
-stable="$(nix-instantiate --eval --expr '(import <nixpkgs> {}).lib.version' | cut -c 2-6)"
+if [[ -n "$(builtin type -P nixos-version)" ]]; then
+	stable="$(nixos-version | cut -c 1-5)"
+else
+	stable="$(home-manager --version)"
+fi
 unstable="unstable"
 
 stableResultsFile="/tmp/stableResults.json"
@@ -21,20 +25,22 @@ END_FMT="\e[0m"
 link_style="\e[35m" # foreground magenta
 stable_style="\e[32m" # foreground green
 unstable_style="\e[34m" # foreground blue
-programs_style=	
+programs_style=
 
 getChannelSearchResults () {
 	# echo "Searching channel $1 with args ${@:2}"
-	local results="$(nix-search --channel=$1 --json "${@:2}")"
+	local results
+	results="$(nix-search --channel="$1" --json "${@:2}")"
 	
 	# remove newlines and add commas
 	results=$(echo "$results" | sd "\n\{" ",{")
 
 	# wrap with square brackets
-	results="[$(echo $results)]"
+	# shellcheck disable=SC2116
+	results="[$(echo "$results")]" # ignore shellcheck SC2116
 
 	# extract information with jq
-	results=$(echo $results | jq  "[.[] | select(.package_platforms | contains([\"$system\"])) | {
+	results=$(echo "$results" | jq  "[.[] | select(.package_platforms | contains([\"$system\"])) | {
 													name: .package_attr_name,
 												 	versions: {\"$1\":.package_pversion},
 												 	homepage: .package_homepage,
@@ -44,12 +50,14 @@ getChannelSearchResults () {
 	echo "$results"
 }
 makeLink () { echo "${OSC}${LINK_BUFFER}${2}${BELL}${1}${OSC}${LINK_BUFFER}${BELL}"; }
-removeQuotes() { echo $1 | sd '^"' '' | sd '"$' ''; }
-getJSONValue () { echo $1 | jq ".[0].$2"; }
+removeQuotes() { echo "$1" | sd '^"' '' | sd '"$' ''; }
+getJSONValue () { echo "$1" | jq ".[0].$2"; }
 
 # save search results to file so they can be piped through jq again
-echo $(getChannelSearchResults $stable "$@") > $stableResultsFile
-echo $(getChannelSearchResults $unstable "$@") > $unstableResultsFile
+# shellcheck disable=2005
+echo "$(getChannelSearchResults "$stable" "$@")" > $stableResultsFile
+# shellcheck disable=2005
+echo "$(getChannelSearchResults "$unstable" "$@")" > $unstableResultsFile
 
 # merge results from search
 merged=$(jq '. + (input | .) | group_by(.name) | 
@@ -62,26 +70,27 @@ merged=$(jq '. + (input | .) | group_by(.name) |
 
 # echo $merged | jq
 # # run through each result
-(echo $merged | jq -c "[.]") | while read item; do		
+(echo "$merged" | jq -c "[.]") | while read -r item; do		
 
 	# extract information
-	name=$(removeQuotes $(getJSONValue $item "name"))
-	url=$(removeQuotes $(getJSONValue $item "homepage.[0]"))
-	stableVersion=$(removeQuotes $(getJSONValue $item "versions.\"$stable\""))
-	unstableVersion=$(removeQuotes $(getJSONValue $item "versions.\"$unstable\""))
-	provides=$(echo $(getJSONValue $item "programs") | sd "\n" "" | sd -F "[ " "[" | sd -F " ]" "]" | sd '"' '')
+	name=$(removeQuotes "$(getJSONValue "$item" "name")")
+	url=$(removeQuotes "$(getJSONValue "$item" "homepage.[0]")")
+	stableVersion=$(removeQuotes "$(getJSONValue "$item" "versions.\"$stable\"")")
+	unstableVersion=$(removeQuotes "$(getJSONValue "$item" "versions.\"$unstable\"")")
+	# shellcheck disable=2005,2046
+	provides=$(echo $(getJSONValue "$item" "programs") | sd "\n" "" | sd -F "[ " "[" | sd -F " ]" "]" | sd '"' '')
 
 	# add formatting/colours
-	nameString="${link_style}$(makeLink $name $url)${END_FMT}"
+	nameString="${link_style}$(makeLink "$name" "$url")${END_FMT}"
 	
 	stableString=""
-	if [[ ! $stableVersion == "null" ]]; then stableString="${stable}:${stable_style}${stableVersion}${END_FMT}"; fi
+	if [ ! "$stableVersion" == "null" ]; then stableString="${stable}:${stable_style}${stableVersion}${END_FMT}"; fi
 	
 	unstableString=""
-	if [[ ! $unstableVersion == "null" ]]; then unstableString="${unstable}:${unstable_style}${unstableVersion}${END_FMT}"; fi
+	if [ ! "$unstableVersion" == "null" ]; then unstableString="${unstable}:${unstable_style}${unstableVersion}${END_FMT}"; fi
 	
 	providesString=""
-	if [[ ${#provides} -gt 2 ]]; then providesString="-> ${programs_style}${provides}${END_FMT}"; fi
+	if [ ${#provides} -gt 2 ]; then providesString="-> ${programs_style}${provides}${END_FMT}"; fi
 
 	# print :)
 	echo -e "$nameString $stableString $unstableString $providesString"
