@@ -8,11 +8,18 @@
 
     # leave alone
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # additional inputs
     superfile.url = "github:yorukot/superfile";
     arc.url = "github:arcnmx/nixexprs";
+    agenix.url = "github:ryantm/agenix";
+
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    superfile.inputs.nixpkgs.follows = "nixpkgs";
+    arc.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.darwin.follows = "";
+    agenix.inputs.home-manager.follows = "home-manager";
   };
 
   outputs =
@@ -56,6 +63,7 @@
                 config = pkgs-config;
               };
 
+              agenix = flake-inputs.agenix.packages.${system}.default;
               cbonsai = custom ../derivations/cbonsai.nix;
               color-oracle = custom ./derivations/color-oracle.nix;
               ds9 = custom ../derivations/ds9.nix;
@@ -158,7 +166,10 @@
           {
             tai = [ ./home.nix ];
             twithers = [ ./group-home.nix ];
-            tai-wsl = [ ./wsl-home.nix ];
+            tai-wsl = [
+              ./wsl-home.nix
+              flake-inputs.agenix.homeManagerModules.default
+            ];
           };
     };
 }
