@@ -2,48 +2,70 @@
   config,
   pkgs,
   flake-inputs,
-  user,
   pkgs-config,
   app-themes,
   ...
-}:
+}@home-inputs:
 let
-  shell-scripts = builtins.attrValues (
-    builtins.mapAttrs
-      (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
-      {
-        get-package-dir = "get-package-dir";
-        gmv = "git-mv";
-        clean = "clean";
+ shellApplications = map (
+    {name, runtimeInputs?[], file}: pkgs.writeShellApplication {
+      name=name; 
+      runtimeInputs=runtimeInputs;
+      text = builtins.readFile file;
+      }) 
+    [
+      rec {
+        name = "get-package-dir";
+        runtimeInputs = with pkgs; [ coreutils which ];
+        file = ../scripts +"/${name}.sh";
       }
-  );
+      rec {
+        name = "clean";
+        runtimeInputs = with pkgs; [coreutils gnugrep gnused home-manager nix];
+        file = ../scripts +"/${name}.sh";
+      }
+      rec {
+        name = "search";
+        runtimeInputs = with pkgs; [nix-search-cli sd jq nix];
+        file = ../scripts/nix-search-wrapper.sh;
+      }
+    ];
 in
 {
-  imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
-    "python/python"
-    "bash"
-    "bat"
-    "bottom"
-    "cod"
-    "common-git"
-    "duf"
-    "dust"
-    "eza"
-    "fzf"
-    "gaia"
-    "lazygit"
-    "neovim/neovim"
-    "starship"
-    "superfile"
-    "zoxide"
-  ];
-  wayland.windowManager.sway.checkConfig = false;
+  imports =
+    map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
+      "python/python"
+      "bash"
+      "bat"
+      "bottom"
+      "cod"
+      "common-git"
+      "duf"
+      "dust"
+      "eza"
+      "fzf"
+      "gaia"
+      "lazygit"
+      "neovim/neovim"
+      "starship"
+      "superfile"
+      "zoxide"
+    ]
+    ++ [ (import ./agenix.nix { inherit config pkgs; }) ];
+
+  common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
+  common.useXDG = true;
+  common.nixos = false;
+
   home.packages =
     with pkgs;
     [
+
+      age
+      agenix
+
       swayfx
       rofi
-      tilix
       qtile
 
       cbonsai
@@ -56,37 +78,21 @@ in
       lavat
       nixfmt
       nix-output-monitor
+      pacvim
       pond
       qtikz
       ripgrep
       ripgrep-all
       shellcheck
+      sgt-puzzles
       starfetch
       trashy
+      tty-clock
+      vitetris
       xdg-ninja
       zellij
     ]
-    ++ shell-scripts
-    ++ [
-      (pkgs.writeShellApplication {
-        name = "search";
-        runtimeInputs = [
-          nix
-          nix-search-cli
-          jq
-          sd
-        ];
-        excludeShellChecks = [
-          "SC2046"
-          "SC2155"
-          "SC2086"
-          "SC2116"
-          "SC2005"
-          "SC2162"
-        ];
-        text = builtins.readFile ../scripts/nix-search-wrapper.sh;
-      })
-    ];
+    ++ shellApplications;
 
   programs.git = {
     extraConfig = {
@@ -95,10 +101,8 @@ in
   };
 
   home.shellAliases = {
-    "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
+    "rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/homemanager |& nom";
+    "bsession" = "bat ${config.common.hm-session-vars}";
   };
-  nix.package = pkgs.lix;
-
-  targets.genericLinux.enable = true;
   home.stateVersion = "24.05";
 }
