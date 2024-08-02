@@ -24,24 +24,27 @@
     "superfile"
     "zoxide"
   ];
-  home.packages = with pkgs; [
-    fastfetch
-    fd
-    latex
-    nix-output-monitor
-    nixfmt
-    ripgrep
-    trashy
-    xdg-ninja
-  ] ++  builtins.attrValues (
-    builtins.mapAttrs
-      (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
-      {
-        get-package-dir = "get-package-dir";
-        gmv = "git-mv";
-        clean = "clean";
-      }
-  );
+  home.packages =
+    with pkgs;
+    [
+      fastfetch
+      fd
+      latex
+      nix-output-monitor
+      nixfmt
+      ripgrep
+      trashy
+      xdg-ninja
+    ]
+    ++ builtins.attrValues (
+      builtins.mapAttrs
+        (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
+        {
+          get-package-dir = "get-package-dir";
+          gmv = "git-mv";
+          clean = "clean";
+        }
+    );
 
   programs.git = {
     extraConfig = {
