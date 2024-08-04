@@ -9,7 +9,7 @@
   ...
 }: {
   imports = [
-    (import ./packages {inherit config pkgs app-themes;})
+    (import ./packages.nix {inherit config pkgs app-themes;})
     (import ./pkgs/xdg.nix {inherit pkgs;})
 
     # autostart
@@ -35,6 +35,6 @@
       obsidian
     ];
 
-  home.packages = fonts;
+  # home.packages = fonts;
   home.stateVersion = "23.11";
 }

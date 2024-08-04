@@ -1,7 +1,7 @@
 {
+  config, 
   pkgs,
-  pkgs-config,
-  flake-inputs,
+  app-themes,
   ...
 }: let
   shell-scripts = builtins.attrValues (
@@ -31,15 +31,15 @@ in {
     "gaia"
     "git" # also installed system-wide
     "gnome/gnome"
-    "gpg"
+    # "gpg"
     "lazygit"
-    "neovim"
-    "python"
+    "neovim/neovim"
+    "python/python"
     "starship"
     "sublime-text/sublime-text"
     "superfile"
     "tilix"
-    "vscodium"
+    # "vscodium"
     "zoxide"
     "zsh"
   ];
