@@ -28,6 +28,17 @@ require('bufferline').setup({options={
 -- require('fzf-lua').setup({})
 require('f-string-toggle').setup({ key_binding = '<leader>fs' })
 require('flatten').setup({ window = 'alternate', })
+require('hardtime').setup({
+  -- disabled_filetypes = {'NvimTree',}, -- not sure if/how to add terminal to this, nvimtree is already in defaults
+  max_time = 1000, -- key repeat timer
+  max_count = 3, -- number of repeats allowed within max_time
+  disable_mouse = false,
+  hint = true,
+  notification = true,
+  allow_different_key = true, -- reset count with different key
+  enabled = true,
+  restriction_mode = 'hint',
+})
 require('hmts')
 require('lspconfig').bashls.setup({})
 require('lspconfig').nixd.setup({})
@@ -84,6 +95,21 @@ require('noice').setup({
   presets = {
     long_message_to_split = true,
     lsp_doc_border = true,
+    command_palette = false,
+  },
+  -- cmdline and popupmenu together, from noice wiki
+  views = {
+    cmdline_popup = {
+      position = {row=10, col='50%',},
+      size = {width=60, height='auto'},
+    },
+    popupmenu = { -- this is the completion menu
+      relative = 'editor',
+      position = {row=13, col='50%',}, -- row is cmdline_popup row + 3
+      size = {width=60, height=5,},
+      border = {style='rounded', padding={0,1},},
+      win_options = {winhighlight={Normal='Normal', FloatBorder='DiagnosticInfo',},},
+    },
   },
   lsp = {
     override = {

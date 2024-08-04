@@ -117,6 +117,12 @@ in
           rev = "8f28246";
           hash = "sha256-AitkdtKoKNAURrEZuQU/VRLj71qDlI4zwL+vzXUJzew=";
         }
+        {
+          repo = "hardtime.nvim";
+          author = "m4xshen";
+          rev = "91c6be1";
+          hash = "";
+        }
       ];
   };
 
