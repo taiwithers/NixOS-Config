@@ -5,8 +5,7 @@
   user,
   pkgs-config,
   ...
-}:
-{
+}: {
   options.common = with lib; {
     nixConfigDirectory = mkOption {
       default = ../.;
@@ -17,8 +16,9 @@
     useXDG = mkOption {
       default = true;
       type = types.bool;
-      description = ''Tell Nix and Home Manager to use XDG directories. 
-                      Requires manually adding 'use-xdg-base-directories = true' to /etc/nix/nix.conf'';
+      description = ''
+        Tell Nix and Home Manager to use XDG directories. 
+                              Requires manually adding 'use-xdg-base-directories = true' to /etc/nix/nix.conf'';
     };
 
     nixos = mkOption {
@@ -34,10 +34,10 @@
 
     # Reference options
     userHome = mkOption {default = "/home/${user}";};
-    configHome = mkOption {default = config.xdg.configHome; };
-    stateHome = mkOption {default = config.xdg.stateHome; };
-    dataHome = mkOption {default = config.xdg.dataHome; };
-    cacheHome = mkOption {default = config.xdg.cacheHome; };
+    configHome = mkOption {default = config.xdg.configHome;};
+    stateHome = mkOption {default = config.xdg.stateHome;};
+    dataHome = mkOption {default = config.xdg.dataHome;};
+    cacheHome = mkOption {default = config.xdg.cacheHome;};
     hm-session-vars = mkOption {default = "";};
   };
 
@@ -45,13 +45,12 @@
     # Option-controlled configs
     home.preferXdgDirectories = config.common.useXDG;
     nix.settings.use-xdg-base-directories = config.common.useXDG; # throws warning but is needed for correct location of hm-session-variables.sh
-    common.hm-session-vars = if config.common.useXDG 
-                             then "~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh"
-                             else "/etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh"; # not sure about this one
+    common.hm-session-vars =
+      if config.common.useXDG
+      then "~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh"
+      else "/etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh"; # not sure about this one
 
     targets.genericLinux.enable = !config.common.nixos;
-
-
 
     # Static configs
     home.sessionVariables = with config.common; {
@@ -77,36 +76,38 @@
       __HM_SESS_VARS_SOURCED = ""; # "unset" this
     };
 
-    home.packages = with pkgs; [ coreutils which ];
-      # ++ [if config.common.scripts.get-package-dir 
-      #      then pkgs.writeShellApplication {
-      #       name = "get-package-dir";
-      #       runtimeInputs = with pkgs; [coreutils which];
-      #       text = builtins.readFile ../scripts + "/get-package-dir.sh";
-      #      }
-      #      else 
-      #     ]
-      # ++ [if config.common.scripts.clean
-      #      then pkgs.writeShellApplication {
-      #       name = "clean";
-      #       runtimeInputs = with pkgs; [coreutils gnugrep gnused home-manager nix];
-      #       text = builtins.readFile ../scripts + "/clean.sh";
-      #       }
-      #      else 
-      #     ]
-      # ++ [if config.common.scripts.search
-      #      then pkgs.writeShellApplication {
+    home.packages = with pkgs; [
+      coreutils
+      which
+    ];
+    # ++ [if config.common.scripts.get-package-dir
+    #      then pkgs.writeShellApplication {
+    #       name = "get-package-dir";
+    #       runtimeInputs = with pkgs; [coreutils which];
+    #       text = builtins.readFile ../scripts + "/get-package-dir.sh";
+    #      }
+    #      else
+    #     ]
+    # ++ [if config.common.scripts.clean
+    #      then pkgs.writeShellApplication {
+    #       name = "clean";
+    #       runtimeInputs = with pkgs; [coreutils gnugrep gnused home-manager nix];
+    #       text = builtins.readFile ../scripts + "/clean.sh";
+    #       }
+    #      else
+    #     ]
+    # ++ [if config.common.scripts.search
+    #      then pkgs.writeShellApplication {
 
-      #       name = "search";
-      #       runtimeInputs = with pkgs; [nix-search-cli sd jq nix];
-      #       text = builtins.readFile ../scripts + "/nix-search-wrapper.sh";
-      #      }
-      #      else 
-      #     ]
-          # ;
+    #       name = "search";
+    #       runtimeInputs = with pkgs; [nix-search-cli sd jq nix];
+    #       text = builtins.readFile ../scripts + "/nix-search-wrapper.sh";
+    #      }
+    #      else
+    #     ]
+    # ;
 
-
-    home.shellAliases =  with config.common; {
+    home.shellAliases = with config.common; {
       "untar" = "tar -xvf";
       "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
       "printenv" = "printenv | sort";
@@ -117,7 +118,10 @@
     };
 
     nix.package = pkgs.lix;
-    nix.settings.experimental-features = ["nix-command" "flakes"];
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     nixpkgs.config = pkgs-config;
     home.username = user;
     home.homeDirectory = config.common.userHome;

@@ -1,9 +1,12 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.shellAliases = {
     "htop" = "echo 'Did you mean btm?'";
   };
-  home.packages = [ pkgs.bottom ];
+  home.packages = [pkgs.bottom];
   programs.bottom.enable = true;
   xdg.configFile."${config.xdg.configHome}/bottom/bottom.toml".text =
     # TOML

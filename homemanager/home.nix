@@ -7,11 +7,10 @@
   app-themes,
   fonts,
   ...
-}:
-{
+}: {
   imports = [
-    (import ./packages { inherit config pkgs app-themes; })
-    (import ./pkgs/xdg.nix { inherit pkgs; })
+    (import ./packages {inherit config pkgs app-themes;})
+    (import ./pkgs/xdg.nix {inherit pkgs;})
 
     # autostart
     (
@@ -21,13 +20,12 @@
           onedrivegui
         ];
       in
-      import ../scripts/autostart.nix { inherit config autostart-pkgs; }
+        import ../scripts/autostart.nix {inherit config autostart-pkgs;}
     )
   ];
 
   # gnome taskbar
-  dconf.settings."org/gnome/shell".favorite-apps =
-    with pkgs;
+  dconf.settings."org/gnome/shell".favorite-apps = with pkgs;
     map (pkg: (import ../scripts/locate-desktop.nix) pkg) [
       firefox
       dolphin

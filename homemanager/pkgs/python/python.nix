@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
 {
-  home.packages = [ pkgs.micromamba ];
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = [pkgs.micromamba];
   programs.bash.bashrcExtra = ''
     # >>> mamba initialize >>>
     # !! Contents within this block are managed by 'mamba init' !!
@@ -55,3 +58,4 @@
   '';
 }
 # conda env update --file ~/.config/NixOS-Config/homemanager/pkgs/python/python-qstar.yml
+

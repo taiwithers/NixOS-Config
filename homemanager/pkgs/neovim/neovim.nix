@@ -1,26 +1,26 @@
-{ config, pkgs, ... }:
-let
-  githubPlugin =
-    {
-      author,
-      repo,
-      rev,
-      hash ? "",
-    }:
-    (pkgs.vimUtils.buildVimPlugin {
-      pname = author;
-      version = rev;
-      src = pkgs.fetchFromGitHub {
-        owner = author;
-        repo = repo;
-        rev = rev;
-        hash = hash;
-      };
-    });
+{
+  config,
+  pkgs,
+  ...
+}: let
+  githubPlugin = {
+    author,
+    repo,
+    rev,
+    hash ? "",
+  }: (pkgs.vimUtils.buildVimPlugin {
+    pname = author;
+    version = rev;
+    src = pkgs.fetchFromGitHub {
+      owner = author;
+      repo = repo;
+      rev = rev;
+      hash = hash;
+    };
+  });
 
   confdir = "${config.xdg.configHome}/nvim";
-in
-{
+in {
   programs.neovim = {
     enable = true;
     package = pkgs.neovim; # ensure the version we specify in flake.nix is used
@@ -31,8 +31,7 @@ in
       nixd # nix LSP for neovim
       ruff # python LSP
     ];
-    plugins =
-      with pkgs.vimPlugins;
+    plugins = with pkgs.vimPlugins;
       [
         # helpers - no additional setup done in plugins.lua
         nui-nvim
@@ -76,7 +75,7 @@ in
         regex
         ssh_config
         jsonc
-        # jq 
+        # jq
         # hyprlang
         comment
       ])
@@ -121,7 +120,7 @@ in
           repo = "hardtime.nvim";
           author = "m4xshen";
           rev = "91c6be1";
-          hash = "";
+          hash = "sha256-pLJShpbqmJbY3ThQuGmUfgsxijSADJrqpGYLE+KAcUQ=";
         }
       ];
   };

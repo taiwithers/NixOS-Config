@@ -3,23 +3,21 @@
   pkgs-config,
   flake-inputs,
   ...
-}:
-let
+}: let
   shell-scripts = builtins.attrValues (
     builtins.mapAttrs
-      (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
-      {
-        get-package-dir = "get-package-dir";
-        rebuild = "rebuild";
-        search = "nix-search-wrapper";
-        gmv = "git-mv";
-        bright = "brightness-control";
-        clean = "clean";
-      }
+    (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
+    {
+      get-package-dir = "get-package-dir";
+      rebuild = "rebuild";
+      search = "nix-search-wrapper";
+      gmv = "git-mv";
+      bright = "brightness-control";
+      clean = "clean";
+    }
   );
-in
-{
-  imports = map (fname: import (./. + "/pkgs/${fname}.nix") { inherit config pkgs app-themes; }) [
+in {
+  imports = map (fname: import (./. + "/pkgs/${fname}.nix") {inherit config pkgs app-themes;}) [
     # just noting here that these programs *are* installed
     "bash"
     "bat"
@@ -46,8 +44,7 @@ in
     "zsh"
   ];
 
-  home.packages =
-    with pkgs;
+  home.packages = with pkgs;
     [
       # nix programs
       appimage-run

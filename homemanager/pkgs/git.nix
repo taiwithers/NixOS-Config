@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  imports = [ ./common-git.nix ];
+{pkgs, ...}: {
+  imports = [./common-git.nix];
   programs.git = {
     enable = true;
     extraConfig = {

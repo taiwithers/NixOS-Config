@@ -6,9 +6,8 @@
   pkgs-config,
   app-themes,
   ...
-}:
-{
-  imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
+}: {
+  imports = map (fname: import ./pkgs/${fname}.nix {inherit config pkgs app-themes;}) [
     "bash"
     "bat"
     "bottom"
@@ -24,8 +23,7 @@
     "superfile"
     "zoxide"
   ];
-  home.packages =
-    with pkgs;
+  home.packages = with pkgs;
     [
       fastfetch
       fd
@@ -38,12 +36,12 @@
     ]
     ++ builtins.attrValues (
       builtins.mapAttrs
-        (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
-        {
-          get-package-dir = "get-package-dir";
-          gmv = "git-mv";
-          clean = "clean";
-        }
+      (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
+      {
+        get-package-dir = "get-package-dir";
+        gmv = "git-mv";
+        clean = "clean";
+      }
     );
 
   programs.git = {
