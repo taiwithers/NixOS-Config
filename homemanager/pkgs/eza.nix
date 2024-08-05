@@ -9,10 +9,15 @@
       "--group-directories-first"
       "--header"
       "--time-style=iso"
-      "--no-permissions"
+      # "--no-permissions"
       "--no-user"
     ];
     git = true;
     icons = true;
+  };
+
+  home.shellAliases = {
+    "ls" = "eza";
+    "tree" = "eza --tree";
   };
 }

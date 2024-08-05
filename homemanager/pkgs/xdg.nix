@@ -2,31 +2,29 @@
   locateDesktop = import ../../scripts/locate-desktop.nix;
   getDesktopFiles = list: map (p: "${locateDesktop p}") list;
 
-  defaults = builtins.mapAttrs (name: value: (getDesktopFiles value)) (with pkgs; {
-    browsers = [
-      firefox
-      vivaldi
-    ];
+  defaults = builtins.mapAttrs (name: value: (getDesktopFiles value)) (
+    with pkgs; {
+      browsers = [
+        firefox
+        vivaldi
+      ];
 
-    imageviewers = [
-      loupe
-      firefox
-    ];
+      imageviewers = [
+        loupe
+        firefox
+      ];
 
-    texteditors = [
-      sublime4
-      vscodium-fhs
-      gedit
-    ];
+      texteditors = [
+        sublime4
+        vscodium-fhs
+        gedit
+      ];
 
-    filebrowsers = [
-      libsForQt5.dolphin
-    ];
+      filebrowsers = [libsForQt5.dolphin];
 
-    archivemanagers = [
-      gnome.file-roller
-    ];
-  });
+      archivemanagers = [gnome.file-roller];
+    }
+  );
 in {
   xdg = {
     enable = true;
@@ -56,7 +54,9 @@ in {
         # "application/vnd.oasis.opendocument.spreadsheet-template" = []; # .ots
         "application/vnd.oasis.opendocument.text*" = ["writer.desktop"]; # .odt
         # "application/vnd.oasis.opendocument.text-template" = []; # .ott
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = ["impress.desktop"]; # .pptx
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [
+          "impress.desktop"
+        ]; # .pptx
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = ["writer.desktop"]; # .docx
 
         "image/*" = defaults.imageviewers;
@@ -64,7 +64,10 @@ in {
         "inode/directory" = defaults.filebrowsers;
 
         "text/calendar" = defaults.browsers; # .ics .ifb
-        "text/csv" = builtins.concatLists [["calc.desktop"] defaults.texteditors]; # .csv
+        "text/csv" = builtins.concatLists [
+          ["calc.desktop"]
+          defaults.texteditors
+        ]; # .csv
         "text/html" = defaults.browsers;
         "text/plain" = defaults.texteditors; # .conf, .def, .diff, .in, .ksh, .list, .log, .pl, .text, .txt
         "text/x-markdown" = defaults.texteditors; # .md, .markdown, .mdown, .markdn

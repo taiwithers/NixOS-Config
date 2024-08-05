@@ -32,6 +32,8 @@ case $1 in
 	"max")
 		brightnessctl --quiet set $maximum
 		;;
-esac
 
-echo "Brightness is $(get_brightness)%"
+	*)
+		echo "Brightness is $(get_brightness)%"
+		echo "Usage: bright [inc|dec|min|max] [value]"
+esac

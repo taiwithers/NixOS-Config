@@ -8,6 +8,8 @@
   profileString = "2b7c4080-0ddd-46c5-8f23-563fd3ba789d";
   tilixThemeFile = "${config.xdg.configHome}/tilix/schemes/base16-theme.json";
 in {
+  home.packages = [pkgs.tilix];
+
   dconf.settings."com/gexperts/Tilix" = {
     control-scroll-zoom = true;
     enable-wide-handle = true;

@@ -29,7 +29,7 @@
       function = pkgs.fetchFromGitHub;
       owner = "titoBouzout";
       repo = "SideBarEnhancements";
-      rev = "12.0.4"; #
+      rev = "12.0.4";
       hash = "sha256-FzhC691BQI5XnYfMHft39Wz1Mu+AYvegfrF0VPwRRxE="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
     {
@@ -86,16 +86,27 @@
     # }
   ];
 in {
+  home.packages = [pkgs.sublime4];
+
   # download packages to .config/ST/Packages/User
-  home.file = builtins.listToAttrs (map (package: {
+  home.file = builtins.listToAttrs (
+    map (package: {
       name = "${packagesPath}/${
         if builtins.hasAttr "repo" package
         then package.repo
         else package.name
       }";
-      value = {source = package.function (builtins.removeAttrs package ["function" "name"]);};
+      value = {
+        source = package.function (
+          builtins.removeAttrs package [
+            "function"
+            "name"
+          ]
+        );
+      };
     })
-    packages);
+    packages
+  );
 
   # download Package Control.sublime-package to .config/ST/Installed Packages/
   xdg.configFile."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package" = {
@@ -111,29 +122,35 @@ in {
     {
       "bootstrapped": true,
       "installed_packages": [
-      	${builtins.concatStringsSep ",\n\t" (
-      map (name: "\"${name}\"") (builtins.catAttrs "name" packages)
-    )}
+      	${
+      builtins.concatStringsSep ",\n\t" (map (name: "\"${name}\"") (builtins.catAttrs "name" packages))
+    }
         ],
       "in_process_packages": [],
     }
   '';
 
-  xdg.configFile."${packagesPath}/Default.sublime-theme".text = ''{"variables": {}, "rules": [] } '';
-  xdg.configFile."${packagesPath}/Default.sublime-keymap".text = ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
+  xdg.configFile."${packagesPath}/Default.sublime-theme".text =
+    # JSON
+    ''{"variables": {}, "rules": [] } '';
+  xdg.configFile."${packagesPath}/Default.sublime-keymap".text =
+    # JSON
+    ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
   xdg.configFile."${packagesPath}/Preferences.sublime-settings".text = let
     sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.filenames.sublime-text}.sublime-color-scheme";
-  in ''
-    {
-      "ignored_packages":
-      [
-        "Vintage",
-      ],
-      "font_size": 11,
-      "color_scheme": "${sublimeColourScheme}",
-      "theme": "Adaptive.sublime-theme",
-    }
-  '';
+  in
+    # JSON
+    ''
+      {
+        "ignored_packages":
+        [
+          "Vintage",
+        ],
+        "font_size": 11,
+        "color_scheme": "${sublimeColourScheme}",
+        "theme": "Adaptive.sublime-theme",
+      }
+    '';
 
   # xdg.configFile."${packagesPath}/yuck.tmLanguage".source = ./yuck.tmLanguage;
   xdg.configFile."${packagesPath}/yuck.sublime-syntax".source = ./yuck.sublime-syntax;

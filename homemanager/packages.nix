@@ -1,51 +1,53 @@
 {
+  config, 
   pkgs,
-  pkgs-config,
-  flake-inputs,
+  app-themes,
   ...
 }: let
-  texlive-pkgs = pkgs.texlive.combine {
-    inherit
-      (pkgs.texlive)
-      scheme-small
-      derivative
-      enumitem
-      latexmk
-      psnfss # postscript fonts
-      hyphenat
-      revtex4-1 # for aastex
-      siunitx
-      standalone
-      epsf # for graphics
-      svn-prov # required macros
-      astro
-      ;
-  };
-
-  custom-derivations = map (pname: (pkgs.callPackage ./derivations/${pname}.nix {})) [
-    "ds9"
-    "gaia"
-    "starfetch"
-  ];
-
-  installed-with-program-enable = with pkgs; [
-    # just noting here that these programs *are* installed
-    bash
-    bat
-    copyq
-    eza
-    fzf
-    git # also installed system-wide
-    starship
-    zsh
-  ];
+  shell-scripts = builtins.attrValues (
+    builtins.mapAttrs
+    (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
+    {
+      get-package-dir = "get-package-dir";
+      rebuild = "rebuild";
+      search = "nix-search-wrapper";
+      gmv = "git-mv";
+      bright = "brightness-control";
+      clean = "clean";
+    }
+  );
 in {
-  nixpkgs.config = pkgs-config;
+  imports = map (fname: import (./. + "/pkgs/${fname}.nix") {inherit config pkgs app-themes;}) [
+    # just noting here that these programs *are* installed
+    "bash"
+    "bat"
+    "bottom"
+    "cod"
+    "copyq/copyq"
+    "duf"
+    "dust"
+    "eza"
+    "fzf"
+    "gaia"
+    "git" # also installed system-wide
+    "gnome/gnome"
+    # "gpg"
+    "lazygit"
+    "neovim/neovim"
+    "python/python"
+    "starship"
+    "sublime-text/sublime-text"
+    "superfile"
+    "tilix"
+    # "vscodium"
+    "zoxide"
+    "zsh"
+  ];
+
   home.packages = with pkgs;
     [
       # nix programs
       appimage-run
-      alejandra
       dconf2nix
       deadnix
       nix-diff
@@ -54,20 +56,17 @@ in {
       nix-search-cli # provides nix-search
       nix-tree
       nurl
+      nixfmt
 
       # cli programs
       age # encryption
       brightnessctl
-      bottom
+      cbonsai
       chafa # cli images
       cloc
-      cod # completion from --help
-      conda
       curl
       dconf
       dell-command-configure
-      duf # view general info for entire system
-      dust # view specific info for directories
       fastfetch
       fd
       file
@@ -75,20 +74,25 @@ in {
       gfortran
       imv
       jq
-      lazygit
+      latex
+      lavat
       lua
       mpv
       onefetch
       openssh
       pandoc
       parallel
+      pdf2svg # for eps file preview
       # unstable.pistol # integrate into fzf preview for archive viewing, otherwise unnecesary
       pomodoro
+      pond
       python3
       rename
       ripgrep
+      ripgrep-all
       sd
       speedtest-rs
+      starfetch
       trashy
       unzip
       vim
@@ -96,10 +100,10 @@ in {
       xdg-ninja
       zellij
       zip
-      zoxide
 
       # gui programs
       discord
+      ds9
       filezilla
       github-desktop
       gnome-extension-manager
@@ -116,18 +120,11 @@ in {
       onedrivegui
       # realvnc-vnc-viewer
       slack-dark
-      sublime4
       teams-for-linux
-      tilix
       vivaldi
-      vscodium-fhs
+      zathura
       zoom-us
-      unstable.zotero-beta
-
-      # mucommander # ugly af but works, weird shortcuts
-      flake-inputs.superfile.packages.${system}.default
-
-      texlive-pkgs
+      zotero
 
       # hyprland extras
       # libsForQt5.qt5.wayland
@@ -152,5 +149,5 @@ in {
       wl-clipboard
       swappy
     ]
-    ++ custom-derivations;
+    ++ shell-scripts;
 }

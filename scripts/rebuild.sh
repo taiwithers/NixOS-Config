@@ -89,8 +89,8 @@ if git diff --quiet '*.nix'; then
 fi
 
 # Autoformat your nix files
-alejandra . &>/dev/null \
-  || ( alejandra . ; echo "Formatting failed!" && exit 1)
+nixfmt . &>/dev/null \
+  || ( nixfmt . ; echo "Formatting failed!" && exit 1)
 
 # Shows your changes
 git diff -U0 '*.nix'

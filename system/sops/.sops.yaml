@@ -1,7 +1,9 @@
 keys:
-  - &age_pubkey age1763f69nmx9czjkc4v8750qae4l2ht0wn0hpyur83jpu5zv6n93ds77jexr
+  - &tai_wsl age18cc2x3f8dsjrn5j2m2apq05ryew4avngd897tuyu4xjf34ezuckssagkgf
+  - &tai_nixos age1763f69nmx9czjkc4v8750qae4l2ht0wn0hpyur83jpu5zv6n93ds77jexr
 creation_rules:
   - path_regex: .(yaml|json|env|ini)$
     key_groups:
     - age:
-      - *age_pubkey
+      - *tai_wsl
+      - *tai_nixos

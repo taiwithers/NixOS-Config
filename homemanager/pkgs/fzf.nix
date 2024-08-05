@@ -6,14 +6,17 @@
 }: let
   fzfDefaultOptions = [
     "--layout reverse"
-    "--height ~60%"
+    "--height '~60%'"
     "--border sharp"
     "--margin 0,3%"
     "--info inline"
     "--tabstop 4"
   ];
   previewFile = "${config.xdg.configHome}/fzf-preview.sh";
-  fzfPreviewOptions = ["--preview '${previewFile} {}'" "--preview-window border-sharp"];
+  fzfPreviewOptions = [
+    "--preview '${previewFile} {}'"
+    "--preview-window border-sharp"
+  ];
 in {
   programs.fzf = rec {
     enable = true;
@@ -21,7 +24,7 @@ in {
 
     # typing "fzf" as a command
     defaultCommand = "fd --type file --type symlink";
-    defaultOptions = fzfDefaultOptions ++ fzfPreviewOptions;
+    defaultOptions = fzfDefaultOptions;
 
     # alt-c
     changeDirWidgetCommand = "fd --type directory";

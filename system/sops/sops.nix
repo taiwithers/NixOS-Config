@@ -1,8 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config, pkgs, ... }:
+let
   # setup sops and age
   # mkdir --parents ~/.config/sops/age
   # age-keygen --output ~/.config/sops/age/keys.txt
@@ -13,7 +10,8 @@
   source-script = "variables.sh";
   source-path = "/run/secrets-rendered/${source-script}";
   local-username = config.users.users.tai.name;
-in {
+in
+{
   sops = {
     defaultSopsFile = builtins.toString ./secrets.yaml;
     defaultSopsFormat = "yaml";
@@ -23,7 +21,7 @@ in {
     secrets = {
       group_hostname.owner = local-username;
       group_username.owner = local-username;
-      github_api_pat = {};
+      github_api_pat = { };
     };
 
     templates."${source-script}" = {
@@ -40,7 +38,7 @@ in {
   environment.shellInit = "source ${source-path}";
   environment.shellAliases."source-secrets" = "source ${source-path}";
 
-  environment.systemPackages = [pkgs.sops];
+  environment.systemPackages = [ pkgs.sops ];
   # home.activation.custom-sops-nix = let
   #   systemctl = config.systemd.user.systemctlPath;
   # in "${systemctl} --user reload-or-restart sops-nix";
@@ -49,3 +47,15 @@ in {
   #   /run/current-system/sw/bin/systemctl start --user sops-nix
   # '';
 }
+
+# add sops to flake inputs
+# add sops HM to tai-wsl flake modules
+# add sops and age to home packages
+# mkdir --parents ~/.config/sops/age
+# sops ~/.config/NixOS-Config/secrets/secrets.yaml
+# ^ fails bc no public key is available at ~/.config/sops/age/keys.txt to decrypt
+# age-keygen --output ~/.config/sops/age/keys.txt
+# get public key with: age-keygen -y ~/.config/sops/age/keys.txt
+# add public key to .sops.yaml
+# sops --config ~/.config/NixOS-Config/system/sops/.sops.yaml [sops file to edit, e.g. ~/.config/NixOS-Config/homemanager/sops-wsl.yaml]
+# now all public keys listed in --config are able to access/decrypt [sops file]

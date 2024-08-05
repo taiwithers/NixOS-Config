@@ -10,23 +10,28 @@ dependencies:
   - astropy
   - cmcrameri
   - cycler
+  - extension-helpers
   - ipykernel
   - ipython
   - ipywidgets
+  - isort
   - jupyter
   - jupyterlab
   - lmfit
+  - lsprotocol # for isort
   - matplotlib
   - numpy
   - pandas
-  - pillow
+  - pillow=9.5
   - pip
   - plotly
+  - pygls # for isort
   - requests
   - scikit-image
   - scikit-learn
   - scipy
   - setuptools
+  - tikzplotlib
   - uncertainties
   - wheel
   - yaml
@@ -35,14 +40,17 @@ dependencies:
       - astropy-healpix
       - casa-formats-io
       - coloredlogs
-      - fits-tools
+        #- fits-tools
       - gdown
       - PyQt6
       - radio-beam
       - reproject
       - spectral-cube
       - wget
-
+      - git+https://github.com/taiwithers/acorns.git
+      - git+https://github.com/pyspeckit/pyspeckit.git
+      - git+https://github.com/taiwithers/mufasa.git@multicore_options
+      - git+https://github.com/taiwithers/FITS_tools
 # update environment with conda env update --file filename.yml --prune
 
 # pip install git+https://github.com/jdhenshaw/acorns.git

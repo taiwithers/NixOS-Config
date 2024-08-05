@@ -1,13 +1,5 @@
-{   
-    "base16.generator.activatedThemes": [
-        "base16-da-one-ocean-dark",
-        "base16-horizon-dark",
-        "base16-horizon-terminal-dark",
-        "base16-qualia",
-        "base16-rose-pine-dark",
-        "base16-rose-pine-moon-dark",
-        "base16-rose-pine-dawn-dark"
-    ],
+{
+   // builtins
     "breadcrumbs.filePath": "last",
     "debug.allowBreakpointsEverywhere": true,
     "debug.autoExpandLazyVariables": true,
@@ -15,37 +7,39 @@
     "debug.console.closeOnEnd": true,
     "debug.hideLauncherWhileDebugging": true,
     "debug.inlineValues": "on",
+    "debug.onTaskErrors": "abort",
     "diffEditor.experimental.showMoves": true,
     "diffEditor.hideUnchangedRegions.enabled": true,
+    "editor.codeActionWidget.showHeaders": false,
+    "editor.copyWithSyntaxHighlighting": false,
     "editor.cursorSurroundingLines": 1,
     "editor.cursorWidth": 2,
+    "editor.defaultColorDecorators": true,
+    "editor.dragAndDrop": false,
+    "editor.dropIntoEditor.enabled": false,
     "editor.find.autoFindInSelection": "multiline",
     "editor.find.cursorMoveOnType": false,
     "editor.fontFamily": "'Intel One Mono', 'SpaceMono Nerd Font', monospace",
     "editor.fontSize": 16,
     "editor.formatOnPaste": true,
     "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "editor.guides.bracketPairsHorizontal": false,
+    "editor.linkedEditing": true,
     "editor.minimap.autohide": true,
     "editor.mouseWheelZoom": true,
+    "editor.renderLineHighlight": "gutter",
     "editor.stickyScroll.enabled": true,
     "editor.stickyScroll.maxLineCount": 3,
     "editor.stickyTabStops": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.suggest.showStatusBar": true,
     "editor.suggest.snippetsPreventQuickSuggestions": true,
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_",
     "editor.wordWrapColumn": 120,
     "editor.wrappingIndent": "indent",
-    "ego.power-tools": {
-        "buttons": [
-            {
-                "action": {
-                    "command": "workbench.action.openSettings",
-                    "type": "command"
-                },
-                "text": "$(gear) Settings",
-                "tooltip": "Open Settings"
-            }
-        ]
-    },
+
     "explorer.autoReveal": false,
+    "explorer.compactFolders": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmUndo": "light",
@@ -61,8 +55,6 @@
     "files.simpleDialog.enable": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "fortran.fortls.notifyInit": true,
-    "fortran.fortls.path": "/home/tai/opt/miniforge3/envs/phys913/bin/fortls",
     "git.autofetch": true,
     "git.closeDiffOnOperation": true,
     "git.confirmSync": false,
@@ -72,137 +64,6 @@
     "git.terminalGitEditor": true,
     "git.timeline.showAuthor": false,
     "github.gitProtocol": "ssh",
-    "isort.check": true,
-    "isort.showNotifications": "onError",
-    "jupyter.allowUnauthorizedRemoteConnection": true,
-    "jupyter.askForKernelRestart": false,
-    "latex-workshop.message.badbox.show": false,
-    "latex-workshop.latex.tools": [
-        {
-            "name": "latexmk",
-            "command": "latexmk",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-pdf",
-                "-outdir=%OUTDIR%",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "lualatexmk",
-            "command": "latexmk",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-lualatex",
-                "-outdir=%OUTDIR%",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "xelatexmk",
-            "command": "latexmk",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-xelatex",
-                "-outdir=%OUTDIR%",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "latexmk_rconly",
-            "command": "latexmk",
-            "args": [
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "pdflatex",
-            "command": "pdflatex",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "bibtex",
-            "command": "bibtex",
-            "args": [
-                "%DOCFILE%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "rnw2tex",
-            "command": "Rscript",
-            "args": [
-                "-e",
-                "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
-            ],
-            "env": {}
-        },
-        {
-            "name": "jnw2tex",
-            "command": "julia",
-            "args": [
-                "-e",
-                "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
-            ],
-            "env": {}
-        },
-        {
-            "name": "jnw2texminted",
-            "command": "julia",
-            "args": [
-                "-e",
-                "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
-            ],
-            "env": {}
-        },
-        {
-            "name": "pnw2tex",
-            "command": "pweave",
-            "args": [
-                "-f",
-                "tex",
-                "%DOC_EXT%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "pnw2texminted",
-            "command": "pweave",
-            "args": [
-                "-f",
-                "texminted",
-                "%DOC_EXT%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "tectonic",
-            "command": "tectonic",
-            "args": [
-                "--synctex",
-                "--keep-logs",
-                "%DOC%.tex"
-            ],
-            "env": {}
-        }
-    ],
-    "markdownlint.run": "onSave",
     "merge-conflict.autoNavigateNextConflict.enabled": true,
     "notebook.cellToolbarVisibility": "hover",
     "notebook.diff.ignoreMetadata": true,
@@ -215,26 +76,162 @@
     "notebook.scrolling.revealNextCellOnExecute": "none",
     "notebook.stickyScroll.enabled": true,
     "outline.collapseItems": "alwaysCollapse",
+    "outline.showArrays": false,
+    "outline.showBooleans": false,
+    "outline.showConstants": false,
+    "outline.showEnumMembers": false,
+    "outline.showEnums": false,
+    "outline.showEvents": false,
+    "outline.showFields": false,
+    "outline.showKeys": false,
+    "outline.showModules": false,
+    "outline.showNull": false,
+    "outline.showNumbers": false,
+    "outline.showObjects": false,
+    "outline.showOperators": false,
+    "outline.showStrings": false,
+    "outline.showStructs": false,
+    "outline.showTypeParameters": false,
+    "outline.showVariables": false,
     "problems.showCurrentInStatus": true,
+    "scm.alwaysShowActions": true,
+    "scm.alwaysShowRepositories": true,
+    "scm.defaultViewMode": "tree",
+    "scm.diffDecorationsGutterAction": "none",
+    "scm.diffDecorationsGutterPattern": {
+        "added": true
+    },
+    "scm.diffDecorationsGutterVisibility": "hover",
+    "scm.diffDecorationsIgnoreTrimWhitespace": "true",
+    "search.defaultViewMode": "tree",
+    "search.showLineNumbers": true,
+    "search.smartCase": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorStyleInactive": "line",
+    "terminal.integrated.focusAfterRun": "terminal",
+    "terminal.integrated.hideOnStartup": false,
+    "terminal.integrated.inheritEnv": "always",
+    "window.commandCenter": false,
+    "window.confirmSaveUntitledWorkspace": false,
+    "window.zoomLevel": 1,
+    "workbench.accounts.experimental.showEntitlements": true,
+    "workbench.colorCustomizations": {
+        "editorError.background": "#ffffff00",
+        "editorError.border": "#ffffff00",
+        "editorError.foreground": "#ffffff00",
+        "editorWarning.background": "#ffffff00",
+        "editorWarning.border": "#ffffff00",
+        "editorWarning.foreground": "#ffffff00",
+        "list.inactiveSelectionBackground": "#17455c"
+    },
+    "workbench.colorTheme": "Base16 Da One Ocean Dark",
+    "workbench.commandPalette.experimental.suggestCommands": true,
+    "workbench.editor.closeOnFileDelete": true,
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.pinnedTabSizing": "shrink",
+    "workbench.editor.revealIfOpen": true,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.layoutControl.enabled": false,
+    "workbench.panel.opensMaximized": "never",
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "none",
+    "workbench.tree.enableStickyScroll": true,
+    "workbench.view.alwaysShowHeaderActions": true,
+    "workbench.welcomePage.walkthroughs.openOnInstall": false,
+     // extensions
+    "base16.generator.activatedThemes": [
+        "base16-da-one-ocean-dark",
+        "base16-horizon-dark",
+        "base16-horizon-terminal-dark",
+        "base16-qualia",
+        "base16-rose-pine-dark",
+        "base16-rose-pine-moon-dark",
+        "base16-rose-pine-dawn-dark"
+    ],
+    "ego.power-tools": {
+        "buttons": [
+            {
+                "action": {
+                    "command": "workbench.action.openSettings",
+                    "type": "command"
+                },
+                "text": "$(gear) Settings",
+                "tooltip": "Open Settings"
+            }
+        ]
+    },
+    "fortran.fortls.configure": ".fortlsrc",
+    "fortran.fortls.notifyInit": true,
+    "fortran.fortls.path": "/home/tai/opt/miniforge3/envs/phys913/bin/fortls",
+    "isort.check": true,
+    "isort.showNotifications": "onError",
+    "jupyter.allowUnauthorizedRemoteConnection": true,
+    "jupyter.askForKernelRestart": false,
+    "latex-workshop.latex.tools": [
+        {
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "command": "latexmk",
+            "env": {},
+            "name": "latexmk"
+        },
+        {
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "command": "pdflatex",
+            "env": {},
+            "name": "pdflatex"
+        },
+        {
+            "args": [
+                "%DOCFILE%"
+            ],
+            "command": "bibtex",
+            "env": {},
+            "name": "bibtex"
+        }
+    ],
+    "latex-workshop.message.badbox.show": false,
+    "latex-workshop.message.error.show": false,
+    "markdownlint.run": "onSave",
+    "peacock.affectActivityBar": false,
+    "peacock.affectPanelBorder": true,
+    "peacock.affectSashHover": false,
+    "peacock.affectSideBarBorder": true,
+    "peacock.affectStatusBar": false,
+    "peacock.affectTabActiveBorder": true,
     "pylint.args": [
-        "--disable=unused-import",
-        "--disable=unspecified-encoding",
-        "--disable=fixme",
-        "--disable=bare-except",
-        "--disable=comparison-with-callable",
-        "--disable=unused-variable",
         "--disable=anomalous-backslash-in-string",
-        "--disable=unbalanced-tuple-unpacking",
-        "--disable=no-name-in-module",
-        "--max-line-length=120",
-        "--disable=multiple-statements",
+        "--disable=bare-except",
+        "--disable=broad-exception-caught",
+        "--disable=comparison-with-callable",
         "--disable=dangerous-default-value",
+        "--disable=fixme",
         "--disable=invalid-name",
         "--disable=logging-fstring-interpolation",
-        "--disable=pointless-string-statement",
-        "--disable=broad-exception-caught",
+        "--disable=multiple-statements",
         "--disable=no-member",
-        "--disable=redefined-outer-name"
+        "--disable=no-name-in-module",
+        "--disable=pointless-string-statement",
+        "--disable=redefined-outer-name",
+        "--disable=unbalanced-tuple-unpacking",
+        "--disable=unspecified-encoding",
+        "--disable=unused-import",
+        "--disable=unused-variable",
+        "--max-line-length=120"
     ],
     "pylint.severity": {
         "convention": "Hint",
@@ -256,105 +253,14 @@
     "rainbow_csv.rbql_with_headers_by_default": true,
     "remote.autoForwardPortsSource": "hybrid",
     "remote.downloadExtensionsLocally": true,
-    "scm.alwaysShowActions": true,
-    "scm.alwaysShowRepositories": true,
-    "scm.defaultViewMode": "tree",
-    "scm.diffDecorationsGutterAction": "none",
-    "scm.diffDecorationsGutterPattern": {
-        "added": true
-    },
-    "scm.diffDecorationsGutterVisibility": "hover",
-    "scm.diffDecorationsIgnoreTrimWhitespace": "true",
-    "search.defaultViewMode": "tree",
-    "search.showLineNumbers": true,
-    "search.smartCase": true,
-    "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.cursorStyleInactive": "line",
-    "terminal.integrated.focusAfterRun": "terminal",
-    "terminal.integrated.hideOnStartup": false,
-    "terminal.integrated.inheritEnv": "always",
     "todo-tree.filtering.useBuiltInExcludes": "file and search excludes",
     "todo-tree.general.showIconsInsteadOfTagsInStatusBar": true,
     "todo-tree.general.statusBar": "current file",
     "todo-tree.tree.showCountsInTree": true,
-    "vsicons.dontShowNewVersionMessage": true,
-    "workbench.accounts.experimental.showEntitlements": true,
-    "workbench.colorCustomizations": {
-        "editorError.background": "#ffffff00",
-        "editorError.border": "#ffffff00",
-        "editorError.foreground": "#ffffff00",
-        "editorWarning.background": "#ffffff00",
-        "editorWarning.border": "#ffffff00",
-        "editorWarning.foreground": "#ffffff00",
-        "list.inactiveSelectionBackground": "#17455c"
-    },
-    "workbench.editor.closeOnFileDelete": true,
-    "workbench.editor.empty.hint": "hidden",
-    "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromCodeNavigation": true,
-    "workbench.editor.highlightModifiedTabs": true,
-    "workbench.editor.pinnedTabSizing": "shrink",
-    "workbench.editor.revealIfOpen": true,
-    "workbench.panel.opensMaximized": "never",
-    "workbench.sideBar.location": "right",
-    "workbench.startupEditor": "none",
-    "workbench.tree.enableStickyScroll": true,
-    "workbench.view.alwaysShowHeaderActions": true,
-    "customizeUI.font.regular": "Symbols Nerd Font",
-    "window.commandCenter": false,
-    "customizeUI.statusBarPosition": "bottom",
-    "vim.foldfix": true,
+    "vim.autoindent": false,
     "vim.enableNeovim": true,
+    "vim.foldfix": true,
     "vim.neovimPath": "/home/tai/opt/nvim.appimage",
     "vim.startInInsertMode": true,
-    "vscode_custom_css.statusbar": false,
-    "peacock.affectActivityBar": false,
-    "peacock.affectSashHover": false,
-    "peacock.affectStatusBar": false,
-    "peacock.affectTabActiveBorder": true,
-    "peacock.affectPanelBorder": true,
-    "peacock.affectSideBarBorder": true,
-    "vim.autoindent": false,
-    "editor.codeActionWidget.showHeaders": false,
-    "editor.copyWithSyntaxHighlighting": false,
-    "editor.defaultColorDecorators": true,
-    "editor.dragAndDrop": false,
-    "editor.dropIntoEditor.enabled": false,
-    "editor.guides.bracketPairsHorizontal": false,
-    "editor.linkedEditing": true,
-    "editor.renderLineHighlight": "gutter",
-    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_",
-    "editor.suggest.insertMode": "replace",
-    "editor.suggest.showStatusBar": true,
-    "workbench.commandPalette.experimental.suggestCommands": true,
-    "workbench.layoutControl.enabled": false,
-    "workbench.welcomePage.walkthroughs.openOnInstall": false,
-    "explorer.compactFolders": false,
-    "latex-workshop.message.error.show": false,
-    "window.zoomLevel": 1,
-    "fortran.fortls.configure": ".fortlsrc",
-    "debug.onTaskErrors": "abort",
-    "bookmarks.saveBookmarksInProject": true,
-    "bookmarks.sideBar.expanded": true,
-    "bookmarks.keepBookmarksOnLineDelete": true,
-    "outline.showArrays": false,
-    "outline.showBooleans": false,
-    "outline.showConstants": false,
-    "outline.showEnums": false,
-    "outline.showEnumMembers": false,
-    "outline.showEvents": false,
-    "outline.showFields": false,
-    "outline.showKeys": false,
-    "outline.showModules": false,
-    "outline.showNull": false,
-    "outline.showNumbers": false,
-    "outline.showObjects": false,
-    "outline.showOperators": false,
-    "outline.showStrings": false,
-    "outline.showStructs": false,
-    "outline.showTypeParameters": false,
-    "outline.showVariables": false,
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.colorTheme": "Base16 Da One Ocean Dark",
-    "window.confirmSaveUntitledWorkspace": false
+    "vsicons.dontShowNewVersionMessage": true,
 }

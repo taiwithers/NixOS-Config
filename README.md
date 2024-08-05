@@ -1,19 +1,35 @@
 # NixOS-Config Structure
 
 ## Directory Tree
-├── bash-scripts
-│	├── get-codium-ext-info.sh
+├── scripts
+│	├── autostart.sh
+│	├── brightness-control.sh
+│	├── choose-option-or-backup.nix
+│	├── clean.sh
 │	├── get-package-dir.sh
+│	├── git-mv.sh
 │	├── home-manager-rollback.sh
-│	└── rebuild.sh
+│	├── locate-desktop.nix
+│	├── nix-search-wrapper.sh
+│	├── notes.md
+│	├── printscreen.sh
+│	├── rebuild.sh
+│	├── rebuild.sh
+│	├── set-custom-gnome-keybinds.nix
+│	└── theme-config.nix
 │
 ├── homemanager
+│	├── derivations
+│	│	├── dconf2nix.nix
+│	│	├── ds9.nix
+│	│	├── gaia.nix
+│	│	└── starfetch.nix
+│	│
 │	├── desktop-environment
 │	│	├── autostart-programs.nix
+│	│	├── default.nix
 │	│	├── fonts.nix
-│	│	├── gnome-extensions.nix
-│	│	├── gnome-keybindings.nix
-│	│	├── gnome.nix
+│	│	├── icons.txt
 │	│	├── shell.nix
 │	│	├── taskbar-programs.nix
 │	│	└── xdg.nix
