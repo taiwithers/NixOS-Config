@@ -10,8 +10,7 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
-    ./sops/sops.nix
+    ./hardware.nix
   ];
 
   boot.loader = {

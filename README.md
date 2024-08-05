@@ -1,80 +1,37 @@
 # NixOS-Config Structure
 
 ## Directory Tree
-├── scripts
-│	├── autostart.sh
-│	├── brightness-control.sh
-│	├── choose-option-or-backup.nix
-│	├── clean.sh
-│	├── get-package-dir.sh
-│	├── git-mv.sh
-│	├── home-manager-rollback.sh
-│	├── locate-desktop.nix
-│	├── nix-search-wrapper.sh
-│	├── notes.md
-│	├── printscreen.sh
-│	├── rebuild.sh
-│	├── rebuild.sh
-│	├── set-custom-gnome-keybinds.nix
-│	└── theme-config.nix
+├── derivations
+│	├── cbonsai.nix
+│	├── color-oracle.nix
+│	├── ds9.nix
+│	├── gaia.nix
+│	├── pond.nix
+│	└── starfetch.nix
 │
-├── homemanager
-│	├── derivations
-│	│	├── dconf2nix.nix
-│	│	├── ds9.nix
-│	│	├── gaia.nix
-│	│	└── starfetch.nix
-│	│
-│	├── desktop-environment
-│	│	├── autostart-programs.nix
-│	│	├── default.nix
-│	│	├── fonts.nix
-│	│	├── icons.txt
-│	│	├── shell.nix
-│	│	├── taskbar-programs.nix
-│	│	└── xdg.nix
-│	│
-│	├── package-configuration
-│	│	├── bash.nix
-│	│	├── copyq.nix
-│	│	├── copyq.conf
-│	│	├── dash-to-panel.nix
-│	│	├── dash-to-panel.dconf
-│	│	├── dolphin.nix
-│	│	├── dolphinrc.toml
-│	│	├── dolphinui.xml
-│	│	├── eza.nix
-│	│	├── forge.nix
-│	│	├── forge.dconf
-│	│	├── fzf.nix
-│	│	├── git.nix
-│	│	├── gpg.nix
-│	│	├── python-qstar.yml
-│	│	├── sublime-text.nix
-│	│	├── sublime-text-keymap.json
-│	│	├── sublime-text-theme.json
-│	│	├── sublime-text-preferences.json
-│	│	├── tilix.nix
-│	│	├── vscodium.nix
-│	│	├── vscodium-keybindings.json
-│	│	└── vscodium-settings.json
-│	│
-│	├── home.nix
-│	├── flake.nix
-│	├── flake.lock
-│	└── packages.nix
+├── home-manager
+│	├── pkgs (directory)
+│	├── common.nix
+│	├── nixos-main.nix (home.nix)
+│	├── nixos-wsl.nix
+│	├── ubuntu-wsl.nix (wsl-home.nix)
+│	├── ubuntu-main.nix (group-home.nix)
+│	├── flake-home-manager.nix
+│	└── flakelock-home-manager.lock
 │
-├── nix-scripts
-│	├── autostart.nix
-│	├── choose-option-or-backup.nix
-│	├── set-custom-gnome-keybinds.nix
-│	└── locate-desktop.nix
+├── scripts (directory)
 │
-├── system
-│	├── configuration.nix
-│	├── flake.lock
-│	├── flake.nix
-│	└── hardware-configuration.nix
+├── nixos
+│	├── main
+│	│	├── configuration.nix
+│	│	└── hardware.nix
+│	│
+│	├── wsl
+│	│	├── configuration.nix
+│	│	└── hardware.nix
+│	│
+│	├── flake-nixos.nix
+│	└── flakelock-nixos.lock
 │
 ├── .gitignore
 └── README.md
