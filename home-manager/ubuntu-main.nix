@@ -50,6 +50,9 @@
     };
   };
 
+  common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
+  common.useXDG = true;
+  common.nixos = false;
   home.shellAliases."rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/home-manager#ubuntu-main";
 
   home.stateVersion = "24.05";
