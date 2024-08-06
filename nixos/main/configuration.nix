@@ -4,7 +4,7 @@
 {
   config,
   pkgs,
-  hostName,
+  hostname,
   # flake-inputs,
   ...
 }: {
@@ -58,7 +58,7 @@
   nix.settings.use-xdg-base-directories = true;
 
   # networking
-  networking.hostName = hostName;
+  networking.hostName = hostname;
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
 
@@ -117,7 +117,7 @@
   # allow printing without downloading drivers, https://nixos.wiki/wiki/Printing
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     openFirewall = true;
   };
 

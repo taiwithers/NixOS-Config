@@ -108,18 +108,24 @@
     #     ]
     # ;
 
-    home.shellAliases = with config.common; {
-      "untar" = "tar -xvf";
-      "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
-      "printenv" = "printenv | sort";
-      "wget" = "wget --hsts-file=${stateHome}/wget_hsts";
+    home.shellAliases = with config.common;
+      {
+        "untar" = "tar -xvf";
+        "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
+        "printenv" = "printenv | sort";
+        "wget" = "wget --hsts-file=${stateHome}/wget_hsts";
 
-      "confdir" = "cd ${nixConfigDirectory}";
-      "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
-      "rebuild" = "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name}";
-      "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
-      "formatconfig" = "(cd ${nixConfigDirectory}/home-manager && nix fmt .. --impure)";
-    };
+        "confdir" = "cd ${nixConfigDirectory}";
+        "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
+        "rebuild" = "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name}";
+        "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
+        "formatconfig" = "(cd ${nixConfigDirectory}/home-manager && nix fmt .. --impure)";
+      }
+      // pkgs.lib.optionalAttrs (config.common.nixos) {
+        "nixrebuild" = let
+          nixconfig-name = pkgs.lib.lists.last (pkgs.lib.strings.splitString "-" config-name);
+        in "sudo nixos-rebuild switch --impure --show-trace --flake ${nixConfigDirectory}/nixos#${nixconfig-name}";
+      };
 
     nix.package = pkgs.lix;
     nix.settings.experimental-features = [

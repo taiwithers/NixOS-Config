@@ -2,10 +2,17 @@
   config,
   lib,
   pkgs,
+  hostname,
+  flake-inputs,
   ...
 }: {
   imports = [
     ./hardware.nix
+    flake-inputs.nixos-wsl.nixosModules.default
+    {
+      system.stateVersion = config.system.stateVersion;
+      wsl.enable = true;
+    }
   ];
 
   wsl = rec {
