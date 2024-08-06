@@ -53,6 +53,5 @@
   home.shellAliases = {
     "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
   };
-  nix.package = pkgs.lix;
   home.stateVersion = "24.05";
 }
