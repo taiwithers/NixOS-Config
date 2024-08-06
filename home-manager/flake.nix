@@ -130,9 +130,10 @@
 
     fonts = with pkgs; [
       cm_unicode
+      intel-one-mono
       (nerdfonts.override {
         fonts = [
-          "IntoneMono"
+          # "IntoneMono" # not available in nixpkgs nerdfont
           "SpaceMono"
           "NerdFontsSymbolsOnly"
         ];

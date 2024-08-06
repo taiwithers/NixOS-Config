@@ -35,6 +35,10 @@
       obsidian
     ];
 
-  # home.packages = fonts;
+  common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
+  common.useXDG = true;
+  common.nixos = true;
+
+  home.packages = fonts;
   home.stateVersion = "23.11";
 }
