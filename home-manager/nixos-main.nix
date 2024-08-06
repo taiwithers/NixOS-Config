@@ -48,7 +48,7 @@
       "vscodium/vscodium"
       "xdg"
       "zoxide"
-      "zsh"
+      # "zsh"
     ]);
 
   # home.shellAliases."rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/home-manager#nixos-main";
@@ -126,7 +126,7 @@
       obsidian
       onedrive
       onedrivegui
-      # realvnc-vnc-viewer
+      realvnc-vnc-viewer # nix-prefetch-url --type sha256 https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm
       slack-dark
       teams-for-linux
       vivaldi

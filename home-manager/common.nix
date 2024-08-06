@@ -127,6 +127,11 @@
         in "sudo nixos-rebuild switch --impure --show-trace --flake ${nixConfigDirectory}/nixos#${nixconfig-name}";
       };
 
+    xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''
+    if !has('nvim') " Neovim has its own location which already complies with XDG specification
+      set viminfofile=$XDG_STATE_HOME/viminfo
+    endif
+    '';
     nix.package = pkgs.lix;
     nix.settings.experimental-features = [
       "nix-command"
