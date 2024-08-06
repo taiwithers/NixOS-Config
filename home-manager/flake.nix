@@ -149,17 +149,17 @@
       nixos-wsl = "tai-wsl"; # wsl on  windows partition
       ubuntu-wsl = "tai-wsl"; # currently unused
     };
-
   in {
-
-    homeConfigurations = builtins.mapAttrs (
-      config-name: user:
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {inherit flake-inputs user pkgs-config app-themes fonts config-name;};
-          modules = [(./. + "/${config-name}.nix") ./common.nix];
-        }
-      ) configurations;
+    homeConfigurations =
+      builtins.mapAttrs (
+        config-name: user:
+          home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = {inherit flake-inputs user pkgs-config app-themes fonts config-name;};
+            modules = [(./. + "/${config-name}.nix") ./common.nix];
+          }
+      )
+      configurations;
 
     formatter.${builtins.currentSystem} = nixpkgs.legacyPackages.${builtins.currentSystem}.alejandra;
   };

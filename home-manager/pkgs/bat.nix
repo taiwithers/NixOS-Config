@@ -1,4 +1,8 @@
-{config, pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.bat = {
     enable = true;
     extraPackages = with pkgs.bat-extras; [

@@ -1,5 +1,8 @@
-{ pkgs, arc, ... }:
-rec {
+{
+  pkgs,
+  arc,
+  ...
+}: rec {
   colourschemes = pkgs.fetchFromGitHub {
     owner = "tinted-theming";
     repo = "schemes";
@@ -7,34 +10,32 @@ rec {
     hash = "sha256-9i9IjZcjvinb/214x5YShUDBZBC2189HYs26uGy/Hck=";
   };
 
-  importYaml =
-    let
-      findStrings = [
-        "palette:"
-        "  "
-      ];
-      replaceStrings = builtins.genList (str: "") (builtins.length findStrings);
-    in
+  importYaml = let
+    findStrings = [
+      "palette:"
+      "  "
+    ];
+    replaceStrings = builtins.genList (str: "") (builtins.length findStrings);
+  in
     theme:
-    arc.lib.fromYAML (
-      builtins.replaceStrings findStrings replaceStrings (
-        builtins.readFile "${colourschemes}/${theme}.yaml"
-      )
-    );
+      arc.lib.fromYAML (
+        builtins.replaceStrings findStrings replaceStrings (
+          builtins.readFile "${colourschemes}/${theme}.yaml"
+        )
+      );
 
-  toFileName =
-    theme:
+  toFileName = theme:
     pkgs.lib.toLower (
       builtins.replaceStrings
-        [
-          "/"
-          " "
-        ]
-        [
-          "-"
-          "-"
-        ]
-        theme
+      [
+        "/"
+        " "
+      ]
+      [
+        "-"
+        "-"
+      ]
+      theme
     );
 
   makePaletteSet = themeDict: (builtins.mapAttrs (name: value: importYaml value) themeDict);

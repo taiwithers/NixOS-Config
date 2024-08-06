@@ -8,46 +8,48 @@
   fonts,
   ...
 }: {
-  imports = [
-    # autostart
-    (
-      let
-        autostart-pkgs = with pkgs; [
-          teams-for-linux
-          onedrivegui
-        ];
-      in
-        import ../scripts/autostart.nix {inherit config autostart-pkgs;}
-    )
-    flake-inputs.agenix.homeManagerModules.default
-  ] ++ (map (fname: import (./. + "/pkgs/${fname}.nix") {inherit config pkgs app-themes;}) [
-    # just noting here that these programs *are* installed
-    "agenix/agenix"
-    "bash"
-    "bat"
-    "bottom"
-    "cod"
-    "copyq/copyq"
-    "duf"
-    "dust"
-    "eza"
-    "fzf"
-    "gaia"
-    "git" # also installed system-wide
-    "gnome/gnome"
-    # "gpg"
-    "lazygit"
-    "neovim/neovim"
-    "python/python"
-    "starship"
-    "sublime-text/sublime-text"
-    "superfile"
-    "tilix"
-    "vscodium/vscodium"
-    "xdg"
-    "zoxide"
-    "zsh"
-  ]);
+  imports =
+    [
+      # autostart
+      (
+        let
+          autostart-pkgs = with pkgs; [
+            teams-for-linux
+            onedrivegui
+          ];
+        in
+          import ../scripts/autostart.nix {inherit config autostart-pkgs;}
+      )
+      flake-inputs.agenix.homeManagerModules.default
+    ]
+    ++ (map (fname: import (./. + "/pkgs/${fname}.nix") {inherit config pkgs app-themes;}) [
+      # just noting here that these programs *are* installed
+      "agenix/agenix"
+      "bash"
+      "bat"
+      "bottom"
+      "cod"
+      "copyq/copyq"
+      "duf"
+      "dust"
+      "eza"
+      "fzf"
+      "gaia"
+      "git" # also installed system-wide
+      "gnome/gnome"
+      # "gpg"
+      "lazygit"
+      "neovim/neovim"
+      "python/python"
+      "starship"
+      "sublime-text/sublime-text"
+      "superfile"
+      "tilix"
+      "vscodium/vscodium"
+      "xdg"
+      "zoxide"
+      "zsh"
+    ]);
 
   # home.shellAliases."rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/home-manager#nixos-main";
 
@@ -131,51 +133,52 @@
       zathura
       zoom-us
       zotero
-    ] ++ (map
-    (
-      {
-        name,
-        runtimeInputs ? [],
-        file,
-      }:
-        pkgs.writeShellApplication {
-          name = name;
-          runtimeInputs = runtimeInputs;
-          text = builtins.readFile file;
+    ]
+    ++ (map
+      (
+        {
+          name,
+          runtimeInputs ? [],
+          file,
+        }:
+          pkgs.writeShellApplication {
+            name = name;
+            runtimeInputs = runtimeInputs;
+            text = builtins.readFile file;
+          }
+      )
+      [
+        rec {
+          name = "get-package-dir";
+          runtimeInputs = with pkgs; [
+            coreutils
+            which
+          ];
+          file = ../scripts + "/${name}.sh";
         }
-    )
-    [
-      rec {
-        name = "get-package-dir";
-        runtimeInputs = with pkgs; [
-          coreutils
-          which
-        ];
-        file = ../scripts + "/${name}.sh";
-      }
-      rec {
-        name = "clean";
-        runtimeInputs = with pkgs; [
-          coreutils
-          gnugrep
-          gnused
-          home-manager
-          nix
-        ];
-        file = ../scripts + "/${name}.sh";
-      }
-      rec {
-        name = "search";
-        runtimeInputs = with pkgs; [
-          nix-search-cli
-          sd
-          jq
-          nix
-        ];
-        file = ../scripts/nix-search-wrapper.sh;
-      }
-    ]) ++ fonts
-    ;
+        rec {
+          name = "clean";
+          runtimeInputs = with pkgs; [
+            coreutils
+            gnugrep
+            gnused
+            home-manager
+            nix
+          ];
+          file = ../scripts + "/${name}.sh";
+        }
+        rec {
+          name = "search";
+          runtimeInputs = with pkgs; [
+            nix-search-cli
+            sd
+            jq
+            nix
+          ];
+          file = ../scripts/nix-search-wrapper.sh;
+        }
+      ])
+    ++ fonts;
 
   # gnome taskbar
   dconf.settings."org/gnome/shell".favorite-apps = with pkgs;

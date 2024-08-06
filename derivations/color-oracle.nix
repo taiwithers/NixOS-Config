@@ -28,7 +28,7 @@ stdenv.mkDerivation rec {
   preBuild = ''
     mkdir --parents $out
     cp --recursive --dereference $src/* $out/
-    cd $out  
+    cd $out
     substituteInPlace "$out/nbproject/build-impl.xml" \
       --replace-fail "\''${javac.source}" "8" \
       --replace-fail "\''${javac.target}" "8"
@@ -53,5 +53,4 @@ stdenv.mkDerivation rec {
 
     runHook postInstall
   '';
-
 }

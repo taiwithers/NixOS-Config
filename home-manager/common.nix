@@ -49,7 +49,7 @@
     common.hm-session-vars =
       if config.common.useXDG
       then "~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh"
-      else "/etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh"; 
+      else "/etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh";
 
     targets.genericLinux.enable = !config.common.nixos;
 
@@ -118,6 +118,7 @@
       "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
       "rebuild" = "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name}";
       "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
+      "formatconfig" = "(cd ${nixConfigDirectory}/home-manager && nix fmt .. --impure)";
     };
 
     nix.package = pkgs.lix;
