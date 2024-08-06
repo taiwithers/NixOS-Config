@@ -35,6 +35,8 @@
       obsidian
     ];
 
+
+  home.shellAliases."rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/home-manager#nixos-main";
   common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
   common.useXDG = true;
   common.nixos = true;

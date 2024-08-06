@@ -73,6 +73,7 @@
               aastex
               astro # planetary symbols
               babel-english
+              cm-super # cm fonts
               derivative
               enumitem
               epsf

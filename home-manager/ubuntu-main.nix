@@ -50,8 +50,7 @@
     };
   };
 
-  home.shellAliases = {
-    "rebuild" = "home-manager switch --impure --show-trace --flake ~/.config/NixOS-Config/homemanager |& nom";
-  };
+  home.shellAliases."rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/home-manager#ubuntu-main";
+
   home.stateVersion = "24.05";
 }
