@@ -19,7 +19,7 @@
     };
   });
 
-  confdir = "${config.xdg.configHome}/nvim";
+  confdir = "${config.common.configHome}/nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -126,7 +126,20 @@ in {
   };
 
   xdg.configFile."${confdir}/init.lua".source = ./init.lua;
-  # xdg.configFile."${confdir}/lua/options.lua".source = ./options.lua;
-  # xdg.configFile."${confdir}/lua/plugins.lua".source = ./plugins.lua;
-  # xdg.configFile."${confdir}/lua/keymaps.lua".source = ./keymaps.lua;
+
+  home.activation.linkNvimConfig = let
+    source-directory = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim";
+    lua-directory = "${confdir}/lua";
+  in
+  config.lib.dag.entryAfter ["writeBoundary"] ''
+    mkdir --parents ${lua-directory}/
+    rm ${lua-directory}/*.lua
+    ln -s ${source-directory}/options.lua ${lua-directory}/options.lua
+    ln -s ${source-directory}/plugins.lua ${lua-directory}/plugins.lua
+    ln -s ${source-directory}/keymaps.lua ${lua-directory}/keymaps.lua
+    ln -s ${source-directory}/autocommands.lua ${lua-directory}/autocommands.lua
+  '';
+  # xdg.configFile."${lua-directory}/options.lua".source = ./options.lua;
+  # xdg.configFile."${lua-directory}/plugins.lua".source = ./plugins.lua;
+  # xdg.configFile."${lua-directory}/keymaps.lua".source = ./keymaps.lua;
 }
