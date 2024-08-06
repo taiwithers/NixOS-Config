@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  agenix-directory = "${config.xdg.configHome}/NixOS-Config/homemanager/agenix";
+  agenix-directory = "${config.common.nixConfigDirectory}/home-manager/pkgs/agenix";
   ssh-key = "${config.home.homeDirectory}/.ssh/id_ed25519_group";
   age-file = "ssh-config-group.age";
 in {
@@ -29,6 +29,10 @@ in {
     };
   };
 
-  # home.packages = [pkgs.systemd];
-  # home.activation."agenix" = "systemctl --user start agenix";
+  home.packages = [pkgs.agenix];
+
+  home.activation.agenix = config.lib.dag.entryAfter ["writeBoundary"] ''
+    export RULES=${agenix-directory}/agenix-secrets.nix
+    ${pkgs.systemd}/bin/systemctl --user start agenix
+    '';
 }
