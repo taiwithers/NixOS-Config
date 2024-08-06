@@ -39,7 +39,7 @@ in {
     "sublime-text/sublime-text"
     "superfile"
     "tilix"
-    # "vscodium"
+    "vscodium/vscodium"
     "zoxide"
     "zsh"
   ];

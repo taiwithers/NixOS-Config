@@ -1,5 +1,4 @@
 {
-   // builtins
     "breadcrumbs.filePath": "last",
     "debug.allowBreakpointsEverywhere": true,
     "debug.autoExpandLazyVariables": true,
@@ -141,7 +140,6 @@
     "workbench.tree.enableStickyScroll": true,
     "workbench.view.alwaysShowHeaderActions": true,
     "workbench.welcomePage.walkthroughs.openOnInstall": false,
-     // extensions
     "base16.generator.activatedThemes": [
         "base16-da-one-ocean-dark",
         "base16-horizon-dark",
@@ -260,7 +258,6 @@
     "vim.autoindent": false,
     "vim.enableNeovim": true,
     "vim.foldfix": true,
-    "vim.neovimPath": "/home/tai/opt/nvim.appimage",
     "vim.startInInsertMode": true,
-    "vsicons.dontShowNewVersionMessage": true,
+    "vsicons.dontShowNewVersionMessage": true
 }

@@ -97,6 +97,7 @@
               tikzscale # resize pictures while respecting text size
               tikztosvg
               times # times new roman font
+              type1cm # arbitrary font sizing
               ulem # underlining
               upquote # Show "realistic" quotes in verbatim
               wrapfig
