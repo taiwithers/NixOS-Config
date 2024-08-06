@@ -141,34 +141,24 @@
         ];
       })
     ];
+
+    configurations = {
+      nixos-main = "tai"; # linux partition
+      ubuntu-main = "twithers"; # group machine
+      nixos-wsl = "tai-wsl"; # wsl on  windows partition
+      ubuntu-wsl = "tai-wsl"; # currently unused
+    };
+
   in {
 
-    homeConfigurations = {
-      nixos-main = let user = "tai"; in home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit flake-inputs user pkgs-config app-themes fonts;};
-        modules = [./nixos-main.nix ./common.nix];
-      };
-
-      ubuntu-main = let user = "twithers"; in home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit flake-inputs user pkgs-config app-themes fonts;};
-        modules = [./ubuntu-main.nix ./common.nix];
-      };
-      
-      nixos-wsl = let user = "tai-wsl"; in home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit flake-inputs user pkgs-config app-themes fonts;};
-        modules = [./nixos-wsl.nix ./common.nix];
-      };
-      
-      ubuntu-wsl = let user = "tai-wsl"; in home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit flake-inputs user pkgs-config app-themes fonts;};
-        modules = [./ubuntu-wsl.nix ./common.nix flake-inputs.agenix.homeManagerModules.default];
-      };
-      
-    };
+    homeConfigurations = builtins.mapAttrs (
+      config-name: user:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {inherit flake-inputs user pkgs-config app-themes fonts;};
+          modules = [(./. + "/${config-name}.nix") ./common.nix];
+        }
+      ) configurations;
 
     formatter.${builtins.currentSystem} = nixpkgs.legacyPackages.${builtins.currentSystem}.alejandra;
   };

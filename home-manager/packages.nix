@@ -9,7 +9,7 @@
     (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
     {
       get-package-dir = "get-package-dir";
-      rebuild = "rebuild";
+      # rebuild = "rebuild";
       search = "nix-search-wrapper";
       gmv = "git-mv";
       bright = "brightness-control";
