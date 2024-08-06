@@ -109,6 +109,7 @@
           pond = custom ../derivations/pond.nix;
           starfetch = custom ../derivations/starfetch.nix;
           superfile = flake-inputs.superfile.packages.${system}.default;
+          codium = super.vscodium-fhs;
           zotero = unstable.zotero-beta;
         })
       ];
@@ -155,7 +156,7 @@
       config-name: user:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {inherit flake-inputs user pkgs-config app-themes fonts;};
+          extraSpecialArgs = {inherit flake-inputs user pkgs-config app-themes fonts config-name;};
           modules = [(./. + "/${config-name}.nix") ./common.nix];
         }
       ) configurations;

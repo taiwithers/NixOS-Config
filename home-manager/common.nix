@@ -4,6 +4,7 @@
   lib,
   user,
   pkgs-config,
+  config-name,
   ...
 }: {
   options.common = with lib; {
@@ -48,7 +49,7 @@
     common.hm-session-vars =
       if config.common.useXDG
       then "~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh"
-      else "/etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh"; # not sure about this one
+      else "/etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh"; 
 
     targets.genericLinux.enable = !config.common.nixos;
 
@@ -114,7 +115,9 @@
       "wget" = "wget --hsts-file=${stateHome}/wget_hsts";
 
       "confdir" = "cd ${nixConfigDirectory}";
-      "nvdir" = "cd ${nixConfigDirectory}/homemanager/pkgs/neovim";
+      "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
+      "rebuild" = "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name}";
+      "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
     };
 
     nix.package = pkgs.lix;

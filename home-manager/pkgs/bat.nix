@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{config, pkgs, ...}: {
   programs.bat = {
     enable = true;
     extraPackages = with pkgs.bat-extras; [
@@ -15,5 +15,6 @@
   home.shellAliases = {
     "man" = "batman --no-hyphenation --no-justification";
     "cat" = "bat";
+    "bsession" = "bat ${config.common.hm-session-vars}";
   };
 }

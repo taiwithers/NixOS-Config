@@ -9,7 +9,7 @@ in {
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium-fhs;
+    package = pkgs.codium;
     mutableExtensionsDir = true;
     extensions = with pkgs.vscode-extensions;
       [
