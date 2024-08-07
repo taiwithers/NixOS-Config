@@ -129,6 +129,7 @@
       realvnc-vnc-viewer # nix-prefetch-url --type sha256 https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm
       slack-dark
       teams-for-linux
+      texpresso
       vivaldi
       zathura
       zoom-us

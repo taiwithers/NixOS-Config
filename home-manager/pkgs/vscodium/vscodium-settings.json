@@ -259,5 +259,6 @@
     "vim.enableNeovim": true,
     "vim.foldfix": true,
     "vim.startInInsertMode": true,
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "remote.SSH.configFile": "/home/tai/.ssh/codium-config"
 }

@@ -110,6 +110,7 @@
           starfetch = custom ../derivations/starfetch.nix;
           superfile = flake-inputs.superfile.packages.${system}.default;
           codium = super.vscodium-fhs;
+          texpresso = unstable.texpresso;
           zotero = unstable.zotero-beta;
         })
       ];

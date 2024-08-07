@@ -169,6 +169,7 @@ require('telescope').load_extension('ui-select')
 require('telescope').load_extension('file_browser')
 -- require('telescope').load_extension('frecency')
 require('telescope').load_extension('fzf')
+equire('texpresso')
 require('tip').setup({seconds=2})
 require('toggleterm').setup({
   start_in_insert = true,

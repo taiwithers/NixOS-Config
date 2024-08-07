@@ -35,6 +35,17 @@
       secondary-color = "#000000";
     };
 
+    "org/gnome/desktop/peripherals/touchpad" = {
+      click-method = "areas";
+      tap-to-click = true;
+      edge-scrolling-enabled = false;
+      two-finger-scrolling-enabled = true;
+      natural-scroll = true;
+      speed = 0;
+      disable-while-typing = true;
+      send-events = "enabled";
+    };
+
     "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
 
     # multitasking
