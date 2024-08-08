@@ -93,7 +93,7 @@
       };
       git_branch = {
         disabled = false;
-        format = "on [$symbol $branch(:$remote_branch)]($style) ";
+        format = "on [$symbol $branch(:$remote_branch) ]($style)";
         symbol = "";
         style = "bright-purple";
         ignore_branches = [
@@ -106,7 +106,8 @@
         added_style = "bold green"; # style for number of added lines;
         deleted_style = "bold red"; # style for number of deleted lines;
         only_nonzero_diffs = true;
-        format = "([+$added]($added_style))([-$deleted]($deleted_style) )";
+        format = "[+$added]($added_style)[-$deleted]($deleted_style) ";
+        # format = "[ ([+$added]($added_style))([-$deleted]($deleted_style) ) ]";
         ignore_submodules = true; # ignore changes to submodules
       };
       git_state = {
@@ -136,7 +137,7 @@
         ssh_only = true;
         ssh_symbol = "󰢹 ";
         trim_at = "";
-        format = "[$ssh_symbol$hostname]($style) ";
+        format = "[$ssh_symbol$hostname ]($style) ";
         style = "bold dimmed green";
       };
       jobs = {
@@ -149,7 +150,7 @@
       };
       nix_shell = {
         disabled = false;
-        format = "via [$symbol $name$state ]($style) ";
+        format = "via [$symbol $name$state]($style)";
         symbol = "";
         style = "bold blue";
         impure_msg = " (impure)";
@@ -177,7 +178,7 @@
       };
       username = {
         disabled = true;
-        format = "[$user]($style) ";
+        format = "[$user ]($style) ";
         show_always = false; # if false, only shows if: root, not same as login, in ssh;
         style_user = "red";
         style_root = "bold red";
