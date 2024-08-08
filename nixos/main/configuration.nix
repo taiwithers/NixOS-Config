@@ -122,6 +122,7 @@
   };
 
   # program configurations
+  programs.vim.enable = true;
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
   environment.pathsToLink = ["/share/zsh"]; # for zsh completion
