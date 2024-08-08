@@ -38,6 +38,12 @@ require('hardtime').setup({
   allow_different_key = true, -- reset count with different key
   enabled = true,
   restriction_mode = 'hint',
+  disabled_keys = {
+    ['<Up>'] = {'n', 'x'},
+    ['<Down>'] = {'n', 'x'},
+    ['<Left>'] = {'n', 'x'},
+    ['<Right>'] = {'n', 'x'},
+  },
 })
 require('hmts')
 require('lspconfig').bashls.setup({})
@@ -120,7 +126,7 @@ require('noice').setup({
 })
 vim.notify = require('notify').setup({
   render = "wrapped-compact",
-  stages = "slide",
+  stages = "static",
 })
 require('scrollview').setup()
 require('nvim-web-devicons').setup({color_icons=true})
@@ -169,7 +175,7 @@ require('telescope').load_extension('ui-select')
 require('telescope').load_extension('file_browser')
 -- require('telescope').load_extension('frecency')
 require('telescope').load_extension('fzf')
-equire('texpresso')
+require('texpresso')
 require('tip').setup({seconds=2})
 require('toggleterm').setup({
   start_in_insert = true,

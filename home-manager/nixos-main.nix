@@ -39,6 +39,7 @@
       "gnome/gnome"
       # "gpg"
       "lazygit"
+      "realvnc"
       "neovim/neovim"
       "python/python"
       "starship"
@@ -51,7 +52,7 @@
       # "zsh"
     ]);
 
-  # home.shellAliases."rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/home-manager#nixos-main";
+  # home.shellAliases."updatevnc" = "nix-prefetch-url --type sha256 https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm";
 
   home.packages = with pkgs;
     [
@@ -94,7 +95,7 @@
       # unstable.pistol # integrate into fzf preview for archive viewing, otherwise unnecesary
       pomodoro
       pond
-      python3
+      # python3
       rename
       ripgrep
       ripgrep-all
@@ -126,7 +127,7 @@
       obsidian
       onedrive
       onedrivegui
-      realvnc-vnc-viewer # nix-prefetch-url --type sha256 https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm
+      # realvnc-vnc-viewer # nix-prefetch-url --type sha256 https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm
       slack-dark
       teams-for-linux
       texpresso
