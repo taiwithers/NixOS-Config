@@ -95,7 +95,7 @@
       # unstable.pistol # integrate into fzf preview for archive viewing, otherwise unnecesary
       pomodoro
       pond
-      # python3
+      powertop
       rename
       ripgrep
       ripgrep-all
@@ -127,7 +127,6 @@
       obsidian
       onedrive
       onedrivegui
-      # realvnc-vnc-viewer # nix-prefetch-url --type sha256 https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm
       slack-dark
       teams-for-linux
       texpresso
