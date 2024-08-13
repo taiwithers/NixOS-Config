@@ -10,6 +10,7 @@ local opt = vim.o -- equivalent to :set
 opt.autochdir = false
 opt.autoindent = true
 opt.breakindent = true -- wrapped lines maintain indentation
+opt.clipboard = "unnamedplus" -- use system clipboard if available ?
 opt.cmdheight = 2 -- how many lines to use for the command line when not in use
 opt.compatible = false
 opt.completeopt = 'menuone,noinsert,noselect'

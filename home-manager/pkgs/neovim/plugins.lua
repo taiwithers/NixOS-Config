@@ -45,6 +45,9 @@ require('hardtime').setup({
     ['<Right>'] = {'n', 'x'},
   },
 })
+require('helpview').setup({
+  headings = {enable=false,},
+})
 require('hmts')
 require('lspconfig').bashls.setup({})
 require('lspconfig').nixd.setup({})

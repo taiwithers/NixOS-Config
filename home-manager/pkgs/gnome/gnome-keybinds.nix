@@ -31,29 +31,33 @@ in {
     # window managment keybindings
     "org/gnome/desktop/wm/keybindings" = {
       # under navigation
+      cycle-group-backward = [];
+      cycle-group = []; # "switch windows of an app directly"
+      cycle-panels-backward = []; # ??
+      cycle-panels = []; # "switch system controls directly"
+      cycle-windows-backward = []; # ??
+      cycle-windows = []; # "switch windows directly"
       move-to-monitor-down = [];
       move-to-monitor-left = [];
       move-to-monitor-right = [];
       move-to-monitor-up = [];
-      move-to-workspace-left = [];
-      move-to-workspace-right = [];
-      move-to-workspace-last = [];
       move-to-workspace-1 = [];
       move-to-workspace-2 = [];
-      switch-panels = []; # "switch system controls"
+      move-to-workspace-last = [];
+      move-to-workspace-left = [];
+      move-to-workspace-right = [];
+      switch-application = []; # disable alt-tab window grouping
+      switch-applications-backward = [];
+      switch-group-backward = [];
+      switch-group = []; # "switch windows of an application"
       switch-panels-backward = []; # ??
-      cycle-panels = []; # "switch system controls directly"
-      cycle-panels-backward = []; # ??
-      switch-to-workspace-last = [];
+      switch-panels = []; # "switch system controls"
+      switch-windows = ["<Alt>Tab"];
+      switch-windows-backward = ["<Shift><Alt>Tab"];
       switch-to-workspace-1 = [];
+      switch-to-workspace-last = [];
       switch-to-workspace-left = ["<Super><Shift>Left"];
       switch-to-workspace-right = ["<Super><Shift>Right"];
-      cycle-windows = []; # "switch windows directly"
-      cycle-windows-backward = []; # ??
-      cycle-group = []; # "switch windows of an app directly"
-      cycle-group-backward = [];
-      switch-group = []; # "switch windows of an application"
-      switch-group-backward = [];
 
       # under window section
       activate-window-menu = [];

@@ -106,7 +106,7 @@
         added_style = "bold green"; # style for number of added lines;
         deleted_style = "bold red"; # style for number of deleted lines;
         only_nonzero_diffs = true;
-        format = "[+$added]($added_style)[-$deleted]($deleted_style) ";
+        format = "(([+$added]($added_style))([-$deleted]($deleted_style)) )";
         # format = "[ ([+$added]($added_style))([-$deleted]($deleted_style) ) ]";
         ignore_submodules = true; # ignore changes to submodules
       };

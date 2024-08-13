@@ -26,8 +26,8 @@ require('which-key').add({
   -- normal, visual, and select modes
   { mode = {'n', 'v'},
     {'gy', '"+y', desc = 'Copy to system clipboard'},
-    {';', ':', desc='Enter command mode'}, -- save shift key
-    {';ww', '<cmd>w<CR>', desc='Save buffer'},
+    -- {';', ':', desc='Enter command mode'}, -- save shift key
+    {'<leader>w', '<cmd>w<CR>', desc='Save buffer'},
   },
 
   -- normal and visual modes

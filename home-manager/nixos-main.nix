@@ -27,6 +27,7 @@
       "agenix/agenix"
       "bash"
       "bat"
+      "blesh"
       "bottom"
       "cod"
       "copyq/copyq"
@@ -39,7 +40,6 @@
       "gnome/gnome"
       # "gpg"
       "lazygit"
-      "realvnc"
       "neovim/neovim"
       "python/python"
       "starship"
@@ -48,11 +48,12 @@
       "tilix"
       "vscodium/vscodium"
       "xdg"
+      "zellij"
       "zoxide"
       # "zsh"
-    ]);
+    ]); 
 
-  # home.shellAliases."updatevnc" = "nix-prefetch-url --type sha256 https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm";
+  home.shellAliases."updatevnc" = "nix-prefetch-url --type sha256 ";
 
   home.packages = with pkgs;
     [
@@ -107,8 +108,8 @@
       vim
       wget
       xdg-ninja
-      zellij
       zip
+      wl-clipboard
 
       # gui programs
       discord
@@ -127,7 +128,7 @@
       obsidian
       onedrive
       onedrivegui
-      # realvnc-vnc-viewer # nix-prefetch-url --type sha256 https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm
+      realvnc-vnc-viewer # nix-prefetch-url --type sha256 https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm
       slack-dark
       teams-for-linux
       texpresso
@@ -135,6 +136,15 @@
       zathura
       zoom-us
       zotero
+
+      gnome.adwaita-icon-theme # cursor theme?
+      posy-cursors
+      kdePackages.breeze-icons
+      bluez
+      bluez-tools
+      # kdePackages.bluedevil
+      # kdePackages.bluez-qt
+      blueman
     ]
     ++ (map
       (

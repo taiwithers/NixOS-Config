@@ -2,9 +2,11 @@
   config,
   pkgs,
   ...
-}: {
+}: 
+let pyConfigDir = "${config.common.nixConfigDirectory}/home-manager/pkgs/python";
+in {
   home.packages = [pkgs.micromamba];
-  programs.bash.bashrcExtra = ''
+  programs.bash.bashrcExtra = if !config.common.nixos then ''
     # >>> mamba initialize >>>
     # !! Contents within this block are managed by 'mamba init' !!
     export MAMBA_EXE='${pkgs.micromamba}/bin/micromamba';
@@ -17,14 +19,24 @@
     fi
     unset __mamba_setup
     # <<< mamba initialize <<<
+  '' else let 
+  flake-path = "${pyConfigDir}/shells/"; in ''
+  pyactivate () {
+      if [[ -n $1 ]]; then
+        nix develop --impure ${flake-path}#"$1"
+      else
+        nix develop --impure ${flake-path}
+      fi
+  }
   '';
 
   home.sessionVariables."PYTHONSTARTUP" = "${config.xdg.configHome}/python/pythonrc";
 
-  home.shellAliases = {
-    mamba = "micromamba";
-    update-qstar = "micromamba env update --file ${config.xdg.configHome}/NixOS-Config/homemanager/pkgs/python/python-qstar.yml";
-  };
+  xdg.configFile."${pyConfigDir}/shells/shellrc.sh".text = ''
+    updateenv () {
+      micromamba update --file ${pyConfigDir}/shells/"$CONDA_DEFAULT_ENV".yml
+    }
+  '';
 
   xdg.configFile."${config.xdg.configHome}/python/pythonrc".text = ''
     def is_vanilla() -> bool:

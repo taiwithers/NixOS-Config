@@ -132,6 +132,7 @@
       set viminfofile=$XDG_STATE_HOME/viminfo
     endif
     '';
+    news.display = "silent"; # no output about hm news during switch
     nix.package = pkgs.lix;
     nix.settings.experimental-features = [
       "nix-command"

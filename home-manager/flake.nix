@@ -34,6 +34,7 @@
           "dell-command-configure"
           "discord"
           "obsidian"
+          "posy-cursors"
           "realvnc-vnc-viewer"
           "slack"
           "sublimetext4"
@@ -75,6 +76,7 @@
               babel-english
               cm-super # cm fonts
               derivative
+              dvipng
               enumitem
               epsf
               helvetic
@@ -110,7 +112,7 @@
           starfetch = custom ../derivations/starfetch.nix;
           superfile = flake-inputs.superfile.packages.${system}.default;
           codium = super.vscodium-fhs;
-          texpresso = unstable.texpresso;
+          # texpresso = unstable.texpresso;
           zotero = unstable.zotero-beta;
         })
       ];
@@ -125,6 +127,8 @@
       palettes = makePaletteSet {
         tilix = defaultTheme;
         superfile = defaultTheme;
+        neovim = defaultTheme;
+        zellij = defaultTheme;
       };
       filenames = makePathSet {
         fzf = defaultTheme;

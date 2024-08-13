@@ -59,23 +59,25 @@
 
   # networking
   networking.hostName = hostname;
+  networking.networkmanager.enable = true;
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
+  hardware.bluetooth.enable = true;
 
   # touchpad
   # services.libinput.enable = true; # enabled by default for most desktopManagers
 
-  # GNOME
+  services.dbus.packages = [pkgs.dconf];
   services.xserver.enable = true;
+  
+  # GNOME
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.excludePackages = [pkgs.xterm];
-  services.dbus.packages = [pkgs.dconf];
   environment.gnome.excludePackages = [pkgs.gnome-tour];
   services.gnome.core-utilities.enable = false;
 
   # KDE
-  # services.xserver.enable = true;
   # services.displayManager.sddm.enable = true;
   # services.desktopManager.plasma6.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
@@ -100,7 +102,9 @@
     isNormalUser = true;
     description = "Tai";
     extraGroups = [
+      "networkmanager" # allow modifying network settings
       "wheel"
+      "ld" # for bluetooth? maybe?
       "input" # input for waybar on hyprland
     ];
     packages = with pkgs; [firefox];
@@ -122,7 +126,7 @@
   };
 
   # program configurations
-  programs.vim.enable = true;
+  # programs.vim.enable = true;
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
   environment.pathsToLink = ["/share/zsh"]; # for zsh completion
