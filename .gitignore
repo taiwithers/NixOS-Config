@@ -2,3 +2,4 @@
 *.log
 *.sublime-project
 *.sublime-workspace
+home-manager/pkgs/python/shells/shellrc.sh
