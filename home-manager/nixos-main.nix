@@ -51,7 +51,7 @@
       "zellij"
       "zoxide"
       # "zsh"
-    ]); 
+    ]);
 
   home.shellAliases."updatevnc" = "nix-prefetch-url --type sha256 ";
 

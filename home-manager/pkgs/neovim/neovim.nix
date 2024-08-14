@@ -73,7 +73,9 @@ in {
       ]
       ++ (with nvim-treesitter-parsers; [
         nix
-        c lua vim
+        c
+        lua
+        vim
         vimdoc
         ssh_config
         query
@@ -122,7 +124,8 @@ in {
           author = "asiryk";
           rev = "8f28246";
           hash = "sha256-AitkdtKoKNAURrEZuQU/VRLj71qDlI4zwL+vzXUJzew=";
-        }{
+        }
+        {
           repo = "helpview.nvim";
           author = "OXY2DEV";
           rev = "7c24a92";
@@ -139,28 +142,28 @@ in {
 
   xdg.configFile."${confdir}/init.lua".source = ./init.lua;
   xdg.configFile."${confdir}/colors/base16theme.lua".text = with app-themes.palettes.neovim; ''
-  require('mini.base16').setup({
-    palette = {              
-      base00 = '#${base00}',
-      base01 = '#${base01}',
-      base02 = '#${base02}',
-      base03 = '#${base03}',
-      base04 = '#${base04}',
-      base05 = '#${base05}',
-      base06 = '#${base06}',
-      base07 = '#${base07}',
-      base08 = '#${base08}',
-      base09 = '#${base09}',
-      base0A = '#${base0A}',
-      base0B = '#${base0B}',
-      base0C = '#${base0C}',
-      base0D = '#${base0D}',
-      base0E = '#${base0E}',
-      base0F = '#${base0F}',
-    },
-    use_cterm = true,
-    plugins = {default=true,},  
-  })
+    require('mini.base16').setup({
+      palette = {
+        base00 = '#${base00}',
+        base01 = '#${base01}',
+        base02 = '#${base02}',
+        base03 = '#${base03}',
+        base04 = '#${base04}',
+        base05 = '#${base05}',
+        base06 = '#${base06}',
+        base07 = '#${base07}',
+        base08 = '#${base08}',
+        base09 = '#${base09}',
+        base0A = '#${base0A}',
+        base0B = '#${base0B}',
+        base0C = '#${base0C}',
+        base0D = '#${base0D}',
+        base0E = '#${base0E}',
+        base0F = '#${base0F}',
+      },
+      use_cterm = true,
+      plugins = {default=true,},
+    })
   '';
 
   # symlink other files to avoid constant rebuilding
@@ -168,15 +171,15 @@ in {
     source-directory = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim";
     lua-directory = "${confdir}/lua";
   in
-  config.lib.dag.entryAfter ["writeBoundary"] ''
-    mkdir --parents ${lua-directory}/
-    rm ${lua-directory}/options.lua
-    rm ${lua-directory}/plugins.lua
-    rm ${lua-directory}/keymaps.lua
-    rm ${lua-directory}/autocommands.lua
-    ln -s ${source-directory}/options.lua ${lua-directory}/options.lua
-    ln -s ${source-directory}/plugins.lua ${lua-directory}/plugins.lua
-    ln -s ${source-directory}/keymaps.lua ${lua-directory}/keymaps.lua
-    ln -s ${source-directory}/autocommands.lua ${lua-directory}/autocommands.lua
-  '';
+    config.lib.dag.entryAfter ["writeBoundary"] ''
+      mkdir --parents ${lua-directory}/
+      rm ${lua-directory}/options.lua
+      rm ${lua-directory}/plugins.lua
+      rm ${lua-directory}/keymaps.lua
+      rm ${lua-directory}/autocommands.lua
+      ln -s ${source-directory}/options.lua ${lua-directory}/options.lua
+      ln -s ${source-directory}/plugins.lua ${lua-directory}/plugins.lua
+      ln -s ${source-directory}/keymaps.lua ${lua-directory}/keymaps.lua
+      ln -s ${source-directory}/autocommands.lua ${lua-directory}/autocommands.lua
+    '';
 }

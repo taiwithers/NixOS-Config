@@ -1,5 +1,9 @@
 # To use the remote-ssh plugin: on the remote machine run `ln -s ~/.vscodium-server/ ~/.vscode-server`
-{config, pkgs, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
 in {
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [
@@ -75,7 +79,6 @@ in {
     keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
     userSettings = builtins.fromJSON (builtins.readFile ./vscodium-settings.json);
   };
-
 
   # workaround for remote-ssh wanting writable ssh config...
   home.activation.vscode-remote-ssh-config = config.lib.dag.entryAfter ["writeBoundary"] ''

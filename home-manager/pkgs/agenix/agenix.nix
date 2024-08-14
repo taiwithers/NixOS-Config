@@ -34,5 +34,5 @@ in {
   home.activation.agenix = config.lib.dag.entryAfter ["writeBoundary"] ''
     export RULES=${agenix-directory}/agenix-secrets.nix
     ${pkgs.systemd}/bin/systemctl --user start agenix
-    '';
+  '';
 }

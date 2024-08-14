@@ -128,9 +128,9 @@
       };
 
     xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''
-    if !has('nvim') " Neovim has its own location which already complies with XDG specification
-      set viminfofile=$XDG_STATE_HOME/viminfo
-    endif
+      if !has('nvim') " Neovim has its own location which already complies with XDG specification
+        set viminfofile=$XDG_STATE_HOME/viminfo
+      endif
     '';
     news.display = "silent"; # no output about hm news during switch
     nix.package = pkgs.lix;

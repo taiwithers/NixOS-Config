@@ -4,10 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
   };
 
-  outputs = {
-    nixpkgs,
-    ...
-  }: let
+  outputs = {nixpkgs, ...}: let
     system = builtins.currentSystem;
     pkgs = import nixpkgs {inherit system;};
     fhs = {
