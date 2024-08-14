@@ -49,72 +49,16 @@
     pkgs = import nixpkgs {
       overlays = let
         system = builtins.currentSystem;
-        custom = fname: pkgs.callPackage fname {};
       in [
         (self: super: rec {
           unstable = import nixpkgs-unstable {
             system = system;
             # putting nixpkgs.config = pkgs-config; in this file errors
-            # so pkgs-config gets applied in packages.nix
+            # so pkgs-config gets applied in common.nix
             config = pkgs-config;
           };
-
-          agenix = flake-inputs.agenix.packages.${system}.default;
-          cbonsai = custom ../derivations/cbonsai.nix;
-          color-oracle = custom ../derivations/color-oracle.nix;
-          ds9 = custom ../derivations/ds9.nix;
-          fzf = unstable.fzf;
-          gaia = custom ../derivations/gaia.nix;
-          latex = super.texlive.combine {
-            inherit
-              (super.texlive)
-              collection-basic
-              collection-latex
-              collection-latexrecommended
-              aastex
-              astro # planetary symbols
-              babel-english
-              cm-super # cm fonts
-              derivative
-              dvipng
-              enumitem
-              epsf
-              helvetic
-              hyphen-english
-              hyphenat
-              # latexmk
-              
-              layouts # for printing \textwidth etc
-              lipsum
-              lm # latin moden fonts
-              metafont # mf command line util for fonts
-              multirow
-              pgf # tikz
-              physunits
-              revtex4-1 # revtex gives revtex 4.2 which isn't accepted by aastex
-              siunitx
-              standalone
-              svn-prov # required macros (for who??)
-              synctex # engine-level feature synchronizing output and source
-              tikz-ext # libraries (which?)
-              tikzscale # resize pictures while respecting text size
-              tikztosvg
-              times # times new roman font
-              type1cm # arbitrary font sizing
-              ulem # underlining
-              upquote # Show "realistic" quotes in verbatim
-              wrapfig
-              ;
-          };
-          neovim = unstable.neovim-unwrapped;
-          nixfmt = unstable.nixfmt-rfc-style;
-          pond = custom ../derivations/pond.nix;
-          starfetch = custom ../derivations/starfetch.nix;
-          superfile = flake-inputs.superfile.packages.${system}.default;
-          codium = super.vscodium-fhs;
-          # texpresso = unstable.texpresso;
-          zotero = unstable.zotero-beta;
         })
+        (import ./overlays.nix {inherit pkgs flake-inputs system;})
       ];
     };
 
