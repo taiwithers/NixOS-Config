@@ -61,7 +61,7 @@
 
           agenix = flake-inputs.agenix.packages.${system}.default;
           cbonsai = custom ../derivations/cbonsai.nix;
-          color-oracle = custom ./derivations/color-oracle.nix;
+          color-oracle = custom ../derivations/color-oracle.nix;
           ds9 = custom ../derivations/ds9.nix;
           fzf = unstable.fzf;
           gaia = custom ../derivations/gaia.nix;

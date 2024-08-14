@@ -18,12 +18,16 @@ stdenv.mkDerivation rec {
 
   preBuild = ''
     mkdir --parents $out/bin
-    cp --recursive --dereference $src/* $out/
+    cp --recursive --dereference $src/Makefile $out/
+
     cd $out
-    substituteInPlace Makefile --replace-fail "-lcurses" "-lncurses"
-    substituteInPlace Makefile --replace-fail "bin/pond" "$out/bin/pond"
-    substituteInPlace Makefile --replace-fail "rm -f /usr/local/games/pond #old location" ""
-    substituteInPlace Makefile --replace-fail "/usr/games/pond" "$out/pond"
-    substituteInPlace Makefile --replace-fail "rmdir bin" "rmdir $out/bin"
+    substituteInPlace Makefile \
+        --replace-fail "-lcurses" "-lncurses" \
+        --replace-fail "pond.c" "$src/pond.c" \
+        --replace-fail "cp bin/pond /usr/games/pond" ""
+  '';
+
+  postInstall = ''
+    rm Makefile
   '';
 }

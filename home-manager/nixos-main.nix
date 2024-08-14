@@ -112,6 +112,7 @@
       wl-clipboard
 
       # gui programs
+      color-oracle
       discord
       ds9
       filezilla

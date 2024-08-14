@@ -53,4 +53,8 @@ stdenv.mkDerivation rec {
 
     runHook postInstall
   '';
+
+  postFixup = ''
+    rm -rf build nbproject src win share build.xml LICENSE.txt manifest.mf README.md
+  '';
 }

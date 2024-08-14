@@ -12,3 +12,4 @@ require('options')
 require('plugins')
 require('keymaps')
 require('autocommands')
+vim.g.colors_name = base16theme -- activate colour scheme?
