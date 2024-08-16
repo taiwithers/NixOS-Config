@@ -116,13 +116,14 @@ in {
   in
     config.lib.dag.entryAfter ["writeBoundary"] ''
       mkdir --parents ${lua-directory}/
-      rm ${lua-directory}/options.lua
-      rm ${lua-directory}/plugins.lua
-      rm ${lua-directory}/keymaps.lua
-      rm ${lua-directory}/autocommands.lua
-      ln -s ${source-directory}/options.lua ${lua-directory}/options.lua
-      ln -s ${source-directory}/plugins.lua ${lua-directory}/plugins.lua
-      ln -s ${source-directory}/keymaps.lua ${lua-directory}/keymaps.lua
-      ln -s ${source-directory}/autocommands.lua ${lua-directory}/autocommands.lua
+      
+      files=("options" "plugins" "keymaps" "autocommands")
+      for fname in "''${files[@]}"; do
+        source="${source-directory}/$fname.lua"
+        destination="${lua-directory}/$fname.lua"
+
+        if [[ -L "$destination" ]]; then rm "$destination"; fi
+        ln -s "$source" "$destination"
+      done
     '';
 }
