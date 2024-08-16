@@ -42,6 +42,12 @@ else
 	echo "No Home Manager generations to delete"
 fi
 echo
+ 
+# nixos-rebuild list-generations --json
+# sudo nix profile wipe-history --profile /nix/var/profiles/system --older-than 14d --dry-run
+# nix-collect-garbage --delete-older-than 14d --dry-run
+# nixrebuild # rebuild to update boot menu
+
 
 echo "Removing nixos generations"
 echo "To be deleted:"
