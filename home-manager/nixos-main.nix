@@ -105,7 +105,7 @@
       starfetch
       trashy
       unzip
-      vim
+      # vim
       wget
       xdg-ninja
       zip
