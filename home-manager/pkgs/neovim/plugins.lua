@@ -20,16 +20,9 @@ require('bufferline').setup({options={
   show_tab_indicators = true,
   always_show_bufferline = true,
 } })
--- require('dashboard').setup({
---   shuffle_letter = false,
---   disable_move = true,
---   config = { week_header = {enable = true, }}
--- })
--- require('fzf-lua').setup({})
 require('f-string-toggle').setup({ key_binding = '<leader>fs' })
 require('flatten').setup({ window = 'alternate', })
 require('hardtime').setup({
-  -- disabled_filetypes = {'NvimTree',}, -- not sure if/how to add terminal to this, nvimtree is already in defaults
   max_time = 1000, -- key repeat timer
   max_count = 3, -- number of repeats allowed within max_time
   disable_mouse = false,
@@ -45,9 +38,7 @@ require('hardtime').setup({
     ['<Right>'] = {'n', 'x'},
   },
 })
-require('helpview').setup({
-  headings = {enable=false,},
-})
+require('helpview').setup()
 require('hmts')
 require('lspconfig').bashls.setup({})
 require('lspconfig').nixd.setup({})
@@ -88,17 +79,10 @@ require('mini.pairs').setup({
     ['>'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].' },
   }
 })
--- require('mini.starter').setup()
 require('mini.surround').setup()
 require('modes').setup({
   line_opacity = 0.2,
   set_cursor = false,
-})
-require('nvim-tree').setup()
-require('nvim-treesitter.configs').setup({
-  highlight = {enable=true,},
-  incremental_selection = {enable=true,},
-  intentation = {enable=true,},
 })
 require('noice').setup({
   presets = {
@@ -131,11 +115,16 @@ vim.notify = require('notify').setup({
   render = "wrapped-compact",
   stages = "static",
 })
-require('scrollview').setup()
-require('nvim-web-devicons').setup({color_icons=true})
+require('nvim-tree').setup()
+require('nvim-treesitter.configs').setup({
+  highlight = {enable=true,},
+  incremental_selection = {enable=true,},
+  intentation = {enable=true,},
+})
 require('treesitter-context').setup({
   multiline_threshold = 4,
 })
+require('nvim-web-devicons').setup({color_icons=true})
 -- require('precognition').setup({
 --   showBlankVirtLine = false,
 --   hints = {
@@ -147,7 +136,7 @@ require('treesitter-context').setup({
 --     e = {prio=0},
 --   },
 -- })
--- require('persistence').setup()
+require('scrollview').setup()
 require('tabout').setup({
   tabkey = '<Tab>',
   backwards_tabkey = '<S-Tab>',
@@ -174,18 +163,14 @@ require('telescope').setup({
     fzf = {},
   }
 })
-require('telescope').load_extension('ui-select')
 require('telescope').load_extension('file_browser')
--- require('telescope').load_extension('frecency')
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('ui-select')
 require('texpresso')
 require('tip').setup({seconds=2})
 require('toggleterm').setup({
   start_in_insert = true,
   persist_mode = false,
-})
-require('window-picker').setup({
-  hint = 'floating-big-letter',
 })
 require('which-key').setup({
   preset="helix",
@@ -200,7 +185,11 @@ require('which-key').setup({
     {"<leader>",function() require("which-key").show({ global = true }) end, desc="Toggle which-key", mode={'n','v'}}
   }
 })
-require('legendary').setup({
+require('window-picker').setup({
+  hint = 'floating-big-letter',
+})
+
+require('legendary').setup({ -- needs to be after which-key
   extensions = {which_key = {
     auto_register = true,
     do_binding = false,

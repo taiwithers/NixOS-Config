@@ -74,47 +74,17 @@ in {
   vimPlugins =
     super.vimPlugins
     // builtins.mapAttrs (name: value: (githubVimPlugin value)) {
-      precognition-nvim = {
-        repo = "precognition.nvim";
-        author = "tris203";
-        rev = "2a566f0";
-        hash = "sha256-XLcyRB4ow5nPoQ0S29bx0utV9Z/wogg7c3rozYSqlWE=";
-      };
-      modes-nvim = {
-        author = "mvllow";
-        repo = "modes.nvim";
-        rev = "326cff3";
-        hash = "sha256-z1XD0O+gG2/+g/skdWGC64Zv4dXvvhWesaK/8DcPF/E=";
-      };
-      which-key-nvim = {
-        repo = "which-key.nvim";
-        rev = "6c1584e";
-        author = "folke";
-        hash = "sha256-nv9s4/ax2BoL9IQdk42uN7mxIVFYiTK+1FVvWDKRnGM=";
-      };
-      tip-nvim = {
-        repo = "Tip.nvim";
-        author = "TobinPalmer";
-        rev = "7e87517";
-        hash = "sha256-9+YjOm2gmTIK6MmAqaAQ5M1IgMX0u5xSLmO+yWtaadk=";
-      };
-      f-string-toggle-nvim = {
-        repo = "f-string-toggle.nvim";
-        author = "roobert";
-        rev = "4e2ad79";
-        hash = "sha256-IMMq4cklHxrhfHALcCamMWT4ekBqOMtkiAUXh8YlaM0=";
-      };
       auto-hlsearch-nvim = {
-        repo = "auto-hlsearch.nvim";
         author = "asiryk";
+        repo = "auto-hlsearch.nvim";
         rev = "8f28246";
         hash = "sha256-AitkdtKoKNAURrEZuQU/VRLj71qDlI4zwL+vzXUJzew=";
       };
-      helpview-nvim = {
-        repo = "helpview.nvim";
-        author = "OXY2DEV";
-        rev = "7c24a92";
-        hash = "sha256-V681TrMpOKuutUZ3n84W1z/y0iSz2SkarsZmhz5rI7w=";
+      f-string-toggle-nvim = {
+        author = "roobert";
+        repo = "f-string-toggle.nvim";
+        rev = "4e2ad79";
+        hash = "sha256-IMMq4cklHxrhfHALcCamMWT4ekBqOMtkiAUXh8YlaM0=";
       };
       hardtime-nvim = {
         repo = "hardtime.nvim";
@@ -122,6 +92,55 @@ in {
         rev = "91c6be1";
         hash = "sha256-pLJShpbqmJbY3ThQuGmUfgsxijSADJrqpGYLE+KAcUQ=";
       };
-    };
+      helpview-nvim = {
+        author = "OXY2DEV";
+        repo = "helpview.nvim";
+        rev = "c5e6446";
+        hash = "sha256-FqgCNaikG7Lnp+4pcP/E/JB/JaOD5Z9WP0KX48TD0Do=";
+      };
+      modes-nvim = {
+        author = "mvllow";
+        repo = "modes.nvim";
+        rev = "326cff3";
+        hash = "sha256-z1XD0O+gG2/+g/skdWGC64Zv4dXvvhWesaK/8DcPF/E=";
+      };
+      nvim-treesitter = rec {
+        author = repo;
+        repo = "nvim-treesitter";
+        rev = "ec8776e";
+        hash = "sha256-fQ8Y4MwTVN1UPdpNxE4NTCnUXCAbXeYlPUXsR4TKw68=";
+      };
+      precognition-nvim = {
+        author = "tris203";
+        repo = "precognition.nvim";
+        rev = "2a566f0";
+        hash = "sha256-XLcyRB4ow5nPoQ0S29bx0utV9Z/wogg7c3rozYSqlWE=";
+      };
+      tip-nvim = {
+        author = "TobinPalmer";
+        repo = "Tip.nvim";
+        rev = "7e87517";
+        hash = "sha256-9+YjOm2gmTIK6MmAqaAQ5M1IgMX0u5xSLmO+yWtaadk=";
+      };
+      treesitter-parser-query = {
+        author = "tree-sitter-grammars";
+        repo = "tree-sitter-query";
+        rev = "f767fb0";
+        hash = "sha256-snr0ze1VCaAf448mHkrB9qbWTMvjSlPdVl2VtesMIHI=";
+      };
+      treesitter-parser-vimdoc = {
+        author = "neovim";
+        repo = "tree-sitter-vimdoc";
+        rev = "2249c44";
+        hash = "sha256-v+XSWGm2Wdn9/rxNFMqXYACkGn6AvxZdxkClLuKnWGU=";
+      };
+      which-key-nvim = {
+        author = "folke";
+        repo = "which-key.nvim";
+        rev = "6c1584e";
+        hash = "sha256-nv9s4/ax2BoL9IQdk42uN7mxIVFYiTK+1FVvWDKRnGM=";
+      };
+    }
+    ;
   zotero = unstable.zotero-beta;
 })

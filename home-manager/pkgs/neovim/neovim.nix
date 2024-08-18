@@ -21,66 +21,63 @@ in {
         # helpers - no additional setup done in plugins.lua
         nui-nvim
         plenary-nvim
-        nvim-treesitter
 
         # in order of plugins.lua appearance
-        better-escape-nvim
-        block-nvim
-        bufferline-nvim
-        # fzf-lua
-        flatten-nvim
-        nvim-lspconfig
-        lualine-nvim
-        mini-nvim
-        noice-nvim
-        nvim-notify
-        nvim-web-devicons
-        tabout-nvim
-        toggleterm-nvim
-        nvim-spider
-        nvim-scrollview # change to unstable
-        legendary-nvim # change to unstable
-        # nvim-spectre
-        nvim-treesitter-context
-        nvim-tree-lua
-        # trouble
-        # dashboard-nvim
-        persistence-nvim
-        telescope-nvim
-        telescope-ui-select-nvim # required for legendary
+        auto-hlsearch-nvim # auto-hlsearch
+        better-escape-nvim # better_escape
+        block-nvim # block
+        bufferline-nvim # bufferline
+        f-string-toggle-nvim # f-string-toggle
+        flatten-nvim # flatten
+        hardtime-nvim # hardtime
+        helpview-nvim # helpview
+        hmts-nvim # hmts
+        nvim-lspconfig # lspconfig
+        lualine-nvim # lualine
+        mini-nvim # mini (animate, clue, completion, cursorword, indentscope, move, pairs, surround)
+        modes-nvim # modes
+        noice-nvim # noice
+        nvim-notify # notify
+        nvim-tree-lua # nvim-tree
+        nvim-treesitter # nvim-treesitter
+        nvim-treesitter-context # treesitter-context
+        nvim-web-devicons # nvim-web-devicons
+        precognition-nvim # precognition
+        nvim-scrollview # scrollview, change to unstable
+        tabout-nvim # tabout
+        telescope-nvim # telescope
         telescope-file-browser-nvim
         telescope-fzf-native-nvim
-        telescope-frecency-nvim
-        nvim-window-picker
-        hmts-nvim
-        texpresso-vim
+        telescope-ui-select-nvim # required for legendary
+        # telescope-frecency-nvim
+        texpresso-vim # texpresso
+        tip-nvim # tip
+        toggleterm-nvim # toggleterm
+        which-key-nvim # which-key
+        nvim-window-picker # window-picker
 
-        precognition-nvim
-        modes-nvim
-        which-key-nvim
-        tip-nvim
-        f-string-toggle-nvim
-        auto-hlsearch-nvim
-        helpview-nvim
-        hardtime-nvim
+        legendary-nvim # loaded after which-key, change to unstable
+        nvim-spider # loaded in keymaps.lua
+
+        # nvim-spectre
+        # trouble
+        # dashboard-nvim
       ]
       ++ (with nvim-treesitter-parsers; [
         nix
         c
         lua
         vim
-        vimdoc
         ssh_config
-        query
         bash
         python
         regex
         ssh_config
         jsonc
         # jq
-        # hyprlang
+        # hyprlang  
         comment
-      ]);
+      ]) ++ [treesitter-parser-vimdoc treesitter-parser-query];
   };
 
   xdg.configFile."${confdir}/init.lua".source = ./init.lua;
