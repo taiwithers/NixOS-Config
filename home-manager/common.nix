@@ -80,6 +80,7 @@
     home.packages = with pkgs; [
       coreutils
       which
+      nixfmt
     ];
     # ++ [if config.common.scripts.get-package-dir
     #      then pkgs.writeShellApplication {
@@ -120,6 +121,7 @@
         "rebuild" = "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name}";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory}/home-manager && nix fmt .. --impure)";
+        "nixfmt" = "echo 'Defaulting to impure!' && nixfmt --impure";
       }
       // pkgs.lib.optionalAttrs (config.common.nixos) {
         "nixrebuild" = let
