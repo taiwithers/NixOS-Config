@@ -11,6 +11,7 @@
     userName = "taiwithers";
     extraConfig = {
       core.autocrlf = "input";
+      core.eol = "lf";
       core.fileMode = false;
       core.whitespace.trailing-space = false;
       diff.context = 1;

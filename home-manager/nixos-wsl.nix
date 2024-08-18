@@ -11,6 +11,7 @@
   imports = map (fname: import ./pkgs/${fname}.nix {inherit config pkgs app-themes;}) [
     "bash"
     "bat"
+    "blesh"
     "bottom"
     "cod"
     "common-git"
@@ -22,6 +23,7 @@
     "neovim/neovim"
     "starship"
     "superfile"
+    "zellij"
     "zoxide"
   ];
 
@@ -44,11 +46,59 @@
     trashy
     xdg-ninja
     zellij
-  ];
+  ]
+    ++ (map
+      (
+        {
+          name,
+          runtimeInputs ? [],
+          file,
+        }:
+          pkgs.writeShellApplication {
+            name = name;
+            runtimeInputs = runtimeInputs;
+            text = builtins.readFile file;
+          }
+      )
+      [
+        rec {
+          name = "get-package-dir";
+          runtimeInputs = with pkgs; [
+            coreutils
+            which
+          ];
+          file = ../scripts + "/${name}.sh";
+        }
+        rec {
+          name = "clean";
+          runtimeInputs = with pkgs; [
+            coreutils
+            gnugrep
+            gnused
+            home-manager
+            nix
+          ];
+          file = ../scripts + "/${name}.sh";
+        }
+        rec {
+          name = "search";
+          runtimeInputs = with pkgs; [
+            nix-search-cli
+            sd
+            jq
+            nix
+          ];
+          file = ../scripts/nix-search-wrapper.sh;
+        }
+        {
+          name = "fix-line-endings";
+          runtimeInputs = with pkgs; [
+            fd
+            dos2unix
+          ];
+          file = ../scripts/fix-line-endings.sh;
+        }
+      ]);
 
-  home.shellAliases = {
-    "rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/homemanager |& nom";
-    "bsession" = "bat ${config.common.hm-session-vars}";
-  };
   home.stateVersion = "24.05";
 }
