@@ -13,6 +13,7 @@
     superfile.url = "github:yorukot/superfile";
     arc.url = "github:arcnmx/nixexprs";
     agenix.url = "github:ryantm/agenix";
+    plasma-manager.url = "github:nix-community/plasma-manager/trunk";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     superfile.inputs.nixpkgs.follows = "nixpkgs";
@@ -20,6 +21,8 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.darwin.follows = "";
     agenix.inputs.home-manager.follows = "home-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.home-manager.follows = "home-manager";
   };
 
   outputs = {

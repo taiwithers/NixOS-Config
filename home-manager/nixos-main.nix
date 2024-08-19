@@ -30,7 +30,7 @@
       "blesh"
       "bottom"
       "cod"
-      "copyq/copyq"
+      # "copyq/copyq"
       "duf"
       "dust"
       "eza"
@@ -42,6 +42,7 @@
       "lazygit"
       "neovim/neovim"
       "python/python"
+      "rofi"
       "starship"
       "sublime-text/sublime-text"
       "superfile"
@@ -51,7 +52,7 @@
       "zellij"
       "zoxide"
       # "zsh"
-    ]);
+    ]) ++ [ ( import ./pkgs/plasma.nix {inherit config pkgs flake-inputs;}  )];
 
   home.shellAliases."updatevnc" = "nix-prefetch-url --type sha256 ";
 

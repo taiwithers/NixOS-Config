@@ -71,15 +71,15 @@
   services.xserver.enable = true;
   
   # GNOME
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.excludePackages = [pkgs.xterm];
-  environment.gnome.excludePackages = [pkgs.gnome-tour];
-  services.gnome.core-utilities.enable = false;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.excludePackages = [pkgs.xterm];
+  # environment.gnome.excludePackages = [pkgs.gnome-tour];
+  # services.gnome.core-utilities.enable = false;
 
   # KDE
-  # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # services.displayManager.defaultSession = "plasma";
   # environment.plasma6.excludePackages = [];
