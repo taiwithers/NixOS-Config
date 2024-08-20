@@ -73,7 +73,7 @@
   # GNOME
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
-  # services.xserver.excludePackages = [pkgs.xterm];
+  services.xserver.excludePackages = [pkgs.xterm];
   # environment.gnome.excludePackages = [pkgs.gnome-tour];
   # services.gnome.core-utilities.enable = false;
 
@@ -82,20 +82,29 @@
   services.desktopManager.plasma6.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # services.displayManager.defaultSession = "plasma";
-  # environment.plasma6.excludePackages = [];
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    elisa
+    gwenview
+    kate
+    khelpcenter
+    kinfocenter
+    konsole
+    kwalletmanager
+    okular
+  ];
 
   # keyboard layout
   services.xserver.xkb.layout = "us";
 
   # sound
   sound.enable = true;
-  # security.rtkit.enable = true;
-  # services.pipewire = {
-  #   enable = true;
-  #   alsa.enable = true;
-  #   alsa.support32Bit = true;
-  #   pulse.enable = true;
-  # };
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # user account
   users.users.tai = {
