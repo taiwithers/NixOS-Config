@@ -3,32 +3,20 @@
   pkgs,
   app-themes,
   ...
-}: {
+}: 
+let
+  plugins = {
+    zellij-forgot = {
+      alias = "forgot";
+      filename = "zellij-forgot.wasm";
+      url = "https://github.com/karimould/zellij-forgot/releases/download/0.4.0/zellij_forgot.wasm";
+    };
+  };
+  plugin-directory = "${config.common.configHome}/zellij/plugins";
+in {
   programs.zellij = {
     enable = true;
     enableBashIntegration = true;
-    # settings = {
-    #   theme = "base16";
-    #   themes.base16 = with app-themes.palettes.zellij; {
-    #     fg = "#${base05}";
-    #     bg = "#${base02}";
-    #     black = "#${base00}";
-    #     red = "#${base08}";
-    #     green = "#${base0B}";
-    #     yellow = "#${base0A}";
-    #     blue = "#${base0D}";
-    #     magenta = "#${base0E}";
-    #     cyan = "#${base0C}";
-    #     white = "#${base05}";
-    #     orange = "#${base09}";
-    #   };
-    #   plugins.forgot = {location = "${config.common.configHome}/zellij/plugins/zellij-forgot.wasm";};
-    #   keybinds = {
-    #     normal = {
-    #       "Alt ?" = {'''LaunchOrFocusPlugin "forgot"''' = {floating = true;};};
-    #     };
-    #   };
-    # };
   };
   
   xdg.configFile."${config.common.configHome}/zellij/config.kdl".text = 
@@ -36,8 +24,15 @@
   let 
     themeName = "base16";
   in
+  # kdl
   ''
+  // top-level config
   theme "${themeName}"
+  default_layout "compact"
+  // copy_command: "wl-copy"
+  // copy_on_select false
+
+  // theme colours
   themes {
     ${themeName} {
         fg "#${base05}"
@@ -54,24 +49,26 @@
     }
   }
 
+  // plugin locations
   plugins {
-    forgot location="file://${config.common.configHome}/zellij/plugins/zellij-forgot.wasm"
+    ${plugins.zellij-forgot.alias} location="file:/${plugin-directory}/${plugins.zellij-forgot.filename}";
   }
 
+  // keybinds
   keybinds {
     normal {
-      bind "Alt ?" { 
-        LaunchOrFocusPlugin "forgot" {
+      bind "Alt ?" { // launch zellij-forgot 
+        LaunchOrFocusPlugin "${plugins.zellij-forgot.alias}" {
           "LOAD_ZELLIJ_BINDINGS" "false"
           "lock"                  "ctrl + g"
           "unlock"                "ctrl + g"
           "new pane"              "alt + n / ctrl + p + n"
-          "change focus of pane"  "alt + hjkl / alt + arrows / ctrl + p + arrowi"
+          "change pane focus"  "alt + hjkl / alt + arrows / ctrl + p + arrow"
           "close pane"            "ctrl + p + x"
           "rename pane"           "ctrl + p + c"
           "toggle fullscreen"     "ctrl + p + f"
           "toggle floating pane"  "ctrl + p + w"
-          "toggle embed pane"     "ctrl + p + e"
+          "toggle embeded pane"     "ctrl + p + e"
           "choose right pane"     "ctrl + p + l"
           "choose left pane"      "ctrl + p + r"
           "choose upper pane"     "ctrl + p + k"
@@ -79,7 +76,7 @@
           "toggle pane split direction" "alt + [ / alt + ]"
           "new tab"               "ctrl + t + n"
           "close tab"             "ctrl + t + x"
-          "change focus of tab"   "ctrl + t + arrow key"
+          "change tab focus"   "ctrl + t + arrow key"
           "rename tab"            "ctrl + t + r"
           "sync tab"              "ctrl + t + s"
           "break pane to new tab" "ctrl + t + b"
@@ -106,15 +103,16 @@
           "open session manager"  "ctrl + o + w"
           "quit zellij"           "ctrl + q"
           "open keybinds"         "alt + ?"
-
+          "toggle pane frames"    "ctrl + p + z"
           floating true
         }
       }
     }
 
+    // don't use tmux keybinds
     tmux clear-defaults=true {}
   }
   '';
 
-  xdg.configFile."${config.common.configHome}/zellij/plugins/zellij-forgot.wasm".source = builtins.fetchurl "https://github.com/karimould/zellij-forgot/releases/download/0.4.0/zellij_forgot.wasm";
+  xdg.configFile."${plugin-directory}/${plugins.zellij-forgot.filename}".source = builtins.fetchurl plugins.zellij-forgot.url;
 }

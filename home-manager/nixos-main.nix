@@ -39,6 +39,7 @@
       "git" # also installed system-wide
       "gnome/gnome"
       # "gpg"
+      "kitty"
       "lazygit"
       "neovim/neovim"
       "python/python"
@@ -125,7 +126,7 @@
       gparted
       keepassxc
       libreoffice
-      libsForQt5.dolphin
+      kdePackages.dolphin
       loupe # gnome imager viewer
       obsidian
       onedrive
@@ -138,7 +139,10 @@
       zoom-us
       zotero
 
-      gnome.adwaita-icon-theme # cursor theme?
+      alacritty
+
+      # hplip
+      # gnome.adwaita-icon-theme # cursor theme?
       posy-cursors
       kdePackages.breeze-icons
       bluez

@@ -74,6 +74,7 @@ in {
         regex
         ssh_config
         jsonc
+        kdl
         # jq
         # hyprlang  
         comment
