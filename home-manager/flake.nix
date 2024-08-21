@@ -76,11 +76,11 @@
         superfile = defaultTheme;
         neovim = defaultTheme;
         zellij = defaultTheme;
+        kitty = defaultTheme;
       };
       filenames = makePathSet {
         fzf = defaultTheme;
         sublime-text = defaultTheme;
-        kitty = defaultTheme;
       };
     };
 

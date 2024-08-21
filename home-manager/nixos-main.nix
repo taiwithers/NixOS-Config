@@ -139,7 +139,6 @@
       zoom-us
       zotero
 
-      alacritty
 
       # hplip
       # gnome.adwaita-icon-theme # cursor theme?
