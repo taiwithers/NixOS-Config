@@ -52,10 +52,16 @@
     };
   };
 
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
   common.useXDG = true;
   common.nixos = false;
-  home.shellAliases."rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/home-manager#ubuntu-main";
+  home.shellAliases."storagespace" = "dust --no-percent-bars --depth 0 --no-colors --skip-total --full-paths /1-Data-Fast /2-Data-Medium /3-Data-Slow /home/$USER /nix";
 
   home.stateVersion = "24.05";
 }
