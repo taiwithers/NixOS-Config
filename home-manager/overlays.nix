@@ -71,6 +71,26 @@ in {
   starfetch = customDerivation "starfetch";
   superfile = flake-inputs.superfile.packages.${system}.default;
   # texpresso = unstable.texpresso;
+  trashy = super.trashy.override (old: {
+    # https://discourse.nixos.org/t/is-it-possible-to-override-cargosha256-in-buildrustpackage/4393/10
+    rustPlatform = old.rustPlatform // {
+      buildRustPackage = args: old.rustPlatform.buildRustPackage (args // rec {
+        name = "${args.pname}-${version}";
+        version = "7c48827";
+        cargoHash = "sha256-iEUa6JLUH2m+8SclTNBzhCldnhbMpWb8ktkM4rU3hmw=";
+        src = super.fetchFromGitHub {
+          owner = "oberblastmeister";
+          repo = "trashy";
+          rev = version;
+          hash = "sha256-1pxmeXUkgAITouO0mdW6DgZR6+ai2dax2S4hV9jcJLM=";
+        };
+        preFixup = ''
+          installShellCompletion --cmd trashy \
+              --bash <($out/bin/trashy completions bash)
+        '';
+      });
+    };
+  });
   vimPlugins =
     super.vimPlugins
     // builtins.mapAttrs (name: value: (githubVimPlugin value)) {
