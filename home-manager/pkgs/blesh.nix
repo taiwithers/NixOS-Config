@@ -8,7 +8,7 @@
     if [[ -n "$(builtin type -P blesh-share)" ]]; then
       source $(blesh-share)/ble.sh
     else
-      source ${pkgs.blesh}/share/ble.sh
+      source ${pkgs.blesh}/share/blesh/ble.sh
     fi
   '';
   xdg.configFile."${config.common.configHome}/blesh/init.sh".text = ''
