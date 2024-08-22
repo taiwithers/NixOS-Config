@@ -5,7 +5,11 @@
 }: {
   home.packages = [pkgs.blesh];
   programs.bash.bashrcExtra = ''
-    source $(blesh-share)/ble.sh
+    if [[ -n "$(builtin type -P blesh-share)" ]]; then
+      source $(blesh-share)/ble.sh
+    else
+      source ${pkgs.blesh}/share/ble.sh
+    fi
   '';
   xdg.configFile."${config.common.configHome}/blesh/init.sh".text = ''
     # vim mode settings
