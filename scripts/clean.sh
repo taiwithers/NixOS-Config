@@ -13,9 +13,9 @@ deleteFrom="$(date --date="$days days ago" "+%Y-%m-%d %H:%M")"
 echo "Deleting material prior to $deleteFrom"
 echo 
 
-if [[ -n "$(trash list --before "$days""d")" ]]; then 
+if [[ -n "$(trashy list --before "$days""d")" ]]; then 
 	echo "Emptying trash"
-	trash empty --before "$days""d"
+	trashy empty --before "$days""d"
 else
 	echo "No trash to delete"
 fi

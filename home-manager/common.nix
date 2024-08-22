@@ -122,6 +122,7 @@
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory}/home-manager && nix fmt .. --impure)";
         "nixfmt" = "echo 'Defaulting to impure!' && nixfmt --impure";
+        "trash" = "trashy";
       }
       // pkgs.lib.optionalAttrs (config.common.nixos) {
         "nixrebuild" = let
