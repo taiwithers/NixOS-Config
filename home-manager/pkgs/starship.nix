@@ -34,6 +34,8 @@
 
       continuation_prompt = " ❯ ";
 
+      command_timeout = 1000;
+
       # modules, in alphabetical order
       battery = {
         disabled = false;
