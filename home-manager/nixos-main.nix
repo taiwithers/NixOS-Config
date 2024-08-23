@@ -43,6 +43,8 @@
       "lazygit"
       "neovim/neovim"
       "python/python"
+      "ripgrep"
+      "realvnc"
       "rofi"
       "starship"
       "sublime-text/sublime-text"
@@ -100,7 +102,6 @@
       pond
       powertop
       rename
-      ripgrep
       ripgrep-all
       sd
       speedtest-rs

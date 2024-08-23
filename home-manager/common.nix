@@ -112,7 +112,6 @@
     home.shellAliases = with config.common;
       {
         "untar" = "tar -xvf";
-        "grep" = "echo 'Consider using ripgrep [rg] or batgrep instead'";
         "printenv" = "printenv | sort";
         "wget" = "wget --hsts-file=${stateHome}/wget_hsts";
 

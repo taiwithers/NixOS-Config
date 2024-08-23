@@ -16,7 +16,6 @@
 
 			# copy/paste behaviour
 			copy_on_select = "clipboard";
-			show_hyperlink_targets = "yes";
 			skip_trailing_spaces = "smart";
 
 			# other
