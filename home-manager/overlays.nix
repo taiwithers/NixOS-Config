@@ -68,6 +68,23 @@ in {
   neovim = unstable.neovim-unwrapped;
   nixfmt = unstable.nixfmt-rfc-style;
   pond = customDerivation "pond";
+  realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
+    src = super.requireFile rec {
+      url = "https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm";
+      hash = "sha256-Ull9iNi8NxB12YwEThWE0P9k1xOV2LZnebuRrVH/zwI="; # ${super.nix-prefetch} fetchurl --quiet --url '${url}' --option extra-experimental-features flakes
+    };
+  });
+  rofi-wayland = super.rofi-wayland.overrideAttrs (oldAttrs: rec {
+      name = "rofi-wayland-${version}";
+      version = "d88b475";
+      src = super.fetchFromGitHub {
+          owner = "lbonn";
+          repo = "rofi";
+          rev = version;
+          fetchSubmodules = true;
+          hash = "sha256-JORQoLe3cc7f5muj7E9ldS89aRld4oZ/b5PAt7OH0jE=";
+        };
+    }) ;
   starfetch = customDerivation "starfetch";
   superfile = flake-inputs.superfile.packages.${system}.default;
   # texpresso = unstable.texpresso;

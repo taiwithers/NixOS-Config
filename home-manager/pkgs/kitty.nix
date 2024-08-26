@@ -11,7 +11,7 @@
 		settings = with app-themes.palettes.kitty; rec {
 			# appearance (excluding colours)
 			tab_bar_edge = "top";
-			background_opacity = "0.1";
+			background_opacity = "0.5";
 			background_blur = 1;
 
 			# copy/paste behaviour

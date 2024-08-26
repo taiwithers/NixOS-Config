@@ -44,7 +44,6 @@
       "neovim/neovim"
       "python/python"
       "ripgrep"
-      "realvnc"
       "rofi"
       "starship"
       "sublime-text/sublime-text"
@@ -52,12 +51,11 @@
       "tilix"
       "vscodium/vscodium"
       "xdg"
+      "yazi"
       "zellij"
       "zoxide"
       # "zsh"
     ]) ++ [ ( import ./pkgs/plasma.nix {inherit config pkgs flake-inputs;}  )];
-
-  home.shellAliases."updatevnc" = "nix-prefetch-url --type sha256 ";
 
   home.packages = with pkgs;
     [
@@ -132,6 +130,7 @@
       obsidian
       onedrive
       onedrivegui
+      realvnc-vnc-viewer
       slack-dark
       teams-for-linux
       texpresso

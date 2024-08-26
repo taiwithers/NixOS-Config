@@ -46,6 +46,13 @@
       }
     );
 
+  programs.bash.bashrcExtra = ''
+    # GAIA
+    shopt -u expand_aliases
+    source $STARLINK_DIR/etc/profile
+    shopt -s expand_aliases
+  '';
+  
   programs.git = {
     extraConfig = {
       credential.credentialStore = "gpg";

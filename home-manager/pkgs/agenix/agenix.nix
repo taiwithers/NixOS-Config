@@ -24,7 +24,7 @@ in {
       forwardX11 = true;
       extraOptions = {
         RequestTTY = "yes";
-        # RemoteCommand = "cd $HOME/QSTAR && micromamba activate qstar && bash --login";
+        RemoteCommand = "cd /2-Data-Medium/QSTAR && micromamba activate qstar && bash --login";
       };
     };
   };

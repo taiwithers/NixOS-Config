@@ -118,10 +118,11 @@
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
         "rebuild" = "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name}";
+        # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory}/home-manager && nix fmt .. --impure)";
         "nixfmt" = "echo 'Defaulting to impure!' && nixfmt --impure";
-        "trash" = "trashy";
+        "trash" = "trashy put";
       }
       // pkgs.lib.optionalAttrs (config.common.nixos) {
         "nixrebuild" = let

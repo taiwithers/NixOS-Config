@@ -11,9 +11,15 @@ let
       filename = "zellij-forgot.wasm";
       url = "https://github.com/karimould/zellij-forgot/releases/download/0.4.0/zellij_forgot.wasm";
     };
+    zj-quit = {
+      alias = "quit";
+      filename = "zj-quit.wasm";
+      url = "https://github.com/cristiand391/zj-quit/releases/download/0.3.0/zj-quit.wasm";
+      };
   };
   plugin-directory = "${config.common.configHome}/zellij/plugins";
 in {
+  home.file."temp".text = "file:/${plugin-directory}/${plugins.zellij-forgot.filename}";
   programs.zellij = {
     enable = true;
     enableBashIntegration = true;
@@ -51,12 +57,22 @@ in {
 
   // plugin locations
   plugins {
-    ${plugins.zellij-forgot.alias} location="file:/${plugin-directory}/${plugins.zellij-forgot.filename}";
+    ${plugins.zellij-forgot.alias} location="file:${plugin-directory}/${plugins.zellij-forgot.filename}";
+    ${plugins.zj-quit.alias} location="file:${plugin-directory}/${plugins.zj-quit.filename}";
   }
 
   // keybinds
   keybinds {
+
     normal {
+      unbind "Ctrl q"
+
+      bind "Ctrl q" { // launch zj-quit
+        LaunchOrFocusPlugin "${plugins.zj-quit.alias}" { 
+          floating true 
+        }
+      }
+
       bind "Alt ?" { // launch zellij-forgot 
         LaunchOrFocusPlugin "${plugins.zellij-forgot.alias}" {
           "LOAD_ZELLIJ_BINDINGS" "false"
@@ -101,7 +117,7 @@ in {
           "go into edit mode"     "ctrl + s + e"
           "detach session"        "ctrl + o + w"
           "open session manager"  "ctrl + o + w"
-          "quit zellij"           "ctrl + q"
+          "quit zellij (zj-quit)" "ctrl + q"
           "open keybinds"         "alt + ?"
           "toggle pane frames"    "ctrl + p + z"
           floating true
@@ -115,4 +131,5 @@ in {
   '';
 
   xdg.configFile."${plugin-directory}/${plugins.zellij-forgot.filename}".source = builtins.fetchurl plugins.zellij-forgot.url;
+  xdg.configFile."${plugin-directory}/${plugins.zj-quit.filename}".source = builtins.fetchurl plugins.zj-quit.url;
 }

@@ -140,6 +140,10 @@
     "workbench.tree.enableStickyScroll": true,
     "workbench.view.alwaysShowHeaderActions": true,
     "workbench.welcomePage.walkthroughs.openOnInstall": false,
+
+    "autopep8.args": [
+      "--max-line-length=120"
+    ],
     "base16.generator.activatedThemes": [
         "base16-da-one-ocean-dark",
         "base16-horizon-dark",

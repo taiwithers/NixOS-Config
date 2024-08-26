@@ -8,7 +8,46 @@
   };
   home.packages = [pkgs.bottom];
   programs.bottom.enable = true;
-  xdg.configFile."${config.xdg.configHome}/bottom/bottom.toml".text =
+  xdg.configFile."${config.xdg.configHome}/bottom/bottom.toml".text = let
+
+  simplelayout = ''
+    [[row]]
+     ratio=1
+     [[row.child]]
+      type="cpu"
+      ratio=7
+     [[row.child]]
+      type="mem"
+      ratio = 3
+    [[row]]
+     ratio=1
+     type="proc"
+     default = true
+  '';
+
+  fancylayout = ''
+    [[row]]
+     ratio=1
+     [[row.child]]
+      type="cpu"
+      ratio=7
+     [[row.child]]
+      type="temp"
+      ratio = 3
+    [[row]]
+       ratio=3
+       [[row.child]]
+         ratio=1
+         [[row.child.child]]
+           type="mem"
+         [[row.child.child]]
+           type="net"
+       [[row.child]]
+         ratio=2
+         type="proc"
+         default = true
+  '';
+  in
     # TOML
     ''
         # This group of options represents a command-line flag/option.  Flags explicitly
@@ -87,26 +126,7 @@
       # All widgets must have the type value set to one of ["cpu", "mem", "proc", "net", "temp", "disk", "empty"].
       # All layout components have a ratio value - if this is not set, then it defaults to 1.
       # The default widget layout:
-      [[row]]
-       ratio=1
-       [[row.child]]
-        type="cpu"
-        ratio=7
-       [[row.child]]
-        type="temp"
-        ratio = 3
-      [[row]]
-         ratio=3
-         [[row.child]]
-           ratio=1
-           [[row.child.child]]
-             type="mem"
-           [[row.child.child]]
-             type="net"
-         [[row.child]]
-           ratio=2
-           type="proc"
-           default = true
+      ${fancylayout}
 
       # Filters - you can hide specific temperature sensors, network interfaces, and disks using filters.  This is admittedly
       # a bit hard to use as of now, and there is a planned in-app interface for managing this in the future:
