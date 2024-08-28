@@ -10,7 +10,7 @@
 
     keybindings = {
       "kitty_mod+f5" = "load_config_file";
-      "ctrl+shift+/" = "launch --location=split sh -c 'bat --plain ~/.local/state/kitty-keybinds.txt'";
+      "ctrl+shift+/" = "launch --location=split sh -c 'bat --style=plain --paging=always ~/.local/state/kitty-keybinds.txt'";
 
       # clipboard
       "ctrl+shift+c" = "copy_to_clipboard";
