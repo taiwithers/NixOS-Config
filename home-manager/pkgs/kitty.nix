@@ -10,7 +10,7 @@
 
     keybindings = {
       "kitty_mod+f5" = "load_config_file";
-      "ctrl+shift+/" = "launch --location=hsplit sh -c 'bat ~/.config/kitty/kitty.conf'";
+      "ctrl+shift+/" = "launch --location=split sh -c 'bat --plain ~/.local/state/kitty-keybinds.txt'";
 
       # clipboard
       "ctrl+shift+c" = "copy_to_clipboard";
@@ -34,7 +34,7 @@
       "kitty_mod+j" = "next_window"; 
       "kitty_mod+k" = "previous_window";
       "kitty_mod+r" = "start_resizing_window";
-      "kitty_mod+s" = "focus_visible_window"; # swap windows with visual cue
+      "kitty_mod+s" = "focus_visible_window"; # swap pane focus with visual cue
       "ctrl+tab" = "next_tab";
       "ctrl+shift+tab" = "previous_tab";
       "kitty_mod+q" = "close_tab";
@@ -114,4 +114,8 @@
   home.shellAliases = {
     icat = "kitten icat";  
   };
+
+  home.activation.kitty-keybinds = config.lib.dag.entryAfter ["writeBoundary"] ''
+    ${pkgs.bat}/bin/bat ~/.config/kitty/kitty.conf | grep "map" | sed "s/^map //" | ${pkgs.gawk}/bin/awk '{$1 = sprintf("%-20s",$1)} 1' > ~/.local/state/kitty-keybinds.txt
+  '';
 }
