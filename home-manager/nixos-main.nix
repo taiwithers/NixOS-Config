@@ -86,6 +86,7 @@
       gfortran
       imv
       jq
+      kalker
       latex
       lavat
       lua
