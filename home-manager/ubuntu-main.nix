@@ -30,6 +30,7 @@
       fastfetch
       fd
       latex
+      kitty # use icat on remote
       nix-output-monitor
       nixfmt
       ripgrep
