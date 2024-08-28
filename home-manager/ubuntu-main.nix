@@ -18,6 +18,7 @@
     "dust"
     "eza"
     "fzf"
+    "kitty" # use icat on remote
     "lazygit"
     "neovim/neovim"
     "python/python"
@@ -30,7 +31,6 @@
       fastfetch
       fd
       latex
-      kitty # use icat on remote
       nix-output-monitor
       nixfmt
       ripgrep
