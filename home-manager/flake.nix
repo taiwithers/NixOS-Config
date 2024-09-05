@@ -14,6 +14,8 @@
     arc.url = "github:arcnmx/nixexprs";
     agenix.url = "github:ryantm/agenix";
     plasma-manager.url = "github:nix-community/plasma-manager/trunk";
+    nix-colors.url = "github:misterio77/nix-colors";
+    ags.url = "github:Aylur/ags";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     superfile.inputs.nixpkgs.follows = "nixpkgs";
@@ -23,6 +25,8 @@
     agenix.inputs.home-manager.follows = "home-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
+
+
   };
 
   outputs = {
@@ -70,13 +74,30 @@
       inherit (flake-inputs) arc;
     }); let
       defaultTheme = "base16/da-one-ocean";
+      # 0 very dark grey
+      # 1 dark blue
+      # 2 very dark grey
+      # 3 medium
+      # 4 light grey
+      # 5-7 white
+      # 8 red
+      # 9 peach
+      # A orange
+      # B green
+      # C very light blue
+      # D light blue
+      # E lilac
+      # F brown
+
     in {
       palettes = makePaletteSet {
-        tilix = defaultTheme;
-        superfile = defaultTheme;
-        neovim = defaultTheme;
-        zellij = defaultTheme;
+        kde = defaultTheme;
         kitty = defaultTheme;
+        neovim = defaultTheme;
+        superfile = defaultTheme;
+        tilix = defaultTheme;
+        tofi = defaultTheme;
+        zellij = defaultTheme;
       };
       filenames = makePathSet {
         fzf = defaultTheme;
