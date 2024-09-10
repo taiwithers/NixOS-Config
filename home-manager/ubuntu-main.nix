@@ -31,6 +31,7 @@
       fd
       latex
       kitty # use icat on remote
+      kalker
       nix-output-monitor
       nixfmt
       ripgrep
