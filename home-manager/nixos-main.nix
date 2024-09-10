@@ -27,7 +27,7 @@
       "agenix/agenix"
       "bash"
       "bat"
-      "blesh"
+      # "blesh"
       "bottom"
       "cod"
       # "copyq/copyq"

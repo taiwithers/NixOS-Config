@@ -11,7 +11,7 @@
     "bash"
     "bat"
     "bottom"
-    "blesh"
+    # "blesh"
     "cod"
     "common-git"
     "duf"
