@@ -15,6 +15,7 @@ in {
       lua-language-server
       nixd # nix LSP for neovim
       ruff # python LSP
+      nodePackages.typescript-language-server
     ];
     plugins = with pkgs.vimPlugins;
       [
@@ -78,6 +79,8 @@ in {
         # jq
         # hyprlang  
         comment
+        typescript # ags
+        javascript # ags
       ]) ++ [treesitter-parser-vimdoc treesitter-parser-query];
   };
 

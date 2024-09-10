@@ -27,7 +27,7 @@
       "agenix/agenix"
       "bash"
       "bat"
-      "blesh"
+      # "blesh"
       "bottom"
       "cod"
       # "copyq/copyq"
@@ -44,7 +44,7 @@
       "neovim/neovim"
       "python/python"
       "ripgrep"
-      "rofi"
+      "tofi"
       "starship"
       "sublime-text/sublime-text"
       "superfile"
@@ -55,7 +55,14 @@
       "zellij"
       "zoxide"
       # "zsh"
-    ]) ++ [ ( import ./pkgs/plasma.nix {inherit config pkgs flake-inputs;}  )];
+    ]) ++ [ ( import ./pkgs/plasma/plasma.nix {inherit config pkgs flake-inputs app-themes;}  
+    )] ++ [flake-inputs.ags.homeManagerModules.default];
+
+  programs.ags = {
+    enable = true;
+    # configDir = "${config.common.configHome}/ags";
+  };
+
 
   home.packages = with pkgs;
     [
@@ -86,6 +93,7 @@
       gfortran
       imv
       jq
+      kalker
       latex
       lavat
       lua
@@ -143,12 +151,18 @@
       # hplip
       # gnome.adwaita-icon-theme # cursor theme?
       posy-cursors
-      kdePackages.breeze-icons
+      # kdePackages.breeze-icons
       bluez
       bluez-tools
       # kdePackages.bluedevil
       # kdePackages.bluez-qt
       blueman
+
+      (papirus-icon-theme.override {color="indigo";})
+      libsForQt5.polonium
+      kdePackages.plasma-sdk
+      inkscape
+
     ]
     ++ (map
       (

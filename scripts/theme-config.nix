@@ -6,8 +6,8 @@
   colourschemes = pkgs.fetchFromGitHub {
     owner = "tinted-theming";
     repo = "schemes";
-    rev = "ef9a4c3";
-    hash = "sha256-9i9IjZcjvinb/214x5YShUDBZBC2189HYs26uGy/Hck=";
+    rev = "43294f1";
+    hash = "sha256-spz4qmUaejGLB6k/RKc7k+unbNogedwdQv5yBoL3ThA=";
   };
 
   importYaml = let

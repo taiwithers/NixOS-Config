@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Custom
+Comment=Modified from https://store.kde.org/p/1709567
+
+X-KDE-PluginInfo-Name=Custom
+X-KDE-PluginInfo-Version=1.2
+X-KDE-PluginInfo-Author=
+X-KDE-PluginInfo-Email=
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-License=GPL v3.0
+
+Type=Application
+X-KDE-PluginInfo-EnabledByDefault=true

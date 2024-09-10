@@ -19,10 +19,9 @@ let
   };
   plugin-directory = "${config.common.configHome}/zellij/plugins";
 in {
-  home.file."temp".text = "file:/${plugin-directory}/${plugins.zellij-forgot.filename}";
   programs.zellij = {
     enable = true;
-    enableBashIntegration = true;
+    enableBashIntegration = false;
   };
   
   xdg.configFile."${config.common.configHome}/zellij/config.kdl".text = 

@@ -18,7 +18,7 @@
   };
   home.shellAliases = {
     "man" = "batman --no-hyphenation --no-justification";
-    "cat" = "bat";
+    "cat" = "bat --plain";
     "bsession" = "bat ${config.common.hm-session-vars}";
   };
 }

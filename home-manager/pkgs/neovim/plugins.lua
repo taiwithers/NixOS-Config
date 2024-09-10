@@ -44,6 +44,7 @@ require('lspconfig').bashls.setup({})
 require('lspconfig').nixd.setup({})
 require('lspconfig').lua_ls.setup({})
 require('lspconfig').ruff.setup({})
+require('lspconfig').tsserver.setup({})
 require('lualine').setup({
   options = {
     theme = "moonfly",

@@ -65,8 +65,30 @@ in {
       wrapfig
       ;
   };
+# https://wiki.nixos.org/wiki/Overlays#Overriding_a_package_inside_an_extensible_attribute_set
+  libsForQt5 = super.libsForQt5 // {
+    krohnkite = super.libsForQt5.krohnkite.overrideAttrs ( oldAttrs: rec {
+        version = "0.9.7";
+        src = super.fetchFromGitHub {
+            rev = version;
+            owner = "anametologin";
+            repo = oldAttrs.pname;
+            hash = "sha256-8A3zW5tK8jK9fSxYx28b8uXGsvxEoUYybU0GaMD2LNw=";
+          };
+        buildInputs = oldAttrs.buildInputs ++ [ super.kdePackages.kpackage super.nodePackages.npm];
+        dontBuild = false;
+        installPhase = ''
+          runHook preInstall
+
+          kpackagetool6 --type KWin/Script --install ${src}/res/ --packageroot $out/share/kwin/scripts
+          
+          runHook postInstall
+        '';
+      });};
   neovim = unstable.neovim-unwrapped;
   nixfmt = unstable.nixfmt-rfc-style;
+  # papirus-icon-theme = let color="indigo"; in (super.papirus-icon-theme {inherit color;});
+  polonium = super.libsForQt5.polonium; # plasma-manager attempts to load pkgs.polonium
   pond = customDerivation "pond";
   realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
     src = super.requireFile rec {
@@ -74,20 +96,18 @@ in {
       hash = "sha256-Ull9iNi8NxB12YwEThWE0P9k1xOV2LZnebuRrVH/zwI="; # ${super.nix-prefetch} fetchurl --quiet --url '${url}' --option extra-experimental-features flakes
     };
   });
-  rofi-wayland = super.rofi-wayland.overrideAttrs (oldAttrs: rec {
-      name = "rofi-wayland-${version}";
-      version = "d88b475";
-      src = super.fetchFromGitHub {
-          owner = "lbonn";
-          repo = "rofi";
-          rev = version;
-          fetchSubmodules = true;
-          hash = "sha256-JORQoLe3cc7f5muj7E9ldS89aRld4oZ/b5PAt7OH0jE=";
-        };
-    }) ;
   starfetch = customDerivation "starfetch";
   superfile = flake-inputs.superfile.packages.${system}.default;
   # texpresso = unstable.texpresso;
+  tofi = super.tofi.overrideAttrs ( oldAttrs: rec {
+    version = "1aa56b1";
+    src = super.fetchFromGitHub {
+      owner = "itshog";
+      repo = super.tofi.pname;
+      rev = version;
+      hash = "sha256-KiSkb8HOzBnPyzQcHTyUmVixwpls3/o9BbDBkNWu71c=";
+    };
+  });
   trashy = super.trashy.override (old: {
     # https://discourse.nixos.org/t/is-it-possible-to-override-cargosha256-in-buildrustpackage/4393/10
     rustPlatform = old.rustPlatform // {
@@ -126,14 +146,14 @@ in {
       hardtime-nvim = {
         repo = "hardtime.nvim";
         author = "m4xshen";
-        rev = "91c6be1";
-        hash = "sha256-pLJShpbqmJbY3ThQuGmUfgsxijSADJrqpGYLE+KAcUQ=";
+        rev = "6513bf4";
+        hash = "sha256-O/+ZPHuEbTkRQq1kUxb3VzVlb3YWr+QkFOay838Vomw= ";
       };
       helpview-nvim = {
         author = "OXY2DEV";
         repo = "helpview.nvim";
-        rev = "c5e6446";
-        hash = "sha256-FqgCNaikG7Lnp+4pcP/E/JB/JaOD5Z9WP0KX48TD0Do=";
+        rev = "857aec1";
+        hash = "sha256-x5ZV/1LKrxhQWsxsJwrIfD7BogKO7H2GKzDt3PABEh8=";
       };
       modes-nvim = {
         author = "mvllow";
@@ -144,14 +164,14 @@ in {
       nvim-treesitter = rec {
         author = repo;
         repo = "nvim-treesitter";
-        rev = "ec8776e";
-        hash = "sha256-fQ8Y4MwTVN1UPdpNxE4NTCnUXCAbXeYlPUXsR4TKw68=";
+        rev = "585860a";
+        hash = "sha256-cYpPXuZpvEOEnJlDucCh/E8Dx0Gl479yrECon/nwpCg=";
       };
       precognition-nvim = {
         author = "tris203";
         repo = "precognition.nvim";
-        rev = "2a566f0";
-        hash = "sha256-XLcyRB4ow5nPoQ0S29bx0utV9Z/wogg7c3rozYSqlWE=";
+        rev = "8a81c31";
+        hash = "sha256-w+GniyMlA2AAumuACNlEkJLYxNU1W5XLww37yyRJ0PQ=";
       };
       tip-nvim = {
         author = "TobinPalmer";

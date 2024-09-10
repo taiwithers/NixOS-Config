@@ -152,12 +152,15 @@
       };
       nix_shell = {
         disabled = false;
-        format = "via [$symbol $name$state]($style)";
+        format = "via [$symbol( $name$state)]($style)";
         symbol = "";
         style = "bold blue";
         impure_msg = " (impure)";
         pure_msg = "";
         unknown_msg = " (purity?)";
+        # heuristic = true; # attempt to detect `nix shell` commands rather than only `nix-shell`
+        # appears to not work correctly, follow:
+        # https://github.com/starship/starship/issues/6052
       };
       shell = {
         disabled = false;

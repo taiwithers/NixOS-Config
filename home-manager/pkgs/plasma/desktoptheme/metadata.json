@@ -1,0 +1,19 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Tai",
+                "Email": "my@mail.address",
+            }
+        ],
+        "Name": "custom",
+        "Description": ",
+        "Id": "custom",
+        "Version": "0.1",
+        "Category": "",
+        "EnabledByDefault": true,
+        "License": "GPL 3+",
+        "Website": ""
+    },
+    "X-Plasma-API": "5.0"
+}
