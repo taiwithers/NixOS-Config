@@ -79,7 +79,7 @@
       };
       conda = {
         disabled = false;
-        style = "bright-green";
+        style = "green";
         format = ''\[[$symbol $environment]($style)\] '';
         ignore_base = false;
         symbol = "";
@@ -97,7 +97,7 @@
         disabled = false;
         format = "on [$symbol $branch(:$remote_branch) ]($style)";
         symbol = "";
-        style = "bright-purple";
+        style = "purple";
         ignore_branches = [
           "master"
           "main"
