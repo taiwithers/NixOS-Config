@@ -8,6 +8,7 @@ in {
     flake-inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
 
+  # home.packages = [pkgs.libsForQt5.krohnkite];
   programs.plasma = {
     enable = true;
     resetFiles = []; # files to delete on each generation
@@ -91,7 +92,7 @@ in {
       location.longitude = "-78.49624060150377";
     };
 
-    kwin.scripts.polonium.enable = true;
+    # kwin.scripts.polonium.enable = true;
     kwin.scripts.polonium.settings = {
       borderVisibility = "borderAll";
       filter.processes = ["tofi" "krunner" "kded" "polkit" "plasmashell"];
