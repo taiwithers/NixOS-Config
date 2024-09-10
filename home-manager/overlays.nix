@@ -65,6 +65,26 @@ in {
       wrapfig
       ;
   };
+# https://wiki.nixos.org/wiki/Overlays#Overriding_a_package_inside_an_extensible_attribute_set
+  libsForQt5 = super.libsForQt5 // {
+    krohnkite = super.libsForQt5.krohnkite.overrideAttrs ( oldAttrs: rec {
+        version = "0.9.7";
+        src = super.fetchFromGitHub {
+            rev = version;
+            owner = "anametologin";
+            repo = oldAttrs.pname;
+            hash = "sha256-8A3zW5tK8jK9fSxYx28b8uXGsvxEoUYybU0GaMD2LNw=";
+          };
+        buildInputs = oldAttrs.buildInputs ++ [ super.kdePackages.kpackage super.nodePackages.npm];
+        dontBuild = false;
+        installPhase = ''
+          runHook preInstall
+
+          kpackagetool6 --type KWin/Script --install ${src}/res/ --packageroot $out/share/kwin/scripts
+          
+          runHook postInstall
+        '';
+      });};
   neovim = unstable.neovim-unwrapped;
   nixfmt = unstable.nixfmt-rfc-style;
   # papirus-icon-theme = let color="indigo"; in (super.papirus-icon-theme {inherit color;});
