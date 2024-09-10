@@ -1,0 +1,15 @@
+name: ta
+channels:
+  - defaults
+  - anaconda
+dependencies:
+  - python=3.11
+  - ipykernel
+  - ipython
+  - ipywidgets
+  - jupyter
+  - jupyterlab
+  - matplotlib
+  - numpy
+  - pip
+  - scipy

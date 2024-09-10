@@ -21,10 +21,16 @@
       targetPkgs = fhs.targetPkgs;
       profile = fhs.profile + "\n micromamba activate qstar";
     };
+    ta = {
+      name = fhs.name;
+      targetPkgs = fhs.targetPkgs;
+      profile = fhs.profile + "\n micromamba activate ta";
+    };
   in {
     devShells.${system} = {
       default = (pkgs.buildFHSEnv fhs).env;
       qstar = (pkgs.buildFHSEnv qstar).env;
+      ta = (pkgs.buildFHSEnv ta).env;
     };
   };
 }
