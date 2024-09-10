@@ -80,6 +80,7 @@ in {
         # hyprlang  
         comment
         typescript # ags
+        javascript # ags
       ]) ++ [treesitter-parser-vimdoc treesitter-parser-query];
   };
 
