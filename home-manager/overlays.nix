@@ -134,8 +134,8 @@ in {
       auto-hlsearch-nvim = {
         author = "asiryk";
         repo = "auto-hlsearch.nvim";
-        rev = "8f28246";
-        hash = "sha256-AitkdtKoKNAURrEZuQU/VRLj71qDlI4zwL+vzXUJzew=";
+        rev = "7750206";
+        hash = "sha256-SWsefzaLn5mnVfZcO2rEGiS1tuuV28S3kk09l0QAedM=";
       };
       f-string-toggle-nvim = {
         author = "roobert";
@@ -194,8 +194,8 @@ in {
       which-key-nvim = {
         author = "folke";
         repo = "which-key.nvim";
-        rev = "6c1584e";
-        hash = "sha256-nv9s4/ax2BoL9IQdk42uN7mxIVFYiTK+1FVvWDKRnGM=";
+        rev = "bfec3d6";
+        hash = "sha256-FY0KM0F2keMCqB5QhwfGS4w2wQOOeCXgZEa3U7Q1Bek=";
       };
     }
     ;
