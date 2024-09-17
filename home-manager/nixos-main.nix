@@ -221,6 +221,13 @@
       obsidian
     ];
 
+  # firefox work profile desktop icon
+  xdg.desktopEntries."Firefox - TA" = {
+    name = "Firefox - TA";
+    exec = "firefox -P Work %U";
+    terminal = false;
+  };
+
   common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
   common.useXDG = true;
   common.nixos = true;

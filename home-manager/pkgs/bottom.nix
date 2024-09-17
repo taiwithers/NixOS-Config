@@ -5,6 +5,7 @@
 }: {
   home.shellAliases = {
     "htop" = "echo 'Did you mean btm?'";
+    "bbtm" = "btm --basic --hide_avg_cpu";
   };
   home.packages = [pkgs.bottom];
   programs.bottom.enable = true;
