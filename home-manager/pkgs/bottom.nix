@@ -97,21 +97,21 @@
 
       # These are all the components that support custom theming.  Note that colour support will depend on terminal support.
       [colors] # Uncomment if you want to use custom colors
-      table_header_color="LightBlue" # Represents the colour of table headers (processes, CPU, disks, temperature).
+      table_header_color="Blue" # Represents the colour of table headers (processes, CPU, disks, temperature).
       widget_title_color="Gray" # Represents the colour of the label each widget has.
       avg_cpu_color="Red" # Represents the average CPU color.
-      cpu_core_colors=["LightMagenta", "LightYellow", "LightCyan", "LightGreen", "LightBlue", "LightRed", "Cyan", "Green", "Blue", "Red"] # Represents the colour the core will use in the CPU legend and graph.
-      ram_color="LightMagenta" # Represents the colour RAM will use in the memory legend and graph.
-      swap_color="LightYellow" # Represents the colour SWAP will use in the memory legend and graph.
-      arc_color="LightCyan" # Represents the colour ARC will use in the memory legend and graph.
-      gpu_core_colors=["LightGreen", "LightBlue", "LightRed", "Cyan", "Green", "Blue", "Red"] # Represents the colour the GPU will use in the memory legend and graph.
-      rx_color="LightCyan" # Represents the colour rx will use in the network legend and graph.
-      tx_color="LightGreen" # Represents the colour tx will use in the network legend and graph.
+      cpu_core_colors=["Magenta", "Yellow", "Cyan", "Green", "Blue", "Red", "LightCyan", "LightBlue", "LightRed"] # Represents the colour the core will use in the CPU legend and graph.
+      ram_color="Magenta" # Represents the colour RAM will use in the memory legend and graph.
+      swap_color="Yellow" # Represents the colour SWAP will use in the memory legend and graph.
+      arc_color="Cyan" # Represents the colour ARC will use in the memory legend and graph.
+      gpu_core_colors=["Green", "Blue", "Red", "Cyan", "Green", "Blue", "Red"] # Represents the colour the GPU will use in the memory legend and graph.
+      rx_color="Cyan" # Represents the colour rx will use in the network legend and graph.
+      tx_color="Green" # Represents the colour tx will use in the network legend and graph.
       border_color="Gray" # Represents the colour of the border of unselected widgets.
-      highlighted_border_color="LightBlue" # Represents the colour of the border of selected widgets.
+      highlighted_border_color="Blue" # Represents the colour of the border of selected widgets.
       text_color="Gray" # Represents the colour of most text.
       selected_text_color="Black" # Represents the colour of text that is selected.
-      selected_bg_color="LightBlue" # Represents the background colour of text that is selected.
+      selected_bg_color="Blue" # Represents the background colour of text that is selected.
       graph_color="Gray" # Represents the colour of the lines and text of the graph.
       # Represents the colours of the battery based on charge
       high_battery_color="green"
