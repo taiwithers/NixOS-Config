@@ -9,9 +9,10 @@
   ...
 }: {
   imports = map (fname: import ./pkgs/${fname}.nix {inherit config pkgs app-themes;}) [
+    "agenix/agenix"
     "bash"
     "bat"
-    "blesh"
+    # "blesh"
     "bottom"
     "cod"
     "common-git"
@@ -25,7 +26,7 @@
     "superfile"
     "zellij"
     "zoxide"
-  ];
+  ] ++ [flake-inputs.agenix.homeManagerModules.default];
 
   common.nixConfigDirectory = "/mnt/c/Users/tai/Documents/Git/NixOS-Config";
   common.useXDG = true;
@@ -33,7 +34,6 @@
 
   home.packages = with pkgs; [
     age
-    # agenix
     cbonsai
     fastfetch
     fd
