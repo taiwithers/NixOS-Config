@@ -34,7 +34,11 @@ in {
       }
     '';
 
-  home.sessionVariables."PYTHONSTARTUP" = "${config.xdg.configHome}/python/pythonrc";
+  home.sessionVariables = { 
+    PYTHONSTARTUP = "${config.xdg.configHome}/python/pythonrc"; 
+    IPYTHONDIR = "${config.xdg.configHome}/ipython";
+    JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
+  };
 
   xdg.configFile."${pyConfigDir}/shells/shellrc.sh".text = ''
     updateenv () {

@@ -3,10 +3,55 @@
 {config, pkgs, flake-inputs, app-themes, ...}:
 let
   kde-colours = builtins.mapAttrs (name: value: flake-inputs.nix-colors.lib.conversions.hexToRGBString "," value) app-themes.palettes.kde;
-in {
+
+in rec {
   imports = [
     flake-inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
+
+  gtk = rec {
+      enable = true;
+      gtk2.configLocation = "${config.common.configHome}/gtk-2.0/gtkrc";
+      font = with programs.plasma.fonts.general; {
+          name = "Noto Sans";
+          package = pkgs.noto-fonts;
+          size = pointSize;
+        };
+      cursorTheme = with programs.plasma.workspace; {
+          name = cursor.theme;
+          package = pkgs.posy-cursors;
+          size = cursor.size;
+        };
+      theme = {
+          name = "Breeze-dark-gtk";
+          package = pkgs.kdePackages.breeze;
+        };
+
+      gtk2.extraConfig = with programs.plasma; ''
+        gtk-button-images=1
+        gtk-enable-animations=1
+        gtk-icon-theme-name="${workspace.iconTheme}"
+        gtk-menu-images=1
+        gtk-primary-button-warps-slider=1
+        gtk-sound-theme-name="${workspace.soundTheme}"
+        gtk-toolbar-style=3
+      '';
+
+      gtk3.extraConfig = with programs.plasma.workspace; {
+          application-prefer-dark-theme=true;
+          gtk-button-images = true;
+          gtk-decoration-layout=":minimize,maximize,close";
+          gtk-enable-animations=true;
+          gtk-icon-theme-name = iconTheme;
+          gtk-menu-images=true;
+          gtk-modules="colorreload-gtk-module";
+          gtk-primary-button-warps-slider=true;
+          gtk-sound-theme-name=soundTheme;
+          gtk-toolbar-style=3;
+        };
+
+      gtk4.extraConfig = gtk3.extraConfig;
+    };
 
   # home.packages = [pkgs.libsForQt5.krohnkite];
   programs.plasma = {
@@ -31,6 +76,7 @@ in {
       theme = "Posy_Cursor_Black";
       size = 32;
     };
+    workspace.soundTheme = "ocean";
     workspace.splashScreen.theme = "none";
 
     input.keyboard.numlockOnStartup = "on";
