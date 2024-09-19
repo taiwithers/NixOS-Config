@@ -12,10 +12,11 @@
     ./hardware.nix
   ];
 
+  time.hardwareClockInLocalTime = true;
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+      efiSysMountPoint = "/boot/EFI";
     };
     grub = {
       enable = true;
