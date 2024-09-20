@@ -40,17 +40,17 @@ dependencies:
       - astropy-healpix
       - casa-formats-io
       - coloredlogs
-        #- fits-tools
       - gdown
       - PyQt6
       - radio-beam
       - reproject
       - spectral-cube
       - wget
-      - git+https://github.com/taiwithers/acorns.git
       - git+https://github.com/pyspeckit/pyspeckit.git
-      - git+https://github.com/taiwithers/mufasa.git@multicore_options
-      - git+https://github.com/taiwithers/FITS_tools
+      - git+https://github.com/keflavich/FITS_tools
+      - git+https://github.com/taiwithers/acorns.git
+      - git+https://github.com/taiwithers/mufasa.git@main
+      # - git+https://github.com/taiwithers/FITS_tools
 # update environment with conda env update --file filename.yml --prune
 
 # pip install git+https://github.com/jdhenshaw/acorns.git

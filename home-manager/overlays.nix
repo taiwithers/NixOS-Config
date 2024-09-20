@@ -87,6 +87,8 @@ in {
       });};
   neovim = unstable.neovim-unwrapped;
   nixfmt = unstable.nixfmt-rfc-style;
+  onedrive = unstable.onedrive; 
+  onedrivegui = unstable.onedrivegui;
   # papirus-icon-theme = let color="indigo"; in (super.papirus-icon-theme {inherit color;});
   polonium = super.libsForQt5.polonium; # plasma-manager attempts to load pkgs.polonium
   pond = customDerivation "pond";
