@@ -35,6 +35,7 @@
       continuation_prompt = " ❯ ";
 
       command_timeout = 1000;
+      add_newline = false;
 
       # modules, in alphabetical order
       battery = {

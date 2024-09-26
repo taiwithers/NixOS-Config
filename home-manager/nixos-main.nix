@@ -51,18 +51,22 @@
       "tilix"
       "vscodium/vscodium"
       "xdg"
-      "yazi"
-      "zellij"
+      # "yazi"
+      # "zellij"
       "zoxide"
       # "zsh"
-    ]) ++ [ ( import ./pkgs/plasma/plasma.nix {inherit config pkgs flake-inputs app-themes;}  
-    )] ++ [flake-inputs.ags.homeManagerModules.default];
+    ])
+    ++ [
+      (
+        import ./pkgs/plasma/plasma.nix {inherit config pkgs flake-inputs app-themes;}
+      )
+    ]
+    ++ [flake-inputs.ags.homeManagerModules.default];
 
   programs.ags = {
     enable = true;
     # configDir = "${config.common.configHome}/ags";
   };
-
 
   home.packages = with pkgs;
     [
@@ -117,8 +121,9 @@
       # vim
       wget
       xdg-ninja
-      zip
       wl-clipboard
+      zbar
+      zip
 
       # gui programs
       color-oracle
@@ -139,30 +144,27 @@
       onedrive
       onedrivegui
       realvnc-vnc-viewer
-      slack-dark
+      # slack-dark
       teams-for-linux
-      texpresso
-      vivaldi
-      zathura
+      # texpresso
+      # zathura
       zoom-us
       zotero
-
 
       # hplip
       # gnome.adwaita-icon-theme # cursor theme?
       posy-cursors
       # kdePackages.breeze-icons
-      bluez
-      bluez-tools
+      # bluez
+      # bluez-tools
       # kdePackages.bluedevil
       # kdePackages.bluez-qt
-      blueman
+      # blueman
 
-      (papirus-icon-theme.override {color="indigo";})
-      libsForQt5.polonium
-      kdePackages.plasma-sdk
-      inkscape
-
+      # (papirus-icon-theme.override {color="indigo";})
+      # libsForQt5.polonium
+      # kdePackages.plasma-sdk
+      # inkscape
     ]
     ++ (map
       (
