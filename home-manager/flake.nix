@@ -25,8 +25,6 @@
     agenix.inputs.home-manager.follows = "home-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
-
-
   };
 
   outputs = {
@@ -88,7 +86,6 @@
       # D light blue
       # E lilac
       # F brown
-
     in {
       palettes = makePaletteSet {
         kde = defaultTheme;

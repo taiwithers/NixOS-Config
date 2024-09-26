@@ -6,7 +6,7 @@
     with pkgs; {
       browsers = [
         firefox
-        vivaldi
+        # vivaldi
       ];
 
       imageviewers = [
