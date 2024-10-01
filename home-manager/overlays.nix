@@ -95,7 +95,16 @@ in {
     };
   neovim = unstable.neovim-unwrapped;
   nixfmt = unstable.nixfmt-rfc-style;
-  onedrive = unstable.onedrive;
+  # onedrive = unstable.onedrive;
+  onedrive = super.onedrive.overrideAttrs (oldAttrs: rec {
+      version = "2.5.2";
+      src = super.fetchFromGitHub {
+          owner = "abraunegg";
+          repo = oldAttrs.pname;
+          rev = "v${version}";
+          hash = "sha256-neJi5lIx45GsuwZPzzwwEm1bfrL2DFSysVkxa4fCBww=";
+        };
+    });
   # onedrivegui = unstable.onedrivegui;
   onedrivegui = super.onedrivegui.overridePythonAttrs (oldAttrs: rec {
     version = "1.1.1a";

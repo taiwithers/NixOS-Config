@@ -1,5 +1,4 @@
 {config, pkgs, app-themes, ...}:{
-{
   config,
   pkgs,
   app-themes,
