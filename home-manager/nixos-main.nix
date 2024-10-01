@@ -230,6 +230,8 @@
     terminal = false;
   };
 
+  home.shellAliases."TA" = "cd ${config.home.homeDirectory}/OneDrive_Staff && pyactivate ta && codium .";
+
   common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
   common.useXDG = true;
   common.nixos = true;
