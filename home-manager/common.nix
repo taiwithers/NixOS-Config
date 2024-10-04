@@ -60,6 +60,8 @@
       XDG_DATA_HOME = dataHome;
       XDG_CACHE_HOME = cacheHome;
 
+      PAGER = "less --quit-if-one-screen --line-numbers --squeeze-blank-lines --use-color";
+
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
       ERRFILE = "${cacheHome}/x11/xsession-errors";
       GNUPGHOME = "${dataHome}/GNUPG";
