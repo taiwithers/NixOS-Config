@@ -1,4 +1,9 @@
-{pkgs, flake-inputs, system, ...}: (self: super: let
+{
+  pkgs,
+  flake-inputs,
+  system,
+  ...
+}: (self: super: let
   customDerivation = fname: pkgs.callPackage (./. + "/../derivations/${fname}.nix") {};
   githubVimPlugin = {
     author,
@@ -17,7 +22,7 @@
   });
   unstable = self.unstable;
 in {
-	agenix = flake-inputs.agenix.packages.${system}.default;
+  agenix = flake-inputs.agenix.packages.${system}.default;
   cbonsai = customDerivation "cbonsai";
   codium = super.vscodium-fhs;
   color-oracle = customDerivation "color-oracle";
@@ -65,30 +70,67 @@ in {
       wrapfig
       ;
   };
-# https://wiki.nixos.org/wiki/Overlays#Overriding_a_package_inside_an_extensible_attribute_set
-  libsForQt5 = super.libsForQt5 // {
-    krohnkite = super.libsForQt5.krohnkite.overrideAttrs ( oldAttrs: rec {
+  # https://wiki.nixos.org/wiki/Overlays#Overriding_a_package_inside_an_extensible_attribute_set
+  libsForQt5 =
+    super.libsForQt5
+    // {
+      krohnkite = super.libsForQt5.krohnkite.overrideAttrs (oldAttrs: rec {
         version = "0.9.7";
         src = super.fetchFromGitHub {
-            rev = version;
-            owner = "anametologin";
-            repo = oldAttrs.pname;
-            hash = "sha256-8A3zW5tK8jK9fSxYx28b8uXGsvxEoUYybU0GaMD2LNw=";
-          };
-        buildInputs = oldAttrs.buildInputs ++ [ super.kdePackages.kpackage super.nodePackages.npm];
+          rev = version;
+          owner = "anametologin";
+          repo = oldAttrs.pname;
+          hash = "sha256-8A3zW5tK8jK9fSxYx28b8uXGsvxEoUYybU0GaMD2LNw=";
+        };
+        buildInputs = oldAttrs.buildInputs ++ [super.kdePackages.kpackage super.nodePackages.npm];
         dontBuild = false;
         installPhase = ''
           runHook preInstall
 
           kpackagetool6 --type KWin/Script --install ${src}/res/ --packageroot $out/share/kwin/scripts
-          
+
           runHook postInstall
         '';
-      });};
+      });
+    };
   neovim = unstable.neovim-unwrapped;
   nixfmt = unstable.nixfmt-rfc-style;
-  onedrive = unstable.onedrive; 
-  onedrivegui = unstable.onedrivegui;
+  # onedrive = unstable.onedrive;
+  onedrive = super.onedrive.overrideAttrs (oldAttrs: rec {
+      version = "2.5.2";
+      src = super.fetchFromGitHub {
+          owner = "abraunegg";
+          repo = oldAttrs.pname;
+          rev = "v${version}";
+          hash = "sha256-neJi5lIx45GsuwZPzzwwEm1bfrL2DFSysVkxa4fCBww=";
+        };
+    });
+  # onedrivegui = unstable.onedrivegui;
+  onedrivegui = super.onedrivegui.overridePythonAttrs (oldAttrs: rec {
+    version = "1.1.1a";
+    src = super.fetchFromGitHub {
+      owner = "bpozdena";
+      repo = "OneDriveGUI";
+      rev = "v${version}";
+      hash = "sha256-pcY1JOi74pePvkIMRuHv5mlE4F68NzuBLJTCtgjUFRw=";
+    };
+    postPatch = let
+      setupPy = super.writeText "setup.py" ''
+        from setuptools import setup
+        setup(
+          name='onedrivegui',
+          version='${version}',
+          scripts=[
+            'src/OneDriveGUI.py',
+          ],
+        )
+      '';
+    in ''
+      # Patch OneDriveGUI.py so DIR_PATH points to shared files location
+      sed -i src/OneDriveGUI.py -e "s@^DIR_PATH =.*@DIR_PATH = '$out/share/OneDriveGUI'@"
+      cp ${setupPy} ${setupPy.name}
+    '';
+  });
   # papirus-icon-theme = let color="indigo"; in (super.papirus-icon-theme {inherit color;});
   polonium = super.libsForQt5.polonium; # plasma-manager attempts to load pkgs.polonium
   pond = customDerivation "pond";
@@ -99,9 +141,10 @@ in {
     };
   });
   starfetch = customDerivation "starfetch";
+  sublime4 = unstable.sublime4;
   superfile = flake-inputs.superfile.packages.${system}.default;
   # texpresso = unstable.texpresso;
-  tofi = super.tofi.overrideAttrs ( oldAttrs: rec {
+  tofi = super.tofi.overrideAttrs (oldAttrs: rec {
     version = "1aa56b1";
     src = super.fetchFromGitHub {
       owner = "itshog";
@@ -112,23 +155,27 @@ in {
   });
   trashy = super.trashy.override (old: {
     # https://discourse.nixos.org/t/is-it-possible-to-override-cargosha256-in-buildrustpackage/4393/10
-    rustPlatform = old.rustPlatform // {
-      buildRustPackage = args: old.rustPlatform.buildRustPackage (args // rec {
-        name = "${args.pname}-${version}";
-        version = "7c48827";
-        cargoHash = "sha256-iEUa6JLUH2m+8SclTNBzhCldnhbMpWb8ktkM4rU3hmw=";
-        src = super.fetchFromGitHub {
-          owner = "oberblastmeister";
-          repo = "trashy";
-          rev = version;
-          hash = "sha256-1pxmeXUkgAITouO0mdW6DgZR6+ai2dax2S4hV9jcJLM=";
-        };
-        preFixup = ''
-          installShellCompletion --cmd trashy \
-              --bash <($out/bin/trashy completions bash)
-        '';
-      });
-    };
+    rustPlatform =
+      old.rustPlatform
+      // {
+        buildRustPackage = args:
+          old.rustPlatform.buildRustPackage (args
+            // rec {
+              name = "${args.pname}-${version}";
+              version = "7c48827";
+              cargoHash = "sha256-iEUa6JLUH2m+8SclTNBzhCldnhbMpWb8ktkM4rU3hmw=";
+              src = super.fetchFromGitHub {
+                owner = "oberblastmeister";
+                repo = "trashy";
+                rev = version;
+                hash = "sha256-1pxmeXUkgAITouO0mdW6DgZR6+ai2dax2S4hV9jcJLM=";
+              };
+              preFixup = ''
+                installShellCompletion --cmd trashy \
+                    --bash <($out/bin/trashy completions bash)
+              '';
+            });
+      };
   });
   vimPlugins =
     super.vimPlugins
@@ -199,7 +246,6 @@ in {
         rev = "bfec3d6";
         hash = "sha256-FY0KM0F2keMCqB5QhwfGS4w2wQOOeCXgZEa3U7Q1Bek=";
       };
-    }
-    ;
+    };
   zotero = unstable.zotero-beta;
 })

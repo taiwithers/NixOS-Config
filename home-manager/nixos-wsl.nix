@@ -8,45 +8,48 @@
   fonts,
   ...
 }: {
-  imports = map (fname: import ./pkgs/${fname}.nix {inherit config pkgs app-themes;}) [
-    "agenix/agenix"
-    "bash"
-    "bat"
-    # "blesh"
-    "bottom"
-    "cod"
-    "common-git"
-    "duf"
-    "dust"
-    "eza"
-    "fzf"
-    "lazygit"
-    "neovim/neovim"
-    "starship"
-    "superfile"
-    "zellij"
-    "zoxide"
-  ] ++ [flake-inputs.agenix.homeManagerModules.default];
+  imports =
+    map (fname: import ./pkgs/${fname}.nix {inherit config pkgs app-themes;}) [
+      "agenix/agenix"
+      "bash"
+      "bat"
+      # "blesh"
+      "bottom"
+      "cod"
+      "common-git"
+      "duf"
+      "dust"
+      "eza"
+      "fzf"
+      "lazygit"
+      "neovim/neovim"
+      "starship"
+      "superfile"
+      "zellij"
+      "zoxide"
+    ]
+    ++ [flake-inputs.agenix.homeManagerModules.default];
 
   common.nixConfigDirectory = "/mnt/c/Users/tai/Documents/Git/NixOS-Config";
   common.useXDG = true;
   common.nixos = true;
 
-  home.packages = with pkgs; [
-    age
-    cbonsai
-    fastfetch
-    fd
-    nix-output-monitor
-    pond
-    ripgrep
-    ripgrep-all
-    shellcheck
-    starfetch
-    trashy
-    xdg-ninja
-    zellij
-  ]
+  home.packages = with pkgs;
+    [
+      age
+      cbonsai
+      fastfetch
+      fd
+      nix-output-monitor
+      pond
+      ripgrep
+      ripgrep-all
+      shellcheck
+      starfetch
+      trashy
+      xdg-ninja
+      zellij
+    ]
     ++ (map
       (
         {

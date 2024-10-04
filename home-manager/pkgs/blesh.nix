@@ -31,14 +31,14 @@
     bleopt exec_errexit_mark= # turn off exit status
     bleopt complete_menu_maxlines=4
     bleopt complete_menu_complete= # turn off menu completion
-  
+
     bind 'set completion-ignore-case off' # make completion case-sensitive
 
     # accept autocomplete with tab
     # ble-bind -m auto_complete -f C-i auto_complete/insert
     ble-bind -m auto_complete -f TAB auto_complete/insert # accept autocomplete with tab
     ble-bind -m auto_complete -f 'C-c' auto_complete/cancel
-    
+
     ble-import -d integration/fzf-completion
     ble-import -d integration/fzf-key-bindings
   '';

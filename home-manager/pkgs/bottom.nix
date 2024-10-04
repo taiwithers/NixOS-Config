@@ -10,44 +10,43 @@
   home.packages = [pkgs.bottom];
   programs.bottom.enable = true;
   xdg.configFile."${config.xdg.configHome}/bottom/bottom.toml".text = let
-
-  simplelayout = ''
-    [[row]]
-     ratio=1
-     [[row.child]]
-      type="cpu"
-      ratio=7
-     [[row.child]]
-      type="mem"
-      ratio = 3
-    [[row]]
-     ratio=1
-     type="proc"
-     default = true
-  '';
-
-  fancylayout = ''
-    [[row]]
-     ratio=1
-     [[row.child]]
-      type="cpu"
-      ratio=7
-     [[row.child]]
-      type="temp"
-      ratio = 3
-    [[row]]
-       ratio=3
+    simplelayout = ''
+      [[row]]
+       ratio=1
        [[row.child]]
-         ratio=1
-         [[row.child.child]]
-           type="mem"
-         [[row.child.child]]
-           type="net"
+        type="cpu"
+        ratio=7
        [[row.child]]
-         ratio=2
-         type="proc"
-         default = true
-  '';
+        type="mem"
+        ratio = 3
+      [[row]]
+       ratio=1
+       type="proc"
+       default = true
+    '';
+
+    fancylayout = ''
+      [[row]]
+       ratio=1
+       [[row.child]]
+        type="cpu"
+        ratio=7
+       [[row.child]]
+        type="temp"
+        ratio = 3
+      [[row]]
+         ratio=3
+         [[row.child]]
+           ratio=1
+           [[row.child.child]]
+             type="mem"
+           [[row.child.child]]
+             type="net"
+         [[row.child]]
+           ratio=2
+           type="proc"
+           default = true
+    '';
   in
     # TOML
     ''

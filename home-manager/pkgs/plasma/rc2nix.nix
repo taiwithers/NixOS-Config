@@ -334,6 +334,29 @@
       "dolphinrc"."PreviewSettings"."Plugins" = "";
       "kactivitymanagerdrc"."activities"."94835c23-2331-44ee-b1dd-63942e6a6af1" = "Default";
       "kactivitymanagerdrc"."main"."currentActivity" = "94835c23-2331-44ee-b1dd-63942e6a6af1";
+      "katerc"."General"."Days Meta Infos" = 30;
+      "katerc"."General"."Save Meta Infos" = true;
+      "katerc"."General"."Show Full Path in Title" = false;
+      "katerc"."General"."Show Menu Bar" = true;
+      "katerc"."General"."Show Status Bar" = true;
+      "katerc"."General"."Show Tab Bar" = true;
+      "katerc"."General"."Show Url Nav Bar" = true;
+      "katerc"."KTextEditor Renderer"."Animate Bracket Matching" = false;
+      "katerc"."KTextEditor Renderer"."Auto Color Theme Selection" = true;
+      "katerc"."KTextEditor Renderer"."Color Theme" = "Breeze Dark";
+      "katerc"."KTextEditor Renderer"."Line Height Multiplier" = 1;
+      "katerc"."KTextEditor Renderer"."Show Indentation Lines" = false;
+      "katerc"."KTextEditor Renderer"."Show Whole Bracket Expression" = false;
+      "katerc"."KTextEditor Renderer"."Text Font" = "Hack,10,-1,7,400,0,0,0,0,0,0,0,0,0,0,1";
+      "katerc"."KTextEditor Renderer"."Word Wrap Marker" = false;
+      "katerc"."filetree"."editShade" = "74,55,117";
+      "katerc"."filetree"."listMode" = false;
+      "katerc"."filetree"."shadingEnabled" = true;
+      "katerc"."filetree"."showCloseButton" = false;
+      "katerc"."filetree"."showFullPathOnRoots" = false;
+      "katerc"."filetree"."showToolbar" = true;
+      "katerc"."filetree"."sortRole" = 0;
+      "katerc"."filetree"."viewShade" = "81,49,95";
       "kcminputrc"."Keyboard"."NumLock" = 0;
       "kcminputrc"."Libinput/1267/12572/VEN_04F3:00 04F3:311C Mouse"."NaturalScroll" = true;
       "kcminputrc"."Libinput/1267/12572/VEN_04F3:00 04F3:311C Touchpad"."NaturalScroll" = true;
@@ -368,7 +391,7 @@
       "kdeglobals"."KFileDialog Settings"."Show Inline Previews" = true;
       "kdeglobals"."KFileDialog Settings"."Show Preview" = false;
       "kdeglobals"."KFileDialog Settings"."Show Speedbar" = true;
-      "kdeglobals"."KFileDialog Settings"."Show hidden files" = false;
+      "kdeglobals"."KFileDialog Settings"."Show hidden files" = true;
       "kdeglobals"."KFileDialog Settings"."Sort by" = "Name";
       "kdeglobals"."KFileDialog Settings"."Sort directories first" = true;
       "kdeglobals"."KFileDialog Settings"."Sort hidden files last" = false;
@@ -392,6 +415,7 @@
       "kdeglobals"."Shortcuts"."SubstringCompletion" = "";
       "kdeglobals"."Shortcuts"."TextCompletion" = "";
       "kdeglobals"."Shortcuts"."WhatsThis" = "";
+      "kdeglobals"."Sounds"."Theme" = "ocean";
       "kdeglobals"."WM"."activeBackground" = "23,23,38";
       "kdeglobals"."WM"."activeBlend" = "255,255,255";
       "kdeglobals"."WM"."activeFont" = "Noto Sans,9,-1,5,300,0,0,0,0,0,0,0,0,0,0,1";
@@ -421,6 +445,11 @@
       "kservicemenurc"."Show"."wallpaperfileitemaction" = true;
       "ksplashrc"."KSplash"."Engine" = "KSplashQML";
       "ksplashrc"."KSplash"."Theme" = "none";
+      "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."Days" = 7;
+      "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."LimitReachedAction" = 0;
+      "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."Percent" = 10;
+      "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."UseSizeLimit" = true;
+      "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."UseTimeLimit" = false;
       "kwalletrc"."Wallet"."First Use" = false;
       "kwinrc"."Compositing"."AllowTearing" = false;
       "kwinrc"."Desktops"."Id_1" = "8039523a-7a05-45f3-9fcc-38489b3765d4";
@@ -469,7 +498,7 @@
       "kwinrc"."Tiling/06020f28-8e01-57dc-9849-84222256927b"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/14df7c35-608c-5c3c-9181-1ffab387a595"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[]}";
       "kwinrc"."Tiling/2620d9bf-c1a5-5b7b-9ebd-f533ae7c6e8c"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[]}";
-      "kwinrc"."Tiling/61ebf13d-04ce-5522-886b-23fc20e3f252"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.5},{\"width\":0.5}]}";
+      "kwinrc"."Tiling/61ebf13d-04ce-5522-886b-23fc20e3f252"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.6692708333333333},{\"width\":0.33072916666666674}]}";
       "kwinrc"."Tiling/7fb8c463-c102-5440-8fb7-5253b26b5d9c"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/81b711d8-4c33-592f-b70a-521f9fb15aaa"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"layoutDirection\":\"vertical\",\"tiles\":[{\"height\":0.5},{\"height\":0.5}],\"width\":0.47187500000000004},{\"width\":0.5281249999999995}]}";
       "kwinrc"."Tiling/820c33bc-0823-523f-8ae9-16ff867fbcf6"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[]}";
@@ -521,6 +550,20 @@
       "plasmanotifyrc"."Notifications"."PopupTimeout" = 3000;
       "plasmarc"."Theme-plasmathemeexplorer"."name" = "ActiveAccentDark";
       "plasmarc"."Wallpapers"."usersWallpapers" = "/nix/store/054gfhigzhp40jfck5jgq4f9rzyhrp1c-plasma-workspace-wallpapers-6.0.5/share/wallpapers/Mountain/";
+      "spectaclerc"."Annotations"."annotationToolType" = 1;
+      "spectaclerc"."General"."autoSaveImage" = true;
+      "spectaclerc"."General"."clipboardGroup" = "PostScreenshotCopyImage";
+      "spectaclerc"."General"."launchAction" = "DoNotTakeScreenshot";
+      "spectaclerc"."GuiConfig"."captureMode" = 0;
+      "spectaclerc"."ImageSave"."imageCompressionQuality" = 100;
+      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/tai/Pictures/Screenshots/Screenshot_20240926_141934.png";
+      "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
+      "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
+    };
+    dataFile = {
+      "dolphin/view_properties/global/.directory"."Dolphin"."HeaderColumnWidths" = "1122,76,175";
+      "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
+      "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
     };
   };
 }

@@ -77,11 +77,12 @@ in {
         jsonc
         kdl
         # jq
-        # hyprlang  
+        # hyprlang
         comment
         typescript # ags
         javascript # ags
-      ]) ++ [treesitter-parser-vimdoc treesitter-parser-query];
+      ])
+      ++ [treesitter-parser-vimdoc treesitter-parser-query];
   };
 
   xdg.configFile."${confdir}/init.lua".source = ./init.lua;
@@ -117,7 +118,7 @@ in {
   in
     config.lib.dag.entryAfter ["writeBoundary"] ''
       mkdir --parents ${lua-directory}/
-      
+
       files=("options" "plugins" "keymaps" "autocommands")
       for fname in "''${files[@]}"; do
         source="${source-directory}/$fname.lua"
