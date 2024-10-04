@@ -27,6 +27,7 @@
       "agenix/agenix"
       "bash"
       "bat"
+      "betterdiscord"
       # "blesh"
       "bottom"
       "cod"
@@ -145,6 +146,7 @@
       onedrivegui
       realvnc-vnc-viewer
       # slack-dark
+      spotify
       teams-for-linux
       # texpresso
       # zathura
@@ -155,10 +157,10 @@
       # gnome.adwaita-icon-theme # cursor theme?
       posy-cursors
       # kdePackages.breeze-icons
-      # bluez
+      bluez
       # bluez-tools
       # kdePackages.bluedevil
-      # kdePackages.bluez-qt
+      kdePackages.bluez-qt
       # blueman
 
       # (papirus-icon-theme.override {color="indigo";})

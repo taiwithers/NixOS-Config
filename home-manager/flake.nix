@@ -42,6 +42,7 @@
           "posy-cursors"
           "realvnc-vnc-viewer"
           "slack"
+          "spotify"
           "sublimetext4"
           "vivaldi"
           "vscode-extension-MS-python-vscode-pylance"
