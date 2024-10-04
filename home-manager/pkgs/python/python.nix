@@ -45,6 +45,17 @@ in {
       updateenv() {
         micromamba update --file ${pyConfigDir}/shells/"$CONDA_DEFAULT_ENV".yml
       }
+
+      gitpipupdate() {
+        gitlink="git+https://github.com/$1.git"
+
+        if [[ "$#" -eq 2 ]]; then
+          gitlink="$gitlink@$2"
+        fi
+
+        echo "Installing from $gitlink"
+        pip install "$gitlink"
+      }
     '';
     executable = true;
   };
@@ -80,5 +91,3 @@ in {
         setup_history()
   '';
 }
-# conda env update --file ~/.config/NixOS-Config/homemanager/pkgs/python/python-qstar.yml
-
