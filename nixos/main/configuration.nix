@@ -126,7 +126,17 @@
     gnome.gnome-terminal # always have an editor and terminal!
     git
   ];
-
+ nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+             "libfprint-2-tod1-goodix"
+           ];
+         
+  services.fprintd = {
+      enable = true;
+      tod = {
+          enable = true;
+          driver = pkgs.libfprint-2-tod1-goodix;
+        };
+    };
   services.printing.enable = true;
   # allow printing without downloading drivers, https://nixos.wiki/wiki/Printing
   services.avahi = {
