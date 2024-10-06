@@ -7,9 +7,10 @@
   app-themes,
   fonts,
   ...
-}: {
+}:
+{
   imports =
-    map (fname: import ./pkgs/${fname}.nix {inherit config pkgs app-themes;}) [
+    map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
       "agenix/agenix"
       "bash"
       "bat"
@@ -28,13 +29,14 @@
       "zellij"
       "zoxide"
     ]
-    ++ [flake-inputs.agenix.homeManagerModules.default];
+    ++ [ flake-inputs.agenix.homeManagerModules.default ];
 
   common.nixConfigDirectory = "/mnt/c/Users/tai/Documents/Git/NixOS-Config";
   common.useXDG = true;
   common.nixos = true;
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       age
       cbonsai
@@ -54,14 +56,14 @@
       (
         {
           name,
-          runtimeInputs ? [],
+          runtimeInputs ? [ ],
           file,
         }:
-          pkgs.writeShellApplication {
-            name = name;
-            runtimeInputs = runtimeInputs;
-            text = builtins.readFile file;
-          }
+        pkgs.writeShellApplication {
+          name = name;
+          runtimeInputs = runtimeInputs;
+          text = builtins.readFile file;
+        }
       )
       [
         rec {
@@ -101,7 +103,8 @@
           ];
           file = ../scripts/fix-line-endings.sh;
         }
-      ]);
+      ]
+    );
 
   home.stateVersion = "24.05";
 }

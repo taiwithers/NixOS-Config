@@ -5,13 +5,14 @@
   hostname,
   flake-inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware.nix
     flake-inputs.nixos-wsl.nixosModules.default
     {
-      system.stateVersion = "24.05";#config.system.stateVersion;
-      wsl =  rec {
+      system.stateVersion = "24.05"; # config.system.stateVersion;
+      wsl = rec {
         enable = true;
         defaultUser = "tai-wsl";
         interop.includePath = false; # don't keep the windows path
@@ -29,14 +30,17 @@
   ];
   programs.vim.defaultEditor = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.use-xdg-base-directories = true;
 
   # keep system up to date
   system.autoUpgrade = {
     enable = true;
     flags = [
-      "--update-input"  
+      "--update-input"
       "nixpkgs"
       "--commit-lock-file"
     ];
@@ -45,20 +49,20 @@
   # keep system clean :)
   nix.optimise = {
     automatic = true;
-    dates = ["weekly"];
+    dates = [ "weekly" ];
   };
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 14d";
   };
-  
+
   nix.settings.auto-optimise-store = true;
-  
+
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
-  
+
   system.stateVersion = "24.05";
 }

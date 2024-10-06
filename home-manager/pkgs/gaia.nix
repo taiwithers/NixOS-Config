@@ -2,8 +2,9 @@
   config,
   pkgs,
   ...
-}: {
-  home.packages = [pkgs.gaia];
+}:
+{
+  home.packages = [ pkgs.gaia ];
   home.sessionVariables."STARLINK_DIR" = "${pkgs.gaia}";
 
   programs.bash.bashrcExtra = ''

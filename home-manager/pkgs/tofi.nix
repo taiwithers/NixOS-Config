@@ -17,7 +17,8 @@
   pkgs,
   app-themes,
   ...
-}: {
+}:
+{
   programs.tofi = {
     enable = true;
     settings = with app-themes.palettes.tofi; {

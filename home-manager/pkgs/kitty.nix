@@ -1,9 +1,16 @@
-{config, pkgs, app-themes, ...}:{
+{
   config,
   pkgs,
   app-themes,
   ...
-}: {
+}:
+{
+  config,
+  pkgs,
+  app-themes,
+  ...
+}:
+{
   programs.kitty = {
     enable = true;
     shellIntegration.enableBashIntegration = true;
@@ -120,7 +127,7 @@
     icat = "kitten icat";
   };
 
-  home.activation.kitty-keybinds = config.lib.dag.entryAfter ["writeBoundary"] ''
+  home.activation.kitty-keybinds = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     ${pkgs.bat}/bin/bat ~/.config/kitty/kitty.conf | grep "map" | sed "s/^map //" | ${pkgs.gawk}/bin/awk '{$1 = sprintf("%-20s",$1)} 1' > ~/.local/state/kitty-keybinds.txt
   '';
 }

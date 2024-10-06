@@ -7,7 +7,8 @@
   hostname,
   # flake-inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware.nix
   ];
@@ -21,7 +22,7 @@
     grub = {
       enable = true;
       efiSupport = true;
-      devices = ["nodev"];
+      devices = [ "nodev" ];
       useOSProber = true;
       configurationLimit = 16;
       backgroundColor = "#000000";
@@ -47,7 +48,7 @@
   # keep system clean :)
   nix.optimise = {
     automatic = true;
-    dates = ["weekly"];
+    dates = [ "weekly" ];
   };
   nix.gc = {
     automatic = true;
@@ -68,13 +69,13 @@
   # touchpad
   # services.libinput.enable = true; # enabled by default for most desktopManagers
 
-  services.dbus.packages = [pkgs.dconf];
+  services.dbus.packages = [ pkgs.dconf ];
   services.xserver.enable = true;
-  
+
   # GNOME
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.excludePackages = [pkgs.xterm];
+  services.xserver.excludePackages = [ pkgs.xterm ];
   # environment.gnome.excludePackages = [pkgs.gnome-tour];
   # services.gnome.core-utilities.enable = false;
 
@@ -117,7 +118,7 @@
       "ld" # for bluetooth? maybe?
       "input" # input for waybar on hyprland
     ];
-    packages = with pkgs; [firefox];
+    packages = with pkgs; [ firefox ];
   };
 
   # system packages
@@ -126,17 +127,18 @@
     gnome.gnome-terminal # always have an editor and terminal!
     git
   ];
- nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
-             "libfprint-2-tod1-goodix"
-           ];
-         
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (pkgs.lib.getName pkg) [
+      "libfprint-2-tod1-goodix" # fingerprint driver
+    ];
   services.fprintd = {
+    enable = true;
+    tod = {
       enable = true;
-      tod = {
-          enable = true;
-          driver = pkgs.libfprint-2-tod1-goodix;
-        };
+      driver = pkgs.libfprint-2-tod1-goodix;
     };
+  };
   services.printing.enable = true;
   # allow printing without downloading drivers, https://nixos.wiki/wiki/Printing
   services.avahi = {
@@ -149,7 +151,7 @@
   # programs.vim.enable = true;
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
-  environment.pathsToLink = ["/share/zsh"]; # for zsh completion
+  environment.pathsToLink = [ "/share/zsh" ]; # for zsh completion
   programs.hyprland.enable = true;
   # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gdk]; # add in when switching to hyprland
 

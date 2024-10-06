@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   programs.git = {
     enable = true;
     signing.key = "${config.home.homeDirectory}/.ssh/id_ed25519_github.pub";

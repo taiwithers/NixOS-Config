@@ -2,9 +2,9 @@
   fetchFromGitHub,
   stdenv,
 }:
-let 
+let
   sourceRelativeDirectory = "starfetch-src";
-in 
+in
 stdenv.mkDerivation rec {
   pname = "starfetch";
   version = "d0aab03";
@@ -17,10 +17,11 @@ stdenv.mkDerivation rec {
   };
 
   makefile = "${sourceRelativeDirectory}/makefile";
-  preBuild = let
-    buildDirectory = "$out";
-    sourceDirectory = "${buildDirectory}/${sourceRelativeDirectory}";
-  in 
+  preBuild =
+    let
+      buildDirectory = "$out";
+      sourceDirectory = "${buildDirectory}/${sourceRelativeDirectory}";
+    in
     # bash
     ''
       # create (writable) output directory
@@ -43,7 +44,7 @@ stdenv.mkDerivation rec {
       cd ${buildDirectory}
     '';
 
-  postInstall = '' 
+  postInstall = ''
     cd $out
     cp -r starfetch-src/local/* .
     rm bin/starfetch

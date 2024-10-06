@@ -6,7 +6,8 @@
   pkgs-config,
   config-name,
   ...
-}: {
+}:
+{
   options.common = with lib; {
     nixConfigDirectory = mkOption {
       default = ../.;
@@ -28,18 +29,18 @@
     };
 
     scripts = {
-      get-package-dir = mkOption {default = true;};
-      clean = mkOption {default = true;};
-      search = mkOption {default = true;};
+      get-package-dir = mkOption { default = true; };
+      clean = mkOption { default = true; };
+      search = mkOption { default = true; };
     };
 
     # Reference options
-    userHome = mkOption {default = "/home/${user}";};
-    configHome = mkOption {default = config.xdg.configHome;};
-    stateHome = mkOption {default = config.xdg.stateHome;};
-    dataHome = mkOption {default = config.xdg.dataHome;};
-    cacheHome = mkOption {default = config.xdg.cacheHome;};
-    hm-session-vars = mkOption {default = "";};
+    userHome = mkOption { default = "/home/${user}"; };
+    configHome = mkOption { default = config.xdg.configHome; };
+    stateHome = mkOption { default = config.xdg.stateHome; };
+    dataHome = mkOption { default = config.xdg.dataHome; };
+    cacheHome = mkOption { default = config.xdg.cacheHome; };
+    hm-session-vars = mkOption { default = ""; };
   };
 
   config = {
@@ -47,9 +48,10 @@
     home.preferXdgDirectories = config.common.useXDG;
     nix.settings.use-xdg-base-directories = config.common.useXDG; # throws warning but is needed for correct location of hm-session-variables.sh
     common.hm-session-vars =
-      if config.common.useXDG
-      then "~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh"
-      else "/etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh";
+      if config.common.useXDG then
+        "~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh"
+      else
+        "/etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh";
 
     targets.genericLinux.enable = !config.common.nixos;
 
@@ -111,7 +113,8 @@
     #     ]
     # ;
 
-    home.shellAliases = with config.common;
+    home.shellAliases =
+      with config.common;
       {
         "untar" = "tar -xvf";
         "printenv" = "printenv | sort";
@@ -127,9 +130,11 @@
         "trash" = "trashy put";
       }
       // pkgs.lib.optionalAttrs (config.common.nixos) {
-        "nixrebuild" = let
-          nixconfig-name = pkgs.lib.lists.last (pkgs.lib.strings.splitString "-" config-name);
-        in "sudo nixos-rebuild switch --impure --show-trace --flake ${nixConfigDirectory}/nixos#${nixconfig-name}";
+        "nixrebuild" =
+          let
+            nixconfig-name = pkgs.lib.lists.last (pkgs.lib.strings.splitString "-" config-name);
+          in
+          "sudo nixos-rebuild switch --impure --show-trace --flake ${nixConfigDirectory}/nixos#${nixconfig-name}";
       };
 
     xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''

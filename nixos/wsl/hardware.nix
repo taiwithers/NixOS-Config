@@ -7,13 +7,14 @@
   pkgs,
   modulesPath,
   ...
-}: {
-  imports = [];
+}:
+{
+  imports = [ ];
 
-  boot.initrd.availableKernelModules = ["virtio_pci"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [ "virtio_pci" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/mnt/wsl" = {
     device = "none";
@@ -48,7 +49,7 @@
   fileSystems."/mnt/wslg/distro" = {
     device = "none";
     fsType = "none";
-    options = ["bind"];
+    options = [ "bind" ];
   };
 
   fileSystems."/usr/lib/wsl/lib" = {
@@ -59,7 +60,7 @@
   fileSystems."/tmp/.X11-unix" = {
     device = "/mnt/wslg/.X11-unix";
     fsType = "none";
-    options = ["bind"];
+    options = [ "bind" ];
   };
 
   fileSystems."/mnt/wslg/doc" = {
@@ -73,7 +74,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/b1f1cfee-f395-419e-97b7-df59dcc44041";}
+    { device = "/dev/disk/by-uuid/b1f1cfee-f395-419e-97b7-df59dcc44041"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

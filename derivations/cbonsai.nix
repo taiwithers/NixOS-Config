@@ -19,7 +19,7 @@ stdenv.mkDerivation rec {
     pkg-config
     scdoc
   ];
-  buildInputs = [ncurses];
+  buildInputs = [ ncurses ];
   makeFlags = [
     "CC=${stdenv.cc.targetPrefix}cc"
     "PREFIX=$(out)"
