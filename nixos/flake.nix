@@ -4,12 +4,14 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      nixos-hardware,
       ...
     }@flake-inputs:
     let
@@ -17,6 +19,7 @@
         main = "nixos";
         wsl = "wsl-nixos";
       };
+
     in
     {
       nixosConfigurations = builtins.mapAttrs (
@@ -27,6 +30,7 @@
           };
           modules = [
             (./. + "/${config-name}/configuration.nix")
+            nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
           ];
         }
       ) configurations;

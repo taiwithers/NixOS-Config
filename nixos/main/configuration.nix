@@ -12,7 +12,7 @@
   imports = [
     ./hardware.nix
   ];
-
+  # boot and dual-boot options
   time.hardwareClockInLocalTime = true;
   boot.loader = {
     efi = {
@@ -126,12 +126,77 @@
     gedit
     gnome.gnome-terminal # always have an editor and terminal!
     git
+
+    # sysinfo for kde
+    clinfo
+    glxinfo
+    gpu-viewer
+    vulkan-tools
+    wayland-utils
   ];
+
+  # graphics 
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];# Load "nvidia" driver for Xorg and Wayland
+  hardware.nvidia = {
+    modesetting.enable = true;# Modesetting is required.
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # of just the bare essentials.
+    powerManagement.enable = false;
+
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of 
+    # supported GPUs is at: https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Only available from driver 515.43.04+
+    # Currently "beta quality", so false is currently the recommended setting.
+    open = false;
+
+    # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    # prime is the stuff for only using your gpu for certain tasks
+    prime.offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
+  };
+
+  # unfree software
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (pkgs.lib.getName pkg) [
       "libfprint-2-tod1-goodix" # fingerprint driver
+      "steam"
+      "steam-original"
+      "steam-run"
+      "nvidia-x11"
+      "nvidia-settings"
+      "nvidia-persistenced" # no erreor requested but hey
+             "hll2390dw-cups"
     ];
+
+  # steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+
+# gamemode - requests optimizations when running games
+programs.gamemode.enable = true;
+
+# fingerprint reader
   services.fprintd = {
     enable = true;
     tod = {
@@ -139,7 +204,9 @@
       driver = pkgs.libfprint-2-tod1-goodix;
     };
   };
+
   services.printing.enable = true;
+  services.printing.drivers = [pkgs.hll2390dw-cups];
   # allow printing without downloading drivers, https://nixos.wiki/wiki/Printing
   services.avahi = {
     enable = true;
@@ -151,9 +218,6 @@
   # programs.vim.enable = true;
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
-  environment.pathsToLink = [ "/share/zsh" ]; # for zsh completion
-  programs.hyprland.enable = true;
-  # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gdk]; # add in when switching to hyprland
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

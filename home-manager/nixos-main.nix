@@ -149,6 +149,7 @@
       kdePackages.dolphin
       loupe # gnome imager viewer
       obsidian
+      onlyoffice-desktopeditors
       onedrive
       onedrivegui
       realvnc-vnc-viewer
@@ -159,6 +160,14 @@
       # zathura
       zoom-us
       zotero
+      caffeine-ng
+
+      mgba
+      protonup
+      mangohud
+      legendary-gl
+      rare
+
 
       # hplip
       # gnome.adwaita-icon-theme # cursor theme?
@@ -222,6 +231,11 @@
     )
     ++ fonts;
 
+
+  # run steam with gpu
+  xdg.dataFile."applications/steam.desktop".text = builtins.replaceStrings ["Exec="] ["Exec=nvidia-offload "] (builtins.readFile /run/current-system/sw/share/applications/steam.desktop);
+# protonup
+home.sessionVariables."STEAM_EXTRA_COMPAT_TOOLS_PATHS" = "\${HOME}/.steam/root/compatibilitytools.d";
   # gnome taskbar
   dconf.settings."org/gnome/shell".favorite-apps =
     with pkgs;
