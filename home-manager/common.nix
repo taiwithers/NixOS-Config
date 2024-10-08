@@ -65,6 +65,7 @@
       PAGER = "less --quit-if-one-screen --line-numbers --squeeze-blank-lines --use-color";
 
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
+      CUDA_CACHE_PATH = "${cacheHome}/nv";
       ERRFILE = "${cacheHome}/x11/xsession-errors";
       GNUPGHOME = "${dataHome}/GNUPG";
       ICEAUTHORITY = "${cacheHome}/ICEauthority";
