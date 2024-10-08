@@ -152,9 +152,10 @@
       onlyoffice-desktopeditors
       onedrive
       onedrivegui
+      pinta
       realvnc-vnc-viewer
       # slack-dark
-      spotify
+      # spotify # something breaks in latest flake update...
       teams-for-linux
       # texpresso
       # zathura
