@@ -22,7 +22,7 @@
       };
       gpg.format = "ssh";
       init.defaultBranch = "main";
-      pull.rebase = "false";
+      pull.rebase = "true";
       status.relativePaths = false;
     };
     delta = {
