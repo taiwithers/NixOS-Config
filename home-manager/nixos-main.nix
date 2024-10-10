@@ -7,7 +7,8 @@
   app-themes,
   fonts,
   ...
-}: {
+}:
+{
   imports =
     [
       # autostart
@@ -18,11 +19,11 @@
             onedrivegui
           ];
         in
-          import ../scripts/autostart.nix {inherit config autostart-pkgs;}
+        import ../scripts/autostart.nix { inherit config autostart-pkgs; }
       )
       flake-inputs.agenix.homeManagerModules.default
     ]
-    ++ (map (fname: import (./. + "/pkgs/${fname}.nix") {inherit config pkgs app-themes;}) [
+    ++ (map (fname: import (./. + "/pkgs/${fname}.nix") { inherit config pkgs app-themes; }) [
       # just noting here that these programs *are* installed
       "agenix/agenix"
       "bash"
@@ -58,18 +59,24 @@
       # "zsh"
     ])
     ++ [
-      (
-        import ./pkgs/plasma/plasma.nix {inherit config pkgs flake-inputs app-themes;}
-      )
+      (import ./pkgs/plasma/plasma.nix {
+        inherit
+          config
+          pkgs
+          flake-inputs
+          app-themes
+          ;
+      })
     ]
-    ++ [flake-inputs.ags.homeManagerModules.default];
+    ++ [ flake-inputs.ags.homeManagerModules.default ];
 
   programs.ags = {
     enable = true;
     # configDir = "${config.common.configHome}/ags";
   };
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       # nix programs
       appimage-run
@@ -142,16 +149,26 @@
       kdePackages.dolphin
       loupe # gnome imager viewer
       obsidian
+      onlyoffice-desktopeditors
       onedrive
       onedrivegui
+      pinta
       realvnc-vnc-viewer
       # slack-dark
-      spotify
+      # spotify # something breaks in latest flake update...
       teams-for-linux
       # texpresso
       # zathura
       zoom-us
       zotero
+      caffeine-ng
+
+      mgba
+      protonup
+      mangohud
+      legendary-gl
+      rare
+
 
       # hplip
       # gnome.adwaita-icon-theme # cursor theme?
@@ -172,14 +189,14 @@
       (
         {
           name,
-          runtimeInputs ? [],
+          runtimeInputs ? [ ],
           file,
         }:
-          pkgs.writeShellApplication {
-            name = name;
-            runtimeInputs = runtimeInputs;
-            text = builtins.readFile file;
-          }
+        pkgs.writeShellApplication {
+          name = name;
+          runtimeInputs = runtimeInputs;
+          text = builtins.readFile file;
+        }
       )
       [
         rec {
@@ -211,11 +228,18 @@
           ];
           file = ../scripts/nix-search-wrapper.sh;
         }
-      ])
+      ]
+    )
     ++ fonts;
 
+
+  # run steam with gpu
+  xdg.dataFile."applications/steam.desktop".text = builtins.replaceStrings ["Exec="] ["Exec=nvidia-offload "] (builtins.readFile /run/current-system/sw/share/applications/steam.desktop);
+# protonup
+home.sessionVariables."STEAM_EXTRA_COMPAT_TOOLS_PATHS" = "\${HOME}/.steam/root/compatibilitytools.d";
   # gnome taskbar
-  dconf.settings."org/gnome/shell".favorite-apps = with pkgs;
+  dconf.settings."org/gnome/shell".favorite-apps =
+    with pkgs;
     map (pkg: (import ../scripts/locate-desktop.nix) pkg) [
       firefox
       dolphin

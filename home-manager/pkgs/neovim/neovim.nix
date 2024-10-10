@@ -3,9 +3,11 @@
   pkgs,
   app-themes,
   ...
-}: let
+}:
+let
   confdir = "${config.common.configHome}/nvim";
-in {
+in
+{
   programs.neovim = {
     enable = true;
     package = pkgs.neovim; # ensure the version we specify in flake.nix is used
@@ -17,7 +19,8 @@ in {
       ruff # python LSP
       nodePackages.typescript-language-server
     ];
-    plugins = with pkgs.vimPlugins;
+    plugins =
+      with pkgs.vimPlugins;
       [
         # helpers - no additional setup done in plugins.lua
         nui-nvim
@@ -82,7 +85,10 @@ in {
         typescript # ags
         javascript # ags
       ])
-      ++ [treesitter-parser-vimdoc treesitter-parser-query];
+      ++ [
+        treesitter-parser-vimdoc
+        treesitter-parser-query
+      ];
   };
 
   xdg.configFile."${confdir}/init.lua".source = ./init.lua;
@@ -112,11 +118,12 @@ in {
   '';
 
   # symlink other files to avoid constant rebuilding
-  home.activation.linkNvimConfig = let
-    source-directory = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim";
-    lua-directory = "${confdir}/lua";
-  in
-    config.lib.dag.entryAfter ["writeBoundary"] ''
+  home.activation.linkNvimConfig =
+    let
+      source-directory = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim";
+      lua-directory = "${confdir}/lua";
+    in
+    config.lib.dag.entryAfter [ "writeBoundary" ] ''
       mkdir --parents ${lua-directory}/
 
       files=("options" "plugins" "keymaps" "autocommands")

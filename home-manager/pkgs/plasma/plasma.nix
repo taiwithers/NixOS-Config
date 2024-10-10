@@ -6,9 +6,13 @@
   flake-inputs,
   app-themes,
   ...
-}: let
-  kde-colours = builtins.mapAttrs (name: value: flake-inputs.nix-colors.lib.conversions.hexToRGBString "," value) app-themes.palettes.kde;
-in rec {
+}:
+let
+  kde-colours = builtins.mapAttrs (
+    name: value: flake-inputs.nix-colors.lib.conversions.hexToRGBString "," value
+  ) app-themes.palettes.kde;
+in
+rec {
   imports = [
     flake-inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
@@ -60,8 +64,8 @@ in rec {
   # home.packages = [pkgs.libsForQt5.krohnkite];
   programs.plasma = {
     enable = true;
-    resetFiles = []; # files to delete on each generation
-    resetFilesExclude = []; # files to NOT delete on each generation
+    resetFiles = [ ]; # files to delete on each generation
+    resetFilesExclude = [ ]; # files to NOT delete on each generation
     immutableByDefault = false;
     overrideConfig = false; # read description before changing https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.overrideConfig
 
@@ -105,7 +109,9 @@ in rec {
         pointSize = 12;
         weight = "light";
       };
-      small = general // {pointSize = 9;};
+      small = general // {
+        pointSize = 9;
+      };
       menu = small;
       toolbar = small;
       windowTitle = small;
@@ -113,7 +119,7 @@ in rec {
 
     hotkeys.commands = {
       tofi = {
-        keys = ["Ctrl+Space"];
+        keys = [ "Ctrl+Space" ];
         command = "tofi-drun";
         comment = "Launch tofi in application mode.";
       };
@@ -145,8 +151,17 @@ in rec {
     # kwin.scripts.polonium.enable = true;
     kwin.scripts.polonium.settings = {
       borderVisibility = "borderAll";
-      filter.processes = ["tofi" "krunner" "kded" "polkit" "plasmashell"];
-      filter.windowTitles = ["OneDriveGUI" "Picture-in-Picture"];
+      filter.processes = [
+        "tofi"
+        "krunner"
+        "kded"
+        "polkit"
+        "plasmashell"
+      ];
+      filter.windowTitles = [
+        "OneDriveGUI"
+        "Picture-in-Picture"
+      ];
       layout = {
         engine = "binaryTree";
         insertionPoint = "activeWindow";
@@ -158,8 +173,12 @@ in rec {
     };
 
     kwin.titlebarButtons = {
-      left = [];
-      right = ["minimize" "maximize" "close"];
+      left = [ ];
+      right = [
+        "minimize"
+        "maximize"
+        "close"
+      ];
     };
 
     powerdevil = rec {
@@ -173,21 +192,23 @@ in rec {
         whenLaptopLidClosed = "sleep";
       };
 
-      battery = AC // {autoSuspend.idleTimeout = 120;};
+      battery = AC // {
+        autoSuspend.idleTimeout = 120;
+      };
       lowBattery = battery;
     };
 
     spectacle.shortcuts = {
-      captureActiveWindow = [];
-      captureCurrentMonitor = [];
-      captureEntireDesktop = [];
-      captureRectangularRegion = ["Print"];
-      captureWindowUnderCursor = [];
-      launch = [];
-      launchWithoutCapturing = [];
-      recordRegion = [];
-      recordScreen = [];
-      recordWindow = [];
+      captureActiveWindow = [ ];
+      captureCurrentMonitor = [ ];
+      captureEntireDesktop = [ ];
+      captureRectangularRegion = [ "Print" ];
+      captureWindowUnderCursor = [ ];
+      launch = [ ];
+      launchWithoutCapturing = [ ];
+      recordRegion = [ ];
+      recordScreen = [ ];
+      recordWindow = [ ];
     };
 
     windows.allowWindowsToRememberPositions = false; # false since running polonium

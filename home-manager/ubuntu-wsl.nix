@@ -5,55 +5,57 @@
   pkgs-config,
   app-themes,
   ...
-} @ home-inputs: let
+}@home-inputs:
+let
   shellApplications =
     map
-    (
-      {
-        name,
-        runtimeInputs ? [],
-        file,
-      }:
+      (
+        {
+          name,
+          runtimeInputs ? [ ],
+          file,
+        }:
         pkgs.writeShellApplication {
           name = name;
           runtimeInputs = runtimeInputs;
           text = builtins.readFile file;
         }
-    )
-    [
-      rec {
-        name = "get-package-dir";
-        runtimeInputs = with pkgs; [
-          coreutils
-          which
-        ];
-        file = ../scripts + "/${name}.sh";
-      }
-      rec {
-        name = "clean";
-        runtimeInputs = with pkgs; [
-          coreutils
-          gnugrep
-          gnused
-          home-manager
-          nix
-        ];
-        file = ../scripts + "/${name}.sh";
-      }
-      rec {
-        name = "search";
-        runtimeInputs = with pkgs; [
-          nix-search-cli
-          sd
-          jq
-          nix
-        ];
-        file = ../scripts/nix-search-wrapper.sh;
-      }
-    ];
-in {
+      )
+      [
+        rec {
+          name = "get-package-dir";
+          runtimeInputs = with pkgs; [
+            coreutils
+            which
+          ];
+          file = ../scripts + "/${name}.sh";
+        }
+        rec {
+          name = "clean";
+          runtimeInputs = with pkgs; [
+            coreutils
+            gnugrep
+            gnused
+            home-manager
+            nix
+          ];
+          file = ../scripts + "/${name}.sh";
+        }
+        rec {
+          name = "search";
+          runtimeInputs = with pkgs; [
+            nix-search-cli
+            sd
+            jq
+            nix
+          ];
+          file = ../scripts/nix-search-wrapper.sh;
+        }
+      ];
+in
+{
   imports =
-    map (fname: import ./pkgs/${fname}.nix {inherit config pkgs app-themes;}) [
+    map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
       "python/python"
       "bash"
       "bat"
@@ -71,13 +73,14 @@ in {
       "superfile"
       "zoxide"
     ]
-    ++ [(import ./agenix.nix {inherit config pkgs;})];
+    ++ [ (import ./agenix.nix { inherit config pkgs; }) ];
 
   common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
   common.useXDG = true;
   common.nixos = false;
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       age
       agenix

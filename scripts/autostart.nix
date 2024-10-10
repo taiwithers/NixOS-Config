@@ -2,9 +2,11 @@
 {
   config,
   autostart-pkgs,
-}: let
+}:
+let
   locateDesktop = import ./locate-desktop.nix;
-in {
+in
+{
   xdg.configFile = builtins.listToAttrs (
     map (pkg: {
       name = "${config.xdg.configHome}/autostart/${pkg.pname}.desktop";
@@ -23,7 +25,6 @@ in {
       #   # matching .desktop name in /share/applications
       #   source = "${pkg}/share/applications/${pkg.pname}.desktop";
       # };
-    })
-    autostart-pkgs
+    }) autostart-pkgs
   );
 }

@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-xG2dQ0hzQMNGV2NreLzXQWeDE5QJc0j6A5JBXmSMavk=";
   };
 
-  buildInputs = [ncurses];
+  buildInputs = [ ncurses ];
 
   preBuild = ''
     mkdir --parents $out/bin

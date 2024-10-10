@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   programs.git = {
     enable = true;
     signing.key = "${config.home.homeDirectory}/.ssh/id_ed25519_github.pub";
@@ -21,7 +22,7 @@
       };
       gpg.format = "ssh";
       init.defaultBranch = "main";
-      pull.rebase = "false";
+      pull.rebase = "true";
       status.relativePaths = false;
     };
     delta = {

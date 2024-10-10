@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   xdg.desktopEntries.hyprland = {
     name = "hyprland";
     exec = "Hyprland";
@@ -9,7 +10,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [];
+    plugins = [ ];
     settings = {
       "$mainMod" = "SUPER"; # set windows key as primary modifier
       "$terminal" = "kitty";

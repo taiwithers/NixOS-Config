@@ -42,7 +42,7 @@ stdenv.mkDerivation rec {
     parsec
     text
   ];
-  executableHaskellDepends = with pkgs.haskellPackages; [base];
+  executableHaskellDepends = with pkgs.haskellPackages; [ base ];
   testHaskellDepends = with pkgs.haskellPackages; [
     base
     containers

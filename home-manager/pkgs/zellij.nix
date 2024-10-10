@@ -3,7 +3,8 @@
   pkgs,
   app-themes,
   ...
-}: let
+}:
+let
   plugins = {
     zellij-forgot = {
       alias = "forgot";
@@ -17,15 +18,18 @@
     };
   };
   plugin-directory = "${config.common.configHome}/zellij/plugins";
-in {
+in
+{
   programs.zellij = {
     enable = true;
     enableBashIntegration = false;
   };
 
-  xdg.configFile."${config.common.configHome}/zellij/config.kdl".text = with app-themes.palettes.zellij; let
-    themeName = "base16";
-  in
+  xdg.configFile."${config.common.configHome}/zellij/config.kdl".text =
+    with app-themes.palettes.zellij;
+    let
+      themeName = "base16";
+    in
     # kdl
     ''
       // top-level config
