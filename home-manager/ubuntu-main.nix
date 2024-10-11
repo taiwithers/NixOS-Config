@@ -38,6 +38,7 @@
       nix-output-monitor
       nixfmt
       ripgrep
+      sd
       trashy
       xdg-ninja
     ]
