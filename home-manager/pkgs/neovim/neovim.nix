@@ -82,6 +82,7 @@ in
         # jq
         # hyprlang
         comment
+        toml
         typescript # ags
         javascript # ags
       ])

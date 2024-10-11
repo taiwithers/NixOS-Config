@@ -50,7 +50,7 @@
       "starship"
       "sublime-text/sublime-text"
       "superfile"
-      "tilix"
+      # "tilix"
       "vscodium/vscodium"
       "xdg"
       # "yazi"
@@ -103,7 +103,6 @@
       file
       fontconfig
       gfortran
-      imv
       jq
       kalker
       latex
@@ -140,13 +139,14 @@
       filezilla
       github-desktop
       gnome-extension-manager
-      gnome.file-roller
+      # gnome.file-roller
       gnome.gnome-screenshot
-      gnome.gnome-tweaks
+      # gnome.gnome-tweaks # only on gnome
       gparted
       keepassxc
       libreoffice
       kdePackages.dolphin
+      kdePackages.ark # archive manager
       loupe # gnome imager viewer
       obsidian
       onlyoffice-desktopeditors
@@ -155,19 +155,22 @@
       pinta
       realvnc-vnc-viewer
       # slack-dark
-      # spotify # something breaks in latest flake update...
+      spotify # something breaks in latest flake update...
       teams-for-linux
       # texpresso
       # zathura
       zoom-us
       zotero
       caffeine-ng
+      sticky
 
+      vesktop
       mgba
       protonup
       mangohud
       legendary-gl
       rare
+      klassy
 
 
       # hplip
