@@ -3,3 +3,4 @@
 *.sublime-project
 *.sublime-workspace
 home-manager/pkgs/python/shells/shellrc.sh
+home-manager/pkgs/betterdiscord/configs
