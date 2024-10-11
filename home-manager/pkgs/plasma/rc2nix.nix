@@ -2,34 +2,24 @@
   programs.plasma = {
     enable = true;
     shortcuts = {
+      "ActivityManager"."switch-to-activity-8e9da30a-2463-41cc-915f-e9174343ee67" = [ ];
       "ActivityManager"."switch-to-activity-94835c23-2331-44ee-b1dd-63942e6a6af1" = [ ];
       "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = "none,Meta+Alt+L,Switch to Last-Used Keyboard Layout";
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "none,Meta+Alt+K,Switch to Next Keyboard Layout";
       "kaccess"."Toggle Screen Reader On and Off" = "none,Meta+Alt+S,Toggle Screen Reader On and Off";
       "kcm_touchpad"."Disable Touchpad" = "none,Touchpad Off";
       "kcm_touchpad"."Enable Touchpad" = "none,Touchpad On";
-      "kcm_touchpad"."Toggle Touchpad" = [
-        "none,Touchpad Toggle"
-        "Meta+Ctrl+Zenkaku Hankaku"
-      ];
+      "kcm_touchpad"."Toggle Touchpad" = ["none,Touchpad Toggle" "Meta+Ctrl+Zenkaku Hankaku"];
       "kmix"."decrease_microphone_volume" = "Microphone Volume Down";
-      "kmix"."decrease_volume" = "none,Volume Down,Decrease Volume";
-      "kmix"."decrease_volume_small" = "Shift+Volume Down";
-      "kmix"."increase_microphone_volume" = "Microphone Volume Up";
-      "kmix"."increase_volume" = "none,Volume Up,Increase Volume";
-      "kmix"."increase_volume_small" = "Shift+Volume Up";
-      "kmix"."mic_mute" = [
-        "Microphone Mute"
-        "Meta+Volume Mute,Microphone Mute"
-        "Meta+Volume Mute,Mute Microphone"
-      ];
+      "kmix"."decrease_volume" = "Volume Down";
+      "kmix"."decrease_volume_small" = "none,Shift+Volume Down,Decrease Volume by 1%";
+      "kmix"."increase_microphone_volume" = "none,Microphone Volume Up,Increase Microphone Volume";
+      "kmix"."increase_volume" = "Volume Up";
+      "kmix"."increase_volume_small" = "none,Shift+Volume Up,Increase Volume by 1%";
+      "kmix"."mic_mute" = ["Meta+Volume Mute,Microphone Mute" "Meta+Volume Mute,Mute Microphone"];
       "kmix"."mute" = "Volume Mute";
       "ksmserver"."Halt Without Confirmation" = "none,,Shut Down Without Confirmation";
-      "ksmserver"."Lock Session" = [
-        "Meta+L"
-        "Screensaver,Meta+L"
-        "Screensaver,Lock Session"
-      ];
+      "ksmserver"."Lock Session" = ["none,Meta+L" "Screensaver,Lock Session"];
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
       "ksmserver"."Log Out Without Confirmation" = "none,,Log Out Without Confirmation";
       "ksmserver"."Reboot" = "none,,Reboot";
@@ -43,30 +33,28 @@
       "kwin"."Decrease Opacity" = "none,,Decrease Opacity of Active Window by 5%";
       "kwin"."Edit Tiles" = "Meta+`,Meta+T,Toggle Tiles Editor";
       "kwin"."Expose" = "none,Ctrl+F9,Toggle Present Windows (Current desktop)";
-      "kwin"."ExposeAll" = [
-        "none,Ctrl+F10"
-        "Launch (C),Toggle Present Windows (All desktops)"
-      ];
+      "kwin"."ExposeAll" = ["none,Ctrl+F10" "Launch (C),Toggle Present Windows (All desktops)"];
       "kwin"."ExposeClass" = "none,Ctrl+F7,Toggle Present Windows (Window class)";
       "kwin"."ExposeClassCurrentDesktop" = [ ];
       "kwin"."Grid View" = "none,Meta+G,Toggle Grid View";
       "kwin"."Increase Opacity" = "none,,Increase Opacity of Active Window by 5%";
       "kwin"."Kill Window" = "none,Meta+Ctrl+Esc,Kill Window";
       "kwin"."KrohnkiteBTreeLayout" = [ ];
-      "kwin"."KrohnkiteDecrease" = "Meta+D,none,Krohnkite: Decrease";
-      "kwin"."KrohnkiteFloatAll" = "Meta+Shift+F,none,Krohnkite: Toggle Float All";
+      "kwin"."KrohnkiteColumnsLayout" = [ ];
+      "kwin"."KrohnkiteDecrease" = [ ];
+      "kwin"."KrohnkiteFloatAll" = [ ];
       "kwin"."KrohnkiteFloatingLayout" = [ ];
       "kwin"."KrohnkiteFocusDown" = [ ];
-      "kwin"."KrohnkiteFocusLeft" = [ ];
-      "kwin"."KrohnkiteFocusNext" = [ ];
-      "kwin"."KrohnkiteFocusPrev" = "Meta+\\,,none,Krohnkite: Focus Previous";
-      "kwin"."KrohnkiteFocusRight" = [ ];
-      "kwin"."KrohnkiteFocusUp" = [ ];
-      "kwin"."KrohnkiteGrowHeight" = [ ];
+      "kwin"."KrohnkiteFocusLeft" = "Meta+H,none,Krohnkite: Focus Left";
+      "kwin"."KrohnkiteFocusNext" = "Meta+N,none,Krohnkite: Focus Next";
+      "kwin"."KrohnkiteFocusPrev" = "Meta+P,none,Krohnkite: Focus Previous";
+      "kwin"."KrohnkiteFocusRight" = "Meta+L,none,Krohnkite: Focus Right";
+      "kwin"."KrohnkiteFocusUp" = "Meta+K,none,Krohnkite: Focus Up";
+      "kwin"."KrohnkiteGrowHeight" = "Meta+Ctrl+Up,none,Krohnkite: Grow Height";
       "kwin"."KrohnkiteIncrease" = [ ];
-      "kwin"."KrohnkiteMonocleLayout" = "Meta+M,none,Krohnkite: Monocle Layout";
-      "kwin"."KrohnkiteNextLayout" = [ ];
-      "kwin"."KrohnkitePreviousLayout" = [ ];
+      "kwin"."KrohnkiteMonocleLayout" = [ ];
+      "kwin"."KrohnkiteNextLayout" = "Meta+Shift+Right,none,Krohnkite: Next Layout";
+      "kwin"."KrohnkitePreviousLayout" = "Meta+Shift+Left,none,Krohnkite: Previous Layout";
       "kwin"."KrohnkiteQuarterLayout" = [ ];
       "kwin"."KrohnkiteRotate" = "Meta+R,none,Krohnkite: Rotate";
       "kwin"."KrohnkiteRotatePart" = "Meta+Shift+R,none,Krohnkite: Rotate Part";
@@ -75,16 +63,16 @@
       "kwin"."KrohnkiteShiftLeft" = [ ];
       "kwin"."KrohnkiteShiftRight" = [ ];
       "kwin"."KrohnkiteShiftUp" = [ ];
-      "kwin"."KrohnkiteShrinkHeight" = [ ];
-      "kwin"."KrohnkiteShrinkWidth" = [ ];
+      "kwin"."KrohnkiteShrinkHeight" = "Meta+Ctrl+Down,none,Krohnkite: Shrink Height";
+      "kwin"."KrohnkiteShrinkWidth" = "Meta+Ctrl+Left,none,Krohnkite: Shrink Width";
       "kwin"."KrohnkiteSpiralLayout" = [ ];
       "kwin"."KrohnkiteSpreadLayout" = [ ];
       "kwin"."KrohnkiteStackedLayout" = [ ];
       "kwin"."KrohnkiteStairLayout" = [ ];
-      "kwin"."KrohnkiteTileLayout" = "Meta+T,none,Krohnkite: Tile Layout";
+      "kwin"."KrohnkiteTileLayout" = [ ];
       "kwin"."KrohnkiteToggleFloat" = "Meta+F,none,Krohnkite: Toggle Float";
       "kwin"."KrohnkiteTreeColumnLayout" = [ ];
-      "kwin"."KrohnkitegrowWidth" = [ ];
+      "kwin"."KrohnkitegrowWidth" = "Meta+Ctrl+Right,none,Krohnkite: Grow Width";
       "kwin"."Move Tablet to Next Output" = [ ];
       "kwin"."MoveMouseToCenter" = "none,Meta+F6,Move Mouse to Center";
       "kwin"."MoveMouseToFocus" = "none,Meta+F5,Move Mouse to Focus";
@@ -93,21 +81,21 @@
       "kwin"."MoveZoomRight" = [ ];
       "kwin"."MoveZoomUp" = [ ];
       "kwin"."Overview" = "Meta+Tab,Meta+W,Toggle Overview";
-      "kwin"."PoloniumCycleEngine" = "Meta+|,none,Polonium: Cycle Engine";
-      "kwin"."PoloniumFocusAbove" = "Meta+K,none,Polonium: Focus Above";
-      "kwin"."PoloniumFocusBelow" = "Meta+J,none,Polonium: Focus Below";
-      "kwin"."PoloniumFocusLeft" = "Meta+H,none,Polonium: Focus Left";
+      "kwin"."PoloniumCycleEngine" = [ ];
+      "kwin"."PoloniumFocusAbove" = [ ];
+      "kwin"."PoloniumFocusBelow" = [ ];
+      "kwin"."PoloniumFocusLeft" = [ ];
       "kwin"."PoloniumFocusRight" = [ ];
-      "kwin"."PoloniumInsertAbove" = "Meta+Shift+K,none,Polonium: Insert Above";
-      "kwin"."PoloniumInsertBelow" = "Meta+Shift+J,none,Polonium: Insert Below";
-      "kwin"."PoloniumInsertLeft" = "Meta+Shift+H,none,Polonium: Insert Left";
-      "kwin"."PoloniumInsertRight" = "Meta+Shift+L,none,Polonium: Insert Right";
-      "kwin"."PoloniumOpenSettings" = "Meta+\\\\,none,Polonium: Open Settings Dialog";
-      "kwin"."PoloniumResizeAbove" = "Meta+Ctrl+K,none,Polonium: Resize Above";
-      "kwin"."PoloniumResizeBelow" = "Meta+Ctrl+J,none,Polonium: Resize Below";
-      "kwin"."PoloniumResizeLeft" = "Meta+Ctrl+H,none,Polonium: Resize Left";
-      "kwin"."PoloniumResizeRight" = "Meta+Ctrl+L,none,Polonium: Resize Right";
-      "kwin"."PoloniumRetileWindow" = "Meta+Shift+Space,none,Polonium: Retile Window";
+      "kwin"."PoloniumInsertAbove" = [ ];
+      "kwin"."PoloniumInsertBelow" = [ ];
+      "kwin"."PoloniumInsertLeft" = [ ];
+      "kwin"."PoloniumInsertRight" = [ ];
+      "kwin"."PoloniumOpenSettings" = [ ];
+      "kwin"."PoloniumResizeAbove" = [ ];
+      "kwin"."PoloniumResizeBelow" = [ ];
+      "kwin"."PoloniumResizeLeft" = [ ];
+      "kwin"."PoloniumResizeRight" = [ ];
+      "kwin"."PoloniumRetileWindow" = [ ];
       "kwin"."PoloniumSwitchBTree" = [ ];
       "kwin"."PoloniumSwitchHalf" = [ ];
       "kwin"."PoloniumSwitchKwin" = [ ];
@@ -161,6 +149,8 @@
       "kwin"."Switch to Screen to the Right" = "none,,Switch to Screen to the Right";
       "kwin"."Toggle Night Color" = [ ];
       "kwin"."Toggle Window Raise/Lower" = "none,,Toggle Window Raise/Lower";
+      "kwin"."ToggleCurrentThumbnail" = "none,Meta+Ctrl+T,Toggle Thumbnail for Current Window";
+      "kwin"."TrackMouse" = [ ];
       "kwin"."Walk Through Windows" = "Alt+Tab";
       "kwin"."Walk Through Windows (Reverse)" = "Alt+Shift+Tab";
       "kwin"."Walk Through Windows Alternative" = "none,,Walk Through Windows Alternative";
@@ -243,13 +233,10 @@
       "kwin"."Window to Screen 6" = "none,,Move Window to Screen 6";
       "kwin"."Window to Screen 7" = "none,,Move Window to Screen 7";
       "kwin"."view_actual_size" = "none,Meta+0,Zoom to Actual Size";
-      "kwin"."view_zoom_in" = [
-        "none,Meta++"
-        "Meta+=,Zoom In"
-      ];
+      "kwin"."view_zoom_in" = ["none,Meta++" "Meta+=,Zoom In"];
       "kwin"."view_zoom_out" = "none,Meta+-,Zoom Out";
-      "mediacontrol"."mediavolumedown" = "Volume Down,,Media volume down";
-      "mediacontrol"."mediavolumeup" = "Volume Up,,Media volume up";
+      "mediacontrol"."mediavolumedown" = "none,,Media volume down";
+      "mediacontrol"."mediavolumeup" = "none,,Media volume up";
       "mediacontrol"."nextmedia" = "Media Next";
       "mediacontrol"."pausemedia" = "Media Pause";
       "mediacontrol"."playmedia" = "none,,Play media playback";
@@ -278,10 +265,7 @@
       "org_kde_powerdevil"."Sleep" = "Sleep";
       "org_kde_powerdevil"."Toggle Keyboard Backlight" = "Keyboard Light On/Off";
       "org_kde_powerdevil"."Turn Off Screen" = [ ];
-      "org_kde_powerdevil"."powerProfile" = [
-        "none,Battery"
-        "Meta+B,Switch Power Profile"
-      ];
+      "org_kde_powerdevil"."powerProfile" = ["none,Battery" "Meta+B,Switch Power Profile"];
       "plasma-manager-commands.desktop"."tofi" = "Ctrl+Space,,Launch tofi in application mode.";
       "plasmashell"."activate task manager entry 1" = "Meta+1";
       "plasmashell"."activate task manager entry 10" = "none,Meta+0,Activate Task Manager Entry 10";
@@ -323,6 +307,7 @@
       "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Print";
       "services/org.kde.spectacle.desktop"."WindowUnderCursorScreenShot" = [ ];
       "services/org.kde.spectacle.desktop"."_launch" = [ ];
+      "services/plasma-manager-commands.desktop"."tofi" = "Ctrl+Space";
       "services/rofi.desktop"."_launch" = "Meta+R";
       "services/systemsettings.desktop"."_launch" = "Meta+I";
     };
@@ -352,7 +337,9 @@
       "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
       "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
       "dolphinrc"."PreviewSettings"."Plugins" = "";
+      "kactivitymanagerdrc"."activities"."8e9da30a-2463-41cc-915f-e9174343ee67" = "Media Active (no sleep)";
       "kactivitymanagerdrc"."activities"."94835c23-2331-44ee-b1dd-63942e6a6af1" = "Default";
+      "kactivitymanagerdrc"."activities-icons"."8e9da30a-2463-41cc-915f-e9174343ee67" = "media-playback-start";
       "kactivitymanagerdrc"."main"."currentActivity" = "94835c23-2331-44ee-b1dd-63942e6a6af1";
       "katerc"."General"."Days Meta Infos" = 30;
       "katerc"."General"."Save Meta Infos" = true;
@@ -382,15 +369,36 @@
       "kcminputrc"."Libinput/1267/12572/VEN_04F3:00 04F3:311C Touchpad"."NaturalScroll" = true;
       "kcminputrc"."Mouse"."cursorSize" = 32;
       "kcminputrc"."Mouse"."cursorTheme" = "Posy_Cursor_Black";
+      "kded5rc"."Module-appmenu"."autoload" = true;
+      "kded5rc"."Module-baloosearchmodule"."autoload" = true;
+      "kded5rc"."Module-bluedevil"."autoload" = true;
       "kded5rc"."Module-browserintegrationreminder"."autoload" = false;
+      "kded5rc"."Module-colorcorrectlocationupdater"."autoload" = true;
       "kded5rc"."Module-device_automounter"."autoload" = false;
+      "kded5rc"."Module-devicenotifications"."autoload" = true;
+      "kded5rc"."Module-freespacenotifier"."autoload" = true;
+      "kded5rc"."Module-gtkconfig"."autoload" = true;
+      "kded5rc"."Module-inotify"."autoload" = true;
+      "kded5rc"."Module-kded_touchpad"."autoload" = true;
+      "kded5rc"."Module-keyboard"."autoload" = false;
+      "kded5rc"."Module-kscreen"."autoload" = true;
+      "kded5rc"."Module-ktimezoned"."autoload" = true;
+      "kded5rc"."Module-mprisservice"."autoload" = true;
+      "kded5rc"."Module-networkmanagement"."autoload" = true;
+      "kded5rc"."Module-plasma-session-shortcuts"."autoload" = true;
+      "kded5rc"."Module-plasma_accentcolor_service"."autoload" = true;
+      "kded5rc"."Module-printmanager"."autoload" = true;
+      "kded5rc"."Module-remotenotifier"."autoload" = true;
+      "kded5rc"."Module-smbwatcher"."autoload" = true;
+      "kded5rc"."Module-statusnotifierwatcher"."autoload" = true;
       "kdeglobals"."DirSelect Dialog"."DirSelectDialog Size" = "834,584";
       "kdeglobals"."General"."AccentColor" = "146,110,228";
       "kdeglobals"."General"."AllowKDEAppsToRememberWindowPositions" = false;
       "kdeglobals"."General"."LastUsedCustomAccentColor" = "146,110,228";
-      "kdeglobals"."General"."TerminalApplication" = "/nix/store/g227jhz0mp47h6wn36gbmf1203ac43lf-tilix-1.9.6/bin/tilix";
-      "kdeglobals"."General"."TerminalService" = "com.gexperts.Tilix.desktop";
+      "kdeglobals"."General"."TerminalApplication" = "kitty";
+      "kdeglobals"."General"."TerminalService" = "kitty.desktop";
       "kdeglobals"."General"."UseSystemBell" = true;
+      "kdeglobals"."General"."XftAntialias" = true;
       "kdeglobals"."General"."XftHintStyle" = "hintslight";
       "kdeglobals"."General"."XftSubPixel" = "rgb";
       "kdeglobals"."General"."fixed" = ",12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
@@ -398,8 +406,10 @@
       "kdeglobals"."General"."menuFont" = "Noto Sans,9,-1,5,300,0,0,0,0,0,0,0,0,0,0,1";
       "kdeglobals"."General"."smallestReadableFont" = "Noto Sans,9,-1,5,300,0,0,0,0,0,0,0,0,0,0,1";
       "kdeglobals"."General"."toolBarFont" = "Noto Sans,9,-1,5,300,0,0,0,0,0,0,0,0,0,0,1";
+      "kdeglobals"."Icons"."Theme" = "klassy";
       "kdeglobals"."KDE"."ShowDeleteCommand" = false;
       "kdeglobals"."KDE"."SingleClick" = false;
+      "kdeglobals"."KDE"."widgetStyle" = "Klassy";
       "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
       "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
@@ -417,16 +427,20 @@
       "kdeglobals"."KFileDialog Settings"."Sort hidden files last" = false;
       "kdeglobals"."KFileDialog Settings"."Sort reversed" = false;
       "kdeglobals"."KFileDialog Settings"."Speedbar Width" = 154;
-      "kdeglobals"."KFileDialog Settings"."View Style" = "DetailTree";
+      "kdeglobals"."KFileDialog Settings"."View Style" = "Simple";
       "kdeglobals"."PreviewSettings"."MaximumRemoteSize" = 0;
       "kdeglobals"."Shortcuts"."Activate Next Tab" = "Ctrl+Tab";
       "kdeglobals"."Shortcuts"."Activate Previous Tab" = "Ctrl+Shift+Tab";
       "kdeglobals"."Shortcuts"."AddBookmark" = "Ctrl+D";
       "kdeglobals"."Shortcuts"."DocumentBack" = "";
       "kdeglobals"."Shortcuts"."DocumentForward" = "";
+      "kdeglobals"."Shortcuts"."FindNext" = "";
+      "kdeglobals"."Shortcuts"."FindPrev" = "";
       "kdeglobals"."Shortcuts"."FullScreen" = "F11";
+      "kdeglobals"."Shortcuts"."Help" = "";
       "kdeglobals"."Shortcuts"."KeyBindings" = "";
       "kdeglobals"."Shortcuts"."OpenContextMenu" = "";
+      "kdeglobals"."Shortcuts"."OpenMainMenu" = "";
       "kdeglobals"."Shortcuts"."Preferences" = "";
       "kdeglobals"."Shortcuts"."Redo" = "Ctrl+Y; Ctrl+Shift+Z";
       "kdeglobals"."Shortcuts"."Replace" = "";
@@ -451,6 +465,7 @@
       "klaunchrc"."FeedbackStyle"."BusyCursor" = false;
       "klipperrc"."General"."IgnoreImages" = false;
       "krunnerrc"."Plugins"."baloosearchEnabled" = true;
+      "kscreenlockerrc"."Daemon"."LockGrace" = 60;
       "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image" = "/nix/store/054gfhigzhp40jfck5jgq4f9rzyhrp1c-plasma-workspace-wallpapers-6.0.5/share/wallpapers/Elarun/";
       "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage" = "/nix/store/054gfhigzhp40jfck5jgq4f9rzyhrp1c-plasma-workspace-wallpapers-6.0.5/share/wallpapers/Elarun/";
       "kservicemenurc"."Show"."compressfileitemaction" = true;
@@ -470,19 +485,36 @@
       "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."Percent" = 10;
       "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."UseSizeLimit" = true;
       "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."UseTimeLimit" = false;
+      "kwalletrc"."Wallet"."Close When Idle" = false;
+      "kwalletrc"."Wallet"."Close on Screensaver" = false;
+      "kwalletrc"."Wallet"."Default Wallet" = "kdewallet";
+      "kwalletrc"."Wallet"."Enabled" = false;
       "kwalletrc"."Wallet"."First Use" = false;
+      "kwalletrc"."Wallet"."Idle Timeout" = 10;
+      "kwalletrc"."Wallet"."Launch Manager" = false;
+      "kwalletrc"."Wallet"."Leave Manager Open" = false;
+      "kwalletrc"."Wallet"."Leave Open" = true;
+      "kwalletrc"."Wallet"."Prompt on Open" = false;
+      "kwalletrc"."Wallet"."Use One Wallet" = true;
+      "kwalletrc"."org.freedesktop.secrets"."apiEnabled" = true;
       "kwinrc"."Compositing"."AllowTearing" = false;
       "kwinrc"."Desktops"."Id_1" = "8039523a-7a05-45f3-9fcc-38489b3765d4";
-      "kwinrc"."Desktops"."Id_2" = "9b4b725b-26a4-4e16-8149-525aa42ffe3f";
+      "kwinrc"."Desktops"."Id_2" = "c6abcdfb-ec2e-4122-a123-f7b637f28cf0";
+      "kwinrc"."Desktops"."Name_2" = "New Desktop";
       "kwinrc"."Desktops"."Number" = 2;
       "kwinrc"."Desktops"."Rows" = 1;
       "kwinrc"."Effect-blur"."NoiseStrength" = 10;
       "kwinrc"."Effect-overview"."BorderActivate" = 9;
+      "kwinrc"."Effect-trackmouse"."Alt" = true;
+      "kwinrc"."Effect-trackmouse"."Control" = false;
+      "kwinrc"."Effect-trackmouse"."Meta" = false;
       "kwinrc"."Effect-translucency"."ComboboxPopups" = 80;
       "kwinrc"."Effect-translucency"."Dialogs" = 70;
       "kwinrc"."Effect-translucency"."Menus" = 70;
       "kwinrc"."Effect-translucency"."MoveResize" = 90;
       "kwinrc"."Input"."TabletMode" = "off";
+      "kwinrc"."MouseBindings"."CommandAll2" = "Nothing";
+      "kwinrc"."MouseBindings"."CommandAllWheel" = "Change Opacity";
       "kwinrc"."NightColor"."Active" = true;
       "kwinrc"."NightColor"."DayTemperature" = 5800;
       "kwinrc"."NightColor"."LatitudeFixed" = 46.030534351145036;
@@ -490,19 +522,30 @@
       "kwinrc"."NightColor"."Mode" = "Location";
       "kwinrc"."NightColor"."NightTemperature" = 3600;
       "kwinrc"."Plugins"."blurEnabled" = true;
+      "kwinrc"."Plugins"."contrastEnabled" = true;
       "kwinrc"."Plugins"."desktopchangeosdEnabled" = true;
       "kwinrc"."Plugins"."diminactiveEnabled" = false;
       "kwinrc"."Plugins"."fadedesktopEnabled" = false;
       "kwinrc"."Plugins"."krohnkiteEnabled" = true;
+      "kwinrc"."Plugins"."loginEnabled" = false;
       "kwinrc"."Plugins"."magiclampEnabled" = false;
       "kwinrc"."Plugins"."poloniumEnabled" = false;
       "kwinrc"."Plugins"."shakecursorEnabled" = true;
+      "kwinrc"."Plugins"."sheetEnabled" = true;
       "kwinrc"."Plugins"."slideEnabled" = true;
       "kwinrc"."Plugins"."squashEnabled" = false;
+      "kwinrc"."Plugins"."thumbnailasideEnabled" = true;
       "kwinrc"."Plugins"."translucencyEnabled" = true;
-      "kwinrc"."Script-krohnkite"."enableBTreeLayout" = true;
+      "kwinrc"."Plugins"."windowapertureEnabled" = false;
+      "kwinrc"."Plugins"."zoomEnabled" = false;
+      "kwinrc"."Script-krohnkite"."enableColumnsLayout" = false;
       "kwinrc"."Script-krohnkite"."enableQuarterLayout" = true;
+      "kwinrc"."Script-krohnkite"."enableSpreadLayout" = false;
+      "kwinrc"."Script-krohnkite"."enableStairLayout" = false;
+      "kwinrc"."Script-krohnkite"."enableThreeColumnLayout" = false;
+      "kwinrc"."Script-krohnkite"."floatingTitle" = "System Settings,Zoom Meeting";
       "kwinrc"."Script-krohnkite"."ignoreTitle" = "OneDriveGUI,Picture-in-Picture";
+      "kwinrc"."Script-krohnkite"."tileLayoutGap" = 3;
       "kwinrc"."Script-polonium"."Borders" = 3;
       "kwinrc"."Script-polonium"."EngineType" = 0;
       "kwinrc"."Script-polonium"."FilterCaption" = "OneDriveGUI, Picture-in-Picture";
@@ -513,10 +556,10 @@
       "kwinrc"."Script-polonium"."ResizeAmount" = 100;
       "kwinrc"."Script-polonium"."SaveOnTileEdit" = true;
       "kwinrc"."Script-polonium"."TilePopups" = false;
-      "kwinrc"."TabBox"."HighlightWindows" = false;
       "kwinrc"."Tiling"."padding" = 4;
       "kwinrc"."Tiling/06020f28-8e01-57dc-9849-84222256927b"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/14df7c35-608c-5c3c-9181-1ffab387a595"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[]}";
+      "kwinrc"."Tiling/1c68bca8-49fe-5149-b2bc-7f1bad4695fd"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/2620d9bf-c1a5-5b7b-9ebd-f533ae7c6e8c"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[]}";
       "kwinrc"."Tiling/61ebf13d-04ce-5522-886b-23fc20e3f252"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.6692708333333333},{\"width\":0.33072916666666674}]}";
       "kwinrc"."Tiling/7fb8c463-c102-5440-8fb7-5253b26b5d9c"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
@@ -527,6 +570,7 @@
       "kwinrc"."Tiling/cbea4e00-1594-5c66-8148-0442f3128940"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/d13f735f-4b2a-5e2f-b768-c04b0431a3c0"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/dbfca4e4-fc33-5303-898e-e50bbe290156"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
+      "kwinrc"."Windows"."AutoRaise" = true;
       "kwinrc"."Windows"."BorderlessMaximizedWindows" = false;
       "kwinrc"."Windows"."Placement" = "Smart";
       "kwinrc"."Windows"."SeparateScreenFocus" = true;
@@ -536,7 +580,7 @@
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "IAX";
       "kwinrc"."org.kde.kdecoration2"."ShowToolTips" = false;
-      "kwinrc"."org.kde.kdecoration2"."theme" = "__aurorae__svg__custom";
+      "kwinrc"."org.kde.kdecoration2"."theme" = "Klassy";
       "kwinrulesrc"."1"."Description" = "Firefox Picture-in-Picture";
       "kwinrulesrc"."1"."above" = true;
       "kwinrulesrc"."1"."aboverule" = 3;
@@ -561,10 +605,12 @@
       "kwinrulesrc"."a4a2e265-2218-4f7a-955d-6cb867a283b6"."wmclass" = "firefox";
       "kwinrulesrc"."a4a2e265-2218-4f7a-955d-6cb867a283b6"."wmclassmatch" = 1;
       "plasma-localerc"."Formats"."LANG" = "en_CA.UTF-8";
+      "plasma-localerc"."Formats"."LC_PAPER" = "en_US.UTF-8";
       "plasmanotifyrc"."Applications/com.gexperts.Tilix"."Seen" = true;
       "plasmanotifyrc"."Applications/discord"."Seen" = true;
       "plasmanotifyrc"."Applications/firefox"."Seen" = true;
       "plasmanotifyrc"."Applications/teams-for-linux"."Seen" = true;
+      "plasmanotifyrc"."Jobs"."PermanentPopups" = false;
       "plasmanotifyrc"."Notifications"."LowPriorityHistory" = true;
       "plasmanotifyrc"."Notifications"."PopupPosition" = "TopCenter";
       "plasmanotifyrc"."Notifications"."PopupTimeout" = 3000;
@@ -576,13 +622,15 @@
       "spectaclerc"."General"."launchAction" = "DoNotTakeScreenshot";
       "spectaclerc"."GuiConfig"."captureMode" = 0;
       "spectaclerc"."ImageSave"."imageCompressionQuality" = 100;
-      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/tai/Pictures/Screenshots/Screenshot_20240926_141934.png";
+      "spectaclerc"."ImageSave"."lastImageSaveAsLocation" = "file:///home/tai/OneDrive_Student/845/Radex12CO.png";
+      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/tai/Pictures/Screenshots/Screenshot_20241010_084040.png";
       "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
       "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
     };
     dataFile = {
-      "dolphin/view_properties/global/.directory"."Dolphin"."HeaderColumnWidths" = "1122,76,175";
-      "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
+      "dolphin/view_properties/global/.directory"."Dolphin"."PreviewsShown" = false;
+      "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 2;
+      "dolphin/view_properties/global/.directory"."Dolphin"."VisibleRoles" = "CustomizedDetails,Details_text,Details_size,Details_modificationtime";
       "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
     };
   };
