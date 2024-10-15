@@ -580,7 +580,7 @@
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "IAX";
       "kwinrc"."org.kde.kdecoration2"."ShowToolTips" = false;
-      "kwinrc"."org.kde.kdecoration2"."theme" = "Klassy";
+      "kwinrc"."org.kde.kdecoration2"."theme" = "__aurorae__svg__custom";
       "kwinrulesrc"."1"."Description" = "Firefox Picture-in-Picture";
       "kwinrulesrc"."1"."above" = true;
       "kwinrulesrc"."1"."aboverule" = 3;
@@ -623,7 +623,7 @@
       "spectaclerc"."GuiConfig"."captureMode" = 0;
       "spectaclerc"."ImageSave"."imageCompressionQuality" = 100;
       "spectaclerc"."ImageSave"."lastImageSaveAsLocation" = "file:///home/tai/OneDrive_Student/845/Radex12CO.png";
-      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/tai/Pictures/Screenshots/Screenshot_20241010_084040.png";
+      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/tai/Pictures/Screenshots/Screenshot_20241015_110801.png";
       "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
       "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
     };
