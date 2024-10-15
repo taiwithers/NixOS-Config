@@ -131,6 +131,7 @@
       wl-clipboard
       zbar
       zip
+      parted
 
       # gui programs
       color-oracle
@@ -164,6 +165,7 @@
       caffeine-ng
       sticky
 
+tetrio-desktop
       vesktop
       mgba
       protonup

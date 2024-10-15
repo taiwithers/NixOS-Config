@@ -39,6 +39,7 @@
         allowUnfreePredicate =
           pkg:
           builtins.elem (nixpkgs.lib.getName pkg) [
+            "tetrio-desktop"
             "dell-command-configure"
             "discord"
             "obsidian"
