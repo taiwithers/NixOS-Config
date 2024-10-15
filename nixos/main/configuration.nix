@@ -99,7 +99,6 @@
   services.xserver.xkb.layout = "us";
 
   # sound
-  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -124,7 +123,7 @@
   # system packages
   environment.systemPackages = with pkgs; [
     gedit
-    gnome.gnome-terminal # always have an editor and terminal!
+    gnome-terminal # always have an editor and terminal!
     git
 
     # sysinfo for kde
@@ -214,7 +213,7 @@ programs.gamemode.enable = true;
   };
 
   # program configurations
-  # programs.vim.enable = true;
+  programs.vim.enable = true;
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
 

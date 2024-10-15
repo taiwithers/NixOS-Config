@@ -2,9 +2,9 @@
   description = "NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs =
