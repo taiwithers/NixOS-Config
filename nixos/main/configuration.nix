@@ -183,7 +183,6 @@
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced" # no erreor requested but hey
-             "hll2390dw-cups"
     ];
 
   # steam
@@ -206,7 +205,7 @@ programs.gamemode.enable = true;
   };
 
   services.printing.enable = true;
-  services.printing.drivers = [pkgs.hll2390dw-cups];
+  services.printing.drivers = [pkgs.brlaser];
   # allow printing without downloading drivers, https://nixos.wiki/wiki/Printing
   services.avahi = {
     enable = true;
