@@ -1,0 +1,66 @@
+programs.plasma.configFile = {
+
+      "kdeglobals"."KFileDialog Settings"."Decoration position" = 2;
+      "kdeglobals"."General"."TerminalService" = "kitty.desktop";
+      "kdeglobals"."General"."TerminalApplication" = "kitty";
+      "kdeglobals"."General"."AccentColor" = "146,110,228";
+      "kdeglobals"."KDE"."widgetStyle" = "Klassy";
+      
+      "kwinrc"."Windows"."AutoRaise" = true;
+      "kwinrc"."Windows"."Placement" = "Smart";
+      "kwinrc"."Windows"."SeparateScreenFocus" = true;
+      "kwinrc"."Xwayland"."Scale" = 1.25;
+      "kwinrc"."org.kde.kdecoration2"."BorderSize" = "Tiny";
+      "kwinrc"."org.kde.kdecoration2"."BorderSizeAuto" = false;
+      "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "";
+      "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "IAX";
+      "kwinrc"."Plugins"."contrastEnabled" = true;
+      "kwinrc"."org.kde.kdecoration2"."ShowToolTips" = false;
+      "kwinrc"."Plugins"."krohnkiteEnabled" = true;
+      "kwinrc"."Plugins"."loginEnabled" = false;
+      "kwinrc"."Plugins"."magiclampEnabled" = false;
+      "kwinrc"."Plugins"."thumbnailasideEnabled" = true;
+      "kwinrc"."Plugins"."windowapertureEnabled" = false;
+      "kwinrc"."Plugins"."zoomEnabled" = false;
+      "kwinrc"."Script-krohnkite"."enableColumnsLayout" = false;
+      "kwinrc"."Script-krohnkite"."enableQuarterLayout" = true;
+      "kwinrc"."Script-krohnkite"."enableSpreadLayout" = false;
+      "kwinrc"."Script-krohnkite"."enableStairLayout" = false;
+      "kwinrc"."Script-krohnkite"."enableThreeColumnLayout" = false;
+      "kwinrc"."Script-krohnkite"."floatingTitle" = "System Settings,Zoom Meeting";
+      "kwinrc"."Script-krohnkite"."ignoreClass" = "krunner,yakuake,spectacle,kded5,xwaylandvideobridge,plasmashell,ksplashqml,org.kde.plasmashell,org.kde.polkit-kde-authentication-agent-1,org.kde.kruler,org.kde.bluedevilwizard";
+      "kwinrc"."Script-krohnkite"."ignoreTitle" = "OneDriveGUI,Picture-in-Picture";
+      "kwinrc"."Script-krohnkite"."keepFloatAbove" = false;
+      "kwinrc"."Script-krohnkite"."tileLayoutGap" = 3;
+      "kwinrc"."MouseBindings"."CommandAllWheel" = "Change Opacity";
+      "kwinrc"."Effect-translucency"."ComboboxPopups" = 80;
+      "kwinrc"."Effect-translucency"."Dialogs" = 70;
+      "kwinrc"."Effect-translucency"."Menus" = 70;
+      "kwinrc"."Effect-translucency"."MoveResize" = 90;
+      "kwalletrc"."Wallet"."Enabled" = false;
+      "kscreenlockerrc"."Daemon"."LockGrace" = 60;
+      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image" = "/nix/store/054gfhigzhp40jfck5jgq4f9rzyhrp1c-plasma-workspace-wallpapers-6.0.5/share/wallpapers/Elarun/";
+      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage" = "/nix/store/054gfhigzhp40jfck5jgq4f9rzyhrp1c-plasma-workspace-wallpapers-6.0.5/share/wallpapers/Elarun/";
+
+# shortcuts
+      "kdeglobals"."Shortcuts"."Activate Next Tab" = "Ctrl+Tab";
+      "kdeglobals"."Shortcuts"."Activate Previous Tab" = "Ctrl+Shift+Tab";
+      "kdeglobals"."Shortcuts"."AddBookmark" = "Ctrl+D";
+      "kdeglobals"."Shortcuts"."DocumentBack" = "";
+      "kdeglobals"."Shortcuts"."DocumentForward" = "";
+      "kdeglobals"."Shortcuts"."FindNext" = "";
+      "kdeglobals"."Shortcuts"."FindPrev" = "";
+      "kdeglobals"."Shortcuts"."FullScreen" = "F11";
+      "kdeglobals"."Shortcuts"."Help" = "";
+      "kdeglobals"."Shortcuts"."KeyBindings" = "";
+      "kdeglobals"."Shortcuts"."OpenContextMenu" = "";
+      "kdeglobals"."Shortcuts"."OpenMainMenu" = "";
+      "kdeglobals"."Shortcuts"."Preferences" = "";
+      "kdeglobals"."Shortcuts"."Redo" = "Ctrl+Y; Ctrl+Shift+Z";
+      "kdeglobals"."Shortcuts"."Replace" = "";
+      "kdeglobals"."Shortcuts"."ShowHideHiddenFiles" = "Ctrl+H";
+      "kdeglobals"."Shortcuts"."ShowMenubar" = "";
+      "kdeglobals"."Shortcuts"."SubstringCompletion" = "";
+      "kdeglobals"."Shortcuts"."TextCompletion" = "";
+      "kdeglobals"."Shortcuts"."WhatsThis" = "";
+  };

@@ -1,5 +1,6 @@
 # https://github.com/shalva97/kde-configuration-files
 # https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.kwin.borderlessMaximizedWindows
+
 {
   config,
   pkgs,
@@ -11,6 +12,33 @@ let
   kde-colours = builtins.mapAttrs (
     name: value: flake-inputs.nix-colors.lib.conversions.hexToRGBString "," value
   ) app-themes.palettes.kde;
+
+  cursor = {
+      name = "Posy_Cursor_Black";
+      size = 32;
+      package = pkgs.posy-cursors;
+    };
+
+  fonts = {
+    sans = {
+        name = "Noto Sans";
+        package = pkgs.noto-fonts;
+        size = 12;
+        weight = "light";
+      };
+    };
+  gtk-theme = {
+    name = "Breeze-dark-gtk";
+    package = pkgs.kdePackages.breeze;
+    };
+
+  klassy = {
+      window-decorations = {
+          theme = "Klassy";
+          library = "org.kde.klassy";
+        };
+      icon-theme = "Klassy";
+    };
 in
 rec {
   imports = [
@@ -20,20 +48,13 @@ rec {
   gtk = rec {
     enable = true;
     gtk2.configLocation = "${config.common.configHome}/gtk-2.0/gtkrc";
-    font = with programs.plasma.fonts.general; {
-      name = "Noto Sans";
-      package = pkgs.noto-fonts;
-      size = pointSize;
+    font = with fonts.sans; {
+      name = name;
+      package = package;
+      size = size;
     };
-    cursorTheme = with programs.plasma.workspace; {
-      name = cursor.theme;
-      package = pkgs.posy-cursors;
-      size = cursor.size;
-    };
-    theme = {
-      name = "Breeze-dark-gtk";
-      package = pkgs.kdePackages.breeze;
-    };
+    cursorTheme = cursor;
+    theme = gtk-theme;
 
     gtk2.extraConfig = with programs.plasma; ''
       gtk-button-images=1
@@ -45,26 +66,25 @@ rec {
       gtk-toolbar-style=3
     '';
 
-    gtk3.extraConfig = with programs.plasma.workspace; {
+    gtk3.extraConfig = {
       application-prefer-dark-theme = true;
       gtk-button-images = true;
       gtk-decoration-layout = ":minimize,maximize,close";
       gtk-enable-animations = true;
-      gtk-icon-theme-name = iconTheme;
+      gtk-icon-theme-name = programs.plasma.workspace.iconTheme;
       gtk-menu-images = true;
       gtk-modules = "colorreload-gtk-module";
       gtk-primary-button-warps-slider = true;
-      gtk-sound-theme-name = soundTheme;
+      gtk-sound-theme-name = programs.plasma.workspace.soundTheme;
       gtk-toolbar-style = 3;
     };
 
     gtk4.extraConfig = gtk3.extraConfig;
   };
 
-  # home.packages = [pkgs.libsForQt5.krohnkite];
   programs.plasma = {
     enable = true;
-    resetFiles = [ ]; # files to delete on each generation
+    resetFiles = [ "gtk-2.0/gtkrc" ]; # files to delete on each generation, string paths relative to config home
     resetFilesExclude = [ ]; # files to NOT delete on each generation
     immutableByDefault = false;
     overrideConfig = false; # read description before changing https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.overrideConfig
@@ -75,17 +95,14 @@ rec {
     workspace.colorScheme = "custom";
     # application style (settings) ??
     workspace.theme = "custom"; # plasma style / desktop theme
-    workspace.windowDecorations = {
-      library = "org.kde.kwin.aurorae";
-      theme = "__aurorae__svg__custom";
-    };
-    workspace.iconTheme = "breeze-dark"; # "Papirus-Dark"
+    workspace.windowDecorations = klassy.window-decorations;
+    workspace.iconTheme = klassy.icon-theme;
     workspace.cursor = {
-      theme = "Posy_Cursor_Black";
-      size = 32;
+      theme = cursor.name;
+      size = cursor.size;
     };
     workspace.soundTheme = "ocean";
-    workspace.splashScreen.theme = "none";
+    workspace.splashScreen.theme = "Magna-Splash-6"; # engine is KSplashQML 
 
     input.keyboard.numlockOnStartup = "on";
 
@@ -104,10 +121,10 @@ rec {
         family = "";
         pointSize = general.pointSize;
       };
-      general = {
-        family = "Noto Sans";
-        pointSize = 12;
-        weight = "light";
+      general = with fonts.sans; {
+        family = name;
+        pointSize = size;
+        weight = weight;
       };
       small = general // {
         pointSize = 9;
@@ -132,6 +149,7 @@ rec {
 
     kwin.effects = {
       blur.enable = true;
+      blur.noiseStrength = 10;
       desktopSwitching.animation = "slide";
       dimInactive.enable = false;
       minimization.animation = "off";
@@ -148,29 +166,6 @@ rec {
       location.longitude = "-78.49624060150377";
     };
 
-    # kwin.scripts.polonium.enable = true;
-    kwin.scripts.polonium.settings = {
-      borderVisibility = "borderAll";
-      filter.processes = [
-        "tofi"
-        "krunner"
-        "kded"
-        "polkit"
-        "plasmashell"
-      ];
-      filter.windowTitles = [
-        "OneDriveGUI"
-        "Picture-in-Picture"
-      ];
-      layout = {
-        engine = "binaryTree";
-        insertionPoint = "activeWindow";
-      };
-      maximizeSingleWindow = true;
-      resizeAmount = 100;
-      saveOnTileEdit = true;
-      tilePopups = false;
-    };
 
     kwin.titlebarButtons = {
       left = [ ];
@@ -211,9 +206,88 @@ rec {
       recordWindow = [ ];
     };
 
-    windows.allowWindowsToRememberPositions = false; # false since running polonium
+    windows.allowWindowsToRememberPositions = false; # false since running tiling script
 
     workspace.clickItemTo = "select";
+
+    window-rules = [
+    {
+      description = "Firefox Picture-in-Picture";
+      match.title = {
+        type = "exact";
+        value = "Picture-in-Picture";
+        };
+      match.window-class = {
+        match-whole = false; # unsure if this matters
+        type = "substring";
+        value = "firefox";
+        };
+      apply = {
+        above = {
+            apply = "initially";
+            value = true;
+           } ;
+        };
+      }
+    ];
+
+    panels = [
+      # main screen top centre   
+      {
+         alignment = "center";
+         extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
+         floating = true;
+         height = 36;
+         hiding = "dodgewindows";
+         lengthMode = "fit";
+         location = "top"; # or "floating"
+         offset = 100; # ? from anchor
+         screen = 0;
+         widgets = ( map (x: "org.kde.plasma." + x) ["ginti" "digitalclock" "notifications"] ) ++ ["luisbocanegra.panel.colorizer"];
+        }
+
+      # main screen launcher
+     {
+         alignment = "center";
+         extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
+         floating = true;
+         height = 70;
+         hiding = "dodgewindows";
+         lengthMode = "fit";
+         location = "bottom"; # or "floating"
+         offset = 100; # ? from anchor
+         screen = 0;
+         widgets = ["Compact.Menu" "org.kde.plasma.icontasks" "luisbocanegra.panel.colorizer"];
+        }
+
+      # main screen system tray
+      {
+         alignment = "right";
+         extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
+         floating = true;
+         height = 36;
+         hiding = "dodgewindows";
+         lengthMode = "fit";
+         location = "top"; # or "floating"
+         offset = 100; # ? from anchor
+         screen = 0;
+         widgets = ( map (x: "org.kde.plasma." + x) ["systemtray" "shutdownorswitch"] ) ++ ["luisbocanegra.panel.colorizer"];
+        }
+
+      # additional screen bars
+      {
+         alignment = "center";
+         extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
+         floating = true;
+         height = 70;
+         hiding = "dodgewindows";
+         lengthMode = "fit";
+         location = "bottom"; # or "floating"
+         offset = 100; # ? from anchor
+         screen = 1;
+         widgets = ( map (x: "org.kde.plasma." + x) ["ginti" "digitalclock" "spacer" "icontasks" "spacer" "systemtray"] ) ++ ["luisbocanegra.panel.colorizer"];
+        }
+    ];
   };
 
   # cursor and icons are under ~/.nix-profile/share/icons

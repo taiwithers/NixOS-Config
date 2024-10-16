@@ -22,6 +22,7 @@
       "ksmserver"."Lock Session" = ["none,Meta+L" "Screensaver,Lock Session"];
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
       "ksmserver"."Log Out Without Confirmation" = "none,,Log Out Without Confirmation";
+      "ksmserver"."LogOut" = "none,,Log Out";
       "ksmserver"."Reboot" = "none,,Reboot";
       "ksmserver"."Reboot Without Confirmation" = "none,,Reboot Without Confirmation";
       "ksmserver"."Shut Down" = "none,,Shut Down";
@@ -267,6 +268,7 @@
       "org_kde_powerdevil"."Turn Off Screen" = [ ];
       "org_kde_powerdevil"."powerProfile" = ["none,Battery" "Meta+B,Switch Power Profile"];
       "plasma-manager-commands.desktop"."tofi" = "Ctrl+Space,,Launch tofi in application mode.";
+      "plasmashell"."activate application launcher" = ["Meta" "Alt+F1,Meta" "Alt+F1,Activate Application Launcher"];
       "plasmashell"."activate task manager entry 1" = "Meta+1";
       "plasmashell"."activate task manager entry 10" = "none,Meta+0,Activate Task Manager Entry 10";
       "plasmashell"."activate task manager entry 2" = "Meta+2";
@@ -374,7 +376,7 @@
       "kded5rc"."Module-bluedevil"."autoload" = true;
       "kded5rc"."Module-browserintegrationreminder"."autoload" = false;
       "kded5rc"."Module-colorcorrectlocationupdater"."autoload" = true;
-      "kded5rc"."Module-device_automounter"."autoload" = false;
+      "kded5rc"."Module-device_automounter"."autoload" = true;
       "kded5rc"."Module-devicenotifications"."autoload" = true;
       "kded5rc"."Module-freespacenotifier"."autoload" = true;
       "kded5rc"."Module-gtkconfig"."autoload" = true;
@@ -479,7 +481,7 @@
       "kservicemenurc"."Show"."tagsfileitemaction" = false;
       "kservicemenurc"."Show"."wallpaperfileitemaction" = true;
       "ksplashrc"."KSplash"."Engine" = "KSplashQML";
-      "ksplashrc"."KSplash"."Theme" = "none";
+      "ksplashrc"."KSplash"."Theme" = "Magna-Splash-6";
       "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."Days" = 7;
       "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."LimitReachedAction" = 0;
       "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."Percent" = 10;
@@ -544,7 +546,9 @@
       "kwinrc"."Script-krohnkite"."enableStairLayout" = false;
       "kwinrc"."Script-krohnkite"."enableThreeColumnLayout" = false;
       "kwinrc"."Script-krohnkite"."floatingTitle" = "System Settings,Zoom Meeting";
+      "kwinrc"."Script-krohnkite"."ignoreClass" = "krunner,yakuake,spectacle,kded5,xwaylandvideobridge,plasmashell,ksplashqml,org.kde.plasmashell,org.kde.polkit-kde-authentication-agent-1,org.kde.kruler,org.kde.bluedevilwizard";
       "kwinrc"."Script-krohnkite"."ignoreTitle" = "OneDriveGUI,Picture-in-Picture";
+      "kwinrc"."Script-krohnkite"."keepFloatAbove" = false;
       "kwinrc"."Script-krohnkite"."tileLayoutGap" = 3;
       "kwinrc"."Script-polonium"."Borders" = 3;
       "kwinrc"."Script-polonium"."EngineType" = 0;
@@ -570,6 +574,7 @@
       "kwinrc"."Tiling/cbea4e00-1594-5c66-8148-0442f3128940"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/d13f735f-4b2a-5e2f-b768-c04b0431a3c0"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/dbfca4e4-fc33-5303-898e-e50bbe290156"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
+      "kwinrc"."Tiling/df8f72c7-a4dd-5a71-aa12-92b8e9b0ea76"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Windows"."AutoRaise" = true;
       "kwinrc"."Windows"."BorderlessMaximizedWindows" = false;
       "kwinrc"."Windows"."Placement" = "Smart";
@@ -580,7 +585,7 @@
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "IAX";
       "kwinrc"."org.kde.kdecoration2"."ShowToolTips" = false;
-      "kwinrc"."org.kde.kdecoration2"."theme" = "__aurorae__svg__custom";
+      "kwinrc"."org.kde.kdecoration2"."theme" = "Klassy";
       "kwinrulesrc"."1"."Description" = "Firefox Picture-in-Picture";
       "kwinrulesrc"."1"."above" = true;
       "kwinrulesrc"."1"."aboverule" = 3;
@@ -615,7 +620,7 @@
       "plasmanotifyrc"."Notifications"."PopupPosition" = "TopCenter";
       "plasmanotifyrc"."Notifications"."PopupTimeout" = 3000;
       "plasmarc"."Theme-plasmathemeexplorer"."name" = "ActiveAccentDark";
-      "plasmarc"."Wallpapers"."usersWallpapers" = "/nix/store/054gfhigzhp40jfck5jgq4f9rzyhrp1c-plasma-workspace-wallpapers-6.0.5/share/wallpapers/Mountain/";
+      "plasmarc"."Wallpapers"."usersWallpapers" = "";
       "spectaclerc"."Annotations"."annotationToolType" = 1;
       "spectaclerc"."General"."autoSaveImage" = true;
       "spectaclerc"."General"."clipboardGroup" = "PostScreenshotCopyImage";
@@ -623,7 +628,7 @@
       "spectaclerc"."GuiConfig"."captureMode" = 0;
       "spectaclerc"."ImageSave"."imageCompressionQuality" = 100;
       "spectaclerc"."ImageSave"."lastImageSaveAsLocation" = "file:///home/tai/OneDrive_Student/845/Radex12CO.png";
-      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/tai/Pictures/Screenshots/Screenshot_20241015_110801.png";
+      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/tai/Pictures/Screenshots/Screenshot_20241015_122304.png";
       "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
       "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
     };
