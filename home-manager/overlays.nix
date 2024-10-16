@@ -75,30 +75,6 @@
         wrapfig
         ;
     };
-    # https://wiki.nixos.org/wiki/Overlays#Overriding_a_package_inside_an_extensible_attribute_set
-    libsForQt5 = super.libsForQt5 // {
-      krohnkite = super.libsForQt5.krohnkite.overrideAttrs (oldAttrs: rec {
-        version = "0.9.7";
-        src = super.fetchFromGitHub {
-          rev = version;
-          owner = "anametologin";
-          repo = oldAttrs.pname;
-          hash = "sha256-8A3zW5tK8jK9fSxYx28b8uXGsvxEoUYybU0GaMD2LNw=";
-        };
-        buildInputs = oldAttrs.buildInputs ++ [
-          super.kdePackages.kpackage
-          super.nodePackages.npm
-        ];
-        dontBuild = false;
-        installPhase = ''
-          runHook preInstall
-
-          kpackagetool6 --type KWin/Script --install ${src}/res/ --packageroot $out/share/kwin/scripts
-
-          runHook postInstall
-        '';
-      });
-    };
     kitty = unstable.kitty;
     klassy = customDerivation "klassy";
     neovim = unstable.neovim-unwrapped;
@@ -142,8 +118,7 @@
           cp ${setupPy} ${setupPy.name}
         '';
     });
-    # papirus-icon-theme = let color="indigo"; in (super.papirus-icon-theme {inherit color;});
-    polonium = super.libsForQt5.polonium; # plasma-manager attempts to load pkgs.polonium
+    plasma-panel-colorizer = unstable.plasma-panel-colorizer;
     pond = customDerivation "pond";
     realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
       src = super.requireFile rec {
@@ -154,7 +129,6 @@
     starfetch = customDerivation "starfetch";
     sublime4 = unstable.sublime4;
     superfile = flake-inputs.superfile.packages.${system}.default;
-    # texpresso = unstable.texpresso;
     tofi = super.tofi.overrideAttrs (oldAttrs: rec {
       version = "1aa56b1";
       src = super.fetchFromGitHub {

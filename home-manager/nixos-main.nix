@@ -49,7 +49,6 @@
       "tofi"
       "starship"
       "sublime-text/sublime-text"
-      "superfile"
       # "tilix"
       "vscodium/vscodium"
       "xdg"
