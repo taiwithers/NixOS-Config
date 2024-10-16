@@ -66,7 +66,7 @@
 
       # copy/paste behaviour
       copy_on_select = "clipboard";
-      skip_trailing_spaces = "smart";
+      # skip_trailing_spaces = "smart";
 
       # other
       enable_audio_bell = "no";
@@ -74,11 +74,11 @@
       scrollback_pager = "bat";
       allow_remote_control = "yes";
       # dynamic_background_opacity = "yes";
-      notify_on_finish = "unfocused bell";
+      # notify_on_finish = "unfocused bell";
 
       # colours
       background = "#${base00}";
-      second_transparent_bg = background;
+      # second_transparent_bg = background;
       foreground = "#${base07}";
       selection_background = foreground;
       selection_foreground = background;

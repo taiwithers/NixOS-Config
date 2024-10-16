@@ -99,6 +99,7 @@
         '';
       });
     };
+    kitty = unstable.kitty;
     klassy = customDerivation "klassy";
     neovim = unstable.neovim-unwrapped;
     nixfmt = unstable.nixfmt-rfc-style;
