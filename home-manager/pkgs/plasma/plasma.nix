@@ -37,13 +37,15 @@ let
           theme = "Klassy";
           library = "org.kde.klassy";
         };
-      icon-theme = "Klassy";
+      icon-theme = "klassy";
     };
 in
 rec {
   imports = [
     flake-inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
+
+  home.packages = [pkgs.klassy];
 
   gtk = rec {
     enable = true;
@@ -89,12 +91,17 @@ rec {
     immutableByDefault = false;
     overrideConfig = false; # read description before changing https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.overrideConfig
 
-    # startup = {};
-
+    ###############################
+    # Environment Aesthetics
+    ###############################
     workspace.lookAndFeel = "org.kde.breezedark.desktop"; # global theme
     workspace.colorScheme = "custom";
-    # application style (settings) ??
-    workspace.theme = "custom"; # plasma style / desktop theme
+    workspace.wallpaper = let
+      wallpaper-name = "Next"; # only one available in this kde package
+      wallpaper-folder = "images_dark"; # or "images"
+      in "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
+    configFile.kdeglobals.General.AccentColor = kde-colours.base0E; #"146,110,228";
+    workspace.theme = "ActiveAccentDark"; # plasma style / desktop theme
     workspace.windowDecorations = klassy.window-decorations;
     workspace.iconTheme = klassy.icon-theme;
     workspace.cursor = {
@@ -103,18 +110,7 @@ rec {
     };
     workspace.soundTheme = "ocean";
     workspace.splashScreen.theme = "Magna-Splash-6"; # engine is KSplashQML 
-
-    input.keyboard.numlockOnStartup = "on";
-
-    desktop.mouseActions = {
-      leftClick = null;
-      middleClick = "applicationLauncher";
-      rightClick = "contextMenu";
-      verticalScroll = "switchVirtualDesktop";
-    };
-
-    # desktop.widgets = {};
-    # panels = [];
+    configFile.kwinrc.Xwayland.Scale = 1.25;
 
     fonts = rec {
       fixedWidth = {
@@ -134,22 +130,126 @@ rec {
       windowTitle = small;
     };
 
+    # panels = [
+    #   # main screen top centre   
+    #   {
+    #      alignment = "center";
+    #      extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
+    #      floating = true;
+    #      height = 36;
+    #      hiding = "dodgewindows";
+    #      lengthMode = "fit";
+    #      location = "top"; # or "floating"
+    #      offset = 100; # ? from anchor
+    #      screen = 0;
+    #      widgets = ( map (x: "org.kde.plasma." + x) ["ginti" "digitalclock" "notifications"] ) ++ ["luisbocanegra.panel.colorizer"];
+    #     }
+
+    #   # main screen launcher
+    #  {
+    #      alignment = "center";
+    #      extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
+    #      floating = true;
+    #      height = 70;
+    #      hiding = "dodgewindows";
+    #      lengthMode = "fit";
+    #      location = "bottom"; # or "floating"
+    #      offset = 100; # ? from anchor
+    #      screen = 0;
+    #      widgets = ["Compact.Menu" "org.kde.plasma.icontasks" "luisbocanegra.panel.colorizer"];
+    #     }
+
+    #   # main screen system tray
+    #   {
+    #      alignment = "right";
+    #      extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
+    #      floating = true;
+    #      height = 36;
+    #      hiding = "dodgewindows";
+    #      lengthMode = "fit";
+    #      location = "top"; # or "floating"
+    #      offset = 100; # ? from anchor
+    #      screen = 0;
+    #      widgets = ( map (x: "org.kde.plasma." + x) ["systemtray" "shutdownorswitch"] ) ++ ["luisbocanegra.panel.colorizer"];
+    #     }
+
+    #   # additional screen bars
+    #   {
+    #      alignment = "center";
+    #      extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
+    #      floating = true;
+    #      height = 70;
+    #      hiding = "dodgewindows";
+    #      lengthMode = "fit";
+    #      location = "bottom"; # or "floating"
+    #      offset = 100; # ? from anchor
+    #      screen = 1;
+    #      widgets = ( map (x: "org.kde.plasma." + x) ["ginti" "digitalclock" "spacer" "icontasks" "spacer" "systemtray"] ) ++ ["luisbocanegra.panel.colorizer"];
+    #     }
+    # ];
+
+    kscreenlocker = let
+      wallpaper-name = "Next"; # only one available in this kde package
+      wallpaper-folder = "images_dark"; # or "images"
+      in 
+      { 
+      appearance = {
+        alwaysShowClock = true;
+        showMediaControls = true;
+        wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
+        # wallpaperPictureOfTheDay.provider = "apod";
+      };
+      passwordRequiredDelay = 60; # seconds after screen lock 
+      timeout = 5; # minutes until screen locks
+    };
+
+    ###############################
+    # Keyboard and Mouse
+    ###############################
+    # input.mice = {}; # https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.input.mice
+    # input.touchpads = {}; # https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.input.touchpads
+    input.keyboard.numlockOnStartup = "on";
+    desktop.mouseActions = {
+      leftClick = null;
+      middleClick = "applicationLauncher";
+      rightClick = "contextMenu";
+      verticalScroll = "switchVirtualDesktop";
+    };
+
+    # hotkeys to run commands
     hotkeys.commands = {
-      tofi = {
+      launch-tofi = {
         keys = [ "Ctrl+Space" ];
         command = "tofi-drun";
         comment = "Launch tofi in application mode.";
       };
     };
 
-    # input.mice = {}; # https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.input.mice
-    # input.touchpads = {}; # https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.input.touchpads
+    # Global keyboard shortcuts:
+    shortcuts = {};
 
+    spectacle.shortcuts = {
+      captureActiveWindow = [ ];
+      captureCurrentMonitor = [ ];
+      captureEntireDesktop = [ ];
+      captureRectangularRegion = [ "Print" ];
+      captureWindowUnderCursor = [ ];
+      launch = [ ];
+      launchWithoutCapturing = [ ];
+      recordRegion = [ ];
+      recordScreen = [ ];
+      recordWindow = [ ];
+    };
+
+    ###############################
+    # Window Aesthetics
+    ###############################
     kwin.borderlessMaximizedWindows = false;
 
     kwin.effects = {
       blur.enable = true;
       blur.noiseStrength = 10;
+      blur.strength = 5;
       desktopSwitching.animation = "slide";
       dimInactive.enable = false;
       minimization.animation = "off";
@@ -176,6 +276,9 @@ rec {
       ];
     };
 
+    ###############################
+    # Power
+    ###############################
     powerdevil = rec {
       AC = {
         autoSuspend.action = "sleep";
@@ -187,28 +290,23 @@ rec {
         whenLaptopLidClosed = "sleep";
       };
 
-      battery = AC // {
-        autoSuspend.idleTimeout = 120;
-      };
+      battery = AC // { autoSuspend.idleTimeout = 120; };
       lowBattery = battery;
     };
 
-    spectacle.shortcuts = {
-      captureActiveWindow = [ ];
-      captureCurrentMonitor = [ ];
-      captureEntireDesktop = [ ];
-      captureRectangularRegion = [ "Print" ];
-      captureWindowUnderCursor = [ ];
-      launch = [ ];
-      launchWithoutCapturing = [ ];
-      recordRegion = [ ];
-      recordScreen = [ ];
-      recordWindow = [ ];
-    };
-
+    
+    ###############################
+    # Window Behaviour
+    ###############################
     windows.allowWindowsToRememberPositions = false; # false since running tiling script
-
     workspace.clickItemTo = "select";
+    kwin.edgeBarrier = 20; # add some resistance to crossing screens
+    configFile.kwinrc.Windows = {
+      AutoRaise = true;
+      BorderlessMaximizedWindows = false;
+      Placement = "smart";
+      SeparateScreenFocus = true;
+    };
 
     window-rules = [
     {
@@ -231,118 +329,10 @@ rec {
       }
     ];
 
-    panels = [
-      # main screen top centre   
-      {
-         alignment = "center";
-         extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
-         floating = true;
-         height = 36;
-         hiding = "dodgewindows";
-         lengthMode = "fit";
-         location = "top"; # or "floating"
-         offset = 100; # ? from anchor
-         screen = 0;
-         widgets = ( map (x: "org.kde.plasma." + x) ["ginti" "digitalclock" "notifications"] ) ++ ["luisbocanegra.panel.colorizer"];
-        }
 
-      # main screen launcher
-     {
-         alignment = "center";
-         extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
-         floating = true;
-         height = 70;
-         hiding = "dodgewindows";
-         lengthMode = "fit";
-         location = "bottom"; # or "floating"
-         offset = 100; # ? from anchor
-         screen = 0;
-         widgets = ["Compact.Menu" "org.kde.plasma.icontasks" "luisbocanegra.panel.colorizer"];
-        }
-
-      # main screen system tray
-      {
-         alignment = "right";
-         extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
-         floating = true;
-         height = 36;
-         hiding = "dodgewindows";
-         lengthMode = "fit";
-         location = "top"; # or "floating"
-         offset = 100; # ? from anchor
-         screen = 0;
-         widgets = ( map (x: "org.kde.plasma." + x) ["systemtray" "shutdownorswitch"] ) ++ ["luisbocanegra.panel.colorizer"];
-        }
-
-      # additional screen bars
-      {
-         alignment = "center";
-         extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
-         floating = true;
-         height = 70;
-         hiding = "dodgewindows";
-         lengthMode = "fit";
-         location = "bottom"; # or "floating"
-         offset = 100; # ? from anchor
-         screen = 1;
-         widgets = ( map (x: "org.kde.plasma." + x) ["ginti" "digitalclock" "spacer" "icontasks" "spacer" "systemtray"] ) ++ ["luisbocanegra.panel.colorizer"];
-        }
-    ];
   };
 
-  # cursor and icons are under ~/.nix-profile/share/icons
-
-  xdg.dataFile."plasma/desktoptheme/custom".source = ./desktoptheme;
-
-  xdg.dataFile."aurorae/themes/custom/alldesktops.svg".source = ./auroraetheme/alldesktops.svg;
-  xdg.dataFile."aurorae/themes/custom/close.svg".source = ./auroraetheme/close.svg;
-  xdg.dataFile."aurorae/themes/custom/decoration.svg".source = ./auroraetheme/decoration.svg;
-  xdg.dataFile."aurorae/themes/custom/help.svg".source = ./auroraetheme/help.svg;
-  xdg.dataFile."aurorae/themes/custom/keepabove.svg".source = ./auroraetheme/keepabove.svg;
-  xdg.dataFile."aurorae/themes/custom/keepbelow.svg".source = ./auroraetheme/keepbelow.svg;
-  xdg.dataFile."aurorae/themes/custom/maximize.svg".source = ./auroraetheme/maximize.svg;
-  xdg.dataFile."aurorae/themes/custom/minimize.svg".source = ./auroraetheme/minimize.svg;
-  xdg.dataFile."aurorae/themes/custom/restore.svg".source = ./auroraetheme/restore.svg;
-  xdg.dataFile."aurorae/themes/custom/shade.svg".source = ./auroraetheme/shade.svg;
-  xdg.dataFile."aurorae/themes/custom/metadata.desktop".source = ./auroraetheme/metadata.desktop;
-
-  xdg.dataFile."aurorae/themes/custom/customrc".text = with kde-colours; ''
-    [General]
-    ActiveTextColor=${base0C}
-    InactiveTextColor=${base07}
-    UseTextShadow=false
-    Shadow=true
-    Animation=0
-    TitleAlignment=Center
-    TitleVerticalAlignment=Center
-    DecorationPosition=0
-
-    [Layout]
-    BorderBottom=4
-    BorderLeft=1
-    BorderRight=1
-    ButtonHeight=22
-    ButtonMarginTop=0
-    ButtonSpacing=2
-    ButtonWidth=22
-    ExplicitButtonSpacer=10
-    PaddingBottom=67
-    PaddingLeft=54
-    PaddingRight=54
-    PaddingTop=44
-    TitleBorderLeft=1
-    TitleBorderRight=1
-    TitleEdgeBottom=2
-    TitleEdgeBottomMaximized=2
-    TitleEdgeLeft=3
-    TitleEdgeLeftMaximized=3
-    TitleEdgeRight=3
-    TitleEdgeRightMaximized=3
-    TitleEdgeTop=3
-    TitleEdgeTopMaximized=3
-    TitleHeight=16
-  '';
-
+  # colour scheme file
   xdg.dataFile."color-schemes/custom.colors".text = with kde-colours; ''
     [ColorEffects:Disabled]
     Color=${base01}
@@ -356,7 +346,7 @@ rec {
     [ColorEffects:Inactive]
     ChangeSelectionColor=true
     Color=${base03}
-    ColorAmount=0.30000000000000004
+    ColorAmount=0.3
     ColorEffect=2
     ContrastAmount=0.25
     ContrastEffect=2
@@ -493,4 +483,6 @@ rec {
     inactiveBlend=${base06}
     inactiveForeground=${base07}
   '';
+
+  xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ./panels.txt;
 }

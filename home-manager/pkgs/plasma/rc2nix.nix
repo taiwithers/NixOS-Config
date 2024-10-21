@@ -2,7 +2,6 @@
   programs.plasma = {
     enable = true;
     shortcuts = {
-      "ActivityManager"."switch-to-activity-8e9da30a-2463-41cc-915f-e9174343ee67" = [ ];
       "ActivityManager"."switch-to-activity-94835c23-2331-44ee-b1dd-63942e6a6af1" = [ ];
       "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = "none,Meta+Alt+L,Switch to Last-Used Keyboard Layout";
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "none,Meta+Alt+K,Switch to Next Keyboard Layout";
@@ -60,10 +59,10 @@
       "kwin"."KrohnkiteRotate" = "Meta+R,none,Krohnkite: Rotate";
       "kwin"."KrohnkiteRotatePart" = "Meta+Shift+R,none,Krohnkite: Rotate Part";
       "kwin"."KrohnkiteSetMaster" = "Meta+Return,none,Krohnkite: Set master";
-      "kwin"."KrohnkiteShiftDown" = [ ];
-      "kwin"."KrohnkiteShiftLeft" = [ ];
-      "kwin"."KrohnkiteShiftRight" = [ ];
-      "kwin"."KrohnkiteShiftUp" = [ ];
+      "kwin"."KrohnkiteShiftDown" = "Meta+Ctrl+J,none,Krohnkite: Move Down/Next";
+      "kwin"."KrohnkiteShiftLeft" = "Meta+Ctrl+H,none,Krohnkite: Move Left";
+      "kwin"."KrohnkiteShiftRight" = "Meta+Ctrl+L,none,Krohnkite: Move Right";
+      "kwin"."KrohnkiteShiftUp" = "Meta+Ctrl+K,none,Krohnkite: Move Up/Prev";
       "kwin"."KrohnkiteShrinkHeight" = "Meta+Ctrl+Down,none,Krohnkite: Shrink Height";
       "kwin"."KrohnkiteShrinkWidth" = "Meta+Ctrl+Left,none,Krohnkite: Shrink Width";
       "kwin"."KrohnkiteSpiralLayout" = [ ];
@@ -244,16 +243,6 @@
       "mediacontrol"."playpausemedia" = "Media Play";
       "mediacontrol"."previousmedia" = "Media Previous";
       "mediacontrol"."stopmedia" = "Media Stop";
-      "org.kde.spectacle.desktop"."ActiveWindowScreenShot" = "none";
-      "org.kde.spectacle.desktop"."CurrentMonitorScreenShot" = "none";
-      "org.kde.spectacle.desktop"."FullScreenScreenShot" = "none";
-      "org.kde.spectacle.desktop"."OpenWithoutScreenshot" = "none";
-      "org.kde.spectacle.desktop"."RecordRegion" = "none";
-      "org.kde.spectacle.desktop"."RecordScreen" = "none";
-      "org.kde.spectacle.desktop"."RecordWindow" = "none";
-      "org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Print";
-      "org.kde.spectacle.desktop"."WindowUnderCursorScreenShot" = "none";
-      "org.kde.spectacle.desktop"."_launch" = "none";
       "org_kde_powerdevil"."Decrease Keyboard Brightness" = "Keyboard Brightness Down";
       "org_kde_powerdevil"."Decrease Screen Brightness" = "Monitor Brightness Down";
       "org_kde_powerdevil"."Decrease Screen Brightness Small" = "none,Shift+Monitor Brightness Down,Decrease Screen Brightness by 1%";
@@ -267,8 +256,7 @@
       "org_kde_powerdevil"."Toggle Keyboard Backlight" = "Keyboard Light On/Off";
       "org_kde_powerdevil"."Turn Off Screen" = [ ];
       "org_kde_powerdevil"."powerProfile" = ["none,Battery" "Meta+B,Switch Power Profile"];
-      "plasma-manager-commands.desktop"."tofi" = "Ctrl+Space,,Launch tofi in application mode.";
-      "plasmashell"."activate application launcher" = ["Meta" "Alt+F1,Meta" "Alt+F1,Activate Application Launcher"];
+      "plasmashell"."activate application launcher" = ["Alt+F1,Meta" "Alt+F1,Activate Application Launcher"];
       "plasmashell"."activate task manager entry 1" = "Meta+1";
       "plasmashell"."activate task manager entry 10" = "none,Meta+0,Activate Task Manager Entry 10";
       "plasmashell"."activate task manager entry 2" = "Meta+2";
@@ -297,7 +285,7 @@
       "plasmashell"."toggle do not disturb" = "none,,Toggle do not disturb";
       "services/org.kde.konsole.desktop"."_launch" = [ ];
       "services/org.kde.krunner.desktop"."RunClipboard" = [ ];
-      "services/org.kde.krunner.desktop"."_launch" = [ ];
+      "services/org.kde.krunner.desktop"."_launch" = "Alt+F2";
       "services/org.kde.kscreen.desktop"."ShowOSD" = [ ];
       "services/org.kde.plasma-systemmonitor.desktop"."_launch" = "Ctrl+Shift+Esc";
       "services/org.kde.plasma.emojier.desktop"."_launch" = "Meta+.";
@@ -314,6 +302,7 @@
       "services/systemsettings.desktop"."_launch" = "Meta+I";
     };
     configFile = {
+      "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
       "baloofilerc"."General"."dbVersion" = 2;
       "baloofilerc"."General"."exclude filters" = "*~,*.part,*.o,*.la,*.lo,*.loT,*.moc,moc_*.cpp,qrc_*.cpp,ui_*.h,cmake_install.cmake,CMakeCache.txt,CTestTestfile.cmake,libtool,config.status,confdefs.h,autom4te,conftest,confstat,Makefile.am,*.gcode,.ninja_deps,.ninja_log,build.ninja,*.csproj,*.m4,*.rej,*.gmo,*.pc,*.omf,*.aux,*.tmp,*.po,*.vm*,*.nvram,*.rcore,*.swp,*.swap,lzo,litmain.sh,*.orig,.histfile.*,.xsession-errors*,*.map,*.so,*.a,*.db,*.qrc,*.ini,*.init,*.img,*.vdi,*.vbox*,vbox.log,*.qcow2,*.vmdk,*.vhd,*.vhdx,*.sql,*.sql.gz,*.ytdl,*.class,*.pyc,*.pyo,*.elc,*.qmlc,*.jsc,*.fastq,*.fq,*.gb,*.fasta,*.fna,*.gbff,*.faa,po,CVS,.svn,.git,_darcs,.bzr,.hg,CMakeFiles,CMakeTmp,CMakeTmpQmake,.moc,.obj,.pch,.uic,.npm,.yarn,.yarn-cache,__pycache__,node_modules,node_packages,nbproject,.venv,venv,core-dumps,lost+found";
       "baloofilerc"."General"."exclude filters version" = 8;
@@ -339,10 +328,10 @@
       "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
       "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
       "dolphinrc"."PreviewSettings"."Plugins" = "";
-      "kactivitymanagerdrc"."activities"."8e9da30a-2463-41cc-915f-e9174343ee67" = "Media Active (no sleep)";
       "kactivitymanagerdrc"."activities"."94835c23-2331-44ee-b1dd-63942e6a6af1" = "Default";
-      "kactivitymanagerdrc"."activities-icons"."8e9da30a-2463-41cc-915f-e9174343ee67" = "media-playback-start";
       "kactivitymanagerdrc"."main"."currentActivity" = "94835c23-2331-44ee-b1dd-63942e6a6af1";
+      "kactivitymanagerdrc"."main"."runningActivities" = "94835c23-2331-44ee-b1dd-63942e6a6af1";
+      "kactivitymanagerdrc"."main"."stoppedActivities" = "";
       "katerc"."General"."Days Meta Infos" = 30;
       "katerc"."General"."Save Meta Infos" = true;
       "katerc"."General"."Show Full Path in Title" = false;
@@ -411,7 +400,6 @@
       "kdeglobals"."Icons"."Theme" = "klassy";
       "kdeglobals"."KDE"."ShowDeleteCommand" = false;
       "kdeglobals"."KDE"."SingleClick" = false;
-      "kdeglobals"."KDE"."widgetStyle" = "Klassy";
       "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
       "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
@@ -466,7 +454,20 @@
       "klaunchrc"."BusyCursorSettings"."Bouncing" = false;
       "klaunchrc"."FeedbackStyle"."BusyCursor" = false;
       "klipperrc"."General"."IgnoreImages" = false;
-      "krunnerrc"."Plugins"."baloosearchEnabled" = true;
+      "krunnerrc"."Plugins"."baloosearchEnabled" = false;
+      "krunnerrc"."Plugins"."browserhistoryEnabled" = false;
+      "krunnerrc"."Plugins"."helprunnerEnabled" = false;
+      "krunnerrc"."Plugins"."krunner_appstreamEnabled" = false;
+      "krunnerrc"."Plugins"."krunner_bookmarksrunnerEnabled" = false;
+      "krunnerrc"."Plugins"."krunner_dictionaryEnabled" = false;
+      "krunnerrc"."Plugins"."krunner_katesessionsEnabled" = false;
+      "krunnerrc"."Plugins"."krunner_konsoleprofilesEnabled" = false;
+      "krunnerrc"."Plugins"."krunner_placesrunnerEnabled" = false;
+      "krunnerrc"."Plugins"."krunner_sessionsEnabled" = false;
+      "krunnerrc"."Plugins"."krunner_spellcheckEnabled" = false;
+      "krunnerrc"."Plugins"."org.kde.activities2Enabled" = false;
+      "krunnerrc"."Plugins"."org.kde.datetimeEnabled" = false;
+      "krunnerrc"."Plugins/Favorites"."plugins" = "krunner_services,krunner_systemsettings";
       "kscreenlockerrc"."Daemon"."LockGrace" = 60;
       "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image" = "/nix/store/054gfhigzhp40jfck5jgq4f9rzyhrp1c-plasma-workspace-wallpapers-6.0.5/share/wallpapers/Elarun/";
       "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage" = "/nix/store/054gfhigzhp40jfck5jgq4f9rzyhrp1c-plasma-workspace-wallpapers-6.0.5/share/wallpapers/Elarun/";
@@ -480,6 +481,7 @@
       "kservicemenurc"."Show"."mountisoaction" = false;
       "kservicemenurc"."Show"."tagsfileitemaction" = false;
       "kservicemenurc"."Show"."wallpaperfileitemaction" = true;
+      "ksmserverrc"."SubSession: 8e9da30a-2463-41cc-915f-e9174343ee67"."count" = 0;
       "ksplashrc"."KSplash"."Engine" = "KSplashQML";
       "ksplashrc"."KSplash"."Theme" = "Magna-Splash-6";
       "ktrashrc"."\\/home\\/tai\\/.local\\/share\\/Trash"."Days" = 7;
@@ -547,7 +549,7 @@
       "kwinrc"."Script-krohnkite"."enableThreeColumnLayout" = false;
       "kwinrc"."Script-krohnkite"."floatingTitle" = "System Settings,Zoom Meeting";
       "kwinrc"."Script-krohnkite"."ignoreClass" = "krunner,yakuake,spectacle,kded5,xwaylandvideobridge,plasmashell,ksplashqml,org.kde.plasmashell,org.kde.polkit-kde-authentication-agent-1,org.kde.kruler,org.kde.bluedevilwizard";
-      "kwinrc"."Script-krohnkite"."ignoreTitle" = "OneDriveGUI,Picture-in-Picture";
+      "kwinrc"."Script-krohnkite"."ignoreTitle" = "OneDriveGUI,Picture-in-Picture,Zoom Workplace - Licensed account,cc_receiver";
       "kwinrc"."Script-krohnkite"."keepFloatAbove" = false;
       "kwinrc"."Script-krohnkite"."tileLayoutGap" = 3;
       "kwinrc"."Script-polonium"."Borders" = 3;
@@ -560,6 +562,8 @@
       "kwinrc"."Script-polonium"."ResizeAmount" = 100;
       "kwinrc"."Script-polonium"."SaveOnTileEdit" = true;
       "kwinrc"."Script-polonium"."TilePopups" = false;
+      "kwinrc"."SubSession: 8e9da30a-2463-41cc-915f-e9174343ee67"."active" = "-1";
+      "kwinrc"."SubSession: 8e9da30a-2463-41cc-915f-e9174343ee67"."count" = 0;
       "kwinrc"."Tiling"."padding" = 4;
       "kwinrc"."Tiling/06020f28-8e01-57dc-9849-84222256927b"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/14df7c35-608c-5c3c-9181-1ffab387a595"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[]}";
@@ -569,12 +573,14 @@
       "kwinrc"."Tiling/7fb8c463-c102-5440-8fb7-5253b26b5d9c"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/81b711d8-4c33-592f-b70a-521f9fb15aaa"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"layoutDirection\":\"vertical\",\"tiles\":[{\"height\":0.5},{\"height\":0.5}],\"width\":0.47187500000000004},{\"width\":0.5281249999999995}]}";
       "kwinrc"."Tiling/820c33bc-0823-523f-8ae9-16ff867fbcf6"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[]}";
+      "kwinrc"."Tiling/992e8522-c05f-5535-a66f-5e874d009c54"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/99b48666-f76a-5055-9518-9086e5354962"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/baedc43e-8f95-590d-8328-8d56b032171f"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[]}";
       "kwinrc"."Tiling/cbea4e00-1594-5c66-8148-0442f3128940"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/d13f735f-4b2a-5e2f-b768-c04b0431a3c0"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/dbfca4e4-fc33-5303-898e-e50bbe290156"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/df8f72c7-a4dd-5a71-aa12-92b8e9b0ea76"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
+      "kwinrc"."Tiling/e17d2658-e448-5ed8-9d58-94c878294bbc"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Windows"."AutoRaise" = true;
       "kwinrc"."Windows"."BorderlessMaximizedWindows" = false;
       "kwinrc"."Windows"."Placement" = "Smart";
@@ -593,7 +599,8 @@
       "kwinrulesrc"."1"."titlematch" = 1;
       "kwinrulesrc"."1"."types" = 1;
       "kwinrulesrc"."1"."wmclass" = "firefox";
-      "kwinrulesrc"."1"."wmclassmatch" = 1;
+      "kwinrulesrc"."1"."wmclasscomplete" = false;
+      "kwinrulesrc"."1"."wmclassmatch" = 2;
       "kwinrulesrc"."3bb68983-eca5-4336-88bb-1a23b55289ab"."Description" = "Panel Transparency";
       "kwinrulesrc"."3bb68983-eca5-4336-88bb-1a23b55289ab"."opacityactive" = 28;
       "kwinrulesrc"."3bb68983-eca5-4336-88bb-1a23b55289ab"."opacityactiverule" = 2;
@@ -628,7 +635,7 @@
       "spectaclerc"."GuiConfig"."captureMode" = 0;
       "spectaclerc"."ImageSave"."imageCompressionQuality" = 100;
       "spectaclerc"."ImageSave"."lastImageSaveAsLocation" = "file:///home/tai/OneDrive_Student/845/Radex12CO.png";
-      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/tai/Pictures/Screenshots/Screenshot_20241015_122304.png";
+      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/tai/Pictures/Screenshots/Screenshot_20241015_173540.png";
       "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
       "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
     };

@@ -57,16 +57,16 @@
       "zoxide"
       # "zsh"
     ])
-    ++ [
-      (import ./pkgs/plasma/plasma.nix {
-        inherit
-          config
-          pkgs
-          flake-inputs
-          app-themes
-          ;
-      })
-    ]
+    # ++ [
+    #   (import ./pkgs/plasma/plasma.nix {
+    #     inherit
+    #       config
+    #       pkgs
+    #       flake-inputs
+    #       app-themes
+    #       ;
+    #   })
+    # ]
     ++ [./gaming.nix];
 
   home.packages =
@@ -161,8 +161,6 @@
       sticky
 
       vesktop
-      klassy
-
 
       posy-cursors
       bluez
