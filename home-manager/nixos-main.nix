@@ -15,7 +15,7 @@
       (
         let
           autostart-pkgs = with pkgs; [
-            teams-for-linux
+            # teams-for-linux
             onedrivegui
           ];
         in
@@ -67,12 +67,6 @@
           ;
       })
     ]
-    ++ [ flake-inputs.ags.homeManagerModules.default ];
-
-  programs.ags = {
-    enable = true;
-    # configDir = "${config.common.configHome}/ags";
-  };
     ++ [./gaming.nix];
 
   home.packages =
@@ -149,6 +143,7 @@
       kdePackages.dolphin
       kdePackages.ark # archive manager
       loupe # gnome imager viewer
+      gwenview
       obsidian
       onlyoffice-desktopeditors
       onedrive
@@ -156,7 +151,7 @@
       pinta
       realvnc-vnc-viewer
       # slack-dark
-      spotify # something breaks in latest flake update...
+      spotify
       teams-for-linux
       # texpresso
       # zathura
@@ -169,35 +164,17 @@
       klassy
 
 
-      # hplip
-      # gnome.adwaita-icon-theme # cursor theme?
       posy-cursors
-      # kdePackages.breeze-icons
       bluez
       # bluez-tools
       # kdePackages.bluedevil
       kdePackages.bluez-qt
       # blueman
 
-      # (papirus-icon-theme.override {color="indigo";})
-      # libsForQt5.polonium
-      # kdePackages.plasma-sdk
       # inkscape
     ]
     ++ fonts;
 
-
-  # gnome taskbar
-  dconf.settings."org/gnome/shell".favorite-apps =
-    with pkgs;
-    map (pkg: (import ../scripts/locate-desktop.nix) pkg) [
-      firefox
-      dolphin
-      sublime4
-      tilix
-      codium
-      obsidian
-    ];
 
   # firefox work profile desktop icon
   xdg.desktopEntries."Firefox - TA" = {
