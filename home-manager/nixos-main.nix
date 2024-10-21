@@ -39,7 +39,7 @@
       "fzf"
       "gaia"
       "git" # also installed system-wide
-      "gnome/gnome"
+      # "gnome/gnome"
       # "gpg"
       "kitty"
       "lazygit"
@@ -138,10 +138,6 @@
       ds9
       filezilla
       github-desktop
-      gnome-extension-manager
-      # gnome.file-roller
-      gnome.gnome-screenshot
-      # gnome.gnome-tweaks # only on gnome
       gparted
       keepassxc
       libreoffice

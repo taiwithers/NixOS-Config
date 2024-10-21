@@ -1,10 +1,26 @@
 # powerprofilesctl get/list/set
-{ ... }:
+{ pkgs,... }:
 {
   imports = [
     ./gnome-extensions.nix
     ./gnome-keybinds.nix
   ];
+      home.packages = with pkgs; [
+      gnome-extension-manager
+      gnome.gnome-tweaks 
+      ];
+
+  # gnome taskbar
+  dconf.settings."org/gnome/shell".favorite-apps =
+    with pkgs;
+    map (pkg: (import ../scripts/locate-desktop.nix) pkg) [
+      firefox
+      dolphin
+      sublime4
+      tilix
+      codium
+      obsidian
+    ];
   dconf.settings = {
     "org/gtk/settings/file-chooser" = {
       clock-format = "12h";
