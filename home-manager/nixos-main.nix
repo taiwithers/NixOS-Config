@@ -177,11 +177,19 @@
 
 
   # firefox work profile desktop icon
-  xdg.desktopEntries."Firefox - TA" = {
-    name = "Firefox - TA";
-    exec = "firefox -P Work %U";
-    terminal = false;
-  };
+  xdg.desktopEntries = builtins.mapAttrs (
+      entryname: profile: rec{
+        name="Firefox - ${entryname}"; 
+        exec = "firefox -P ${profile} %U --name ${name} --class ${name}"; 
+        settings.StartupWMClass = name;
+        icon = ./green.png;
+      })
+      {
+          TA = "Work";
+          Personal = "Personal";
+          Student = "Student";
+        };
+  
 
   home.shellAliases."TA" = "cd ${config.home.homeDirectory}/OneDrive_Staff && pyactivate ta && codium .";
 
