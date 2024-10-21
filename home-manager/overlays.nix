@@ -8,6 +8,11 @@
   self: super:
   let
     customDerivation = fname: pkgs.callPackage (./. + "/../derivations/${fname}.nix") { };
+    customScript = {name, runtimeInputs? [], file} : pkgs.writeShellApplication {
+        name = name;
+        runtimeInputs = runtimeInputs ++ [pkgs.coreutils];
+        text = builtins.readFile (../scripts + "/${file}.sh");
+      };
     githubVimPlugin =
       {
         author,
@@ -30,11 +35,21 @@
   {
     agenix = flake-inputs.agenix.packages.${system}.default;
     cbonsai = customDerivation "cbonsai";
+    clean = customScript rec {
+        name = "clean";
+        runtimeInputs = with pkgs; [gnugrep gnused home-manager nix];
+        file = name;
+      };
     codium = super.vscodium-fhs;
     color-oracle = customDerivation "color-oracle";
     ds9 = customDerivation "ds9";
     fzf = unstable.fzf;
     gaia = customDerivation "gaia";
+    get-package-path = customScript {
+        name = "get-package-path";
+        runtimeInputs = [ pkgs.which ];
+        file = "get-package-dir";
+      };
     latex = super.texlive.combine {
       inherit (super.texlive)
         collection-basic
@@ -79,6 +94,14 @@
     klassy = customDerivation "klassy";
     neovim = unstable.neovim-unwrapped;
     nixfmt = unstable.nixfmt-rfc-style;
+    nixos-generations = customScript rec {
+        name = "nixos-generations";
+        runtimeInputs = with pkgs; [
+        nix 
+        jq
+        ];
+        file = name;
+      };
     onlyoffice-desktopeditors = unstable.onlyoffice-desktopeditors;
     # onedrive = unstable.onedrive;
     onedrive = super.onedrive.overrideAttrs (oldAttrs: rec {
@@ -126,6 +149,11 @@
         hash = "sha256-Ull9iNi8NxB12YwEThWE0P9k1xOV2LZnebuRrVH/zwI="; # ${super.nix-prefetch} fetchurl --quiet --url '${url}' --option extra-experimental-features flakes
       };
     });
+    search = customScript rec {
+        name = "search";
+        runtimeInputs = with pkgs; [nix-search-cli sd jq nix];
+        file = "nix-search-wrapper";
+      };
     starfetch = customDerivation "starfetch";
     sublime4 = unstable.sublime4;
     superfile = flake-inputs.superfile.packages.${system}.default;

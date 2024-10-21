@@ -87,6 +87,10 @@
       nix-tree
       nurl
       nixfmt
+      clean
+      get-package-path
+      nixos-generations
+      search
 
       # cli programs
       age # encryption
@@ -185,51 +189,6 @@ tetrio-desktop
       # kdePackages.plasma-sdk
       # inkscape
     ]
-    ++ (map
-      (
-        {
-          name,
-          runtimeInputs ? [ ],
-          file,
-        }:
-        pkgs.writeShellApplication {
-          name = name;
-          runtimeInputs = runtimeInputs;
-          text = builtins.readFile file;
-        }
-      )
-      [
-        rec {
-          name = "get-package-dir";
-          runtimeInputs = with pkgs; [
-            coreutils
-            which
-          ];
-          file = ../scripts + "/${name}.sh";
-        }
-        rec {
-          name = "clean";
-          runtimeInputs = with pkgs; [
-            coreutils
-            gnugrep
-            gnused
-            home-manager
-            nix
-          ];
-          file = ../scripts + "/${name}.sh";
-        }
-        rec {
-          name = "search";
-          runtimeInputs = with pkgs; [
-            nix-search-cli
-            sd
-            jq
-            nix
-          ];
-          file = ../scripts/nix-search-wrapper.sh;
-        }
-      ]
-    )
     ++ fonts;
 
 
