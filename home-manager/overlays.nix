@@ -90,6 +90,7 @@
         wrapfig
         ;
     };
+    kara = unstable.kara;
     kitty = unstable.kitty;
     klassy = customDerivation "klassy";
     neovim = unstable.neovim-unwrapped;

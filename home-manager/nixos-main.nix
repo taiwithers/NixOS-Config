@@ -57,16 +57,16 @@
       "zoxide"
       # "zsh"
     ])
-    # ++ [
-    #   (import ./pkgs/plasma/plasma.nix {
-    #     inherit
-    #       config
-    #       pkgs
-    #       flake-inputs
-    #       app-themes
-    #       ;
-    #   })
-    # ]
+    ++ [
+      (import ./pkgs/plasma/plasma.nix {
+        inherit
+          config
+          pkgs
+          flake-inputs
+          app-themes
+          ;
+      })
+    ]
     ++ [./gaming.nix];
 
   home.packages =
@@ -142,6 +142,7 @@
       libreoffice
       kdePackages.dolphin
       kdePackages.ark # archive manager
+      kdePackages.kdeconnect-kde
       loupe # gnome imager viewer
       gwenview
       obsidian

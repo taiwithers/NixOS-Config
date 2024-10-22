@@ -45,7 +45,7 @@ rec {
     flake-inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
 
-  home.packages = [pkgs.klassy];
+  home.packages = [pkgs.klassy pkgs.kara];
 
   gtk = rec {
     enable = true;
@@ -58,15 +58,15 @@ rec {
     cursorTheme = cursor;
     theme = gtk-theme;
 
-    gtk2.extraConfig = with programs.plasma; ''
-      gtk-button-images=1
-      gtk-enable-animations=1
-      gtk-icon-theme-name="${workspace.iconTheme}"
-      gtk-menu-images=1
-      gtk-primary-button-warps-slider=1
-      gtk-sound-theme-name="${workspace.soundTheme}"
-      gtk-toolbar-style=3
-    '';
+    # gtk2.extraConfig = with programs.plasma; ''
+    #   gtk-button-images=1
+    #   gtk-enable-animations=1
+    #   gtk-icon-theme-name="${workspace.iconTheme}"
+    #   gtk-menu-images=1
+    #   gtk-primary-button-warps-slider=1
+    #   gtk-sound-theme-name="${workspace.soundTheme}"
+    #   gtk-toolbar-style=3
+    # '';
 
     gtk3.extraConfig = {
       application-prefer-dark-theme = true;
@@ -85,7 +85,7 @@ rec {
   };
 
   programs.plasma = {
-    enable = true;
+    enable = false;
     resetFiles = [ "gtk-2.0/gtkrc" ]; # files to delete on each generation, string paths relative to config home
     resetFilesExclude = [ ]; # files to NOT delete on each generation
     immutableByDefault = false;
@@ -484,5 +484,5 @@ rec {
     inactiveForeground=${base07}
   '';
 
-  xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ./panels.txt;
+  # xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ./panels.txt;
 }
