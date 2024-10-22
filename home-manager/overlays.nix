@@ -95,6 +95,14 @@
     klassy = customDerivation "klassy";
     neovim = unstable.neovim-unwrapped;
     nixfmt = unstable.nixfmt-rfc-style;
+    nixshell = customScript rec {
+        name = "nixshell";
+        runtimeInputs = with pkgs; [
+        nix
+        bash
+        ];
+        file = name;
+      };
     nixos-generations = customScript rec {
         name = "nixos-generations";
         runtimeInputs = with pkgs; [

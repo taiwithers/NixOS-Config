@@ -130,6 +130,7 @@
       zbar
       zip
       parted
+      nixshell
 
       # gui programs
       color-oracle
