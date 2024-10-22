@@ -179,6 +179,7 @@
       "steam"
       "steam-original"
       "steam-run"
+      "steam-unwrapped"
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced" # no erreor requested but hey
