@@ -32,7 +32,7 @@ let
     package = pkgs.kdePackages.breeze;
     };
 
-  klassy = {
+  klassy-names = {
       window-decorations = {
           theme = "Klassy";
           library = "org.kde.klassy";
@@ -45,7 +45,12 @@ rec {
     flake-inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
 
-  home.packages = [pkgs.klassy pkgs.kara];
+  home.packages = with pkgs.kdePackages; [
+    klassy 
+    kara 
+    plasma-panel-colorizer 
+    plasma-panel-spacer-extended
+  ];
 
   gtk = rec {
     enable = true;
@@ -102,8 +107,8 @@ rec {
       in "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
     configFile.kdeglobals.General.AccentColor = kde-colours.base0E; #"146,110,228";
     workspace.theme = "ActiveAccentDark"; # plasma style / desktop theme
-    workspace.windowDecorations = klassy.window-decorations;
-    workspace.iconTheme = klassy.icon-theme;
+    workspace.windowDecorations = klassy-names.window-decorations;
+    workspace.iconTheme = klassy-names.icon-theme;
     workspace.cursor = {
       theme = cursor.name;
       size = cursor.size;

@@ -90,9 +90,13 @@
         wrapfig
         ;
     };
-    kara = unstable.kara;
+    kdePackages = super.kdePackages // {
+      kara = unstable.kara;
+      klassy = customDerivation "klassy";
+      plasma-panel-colorizer = unstable.plasma-panel-colorizer;
+      plasma-panel-spacer-extended = customDerivation "plasma-panel-spacer-extended";
+    };
     kitty = unstable.kitty;
-    klassy = customDerivation "klassy";
     neovim = unstable.neovim-unwrapped;
     nixfmt = unstable.nixfmt-rfc-style;
     nixshell = customScript rec {
@@ -150,7 +154,6 @@
           cp ${setupPy} ${setupPy.name}
         '';
     });
-    plasma-panel-colorizer = unstable.plasma-panel-colorizer;
     pond = customDerivation "pond";
     realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
       src = super.requireFile rec {
