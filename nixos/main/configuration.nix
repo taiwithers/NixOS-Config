@@ -122,8 +122,8 @@
 
   # system packages
   environment.systemPackages = with pkgs; [
-    gedit
-    gnome-terminal # always have an editor and terminal!
+    gnome.gnome-terminal # always have an editor and terminal!
+    vim
     git
 
     # sysinfo for kde
@@ -214,7 +214,7 @@ programs.gamemode.enable = true;
   };
 
   # program configurations
-  programs.vim.enable = true;
+  # programs.vim.enable = true;
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
 
