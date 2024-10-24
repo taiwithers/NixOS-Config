@@ -10,24 +10,27 @@
 }:
 {
   imports = [
-    ./hardware.nix
+    ./hardware-configuration.nix
   ];
   # boot and dual-boot options
   time.hardwareClockInLocalTime = true;
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/EFI";
-    };
-    grub = {
-      enable = true;
-      efiSupport = true;
-      devices = [ "nodev" ];
-      useOSProber = true;
-      configurationLimit = 16;
-      backgroundColor = "#000000";
-    };
-  };
+  #   boot.loader = {
+  #     efi = {
+  #       canTouchEfiVariables = true;
+  #       efiSysMountPoint = "/boot/EFI";
+  #     };
+  #     grub = {
+  #       enable = true;
+  #       efiSupport = true;
+  #       devices = [ "nodev" ];
+  #       useOSProber = true;
+  #       configurationLimit = 16;
+  #       backgroundColor = "#000000";
+  #     };
+  #   };
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # use flakes
   nix.settings.experimental-features = [
@@ -86,11 +89,11 @@
   # services.displayManager.defaultSession = "plasma";
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     elisa
-    gwenview
-    kate
+    #     gwenview
+    #     kate
     khelpcenter
-    kinfocenter
-    konsole
+    #     kinfocenter
+    #     konsole
     kwalletmanager
     okular
   ];
@@ -123,8 +126,9 @@
   # system packages
   environment.systemPackages = with pkgs; [
     gnome.gnome-terminal # always have an editor and terminal!
-    vim
     git
+
+    bluez # bluetooth
 
     # sysinfo for kde
     clinfo
@@ -132,13 +136,18 @@
     gpu-viewer
     vulkan-tools
     wayland-utils
+
+    kdePackages.powerdevil # display brightness?
   ];
+
+  # Install firefox.
+  programs.firefox.enable = true;
 
   # graphics 
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];# Load "nvidia" driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "nvidia" ]; # Load "nvidia" driver for Xorg and Wayland
   hardware.nvidia = {
-    modesetting.enable = true;# Modesetting is required.
+    modesetting.enable = true; # Modesetting is required.
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
@@ -179,10 +188,11 @@
       "steam"
       "steam-original"
       "steam-run"
+      "steamcmd"
       "steam-unwrapped"
       "nvidia-x11"
       "nvidia-settings"
-      "nvidia-persistenced" # no erreor requested but hey
+      "nvidia-persistenced" # no errer requested but hey
     ];
 
   # steam
@@ -190,12 +200,18 @@
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    package = pkgs.steam.override {
+      extraLibraries =
+        p: with p; [
+          (lib.getLib networkmanager)
+        ];
+    };
   };
 
-# gamemode - requests optimizations when running games
-programs.gamemode.enable = true;
+  # gamemode - requests optimizations when running games
+  programs.gamemode.enable = true;
 
-# fingerprint reader
+  # fingerprint reader
   services.fprintd = {
     enable = true;
     tod = {
@@ -205,7 +221,7 @@ programs.gamemode.enable = true;
   };
 
   services.printing.enable = true;
-  services.printing.drivers = [pkgs.brlaser];
+  services.printing.drivers = [ pkgs.brlaser ];
   # allow printing without downloading drivers, https://nixos.wiki/wiki/Printing
   services.avahi = {
     enable = true;
@@ -214,7 +230,7 @@ programs.gamemode.enable = true;
   };
 
   # program configurations
-  # programs.vim.enable = true;
+  #   programs.vim.enable = true;
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
 
@@ -224,5 +240,5 @@ programs.gamemode.enable = true;
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }

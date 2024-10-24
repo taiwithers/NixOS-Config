@@ -36,6 +36,7 @@
       "duf"
       "dust"
       "eza"
+      "firefox/firefox"
       "fzf"
       "gaia"
       "git" # also installed system-wide
@@ -67,7 +68,7 @@
           ;
       })
     ]
-    ++ [./gaming.nix];
+    ++ [ ./gaming.nix ];
 
   home.packages =
     with pkgs;
@@ -86,12 +87,13 @@
       get-package-path
       nixos-generations
       search
+      nixshell
 
       # cli programs
       age # encryption
       brightnessctl
       cbonsai
-      chafa # cli images
+      #       chafa # cli images
       cloc
       curl
       dconf
@@ -130,7 +132,7 @@
       zbar
       zip
       parted
-      nixshell
+      brightness-control
 
       # gui programs
       color-oracle
@@ -144,14 +146,13 @@
       kdePackages.dolphin
       kdePackages.ark # archive manager
       kdePackages.kdeconnect-kde
-      loupe # gnome imager viewer
       gwenview
       obsidian
       onlyoffice-desktopeditors
       onedrive
       onedrivegui
       pinta
-      realvnc-vnc-viewer
+      #       realvnc-vnc-viewer
       # slack-dark
       spotify
       teams-for-linux
@@ -161,35 +162,14 @@
       zotero
       caffeine-ng
       sticky
-
       vesktop
 
       posy-cursors
-      bluez
-      # bluez-tools
-      # kdePackages.bluedevil
       kdePackages.bluez-qt
-      # blueman
 
       # inkscape
     ]
     ++ fonts;
-
-
-  # firefox work profile desktop icon
-  xdg.desktopEntries = builtins.mapAttrs (
-      entryname: profile: rec{
-        name="Firefox - ${entryname}"; 
-        exec = "firefox -P ${profile} %U --name ${name} --class ${name}"; 
-        settings.StartupWMClass = name;
-        icon = ./green.png;
-      })
-      {
-          TA = "Work";
-          Personal = "Personal";
-          Student = "Student";
-        };
-  
 
   home.shellAliases."TA" = "cd ${config.home.homeDirectory}/OneDrive_Staff && pyactivate ta && codium .";
 
