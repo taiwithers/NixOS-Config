@@ -49,7 +49,8 @@ dependencies:
       - git+https://github.com/pyspeckit/pyspeckit.git
       - git+https://github.com/keflavich/FITS_tools
       - git+https://github.com/taiwithers/acorns.git
-      - git+https://github.com/mcyc/mufasa.git@main
+      - git+https://github.com/mcyc/mufasa.git@82d37a6
+      - git+https://codeberg.org/taiwithers/UncertainQuantity.git
       # - git+https://github.com/taiwithers/FITS_tools
 # update environment with conda env update --file filename.yml --prune
 
