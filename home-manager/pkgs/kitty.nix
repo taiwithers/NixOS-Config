@@ -75,6 +75,7 @@
       allow_remote_control = "yes";
       # dynamic_background_opacity = "yes";
       # notify_on_finish = "unfocused bell";
+      window_margin_width = 10;
 
       # colours
       background = "#${base00}";

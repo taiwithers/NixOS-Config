@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+set +o nounset # don't error out if you encounter an unset parameter 
+
 get_brightness () {
-	echo "$(brightnessctl --machine-readable | awk 'BEGIN{FS=","} {print $4}' | awk 'BEGIN{FS="%"} {print $1}')"
+	brightnessctl --machine-readable | awk 'BEGIN{FS=","} {print $4}' | awk 'BEGIN{FS="%"} {print $1}'
+	# echo "$(brightnessctl --machine-readable | awk 'BEGIN{FS=","} {print $4}' | awk 'BEGIN{FS="%"} {print $1}')"
 }
 
 current_percentage=$(get_brightness)
@@ -19,18 +22,18 @@ maximum="100%"
 
 case $1 in 
 	"inc")
-		brightnessctl --quiet set $increase
+		brightnessctl --quiet set "$increase"
 		;;
 	"dec")
-		if [[ $(($current_percentage-$percentage)) -gt 0 ]]; then 
-			brightnessctl --quiet set $decrease
+		if [[ $((current_percentage-percentage)) -gt 0 ]]; then 
+			brightnessctl --quiet set "$decrease"
 		fi
 		;;
 	"min")
-		brightnessctl --quiet set $minimum
+		brightnessctl --quiet set "$minimum"
 		;;
 	"max")
-		brightnessctl --quiet set $maximum
+		brightnessctl --quiet set "$maximum"
 		;;
 
 	*)

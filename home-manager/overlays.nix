@@ -40,6 +40,11 @@
   in
   {
     agenix = flake-inputs.agenix.packages.${system}.default;
+    brightness-control = customScript rec {
+      name = "brightness-control";
+      runtimeInputs = [ pkgs.brightnessctl ];
+      file = name;
+    };
     cbonsai = customDerivation "cbonsai";
     clean = customScript rec {
       name = "clean";
@@ -105,6 +110,7 @@
       kara = unstable.kara;
       klassy = customDerivation "klassy";
       plasma-panel-colorizer = unstable.plasma-panel-colorizer;
+      krohnkite = unstable.kdePackages.krohnkite;
       plasma-panel-spacer-extended = customDerivation "plasma-panel-spacer-extended";
     };
     kitty = unstable.kitty;
