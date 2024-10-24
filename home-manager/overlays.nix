@@ -8,9 +8,15 @@
   self: super:
   let
     customDerivation = fname: pkgs.callPackage (./. + "/../derivations/${fname}.nix") { };
-    customScript = {name, runtimeInputs? [], file} : pkgs.writeShellApplication {
+    customScript =
+      {
+        name,
+        runtimeInputs ? [ ],
+        file,
+      }:
+      pkgs.writeShellApplication {
         name = name;
-        runtimeInputs = runtimeInputs ++ [pkgs.coreutils];
+        runtimeInputs = runtimeInputs ++ [ pkgs.coreutils ];
         text = builtins.readFile (../scripts + "/${file}.sh");
       };
     githubVimPlugin =
@@ -36,20 +42,25 @@
     agenix = flake-inputs.agenix.packages.${system}.default;
     cbonsai = customDerivation "cbonsai";
     clean = customScript rec {
-        name = "clean";
-        runtimeInputs = with pkgs; [gnugrep gnused home-manager nix];
-        file = name;
-      };
+      name = "clean";
+      runtimeInputs = with pkgs; [
+        gnugrep
+        gnused
+        home-manager
+        nix
+      ];
+      file = name;
+    };
     codium = super.vscodium-fhs;
     color-oracle = customDerivation "color-oracle";
     ds9 = customDerivation "ds9";
     fzf = unstable.fzf;
     gaia = customDerivation "gaia";
     get-package-path = customScript {
-        name = "get-package-path";
-        runtimeInputs = [ pkgs.which ];
-        file = "get-package-dir";
-      };
+      name = "get-package-path";
+      runtimeInputs = [ pkgs.which ];
+      file = "get-package-dir";
+    };
     latex = super.texlive.combine {
       inherit (super.texlive)
         collection-basic
@@ -100,21 +111,21 @@
     neovim = unstable.neovim-unwrapped;
     nixfmt = unstable.nixfmt-rfc-style;
     nixshell = customScript rec {
-        name = "nixshell";
-        runtimeInputs = with pkgs; [
+      name = "nixshell";
+      runtimeInputs = with pkgs; [
         nix
         bash
-        ];
-        file = name;
-      };
+      ];
+      file = name;
+    };
     nixos-generations = customScript rec {
-        name = "nixos-generations";
-        runtimeInputs = with pkgs; [
-        nix 
+      name = "nixos-generations";
+      runtimeInputs = with pkgs; [
+        nix
         jq
-        ];
-        file = name;
-      };
+      ];
+      file = name;
+    };
     onlyoffice-desktopeditors = unstable.onlyoffice-desktopeditors;
     # onedrive = unstable.onedrive;
     onedrive = super.onedrive.overrideAttrs (oldAttrs: rec {
@@ -162,10 +173,15 @@
       };
     });
     search = customScript rec {
-        name = "search";
-        runtimeInputs = with pkgs; [nix-search-cli sd jq nix];
-        file = "nix-search-wrapper";
-      };
+      name = "search";
+      runtimeInputs = with pkgs; [
+        nix-search-cli
+        sd
+        jq
+        nix
+      ];
+      file = "nix-search-wrapper";
+    };
     starfetch = customDerivation "starfetch";
     sublime4 = unstable.sublime4;
     superfile = flake-inputs.superfile.packages.${system}.default;

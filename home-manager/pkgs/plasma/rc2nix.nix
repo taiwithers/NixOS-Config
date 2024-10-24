@@ -8,17 +8,26 @@
       "kaccess"."Toggle Screen Reader On and Off" = "none,Meta+Alt+S,Toggle Screen Reader On and Off";
       "kcm_touchpad"."Disable Touchpad" = "none,Touchpad Off";
       "kcm_touchpad"."Enable Touchpad" = "none,Touchpad On";
-      "kcm_touchpad"."Toggle Touchpad" = ["none,Touchpad Toggle" "Meta+Ctrl+Zenkaku Hankaku"];
+      "kcm_touchpad"."Toggle Touchpad" = [
+        "none,Touchpad Toggle"
+        "Meta+Ctrl+Zenkaku Hankaku"
+      ];
       "kmix"."decrease_microphone_volume" = "Microphone Volume Down";
       "kmix"."decrease_volume" = "Volume Down";
       "kmix"."decrease_volume_small" = "none,Shift+Volume Down,Decrease Volume by 1%";
       "kmix"."increase_microphone_volume" = "none,Microphone Volume Up,Increase Microphone Volume";
       "kmix"."increase_volume" = "Volume Up";
       "kmix"."increase_volume_small" = "none,Shift+Volume Up,Increase Volume by 1%";
-      "kmix"."mic_mute" = ["Meta+Volume Mute,Microphone Mute" "Meta+Volume Mute,Mute Microphone"];
+      "kmix"."mic_mute" = [
+        "Meta+Volume Mute,Microphone Mute"
+        "Meta+Volume Mute,Mute Microphone"
+      ];
       "kmix"."mute" = "Volume Mute";
       "ksmserver"."Halt Without Confirmation" = "none,,Shut Down Without Confirmation";
-      "ksmserver"."Lock Session" = ["none,Meta+L" "Screensaver,Lock Session"];
+      "ksmserver"."Lock Session" = [
+        "none,Meta+L"
+        "Screensaver,Lock Session"
+      ];
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
       "ksmserver"."Log Out Without Confirmation" = "none,,Log Out Without Confirmation";
       "ksmserver"."LogOut" = "none,,Log Out";
@@ -33,7 +42,10 @@
       "kwin"."Decrease Opacity" = "none,,Decrease Opacity of Active Window by 5%";
       "kwin"."Edit Tiles" = "Meta+`,Meta+T,Toggle Tiles Editor";
       "kwin"."Expose" = "none,Ctrl+F9,Toggle Present Windows (Current desktop)";
-      "kwin"."ExposeAll" = ["none,Ctrl+F10" "Launch (C),Toggle Present Windows (All desktops)"];
+      "kwin"."ExposeAll" = [
+        "none,Ctrl+F10"
+        "Launch (C),Toggle Present Windows (All desktops)"
+      ];
       "kwin"."ExposeClass" = "none,Ctrl+F7,Toggle Present Windows (Window class)";
       "kwin"."ExposeClassCurrentDesktop" = [ ];
       "kwin"."Grid View" = "none,Meta+G,Toggle Grid View";
@@ -233,7 +245,10 @@
       "kwin"."Window to Screen 6" = "none,,Move Window to Screen 6";
       "kwin"."Window to Screen 7" = "none,,Move Window to Screen 7";
       "kwin"."view_actual_size" = "none,Meta+0,Zoom to Actual Size";
-      "kwin"."view_zoom_in" = ["none,Meta++" "Meta+=,Zoom In"];
+      "kwin"."view_zoom_in" = [
+        "none,Meta++"
+        "Meta+=,Zoom In"
+      ];
       "kwin"."view_zoom_out" = "none,Meta+-,Zoom Out";
       "mediacontrol"."mediavolumedown" = "none,,Media volume down";
       "mediacontrol"."mediavolumeup" = "none,,Media volume up";
@@ -255,8 +270,14 @@
       "org_kde_powerdevil"."Sleep" = "Sleep";
       "org_kde_powerdevil"."Toggle Keyboard Backlight" = "Keyboard Light On/Off";
       "org_kde_powerdevil"."Turn Off Screen" = [ ];
-      "org_kde_powerdevil"."powerProfile" = ["none,Battery" "Meta+B,Switch Power Profile"];
-      "plasmashell"."activate application launcher" = ["Alt+F1,Meta" "Alt+F1,Activate Application Launcher"];
+      "org_kde_powerdevil"."powerProfile" = [
+        "none,Battery"
+        "Meta+B,Switch Power Profile"
+      ];
+      "plasmashell"."activate application launcher" = [
+        "Alt+F1,Meta"
+        "Alt+F1,Activate Application Launcher"
+      ];
       "plasmashell"."activate task manager entry 1" = "Meta+1";
       "plasmashell"."activate task manager entry 10" = "none,Meta+0,Activate Task Manager Entry 10";
       "plasmashell"."activate task manager entry 2" = "Meta+2";

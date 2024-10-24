@@ -14,31 +14,31 @@ let
   ) app-themes.palettes.kde;
 
   cursor = {
-      name = "Posy_Cursor_Black";
-      size = 32;
-      package = pkgs.posy-cursors;
-    };
+    name = "Posy_Cursor_Black";
+    size = 32;
+    package = pkgs.posy-cursors;
+  };
 
   fonts = {
     sans = {
-        name = "Noto Sans";
-        package = pkgs.noto-fonts;
-        size = 12;
-        weight = "light";
-      };
+      name = "Noto Sans";
+      package = pkgs.noto-fonts;
+      size = 12;
+      weight = "light";
     };
+  };
   gtk-theme = {
     name = "Breeze-dark-gtk";
     package = pkgs.kdePackages.breeze;
-    };
+  };
 
   klassy-names = {
-      window-decorations = {
-          theme = "Klassy";
-          library = "org.kde.klassy";
-        };
-      icon-theme = "klassy";
+    window-decorations = {
+      theme = "Klassy";
+      library = "org.kde.klassy";
     };
+    icon-theme = "klassy";
+  };
 in
 rec {
   imports = [
@@ -46,11 +46,15 @@ rec {
   ];
 
   home.packages = with pkgs.kdePackages; [
-    klassy 
-    kara 
-    plasma-panel-colorizer 
+    klassy
+    kara
+    krohnkite
+    plasma-panel-colorizer
     plasma-panel-spacer-extended
   ];
+
+  xdg.dataFile."plasma/plasmoids/org.kde.plasma.shutdownorswitch".source =
+    (builtins.fetchGit "https://github.com/Davide-sd/shutdown_or_switch.git") + "/package";
 
   gtk = rec {
     enable = true;
@@ -101,11 +105,13 @@ rec {
     ###############################
     workspace.lookAndFeel = "org.kde.breezedark.desktop"; # global theme
     workspace.colorScheme = "custom";
-    workspace.wallpaper = let
-      wallpaper-name = "Next"; # only one available in this kde package
-      wallpaper-folder = "images_dark"; # or "images"
-      in "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
-    configFile.kdeglobals.General.AccentColor = kde-colours.base0E; #"146,110,228";
+    workspace.wallpaper =
+      let
+        wallpaper-name = "Next"; # only one available in this kde package
+        wallpaper-folder = "images_dark"; # or "images"
+      in
+      "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
+    configFile.kdeglobals.General.AccentColor = kde-colours.base0E; # "146,110,228";
     workspace.theme = "ActiveAccentDark"; # plasma style / desktop theme
     workspace.windowDecorations = klassy-names.window-decorations;
     workspace.iconTheme = klassy-names.icon-theme;
@@ -114,7 +120,7 @@ rec {
       size = cursor.size;
     };
     workspace.soundTheme = "ocean";
-    workspace.splashScreen.theme = "Magna-Splash-6"; # engine is KSplashQML 
+    workspace.splashScreen.theme = "Magna-Splash-6"; # engine is KSplashQML
     configFile.kwinrc.Xwayland.Scale = 1.25;
 
     fonts = rec {
@@ -193,20 +199,21 @@ rec {
     #     }
     # ];
 
-    kscreenlocker = let
-      wallpaper-name = "Next"; # only one available in this kde package
-      wallpaper-folder = "images_dark"; # or "images"
-      in 
-      { 
-      appearance = {
-        alwaysShowClock = true;
-        showMediaControls = true;
-        wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
-        # wallpaperPictureOfTheDay.provider = "apod";
+    kscreenlocker =
+      let
+        wallpaper-name = "Next"; # only one available in this kde package
+        wallpaper-folder = "images_dark"; # or "images"
+      in
+      {
+        appearance = {
+          alwaysShowClock = true;
+          showMediaControls = true;
+          wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
+          # wallpaperPictureOfTheDay.provider = "apod";
+        };
+        passwordRequiredDelay = 60; # seconds after screen lock
+        timeout = 5; # minutes until screen locks
       };
-      passwordRequiredDelay = 60; # seconds after screen lock 
-      timeout = 5; # minutes until screen locks
-    };
 
     ###############################
     # Keyboard and Mouse
@@ -231,7 +238,7 @@ rec {
     };
 
     # Global keyboard shortcuts:
-    shortcuts = {};
+    shortcuts = { };
 
     spectacle.shortcuts = {
       captureActiveWindow = [ ];
@@ -271,7 +278,6 @@ rec {
       location.longitude = "-78.49624060150377";
     };
 
-
     kwin.titlebarButtons = {
       left = [ ];
       right = [
@@ -295,11 +301,12 @@ rec {
         whenLaptopLidClosed = "sleep";
       };
 
-      battery = AC // { autoSuspend.idleTimeout = 120; };
+      battery = AC // {
+        autoSuspend.idleTimeout = 120;
+      };
       lowBattery = battery;
     };
 
-    
     ###############################
     # Window Behaviour
     ###############################
@@ -314,26 +321,25 @@ rec {
     };
 
     window-rules = [
-    {
-      description = "Firefox Picture-in-Picture";
-      match.title = {
-        type = "exact";
-        value = "Picture-in-Picture";
+      {
+        description = "Firefox Picture-in-Picture";
+        match.title = {
+          type = "exact";
+          value = "Picture-in-Picture";
         };
-      match.window-class = {
-        match-whole = false; # unsure if this matters
-        type = "substring";
-        value = "firefox";
+        match.window-class = {
+          match-whole = false; # unsure if this matters
+          type = "substring";
+          value = "firefox";
         };
-      apply = {
-        above = {
+        apply = {
+          above = {
             apply = "initially";
             value = true;
-           } ;
+          };
         };
       }
     ];
-
 
   };
 

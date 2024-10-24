@@ -1,14 +1,14 @@
 # powerprofilesctl get/list/set
-{ pkgs,... }:
+{ pkgs, ... }:
 {
   imports = [
     ./gnome-extensions.nix
     ./gnome-keybinds.nix
   ];
-      home.packages = with pkgs; [
-      gnome-extension-manager
-      gnome.gnome-tweaks 
-      ];
+  home.packages = with pkgs; [
+    gnome-extension-manager
+    gnome.gnome-tweaks
+  ];
 
   # gnome taskbar
   dconf.settings."org/gnome/shell".favorite-apps =
