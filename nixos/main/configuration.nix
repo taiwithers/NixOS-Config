@@ -83,7 +83,13 @@
   # services.gnome.core-utilities.enable = false;
 
   # KDE
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    autoNumlock = true;
+    theme = "where_is_my_sddm_theme";
+    # autoLogin.relogin = true;
+  };
+
   services.desktopManager.plasma6.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # services.displayManager.defaultSession = "plasma";
@@ -136,6 +142,15 @@
     gpu-viewer
     vulkan-tools
     wayland-utils
+
+    (pkgs.where-is-my-sddm-theme.override {
+      themeConfig.General = {
+          backgroundFill = "#171726";
+          basicTextColor = "#878d96";
+          showSessionsByDefault = true;
+          showUsersByDefault = true;
+        };
+    })
 
     kdePackages.powerdevil # display brightness?
   ];

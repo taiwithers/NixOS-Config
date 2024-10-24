@@ -45,16 +45,25 @@ rec {
     flake-inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
 
-  home.packages = with pkgs.kdePackages; [
-    klassy
-    kara
-    krohnkite
-    plasma-panel-colorizer
-    plasma-panel-spacer-extended
-  ];
+  home.packages =
+    with pkgs.kdePackages;
+    [
+      klassy
+      kara
+      krohnkite
+      plasma-panel-colorizer
+      plasma-panel-spacer-extended
+    ]
+    ++ [ pkgs.where-is-my-sddm-theme ];
 
   xdg.dataFile."plasma/plasmoids/org.kde.plasma.shutdownorswitch".source =
     (builtins.fetchGit "https://github.com/Davide-sd/shutdown_or_switch.git") + "/package";
+
+  xdg.dataFile."plasma/look-and-feel/Magna-Splash-6".source =
+    (builtins.fetchGit "https://github.com/L4ki/Magna-Plasma-Themes.git")
+    + "/Magna-Splahscreen/Magna-Splash-6";
+
+  xdg.dataFile."plasma/plasmoids/Compact.Menu".source = ./Compact.Menu;
 
   gtk = rec {
     enable = true;
@@ -67,15 +76,15 @@ rec {
     cursorTheme = cursor;
     theme = gtk-theme;
 
-    # gtk2.extraConfig = with programs.plasma; ''
-    #   gtk-button-images=1
-    #   gtk-enable-animations=1
-    #   gtk-icon-theme-name="${workspace.iconTheme}"
-    #   gtk-menu-images=1
-    #   gtk-primary-button-warps-slider=1
-    #   gtk-sound-theme-name="${workspace.soundTheme}"
-    #   gtk-toolbar-style=3
-    # '';
+    gtk2.extraConfig = with programs.plasma; ''
+      gtk-button-images=1
+      gtk-enable-animations=1
+      gtk-icon-theme-name="${workspace.iconTheme}"
+      gtk-menu-images=1
+      gtk-primary-button-warps-slider=1
+      gtk-sound-theme-name="${workspace.soundTheme}"
+      gtk-toolbar-style=3
+    '';
 
     gtk3.extraConfig = {
       application-prefer-dark-theme = true;

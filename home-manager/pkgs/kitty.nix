@@ -63,6 +63,10 @@
       tab_bar_edge = "top";
       background_opacity = "0.5";
       background_blur = 1;
+      window_border_width = 5;
+      window_padding_width = 5; # inside border
+      window_margin_width = 2; # outside border
+      draw_minimal_borders = "no";
 
       # copy/paste behaviour
       copy_on_select = "clipboard";
@@ -75,7 +79,6 @@
       allow_remote_control = "yes";
       # dynamic_background_opacity = "yes";
       # notify_on_finish = "unfocused bell";
-      window_margin_width = 10;
 
       # colours
       background = "#${base00}";
@@ -85,7 +88,8 @@
       selection_foreground = background;
       url_color = "#${base04}";
       cursor = "#${base07}";
-      active_border_color = "#${base03}";
+      active_border_color = "#${base0D}";
+      bell_border_color = "#${base08}";
       inactive_border_color = "#${base01}";
       active_tab_background = background;
       active_tab_foreground = foreground;
