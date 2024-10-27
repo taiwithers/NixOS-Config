@@ -16,6 +16,7 @@
     plasma-manager.url = "github:nix-community/plasma-manager/trunk";
     nix-colors.url = "github:misterio77/nix-colors";
     ags.url = "github:Aylur/ags";
+    nur.url = "github:nix-community/NUR";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     superfile.inputs.nixpkgs.follows = "nixpkgs";
@@ -70,6 +71,7 @@
                 config = pkgs-config;
               };
             })
+            flake-inputs.nur.overlay
             (import ./overlays.nix { inherit pkgs flake-inputs system; })
           ];
       };
