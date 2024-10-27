@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
   pkgs,
@@ -14,23 +11,21 @@
   ];
   # boot and dual-boot options
   time.hardwareClockInLocalTime = true;
-  #   boot.loader = {
-  #     efi = {
-  #       canTouchEfiVariables = true;
-  #       efiSysMountPoint = "/boot/EFI";
-  #     };
-  #     grub = {
-  #       enable = true;
-  #       efiSupport = true;
-  #       devices = [ "nodev" ];
-  #       useOSProber = true;
-  #       configurationLimit = 16;
-  #       backgroundColor = "#000000";
-  #     };
-  #   };
-
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # grub
+  # boot.loader.grub = {
+  #     enable = false;
+  #     efiSupport = true;
+  #     devices = [ "nodev" ];
+  #     useOSProber = true;
+  #     configurationLimit = 16;
+  # };
+
+  # systemd
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 16;
+
 
   # use flakes
   nix.settings.experimental-features = [
@@ -95,11 +90,7 @@
   # services.displayManager.defaultSession = "plasma";
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     elisa
-    #     gwenview
-    #     kate
     khelpcenter
-    #     kinfocenter
-    #     konsole
     kwalletmanager
     okular
   ];
@@ -124,7 +115,6 @@
       "networkmanager" # allow modifying network settings
       "wheel"
       "ld" # for bluetooth? maybe?
-      "input" # input for waybar on hyprland
     ];
     packages = with pkgs; [ firefox ];
   };
@@ -133,15 +123,15 @@
   environment.systemPackages = with pkgs; [
     gnome.gnome-terminal # always have an editor and terminal!
     git
-
     bluez # bluetooth
-
     # sysinfo for kde
     clinfo
     glxinfo
     gpu-viewer
     vulkan-tools
     wayland-utils
+
+    sddm-kcm
 
     (pkgs.where-is-my-sddm-theme.override {
       themeConfig.General = {
@@ -162,24 +152,9 @@
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ]; # Load "nvidia" driver for Xorg and Wayland
   hardware.nvidia = {
-    modesetting.enable = true; # Modesetting is required.
+    modesetting.enable = true; # required.
 
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-    # of just the bare essentials.
-    powerManagement.enable = false;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-    # Only available from driver 515.43.04+
-    # Currently "beta quality", so false is currently the recommended setting.
+    # Use the NVidia open source kernel module - false for my gpu
     open = false;
 
     # Enable the Nvidia settings menu, accessible via `nvidia-settings`.

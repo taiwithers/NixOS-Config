@@ -28,12 +28,6 @@
       type = types.bool;
     };
 
-    scripts = {
-      get-package-dir = mkOption { default = true; };
-      clean = mkOption { default = true; };
-      search = mkOption { default = true; };
-    };
-
     # Reference options
     userHome = mkOption { default = "/home/${user}"; };
     configHome = mkOption { default = config.xdg.configHome; };
@@ -87,32 +81,6 @@
       which
       nixfmt
     ];
-    # ++ [if config.common.scripts.get-package-dir
-    #      then pkgs.writeShellApplication {
-    #       name = "get-package-dir";
-    #       runtimeInputs = with pkgs; [coreutils which];
-    #       text = builtins.readFile ../scripts + "/get-package-dir.sh";
-    #      }
-    #      else
-    #     ]
-    # ++ [if config.common.scripts.clean
-    #      then pkgs.writeShellApplication {
-    #       name = "clean";
-    #       runtimeInputs = with pkgs; [coreutils gnugrep gnused home-manager nix];
-    #       text = builtins.readFile ../scripts + "/clean.sh";
-    #       }
-    #      else
-    #     ]
-    # ++ [if config.common.scripts.search
-    #      then pkgs.writeShellApplication {
-
-    #       name = "search";
-    #       runtimeInputs = with pkgs; [nix-search-cli sd jq nix];
-    #       text = builtins.readFile ../scripts + "/nix-search-wrapper.sh";
-    #      }
-    #      else
-    #     ]
-    # ;
 
     home.shellAliases =
       with config.common;
@@ -127,7 +95,6 @@
         # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory}/home-manager && nix fmt .. --impure)";
-        "nixfmt" = "echo 'Defaulting to impure!' && nixfmt --impure";
         "trash" = "trashy put";
       }
       // pkgs.lib.optionalAttrs (config.common.nixos) {
