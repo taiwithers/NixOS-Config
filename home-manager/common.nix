@@ -92,7 +92,7 @@
 
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
-        "rebuild" = "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name}";
+        "rebuild" = "rm ~/.config/gtk-2.0/gtkrc; home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name}";
         # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory}/home-manager && nix fmt .. --impure)";
