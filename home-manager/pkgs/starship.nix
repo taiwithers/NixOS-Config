@@ -28,7 +28,7 @@
         "$"
         + builtins.concatStringsSep "$" [
           "status"
-          "shell"
+          # "shell"
           "battery"
           "time"
         ];
