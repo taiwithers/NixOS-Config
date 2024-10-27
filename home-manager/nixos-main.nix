@@ -29,7 +29,7 @@
       "bash"
       "bat"
       "betterdiscord"
-      # "blesh"
+      "blesh"
       "bottom"
       "cod"
       # "copyq/copyq"

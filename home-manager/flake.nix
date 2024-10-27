@@ -99,6 +99,22 @@
         # E lilac
         # F brown
         {
+          colours = with (makePaletteSet { colours = defaultTheme; }).colours; {
+              black = "#${ base00 }";
+              navy = "#${ base01 }";
+              dark-grey = "#${ base02 }";
+              grey = "#${ base03 }";
+              light-grey = "#${ base04 }";
+              white = "#${ base05 }"; # also 06, 07
+              red = "#${ base08 }";
+              peach = "#${ base09 }";
+              orange = "#${ base0A }";
+              green = "#${ base0B }";
+              teal = "#${ base0C }";
+              blue = "#${ base0D }";
+              lilac = "#${ base0E }";
+              brown = "#${ base0F }";
+            };
           palettes = makePaletteSet {
             kde = defaultTheme;
             kitty = defaultTheme;
