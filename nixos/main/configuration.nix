@@ -2,7 +2,7 @@
   config,
   pkgs,
   hostname,
-  # flake-inputs,
+  flake-inputs,
   ...
 }:
 {
@@ -12,6 +12,16 @@
     ./bootloader.nix
     ./desktopenvironments.nix
     ./programs.nix
+  ];
+
+  nixpkgs.overlays = [
+    (self: super: rec {
+      unstable = import flake-inputs.nixpkgs-unstable {
+        system = builtins.currentSystem;
+        config = config.nixpkgs.config;
+      };
+      # kdePackages = unstable.kdePackages; # breaks things
+    })
   ];
 
   # use flakes
