@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   # unfree software
   nixpkgs.config.allowUnfreePredicate =
@@ -34,11 +34,11 @@
 
     (pkgs.where-is-my-sddm-theme.override {
       themeConfig.General = {
-          backgroundFill = "#171726";
-          basicTextColor = "#878d96";
-          showSessionsByDefault = true;
-          showUsersByDefault = true;
-        };
+        backgroundFill = "#171726";
+        basicTextColor = "#878d96";
+        showSessionsByDefault = true;
+        showUsersByDefault = true;
+      };
     })
 
     kdePackages.powerdevil # display brightness?
@@ -47,7 +47,7 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-    # steam
+  # steam
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -56,7 +56,6 @@
 
   # gamemode - requests optimizations when running games
   programs.gamemode.enable = true;
-
 
   # program configurations
   #   programs.vim.enable = true;

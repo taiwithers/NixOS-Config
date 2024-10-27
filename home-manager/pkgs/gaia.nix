@@ -14,5 +14,4 @@
     })
   ];
   home.sessionVariables."STARLINK_DIR" = "${pkgs.gaia}";
-
 }

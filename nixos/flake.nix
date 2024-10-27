@@ -21,7 +21,6 @@
         main = "nixos";
         wsl = "wsl-nixos";
       };
-
     in
     {
       nixosConfigurations = builtins.mapAttrs (

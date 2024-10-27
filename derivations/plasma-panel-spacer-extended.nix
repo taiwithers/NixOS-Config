@@ -26,5 +26,4 @@ stdenv.mkDerivation rec {
   cmakeFlags = [
     (lib.cmakeFeature "Qt6_DIR" "${kdePackages.qtbase}/lib/cmake/Qt6")
   ];
-
 }

@@ -91,7 +91,7 @@
     packages = with pkgs; [ firefox ];
   };
 
-  # graphics 
+  # graphics
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ]; # Load "nvidia" driver for Xorg and Wayland
   hardware.nvidia = {
@@ -130,7 +130,6 @@
     nssmdns4 = true;
     openFirewall = true;
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

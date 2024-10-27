@@ -151,7 +151,7 @@ rec {
     };
 
     # panels = [
-    #   # main screen top centre   
+    #   # main screen top centre
     #   {
     #      alignment = "center";
     #      extraSettings = ""; # https://develop.kde.org/docs/plasma/scripting/
@@ -349,7 +349,6 @@ rec {
         };
       }
     ];
-
   };
 
   # colour scheme file

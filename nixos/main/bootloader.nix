@@ -1,6 +1,5 @@
-{...}:
+{ ... }:
 {
-	
   # boot and dual-boot options
   time.hardwareClockInLocalTime = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -17,6 +16,4 @@
   # systemd
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 16;
-
-
 }

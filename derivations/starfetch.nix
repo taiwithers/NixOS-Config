@@ -54,5 +54,4 @@ stdenv.mkDerivation rec {
   postFixup = ''
     rm -rf starfetch-src
   '';
-
 }

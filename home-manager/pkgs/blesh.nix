@@ -20,12 +20,12 @@
       bleopt keymap_vi_mode_string_nmap=$'\e[1m-- NORMAL --\e[m'
 
       # change cursor shape depending on mode
-      ble-bind -m vi_nmap --cursor 2 
+      ble-bind -m vi_nmap --cursor 2
       ble-bind -m vi_imap --cursor 5
       ble-bind -m vi_omap --cursor 4
       ble-bind -m vi_xmap --cursor 2
       ble-bind -m vi_cmap --cursor 0
-      
+
       # make CTRL+c behave as in non-vim - discarding the current line
       ble-bind -m vi_imap -f 'C-c' discard-line
       ble-bind -m vi_nmap -f 'C-c' discard-line
@@ -75,7 +75,7 @@
     # Disable exit marker like "[ble: exit]"
     # bleopt exec_exit_mark=
 
-    # Disable some other markers like "[ble: ...]" 
+    # Disable some other markers like "[ble: ...]"
     # seem to cause errors
     # bleopt edit_marker=
     # bleopt edit_marker_error=

@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   # GNOME
   # services.xserver.displayManager.gdm.enable = true;
@@ -14,7 +14,7 @@
     theme = "where_is_my_sddm_theme";
     # autoLogin.relogin = true;
   };
-	programs.kdeconnect.enable = true;
+  programs.kdeconnect.enable = true;
   services.desktopManager.plasma6.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # services.displayManager.defaultSession = "plasma";
@@ -24,5 +24,4 @@
     kwalletmanager
     okular
   ];
-
 }

@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   bdconfigpath = "${config.common.configHome}/BetterDiscord";
   plugins = {
@@ -13,7 +17,6 @@ in
     with pkgs.lib.attrsets;
     mapAttrs' (
       name: value:
-      nameValuePair ("${bdconfigpath}/plugins/${name}.plugin.js") { source = builtins.fetchurl value; }
+      nameValuePair "${bdconfigpath}/plugins/${name}.plugin.js" { source = builtins.fetchurl value; }
     ) plugins;
-
 }
