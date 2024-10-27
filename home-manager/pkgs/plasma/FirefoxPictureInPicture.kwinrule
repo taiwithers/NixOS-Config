@@ -1,0 +1,13 @@
+[Window settings for Picture-in-Picture]
+Description=Window settings for Picture-in-Picture
+above=true
+aboverule=2
+layer=above
+layerrule=2
+skippager=true
+skippagerrule=2
+skiptaskbar=true
+skiptaskbarrule=2
+title=Picture-in-Picture
+titlematch=1
+types=1
