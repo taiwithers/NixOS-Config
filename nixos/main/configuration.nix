@@ -8,24 +8,11 @@
 {
   imports = [
     ./hardware-configuration.nix
+
+    ./bootloader.nix
+    ./desktopenvironments.nix
+    ./programs.nix
   ];
-  # boot and dual-boot options
-  time.hardwareClockInLocalTime = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # grub
-  # boot.loader.grub = {
-  #     enable = false;
-  #     efiSupport = true;
-  #     devices = [ "nodev" ];
-  #     useOSProber = true;
-  #     configurationLimit = 16;
-  # };
-
-  # systemd
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 16;
-
 
   # use flakes
   nix.settings.experimental-features = [
@@ -70,32 +57,6 @@
   services.dbus.packages = [ pkgs.dconf ];
   services.xserver.enable = true;
 
-  # GNOME
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.excludePackages = [ pkgs.xterm ];
-  # environment.gnome.excludePackages = [pkgs.gnome-tour];
-  # services.gnome.core-utilities.enable = false;
-
-  # KDE
-  services.displayManager.sddm = {
-    enable = true;
-    autoNumlock = true;
-    theme = "where_is_my_sddm_theme";
-    # autoLogin.relogin = true;
-  };
-
-  programs.kdeconnect.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
-  # services.displayManager.defaultSession = "plasma";
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    elisa
-    khelpcenter
-    kwalletmanager
-    okular
-  ];
-
   # keyboard layout
   services.xserver.xkb.layout = "us";
 
@@ -103,7 +64,7 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
+    alsa.enable = true; # sound card drivers
     alsa.support32Bit = true;
     pulse.enable = true;
   };
@@ -114,40 +75,11 @@
     description = "Tai";
     extraGroups = [
       "networkmanager" # allow modifying network settings
-      "wheel"
-      "ld" # for bluetooth? maybe?
+      "wheel" # allow using sudo
+      # "ld" # for bluetooth? maybe?
     ];
     packages = with pkgs; [ firefox ];
   };
-
-  # system packages
-  environment.systemPackages = with pkgs; [
-    gnome.gnome-terminal # always have an editor and terminal!
-    git
-    bluez # bluetooth
-    # sysinfo for kde
-    clinfo
-    glxinfo
-    gpu-viewer
-    vulkan-tools
-    wayland-utils
-
-    sddm-kcm
-
-    (pkgs.where-is-my-sddm-theme.override {
-      themeConfig.General = {
-          backgroundFill = "#171726";
-          basicTextColor = "#878d96";
-          showSessionsByDefault = true;
-          showUsersByDefault = true;
-        };
-    })
-
-    kdePackages.powerdevil # display brightness?
-  ];
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # graphics 
   hardware.graphics.enable = true;
@@ -171,31 +103,6 @@
     };
   };
 
-  # unfree software
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
-      "libfprint-2-tod1-goodix" # fingerprint driver
-      "steam"
-      "steam-original"
-      "steam-run"
-      "steamcmd"
-      "steam-unwrapped"
-      "nvidia-x11"
-      "nvidia-settings"
-      "nvidia-persistenced" # no errer requested but hey
-    ];
-
-  # steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-
-  # gamemode - requests optimizations when running games
-  programs.gamemode.enable = true;
-
   # fingerprint reader
   services.fprintd = {
     enable = true;
@@ -214,10 +121,6 @@
     openFirewall = true;
   };
 
-  # program configurations
-  #   programs.vim.enable = true;
-  programs.vim.defaultEditor = true;
-  programs.dconf.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
