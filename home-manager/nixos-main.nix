@@ -145,7 +145,6 @@
       libreoffice
       kdePackages.dolphin
       kdePackages.ark # archive manager
-      kdePackages.kdeconnect-kde
       gwenview
       obsidian
       onlyoffice-desktopeditors
