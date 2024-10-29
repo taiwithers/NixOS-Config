@@ -12,7 +12,7 @@
     "bash"
     "bat"
     "bottom"
-    # "blesh"
+    "blesh"
     "cod"
     "common-git"
     "duf"
@@ -41,16 +41,9 @@
       sd
       trashy
       xdg-ninja
-    ]
-    ++ builtins.attrValues (
-      builtins.mapAttrs
-        (name: fname: pkgs.writeShellScriptBin name (builtins.readFile ../scripts/${fname}.sh))
-        {
-          get-package-dir = "get-package-dir";
-          gmv = "git-mv";
-          clean = "clean";
-        }
-    );
+      get-package-path
+      clean
+    ];
 
   programs.bash.bashrcExtra = ''
     # GAIA
@@ -75,6 +68,6 @@
   common.useXDG = true;
   common.nixos = false;
   home.shellAliases."storagespace" = "dust --no-percent-bars --depth 0 --no-colors --skip-total --full-paths /1-Data-Fast /2-Data-Medium /3-Data-Slow /home/$USER /nix";
-
+  home.shellAliases."uqwork" = "cd /2-Data-Medium/UncertainQuantity && micromamba activate packaging";
   home.stateVersion = "24.05";
 }
