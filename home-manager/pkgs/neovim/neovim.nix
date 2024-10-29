@@ -85,6 +85,8 @@ in
         toml
         typescript # ags
         javascript # ags
+        devicetree # zmk
+        kconfig
       ])
       ++ [
         treesitter-parser-vimdoc
