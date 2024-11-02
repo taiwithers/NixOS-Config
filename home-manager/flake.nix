@@ -76,58 +76,49 @@
           ];
       };
 
+      colours =
+        with builtins;
+        with flake-inputs.nix-colors.lib.conversions;
+        rec {
+          hex-hashless = {
+            black = "000000";
+            navy = "171726";
+            dark-blue = "22273d";
+            dark-grey = "525866";
+            blue-grey = "444A8F";
+            grey = "878d96";
+            light-grey = "c8c8c8";
+            ivory = "FFEFD5";
+            white = "ffffff";
+            red = "fa7883";
+            peach = "ffc387";
+            salmon = "ff9470";
+            green = "98c379";
+            cyan = "8af5ff";
+            light-blue = "6bb8ff";
+            pink = "e799ff";
+            brown = "b3684f";
+            maroon = "673136";
+            yellow = "FFE492";
+            orange = "FF893D";
+            lime = "82C247";
+            purple = "9B81FF";
+            sky = "008CFF";
+            indigo = "351774";
+            tan = "DEB887";
+          };
+          hex-hash = mapAttrs (name: value: "#${value}") hex-hashless;
+          rgb255-commasep = mapAttrs (name: value: hexToRGBString "," value) hex-hashless;
+        };
+
       app-themes =
         with (import ../scripts/theme-config.nix {
           inherit pkgs;
           inherit (flake-inputs) arc;
         });
-        let
-          defaultTheme = "base16/da-one-ocean";
-        in
-        # 0 very dark grey
-        # 1 dark blue
-        # 2 very dark grey
-        # 3 medium
-        # 4 light grey
-        # 5-7 white
-        # 8 red
-        # 9 peach
-        # A orange
-        # B green
-        # C very light blue
-        # D light blue
-        # E lilac
-        # F brown
-        {
-          colours = with (makePaletteSet { colours = defaultTheme; }).colours; {
-              black = "#${ base00 }";
-              navy = "#${ base01 }";
-              dark-grey = "#${ base02 }";
-              grey = "#${ base03 }";
-              light-grey = "#${ base04 }";
-              white = "#${ base05 }"; # also 06, 07
-              red = "#${ base08 }";
-              peach = "#${ base09 }";
-              orange = "#${ base0A }";
-              green = "#${ base0B }";
-              teal = "#${ base0C }";
-              blue = "#${ base0D }";
-              lilac = "#${ base0E }";
-              brown = "#${ base0F }";
-            };
-          palettes = makePaletteSet {
-            kde = defaultTheme;
-            kitty = defaultTheme;
-            neovim = defaultTheme;
-            superfile = defaultTheme;
-            tilix = defaultTheme;
-            tofi = defaultTheme;
-            zellij = defaultTheme;
-          };
-          filenames = makePathSet {
-            fzf = defaultTheme;
-            sublime-text = defaultTheme;
-          };
+        makePathSet rec {
+          fzf = "base16/da-one-ocean";
+          sublime-text = fzf;
         };
 
       fonts = with pkgs; [
@@ -159,6 +150,7 @@
               flake-inputs
               user
               pkgs-config
+              colours
               app-themes
               fonts
               config-name

@@ -135,7 +135,7 @@ in
     ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
   xdg.configFile."${packagesPath}/Preferences.sublime-settings".text =
     let
-      sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.filenames.sublime-text}.sublime-color-scheme";
+      sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.sublime-text}.sublime-color-scheme";
     in
     # JSON
     ''

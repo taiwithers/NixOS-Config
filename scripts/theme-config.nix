@@ -11,7 +11,7 @@ rec {
     hash = "sha256-spz4qmUaejGLB6k/RKc7k+unbNogedwdQv5yBoL3ThA=";
   };
 
-  importYaml =
+  importYamlScheme =
     let
       findStrings = [
         "palette:"
@@ -41,7 +41,11 @@ rec {
         theme
     );
 
-  makePaletteSet = themeDict: (builtins.mapAttrs (name: value: importYaml value) themeDict);
+  makeNamedPalette =
+    themeDict: conversionDict:
+    (builtins.mapAttrs (name: value: (builtins.getAttr value themeDict)) conversionDict);
+
+  makePaletteSet = themeDict: (builtins.mapAttrs (name: value: importYamlScheme value) themeDict);
 
   makePathSet = themeDict: (builtins.mapAttrs (name: value: toFileName value) themeDict);
 }

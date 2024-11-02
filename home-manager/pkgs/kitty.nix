@@ -1,13 +1,7 @@
 {
   config,
   pkgs,
-  app-themes,
-  ...
-}:
-{
-  config,
-  pkgs,
-  app-themes,
+  colours,
   ...
 }:
 {
@@ -55,7 +49,7 @@
       "kitty_mod+minus" = "change_font_size current -1.0";
     };
 
-    settings = with app-themes.palettes.kitty; rec {
+    settings = with colours.hex-hash; rec {
       # keybindings
       kitty_mod = "ctrl+shift";
       clear_all_shortcuts = "yes"; # clear defaults
@@ -81,50 +75,42 @@
       # notify_on_finish = "unfocused bell";
 
       # colours
-      background = "#${base00}";
+      background = "${navy}";
       # second_transparent_bg = background;
-      foreground = "#${base07}";
+      foreground = "${light-grey}";
       selection_background = foreground;
       selection_foreground = background;
-      url_color = "#${base04}";
-      cursor = "#${base07}";
-      active_border_color = "#${base0D}";
-      bell_border_color = "#${base08}";
-      inactive_border_color = "#${base01}";
+      url_color = "${lime}";
+      cursor = "${ivory}";
+      active_border_color = "${light-blue}";
+      bell_border_color = "${red}";
+      inactive_border_color = "${navy}";
       active_tab_background = background;
       active_tab_foreground = foreground;
-      inactive_tab_background = "#${base01}";
-      inactive_tab_foreground = "#${base04}";
-      tab_bar_background = "#${base01}";
+      inactive_tab_background = "${dark-grey}";
+      inactive_tab_foreground = "${lime}";
+      tab_bar_background = "${dark-blue}";
       wayland_titlebar_color = background;
 
       # normal
-      color0 = "#${base00}";
-      color1 = "#${base08}";
-      color2 = "#${base0B}";
-      color3 = "#${base0A}";
-      color4 = "#${base0D}";
-      color5 = "#${base0E}";
-      color6 = "#${base0C}";
-      color7 = "#${base07}";
+      color0 = "${navy}";
+      color1 = "${red}";
+      color2 = "${green}";
+      color3 = "${salmon}";
+      color4 = "${light-blue}";
+      color5 = "${purple}";
+      color6 = "${cyan}";
+      color7 = "${ivory}";
 
       # bright
-      color8 = "#${base03}";
-      color9 = "#${base09}";
-      color10 = "#${base01}";
-      color11 = "#${base02}";
-      color12 = "#${base04}";
-      color13 = "#${base07}";
-      color14 = "#${base0F}";
-      color15 = "#${base07}";
-
-      # extended base16 colors
-      color16 = "#${base09}";
-      color17 = "#${base0F}";
-      color18 = "#${base01}";
-      color19 = "#${base02}";
-      color20 = "#${base04}";
-      color21 = "#${base05}";
+      color8 = "${indigo}";
+      color9 = "${orange}";
+      color10 = "${lime}";
+      color11 = "${peach}";
+      color12 = "${light-grey}";
+      color13 = "${pink}";
+      color14 = "${sky}";
+      color15 = "${white}";
     };
   };
 

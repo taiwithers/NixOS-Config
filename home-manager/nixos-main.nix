@@ -5,6 +5,7 @@
   # user,
   # pkgs-config,
   app-themes,
+  colours,
   fonts,
   ...
 }:
@@ -23,7 +24,7 @@
       )
       flake-inputs.agenix.homeManagerModules.default
     ]
-    ++ (map (fname: import (./. + "/pkgs/${fname}.nix") { inherit config pkgs app-themes; }) [
+    ++ (map (fname: import (./. + "/pkgs/${fname}.nix") { inherit config pkgs app-themes colours; }) [
       # just noting here that these programs *are* installed
       "agenix/agenix"
       "bash"
@@ -65,6 +66,7 @@
           pkgs
           flake-inputs
           app-themes
+          colours
           ;
       })
     ]

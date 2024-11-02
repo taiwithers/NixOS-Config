@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  app-themes,
+  colours,
   ...
 }:
 {
@@ -13,7 +13,7 @@
       source ${pkgs.blesh}/share/blesh/ble.sh
     fi
   '';
-  xdg.configFile."${config.common.configHome}/blesh/init.sh".text = with app-themes.colours; ''
+  xdg.configFile."${config.common.configHome}/blesh/init.sh".text = with colours.hex-hash; ''
     # vim mode settings
     function my/vim-load-hook {
       # indicate normal just like insert
@@ -111,13 +111,13 @@
     ble-face syntax_command='fg=${green}'
     ble-face syntax_quoted= # quotation content
     ble-face syntax_quotation='copy:syntax_quoted'
-    ble-face syntax_escape='fg=${lilac}'
-    ble-face syntax_expr='fg=${blue}' # arithmetic expressions
+    ble-face syntax_escape='fg=${pink}'
+    ble-face syntax_expr='fg=${light-blue}' # arithmetic expressions
     ble-face syntax_error='fg=${white},bg=${red}'
-    ble-face syntax_varname='fg=${blue}'
+    ble-face syntax_varname='fg=${light-blue}'
     ble-face syntax_delimiter='bold' # ; & | etc
     ble-face syntax_param_expansion=
-    ble-face syntax_function_name='fg=${lilac}'
+    ble-face syntax_function_name='fg=${pink}'
     ble-face syntax_comment='fg=${grey}'
     ble-face syntax_glob=
     ble-face syntax_brace=
@@ -131,13 +131,13 @@
     ble-face command_file='fg=${white}'
     ble-face command_keyword='fg=${brown}'
     ble-face command_jobs=
-    ble-face command_directory='fg=${blue}'
+    ble-face command_directory='fg=${light-blue}'
     ble-face argument_option='fg=${peach}'
     ble-face argument_error='fg=${red}'
     ble-face filename_directory='copy:command_directory'
     ble-face filename_directory_sticky='copy:command_directory'
-    ble-face filename_link='fg=${teal}'
-    ble-face filename_orphan='fg=${teal},bg=${red}'
+    ble-face filename_link='fg=${cyan}'
+    ble-face filename_orphan='fg=${cyan},bg=${red}'
     ble-face filename_setuid=
     ble-face filename_setgid=
     ble-face filename_executable='fg=${green}'
@@ -150,7 +150,7 @@
     ble-face filename_character=
     ble-face filename_block=
     ble-face filename_warning=
-    ble-face filename_url='fg=${teal},underline'
+    ble-face filename_url='fg=${cyan},underline'
     ble-face filename_ls_colors=
     ble-face varname_unset='fg=${red}'
     ble-face varname_export='fg=${peach},bold' # enviroment variables
