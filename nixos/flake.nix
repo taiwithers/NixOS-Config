@@ -6,6 +6,8 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
+
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
