@@ -1,0 +1,8 @@
+/*highlight custom files in stylesheets list*/
+label[value="userChrome.css"],
+label[value="userContent.css"],
+{
+  background: #f00 !important;
+  color: #fff !important;
+  padding-block: 0.5em !important;
+}
