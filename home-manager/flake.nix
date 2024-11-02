@@ -163,6 +163,5 @@
         }
       ) configurations;
 
-      formatter.${builtins.currentSystem} = nixpkgs.legacyPackages.${builtins.currentSystem}.alejandra;
     };
 }

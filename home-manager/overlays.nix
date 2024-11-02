@@ -58,6 +58,10 @@
     };
     codium = super.vscodium-fhs;
     color-oracle = customDerivation "color-oracle";
+    discord = super.discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    };
     ds9 = customDerivation "ds9";
     fzf = unstable.fzf;
     gaia = customDerivation "gaia";

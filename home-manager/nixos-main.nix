@@ -29,7 +29,7 @@
       "agenix/agenix"
       "bash"
       "bat"
-      "betterdiscord"
+      # "betterdiscord"
       "blesh"
       "bottom"
       "cod"
@@ -48,7 +48,7 @@
       "neovim/neovim"
       "python/python"
       "ripgrep"
-      "tofi"
+      # "tofi"
       "starship"
       "sublime-text/sublime-text"
       # "tilix"
@@ -95,7 +95,6 @@
       age # encryption
       brightnessctl
       cbonsai
-      #       chafa # cli images
       cloc
       curl
       dconf
@@ -109,6 +108,7 @@
       kalker
       latex
       lavat
+      libqalculate # provides qalc cmd
       lua
       mpv
       onefetch
@@ -116,8 +116,6 @@
       pandoc
       parallel
       pdf2svg # for eps file preview
-      # unstable.pistol # integrate into fzf preview for archive viewing, otherwise unnecesary
-      pomodoro
       pond
       powertop
       rename
@@ -127,8 +125,8 @@
       starfetch
       trashy
       unzip
-      # vim
       wget
+      unar
       xdg-ninja
       wl-clipboard
       zbar
@@ -163,7 +161,7 @@
       zotero
       caffeine-ng
       sticky
-      vesktop
+      signal-desktop
 
       posy-cursors
       kdePackages.bluez-qt
