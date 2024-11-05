@@ -1,0 +1,36 @@
+name: ism
+channels:
+  - defaults
+  - anaconda
+  - astropy
+  - conda-forge
+dependencies:
+  - python=3.11
+  - astropy
+  - cmcrameri
+  - cycler
+  - extension-helpers
+  - ipykernel
+  - ipython
+  - ipywidgets
+  - isort
+  - jupyter
+  - jupyterlab
+  - lmfit
+  - lsprotocol # for isort
+  - matplotlib
+  - numpy
+  - pandas
+  - pillow=9.5
+  - pip
+  - plotly
+  - pygls # for isort
+  - requests
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - setuptools
+  - tikzplotlib
+  - uncertainties
+  - wheel
+  - yaml

@@ -28,12 +28,18 @@
         targetPkgs = fhs.targetPkgs;
         profile = fhs.profile + "\n micromamba activate ta";
       };
+      ism = {
+        name = fhs.name;
+        targetPkgs = fhs.targetPkgs;
+        profile = fhs.profile + "\n micromamba activate ism";
+      };
     in
     {
       devShells.${system} = {
         default = (pkgs.buildFHSEnv fhs).env;
         qstar = (pkgs.buildFHSEnv qstar).env;
         ta = (pkgs.buildFHSEnv ta).env;
+        ism = (pkgs.buildFHSEnv ism).env;
       };
     };
 }
