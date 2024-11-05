@@ -6,3 +6,8 @@ label[value="userContent.css"],
   color: #fff !important;
   padding-block: 0.5em !important;
 }
+
+/* Don't display the mode switcher on the debugger */
+.chrome-debug-toolbar {
+  display:none !important;
+}

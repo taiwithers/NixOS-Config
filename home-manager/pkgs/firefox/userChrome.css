@@ -1,3 +1,13 @@
+/*
+* https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+* https://github.com/datguypiko/Firefox-Mod-Blur/tree/master/EXTRA%20MODS/Compact%20extensions%20menu/Style%202
+* https://github.com/datguypiko/Firefox-Mod-Blur/tree/master/EXTRA%20MODS/Icon%20and%20Button%20Mods/uBlock%20icon%20change
+* https://github.com/datguypiko/Firefox-Mod-Blur/blob/master/EXTRA%20THEMES/MicaForEveryone/acrylic_micaforeveryone.css
+*/
+
+/* Don't dim titlebar when inactive */
+#TabsToolbar:-moz-window-inactive { opacity: 1 !important; }
+
 /* make tab scroll arrows take up less space */
 #scrollbutton-up,
 #scrollbutton-down {

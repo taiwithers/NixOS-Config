@@ -103,6 +103,7 @@
           "browser.safebrowsing.downloads.remote.enabled" = false; # betterfox
           "browser.search.separatePrivateDefault.ui.enabled" = true;
           "browser.sessionhistory.max_total_viewers" = 5; # max pages stored in memory to improve back/forward
+          "browser.sessionstore.restore_pinned_tabs_on_demand" = true; # instead of always
           "browser.shell.checkDefaultBrowser" = false;
           "browser.startup.page" = 3; # always restore session
           "browser.tabs.crashReporting.sendReport" = false; # betterfox
@@ -111,7 +112,7 @@
           "browser.urlbar.quicksuggest.enabled" = false;
           "browser.urlbar.suggest.calculator" = true;
           "browser.urlbar.trending.featureGate" = false; # betterfox
-          "browser.urlbar.trimHttps" = true; 
+          "browser.urlbar.trimHttps" = true;
           "browser.urlbar.unitConversion.enabled" = true;
           "browser.urlbar.untrimOnUserInteraction.featureGate" = true;
           "browser.urlbar.update2.engineAliasRefresh" = true;
@@ -144,6 +145,7 @@
           "layout.word_select.eat_space_to_next_word" = false; # betterfox
           "media.cache_readahead_limit" = 7200; # betterfox, media cache
           "media.cache_resume_threshold" = 3600; # betterfox, media cache
+          "media.hardware-video-decoding.enabled" = true; # use gpu for video
           "media.memory_cache_max_size" = 65536; # betterfox, media cache
           "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = true;
           "network.auth.subresource-http-auth-allow" = 1;
