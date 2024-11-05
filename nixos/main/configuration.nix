@@ -28,6 +28,7 @@
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
+    "no-url-literals" # quote urls
   ];
 
   # keep system up to date
