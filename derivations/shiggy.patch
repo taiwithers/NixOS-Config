@@ -1,0 +1,11 @@
+--- a/static/views/splash.html
++++ b/static/views/splash.html
+@@ -34,8 +34,2 @@
+     <div class="wrapper">
+-        <img
+-            draggable="false"
+-            src="../shiggy.gif"
+-            alt="shiggy"
+-            role="presentation"
+-        />
+         <p>Loading Vesktop...</p>
