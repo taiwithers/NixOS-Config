@@ -24,41 +24,54 @@
       )
       flake-inputs.agenix.homeManagerModules.default
     ]
-    ++ (map (fname: import (./. + "/pkgs/${fname}.nix") { inherit config pkgs app-themes colours; }) [
-      # just noting here that these programs *are* installed
-      "agenix/agenix"
-      "bash"
-      "bat"
-      # "betterdiscord"
-      "blesh"
-      "bottom"
-      "cod"
-      # "copyq/copyq"
-      "duf"
-      "dust"
-      "eza"
-      "firefox/firefox"
-      "fzf"
-      "gaia"
-      "git" # also installed system-wide
-      # "gnome/gnome"
-      # "gpg"
-      "kitty"
-      "lazygit"
-      "neovim/neovim"
-      "python/python"
-      "ripgrep"
-      # "tofi"
-      "starship"
-      "sublime-text/sublime-text"
-      # "tilix"
-      "vscodium/vscodium"
-      "xdg"
-      # "yazi"
-      # "zellij"
-      "zoxide"
-      # "zsh"
-    ])
+    ++ (map
+      (
+        fname:
+        import (./. + "/pkgs/${fname}.nix") {
+          inherit
+            config
+            pkgs
+            app-themes
+            colours
+            ;
+        }
+      )
+      [
+        # just noting here that these programs *are* installed
+        "agenix/agenix"
+        "bash"
+        "bat"
+        # "betterdiscord"
+        "blesh"
+        "bottom"
+        "cod"
+        # "copyq/copyq"
+        "duf"
+        "dust"
+        "eza"
+        "firefox/firefox"
+        "fzf"
+        "gaia"
+        "git" # also installed system-wide
+        # "gnome/gnome"
+        # "gpg"
+        "kitty"
+        "lazygit"
+        "neovim/neovim"
+        "python/python"
+        "ripgrep"
+        # "tofi"
+        "starship"
+        "sublime-text/sublime-text"
+        # "tilix"
+        "vscodium/vscodium"
+        "xdg"
+        # "yazi"
+        # "zellij"
+        "zoxide"
+        # "zsh"
+      ]
+    )
     ++ [
       (import ./pkgs/plasma/plasma.nix {
         inherit

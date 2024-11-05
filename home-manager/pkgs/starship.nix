@@ -84,7 +84,7 @@
         format = ''\[[$symbol $environment]($style)\] '';
         ignore_base = false;
         symbol = "";
-      };  
+      };
       directory = {
         disabled = false;
         format = "[$path ]($style)[$read_only]($read_only_style)";
