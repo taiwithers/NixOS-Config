@@ -61,4 +61,6 @@
   #   programs.vim.enable = true;
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
+
+  xdg.terminal-exec.enable = true;
 }
