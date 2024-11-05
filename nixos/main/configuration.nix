@@ -123,7 +123,10 @@
   };
 
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.brlaser pkgs.hplip ];
+  services.printing.drivers = [
+    pkgs.brlaser
+    pkgs.hplip
+  ];
   # allow printing without downloading drivers, https://nixos.wiki/wiki/Printing
   services.avahi = {
     enable = true;

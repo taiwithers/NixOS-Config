@@ -27,23 +27,21 @@
     "superfile"
     "zoxide"
   ];
-  home.packages =
-    with pkgs;
-    [
-      fastfetch
-      fd
-      latex
-      kitty # use icat on remote
-      kalker
-      nix-output-monitor
-      nixfmt
-      ripgrep
-      sd
-      trashy
-      xdg-ninja
-      get-package-path
-      clean
-    ];
+  home.packages = with pkgs; [
+    fastfetch
+    fd
+    latex
+    kitty # use icat on remote
+    kalker
+    nix-output-monitor
+    nixfmt
+    ripgrep
+    sd
+    trashy
+    xdg-ninja
+    get-package-path
+    clean
+  ];
 
   programs.bash.bashrcExtra = ''
     # GAIA
