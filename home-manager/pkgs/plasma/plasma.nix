@@ -28,7 +28,7 @@ let
       weight = "regular";
     };
   };
-  
+
   gtk-theme = {
     name = "Breeze-Dark";
     package = pkgs.kdePackages.breeze;
@@ -122,7 +122,7 @@ rec {
         wallpaper-folder = "images_dark"; # or "images"
       in
       "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
-    configFile.kdeglobals.General.AccentColor = colours.rgb255-commasep.pink; # "146,110,228";
+    configFile.kdeglobals.General.AccentColor = colours.rgb255-commasep.blue-grey; # "146,110,228";
     workspace.theme = "ActiveAccentDark"; # plasma style / desktop theme
     workspace.windowDecorations = klassy-names.window-decorations;
     workspace.iconTheme = klassy-names.icon-theme;
@@ -354,9 +354,10 @@ rec {
   };
 
   # colour scheme file
+  # NOTE: setting colors:view:backgroundAlternate to the same as backgroundNormal gets ride of dolphin stripes
   xdg.dataFile."color-schemes/custom.colors".text = with colours.rgb255-commasep; ''
     [ColorEffects:Disabled]
-    Color=${navy}
+    Color=${dark-grey}
     ColorAmount=0
     ColorEffect=0
     ContrastAmount=0.55
@@ -376,133 +377,133 @@ rec {
     IntensityEffect=0
 
     [Colors:Button]
-    BackgroundAlternate=${navy}
+    BackgroundAlternate=${dark-blue}
     BackgroundNormal=${navy}
     DecorationFocus=${cyan}
     DecorationHover=${cyan}
-    ForegroundActive=${cyan}
-    ForegroundInactive=${cyan}
+    ForegroundActive=${ivory}
+    ForegroundInactive=${grey}
     ForegroundLink=${light-blue}
     ForegroundNegative=${red}
     ForegroundNeutral=${peach}
-    ForegroundNormal=${salmon}
+    ForegroundNormal=${ivory}
     ForegroundPositive=${green}
-    ForegroundVisited=${pink}
+    ForegroundVisited=${purple}
 
     [Colors:Complementary]
-    BackgroundAlternate=${navy}
-    BackgroundNormal=${dark-grey}
+    BackgroundAlternate=${dark-blue}
+    BackgroundNormal=${navy}
     DecorationFocus=${cyan}
     DecorationHover=${cyan}
-    ForegroundActive=${cyan}
-    ForegroundInactive=${cyan}
+    ForegroundActive=${ivory}
+    ForegroundInactive=${grey}
     ForegroundLink=${light-blue}
     ForegroundNegative=${red}
     ForegroundNeutral=${peach}
-    ForegroundNormal=${salmon}
+    ForegroundNormal=${ivory}
     ForegroundPositive=${green}
-    ForegroundVisited=${pink}
+    ForegroundVisited=${purple}
 
     [Colors:Header]
-    BackgroundAlternate=${dark-grey}
+    BackgroundAlternate=${dark-blue}
     BackgroundNormal=${navy}
     DecorationFocus=${cyan}
     DecorationHover=${cyan}
-    ForegroundActive=${cyan}
-    ForegroundInactive=${cyan}
+    ForegroundActive=${ivory}
+    ForegroundInactive=${grey}
     ForegroundLink=${light-blue}
     ForegroundNegative=${red}
     ForegroundNeutral=${peach}
-    ForegroundNormal=${salmon}
+    ForegroundNormal=${ivory}
     ForegroundPositive=${green}
-    ForegroundVisited=${pink}
+    ForegroundVisited=${purple}
 
     [Colors:Header][Inactive]
-    BackgroundAlternate=${navy}
-    BackgroundNormal=${dark-grey}
-    DecorationFocus=${cyan}
-    DecorationHover=${cyan}
-    ForegroundActive=${cyan}
-    ForegroundInactive=${cyan}
-    ForegroundLink=${light-blue}
-    ForegroundNegative=${red}
-    ForegroundNeutral=${peach}
-    ForegroundNormal=${salmon}
-    ForegroundPositive=${green}
-    ForegroundVisited=${pink}
-
-    [Colors:Selection]
-    BackgroundAlternate=${navy}
-    BackgroundNormal=${light-blue}
-    DecorationFocus=${cyan}
-    DecorationHover=${cyan}
-    ForegroundActive=${salmon}
-    ForegroundInactive=${cyan}
-    ForegroundLink=${red}
-    ForegroundNegative=${red}
-    ForegroundNeutral=${maroon}
-    ForegroundNormal=${salmon}
-    ForegroundPositive=${white}
-    ForegroundVisited=${navy}
-
-    [Colors:Tooltip]
-    BackgroundAlternate=${dark-grey}
+    BackgroundAlternate=${dark-blue}
     BackgroundNormal=${navy}
     DecorationFocus=${cyan}
     DecorationHover=${cyan}
-    ForegroundActive=${cyan}
-    ForegroundInactive=${cyan}
+    ForegroundActive=${ivory}
+    ForegroundInactive=${grey}
     ForegroundLink=${light-blue}
     ForegroundNegative=${red}
     ForegroundNeutral=${peach}
-    ForegroundNormal=${salmon}
+    ForegroundNormal=${ivory}
     ForegroundPositive=${green}
-    ForegroundVisited=${pink}
+    ForegroundVisited=${purple}
+
+    [Colors:Selection]
+    BackgroundAlternate=${blue-grey}
+    BackgroundNormal=${light-grey}
+    DecorationFocus=${cyan}
+    DecorationHover=${cyan}
+    ForegroundActive=${navy}
+    ForegroundInactive=${dark-grey}
+    ForegroundLink=${light-blue}
+    ForegroundNegative=${red}
+    ForegroundNeutral=${peach}
+    ForegroundNormal=${ivory}
+    ForegroundPositive=${green}
+    ForegroundVisited=${purple}
+
+    [Colors:Tooltip]
+    BackgroundAlternate=${dark-blue}
+    BackgroundNormal=${navy}
+    DecorationFocus=${cyan}
+    DecorationHover=${cyan}
+    ForegroundActive=${ivory}
+    ForegroundInactive=${grey}
+    ForegroundLink=${light-blue}
+    ForegroundNegative=${red}
+    ForegroundNeutral=${peach}
+    ForegroundNormal=${ivory}
+    ForegroundPositive=${green}
+    ForegroundVisited=${purple}
 
     [Colors:View]
     BackgroundAlternate=${navy}
-    BackgroundNormal=${dark-grey}
+    BackgroundNormal=${navy}
     DecorationFocus=${cyan}
     DecorationHover=${cyan}
-    ForegroundActive=${cyan}
-    ForegroundInactive=${cyan}
+    ForegroundActive=${ivory}
+    ForegroundInactive=${grey}
     ForegroundLink=${light-blue}
     ForegroundNegative=${red}
     ForegroundNeutral=${peach}
-    ForegroundNormal=${salmon}
+    ForegroundNormal=${ivory}
     ForegroundPositive=${green}
-    ForegroundVisited=${pink}
+    ForegroundVisited=${purple}
 
     [Colors:Window]
-    BackgroundAlternate=${navy}
-    BackgroundNormal=${dark-grey}
+    BackgroundAlternate=${dark-blue}
+    BackgroundNormal=${navy}
     DecorationFocus=${cyan}
     DecorationHover=${cyan}
-    ForegroundActive=${cyan}
-    ForegroundInactive=${cyan}
+    ForegroundActive=${ivory}
+    ForegroundInactive=${grey}
     ForegroundLink=${light-blue}
     ForegroundNegative=${red}
     ForegroundNeutral=${peach}
-    ForegroundNormal=${salmon}
+    ForegroundNormal=${ivory}
     ForegroundPositive=${green}
-    ForegroundVisited=${pink}
+    ForegroundVisited=${purple}
 
     [General]
     ColorScheme=Custom
     Name=Custom
     TitlebarIsAccentColored=false
-    shadeSortColumn=true
+    shadeSortColumn=false
 
     [KDE]
     contrast=4
 
     [WM]
-    activeBackground=${dark-grey}
-    activeBlend=${salmon}
-    activeForeground=${white}
-    inactiveBackground=${dark-grey}
-    inactiveBlend=${salmon}
-    inactiveForeground=${white}
+    activeBackground=${navy},150
+    activeBlend=${blue-grey}
+    activeForeground=${ivory}
+    inactiveBackground=${dark-grey},150
+    inactiveBlend=${blue-grey}
+    inactiveForeground=${ivory}
   '';
 
   # xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ./panels.txt;
