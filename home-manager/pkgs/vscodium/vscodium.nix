@@ -2,6 +2,7 @@
 {
   config,
   pkgs,
+  colours,
   ...
 }:
 let
@@ -80,7 +81,8 @@ in
     #   ];
 
     keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
-    userSettings = builtins.fromJSON (builtins.readFile ./vscodium-settings.json);
+    # userSettings = builtins.fromJSON (builtins.readFile ./vscodium-settings.json);
+    userSettings = import ./settings.nix { inherit colours; };
   };
 
   # workaround for remote-ssh wanting writable ssh config...
