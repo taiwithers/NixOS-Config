@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchurl,
   substituteAll,
   makeBinaryWrapper,
   makeWrapper,
@@ -22,7 +23,7 @@
   # letting vesktop manage it's own version
   withSystemVencord ? false,
 }:
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation (finalAttrs: rec {
   pname = "vesktop";
   version = "1.5.3";
 
@@ -32,6 +33,13 @@ stdenv.mkDerivation (finalAttrs: {
     rev = "v${finalAttrs.version}";
     hash = "sha256-HlT7ddlrMHG1qOCqdaYjuWhJD+5FF1Nkv2sfXLWd07o=";
   };
+
+  srcs = [
+    src
+  ./discord.tar.gz
+  ];
+
+  sourceRoot = "source";
 
   pnpmDeps = pnpm_9.fetchDeps {
     inherit (finalAttrs)
@@ -69,17 +77,26 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   patches =
-    [ ./disable_update_checking.patch ./shiggy.patch]
+    [ 
+      (fetchurl {
+        url = "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/heads/nixos-24.05/pkgs/by-name/ve/vesktop/disable_update_checking.patch"; 
+        hash = "sha256-wdOc9xG71CRvE2NtsXhlynBdyuAdyMK+kNxG+1ghldo=";}) 
+      ./shiggy.patch
+      ./icon.patch
+    ]
     ++ lib.optional withSystemVencord (substituteAll {
       inherit vencord;
       src = ./use_system_vencord.patch;
     });
 
+  postInstall = '' 
+    cp ../discord.png $out/opt/Vesktop/resources/
+    cp -r static/views $out/opt/Vesktop/resources/
+  '';
 
   env = {
     ELECTRON_SKIP_BINARY_DOWNLOAD = 1;
   };
-
 
   # disable code signing on macos
   # https://github.com/electron-userland/electron-builder/blob/77f977435c99247d5db395895618b150f5006e8f/docs/code-signing.md#how-to-disable-code-signing-during-the-build-process-on-macos
@@ -145,12 +162,12 @@ stdenv.mkDerivation (finalAttrs: {
       makeWrapper $out/Applications/Vesktop.app/Contents/MacOS/Vesktop $out/bin/vesktop
     '';
 
-  desktopItems = lib.optional stdenv.isLinux (makeDesktopItem {
-    name = "Discord2";
-    desktopName = "Discord2";
+  desktopItems = lib.optional stdenv.isLinux (makeDesktopItem rec {
+    name = "Discord";
+    desktopName = name;
     exec = "vesktop %U";
     icon = "vesktop";
-    startupWMClass = "Discord2";
+    startupWMClass = name;
     genericName = "Internet Messenger";
     keywords = [
       "discord"
