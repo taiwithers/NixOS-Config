@@ -173,6 +173,14 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+
+    # custom functions for ~/.config/direnv/direnvrc
+    stdlib = ''
+      layout_micromamba() {
+        eval "$(micromamba shell hook --shell posix --root-prefix $MAMBA_ROOT_PREFIX)"
+        micromamba activate $1
+      }
+    '';
   };
 
 
