@@ -245,6 +245,7 @@
       super.vimPlugins
       // {
         hmts-nvim = unstable.vimPlugins.hmts-nvim;
+        which-key-nvim = unstable.vimPlugins.which-key-nvim;
       }
       // builtins.mapAttrs (name: value: (githubVimPlugin value)) {
         auto-hlsearch-nvim = {
@@ -270,12 +271,6 @@
           repo = "helpview.nvim";
           rev = "857aec1";
           hash = "sha256-x5ZV/1LKrxhQWsxsJwrIfD7BogKO7H2GKzDt3PABEh8=";
-        };
-        hmts-nvim = {
-          author = "calops";
-          repo = "hmts.nvim";
-          rev = "v1.2.4";
-          hash = "sha256-8FJlLw5LApQs7S8xEh2UE9wdYCAweZTbvgozCGPfQJc=";
         };
         modes-nvim = {
           author = "mvllow";
@@ -312,12 +307,6 @@
           repo = "tree-sitter-vimdoc";
           rev = "2249c44";
           hash = "sha256-v+XSWGm2Wdn9/rxNFMqXYACkGn6AvxZdxkClLuKnWGU=";
-        };
-        which-key-nvim = {
-          author = "folke";
-          repo = "which-key.nvim";
-          rev = "bfec3d6";
-          hash = "sha256-FY0KM0F2keMCqB5QhwfGS4w2wQOOeCXgZEa3U7Q1Bek=";
         };
       };
     zotero = unstable.zotero-beta;
