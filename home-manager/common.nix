@@ -56,7 +56,7 @@
       XDG_DATA_HOME = dataHome;
       XDG_CACHE_HOME = cacheHome;
 
-      PAGER = "/run/current-system/sw/bin/less --quit-if-one-screen --line-numbers --squeeze-blank-lines --use-color";
+      LESS = "--quit-if-one-screen --line-numbers --squeeze-blank-lines --use-color --RAW-CONTROL-CHARS";
 
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
       CUDA_CACHE_PATH = "${cacheHome}/nv";
@@ -79,7 +79,6 @@
     home.packages = with pkgs; [
       coreutils
       which
-      busybox
       nixfmt
     ];
 
