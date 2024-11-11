@@ -2,8 +2,11 @@
 Description=Window settings for Picture-in-Picture
 above=true
 aboverule=2
+acceptfocusrule=2
 layer=above
 layerrule=2
+position=860,580
+positionrule=3
 skippager=true
 skippagerrule=2
 skiptaskbar=true
