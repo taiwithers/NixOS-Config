@@ -178,6 +178,16 @@
         hash = "sha256-Ull9iNi8NxB12YwEThWE0P9k1xOV2LZnebuRrVH/zwI="; # ${super.nix-prefetch} fetchurl --quiet --url '${url}' --option extra-experimental-features flakes
       };
     });
+    rofi-wayland-unwrapped = super.rofi-wayland-unwrapped.overrideAttrs (oldAttrs: rec {
+      version = "b04bedc";
+      src = super.fetchFromGitHub {
+        owner = "lbonn";
+        repo = "rofi";
+        rev = version;
+        fetchSubmodules = true;
+        sha256 = "sha256-epxzpaULavF/fxQSMo7fhCL/y8sgLeQWtpEE3QHX+LQ="; 
+      };
+    }); 
     search = customScript rec {
       name = "search";
       runtimeInputs = with pkgs; [
