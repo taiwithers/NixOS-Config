@@ -42,6 +42,7 @@ in
     PYTHONSTARTUP = "${config.xdg.configHome}/python/pythonrc";
     IPYTHONDIR = "${config.xdg.configHome}/ipython";
     JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
+    MAMBA_ROOT_PREFIX = "${config.xdg.stateHome}/micromamba";
   };
 
   xdg.configFile."${pyConfigDir}/shells/shellrc.sh" = {
