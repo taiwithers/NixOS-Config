@@ -9,7 +9,7 @@
   imports = [
     ./hardware-configuration.nix
 
-    ./bootloader.nix
+    (import ./bootloader.nix {inherit pkgs;})
     ./desktopenvironments.nix
     ./programs.nix
   ];

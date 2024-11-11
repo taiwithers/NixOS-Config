@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   # boot and dual-boot options
   time.hardwareClockInLocalTime = true;
@@ -12,6 +12,13 @@
       devices = [ "nodev" ];
       useOSProber = true;
       configurationLimit = 16;
+
+      font = ''${pkgs.nerdfonts.override {fonts=["SpaceMono"];}}/share/fonts/truetype/NerdFonts/SpaceMonoNerdFont-Regular.ttf'';
+      fontSize = 24;
+
+      splashImage = ./background.png;
+      backgroundColor = "#171726";
+      splashMode = "normal";
   };
 
   # systemd
