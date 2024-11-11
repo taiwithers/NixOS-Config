@@ -15,12 +15,11 @@
   ];
 
   nixpkgs.overlays = [
-    (self: super: rec {
+    (self: super: {
       unstable = import flake-inputs.nixpkgs-unstable {
         system = builtins.currentSystem;
         config = config.nixpkgs.config;
       };
-      # kdePackages = unstable.kdePackages; # breaks things
     })
   ];
 
@@ -58,15 +57,6 @@
   # networking
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
-  networking.firewall = rec {
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-    ];
-    allowedUDPPortRanges = allowedTCPPortRanges;
-  };
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
   hardware.bluetooth.enable = true;
@@ -96,7 +86,6 @@
     extraGroups = [
       "networkmanager" # allow modifying network settings
       "wheel" # allow using sudo
-      # "ld" # for bluetooth? maybe?
     ];
     packages = with pkgs; [ firefox ];
   };
@@ -131,6 +120,11 @@
       driver = pkgs.libfprint-2-tod1-goodix;
     };
   };
+
+  powerManagement.enable = true;
+
+  services.hardware.bolt.enable = true; # handle thunderbolt devices
+  
 
   services.printing.enable = true;
   services.printing.drivers = [
