@@ -164,7 +164,6 @@
       teams-for-linux
       zoom-us
       zotero
-      # caffeine-ng
       sticky
       signal-desktop
       vesktop
@@ -176,6 +175,8 @@
     nix-direnv.enable = true;
   };
 
+
+  services.caffeine.enable = true;
 
   home.shellAliases."TA" = "cd ${config.home.homeDirectory}/OneDrive_Staff && pyactivate ta && codium .";
 
