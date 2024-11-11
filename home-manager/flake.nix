@@ -124,6 +124,8 @@
       fonts = with pkgs; [
         cm_unicode
         intel-one-mono
+        open-sans
+        dejavu_fonts
         (nerdfonts.override {
           fonts = [
             # "IntoneMono" # not available in nixpkgs nerdfont
