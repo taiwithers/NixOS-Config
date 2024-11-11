@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    tetrio-desktop
+    # tetrio-desktop
     mgba
     protonup
     rare

@@ -37,7 +37,6 @@
         }
       )
       [
-        # just noting here that these programs *are* installed
         "agenix/agenix"
         "bash"
         "bat"
@@ -60,6 +59,7 @@
         "neovim/neovim"
         "python/python"
         "ripgrep"
+        "rofi"
         # "tofi"
         "starship"
         "sublime-text/sublime-text"
@@ -89,14 +89,14 @@
     with pkgs;
     [
       # nix programs
-      appimage-run
-      dconf2nix
+      # appimage-run
+      # dconf2nix
       deadnix
-      nix-diff
+      # nix-diff
       nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
-      nix-prefetch-scripts
+      # nix-prefetch-scripts
       nix-tree
-      nurl
+      # nurl
       nixfmt
       clean
       get-package-path
@@ -106,35 +106,29 @@
 
       # cli programs
       age # encryption
-      brightnessctl
       cbonsai
       cloc
       curl
       dconf
-      dell-command-configure
+      # dell-command-configure
       fastfetch
       fd
-      file
-      fontconfig
-      gfortran
+      # file
+      # fontconfig
       jq
-      kalker
       latex
       lavat
       libqalculate # provides qalc cmd
       lua
-      mpv
       onefetch
-      openssh
       pandoc
       parallel
       pdf2svg # for eps file preview
       pond
-      powertop
       rename
-      ripgrep-all
+      # ripgrep-all
       sd
-      speedtest-rs
+      # speedtest-rs
       starfetch
       trashy
       unzip
@@ -142,44 +136,38 @@
       unar
       xdg-ninja
       wl-clipboard
-      zbar
+      # zbar
       zip
       parted
       brightness-control
+      pdftk
 
       # gui programs
       color-oracle
-      discord
       ds9
-      filezilla
+      # filezilla
       github-desktop
       gparted
       keepassxc
-      libreoffice
+      # libreoffice
       kdePackages.dolphin
       kdePackages.ark # archive manager
-      gwenview
+      # gwenview
       obsidian
       onlyoffice-desktopeditors
       onedrive
       onedrivegui
       pinta
-      #       realvnc-vnc-viewer
-      # slack-dark
+      imv
+      # realvnc-vnc-viewer
       spotify
       teams-for-linux
-      # texpresso
-      # zathura
       zoom-us
       zotero
-      caffeine-ng
+      # caffeine-ng
       sticky
       signal-desktop
-
-      posy-cursors
-      kdePackages.bluez-qt
-
-      # inkscape
+      vesktop
     ]
     ++ fonts;
 
