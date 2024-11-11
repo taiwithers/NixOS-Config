@@ -30,7 +30,8 @@
     vulkan-tools
     wayland-utils
 
-    sddm-kcm
+    kdePackages.sddm-kcm # is in colors and themes
+    # sddm-kcm # uses version 5.27 which installs qt 5
 
     (pkgs.where-is-my-sddm-theme.override {
       themeConfig.General = {
@@ -41,7 +42,6 @@
       };
     })
 
-    kdePackages.powerdevil # display brightness?
   ];
 
   # Install firefox.
@@ -52,6 +52,8 @@
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    extraCompatPackages = [pkgs.proton-ge-bin];
+    extest.enable = true; # allow steam input on wayland?
   };
 
   # gamemode - requests optimizations when running games
@@ -63,4 +65,6 @@
   programs.dconf.enable = true;
 
   xdg.terminal-exec.enable = true;
+
+  programs.kdeconnect.enable = true;
 }
