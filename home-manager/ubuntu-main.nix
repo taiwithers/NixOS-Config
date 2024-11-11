@@ -5,10 +5,11 @@
   user,
   pkgs-config,
   app-themes,
+  colours,
   ...
 }:
 {
-  imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes; }) [
+  imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes colours; }) [
     "bash"
     "bat"
     "bottom"
@@ -24,7 +25,7 @@
     "neovim/neovim"
     "python/python"
     "starship"
-    "superfile"
+    # "superfile"
     "zoxide"
   ];
   home.packages = with pkgs; [
