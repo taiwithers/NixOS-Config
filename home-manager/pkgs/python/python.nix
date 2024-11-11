@@ -8,6 +8,14 @@ let
 in
 {
   home.packages = [ pkgs.micromamba ];
+
+  # custom functions for ~/.config/direnv/direnvrc
+  programs.direnv.stdlib = ''
+    layout_micromamba() {
+      eval "$(micromamba shell hook --shell posix --root-prefix $MAMBA_ROOT_PREFIX)"
+      micromamba activate $1
+    }
+  '';
   programs.bash.bashrcExtra =
     if !config.common.nixos then
       ''
