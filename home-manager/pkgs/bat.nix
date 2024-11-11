@@ -18,8 +18,15 @@
     };
   };
   home.shellAliases = {
-    "man" = "batman --no-hyphenation --no-justification";
+    "man" = "bman";
     "cat" = "bat --plain";
     "bsession" = "bat ${config.common.hm-session-vars}";
   };
+
+  programs.bash.bashrcExtra = ''
+    # workaround for most bat themes not providing syntax highlighting
+    bman() {
+        ( BAT_THEME="Monokai Extended" batman "$@" )
+      }
+  '';
 }
