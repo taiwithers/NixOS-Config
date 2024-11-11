@@ -171,6 +171,12 @@
     ]
     ++ fonts;
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+
   home.shellAliases."TA" = "cd ${config.home.homeDirectory}/OneDrive_Staff && pyactivate ta && codium .";
 
   common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";

@@ -20,6 +20,7 @@
           "git_metrics"
           "jobs"
           "nix_shell"
+          "direnv"
           "character"
         ];
 
@@ -94,6 +95,19 @@
         truncation_symbol = ".../";
         read_only_style = "${red}";
         style = "${light-blue}";
+      };
+      direnv = {
+        disabled = false;
+        format = "([$symbol$loaded/$allowed]($style) )";
+        style = "${yellow}";
+        symbol = "direnv:";
+        detect_files = [".envrc"]; # filenames to trigger the direnv module
+        detect_folders = []; # see above
+        allowed_msg = "allowed";
+        not_allowed_msg = "not allowed";
+        denied_msg = "denied";
+        loaded_msg = "loaded";
+        unloaded_msg = "not loaded";
       };
       git_branch = {
         disabled = false;
