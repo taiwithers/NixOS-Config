@@ -55,7 +55,8 @@ rec {
       krohnkite
       plasma-panel-spacer-extended
     ]
-    ++ [ pkgs.where-is-my-sddm-theme ];
+    ++ [ pkgs.where-is-my-sddm-theme ]
+    ++ [cursor.package];
 
   xdg.dataFile."plasma/plasmoids/org.kde.plasma.shutdownorswitch".source =
     (builtins.fetchGit "https://github.com/Davide-sd/shutdown_or_switch.git") + "/package";
