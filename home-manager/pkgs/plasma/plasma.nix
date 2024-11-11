@@ -53,7 +53,6 @@ rec {
       klassy
       kara
       krohnkite
-      plasma-panel-colorizer
       plasma-panel-spacer-extended
     ]
     ++ [ pkgs.where-is-my-sddm-theme ];
