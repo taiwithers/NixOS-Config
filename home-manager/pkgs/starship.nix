@@ -97,8 +97,8 @@
         style = "${light-blue}";
       };
       direnv = {
-        disabled = false;
         format = "([$symbol$loaded/$allowed]($style) )";
+        disabled = true;
         style = "${yellow}";
         symbol = "direnv:";
         detect_files = [".envrc"]; # filenames to trigger the direnv module
