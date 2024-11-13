@@ -23,6 +23,9 @@
     })
   ];
 
+  # use lix
+  nix.package = pkgs.lix;
+
   # use flakes
   nix.settings.experimental-features = [
     "nix-command"
