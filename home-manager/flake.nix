@@ -10,7 +10,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # additional inputs
-    superfile.url = "github:yorukot/superfile";
+    # superfile.url = "github:yorukot/superfile";
     arc.url = "github:arcnmx/nixexprs";
     agenix.url = "github:ryantm/agenix";
     plasma-manager.url = "github:nix-community/plasma-manager/trunk";
@@ -19,7 +19,7 @@
     nur.url = "github:nix-community/NUR";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    superfile.inputs.nixpkgs.follows = "nixpkgs";
+    # superfile.inputs.nixpkgs.follows = "nixpkgs";
     arc.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.darwin.follows = "";
