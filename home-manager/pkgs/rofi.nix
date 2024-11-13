@@ -5,11 +5,13 @@
   ...
 }:
 {
-  programs.rofi = {
+  programs.rofi = rec {
     enable = true;
-    package = pkgs.rofi-wayland-unwrapped; # rofi-wayland, rofi-wayland-unwrapped
+    package = pkgs.rofi-wayland.override {
+        plugins = plugins;
+      }; # rofi-wayland, rofi-wayland-unwrapped
     plugins = with pkgs; [
-      # rofi-calc
+      rofi-calc
       # rofimoji
       # rofi-emoji
       # rofi-emoji-wayland
