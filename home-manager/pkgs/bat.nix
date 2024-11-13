@@ -7,10 +7,12 @@
   programs.bat = {
     enable = true;
     extraPackages = with pkgs.bat-extras; [
-      # batdiff
+      batdiff
       batgrep
       batman
-      # batpipe
+      batpipe
+      batwatch
+      prettybat
     ];
 
     config = {
@@ -23,10 +25,14 @@
     "bsession" = "bat ${config.common.hm-session-vars}";
   };
 
+  home.sessionVariables."BATDIFF_USE_DELTA" = "true";
+
   programs.bash.bashrcExtra = ''
     # workaround for most bat themes not providing syntax highlighting
     bman() {
         ( BAT_THEME="Monokai Extended" batman "$@" )
       }
+
+    eval "$(${pkgs.bat-extras.batpipe}/bin/batpipe)"
   '';
 }
