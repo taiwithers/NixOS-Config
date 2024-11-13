@@ -140,6 +140,7 @@
       zip
       parted
       brightness-control
+      tealdeer
       pdftk
 
       # gui programs
@@ -175,7 +176,14 @@
     nix-direnv.enable = true;
   };
 
+  xdg.configFile."tealdeer/config.toml".text = ''
+    [display]
+    use_pager = true
+    compact = true
 
+    [updates]
+    auto_update = true
+  '';
   services.caffeine.enable = true;
 
   home.shellAliases."TA" = "cd ${config.home.homeDirectory}/OneDrive_Staff && pyactivate ta && codium .";

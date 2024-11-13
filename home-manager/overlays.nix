@@ -201,6 +201,7 @@
     starfetch = customDerivation "starfetch";
     sublime4 = unstable.sublime4;
     superfile = flake-inputs.superfile.packages.${system}.default;
+    tealdeer = unstable.tealdeer;
     tofi = super.tofi.overrideAttrs (oldAttrs: rec {
       version = "1aa56b1";
       src = super.fetchFromGitHub {
