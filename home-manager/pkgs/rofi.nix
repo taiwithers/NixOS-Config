@@ -35,7 +35,6 @@
       window-match-field = "all";
       # matching-negate-char = "!";
 
-      terminal = "$TERMINAL";
       window-format = "{n} - {t} [{w}]";
       window-thumbnail = true;
       
