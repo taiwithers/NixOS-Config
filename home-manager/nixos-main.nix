@@ -150,7 +150,7 @@
       github-desktop
       gparted
       keepassxc
-      # libreoffice
+      libreoffice
       kdePackages.dolphin
       kdePackages.ark # archive manager
       # gwenview
