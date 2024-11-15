@@ -13,6 +13,8 @@
     systems.url = "github:nix-systems/default";
     nixpkgs-lib.url = "github:nix-community/nixpkgs.lib";
     flake-compat.url = "github:edolstra/flake-compat";
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.systems.follows = "systems";
 
     # other inputs
     agenix.url = "github:ryantm/agenix";
@@ -36,6 +38,19 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
     spicetify-nix.inputs.flake-compat.follows = "flake-compat";
+
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.base16-fish.follows = "";
+    stylix.inputs.base16-helix.follows = "";
+    stylix.inputs.base16-vim.follows = "";
+    stylix.inputs.flake-compat.follows = "flake-compat";
+    stylix.inputs.flake-utils.follows = "flake-utils";
+    stylix.inputs.gnome-shell.follows = "";
+    stylix.inputs.home-manager.follows = "home-manager";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.inputs.systems.follows = "systems";
+    stylix.inputs.tinted-foot.follows = "";
+    stylix.inputs.tinted-tmux.follows = "";
   };
 
   outputs =
