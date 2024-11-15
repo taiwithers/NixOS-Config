@@ -22,6 +22,7 @@
 
       (import ./pkgs/spotify.nix {inherit (flake-inputs) spicetify-nix;})
     ]
+      flake-inputs.spicetify-nix.homeManagerModules.default    ]
     ++ (map
       (
         fname:
@@ -83,6 +84,14 @@
       })
     ]
     ++ [ ./gaming.nix ];
+
+  programs.spicetify = {
+    enable = true;
+    spicetifyPackage = pkgs.unstable.spicetify-cli;
+    enabledExtensions = with flake-inputs.spicetify-nix.legacyPackages.${pkgs.system}.extensions; [
+      fullAppDisplay
+    ];
+  };
 
   home.packages =
     with pkgs;
@@ -160,7 +169,6 @@
       pinta
       imv
       # realvnc-vnc-viewer
-      spotify
       teams-for-linux
       zoom-us
       zotero
