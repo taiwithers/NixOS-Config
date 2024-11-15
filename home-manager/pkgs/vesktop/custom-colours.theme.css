@@ -1,0 +1,47 @@
+/** 
+* @name Custom Colours
+* @author Tai 
+* @description my theme
+* @version 0.0.1
+*/
+
+ :root {
+     --text-normal: #FFEFD5;
+     --header-primary: #FFEFD5; /* usernames on messages */
+   
+     --text-muted: #878d96;
+     --interactive-normal: #878d96;
+     --interactive-active: #FFEFD5; /* active channel */
+   
+     --text-link: #478DF5; /* match this to general colour scheme */
+   
+     --info-warning-foreground: #FFE492;
+     --control-brand-foreground: #444A8F;
+     --background-primary: #171726;
+     --background-mentioned: #FFE49210;
+     --background-secondary: #22273d;
+     --background-secondary-alt: var(--background-primary); /* user area */
+   
+     --background-tertiary: #343B4D;
+     --background-modifier-selected: var(--background-primary);
+     --input-background: #22273d;
+     --channeltextarea-background: var(--input-background);
+     --background-floating: #171726;
+     --background-nested-floating: #22273d;
+     --brand-15a: var(--background-secondary); /* reaction background */
+   
+     --brand-500: #478DF5; /* reaction border */
+   
+     --brand-560: #444A8F; /* hovered button background */
+   
+     --white-500: #FFEFD5; /* button label */
+  
+}
+/* unread messages divider */
+ .divider_c2654d {
+     --divider-color: #9B81FF;
+}
+/* more message actions */
+ .menu_d90b3d {
+     background: #22273d;
+}

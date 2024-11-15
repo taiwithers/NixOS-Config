@@ -62,6 +62,7 @@
         "starship"
         "sublime-text/sublime-text"
         # "tilix"
+        "vesktop/vesktop"
         "vscodium/vscodium"
         "xdg"
         # "yazi"
@@ -165,7 +166,6 @@
       zotero
       sticky
       signal-desktop
-      vesktop
       masterpdfeditor
     ]
     ++ fonts;
