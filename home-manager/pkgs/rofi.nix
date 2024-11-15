@@ -84,7 +84,7 @@
       kb-row-up = "Up,Alt+k";
       kb-cancel = "Escape,Control+bracketleft";
     };
-    font = "Liberation Mono 16";
+    # font = "Liberation Mono 16";
     location = "center";
     theme = "launcher-type1-style9";
 

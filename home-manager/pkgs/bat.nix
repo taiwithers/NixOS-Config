@@ -15,9 +15,9 @@
       prettybat
     ];
 
-    config = {
-      theme = "base16";
-    };
+    # config = {
+    #   theme = "base16";
+    # };
   };
   home.shellAliases = {
     "man" = "bman";
