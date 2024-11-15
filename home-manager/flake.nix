@@ -43,6 +43,7 @@
             "tetrio-desktop"
             "dell-command-configure"
             "discord"
+            "masterpdfeditor"
             "obsidian"
             "posy-cursors"
             "realvnc-vnc-viewer"

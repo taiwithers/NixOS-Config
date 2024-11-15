@@ -168,6 +168,7 @@
       sticky
       signal-desktop
       vesktop
+      masterpdfeditor
     ]
     ++ fonts;
 
