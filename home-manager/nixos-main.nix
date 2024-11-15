@@ -138,6 +138,7 @@
       brightness-control
       tealdeer
       pdftk
+      yazi
 
       # gui programs
       color-oracle
