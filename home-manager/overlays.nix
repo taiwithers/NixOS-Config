@@ -137,44 +137,8 @@
       file = name;
     };
     onlyoffice-desktopeditors = unstable.onlyoffice-desktopeditors;
-    # onedrive = unstable.onedrive;
-    onedrive = super.onedrive.overrideAttrs (oldAttrs: rec {
-      version = "2.5.2";
-      src = super.fetchFromGitHub {
-        owner = "abraunegg";
-        repo = oldAttrs.pname;
-        rev = "v${version}";
-        hash = "sha256-neJi5lIx45GsuwZPzzwwEm1bfrL2DFSysVkxa4fCBww=";
-      };
-    });
-    # onedrivegui = unstable.onedrivegui;
-    onedrivegui = super.onedrivegui.overridePythonAttrs (oldAttrs: rec {
-      version = "1.1.1a";
-      src = super.fetchFromGitHub {
-        owner = "bpozdena";
-        repo = "OneDriveGUI";
-        rev = "v${version}";
-        hash = "sha256-pcY1JOi74pePvkIMRuHv5mlE4F68NzuBLJTCtgjUFRw=";
-      };
-      postPatch =
-        let
-          setupPy = super.writeText "setup.py" ''
-            from setuptools import setup
-            setup(
-              name='onedrivegui',
-              version='${version}',
-              scripts=[
-                'src/OneDriveGUI.py',
-              ],
-            )
-          '';
-        in
-        ''
-          # Patch OneDriveGUI.py so DIR_PATH points to shared files location
-          sed -i src/OneDriveGUI.py -e "s@^DIR_PATH =.*@DIR_PATH = '$out/share/OneDriveGUI'@"
-          cp ${setupPy} ${setupPy.name}
-        '';
-    });
+    onedrive = unstable.onedrive;
+    onedrivegui = unstable.onedrivegui;
     pond = customDerivation "pond";
     realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
       src = super.requireFile rec {
@@ -206,15 +170,6 @@
     sublime4 = unstable.sublime4;
     # superfile = flake-inputs.superfile.packages.${system}.default;
     tealdeer = unstable.tealdeer;
-    tofi = super.tofi.overrideAttrs (oldAttrs: rec {
-      version = "1aa56b1";
-      src = super.fetchFromGitHub {
-        owner = "itshog";
-        repo = super.tofi.pname;
-        rev = version;
-        hash = "sha256-KiSkb8HOzBnPyzQcHTyUmVixwpls3/o9BbDBkNWu71c=";
-      };
-    });
     trashy = super.trashy.override (old: {
       # https://discourse.nixos.org/t/is-it-possible-to-override-cargosha256-in-buildrustpackage/4393/10
       rustPlatform = old.rustPlatform // {
