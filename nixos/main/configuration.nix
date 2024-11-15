@@ -92,6 +92,7 @@
     ];
     packages = with pkgs; [ firefox ];
   };
+  nix.settings.trusted-users = [ "@wheel" ];
 
   # graphics
   hardware.graphics.enable = true;
