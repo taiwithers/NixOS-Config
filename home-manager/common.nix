@@ -77,9 +77,10 @@
     };
 
     home.packages = with pkgs; [
+      nixfmt
+    ] ++ pkgs.lib.optionals (!config.common.nixos) [
       coreutils
       which
-      nixfmt
     ];
 
     home.shellAliases =
