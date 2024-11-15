@@ -110,7 +110,11 @@
       kara = unstable.kara;
       klassy = customDerivation "klassy";
       plasma-panel-colorizer = unstable.plasma-panel-colorizer;
-      krohnkite = unstable.kdePackages.krohnkite;
+      krohnkite = unstable.kdePackages.krohnkite.override {
+        # since krohnkite is pulled from unstable it uses unstable kwin by default
+        # which installs a second set of kde things, pulling from unstable
+        kwin = pkgs.kdePackages.kwin;
+      };
       plasma-panel-spacer-extended = customDerivation "plasma-panel-spacer-extended";
     };
     kitty = unstable.kitty;
