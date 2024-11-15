@@ -76,12 +76,15 @@
       __HM_SESS_VARS_SOURCED = ""; # "unset" this
     };
 
-    home.packages = with pkgs; [
-      nixfmt
-    ] ++ pkgs.lib.optionals (!config.common.nixos) [
-      coreutils
-      which
-    ];
+    home.packages =
+      with pkgs;
+      [
+        nixfmt
+      ]
+      ++ pkgs.lib.optionals (!config.common.nixos) [
+        coreutils
+        which
+      ];
 
     home.shellAliases =
       with config.common;

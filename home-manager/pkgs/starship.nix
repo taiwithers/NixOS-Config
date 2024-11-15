@@ -101,8 +101,8 @@
         disabled = true;
         style = "${yellow}";
         symbol = "direnv:";
-        detect_files = [".envrc"]; # filenames to trigger the direnv module
-        detect_folders = []; # see above
+        detect_files = [ ".envrc" ]; # filenames to trigger the direnv module
+        detect_folders = [ ]; # see above
         allowed_msg = "allowed";
         not_allowed_msg = "not allowed";
         denied_msg = "denied";

@@ -8,8 +8,8 @@
   programs.rofi = rec {
     enable = true;
     package = pkgs.rofi-wayland.override {
-        plugins = plugins;
-      }; # rofi-wayland, rofi-wayland-unwrapped
+      plugins = plugins;
+    }; # rofi-wayland, rofi-wayland-unwrapped
     plugins = with pkgs; [
       rofi-calc
       # rofimoji
@@ -39,7 +39,7 @@
 
       window-format = "{n} - {t} [{w}]";
       window-thumbnail = true;
-      
+
       combi-modes = modes;
       combi-display-format = "{text} [{mode}]";
 
@@ -54,7 +54,7 @@
       enable = false;
       extraConfig = "";
       # package = pkgs.rofi-pass-wayland;
-      stores = [];
+      stores = [ ];
     };
 
   };
@@ -70,5 +70,5 @@
         urgent: ${red};
       }
   '';
-  xdg.configFile."rofi/shared/fonts.rasi".text = '' '';
+  xdg.configFile."rofi/shared/fonts.rasi".text = '''';
 }

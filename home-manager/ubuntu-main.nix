@@ -9,25 +9,38 @@
   ...
 }:
 {
-  imports = map (fname: import ./pkgs/${fname}.nix { inherit config pkgs app-themes colours; }) [
-    "bash"
-    "bat"
-    "bottom"
-    "blesh"
-    "cod"
-    "common-git"
-    "duf"
-    "dust"
-    "eza"
-    "fzf"
-    "kitty" # use icat on remote
-    "lazygit"
-    "neovim/neovim"
-    "python/python"
-    "starship"
-    # "superfile"
-    "zoxide"
-  ];
+  imports =
+    map
+      (
+        fname:
+        import ./pkgs/${fname}.nix {
+          inherit
+            config
+            pkgs
+            app-themes
+            colours
+            ;
+        }
+      )
+      [
+        "bash"
+        "bat"
+        "bottom"
+        "blesh"
+        "cod"
+        "common-git"
+        "duf"
+        "dust"
+        "eza"
+        "fzf"
+        "kitty" # use icat on remote
+        "lazygit"
+        "neovim/neovim"
+        "python/python"
+        "starship"
+        # "superfile"
+        "zoxide"
+      ];
   home.packages = with pkgs; [
     fastfetch
     fd

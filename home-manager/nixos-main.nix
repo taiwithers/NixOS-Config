@@ -12,13 +12,9 @@
 {
   imports =
     [
-      # autostart
       (
         let
-          autostart-pkgs = with pkgs; [
-            # teams-for-linux
-            onedrivegui
-          ];
+          autostart-pkgs = with pkgs; [ onedrivegui ];
         in
         import ../scripts/autostart.nix { inherit config autostart-pkgs; }
       )

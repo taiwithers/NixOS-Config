@@ -153,9 +153,9 @@
         repo = "rofi";
         rev = version;
         fetchSubmodules = true;
-        sha256 = "sha256-epxzpaULavF/fxQSMo7fhCL/y8sgLeQWtpEE3QHX+LQ="; 
+        sha256 = "sha256-epxzpaULavF/fxQSMo7fhCL/y8sgLeQWtpEE3QHX+LQ=";
       };
-    }); 
+    });
     search = customScript rec {
       name = "search";
       runtimeInputs = with pkgs; [
@@ -196,20 +196,26 @@
       };
     });
     vesktop = super.vesktop.overrideAttrs (oldAttrs: {
-       srcs = [ oldAttrs.src ../derivations/vesktop/discord.tar.gz ];
-       sourceRoot = "source"; # move into git repo
-       patches = oldAttrs.patches ++ [ ../derivations/vesktop/shiggy.patch ../derivations/vesktop/icon.patch ];
-       postInstall = '' 
-          cp ../discord.png $out/opt/Vesktop/resources/
-          cp -r static/views $out/opt/Vesktop/resources/
-       '';
-       desktopItems = super.makeDesktopItem rec {
-          name = "Discord";
-          desktopName = name;
-          exec = "vesktop %U";
-          icon = "vesktop";
-          startupWMClass = name;
-       };
+      srcs = [
+        oldAttrs.src
+        ../derivations/vesktop/discord.tar.gz
+      ];
+      sourceRoot = "source"; # move into git repo
+      patches = oldAttrs.patches ++ [
+        ../derivations/vesktop/shiggy.patch
+        ../derivations/vesktop/icon.patch
+      ];
+      postInstall = ''
+        cp ../discord.png $out/opt/Vesktop/resources/
+        cp -r static/views $out/opt/Vesktop/resources/
+      '';
+      desktopItems = super.makeDesktopItem rec {
+        name = "Discord";
+        desktopName = name;
+        exec = "vesktop %U";
+        icon = "vesktop";
+        startupWMClass = name;
+      };
     });
     vimPlugins =
       super.vimPlugins
