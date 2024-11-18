@@ -104,6 +104,24 @@
         ulem # underlining
         upquote # Show "realistic" quotes in verbatim
         wrapfig
+        xelatex-dev # for nbconvert
+        tcolorbox # for listings (in nbconvert)
+        environ # nbconvert
+        pdfcol # nbconvert
+        eurosym # nbconvert
+        iftex
+        ucs
+        latex-uni8
+        fontspec
+        unicode-math
+        fancyvrb
+        grffile
+        adjustbox
+        titling
+        booktabs
+        soul
+        parskip
+        rsfs # math font
         ;
     };
     kdePackages = super.kdePackages // {
