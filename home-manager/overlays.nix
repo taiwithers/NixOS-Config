@@ -165,13 +165,13 @@
       };
     });
     rofi-wayland-unwrapped = super.rofi-wayland-unwrapped.overrideAttrs (oldAttrs: rec {
-      version = "b04bedc";
+      version = "93ad86d";
       src = super.fetchFromGitHub {
         owner = "lbonn";
         repo = "rofi";
         rev = version;
         fetchSubmodules = true;
-        sha256 = "sha256-epxzpaULavF/fxQSMo7fhCL/y8sgLeQWtpEE3QHX+LQ=";
+        sha256 = "sha256-ipvG75snR39dziidFOb8wwgW2vL4ZIlcP1EWvYEqpP0=";
       };
     });
     search = customScript rec {
