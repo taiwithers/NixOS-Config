@@ -22,7 +22,7 @@
       # keepmenu
     ];
 
-    cycle = true; # cycle through results
+    cycle = false; # cycle through results
     extraConfig = rec {
       modes = "window,drun,run,ssh,filebrowser";
       case-sensitive = false;

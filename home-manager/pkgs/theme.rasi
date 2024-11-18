@@ -167,7 +167,6 @@ listview {
     enabled:                     true;
     columns:                     1;
     lines:                       6;
-    cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
