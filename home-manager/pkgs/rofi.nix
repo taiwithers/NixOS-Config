@@ -5,26 +5,24 @@
   ...
 }:
 {
-  home.packages = [pkgs.rofi-bluetooth];
+  home.packages = [pkgs.rofi-bluetooth pkgs.keepmenu];
   programs.rofi = rec {
     enable = true;
     package = pkgs.rofi-wayland.override {
       plugins = plugins;
     }; # rofi-wayland, rofi-wayland-unwrapped
     plugins = with pkgs; [
-      # rofi-calc
+      rofi-calc
       # rofimoji
       # rofi-emoji
       # rofi-emoji-wayland
-      # rofi-top
       # rofi-games
       # rofi-systemd
-      # keepmenu
     ];
 
     cycle = false; # cycle through results
     extraConfig = rec {
-      modes = "drun,run,filebrowser";
+      modes = "drun,run,filebrowser,calc";
       case-sensitive = false;
       scroll-method = 1; # 1 continuous
       normalize-match = true; # match accented and nonaccented characters
