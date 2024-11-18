@@ -116,7 +116,6 @@
       lavat
       libqalculate # provides qalc cmd
       lua
-      onefetch
       pandoc
       parallel
       pdf2svg # for eps file preview
