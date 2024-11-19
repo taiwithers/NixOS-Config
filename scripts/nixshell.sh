@@ -19,7 +19,13 @@ for p in "$@"; do
 done
 
 # Construct the command
-cmd="SHELL=\$SHELL IN_NIX_SHELL=\"impure\" NIX_SHELL_PKGS=\"${pnames[*]}\" nix shell ${os[*]} ${ps[*]}"
+cmd_shell="SHELL=\$SHELL"
+cmd_type="IN_NIX_SHELL=\"impure\""
+cmd_pkgs="NIX_SHELL_PKGS=\"${pnames[*]}\""
+cmd_unfree="NIXPKGS_ALLOW_UNFREE=1"
+cmd_nix="nix shell --impure ${os[*]} ${ps[*]}"
+
+cmd="( $cmd_shell $cmd_type $cmd_pkgs $cmd_unfree $cmd_nix )"
 # echo "Executing \`$cmd\`..."
 
 # Execute the command
