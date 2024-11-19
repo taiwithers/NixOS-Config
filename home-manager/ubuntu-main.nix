@@ -29,6 +29,7 @@
     "zoxide"
   ];
   home.packages = with pkgs; [
+    nixshell
     fastfetch
     fd
     latex
