@@ -1,5 +1,5 @@
 {
-    config, pkgs, spicetify-nix, ...
+pkgs, spicetify-nix, ...
   }:
   {
       imports = [ spicetify-nix.homeManagerModules.default ];

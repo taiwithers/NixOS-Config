@@ -1,5 +1,5 @@
 {
-	stylix,...
+pkgs,	stylix,...
 }:{
 	imports = [stylix.homeManagerModules.stylix];
 

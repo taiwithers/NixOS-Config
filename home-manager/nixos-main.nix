@@ -20,8 +20,8 @@
       )
       flake-inputs.agenix.homeManagerModules.default
 
-      (import ./pkgs/spotify.nix {inherit (flake-inputs) spicetify-nix;})
-      (import ./themeing.nix {inherit (flake-inputs) stylix;})
+      (import ./pkgs/spotify.nix {inherit pkgs; inherit (flake-inputs) spicetify-nix;})
+      (import ./themeing.nix {inherit pkgs; inherit (flake-inputs) stylix;})
     ]
     ++ (map
       (
