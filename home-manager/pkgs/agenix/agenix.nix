@@ -31,7 +31,7 @@ in
     };
   };
 
-  home.packages = [ pkgs.agenix ];
+  home.packages = [ pkgs.agenix pkgs.age];
 
   # comment out for first rebuild
   home.activation.agenix = config.lib.dag.entryAfter [ "writeBoundary" ] ''

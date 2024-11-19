@@ -79,11 +79,30 @@
     home.packages =
       with pkgs;
       [
+        # nix
         nixfmt
+        clean
+        get-package-path
+        search
+        nixshell
+
+        # utilities
+        fd
+        rename
+        sd
+        trashy
+        zip
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
+        busybox
         coreutils
-        which
+        xdg-utils
+        diffutils
+        findutils
+        curl
+      ]
+      ++ pkgs.lib.optionals config.common.nixos [
+        nixos-generations
       ];
 
     home.shellAliases =

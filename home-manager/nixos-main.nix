@@ -39,11 +39,9 @@
         "agenix/agenix"
         "bash"
         "bat"
-        # "betterdiscord"
         "blesh"
         "bottom"
         "cod"
-        # "copyq/copyq"
         "duf"
         "dust"
         "eza"
@@ -51,25 +49,20 @@
         "fzf"
         "gaia"
         "git" # also installed system-wide
-        # "gnome/gnome"
-        # "gpg"
         "kitty"
         "lazygit"
         "neovim/neovim"
         "python/python"
         "ripgrep"
-        "rofi"
-        # "tofi"
+        "rofi/rofi"
         "starship"
         "sublime-text/sublime-text"
-        # "tilix"
+        "tldr"
         "vesktop/vesktop"
         "vscodium/vscodium"
         "xdg"
-        # "yazi"
-        # "zellij"
+        "yazi"
         "zoxide"
-        # "zsh"
       ]
     )
     ++ [
@@ -90,32 +83,16 @@
     with pkgs;
     [
       # nix programs
-      # appimage-run
-      # dconf2nix
       deadnix
-      # nix-diff
       nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
-      # nix-prefetch-scripts
       nix-tree
-      # nurl
-      nixfmt
-      clean
-      get-package-path
-      nixos-generations
-      search
-      nixshell
 
       # cli programs
-      age # encryption
+      brightness-control
       cbonsai
       cloc
-      curl
       dconf
-      # dell-command-configure
       fastfetch
-      fd
-      # file
-      # fontconfig
       jq
       latex
       lavat
@@ -123,51 +100,36 @@
       lua
       pandoc
       parallel
-      pdf2svg # for eps file preview
-      pond
-      rename
-      # ripgrep-all
-      sd
-      # speedtest-rs
-      starfetch
-      trashy
-      unzip
-      wget
-      unar
-      xdg-ninja
-      wl-clipboard
-      # zbar
-      zip
       parted
-      brightness-control
-      tealdeer
+      pdf2svg # for eps file preview
       pdftk
-      yazi
+      pond
+      starfetch
+      unar
+      wl-clipboard
+      xdg-ninja
 
       # gui programs
-      color-oracle
+      # color-oracle
       ds9
-      # filezilla
-      github-desktop
       gparted
+      imv
+      kdePackages.ark # archive manager
+      kdePackages.dolphin
       keepassxc
       libreoffice
-      kdePackages.dolphin
-      kdePackages.ark # archive manager
-      # gwenview
+      masterpdfeditor
       obsidian
-      onlyoffice-desktopeditors
       onedrive
       onedrivegui
+      # onlyoffice-desktopeditors
       pinta
-      imv
       # realvnc-vnc-viewer
+      signal-desktop
+      sticky
       teams-for-linux
       zoom-us
       zotero
-      sticky
-      signal-desktop
-      masterpdfeditor
     ]
     ++ fonts;
 
@@ -176,14 +138,6 @@
     nix-direnv.enable = true;
   };
 
-  xdg.configFile."tealdeer/config.toml".text = ''
-    [display]
-    use_pager = true
-    compact = true
-
-    [updates]
-    auto_update = true
-  '';
   services.caffeine.enable = true;
 
   home.shellAliases."TA" = "cd ${config.home.homeDirectory}/OneDrive_Staff && pyactivate ta && codium .";

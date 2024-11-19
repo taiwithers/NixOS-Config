@@ -73,44 +73,6 @@
       allow_remote_control = "yes";
       # dynamic_background_opacity = "yes";
       # notify_on_finish = "unfocused bell";
-
-      # colours
-    #   background = "${navy}";
-    #   # second_transparent_bg = background;
-    #   foreground = "${light-grey}";
-    #   selection_background = foreground;
-    #   selection_foreground = background;
-    #   url_color = "${lime}";
-    #   cursor = "${ivory}";
-    #   active_border_color = "${light-blue}";
-    #   bell_border_color = "${red}";
-    #   inactive_border_color = "${navy}";
-    #   active_tab_background = background;
-    #   active_tab_foreground = foreground;
-    #   inactive_tab_background = "${dark-grey}";
-    #   inactive_tab_foreground = "${lime}";
-    #   tab_bar_background = "${dark-blue}";
-    #   wayland_titlebar_color = background;
-
-    #   # normal
-    #   color0 = "${navy}";
-    #   color1 = "${red}";
-    #   color2 = "${green}";
-    #   color3 = "${salmon}";
-    #   color4 = "${light-blue}";
-    #   color5 = "${purple}";
-    #   color6 = "${cyan}";
-    #   color7 = "${ivory}";
-
-    #   # bright
-    #   color8 = "${indigo}";
-    #   color9 = "${orange}";
-    #   color10 = "${lime}";
-    #   color11 = "${peach}";
-    #   color12 = "${light-grey}";
-    #   color13 = "${pink}";
-    #   color14 = "${sky}";
-    #   color15 = "${white}";
     };
   };
 

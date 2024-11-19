@@ -14,11 +14,8 @@
       batwatch
       prettybat
     ];
-
-    # config = {
-    #   theme = "base16";
-    # };
   };
+  
   home.shellAliases = {
     "man" = "bman";
     "cat" = "bat --plain";
