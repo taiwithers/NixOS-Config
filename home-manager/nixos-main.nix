@@ -19,6 +19,8 @@
         import ../scripts/autostart.nix { inherit config autostart-pkgs; }
       )
       flake-inputs.agenix.homeManagerModules.default
+
+      (import ./pkgs/spotify.nix {inherit (flake-inputs) spicetify-nix;})
     ]
     ++ (map
       (
