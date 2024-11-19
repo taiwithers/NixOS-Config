@@ -76,11 +76,15 @@
       __HM_SESS_VARS_SOURCED = ""; # "unset" this
     };
 
-    home.packages = with pkgs; [
-      coreutils
-      which
-      nixfmt
-    ];
+    home.packages =
+      with pkgs;
+      [
+        nixfmt
+      ]
+      ++ pkgs.lib.optionals (!config.common.nixos) [
+        coreutils
+        which
+      ];
 
     home.shellAliases =
       with config.common;
@@ -94,7 +98,7 @@
         "rebuild" = "rm ~/.config/gtk-2.0/gtkrc; home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name}";
         # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
-        "formatconfig" = "(cd ${nixConfigDirectory}/home-manager && nix fmt .. --impure)";
+        "formatconfig" = "(cd ${nixConfigDirectory} && nixfmt . )";
         "trash" = "trashy put";
       }
       // pkgs.lib.optionalAttrs (config.common.nixos) {

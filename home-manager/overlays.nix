@@ -104,15 +104,38 @@
         ulem # underlining
         upquote # Show "realistic" quotes in verbatim
         wrapfig
+        xelatex-dev # for nbconvert
+        tcolorbox # for listings (in nbconvert)
+        environ # nbconvert
+        pdfcol # nbconvert
+        eurosym # nbconvert
+        iftex
+        ucs
+        latex-uni8
+        fontspec
+        unicode-math
+        fancyvrb
+        grffile
+        adjustbox
+        titling
+        booktabs
+        soul
+        parskip
+        rsfs # math font
         ;
     };
     kdePackages = super.kdePackages // {
       kara = unstable.kara;
       klassy = customDerivation "klassy";
       plasma-panel-colorizer = unstable.plasma-panel-colorizer;
-      krohnkite = unstable.kdePackages.krohnkite;
+      krohnkite = unstable.kdePackages.krohnkite.override {
+        # since krohnkite is pulled from unstable it uses unstable kwin by default
+        # which installs a second set of kde things, pulling from unstable
+        kwin = pkgs.kdePackages.kwin;
+      };
       plasma-panel-spacer-extended = customDerivation "plasma-panel-spacer-extended";
     };
+    keepmenu = super.keepmenu.override { dmenu = self.rofi-wayland-unwrapped;};
     kitty = unstable.kitty;
     neovim = unstable.neovim-unwrapped;
     nixfmt = unstable.nixfmt-rfc-style;
@@ -133,44 +156,8 @@
       file = name;
     };
     onlyoffice-desktopeditors = unstable.onlyoffice-desktopeditors;
-    # onedrive = unstable.onedrive;
-    onedrive = super.onedrive.overrideAttrs (oldAttrs: rec {
-      version = "2.5.2";
-      src = super.fetchFromGitHub {
-        owner = "abraunegg";
-        repo = oldAttrs.pname;
-        rev = "v${version}";
-        hash = "sha256-neJi5lIx45GsuwZPzzwwEm1bfrL2DFSysVkxa4fCBww=";
-      };
-    });
-    # onedrivegui = unstable.onedrivegui;
-    onedrivegui = super.onedrivegui.overridePythonAttrs (oldAttrs: rec {
-      version = "1.1.1a";
-      src = super.fetchFromGitHub {
-        owner = "bpozdena";
-        repo = "OneDriveGUI";
-        rev = "v${version}";
-        hash = "sha256-pcY1JOi74pePvkIMRuHv5mlE4F68NzuBLJTCtgjUFRw=";
-      };
-      postPatch =
-        let
-          setupPy = super.writeText "setup.py" ''
-            from setuptools import setup
-            setup(
-              name='onedrivegui',
-              version='${version}',
-              scripts=[
-                'src/OneDriveGUI.py',
-              ],
-            )
-          '';
-        in
-        ''
-          # Patch OneDriveGUI.py so DIR_PATH points to shared files location
-          sed -i src/OneDriveGUI.py -e "s@^DIR_PATH =.*@DIR_PATH = '$out/share/OneDriveGUI'@"
-          cp ${setupPy} ${setupPy.name}
-        '';
-    });
+    onedrive = unstable.onedrive;
+    onedrivegui = unstable.onedrivegui;
     pond = customDerivation "pond";
     realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
       src = super.requireFile rec {
@@ -179,15 +166,18 @@
       };
     });
     rofi-wayland-unwrapped = super.rofi-wayland-unwrapped.overrideAttrs (oldAttrs: rec {
-      version = "b04bedc";
+      version = "93ad86d";
       src = super.fetchFromGitHub {
         owner = "lbonn";
         repo = "rofi";
         rev = version;
         fetchSubmodules = true;
-        sha256 = "sha256-epxzpaULavF/fxQSMo7fhCL/y8sgLeQWtpEE3QHX+LQ="; 
+        sha256 = "sha256-ipvG75snR39dziidFOb8wwgW2vL4ZIlcP1EWvYEqpP0=";
       };
-    }); 
+    });
+    rofi-calc = super.rofi-calc.override {
+        rofi-unwrapped = self.rofi-wayland-unwrapped;
+    };
     search = customScript rec {
       name = "search";
       runtimeInputs = with pkgs; [
@@ -202,15 +192,6 @@
     sublime4 = unstable.sublime4;
     # superfile = flake-inputs.superfile.packages.${system}.default;
     tealdeer = unstable.tealdeer;
-    tofi = super.tofi.overrideAttrs (oldAttrs: rec {
-      version = "1aa56b1";
-      src = super.fetchFromGitHub {
-        owner = "itshog";
-        repo = super.tofi.pname;
-        rev = version;
-        hash = "sha256-KiSkb8HOzBnPyzQcHTyUmVixwpls3/o9BbDBkNWu71c=";
-      };
-    });
     trashy = super.trashy.override (old: {
       # https://discourse.nixos.org/t/is-it-possible-to-override-cargosha256-in-buildrustpackage/4393/10
       rustPlatform = old.rustPlatform // {
@@ -237,20 +218,26 @@
       };
     });
     vesktop = super.vesktop.overrideAttrs (oldAttrs: {
-       srcs = [ oldAttrs.src ../derivations/vesktop/discord.tar.gz ];
-       sourceRoot = "source"; # move into git repo
-       patches = oldAttrs.patches ++ [ ../derivations/vesktop/shiggy.patch ../derivations/vesktop/icon.patch ];
-       postInstall = '' 
-          cp ../discord.png $out/opt/Vesktop/resources/
-          cp -r static/views $out/opt/Vesktop/resources/
-       '';
-       desktopItems = super.makeDesktopItem rec {
-          name = "Discord";
-          desktopName = name;
-          exec = "vesktop %U";
-          icon = "vesktop";
-          startupWMClass = name;
-       };
+      srcs = [
+        oldAttrs.src
+        ../derivations/vesktop/discord.tar.gz
+      ];
+      sourceRoot = "source"; # move into git repo
+      patches = oldAttrs.patches ++ [
+        ../derivations/vesktop/shiggy.patch
+        ../derivations/vesktop/icon.patch
+      ];
+      postInstall = ''
+        cp ../discord.png $out/opt/Vesktop/resources/
+        cp -r static/views $out/opt/Vesktop/resources/
+      '';
+      desktopItems = super.makeDesktopItem rec {
+        name = "Discord";
+        desktopName = name;
+        exec = "vesktop %U";
+        icon = "vesktop";
+        startupWMClass = name;
+      };
     });
     vimPlugins =
       super.vimPlugins

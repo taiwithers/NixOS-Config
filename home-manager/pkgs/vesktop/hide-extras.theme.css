@@ -1,0 +1,26 @@
+/** 
+* @name Hide Extras
+* @author Tai 
+* @description my theme
+* @version 0.0.1
+*/
+
+.footer_aa1bff, /* hide explore servers button */
+.public-DraftEditorPlaceholder-root, /* hide search bar label */
+.recentsIcon_ea0547, /* hide inbox button */
+.anchor_af404b /* hide help button */
+{
+     display: none;
+}
+
+/* hide extra settings */
+[aria-label="Family Centre"], 
+[aria-label="Nitro"], 
+[aria-label="Billing"], 
+[aria-label="Gift Inventory"], 
+[aria-label="Subscriptions"], 
+[aria-label="Merch"], 
+[aria-controls="vencordcloud-tab"] {
+     display: none;
+}
+

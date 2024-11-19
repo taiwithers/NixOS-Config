@@ -53,4 +53,9 @@
       identityFile = "${config.home.homeDirectory}/.ssh/id_ed25519_github";
     };
   };
+
+  home.shellAliases."gitstatus" = ''
+    onefetch --no-art --no-color-palette --no-title --disabled-fields authors languages churn created project pending head commits && git status --short --branch
+  '';
+  home.packages = [pkgs.onefetch];
 }

@@ -9,7 +9,7 @@
   imports = [
     ./hardware-configuration.nix
 
-    (import ./bootloader.nix {inherit pkgs;})
+    (import ./bootloader.nix { inherit pkgs; })
     ./desktopenvironments.nix
     ./programs.nix
   ];
@@ -92,6 +92,7 @@
     ];
     packages = with pkgs; [ firefox ];
   };
+  nix.settings.trusted-users = [ "@wheel" ];
 
   # graphics
   hardware.graphics.enable = true;
@@ -127,7 +128,6 @@
   powerManagement.enable = true;
 
   services.hardware.bolt.enable = true; # handle thunderbolt devices
-  
 
   services.printing.enable = true;
   services.printing.drivers = [

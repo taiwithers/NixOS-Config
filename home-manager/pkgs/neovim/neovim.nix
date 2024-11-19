@@ -92,9 +92,9 @@ in
         treesitter-parser-vimdoc
         treesitter-parser-query
       ];
+    extraLuaConfig = builtins.readFile ./init.lua;
   };
 
-  xdg.configFile."${confdir}/init.lua".source = ./init.lua;
   # xdg.configFile."${confdir}/colors/base16theme.lua".text = with app-themes.palettes.neovim; ''
   #   require('mini.base16').setup({
   #     palette = {

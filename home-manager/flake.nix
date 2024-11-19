@@ -2,30 +2,55 @@
   description = "Home Manager Configuration";
 
   inputs = {
-    # update on version change
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/51190abf6296e61da41a11204212c5c893e52462";
+
     home-manager.url = "github:nix-community/home-manager/release-24.05";
-
-    # leave alone
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # additional inputs
-    # superfile.url = "github:yorukot/superfile";
-    arc.url = "github:arcnmx/nixexprs";
-    agenix.url = "github:ryantm/agenix";
-    plasma-manager.url = "github:nix-community/plasma-manager/trunk";
-    nix-colors.url = "github:misterio77/nix-colors";
-    ags.url = "github:Aylur/ags";
-    nur.url = "github:nix-community/NUR";
-
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # superfile.inputs.nixpkgs.follows = "nixpkgs";
-    arc.inputs.nixpkgs.follows = "nixpkgs";
+
+    # libraries for other inputs to follow
+    systems.url = "github:nix-systems/default";
+    nixpkgs-lib.url = "github:nix-community/nixpkgs.lib";
+    flake-compat.url = "github:edolstra/flake-compat";
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.systems.follows = "systems";
+
+    # other inputs
+    agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.darwin.follows = "";
     agenix.inputs.home-manager.follows = "home-manager";
+    agenix.inputs.systems.follows = "systems";
+
+    arc.url = "github:arcnmx/nixexprs";
+    arc.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-colors.url = "github:misterio77/nix-colors";
+    nix-colors.inputs.nixpkgs-lib.follows = "nixpkgs-lib";
+
+    plasma-manager.url = "github:nix-community/plasma-manager/trunk";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
+
+    nur.url = "github:nix-community/NUR";
+
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix.inputs.flake-compat.follows = "flake-compat";
+
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.base16-fish.follows = "";
+    stylix.inputs.base16-helix.follows = "";
+    stylix.inputs.base16-vim.follows = "";
+    stylix.inputs.flake-compat.follows = "flake-compat";
+    stylix.inputs.flake-utils.follows = "flake-utils";
+    stylix.inputs.gnome-shell.follows = "";
+    stylix.inputs.home-manager.follows = "home-manager";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.inputs.systems.follows = "systems";
+    stylix.inputs.tinted-foot.follows = "";
+    stylix.inputs.tinted-tmux.follows = "";
   };
 
   outputs =
@@ -43,6 +68,7 @@
             "tetrio-desktop"
             "dell-command-configure"
             "discord"
+            "masterpdfeditor"
             "obsidian"
             "posy-cursors"
             "realvnc-vnc-viewer"

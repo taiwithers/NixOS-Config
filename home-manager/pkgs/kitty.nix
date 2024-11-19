@@ -9,10 +9,10 @@
     enable = true;
     shellIntegration.enableBashIntegration = true;
 
-    font = {
-      name = "Intel One Mono";
-      size = 10;
-    };
+    # font = {
+    #   name = "Intel One Mono";
+    #   size = 10;
+    # };
 
     keybindings = {
       "kitty_mod+f5" = "load_config_file";
@@ -45,7 +45,7 @@
       "kitty_mod+q" = "close_tab";
 
       # fonts
-      "kitty_mod+plus" = "change_font_size current +1.0";
+      "kitty_mod+equal" = "change_font_size current +1.0";
       "kitty_mod+minus" = "change_font_size current -1.0";
     };
 
@@ -55,7 +55,7 @@
       clear_all_shortcuts = "yes"; # clear defaults
       # appearance (excluding colours)
       tab_bar_edge = "top";
-      background_opacity = "0.5";
+      # background_opacity = "0.5";
       background_blur = 1;
       window_border_width = 5;
       window_padding_width = 5; # inside border
@@ -75,42 +75,42 @@
       # notify_on_finish = "unfocused bell";
 
       # colours
-      background = "${navy}";
-      # second_transparent_bg = background;
-      foreground = "${light-grey}";
-      selection_background = foreground;
-      selection_foreground = background;
-      url_color = "${lime}";
-      cursor = "${ivory}";
-      active_border_color = "${light-blue}";
-      bell_border_color = "${red}";
-      inactive_border_color = "${navy}";
-      active_tab_background = background;
-      active_tab_foreground = foreground;
-      inactive_tab_background = "${dark-grey}";
-      inactive_tab_foreground = "${lime}";
-      tab_bar_background = "${dark-blue}";
-      wayland_titlebar_color = background;
+    #   background = "${navy}";
+    #   # second_transparent_bg = background;
+    #   foreground = "${light-grey}";
+    #   selection_background = foreground;
+    #   selection_foreground = background;
+    #   url_color = "${lime}";
+    #   cursor = "${ivory}";
+    #   active_border_color = "${light-blue}";
+    #   bell_border_color = "${red}";
+    #   inactive_border_color = "${navy}";
+    #   active_tab_background = background;
+    #   active_tab_foreground = foreground;
+    #   inactive_tab_background = "${dark-grey}";
+    #   inactive_tab_foreground = "${lime}";
+    #   tab_bar_background = "${dark-blue}";
+    #   wayland_titlebar_color = background;
 
-      # normal
-      color0 = "${navy}";
-      color1 = "${red}";
-      color2 = "${green}";
-      color3 = "${salmon}";
-      color4 = "${light-blue}";
-      color5 = "${purple}";
-      color6 = "${cyan}";
-      color7 = "${ivory}";
+    #   # normal
+    #   color0 = "${navy}";
+    #   color1 = "${red}";
+    #   color2 = "${green}";
+    #   color3 = "${salmon}";
+    #   color4 = "${light-blue}";
+    #   color5 = "${purple}";
+    #   color6 = "${cyan}";
+    #   color7 = "${ivory}";
 
-      # bright
-      color8 = "${indigo}";
-      color9 = "${orange}";
-      color10 = "${lime}";
-      color11 = "${peach}";
-      color12 = "${light-grey}";
-      color13 = "${pink}";
-      color14 = "${sky}";
-      color15 = "${white}";
+    #   # bright
+    #   color8 = "${indigo}";
+    #   color9 = "${orange}";
+    #   color10 = "${lime}";
+    #   color11 = "${peach}";
+    #   color12 = "${light-grey}";
+    #   color13 = "${pink}";
+    #   color14 = "${sky}";
+    #   color15 = "${white}";
     };
   };
 

@@ -12,17 +12,16 @@
 {
   imports =
     [
-      # autostart
       (
         let
-          autostart-pkgs = with pkgs; [
-            # teams-for-linux
-            onedrivegui
-          ];
+          autostart-pkgs = with pkgs; [ onedrivegui ];
         in
         import ../scripts/autostart.nix { inherit config autostart-pkgs; }
       )
       flake-inputs.agenix.homeManagerModules.default
+
+      (import ./pkgs/spotify.nix {inherit pkgs; inherit (flake-inputs) spicetify-nix;})
+      (import ./themeing.nix {inherit pkgs; inherit (flake-inputs) stylix;})
     ]
     ++ (map
       (
@@ -64,6 +63,7 @@
         "starship"
         "sublime-text/sublime-text"
         # "tilix"
+        "vesktop/vesktop"
         "vscodium/vscodium"
         "xdg"
         # "yazi"
@@ -84,6 +84,7 @@
       })
     ]
     ++ [ ./gaming.nix ];
+
 
   home.packages =
     with pkgs;
@@ -120,7 +121,6 @@
       lavat
       libqalculate # provides qalc cmd
       lua
-      onefetch
       pandoc
       parallel
       pdf2svg # for eps file preview
@@ -142,6 +142,7 @@
       brightness-control
       tealdeer
       pdftk
+      yazi
 
       # gui programs
       color-oracle
@@ -150,7 +151,7 @@
       github-desktop
       gparted
       keepassxc
-      # libreoffice
+      libreoffice
       kdePackages.dolphin
       kdePackages.ark # archive manager
       # gwenview
@@ -161,13 +162,12 @@
       pinta
       imv
       # realvnc-vnc-viewer
-      spotify
       teams-for-linux
       zoom-us
       zotero
       sticky
       signal-desktop
-      vesktop
+      masterpdfeditor
     ]
     ++ fonts;
 

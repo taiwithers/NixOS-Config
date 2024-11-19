@@ -20,6 +20,7 @@
     elisa
     kate
     khelpcenter
+    konsole
     kwalletmanager
     okular
   ];
