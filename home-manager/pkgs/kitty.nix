@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  colours,
   ...
 }:
 {
@@ -49,7 +48,7 @@
       "kitty_mod+minus" = "change_font_size current -1.0";
     };
 
-    settings = with colours.hex-hash; rec {
+    settings = rec {
       # keybindings
       kitty_mod = "ctrl+shift";
       clear_all_shortcuts = "yes"; # clear defaults

@@ -3,7 +3,7 @@
 {
   config,
   pkgs,
-  flake-inputs,
+  plasma-manager,
   colours,
   ...
 }:
@@ -44,7 +44,7 @@ let
 in
 rec {
   imports = [
-    flake-inputs.plasma-manager.homeManagerModules.plasma-manager
+    plasma-manager.homeManagerModules.plasma-manager
   ];
 
   home.packages =

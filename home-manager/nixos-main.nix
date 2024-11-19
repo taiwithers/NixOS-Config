@@ -2,8 +2,6 @@
   config,
   pkgs,
   flake-inputs,
-  # user,
-  # pkgs-config,
   app-themes,
   colours,
   fonts,
@@ -18,8 +16,11 @@
         in
         import ../scripts/autostart.nix { inherit config autostart-pkgs; }
       )
-      flake-inputs.agenix.homeManagerModules.default
 
+      (import ./pkgs/agenix/agenix.nix {
+        inherit config pkgs;
+        inherit (flake-inputs) agenix;
+      })
       (import ./pkgs/spotify.nix {
         inherit pkgs;
         inherit (flake-inputs) spicetify-nix;
@@ -28,6 +29,12 @@
         inherit pkgs;
         inherit (flake-inputs) stylix;
       })
+      (import ./pkgs/plasma/plasma.nix {
+        inherit config pkgs colours;
+        inherit (flake-inputs) plasma-manager;
+      })
+
+      ./gaming.nix
     ]
     ++ (map
       (
@@ -42,10 +49,9 @@
         }
       )
       [
-        "agenix/agenix"
         "bash"
         "bat"
-        "blesh"
+        "blesh" # uses colours
         "bottom"
         "cod"
         "duf"
@@ -60,9 +66,9 @@
         "neovim/neovim"
         "python/python"
         "ripgrep"
-        "rofi/rofi"
+        "rofi/rofi" # uses colours
         "starship"
-        "sublime-text/sublime-text"
+        "sublime-text/sublime-text" # uses app-themes
         "tldr"
         "vesktop/vesktop"
         "vscodium/vscodium"
@@ -70,19 +76,7 @@
         "yazi"
         "zoxide"
       ]
-    )
-    ++ [
-      (import ./pkgs/plasma/plasma.nix {
-        inherit
-          config
-          pkgs
-          flake-inputs
-          app-themes
-          colours
-          ;
-      })
-    ]
-    ++ [ ./gaming.nix ];
+    );
 
   home.packages =
     with pkgs;

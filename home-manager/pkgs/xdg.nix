@@ -8,23 +8,21 @@ let
     {
       browsers = [
         firefox
-        # vivaldi
       ];
 
       imageviewers = [
-        loupe
+        gwenview
         firefox
       ];
 
       texteditors = [
         sublime4
         vscodium-fhs
-        gedit
       ];
 
-      filebrowsers = [ libsForQt5.dolphin ];
+      filebrowsers = [ kdePackages.dolphin ];
 
-      archivemanagers = [ gnome.file-roller ];
+      archivemanagers = [ kdePackages.ark gnome.file-roller ];
     }
   );
 in
