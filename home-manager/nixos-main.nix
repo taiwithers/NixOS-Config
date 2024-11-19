@@ -20,8 +20,14 @@
       )
       flake-inputs.agenix.homeManagerModules.default
 
-      (import ./pkgs/spotify.nix {inherit pkgs; inherit (flake-inputs) spicetify-nix;})
-      (import ./themeing.nix {inherit pkgs; inherit (flake-inputs) stylix;})
+      (import ./pkgs/spotify.nix {
+        inherit pkgs;
+        inherit (flake-inputs) spicetify-nix;
+      })
+      (import ./themeing.nix {
+        inherit pkgs;
+        inherit (flake-inputs) stylix;
+      })
     ]
     ++ (map
       (
@@ -77,7 +83,6 @@
       })
     ]
     ++ [ ./gaming.nix ];
-
 
   home.packages =
     with pkgs;
@@ -139,8 +144,6 @@
   };
 
   services.caffeine.enable = true;
-
-  home.shellAliases."TA" = "cd ${config.home.homeDirectory}/OneDrive_Staff && pyactivate ta && codium .";
 
   common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
   common.useXDG = true;

@@ -15,7 +15,7 @@
       prettybat
     ];
   };
-  
+
   home.shellAliases = {
     "man" = "bman";
     "cat" = "bat --plain";

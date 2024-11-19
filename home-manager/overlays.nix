@@ -135,7 +135,7 @@
       };
       plasma-panel-spacer-extended = customDerivation "plasma-panel-spacer-extended";
     };
-    keepmenu = super.keepmenu.override { dmenu = self.rofi-wayland-unwrapped;};
+    keepmenu = super.keepmenu.override { dmenu = self.rofi-wayland-unwrapped; };
     kitty = unstable.kitty;
     neovim = unstable.neovim-unwrapped;
     nixfmt = unstable.nixfmt-rfc-style;
@@ -176,7 +176,7 @@
       };
     });
     rofi-calc = super.rofi-calc.override {
-        rofi-unwrapped = self.rofi-wayland-unwrapped;
+      rofi-unwrapped = self.rofi-wayland-unwrapped;
     };
     search = customScript rec {
       name = "search";

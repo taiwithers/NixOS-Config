@@ -1,9 +1,11 @@
 {
-pkgs, spicetify-nix, ...
-  }:
-  {
-      imports = [ spicetify-nix.homeManagerModules.default ];
-      
+  pkgs,
+  spicetify-nix,
+  ...
+}:
+{
+  imports = [ spicetify-nix.homeManagerModules.default ];
+
   programs.spicetify = {
     enable = true;
     spicetifyPackage = pkgs.unstable.spicetify-cli;
@@ -11,4 +13,4 @@ pkgs, spicetify-nix, ...
       fullAppDisplay
     ];
   };
-    }
+}

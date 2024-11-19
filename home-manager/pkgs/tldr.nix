@@ -1,7 +1,7 @@
-{pkgs,...}:
+{ pkgs, ... }:
 {
-	home.packages = [pkgs.tealdeer];
-	  xdg.configFile."tealdeer/config.toml".text = ''
+  home.packages = [ pkgs.tealdeer ];
+  xdg.configFile."tealdeer/config.toml".text = ''
     [display]
     use_pager = true
     compact = true

@@ -5,7 +5,10 @@
   ...
 }:
 {
-  home.packages = [pkgs.rofi-bluetooth pkgs.keepmenu];
+  home.packages = [
+    pkgs.rofi-bluetooth
+    pkgs.keepmenu
+  ];
   programs.rofi = rec {
     enable = true;
     package = pkgs.rofi-wayland.override {
