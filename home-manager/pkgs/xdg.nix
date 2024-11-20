@@ -22,7 +22,10 @@ let
 
       filebrowsers = [ kdePackages.dolphin ];
 
-      archivemanagers = [ kdePackages.ark gnome.file-roller ];
+      archivemanagers = [
+        kdePackages.ark
+        gnome.file-roller
+      ];
     }
   );
 in

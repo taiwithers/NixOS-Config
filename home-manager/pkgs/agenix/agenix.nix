@@ -10,7 +10,7 @@ let
   age-file = "ssh-config-group.age";
 in
 {
-  imports = [agenix.homeManagerModules.default];
+  imports = [ agenix.homeManagerModules.default ];
   age.identityPaths = [ ssh-key ];
   age.secrets.group_hostname = {
     file = "${agenix-directory}/${age-file}";

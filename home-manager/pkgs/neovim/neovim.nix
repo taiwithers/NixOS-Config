@@ -94,7 +94,6 @@ in
     extraLuaConfig = builtins.readFile ./init.lua;
   };
 
-
   # symlink other files to avoid constant rebuilding
   home.activation.linkNvimConfig =
     let
