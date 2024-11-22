@@ -125,6 +125,7 @@
       pinta
       # realvnc-vnc-viewer
       signal-desktop
+      shiori
       sticky
       teams-for-linux
       zoom-us
@@ -139,6 +140,11 @@
 
   services.caffeine.enable = true;
 
+  systemd.user.services.shiori = {
+    Unit = { Description = "Run shiori bookmark manager";};
+    Install = { WantedBy = [ "multi-user.target" ];};
+    Service = { ExecStart = "${pkgs.shiori}/bin/shiori serve";};
+  };
   xresources.path = "${config.common.configHome}/X11/xresources";
 
   common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
