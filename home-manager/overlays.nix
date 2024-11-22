@@ -157,7 +157,7 @@
     };
     onlyoffice-desktopeditors = unstable.onlyoffice-desktopeditors;
     onedrive = unstable.onedrive;
-    onedrivegui = unstable.onedrivegui;
+    onedrivegui = unstable.onedrivegui.override { python3Packages = super.python3Packages; };
     pond = customDerivation "pond";
     realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
       src = super.requireFile rec {
