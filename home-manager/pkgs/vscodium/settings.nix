@@ -1,4 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
+let
+  font =  "'Intel One Mono', 'SpaceMono Nerd Font', monospace";
+in
 {
   "autopep8.args" = [
     "--max-line-length=120"
@@ -22,8 +25,7 @@
   "editor.dropIntoEditor.enabled" = false;
   "editor.find.autoFindInSelection" = "multiline";
   "editor.find.cursorMoveOnType" = false;
-  # "editor.fontFamily" = "'Intel One Mono', 'SpaceMono Nerd Font', monospace";
-  # "editor.fontSize" = 16;
+  "editor.fontFamily" = pkgs.lib.mkForce font;
   "editor.formatOnPaste" = true;
   "editor.formatOnSaveMode" = "modificationsIfAvailable";
   "editor.guides.bracketPairsHorizontal" = false;
@@ -214,6 +216,7 @@
   "terminal.integrated.cursorStyle" = "line";
   "terminal.integrated.cursorStyleInactive" = "line";
   "terminal.integrated.focusAfterRun" = "terminal";
+  "terminal.integrated.fontFamily" = pkgs.lib.mkForce font;
   "terminal.integrated.hideOnStartup" = false;
   "terminal.integrated.inheritEnv" = "always";
   "todo-tree.filtering.useBuiltInExcludes" = "file and search excludes";
@@ -227,6 +230,9 @@
   "vsicons.dontShowNewVersionMessage" = true;
   "window.commandCenter" = false;
   "window.confirmSaveUntitledWorkspace" = false;
+  "window.dialogStyle" = "custom";
+  "window.experimentalControlOverlay" = false;
+  "window.titleBarStyle" = "custom";
   "window.zoomLevel" = 1;
   "workbench.accounts.experimental.showEntitlements" = true;
   "workbench.commandPalette.experimental.suggestCommands" = true;

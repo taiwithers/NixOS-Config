@@ -81,7 +81,7 @@ in
     #   ];
 
     keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
-    userSettings = import ./settings.nix { };
+    userSettings = import ./settings.nix { inherit pkgs; };
   };
 
   # workaround for remote-ssh wanting writable ssh config...
