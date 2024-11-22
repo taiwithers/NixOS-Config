@@ -11,6 +11,7 @@
     rec {
       # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.enable
       enable = true;
+      # startWithLastProfile = false;
 
       policies = {
         # about:policies

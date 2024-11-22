@@ -147,8 +147,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
-        "ref": "release-24.05",
+        "owner": "taiwithers",
+        "ref": "FirefoxProfiles",
         "repo": "home-manager",
         "type": "github"
       }
