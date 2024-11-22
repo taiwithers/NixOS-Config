@@ -221,15 +221,15 @@
         userContent = builtins.readFile ./userContent.css;
       };
 
-      profiles."Staff" = {
-        path = "Profiles/Staff";
-        id = 2;
-        extensions = profiles."Personal".extensions;
-        settings = profiles."Personal".settings;
-        search = profiles."Personal".search;
-        userChrome = builtins.readFile ./userChrome.css;
-        userContent = builtins.readFile ./userContent.css;
-      };
+      # profiles."Staff" = {
+      #   path = "Profiles/Staff";
+      #   id = 2;
+      #   extensions = profiles."Personal".extensions;
+      #   settings = profiles."Personal".settings;
+      #   search = profiles."Personal".search;
+      #   userChrome = builtins.readFile ./userChrome.css;
+      #   userContent = builtins.readFile ./userContent.css;
+      # };
 
     };
   home.file =
@@ -251,7 +251,7 @@
         icon = ./green.png;
       })
       {
-        TA = "Staff";
+        # TA = "Staff";
         Personal = "Personal";
         Student = "Student";
       };
