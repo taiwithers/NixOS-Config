@@ -36,6 +36,7 @@
           clearurls
           darkreader
           no-pdf-download
+          keepassxc-browser
         ] ++ [ pkgs.nur.repos.pborzenkov.firefox-addons.shiori_ext ];
 
         search = rec {
