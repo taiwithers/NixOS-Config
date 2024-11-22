@@ -103,4 +103,14 @@ in
     if is_vanilla():
         setup_history()
   '';
+
+  home.activation."astropyFoldersActivation" = with config.common; config.lib.dag.entryAfter ["writeBoundary"] ''
+    if [[ ! -d "${configHome}/astropy" ]]; then
+      mkdir "${configHome}/astropy"
+    fi
+
+    if [[ ! -d "${cacheHome}/astropy" ]]; then
+      mkdir "${cacheHome}/astropy"
+    fi
+  '';
 }
