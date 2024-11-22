@@ -125,7 +125,7 @@
           let
             nixconfig-name = pkgs.lib.lists.last (pkgs.lib.strings.splitString "-" config-name);
           in
-          "sudo nixos-rebuild switch --impure --show-trace --flake ${nixConfigDirectory}/nixos#${nixconfig-name}";
+          "nixos-rebuild switch --impure --show-trace --use-remote-sudo --flake ${nixConfigDirectory}/nixos#${nixconfig-name}";
       };
 
     xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''
