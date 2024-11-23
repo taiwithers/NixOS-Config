@@ -31,14 +31,17 @@
         path = "Profiles/Personal";
         id = 0;
 
-        extensions = with extensions; [
-          tabliss
-          ublock-origin
-          clearurls
-          darkreader
-          no-pdf-download
-          keepassxc-browser
-        ] ++ [ pkgs.nur.repos.pborzenkov.firefox-addons.shiori_ext ];
+        extensions =
+          with extensions;
+          [
+            tabliss
+            ublock-origin
+            clearurls
+            darkreader
+            no-pdf-download
+            keepassxc-browser
+          ]
+          ++ [ pkgs.nur.repos.pborzenkov.firefox-addons.shiori_ext ];
 
         search = rec {
           force = true;

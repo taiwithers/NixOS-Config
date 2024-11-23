@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  font =  "'Intel One Mono', 'SpaceMono Nerd Font', monospace";
+  font = "'Intel One Mono', 'SpaceMono Nerd Font', monospace";
 in
 {
   "autopep8.args" = [

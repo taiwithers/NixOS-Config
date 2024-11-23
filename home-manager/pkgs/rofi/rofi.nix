@@ -90,9 +90,9 @@
     # font = "Liberation Mono 16";
     location = "center";
     theme = with config.lib.formats.rasi; {
-       # Modified from
-       # Author : Aditya Shakya (adi1090x)
-       # Github : @adi1090x
+      # Modified from
+      # Author : Aditya Shakya (adi1090x)
+      # Github : @adi1090x
       configuration = {
         show-icons = false;
         display-drun = " Apps";
