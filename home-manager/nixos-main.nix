@@ -141,9 +141,16 @@
   services.caffeine.enable = true;
 
   systemd.user.services.shiori = {
-    Unit = { Description = "Run shiori bookmark manager";};
-    Install = { WantedBy = [ "multi-user.target" ];};
-    Service = { ExecStart = "${pkgs.shiori}/bin/shiori serve";};
+    Unit = {
+      Description = "Run shiori bookmark manager";
+    };
+    Install = {
+      WantedBy = [ "multi-user.target" ];
+    };
+    Service = {
+      Restart = "always";
+      ExecStart = "${pkgs.shiori}/bin/shiori serve";
+    };
   };
   xresources.path = "${config.common.configHome}/X11/xresources";
 
