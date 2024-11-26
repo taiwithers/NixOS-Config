@@ -33,7 +33,7 @@
       matching = "fuzzy";
       drun-match-fields = "name";
       show-icons = true;
-      drun-display-format = "{name} [<span weight='light' size='small'><i>({exec})</i></span>]";
+      drun-display-format = "{name}"; # [<span weight='light' size='small'><i>({exec})</i></span>]";
       drun-show-actions = false;
       window-match-field = "all";
 
