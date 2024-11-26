@@ -209,6 +209,7 @@
           "urlclassifier.trackingSkipURLs" = "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"; # betterfox security
           "webchannel.allowObject.urlWhitelist" = ""; # betterfox
           "widget.gtk.global-menu.wayland.enabled" = true;
+          "widget.use-xdg-desktop-portal.file-picker" = 1;
         };
 
         userChrome = builtins.readFile ./userChrome.css;

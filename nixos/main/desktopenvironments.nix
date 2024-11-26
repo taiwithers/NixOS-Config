@@ -7,6 +7,7 @@
   # environment.gnome.excludePackages = [pkgs.gnome-tour];
   # services.gnome.core-utilities.enable = false;
 
+  environment.sessionVariables."GTK_USE_PORTAL" = 1;
   # KDE
   services.displayManager.sddm = {
     enable = true;
