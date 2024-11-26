@@ -9,6 +9,7 @@ dependencies:
   - astropy
   - cmcrameri
   - cycler
+  - emcee
   - extension-helpers
   - ipykernel
   - ipython
