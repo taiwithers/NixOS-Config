@@ -2,7 +2,6 @@
   config,
   pkgs,
   flake-inputs,
-  app-themes,
   colours,
   fonts,
   ...
@@ -26,6 +25,7 @@
         inherit (flake-inputs) spicetify-nix;
       })
       (import ./themeing.nix {
+        inherit config;
         inherit pkgs;
         inherit (flake-inputs) stylix;
       })
@@ -43,7 +43,6 @@
           inherit
             config
             pkgs
-            app-themes
             colours
             ;
         }
@@ -67,7 +66,7 @@
         "ripgrep"
         "rofi/rofi" # uses colours
         "starship"
-        "sublime-text/sublime-text" # uses app-themes
+        "sublime-text/sublime-text" 
         "tldr"
         "vesktop/vesktop"
         "vscodium/vscodium"

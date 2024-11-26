@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   stylix,
   ...
@@ -6,6 +7,25 @@
 {
   imports = [ stylix.homeManagerModules.stylix ];
 
+  xdg.configFile."sublime-text/Packages/User/Base16/theme.tmTheme".source = config.lib.stylix.colors {
+    template = builtins.readFile (
+      builtins.fetchurl "https://raw.githubusercontent.com/chriskempson/base16-textmate/refs/heads/master/templates/default.mustache"
+    );
+    extension = ".tmTheme";
+  };
+  xdg.configFile."sublime-text/Packages/User/Preferences.sublime-settings".text =
+    # JSON
+    ''
+      {
+        "ignored_packages":
+        [
+          "Vintage",
+        ],
+        "font_size": 11,
+        "color_scheme": "Packages/User/Base16/theme.tmTheme",
+        "theme": "Adaptive.sublime-theme",
+      }
+    '';
   stylix = {
     enable = true;
     autoEnable = false;

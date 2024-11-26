@@ -137,16 +137,6 @@
           rgb255-commasep = mapAttrs (name: value: hexToRGBString "," value) hex-hashless;
         };
 
-      app-themes =
-        with (import ../scripts/theme-config.nix {
-          inherit pkgs;
-          inherit (flake-inputs) arc;
-        });
-        makePathSet rec {
-          fzf = "base16/da-one-ocean";
-          sublime-text = fzf;
-        };
-
       fonts = with pkgs; [
         cm_unicode
         intel-one-mono
@@ -179,7 +169,6 @@
               user
               pkgs-config
               colours
-              app-themes
               fonts
               config-name
               ;

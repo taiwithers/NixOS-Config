@@ -2,7 +2,6 @@
 {
   config,
   pkgs,
-  app-themes,
   ...
 }:
 let
@@ -56,14 +55,6 @@ let
       repo = "sublime_toml_highlighting";
       rev = "fd0bf3e";
       hash = "sha256-/9RCQNWpp2j/u4o6jBCPN3HEuuR4ow3h+0Zj+Cbteyc=";
-    }
-    {
-      name = "PackageDev";
-      function = pkgs.fetchFromGitHub;
-      owner = "SublimeText";
-      repo = "PackageDev";
-      rev = "e1df004";
-      hash = "sha256-WQW6QHOfahh3BB4+Xm+mh1Jjfhdapu7bgOCnHNbaHPY=";
     }
     {
       owner = "MarioRicalde";
@@ -133,22 +124,6 @@ in
   xdg.configFile."${packagesPath}/Default.sublime-keymap".text =
     # JSON
     ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
-  xdg.configFile."${packagesPath}/Preferences.sublime-settings".text =
-    let
-      sublimeColourScheme = "${packagesPath}/tinted-sublime-text/color-schemes/${app-themes.sublime-text}.sublime-color-scheme";
-    in
-    # JSON
-    ''
-      {
-        "ignored_packages":
-        [
-          "Vintage",
-        ],
-        "font_size": 11,
-        "color_scheme": "${sublimeColourScheme}",
-        "theme": "Adaptive.sublime-theme",
-      }
-    '';
 
   # xdg.configFile."${packagesPath}/yuck.tmLanguage".source = ./yuck.tmLanguage;
   xdg.configFile."${packagesPath}/yuck.sublime-syntax".source = ./yuck.sublime-syntax;
