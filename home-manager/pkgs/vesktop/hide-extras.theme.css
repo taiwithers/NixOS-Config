@@ -5,10 +5,9 @@
 * @version 0.0.1
 */
 
-.footer_aa1bff, /* hide explore servers button */
-.public-DraftEditorPlaceholder-root, /* hide search bar label */
-.recentsIcon_ea0547, /* hide inbox button */
-.anchor_af404b /* hide help button */
+.footer_d71945, /* explore servers */
+.recentsIcon_ea0547, /* inbox */
+.searchBar_f0963d /* friends search bar */
 {
      display: none;
 }
@@ -20,7 +19,9 @@
 [aria-label="Gift Inventory"], 
 [aria-label="Subscriptions"], 
 [aria-label="Merch"], 
-[aria-controls="vencordcloud-tab"] {
+[aria-controls="vencordcloud-tab"],
+/* hide extra other stuff */
+[area-label="Add Friends to DM"]
+{
      display: none;
 }
-
