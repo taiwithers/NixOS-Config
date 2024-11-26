@@ -59,7 +59,6 @@
         "eza"
         "firefox/firefox"
         "fzf"
-        "gaia"
         "git" # also installed system-wide
         "kitty"
         "lazygit"
@@ -117,6 +116,7 @@
       kdePackages.dolphin
       keepassxc
       libreoffice
+      gaia
       masterpdfeditor
       obsidian
       onedrive

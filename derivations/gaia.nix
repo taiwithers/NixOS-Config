@@ -4,6 +4,8 @@
   lib,
   pkgs,
   makeDesktopItem,
+  copyDesktopItems,
+  coreutils,
 }:
 let
   libpath = lib.makeLibraryPath (
@@ -26,22 +28,28 @@ stdenv.mkDerivation rec {
     sha256 = "LDbPeKFntZT/2Flw3bX+TPkso8NihmezLyEL6h+YN20=";
   };
 
-  postInstall =
-    # bash
-    ''
-      # substituteInPlace $out/bin/gaia/gaia.sh \
-      #                   --replace-warn "$HOME" "$XDG_CACHE_HOME"
-      sed --in-place 's/\$HOME/\$XDG_CACHE_HOME/g' $out/bin/gaia/gaia.sh
-    '';
-
   installPhase = ''
     runHook preInstall
-    mkdir -p $out/
-    cp -pr * $out/
+
+    # mkdir -p $out/
+    # cp -pr * $out/
+
+    mkdir -p $out/bin/gaiabin
+    cp -pr bin/gaia/* $out/bin/gaiabin
+    cp -pr lib $out
+    
+    substituteInPlace $out/bin/gaiabin/gaia.sh --replace-warn "$HOME" "$XDG_CACHE_HOME"
+
+    substituteInPlace $out/lib/tclutil2.1.0/FileSelect.tcl --replace-warn "/bin/ls" "${coreutils}/bin/ls"
+    
+    ln -s $out/bin/gaiabin/gaia.sh $out/bin/gaia
+
     runHook postInstall
   '';
 
   fixupPhase = ''
+    runHook preFixup
+
     chmod 755 $out/bin/*
     patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
              --add-rpath ${libpath} \
@@ -49,17 +57,19 @@ stdenv.mkDerivation rec {
              --add-needed libstdc++.so.6 \
              --add-needed libz.so.1 \
              --add-needed libXext.so.6 \
-             $out/bin/gaia/gaia_wish
+             $out/bin/gaiabin/gaia_wish
+  
+    runHook postFixup
   '';
 
-  doInstallCheck = true;
+  nativeBuildInputs = [copyDesktopItems];
 
   desktopItems = [
     (makeDesktopItem {
       desktopName = "gaia";
       name = "gaia";
       exec = "gaia";
-      icon = "gaia_small_logo.gif";
+      # icon = "$out/lib/gaia4.4.9/gaia_small_logo.gif";
     })
   ];
 }
