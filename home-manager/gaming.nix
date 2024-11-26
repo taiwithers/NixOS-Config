@@ -4,6 +4,7 @@
     # tetrio-desktop
     mgba
     protonup
+    mindustry-wayland
     rare
   ];
 
