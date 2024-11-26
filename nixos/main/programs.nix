@@ -30,6 +30,8 @@
     vulkan-tools
     wayland-utils
 
+    kdePackages.partitionmanager
+
     kdePackages.sddm-kcm # is in colors and themes
     # sddm-kcm # uses version 5.27 which installs qt 5
 

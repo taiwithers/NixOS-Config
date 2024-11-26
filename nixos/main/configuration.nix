@@ -90,7 +90,7 @@
       "networkmanager" # allow modifying network settings
       "wheel" # allow using sudo
     ];
-    packages = with pkgs; [ firefox ];
+    packages = with pkgs; [ ];
   };
   nix.settings.trusted-users = [ "@wheel" ];
 

@@ -98,7 +98,6 @@
       lua
       pandoc
       parallel
-      parted
       pdf2svg # for eps file preview
       pdftk
       pond
@@ -110,19 +109,19 @@
       # gui programs
       # color-oracle
       ds9
-      gparted
       imv
       kdePackages.ark # archive manager
       kdePackages.dolphin
       keepassxc
-      libreoffice
       gaia
+      libreoffice-qt
       masterpdfeditor
       obsidian
       onedrive
       onedrivegui
       # onlyoffice-desktopeditors
-      pinta
+      pinta # compare w krita
+      qjournalctl
       # realvnc-vnc-viewer
       signal-desktop
       shiori
