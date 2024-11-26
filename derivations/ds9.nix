@@ -6,7 +6,9 @@
   fontconfig,
   libxml2,
   stdenv,
-  lib,
+  makeDesktopItem,
+  copyDesktopItems,
+  lib
 }:
 let
   libPath = lib.makeLibraryPath [
@@ -17,6 +19,14 @@ let
     fontconfig.lib
     libxml2.out
   ];
+
+  desktopItem = makeDesktopItem rec{
+    name = "ds9";
+    desktopName = name;
+    exec = "ds9 %F";
+    icon = "ds9";
+  };
+
 in
 stdenv.mkDerivation rec {
   pname = "ds9";
@@ -28,6 +38,8 @@ stdenv.mkDerivation rec {
     sha256 = "BFQfxIesSOCUI35mF5ADmV27TlO+WZvXjh1ULXcQlRA=";
   };
 
+  nativeBuildInputs = [copyDesktopItems];
+
   buildInputs = [
     xorg.libX11.out
     xorg.libXScrnSaver
@@ -38,17 +50,25 @@ stdenv.mkDerivation rec {
   ];
 
   installPhase =
-    # bash
     ''
+      runHook preInstall
+
       mkdir -p $out/bin
       cp -p * $out/bin
+    
+      runHook postInstall
     '';
 
   fixupPhase =
-    # bash
     ''
+      runHook preFixup
+
       chmod 755 $out/bin/ds9
       patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
         --set-rpath ${libPath}   $out/bin/ds9
+
+      runHook postFixup
     '';
+
+  desktopItems = [desktopItem];
 }
