@@ -11,6 +11,10 @@
     rec {
       # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.enable
       enable = true;
+      package = pkgs.firefox.override {nativeMessagingHosts = [
+        pkgs.kdePackages.plasma-browser-integration
+        pkgs.keepassxc
+      ];};
 
       policies = {
         # about:policies
@@ -209,6 +213,10 @@
           "webchannel.allowObject.urlWhitelist" = ""; # betterfox
           "widget.gtk.global-menu.wayland.enabled" = true;
           "widget.use-xdg-desktop-portal.file-picker" = 1;
+          "widget.use-xdg-desktop-portal.mime-handler" = 1;
+          "widget.use-xdg-desktop-portal.settings" = 1;
+          "widget.use-xdg-desktop-portal.location" = 1;
+          "widget.use-xdg-desktop-portal.open-uri" = 1;
         };
 
         userChrome = builtins.readFile ./userChrome.css;
