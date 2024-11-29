@@ -17,6 +17,9 @@
 
   # system packages
   environment.systemPackages = with pkgs; [
+    man-pages
+    man-pages-posix
+
     gnome.gnome-terminal # always have an editor and terminal!
     git
     bluez # bluetooth
@@ -47,7 +50,7 @@
   ];
 
   # Install firefox.
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
   # steam
   programs.steam = {
