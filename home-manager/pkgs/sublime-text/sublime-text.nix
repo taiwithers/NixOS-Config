@@ -41,14 +41,6 @@ let
       hash = "sha256-ojb9xg26OL0kOZfcYXWIIS0efpHPFwlIwKklclmrUTc="; # note this refers to the hash of the Nix derivation *output* not the file download, grab this from the error message
     }
     {
-      name = "Tinted Theming";
-      function = pkgs.fetchFromGitHub;
-      owner = "tinted-theming";
-      repo = "tinted-sublime-text";
-      rev = "e001ce1";
-      hash = "sha256-S41mxSCAbERUdhaaKZYb7tr1mkE84a3fekTY70r5LL4=";
-    }
-    {
       name = "TOML";
       function = pkgs.fetchFromGitHub;
       owner = "jasonwilliams";
@@ -120,7 +112,17 @@ in
 
   xdg.configFile."${packagesPath}/Default.sublime-theme".text =
     # JSON
-    ''{"variables": {}, "rules": [] } '';
+    ''{
+        "variables": {
+          "font_face" = "Mono"
+        }, 
+        "rules": [
+          {
+            "class": "text_line_control",
+            "font.face": "var(font_face)"
+          }
+        ] 
+      } '';
   xdg.configFile."${packagesPath}/Default.sublime-keymap".text =
     # JSON
     ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';
