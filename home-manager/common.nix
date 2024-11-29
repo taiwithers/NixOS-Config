@@ -128,11 +128,22 @@
           "nixos-rebuild switch --impure --show-trace --use-remote-sudo --flake ${nixConfigDirectory}/nixos#${nixconfig-name}";
       };
 
+    programs.bash.bashrcExtra = ''
+      # add completion for get-package-path
+      complete -F _command get-package-path
+    '';
+
     xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''
       if !has('nvim') " Neovim has its own location which already complies with XDG specification
         set viminfofile=$XDG_STATE_HOME/viminfo
       endif
     '';
+
+    programs.man = {
+        enable = true; # default true
+        generateCaches = true; # slightly slows rebuild, but allows things like apropos to work
+    };
+
     news.display = "silent"; # no output about hm news during switch
     nix.package = pkgs.lix;
     nix.settings.experimental-features = [
