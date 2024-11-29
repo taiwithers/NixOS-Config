@@ -113,7 +113,7 @@
       kdePackages.dolphin
       keepassxc
       gaia
-      libreoffice-qt
+      libreoffice-qt6-still
       masterpdfeditor
       obsidian
       onedrive
