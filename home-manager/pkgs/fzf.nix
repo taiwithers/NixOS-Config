@@ -12,9 +12,7 @@ let
     "--info inline"
     "--tabstop 4"
   ];
-  previewFile = "${config.xdg.configHome}/fzf-preview.sh";
   fzfPreviewOptions = [
-    "--preview '${previewFile} {}'"
     "--preview-window border-sharp"
   ];
 in
@@ -38,11 +36,5 @@ in
 
     # ctrl-r
     historyWidgetOptions = fzfDefaultOptions;
-  };
-
-  xdg.configFile."${previewFile}".source = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/junegunn/fzf/master/bin/fzf-preview.sh";
-    sha256 = "FwvZj1lwc08ir23XOehB34giidd5/tyjVYHdA8TUTQE=";
-    executable = true;
   };
 }
