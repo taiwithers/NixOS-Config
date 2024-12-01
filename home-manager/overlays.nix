@@ -59,7 +59,6 @@
     codium = super.vscodium-fhs;
     color-oracle = customDerivation "color-oracle";
     ds9 = customDerivation "ds9";
-    fzf = unstable.fzf;
     gaia = customDerivation "gaia";
     get-package-path = customScript {
       name = "get-package-path";
@@ -125,20 +124,12 @@
         ;
     };
     kdePackages = super.kdePackages // {
-      kara = unstable.kara;
+      kara = super.kara;
       klassy = customDerivation "klassy";
-      plasma-panel-colorizer = unstable.plasma-panel-colorizer;
-      krohnkite = unstable.kdePackages.krohnkite.override {
-        # since krohnkite is pulled from unstable it uses unstable kwin by default
-        # which installs a second set of kde things, pulling from unstable
-        kwin = pkgs.kdePackages.kwin;
-      };
+      plasma-panel-colorizer = super.plasma-panel-colorizer;
       plasma-panel-spacer-extended = customDerivation "plasma-panel-spacer-extended";
     };
-    keepmenu = super.keepmenu.override { dmenu = self.rofi-wayland-unwrapped; };
-    kitty = unstable.kitty;
-    neovim = unstable.neovim-unwrapped;
-    nixfmt = unstable.nixfmt-rfc-style;
+    nixfmt = super.nixfmt-rfc-style;
     nixshell = customScript rec {
       name = "nixshell";
       runtimeInputs = with pkgs; [
@@ -147,7 +138,7 @@
       ];
       file = name;
     };
-    nixos-generations = customScript rec {
+    generations = customScript rec {
       name = "nixos-generations";
       runtimeInputs = with pkgs; [
         nix
@@ -155,9 +146,6 @@
       ];
       file = name;
     };
-    onlyoffice-desktopeditors = unstable.onlyoffice-desktopeditors;
-    onedrive = unstable.onedrive;
-    onedrivegui = unstable.onedrivegui.override { python3Packages = super.python3Packages; };
     pond = customDerivation "pond";
     realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
       src = super.requireFile rec {
@@ -165,16 +153,16 @@
         hash = "sha256-Ull9iNi8NxB12YwEThWE0P9k1xOV2LZnebuRrVH/zwI="; # ${super.nix-prefetch} fetchurl --quiet --url '${url}' --option extra-experimental-features flakes
       };
     });
-    rofi-wayland-unwrapped = super.rofi-wayland-unwrapped.overrideAttrs (oldAttrs: rec {
-      version = "93ad86d";
-      src = super.fetchFromGitHub {
-        owner = "lbonn";
-        repo = "rofi";
-        rev = version;
-        fetchSubmodules = true;
-        sha256 = "sha256-ipvG75snR39dziidFOb8wwgW2vL4ZIlcP1EWvYEqpP0=";
-      };
-    });
+#    rofi-wayland-unwrapped = super.rofi-wayland-unwrapped.overrideAttrs (oldAttrs: rec {
+#      version = "93ad86d";
+#      src = super.fetchFromGitHub {
+#        owner = "lbonn";
+#        repo = "rofi";
+#        rev = version;
+#        fetchSubmodules = true;
+#        sha256 = "sha256-ipvG75snR39dziidFOb8wwgW2vL4ZIlcP1EWvYEqpP0=";
+#      };
+#    });
     rofi-calc = super.rofi-calc.override {
       rofi-unwrapped = self.rofi-wayland-unwrapped;
     };
@@ -189,9 +177,6 @@
       file = "nix-search-wrapper";
     };
     starfetch = customDerivation "starfetch";
-    sublime4 = unstable.sublime4;
-    # superfile = flake-inputs.superfile.packages.${system}.default;
-    tealdeer = unstable.tealdeer;
     trashy = super.trashy.override (old: {
       # https://discourse.nixos.org/t/is-it-possible-to-override-cargosha256-in-buildrustpackage/4393/10
       rustPlatform = old.rustPlatform // {
@@ -242,7 +227,6 @@
     vimPlugins =
       super.vimPlugins
       // {
-        hmts-nvim = unstable.vimPlugins.hmts-nvim;
         which-key-nvim = unstable.vimPlugins.which-key-nvim;
       }
       // builtins.mapAttrs (name: value: (githubVimPlugin value)) {
@@ -307,6 +291,5 @@
           hash = "sha256-v+XSWGm2Wdn9/rxNFMqXYACkGn6AvxZdxkClLuKnWGU=";
         };
       };
-    zotero = unstable.zotero-beta;
   }
 )

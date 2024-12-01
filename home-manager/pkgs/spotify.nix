@@ -8,7 +8,7 @@
 
   programs.spicetify = {
     enable = true;
-    spicetifyPackage = pkgs.unstable.spicetify-cli;
+    #spicetifyPackage = pkgs.unstable.spicetify-cli;
     enabledExtensions = with spicetify-nix.legacyPackages.${pkgs.system}.extensions; [
       fullAppDisplay
     ];

@@ -24,7 +24,7 @@ let
 
       archivemanagers = [
         kdePackages.ark
-        gnome.file-roller
+        file-roller
       ];
     }
   );
