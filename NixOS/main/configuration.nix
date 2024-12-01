@@ -63,12 +63,27 @@
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
   hardware.bluetooth.enable = true;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+  # limit cpu usage during build
+  nix.settings.cores = 1; # cores per job
+  nix.settings.max-jobs = 16; 
 
   # touchpad
   # services.libinput.enable = true; # enabled by default for most desktopManagers
 
   services.dbus.packages = [ pkgs.dconf ];
-  services.xserver.enable = true;
+  services.xserver.enable = true; # can disable if only using Wayland
 
   # keyboard layout
   services.xserver.xkb.layout = "us";
@@ -141,6 +156,8 @@
     openFirewall = true;
   };
   
+  fonts.enableDefaultPackages = true;
+
   documentation.nixos.includeAllModules = true;
   documentation.man.generateCaches = true;
 
