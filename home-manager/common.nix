@@ -125,7 +125,7 @@
           let
             nixconfig-name = pkgs.lib.lists.last (pkgs.lib.strings.splitString "-" config-name);
           in
-          "nixos-rebuild switch --impure --show-trace --use-remote-sudo --flake ${nixConfigDirectory}/nixos#${nixconfig-name}";
+          "nixos-rebuild switch --show-trace --use-remote-sudo --flake ${nixConfigDirectory}/NixOS#${nixconfig-name}";
       };
 
     programs.bash.bashrcExtra = ''

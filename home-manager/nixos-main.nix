@@ -152,7 +152,7 @@
   };
   xresources.path = "${config.common.configHome}/X11/xresources";
 
-  common.nixConfigDirectory = "${config.common.configHome}/NixOS-Config";
+  common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";
   common.useXDG = true;
   common.nixos = true;
 

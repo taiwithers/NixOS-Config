@@ -1,26 +1,15 @@
 { pkgs, ... }:
 {
-  # unfree software
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
-      "libfprint-2-tod1-goodix" # fingerprint driver
-      "steam"
-      "steam-original"
-      "steam-run"
-      "steamcmd"
-      "steam-unwrapped"
-      "nvidia-x11"
-      "nvidia-settings"
-      "nvidia-persistenced" # no errer requested but hey
-    ];
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # system packages
   environment.systemPackages = with pkgs; [
     man-pages
     man-pages-posix
 
-    gnome.gnome-terminal # always have an editor and terminal!
+    gnome-terminal # always have an editor and terminal!
     git
     bluez # bluetooth
     coreutils
@@ -65,7 +54,7 @@
   programs.gamemode.enable = true;
 
   # program configurations
-  #   programs.vim.enable = true;
+  programs.vim.enable = true;
   programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
 
