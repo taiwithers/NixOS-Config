@@ -35,6 +35,7 @@
         showUsersByDefault = true;
       };
     })
+    posy-cursors
 
   ];
 
