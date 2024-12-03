@@ -44,7 +44,6 @@ require('lspconfig').bashls.setup({})
 require('lspconfig').nixd.setup({})
 require('lspconfig').lua_ls.setup({})
 require('lspconfig').ruff.setup({})
-require('lspconfig').tsserver.setup({})
 require('lualine').setup({
   options = {
     theme = "moonfly",
@@ -168,7 +167,6 @@ require('telescope').load_extension('file_browser')
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
 require('texpresso')
-require('tip').setup({seconds=2})
 require('toggleterm').setup({
   start_in_insert = true,
   persist_mode = false,

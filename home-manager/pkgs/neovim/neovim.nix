@@ -9,14 +9,13 @@ in
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim; # ensure the version we specify in flake.nix is used
+    # package = pkgs.neovim; # ensure the version we specify in flake.nix is used
     defaultEditor = true;
     extraPackages = with pkgs; [
       nodePackages.bash-language-server
       lua-language-server
       nixd # nix LSP for neovim
       ruff # python LSP
-      nodePackages.typescript-language-server
     ];
     plugins =
       with pkgs.vimPlugins;
@@ -24,7 +23,6 @@ in
         # helpers - no additional setup done in plugins.lua
         nui-nvim
         plenary-nvim
-
         # in order of plugins.lua appearance
         auto-hlsearch-nvim # auto-hlsearch
         better-escape-nvim # better_escape
@@ -54,7 +52,6 @@ in
         telescope-ui-select-nvim # required for legendary
         # telescope-frecency-nvim
         texpresso-vim # texpresso
-        tip-nvim # tip
         toggleterm-nvim # toggleterm
         which-key-nvim # which-key
         nvim-window-picker # window-picker
@@ -65,32 +62,36 @@ in
         # nvim-spectre
         # trouble
         # dashboard-nvim
-      ]
-      ++ (with nvim-treesitter-parsers; [
-        nix
-        c
-        lua
-        vim
-        ssh_config
-        bash
-        python
-        regex
-        ssh_config
-        jsonc
-        kdl
-        # jq
-        # hyprlang
-        comment
-        toml
-        typescript # ags
-        javascript # ags
-        devicetree # zmk
-        kconfig
-      ])
-      ++ [
-        treesitter-parser-vimdoc
-        treesitter-parser-query
+
+        (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: with p; [
+          nix
+          lua
+          vim
+          ssh_config
+          bash
+          python
+          regex
+          ssh_config
+          jsonc
+          kdl
+          # jq
+          comment
+          toml
+          devicetree # zmk
+          kconfig
+          vimdoc
+          query
+        ]))
       ];
+      # ++ (with nvim-treesitter-parsers; [
+      #   nix
+      #   # c
+      # ]);
+    #   ])
+    #   ++ [
+    #     treesitter-parser-vimdoc
+    #     treesitter-parser-query
+    #   ];
     extraLuaConfig = builtins.readFile ./init.lua;
   };
 
