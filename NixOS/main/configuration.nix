@@ -76,8 +76,8 @@
   };
 
   # limit cpu usage during build
-  nix.settings.cores = 1; # cores per job
-  nix.settings.max-jobs = 16; 
+  nix.settings.cores = 4; # cores per job
+  nix.settings.max-jobs = 4; 
 
   # touchpad
   # services.libinput.enable = true; # enabled by default for most desktopManagers
