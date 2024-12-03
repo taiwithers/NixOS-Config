@@ -140,14 +140,15 @@
 
   systemd.user.services.shiori = {
     Unit = {
-      Description = "Run shiori bookmark manager";
+      Description = "Shiori bookmark manager";
     };
     Install = {
-      WantedBy = [ "multi-user.target" ];
+      WantedBy = [ "graphical-session.target" ];
     };
     Service = {
       Restart = "always";
       ExecStart = "${pkgs.shiori}/bin/shiori serve";
+      Type= "exec";
     };
   };
   xresources.path = "${config.common.configHome}/X11/xresources";
