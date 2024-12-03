@@ -111,9 +111,9 @@
 
   # graphics
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ]; # Load "nvidia" driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "nvidia" ]; # Load driver for Xorg and Wayland, set by nixos-hardware
   hardware.nvidia = {
-    modesetting.enable = true; # required.
+    modesetting.enable = true; # required, set by nixos-hardware
 
     # Use the NVidia open source kernel module - false for my gpu
     open = false;
@@ -126,8 +126,8 @@
 
     # prime is the stuff for only using your gpu for certain tasks
     prime.offload = {
-      enable = true;
-      enableOffloadCmd = true;
+      enable = true; # set by nixos-hardware
+      enableOffloadCmd = true; # set by nixos-hardware
     };
   };
 
