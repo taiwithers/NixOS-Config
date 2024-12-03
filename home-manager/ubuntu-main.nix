@@ -42,20 +42,12 @@
         "zoxide"
       ];
   home.packages = with pkgs; [
-    nixshell
     fastfetch
-    fd
     latex
     libqalculate
     kitty # use icat on remote
     nix-output-monitor
-    nixfmt
-    ripgrep
-    sd
-    trashy
     xdg-ninja
-    get-package-path
-    clean
   ];
 
   programs.bash.bashrcExtra = ''

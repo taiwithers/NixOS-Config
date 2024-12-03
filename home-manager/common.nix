@@ -92,6 +92,7 @@
         sd
         zip
         trash-cli
+        ripgrep
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         busybox
