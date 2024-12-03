@@ -119,7 +119,7 @@
       onedrive
       onedrivegui
       # onlyoffice-desktopeditors
-      pinta # compare w krita
+      krita
       qjournalctl
       # realvnc-vnc-viewer
       signal-desktop

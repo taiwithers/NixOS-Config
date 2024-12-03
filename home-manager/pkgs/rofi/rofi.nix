@@ -7,7 +7,6 @@
 {
   home.packages = [
     pkgs.rofi-bluetooth
-    pkgs.keepmenu
   ];
   programs.rofi = rec {
     enable = true;

@@ -90,8 +90,8 @@
         fd
         rename
         sd
-        trashy
         zip
+        trash-cli
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         busybox
@@ -102,7 +102,7 @@
         curl
       ]
       ++ pkgs.lib.optionals config.common.nixos [
-        nixos-generations
+        generations
       ];
 
     home.shellAliases =
@@ -118,7 +118,6 @@
         # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory} && nixfmt . )";
-        "trash" = "trashy put";
       }
       // pkgs.lib.optionalAttrs (config.common.nixos) {
         "nixrebuild" =

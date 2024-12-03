@@ -13,13 +13,13 @@ stdenv.mkDerivation rec {
   # based on https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/kde/plasma/breeze/default.nix
   # & archlinux package
   pname = "klassy";
-  version = "3b65afd";
+  version = "58c6ad5";
 
   src = fetchFromGitHub {
     owner = "paulmcauley";
     repo = pname;
     rev = version;
-    hash = "sha256-KZo7W8+v4WcgLs5bN1ShX7lQ5MTNA6kqcAhS+YILB4I=";
+    hash = "sha256-B7nQVok/3uCskGykqEoaZcpzpIk15tT7qDPG3qCbn4Q=";
   };
 
   # dependencies from aur package
