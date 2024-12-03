@@ -77,30 +77,43 @@ rec {
     cursorTheme = cursor;
     theme = gtk-theme;
 
-    gtk2.extraConfig = with programs.plasma; ''
+    gtk2.extraConfig = with programs.plasma.workspace; ''
       gtk-button-images=1
       gtk-enable-animations=1
-      gtk-icon-theme-name="${workspace.iconTheme}"
+      gtk-icon-theme-name="${iconTheme}"
       gtk-menu-images=1
       gtk-primary-button-warps-slider=1
-      gtk-sound-theme-name="${workspace.soundTheme}"
+      gtk-sound-theme-name="${soundTheme}"
       gtk-toolbar-style=3
+      gtk-alternative-button-order=1
     '';
 
     gtk3.extraConfig = {
-      application-prefer-dark-theme = true;
+      gtk-application-prefer-dark-theme = true;
       gtk-button-images = true;
       gtk-decoration-layout = ":minimize,maximize,close";
       gtk-enable-animations = true;
       gtk-icon-theme-name = programs.plasma.workspace.iconTheme;
       gtk-menu-images = true;
-      gtk-modules = "colorreload-gtk-module";
+      gtk-modules = "window-decorations-gtk-module:colorreload-gtk-module";
       gtk-primary-button-warps-slider = true;
       gtk-sound-theme-name = programs.plasma.workspace.soundTheme;
       gtk-toolbar-style = 3;
+      gtk-xft-dpi=122880;
     };
+    # need both for things to apply correctly
+    gtk3.extraCss = ''
+      @import url("file://${gtk-theme.package}/share/themes/${gtk-theme.name}/gtk-3.0/gtk.css");
+      @import 'colors.css';
+      @import 'window_decorations.css';
+    '';
 
     gtk4.extraConfig = gtk3.extraConfig;
+    gtk4.extraCss = ''
+      @import url("file://${gtk-theme.package}/share/themes/${gtk-theme.name}/gtk-4.0/gtk.css");
+      @import 'colors.css';
+      @import 'window_decorations.css';
+    '';
   };
 
   programs.plasma = {
