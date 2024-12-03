@@ -130,6 +130,7 @@
     programs.bash.bashrcExtra = ''
       # add completion for get-package-path
       complete -F _command get-package-path
+      complete -F _command nvidia-offload
     '';
 
     xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''
