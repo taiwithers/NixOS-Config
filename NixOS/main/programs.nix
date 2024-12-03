@@ -23,6 +23,7 @@
     wayland-utils
 
     kdePackages.partitionmanager
+    kdePackages.ksystemlog
 
     kdePackages.sddm-kcm # is in colors and themes
     # sddm-kcm # uses version 5.27 which installs qt 5
