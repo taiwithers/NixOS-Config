@@ -8,6 +8,7 @@
   # services.gnome.core-utilities.enable = false;
 
   environment.sessionVariables."GTK_USE_PORTAL" = 1;
+  environment.sessionVariables."KWIN_DRM_DISABLE_TRIPLE_BUFFERING" = 1;
   # KDE
   services.displayManager.sddm = {
     enable = true;
