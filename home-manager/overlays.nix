@@ -144,6 +144,7 @@
       ];
       file = name;
     };
+    onedrive = unstable.onedrive;
     pond = customDerivation "pond";
     realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
       src = super.requireFile rec {
