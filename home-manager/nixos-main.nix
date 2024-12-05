@@ -151,6 +151,22 @@
       Type= "exec";
     };
   };
+
+  xdg.configFile."onedrive-gui/gui_settings".text = ''
+    [SETTINGS]
+    start_minimized = True
+    frameless_window = False
+    combined_start_stop_button = True
+    show_debug = False
+    save_debug = False
+    log_rotation_interval = 12
+    log_backup_count = 3
+    log_file = /tmp/onedrive-gui/onedrive-gui.log
+    debug_level = WARNING
+    client_bin_path = onedrive
+    qwebengine_login = False
+  '';
+  
   xresources.path = "${config.common.configHome}/X11/xresources";
 
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";
