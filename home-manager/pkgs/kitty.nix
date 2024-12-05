@@ -82,6 +82,9 @@
   xdg.configFile."xdg-terminals.list".text = ''
     kitty.desktop
   '';
+
+  xdg.configFile."KDE-xdg-terminals.list".text = config.xdg.configFile."xdg-terminals.list".text;
+  
   home.sessionVariables."TERMINAL" = "kitty";
 
   home.activation.kitty-keybinds = config.lib.dag.entryAfter [ "writeBoundary" ] ''
