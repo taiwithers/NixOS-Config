@@ -158,6 +158,10 @@
   
   fonts.enableDefaultPackages = true;
 
+  environment.shellAliases = {
+      rm = "rm --interactive=always --verbose";
+    };
+
   documentation.nixos.includeAllModules = true;
   documentation.man.generateCaches = true;
 
