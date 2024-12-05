@@ -8,6 +8,7 @@
     shellAliases = {
       brc = "source ~/.bashrc";
       bbrc = "bat ~/.bashrc";
+      sudo = "sudo --reset-timestamp ";
     };
   };
 }
