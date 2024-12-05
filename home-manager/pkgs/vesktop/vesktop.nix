@@ -7,11 +7,11 @@
   xdg.configFile."vesktop/themes/custom-colours.theme.css".source = ./custom-colours.theme.css;
 
   # technically splashBackground should be tied to theme colours
-  xdg.configFile."vesktop.settings.json".text = ''
+  xdg.configFile."vesktop/settings.json".text = ''
     {
         "minimizeToTray": "on",
         "discordBranch": "stable",
-        "arRPC": "on",
+        "arRPC": true,
         "splashColor": "rgb(255, 255, 255)",
         "clickTrayToShowHide": true,
         "disableMinSize": true,
