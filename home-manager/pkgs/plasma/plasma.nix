@@ -31,7 +31,7 @@ let
 
   gtk-theme = {
     name = "Breeze-Dark";
-    package = pkgs.kdePackages.breeze;
+    package = pkgs.kdePackages.breeze-gtk;
   };
 
   klassy-names = {
@@ -39,7 +39,7 @@ let
       theme = "Klassy";
       library = "org.kde.klassy";
     };
-    icon-theme = "klassy";
+    icon-theme = "klassy-dark";
   };
 in
 rec {
@@ -66,9 +66,29 @@ rec {
 
   xdg.dataFile."plasma/plasmoids/Compact.Menu".source = ./Compact.Menu;
 
+  # override the home manager gtk config
+  xdg.configFile."gtkrc-2.0".text = ''
+   gtk-alternative-button-order=1
+   gtk-button-images=1
+   gtk-cursor-theme-name="${cursor.name}"
+   gtk-cursor-theme-size=${builtins.toString cursor.size}
+   gtk-enable-animations=1
+   gtk-font-name="${fonts.sans.name} ${builtins.toString fonts.sans.size}"
+   gtk-icon-theme-name="${klassy-names.icon-theme}"
+   gtk-menu-images=1
+   gtk-primary-button-warps-slider=1
+   gtk-sound-theme-name="${programs.plasma.workspace.soundTheme}"
+   gtk-theme-name="${gtk-theme.name}"
+   gtk-toolbar-style=3
+  '';
+  xdg.configFile."gtk-4.0/window_decorations.css".source = "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
+  xdg.configFile."gtk-3.0/window_decorations.css".source = "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
+  
+
+
   gtk = rec {
     enable = true;
-    gtk2.configLocation = "${config.common.configHome}/gtk-2.0/gtkrc";
+    gtk2.configLocation = "${config.common.configHome}/gtkrc-2.0";
     font = with fonts.sans; {
       name = name;
       package = package;
@@ -76,17 +96,6 @@ rec {
     };
     cursorTheme = cursor;
     theme = gtk-theme;
-
-    gtk2.extraConfig = with programs.plasma.workspace; ''
-      gtk-button-images=1
-      gtk-enable-animations=1
-      gtk-icon-theme-name="${iconTheme}"
-      gtk-menu-images=1
-      gtk-primary-button-warps-slider=1
-      gtk-sound-theme-name="${soundTheme}"
-      gtk-toolbar-style=3
-      gtk-alternative-button-order=1
-    '';
 
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
@@ -518,5 +527,265 @@ rec {
     inactiveForeground=${ivory}
   '';
 
-  # xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ./panels.txt;
+  xdg.configFile."klassy/klassyrc".text = ''
+    [ButtonColors]
+    ButtonBackgroundOpacityActive=40
+    ButtonBackgroundOpacityInactive=40
+    ButtonIconOpacityActive=80
+    ButtonIconOpacityInactive=80
+
+    [Global]
+    LookAndFeelSet=org.kde.breezedark.desktop
+
+    [Style]
+    DockWidgetDrawFrame=true
+    FrameCornerRadius=FCR_Custom
+    MenuItemDrawStrongFocus=false
+    MenuOpacity=70
+    MnemonicsMode=MN_NEVER
+    ScrollBarAddLineButtons=0
+    ScrollBarSubLineButtons=0
+    SidePanelDrawFrame=true
+    SplitterProxyEnabled=true
+    WindowDragMode=WD_NONE
+
+    [TitleBarOpacity]
+    ActiveTitleBarOpacity=80
+    InactiveTitleBarOpacity=80
+    OpaqueMaximizedTitleBars=false
+
+    [TitleBarSpacing]
+    TitleBarLeftMargin=3
+    TitleBarRightMargin=3
+
+    [Windeco]
+    BoldButtonIcons=BoldIconsFine
+    ButtonIconStyle=StyleOxygen
+    ButtonShape=ShapeSmallCircle
+    ColorizeThinWindowOutlineWithButton=false
+    CornerRadius=0
+    DrawBackgroundGradient=true
+    DrawBorderOnMaximizedWindows=true
+    DrawTitleBarSeparator=true
+    IconSize=IconMedium
+    WindowCornerRadius=0
+
+    [WindowOutlineStyle]
+    ThinWindowOutlineStyleInactive=WindowOutlineNone
+    ThinWindowOutlineThickness=2.4999999999999982
+    WindowOutlineAccentColorOpacityActive=50
+  '';
+
+  xdg.configFile."dolphinrc".text = ''
+    MenuBar=Disabled
+
+    [ContextMenu]
+    ShowDuplicateHere=false
+    ShowMoveToOtherSplitView=false
+    ShowViewMode=false
+
+    [DetailsMode]
+    PreviewSize=22
+    SidePadding=0
+
+    [General]
+    BrowseThroughArchives=true
+    CloseActiveSplitView=false
+    DoubleClickViewAction=none
+    OpenExternallyCalledFolderInNewTab=true
+    OpenNewTabAfterLastTab=true
+    ShowStatusBar=false
+    Version=202
+    ViewPropsTimestamp=2024,11,30,17,35,37.881
+
+    [InformationPanel]
+    previewsShown=false
+    showHovered=false
+
+    [KFileDialog Settings]
+    Places Icons Auto-resize=false
+    Places Icons Static Size=22
+
+    [MainWindow]
+    MenuBar=Disabled
+    ToolBarsMovable=Disabled
+
+    [PreviewSettings]
+    Plugins=cursorthumbnail,djvuthumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs
+  '';
+
+  xdg.configFile."kcminputrc".text = ''
+    [Keyboard]
+    NumLock=0
+
+    [Libinput][1267][12572][VEN_04F3:00 04F3:311C Touchpad]
+    NaturalScroll=true
+
+    [Mouse]
+    cursorSize=32
+    cursorTheme=Posy_Cursor_Black
+  '';
+
+  xdg.configFile."kglobalshortcutsrc".source = ./kglobalshortcutsrc;
+
+  xdg.configFile."kiorc".text = ''
+    [Confirmations]
+    ConfirmDelete=true
+    ConfirmEmptyTrash=true
+    ConfirmTrash=false
+
+    [Executable scripts]
+    behaviourOnLaunch=alwaysAsk
+  '';
+
+  xdg.configFile."klaunchrc".text = ''
+    [BusyCursorSettings]
+    Bouncing=false
+
+    [FeedbackStyle]
+    BusyCursor=false
+    TaskbarButton=false
+  '';
+
+  xdg.configFile."kscreenlockerrc".text = ''
+    [Daemon]
+    LockGrace=300
+
+    [Greeter][Wallpaper][org.kde.image][General]
+    Image=/home/tai/Nix/NixOS/main/background.png
+    PreviewImage=/home/tai/Nix/NixOS/main/background.png
+  '';
+
+  xdg.configFile."ksplashrc".text = ''
+    [KSplash]
+    Theme=Magna-Splash-6
+  '';
+
+  xdg.configFile."powerdevilrc".text = ''
+    [AC][SuspendAndShutdown]
+    InhibitLidActionWhenExternalMonitorPresent=false
+
+    [Battery][Performance]
+    PowerProfile=power-saver
+
+    [Battery][SuspendAndShutdown]
+    InhibitLidActionWhenExternalMonitorPresent=false
+
+    [LowBattery][Display]
+    DisplayBrightness=10
+
+    [LowBattery][Performance]
+    PowerProfile=power-saver
+
+    [LowBattery][SuspendAndShutdown]
+    InhibitLidActionWhenExternalMonitorPresent=false
+  '';
+
+  xdg.configFile."spectaclerc".text = ''
+    [General]
+    autoSaveImage=true
+    clipboardGroup=PostScreenshotCopyImage
+    rememberSelectionRect=Always
+
+    [GuiConfig]
+    captureMode=0
+    selectionRect=252,314,1034,553
+
+    [ImageSave]
+    imageCompressionQuality=100
+    lastImageSaveLocation=file:///home/tai/Pictures/Screenshots/Screenshot_20241204_100725.png
+    translatedScreenshotsFolder=Screenshots
+
+    [VideoSave]
+    translatedScreencastsFolder=Screencasts
+  '';
+  
+  xdg.configFile."kded5rc".text = ''
+    [Module-appmenu]
+    autoload=true
+
+    [Module-audioshortcutsservice]
+    autoload=true
+
+    [Module-baloosearchmodule]
+    autoload=true
+
+    [Module-bluedevil]
+    autoload=true
+
+    [Module-browserintegrationreminder]
+    autoload=false
+
+    [Module-colorcorrectlocationupdater]
+    autoload=false
+
+    [Module-device_automounter]
+    autoload=false
+
+    [Module-devicenotifications]
+    autoload=true
+
+    [Module-donationmessage]
+    autoload=false
+
+    [Module-freespacenotifier]
+    autoload=true
+
+    [Module-gtkconfig]
+    autoload=false
+
+    [Module-inotify]
+    autoload=true
+
+    [Module-kameleon]
+    autoload=false
+
+    [Module-kded_bolt]
+    autoload=true
+
+    [Module-kded_touchpad]
+    autoload=true
+
+    [Module-keyboard]
+    autoload=false
+
+    [Module-kscreen]
+    autoload=true
+
+    [Module-ktimezoned]
+    autoload=true
+
+    [Module-mprisservice]
+    autoload=true
+
+    [Module-networkmanagement]
+    autoload=true
+
+    [Module-plasma-session-shortcuts]
+    autoload=true
+
+    [Module-plasma_accentcolor_service]
+    autoload=true
+
+    [Module-printmanager]
+    autoload=true
+
+    [Module-remotenotifier]
+    autoload=true
+
+    [Module-smbwatcher]
+    autoload=true
+
+    [Module-statusnotifierwatcher]
+    autoload=true
+  '';
+
+  xdg.desktopEntries."KDE Background Services" = {
+    exec = "kcmshell6 kcm_kded";
+    name = "KDE Background Services";
+  };
+  # kdeglobals
+  # kwinrc
+  # kwinrulesrc
+  # plasma-org.kde.plasma.desktop-appletsrc
 }
