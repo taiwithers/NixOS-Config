@@ -137,7 +137,7 @@
       file = name;
     };
     generations = customScript rec {
-      name = "nixos-generations";
+      name = "generations";
       runtimeInputs = with pkgs; [
         nix
         jq
