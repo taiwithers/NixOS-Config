@@ -6,7 +6,7 @@
 {
   programs.kitty = {
     enable = true;
-    shellIntegration.enableBashIntegration = true;
+    shellIntegration.enableBashIntegration = false; # do this manually
 
     # font = {
     #   name = "Intel One Mono";
@@ -89,5 +89,14 @@
 
   home.activation.kitty-keybinds = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     ${pkgs.bat}/bin/bat ~/.config/kitty/kitty.conf | grep "map" | sed "s/^map //" | ${pkgs.gawk}/bin/awk '{$1 = sprintf("%-20s",$1)} 1' > ~/.local/state/kitty-keybinds.txt
+  '';
+
+  programs.bash.bashrcExtra = ''
+    if test -n "$KITTY_INSTALLATION_DIR"; then
+      export KITTY_SHELL_INTEGRATION="no-rc"
+      shopt -u expand_aliases
+      source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
+      shopt -s expand_aliases
+    fi
   '';
 }
