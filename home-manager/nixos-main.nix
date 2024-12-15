@@ -72,6 +72,7 @@
         "vscodium/vscodium"
         "xdg"
         "yazi"
+        "zotero"
         "zoxide"
       ]
     );
@@ -127,7 +128,6 @@
       sticky
       teams-for-linux
       zoom-us
-      zotero
     ]
     ++ fonts;
 
