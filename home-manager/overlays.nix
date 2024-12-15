@@ -70,29 +70,29 @@
         collection-basic
         collection-latex
         collection-latexrecommended
-        aastex
+        aastex # Macros for Manuscript Preparation for AAS Journals
         astro # planetary symbols
-        babel-english
+        babel-english # Babel support for English
         cm-super # cm fonts
-        derivative
-        dvipng
-        enumitem
-        epsf
-        helvetic
-        hyphen-english
-        hyphenat
-        # latexmk
+        derivative # Nice and easy derivatives
+        dvipng # DVI to PNG converter
+        enumitem # Control layout of itemize, enumerate, description
+        epsf # macros for EPS files
+        helvetic # URW 'Base 35' font pack for LaTeX
+        hyphen-english # English hyphenation patterns.
+        hyphenat # Disable/enable hypenation
+        latexmk # default compiler for vimtex
 
         layouts # for printing \textwidth etc
         lipsum
         lm # latin moden fonts
         metafont # mf command line util for fonts
-        multirow
-        pgf # tikz
-        physunits
+        multirow # Create tabular cells spanning multiple rows
+        pgf # tikz - Create PostScript and PDF graphics in TeX
+        physunits # Macros for commonly used physical units
         revtex4-1 # revtex gives revtex 4.2 which isn't accepted by aastex
-        siunitx
-        standalone
+        siunitx # A comprehensive (SI) units package
+        standalone # Compile TeX pictures stand-alone or as part of a document
         svn-prov # required macros (for who??)
         synctex # engine-level feature synchronizing output and source
         tikz-ext # libraries (which?)
@@ -102,25 +102,38 @@
         type1cm # arbitrary font sizing
         ulem # underlining
         upquote # Show "realistic" quotes in verbatim
-        wrapfig
+        wrapfig # Produces figures which text can flow around
         xelatex-dev # for nbconvert
         tcolorbox # for listings (in nbconvert)
-        environ # nbconvert
-        pdfcol # nbconvert
-        eurosym # nbconvert
-        iftex
-        ucs
+        environ # nbconvert - A new interface for environments in LaTeX
+        pdfcol # nbconvert - Macros for maintaining colour stacks under pdfTeX
+        eurosym # nbconvert - Metafont and macros for Euro sign
+        iftex # allow checking what compiler is being used
+        ucs # utf8 
         latex-uni8
-        fontspec
+        fontspec # font selection
         unicode-math
-        fancyvrb
-        grffile
-        adjustbox
-        titling
-        booktabs
-        soul
-        parskip
+        fancyvrb # verbatim stuff
+        grffile # Extended file name support for graphics (legacy package)
+        adjustbox # Graphics package-alike macros for "general" boxes
+        titling # Control over the typesetting of the maketitle command
+        booktabs # Publication quality tables in LaTeX
+        soul # hyphenation for letterspacing, underlining, and more
+        parskip # Layout with zero parindent, non-zero parskip
         rsfs # math font
+        sectsty # custom section headers
+        xcolor # Driver-independent color extensions for LaTeX and pdfLaTeX
+        tocloft # table of contents control
+        threeparttable # Tables with captions and notes all the same width
+        threeparttablex # Notes in longtables
+        moreverb # extended verbatim
+        cases # Numbered cases environment
+        boxedminipage # Framed minipages of a specified total width (text and frame combined)
+        changebar # Generate changebars in LaTeX documents
+        changepage # Margin adjustment and detection of odd/even pages
+        acronym # Expand acronyms at least once
+        bigfoot # Footnotes for critical editions - contains 'suffix' which acronym relies on ? 
+        xstring # String manipulation for (La)TeX
         ;
     };
     kdePackages = super.kdePackages // {
@@ -142,7 +155,7 @@
         nix
         jq
       ];
-      file = name;
+      file = "nixos-generations";
     };
     onedrive = unstable.onedrive;
     pond = customDerivation "pond";
@@ -201,6 +214,7 @@
     vimPlugins =
       super.vimPlugins
       // {
+        snacks-nvim = unstable.vimPlugins.snacks-nvim;
       }
       // builtins.mapAttrs (name: value: (githubVimPlugin value)) {
         f-string-toggle-nvim = {
