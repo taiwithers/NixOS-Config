@@ -14,17 +14,18 @@
     let
       simplelayout = ''
         [[row]]
-         ratio=1
-         [[row.child]]
-          type="cpu"
-          ratio=7
+         ratio = 1
          [[row.child]]
           type="mem"
           ratio = 3
+         [[row.child]]
+          type="cpu"
+          ratio=7
         [[row]]
-         ratio=1
-         type="proc"
-         default = true
+         ratio = 2
+         [[row.child]]
+           type="proc"
+           default = true
       '';
 
       fancylayout = ''
@@ -62,15 +63,15 @@
       rate = "1s" # The update rate of the application.
       left_legend = false # Whether to put the CPU legend to the left.
       current_usage = false # Whether to set CPU% on a process to be based on the total CPU or just current usage.
-      unnormalized_cpu = false # Whether to set CPU% on a process to be based on the total CPU or per-core CPU% (not divided by the number of cpus).
-      group_processes = false # Whether to group processes with the same name together by default.
+      unnormalized_cpu = true # Whether to set CPU% on a process to be based on the total CPU or per-core CPU% (not divided by the number of cpus).
+      group_processes = true # Whether to group processes with the same name together by default.
       case_sensitive = false # Whether to make process searching case sensitive by default.
       whole_word = false # Whether to make process searching look for matching the entire word by default.
       regex = false # Whether to make process searching use regex by default.
       temperature_type = "celsius"
       default_time_value = "60s" # The default time interval (in milliseconds).
       time_delta = 15000 # The time delta on each zoom in/out action (in milliseconds).
-      hide_time = false # Hides the time scale.
+      hide_time = true # Hides the time scale.
       default_widget_type = "proc" # Override layout default widget
       default_widget_count = 1
       expanded_on_startup = false # Expand selected widget upon starting the app
@@ -80,22 +81,22 @@
       battery = false # Show the battery widgets
       disable_click = false # Disable mouse clicks
       color = "default" # Built-in themes.  Valid values are "default", "default-light", "gruvbox", "gruvbox-light", "nord", "nord-light"
-      mem_as_value = false # Show memory values in the processes widget as values by default
-      tree = true # Show tree mode by default in the processes widget.
-      show_table_scroll_position = false # Shows an indicator in table widgets tracking where in the list you are.
+      process_memory_as_value = true # Show memory values in the processes widget as values by default
+      tree = false # Show tree mode by default in the processes widget.
+      show_table_scroll_position = true # Shows an indicator in table widgets tracking where in the list you are.
       process_command = false # Show processes as their commands by default in the process widget.
       network_use_binary_prefix = false # Displays the network widget with binary prefixes.
       network_use_bytes = false # Displays the network widget using bytes.
       network_use_log = false # Displays the network widget with a log scale.
-      disable_advanced_kill = false # Hides advanced options to stop a process on Unix-like systems.
-      enable_gpu_memory = false # Shows GPU(s) memory
-      enable_cache_memory = false # Shows cache and buffer memory
+      disable_advanced_kill = true # Hides advanced options to stop a process on Unix-like systems.
+      enable_gpu_memory = true # Shows GPU(s) memory
+      enable_cache_memory = true # Shows cache and buffer memory
       retention = "10m" # How much data is stored at once in terms of time.
 
       # These are flags around the process widget.
 
       [processes]
-      columns = ["PID", "Name", "CPU%", "Mem%", "User", "State"]
+      columns = ["PID", "Name", "CPU%", "Mem%","gpu%", "State"]
 
       # These are all the components that support custom theming.  Note that colour support will depend on terminal support.
       [colors] # Uncomment if you want to use custom colors
@@ -128,7 +129,7 @@
       # All widgets must have the type value set to one of ["cpu", "mem", "proc", "net", "temp", "disk", "empty"].
       # All layout components have a ratio value - if this is not set, then it defaults to 1.
       # The default widget layout:
-      ${fancylayout}
+      ${simplelayout}
 
       # Filters - you can hide specific temperature sensors, network interfaces, and disks using filters.  This is admittedly
       # a bit hard to use as of now, and there is a planned in-app interface for managing this in the future:
