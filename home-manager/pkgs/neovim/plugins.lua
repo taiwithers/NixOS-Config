@@ -171,6 +171,7 @@ require('toggleterm').setup({
   start_in_insert = true,
   persist_mode = false,
 })
+-- require('vimtex')
 require('which-key').setup({
   preset="helix",
   win={no_overlap=false},
@@ -187,6 +188,12 @@ require('which-key').setup({
 require('window-picker').setup({
   hint = 'floating-big-letter',
 })
+
+-- vimtex
+vim.g.vimtex_complete_close_braces = 1
+-- vim.g.vimtex_complete_bib.simple = 1 -- only match bibkeys for citations
+
+
 
 require('legendary').setup({ -- needs to be after which-key
   extensions = {which_key = {

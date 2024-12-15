@@ -55,6 +55,8 @@ in
         toggleterm-nvim # toggleterm
         which-key-nvim # which-key
         nvim-window-picker # window-picker
+        vimtex
+        snacks-nvim
 
         legendary-nvim # loaded after which-key, change to unstable
         nvim-spider # loaded in keymaps.lua
@@ -81,6 +83,7 @@ in
           kconfig
           vimdoc
           query
+          # latex
         ]))
       ];
       # ++ (with nvim-treesitter-parsers; [
