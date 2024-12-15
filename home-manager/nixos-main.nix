@@ -7,6 +7,8 @@
   ...
 }:
 {
+  # nixos-rebuild switch --install-bootloader --use-remote-sudo --flake ./path-to-flake#output-name
+  # nix run home-manager/release-24.11 -- switch --impure --flake ./path-to-flake#output-name
   imports =
     [
       (
