@@ -77,6 +77,17 @@
           };
         };
 
+# other things failing to bring down ram usage
+# gfx.max-alloc-size
+# gfx.max-texture-size
+# browser.cache.disk.max_chunks_memory_usage
+# browser.cache.disk.max_entry_size
+# browser.cache.disk.max_priority_chunks_memory_usage
+# javascript.options.mem.max
+# webgl.max-size-per-texture-mib
+# browser.tabs.unloadOnLowMemory
+# image.mem.surfacecache.max_size_kb
+# javascript.options.mem.notify
         settings = {
           "breakpad.reportURL" = ""; # betterfox
           "browser.aboutConfig.showWarning" = false;
