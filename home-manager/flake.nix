@@ -33,6 +33,9 @@
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
     nur.url = "github:nix-community/NUR";
+    # nur.inputs.flake-parts.follows = "flake-parts";
+    # nur.inputs.treefmt-nix.follows = "treefmt-nix";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -96,7 +99,7 @@
                 config = pkgs-config;
               };
             })
-            flake-inputs.nur.overlay
+            flake-inputs.nur.overlays.default
             (import ./overlays.nix { inherit pkgs flake-inputs system; })
           ];
       };
