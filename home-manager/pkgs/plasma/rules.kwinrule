@@ -1,0 +1,44 @@
+[Apply now settings for Picture-in-Picture]
+Description=Apply now settings for Picture-in-Picture
+above=true
+aboverule=5
+fullscreenrule=3
+position=770,530
+positionrule=5
+sizerule=5
+title=Picture-in-Picture
+titlematch=1
+types=1
+wmclass=firefox firefox
+wmclasscomplete=true
+wmclassmatch=1
+
+[No minimum window size]
+Description=No minimum window size
+minsizerule=2
+types=1
+
+[Window settings for Picture-in-Picture]
+Description=Window settings for Picture-in-Picture
+above=true
+aboverule=3
+fullscreenrule=3
+position=770,530
+positionrule=3
+sizerule=3
+title=Picture-in-Picture
+titlematch=1
+types=1
+wmclass=firefox Firefox
+wmclasscomplete=true
+wmclassmatch=1
+
+[Window settings for sticky.py]
+Description=Window settings for sticky.py
+skiptaskbar=true
+skiptaskbarrule=3
+title=sticky.py
+types=1
+wmclass=python3.12 sticky.py
+wmclasscomplete=true
+wmclassmatch=1
