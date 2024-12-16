@@ -10,7 +10,7 @@
   xdg.configFile."vesktop/settings.json".text = ''
     {
         "minimizeToTray": "on",
-        "discordBranch": "stable",
+        "discordBranch": "canary",
         "arRPC": true,
         "splashColor": "rgb(255, 255, 255)",
         "clickTrayToShowHide": true,
