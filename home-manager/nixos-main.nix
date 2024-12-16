@@ -74,7 +74,7 @@
         "vscodium/vscodium"
         "xdg"
         "yazi"
-        "zotero"
+        "zotero/zotero"
         "zoxide"
       ]
     );
