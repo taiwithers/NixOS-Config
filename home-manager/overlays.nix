@@ -136,9 +136,18 @@
         xstring # String manipulation for (La)TeX
         ;
     };
+    karp = unstable.karp;
     kdePackages = super.kdePackages // {
       kara = super.kara;
-      klassy = customDerivation "klassy";
+      klassy = super.nur.repos.shadowrz.klassy-qt6.overrideAttrs (oldAttrs: rec {
+            version = "58c6ad5";
+            src = super.fetchFromGitHub {
+                owner = "paulmcauley";
+                repo = oldAttrs.pname;
+                rev = version;
+                hash = "sha256-B7nQVok/3uCskGykqEoaZcpzpIk15tT7qDPG3qCbn4Q=";
+              };
+        }); #customDerivation "klassy";
     };
     nixfmt = super.nixfmt-rfc-style;
     nixshell = customScript rec {

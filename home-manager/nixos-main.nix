@@ -93,6 +93,7 @@
       cloc
       dconf
       fastfetch
+      ghostscript # pdf creation
       jq
       latex
       lavat
@@ -122,6 +123,7 @@
       onedrive
       onedrivegui
       # onlyoffice-desktopeditors
+      karp
       krita
       qjournalctl
       # realvnc-vnc-viewer
@@ -129,7 +131,15 @@
       shiori
       sticky
       teams-for-linux
+      xournalpp
       zoom-us
+
+      # nvidia monitors
+      nvtopPackages.nvidia
+      nvitop
+      zenith-nvidia
+      nvidia-system-monitor-qt
+
     ]
     ++ fonts;
 
@@ -139,6 +149,8 @@
   };
 
   services.caffeine.enable = true;
+
+  fonts.fontconfig.enable = true;
 
   systemd.user.services.shiori = {
     Unit = {
