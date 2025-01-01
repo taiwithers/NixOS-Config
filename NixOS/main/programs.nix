@@ -34,6 +34,7 @@
         basicTextColor = "#878d96";
         showSessionsByDefault = true;
         showUsersByDefault = true;
+        hideCursor = true;
       };
     })
     posy-cursors
