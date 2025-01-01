@@ -78,13 +78,13 @@
         };
 
 # other things failing to bring down ram usage
-# gfx.max-alloc-size
-# gfx.max-texture-size
-# browser.cache.disk.max_chunks_memory_usage
-# browser.cache.disk.max_entry_size
-# browser.cache.disk.max_priority_chunks_memory_usage
+# gfx.max-alloc-size - reset
+# gfx.max-texture-size - rest
+# browser.cache.disk.max_chunks_memory_usage - reset
+# browser.cache.disk.max_entry_size - reset
+# browser.cache.disk.max_priority_chunks_memory_usage - reset
 # javascript.options.mem.max
-# webgl.max-size-per-texture-mib
+# webgl.max-size-per-texture-mib - reset
 # browser.tabs.unloadOnLowMemory
 # image.mem.surfacecache.max_size_kb
 # javascript.options.mem.notify
@@ -93,6 +93,7 @@
           "browser.aboutConfig.showWarning" = false;
           "browser.aboutwelcome.enabled" = false;
           "browser.bookmarks.openInTabClosesMenu" = false;
+          "browser.cache.disk.enable" = true; # betterfox, fastofx
           "browser.cache.jsbc_compression_level" = 3; # betterfox, disk cache
           "browser.cache.memory.capacity" = 15000;
           "browser.compactmode.show" = true;
@@ -137,7 +138,7 @@
           "browser.urlbar.update2.engineAliasRefresh" = true;
           "browser.xul.error_pages.expert_bad_cert" = true; # betterfox security
           "captivedetect.canonicalURL" = ""; # betterfox
-          "content.notify.interval" = 100000; # betterfox
+          "content.notify.interval" = 100000; # betterfox - fastfox
           "cookiebanners.service.mode" = 1; # betterfox
           "cookiebanners.service.mode.privateBrowsing" = 1; # betterfox
           "datareporting.healthreport.uploadEnabled" = false; # betterfox
@@ -157,34 +158,34 @@
           "full-screen-api.transition-duration.enter" = "0 0"; # betterfox
           "full-screen-api.transition-duration.leave" = "0 0"; # betterfox
           "full-screen-api.warning.timeout" = 0; # betterfox
-          "gfx.canvas.accelerated.cache-items" = 4096; # betterfox, gfx
-          "gfx.canvas.accelerated.cache-size" = 512; # betterfox, gfx
-          "gfx.content.skia-font-cache-size" = 20; # betterfox, gfx
-          "image.mem.decode_bytes_at_a_time" = 32768; # betterfox, image cache
+          "gfx.canvas.accelerated.cache-items" = 4096; # betterfox - fastfox
+          "gfx.canvas.accelerated.cache-size" = 512; # betterfox - fastfox
+          "gfx.content.skia-font-cache-size" = 20; # betterfox - fastfox
+          "image.mem.decode_bytes_at_a_time" = 32768; # betterfox - fastfox
           "layout.word_select.eat_space_to_next_word" = false; # betterfox
-          "media.cache_readahead_limit" = 7200; # betterfox, media cache
-          "media.cache_resume_threshold" = 3600; # betterfox, media cache
+          "media.cache_readahead_limit" = 7200; # betterfox - fastfox
+          "media.cache_resume_threshold" = 3600; # betterfox - fastfox
           "media.hardware-video-decoding.enabled" = true; # use gpu for video
-          "media.memory_cache_max_size" = 65536; # betterfox, media cache
+          "media.memory_cache_max_size" = 65536; # betterfox - fastfox
           "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = true;
           "network.auth.subresource-http-auth-allow" = 1;
           "network.captive-portal-service.enabled" = false; # betterfox
           "network.connectivity-service.enabled" = false; # betterfox
-          "network.dns.disablePrefetch" = true; # betterfox, speculative loading
-          "network.dns.disablePrefetchFromHTTPS" = true; # betterfox, speculative loading
-          "network.dnsCacheExpiration" = 3600; # betterfox, network
-          "network.http.max-connections" = 1800; # betterfox, network
-          "network.http.max-persistent-connections-per-server" = 10; # betterfox, network
-          "network.http.max-urgent-start-excessive-connections-per-host" = 5; # betterfox, network
-          "network.http.pacing.requests.enabled" = false; # betterfox, network
+          "network.dns.disablePrefetch" = true; # betterfox - fastfox
+          "network.dns.disablePrefetchFromHTTPS" = true; # betterfox - fastfox
+          "network.dnsCacheExpiration" = 3600; # betterfox - fastfox
+          "network.http.max-connections" = 1800; # betterfox - fastfox
+          "network.http.max-persistent-connections-per-server" = 10; # betterfox - fastfox
+          "network.http.max-urgent-start-excessive-connections-per-host" = 5; # betterfox - fastfox
+          "network.http.pacing.requests.enabled" = false; # betterfox - fastfox
           "network.http.referer.XOriginTrimmingPolicy" = 2; # betterfox
           "network.IDN_show_punycode" = true; # betterfox security
-          "network.predictor.enable-prefetch" = false; # betterfox, speculative loading
-          "network.predictor.enabled" = false; # betterfox, speculative loading
-          "network.prefetch-next" = false; # betterfox, speculative loading
-          "network.ssl_tokens_cache_capacity" = 10240; # betterfox, network
+          "network.predictor.enable-prefetch" = false; # betterfox - fastfox
+          "network.predictor.enabled" = false; # betterfox - fastfox
+          "network.prefetch-next" = false; # betterfox - fastfox
+          "network.ssl_tokens_cache_capacity" = 10240; # betterfox - fastfox
           "pdfjs.enableScripting" = false;
-          "permissions.default.geo" = 2; # betterfox
+          "permissions.default.geo" = 2; # betterfox, always block location requests (0 to ask every time)
           "permissions.manager.defaultsUrl" = ""; # betterfox
           "privacy.donottrackheader.enabled" = true;
           "privacy.fingerprintingProtection" = true;
