@@ -29,7 +29,7 @@
       scroll-method = 1; # 1 continuous
       normalize-match = true; # match accented and nonaccented characters
       steal-focus = true;
-      matching = "fuzzy";
+      matching = "normal";
       drun-match-fields = "name";
       show-icons = true;
       drun-display-format = "{name}"; # [<span weight='light' size='small'><i>({exec})</i></span>]";
