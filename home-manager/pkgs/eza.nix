@@ -4,7 +4,6 @@
     enable = true;
     extraOptions = [
       "--long"
-      "--colour=always"
       "--hyperlink"
       "--all"
       "--group-directories-first"
@@ -15,6 +14,7 @@
     ];
     git = true;
     icons = "auto";
+    colors = "always";
   };
 
   home.shellAliases = {

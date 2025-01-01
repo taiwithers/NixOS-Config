@@ -67,7 +67,7 @@
 
       # other
       enable_audio_bell = "no";
-      visual_bell_duration = "0.5";
+      visual_bell_duration = 0.5;
       scrollback_pager = "bat";
       allow_remote_control = "yes";
       # dynamic_background_opacity = "yes";
