@@ -55,6 +55,17 @@
 
   # gamemode - requests optimizations when running games
   programs.gamemode.enable = true;
+  programs.gamemode.settings = {
+    gpu = {
+        apply_gpu_optimisations ="accept-responsibility";
+        gpu_device = 0;
+      };
+    custom = {
+      start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+      end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+    };
+  };
+  users.users.tai.extraGroups = [ "gamemode" ];
 
   # program configurations
   programs.vim.enable = true;
