@@ -41,7 +41,7 @@
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
     spicetify-nix.inputs.flake-compat.follows = "flake-compat";
 
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-24.11";
     stylix.inputs.base16-fish.follows = "";
     stylix.inputs.base16-helix.follows = "";
     stylix.inputs.base16-vim.follows = "";
@@ -53,6 +53,7 @@
     stylix.inputs.systems.follows = "systems";
     stylix.inputs.tinted-foot.follows = "";
     stylix.inputs.tinted-tmux.follows = "";
+    stylix.inputs.tinted-zed.follows = "";
   };
 
   outputs =
