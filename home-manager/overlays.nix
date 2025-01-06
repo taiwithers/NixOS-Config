@@ -58,6 +58,17 @@
     };
     codium = super.vscodium-fhs;
     color-oracle = customDerivation "color-oracle";
+    diff-hm-generations = customScript rec {
+      name = "diff-hm-generations";
+      runtimeInputs = with pkgs; [
+        gnused
+        home-manager
+        nix
+        sd
+        nvd
+      ];
+      file = "diff-generations";
+    };
     ds9 = customDerivation "ds9";
     gaia = customDerivation "gaia";
     get-package-path = customScript {
