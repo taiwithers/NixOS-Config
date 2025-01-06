@@ -122,23 +122,15 @@
       obsidian
       onedrive
       onedrivegui
-      # onlyoffice-desktopeditors
       karp
       krita
       qjournalctl
-      # realvnc-vnc-viewer
       signal-desktop
       shiori
       sticky
       teams-for-linux
       xournalpp
       zoom-us
-
-      # nvidia monitors
-      nvtopPackages.nvidia
-      nvitop
-      zenith-nvidia
-      nvidia-system-monitor-qt
 
     ]
     ++ fonts;
@@ -180,7 +172,7 @@
     client_bin_path = onedrive
     qwebengine_login = False
   '';
-  
+
   xresources.path = "${config.common.configHome}/X11/xresources";
 
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";

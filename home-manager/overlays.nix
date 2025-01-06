@@ -82,7 +82,6 @@
         hyphen-english # English hyphenation patterns.
         hyphenat # Disable/enable hypenation
         latexmk # default compiler for vimtex
-
         layouts # for printing \textwidth etc
         lipsum
         lm # latin moden fonts
@@ -134,6 +133,9 @@
         acronym # Expand acronyms at least once
         bigfoot # Footnotes for critical editions - contains 'suffix' which acronym relies on ? 
         xstring # String manipulation for (La)TeX
+        subfigure # subfigures and lists of figures/tables
+        wasysym # some kind of font support? needed for thesis
+        wasy # same as wasysym
         ;
     };
     karp = unstable.karp;
@@ -168,22 +170,6 @@
     };
     onedrive = unstable.onedrive;
     pond = customDerivation "pond";
-    realvnc-vnc-viewer = super.realvnc-vnc-viewer.overrideAttrs (oldAttrs: rec {
-      src = super.requireFile rec {
-        url = "https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.5.1-Linux-x64.rpm";
-        hash = "sha256-Ull9iNi8NxB12YwEThWE0P9k1xOV2LZnebuRrVH/zwI="; # ${super.nix-prefetch} fetchurl --quiet --url '${url}' --option extra-experimental-features flakes
-      };
-    });
-#    rofi-wayland-unwrapped = super.rofi-wayland-unwrapped.overrideAttrs (oldAttrs: rec {
-#      version = "93ad86d";
-#      src = super.fetchFromGitHub {
-#        owner = "lbonn";
-#        repo = "rofi";
-#        rev = version;
-#        fetchSubmodules = true;
-#        sha256 = "sha256-ipvG75snR39dziidFOb8wwgW2vL4ZIlcP1EWvYEqpP0=";
-#      };
-#    });
     rofi-calc = super.rofi-calc.override {
       rofi-unwrapped = self.rofi-wayland-unwrapped;
     };
