@@ -90,13 +90,13 @@
       network_use_log = false # Displays the network widget with a log scale.
       disable_advanced_kill = true # Hides advanced options to stop a process on Unix-like systems.
       enable_gpu_memory = true # Shows GPU(s) memory
-      enable_cache_memory = true # Shows cache and buffer memory
-      retention = "10m" # How much data is stored at once in terms of time.
+      enable_cache_memory = false # Shows cache and buffer memory
+      retention = "2m" # How much data is stored at once in terms of time.
 
       # These are flags around the process widget.
 
       [processes]
-      columns = ["PID", "Name", "CPU%", "Mem%","gpu%", "State"]
+      columns = ["PID", "Name", "CPU%", "Mem%"]
 
       # These are all the components that support custom theming.  Note that colour support will depend on terminal support.
       [colors] # Uncomment if you want to use custom colors
