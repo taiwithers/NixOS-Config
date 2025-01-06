@@ -160,6 +160,7 @@
 
   environment.shellAliases = {
       rm = "rm --interactive=always --verbose";
+      nvidia-settings = "nvidia-settings --config=\"$XDG_CONFIG_HOME\"/nvidia/settings";
     };
 
   documentation.nixos.includeAllModules = true;

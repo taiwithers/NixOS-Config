@@ -9,7 +9,7 @@
     man-pages
     man-pages-posix
 
-    gnome-terminal # always have an editor and terminal!
+    konsole # always have an editor and terminal!
     git
     bluez # bluetooth
     coreutils
@@ -37,7 +37,10 @@
         hideCursor = true;
       };
     })
-    posy-cursors
+
+    # nvidia monitors
+    nvtopPackages.nvidia
+    nvitop
 
   ];
 
