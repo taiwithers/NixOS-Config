@@ -62,6 +62,7 @@
         "fzf"
         "git" # also installed system-wide
         "kitty"
+        "latex"
         "lazygit"
         "neovim/neovim"
         "python/python"
