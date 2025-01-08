@@ -8,7 +8,7 @@
   stdenv,
   makeDesktopItem,
   copyDesktopItems,
-  lib
+  lib,
 }:
 let
   libPath = lib.makeLibraryPath [
@@ -20,7 +20,7 @@ let
     libxml2.out
   ];
 
-  desktopItem = makeDesktopItem rec{
+  desktopItem = makeDesktopItem rec {
     name = "ds9";
     desktopName = name;
     exec = "ds9 %F";
@@ -38,7 +38,7 @@ stdenv.mkDerivation rec {
     sha256 = "BFQfxIesSOCUI35mF5ADmV27TlO+WZvXjh1ULXcQlRA=";
   };
 
-  nativeBuildInputs = [copyDesktopItems];
+  nativeBuildInputs = [ copyDesktopItems ];
 
   buildInputs = [
     xorg.libX11.out
@@ -49,26 +49,24 @@ stdenv.mkDerivation rec {
     libxml2.out
   ];
 
-  installPhase =
-    ''
-      runHook preInstall
+  installPhase = ''
+    runHook preInstall
 
-      mkdir -p $out/bin
-      cp -p * $out/bin
-    
-      runHook postInstall
-    '';
+    mkdir -p $out/bin
+    cp -p * $out/bin
 
-  fixupPhase =
-    ''
-      runHook preFixup
+    runHook postInstall
+  '';
 
-      chmod 755 $out/bin/ds9
-      patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
-        --set-rpath ${libPath}   $out/bin/ds9
+  fixupPhase = ''
+    runHook preFixup
 
-      runHook postFixup
-    '';
+    chmod 755 $out/bin/ds9
+    patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+      --set-rpath ${libPath}   $out/bin/ds9
 
-  desktopItems = [desktopItem];
+    runHook postFixup
+  '';
+
+  desktopItems = [ desktopItem ];
 }

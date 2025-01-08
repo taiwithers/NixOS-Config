@@ -117,7 +117,8 @@
 
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
-        "rebuild" = "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name} && diff-hm-generations";
+        "rebuild" =
+          "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name} && diff-hm-generations";
         # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory} && nixfmt . )";
@@ -143,8 +144,8 @@
     '';
 
     programs.man = {
-        enable = true; # default true
-        generateCaches = true; # slightly slows rebuild, but allows things like apropos to work
+      enable = true; # default true
+      generateCaches = true; # slightly slows rebuild, but allows things like apropos to work
     };
 
     news.display = "silent"; # no output about hm news during switch

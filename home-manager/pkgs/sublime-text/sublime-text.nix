@@ -89,13 +89,14 @@ in
   );
 
   # download Package Control.sublime-package to .config/ST/Installed Packages/
-  xdg.configFile."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package" = {
-    enable = false; # only do this once
-    source = pkgs.fetchurl {
-      url = "https://packagecontrol.io/Package%20Control.sublime-package";
-      hash = "sha256-gXk3FEw0yEyIzUO4UxiyZW+cP6wC+PcsvBg2Cywm0Tk=";
+  xdg.configFile."${config.xdg.configHome}/sublime-text/Installed Packages/Package Control.sublime-package" =
+    {
+      enable = false; # only do this once
+      source = pkgs.fetchurl {
+        url = "https://packagecontrol.io/Package%20Control.sublime-package";
+        hash = "sha256-gXk3FEw0yEyIzUO4UxiyZW+cP6wC+PcsvBg2Cywm0Tk=";
+      };
     };
-  };
 
   # list installed packages in .config/ST/Packages/User/Package Control.sublime-settings
   xdg.configFile."${packagesPath}/Package Control.sublime-settings".text = ''
@@ -112,17 +113,18 @@ in
 
   xdg.configFile."${packagesPath}/Default.sublime-theme".text =
     # JSON
-    ''{
-        "variables": {
-          "font_face" = "Mono"
-        }, 
-        "rules": [
-          {
-            "class": "text_line_control",
-            "font.face": "var(font_face)"
-          }
-        ] 
-      } '';
+    ''
+      {
+              "variables": {
+                "font_face" = "Mono"
+              }, 
+              "rules": [
+                {
+                  "class": "text_line_control",
+                  "font.face": "var(font_face)"
+                }
+              ] 
+            } '';
   xdg.configFile."${packagesPath}/Default.sublime-keymap".text =
     # JSON
     ''[{ "keys": ["ctrl+shift+n"], "command": "new_window" }]'';

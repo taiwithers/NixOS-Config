@@ -17,55 +17,54 @@ in
       nixd # nix LSP for neovim
       ruff # python LSP
     ];
-    plugins =
-      with pkgs.vimPlugins;
-      [
-        # helpers - no additional setup done in plugins.lua
-        nui-nvim
-        plenary-nvim
-        # in order of plugins.lua appearance
-        auto-hlsearch-nvim # auto-hlsearch
-        better-escape-nvim # better_escape
-        block-nvim # block
-        bufferline-nvim # bufferline
-        f-string-toggle-nvim # f-string-toggle
-        flatten-nvim # flatten
-        hardtime-nvim # hardtime
-        helpview-nvim # helpview
-        hmts-nvim # hmts
-        nvim-lspconfig # lspconfig
-        lualine-nvim # lualine
-        mini-nvim # mini (animate, clue, completion, cursorword, indentscope, move, pairs, surround)
-        modes-nvim # modes
-        noice-nvim # noice
-        nvim-notify # notify
-        nvim-tree-lua # nvim-tree
-        nvim-treesitter # nvim-treesitter
-        nvim-treesitter-context # treesitter-context
-        nvim-web-devicons # nvim-web-devicons
-        precognition-nvim # precognition
-        nvim-scrollview # scrollview, change to unstable
-        tabout-nvim # tabout
-        telescope-nvim # telescope
-        telescope-file-browser-nvim
-        telescope-fzf-native-nvim
-        telescope-ui-select-nvim # required for legendary
-        # telescope-frecency-nvim
-        texpresso-vim # texpresso
-        toggleterm-nvim # toggleterm
-        which-key-nvim # which-key
-        nvim-window-picker # window-picker
-        vimtex
-        snacks-nvim
+    plugins = with pkgs.vimPlugins; [
+      # helpers - no additional setup done in plugins.lua
+      nui-nvim
+      plenary-nvim
+      # in order of plugins.lua appearance
+      auto-hlsearch-nvim # auto-hlsearch
+      better-escape-nvim # better_escape
+      block-nvim # block
+      bufferline-nvim # bufferline
+      f-string-toggle-nvim # f-string-toggle
+      flatten-nvim # flatten
+      hardtime-nvim # hardtime
+      helpview-nvim # helpview
+      hmts-nvim # hmts
+      nvim-lspconfig # lspconfig
+      lualine-nvim # lualine
+      mini-nvim # mini (animate, clue, completion, cursorword, indentscope, move, pairs, surround)
+      modes-nvim # modes
+      noice-nvim # noice
+      nvim-notify # notify
+      nvim-tree-lua # nvim-tree
+      nvim-treesitter # nvim-treesitter
+      nvim-treesitter-context # treesitter-context
+      nvim-web-devicons # nvim-web-devicons
+      precognition-nvim # precognition
+      nvim-scrollview # scrollview, change to unstable
+      tabout-nvim # tabout
+      telescope-nvim # telescope
+      telescope-file-browser-nvim
+      telescope-fzf-native-nvim
+      telescope-ui-select-nvim # required for legendary
+      # telescope-frecency-nvim
+      texpresso-vim # texpresso
+      toggleterm-nvim # toggleterm
+      which-key-nvim # which-key
+      nvim-window-picker # window-picker
+      vimtex
+      snacks-nvim
 
-        legendary-nvim # loaded after which-key, change to unstable
-        nvim-spider # loaded in keymaps.lua
+      legendary-nvim # loaded after which-key, change to unstable
+      nvim-spider # loaded in keymaps.lua
 
-        # nvim-spectre
-        # trouble
-        # dashboard-nvim
+      # nvim-spectre
+      # trouble
+      # dashboard-nvim
 
-        (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: with p; [
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (
+        p: with p; [
           nix
           lua
           vim
@@ -84,12 +83,13 @@ in
           vimdoc
           query
           # latex
-        ]))
-      ];
-      # ++ (with nvim-treesitter-parsers; [
-      #   nix
-      #   # c
-      # ]);
+        ]
+      ))
+    ];
+    # ++ (with nvim-treesitter-parsers; [
+    #   nix
+    #   # c
+    # ]);
     #   ])
     #   ++ [
     #     treesitter-parser-vimdoc

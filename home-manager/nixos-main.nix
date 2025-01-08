@@ -69,7 +69,7 @@
         "ripgrep"
         "rofi/rofi" # uses colours
         "starship"
-        "sublime-text/sublime-text" 
+        "sublime-text/sublime-text"
         "tldr"
         "vesktop/vesktop"
         "vscodium/vscodium"
@@ -153,7 +153,7 @@
     Service = {
       Restart = "always";
       ExecStart = "${pkgs.shiori}/bin/shiori serve";
-      Type= "exec";
+      Type = "exec";
     };
   };
 

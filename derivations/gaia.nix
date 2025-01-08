@@ -37,11 +37,11 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin/gaiabin
     cp -pr bin/gaia/* $out/bin/gaiabin
     cp -pr lib $out
-    
+
     substituteInPlace $out/bin/gaiabin/gaia.sh --replace-warn "$HOME" "$XDG_CACHE_HOME"
 
     substituteInPlace $out/lib/tclutil2.1.0/FileSelect.tcl --replace-warn "/bin/ls" "${coreutils}/bin/ls"
-    
+
     ln -s $out/bin/gaiabin/gaia.sh $out/bin/gaia
 
     runHook postInstall
@@ -58,11 +58,11 @@ stdenv.mkDerivation rec {
              --add-needed libz.so.1 \
              --add-needed libXext.so.6 \
              $out/bin/gaiabin/gaia_wish
-  
+
     runHook postFixup
   '';
 
-  nativeBuildInputs = [copyDesktopItems];
+  nativeBuildInputs = [ copyDesktopItems ];
 
   desktopItems = [
     (makeDesktopItem {

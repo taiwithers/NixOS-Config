@@ -77,7 +77,7 @@
 
   # limit cpu usage during build
   nix.settings.cores = 4; # cores per job
-  nix.settings.max-jobs = 4; 
+  nix.settings.max-jobs = 4;
 
   # touchpad
   # services.libinput.enable = true; # enabled by default for most desktopManagers
@@ -155,13 +155,13 @@
     nssmdns4 = true;
     openFirewall = true;
   };
-  
+
   fonts.enableDefaultPackages = true;
 
   environment.shellAliases = {
-      rm = "rm --interactive=always --verbose";
-      nvidia-settings = "nvidia-settings --config=\"$XDG_CONFIG_HOME\"/nvidia/settings";
-    };
+    rm = "rm --interactive=always --verbose";
+    nvidia-settings = "nvidia-settings --config=\"$XDG_CONFIG_HOME\"/nvidia/settings";
+  };
 
   documentation.nixos.includeAllModules = true;
   documentation.man.generateCaches = true;

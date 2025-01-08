@@ -28,7 +28,7 @@ let
   #   libxml2.out
   # ];
 
-  desktopItem = makeDesktopItem rec{
+  desktopItem = makeDesktopItem rec {
     name = "ds9";
     desktopName = name;
     exec = "ds9 %F";
@@ -47,7 +47,11 @@ stdenv.mkDerivation rec {
     hash = "sha256-j3u2r6Xhp1YF+kPtYj1iOVjMJO2K8Ep+qvQLzZyPt/Y=";
   };
 
-  nativeBuildInputs = [copyDesktopItems libxml2.dev libxml2];
+  nativeBuildInputs = [
+    copyDesktopItems
+    libxml2.dev
+    libxml2
+  ];
 
   buildInputs = [
     libX11
@@ -76,7 +80,6 @@ stdenv.mkDerivation rec {
   #   runHook postBuild
   # '';
 
-
   # not sure if this is necessary or if there's a way to indicate "just run make"
   # as a flag or something
   # installPhase = ''
@@ -93,7 +96,7 @@ stdenv.mkDerivation rec {
 
   #     mkdir -p $out/bin
   #     cp -p * $out/bin
-    
+
   #     runHook postInstall
   #   '';
 
@@ -108,5 +111,5 @@ stdenv.mkDerivation rec {
   #     runHook postFixup
   #   '';
 
-  desktopItems = [desktopItem];
+  desktopItems = [ desktopItem ];
 }

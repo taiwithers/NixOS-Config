@@ -11,10 +11,12 @@
     rec {
       # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.enable
       enable = true;
-      package = pkgs.firefox.override {nativeMessagingHosts = [
-        pkgs.kdePackages.plasma-browser-integration
-        pkgs.keepassxc
-      ];};
+      package = pkgs.firefox.override {
+        nativeMessagingHosts = [
+          pkgs.kdePackages.plasma-browser-integration
+          pkgs.keepassxc
+        ];
+      };
 
       policies = {
         # about:policies
@@ -77,17 +79,17 @@
           };
         };
 
-# other things failing to bring down ram usage
-# gfx.max-alloc-size - reset
-# gfx.max-texture-size - rest
-# browser.cache.disk.max_chunks_memory_usage - reset
-# browser.cache.disk.max_entry_size - reset
-# browser.cache.disk.max_priority_chunks_memory_usage - reset
-# javascript.options.mem.max
-# webgl.max-size-per-texture-mib - reset
-# browser.tabs.unloadOnLowMemory
-# image.mem.surfacecache.max_size_kb
-# javascript.options.mem.notify
+        # other things failing to bring down ram usage
+        # gfx.max-alloc-size - reset
+        # gfx.max-texture-size - rest
+        # browser.cache.disk.max_chunks_memory_usage - reset
+        # browser.cache.disk.max_entry_size - reset
+        # browser.cache.disk.max_priority_chunks_memory_usage - reset
+        # javascript.options.mem.max
+        # webgl.max-size-per-texture-mib - reset
+        # browser.tabs.unloadOnLowMemory
+        # image.mem.surfacecache.max_size_kb
+        # javascript.options.mem.notify
         settings = {
           "breakpad.reportURL" = ""; # betterfox
           "browser.aboutConfig.showWarning" = false;

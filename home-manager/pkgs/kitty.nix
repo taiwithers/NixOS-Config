@@ -15,7 +15,8 @@
 
     keybindings = {
       "kitty_mod+f5" = "load_config_file";
-      "ctrl+shift+/" = "launch --location=split sh -c 'bat --style=plain --paging=always ~/.local/state/kitty-keybinds.txt'";
+      "ctrl+shift+/" =
+        "launch --location=split sh -c 'bat --style=plain --paging=always ~/.local/state/kitty-keybinds.txt'";
 
       # clipboard
       "ctrl+shift+c" = "copy_to_clipboard";
@@ -87,7 +88,7 @@
   '';
 
   xdg.configFile."KDE-xdg-terminals.list".text = config.xdg.configFile."xdg-terminals.list".text;
-  
+
   home.sessionVariables."TERMINAL" = "kitty";
 
   home.activation.kitty-keybinds = config.lib.dag.entryAfter [ "writeBoundary" ] ''

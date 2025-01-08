@@ -68,23 +68,23 @@ rec {
 
   # override the home manager gtk config
   xdg.configFile."gtkrc-2.0".text = ''
-   gtk-alternative-button-order=1
-   gtk-button-images=1
-   gtk-cursor-theme-name="${cursor.name}"
-   gtk-cursor-theme-size=${builtins.toString cursor.size}
-   gtk-enable-animations=1
-   gtk-font-name="${fonts.sans.name} ${builtins.toString fonts.sans.size}"
-   gtk-icon-theme-name="${klassy-names.icon-theme}"
-   gtk-menu-images=1
-   gtk-primary-button-warps-slider=1
-   gtk-sound-theme-name="${programs.plasma.workspace.soundTheme}"
-   gtk-theme-name="${gtk-theme.name}"
-   gtk-toolbar-style=3
+    gtk-alternative-button-order=1
+    gtk-button-images=1
+    gtk-cursor-theme-name="${cursor.name}"
+    gtk-cursor-theme-size=${builtins.toString cursor.size}
+    gtk-enable-animations=1
+    gtk-font-name="${fonts.sans.name} ${builtins.toString fonts.sans.size}"
+    gtk-icon-theme-name="${klassy-names.icon-theme}"
+    gtk-menu-images=1
+    gtk-primary-button-warps-slider=1
+    gtk-sound-theme-name="${programs.plasma.workspace.soundTheme}"
+    gtk-theme-name="${gtk-theme.name}"
+    gtk-toolbar-style=3
   '';
-  xdg.configFile."gtk-4.0/window_decorations.css".source = "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
-  xdg.configFile."gtk-3.0/window_decorations.css".source = "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
-  
-
+  xdg.configFile."gtk-4.0/window_decorations.css".source =
+    "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
+  xdg.configFile."gtk-3.0/window_decorations.css".source =
+    "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
 
   gtk = rec {
     enable = true;
@@ -108,7 +108,7 @@ rec {
       gtk-primary-button-warps-slider = true;
       gtk-sound-theme-name = programs.plasma.workspace.soundTheme;
       gtk-toolbar-style = 3;
-      gtk-xft-dpi=122880;
+      gtk-xft-dpi = 122880;
     };
     # need both for things to apply correctly
     gtk3.extraCss = ''
@@ -699,7 +699,7 @@ rec {
     [VideoSave]
     translatedScreencastsFolder=Screencasts
   '';
-  
+
   xdg.configFile."kded5rc".text = ''
     [Module-appmenu]
     autoload=true

@@ -18,7 +18,8 @@ in
   };
 
   home.sessionVariables."RULES" = "${agenix-directory}/agenix-secrets.nix";
-  home.shellAliases."editage" = "(cd ${agenix-directory}; agenix --edit ${age-file} --identity ${ssh-key} )";
+  home.shellAliases."editage" =
+    "(cd ${agenix-directory}; agenix --edit ${age-file} --identity ${ssh-key} )";
 
   programs.ssh = {
     enable = true;

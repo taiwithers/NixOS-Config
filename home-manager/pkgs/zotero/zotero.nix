@@ -3,7 +3,7 @@
 {
   home.packages = [ pkgs.zotero ];
 
-  xdg.configFile."Zotero/plugins/betterBibTex.xpi".source = 
+  xdg.configFile."Zotero/plugins/betterBibTex.xpi".source =
     let
       version = "6.7.263";
     in

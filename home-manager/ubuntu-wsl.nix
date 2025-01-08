@@ -122,7 +122,8 @@ in
   };
 
   home.shellAliases = {
-    "rebuild" = "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/homemanager |& nom";
+    "rebuild" =
+      "home-manager switch --impure --show-trace --flake ${config.common.nixConfigDirectory}/homemanager |& nom";
     "bsession" = "bat ${config.common.hm-session-vars}";
   };
   home.stateVersion = "24.05";

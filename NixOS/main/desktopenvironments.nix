@@ -16,9 +16,13 @@
     theme = "where_is_my_sddm_theme";
     # autoLogin.relogin = true;
     settings = {
-        General = { InputMethod = null; };
-        Theme = { CursorTheme = "Posy_Cursors_Black";};
+      General = {
+        InputMethod = null;
       };
+      Theme = {
+        CursorTheme = "Posy_Cursors_Black";
+      };
+    };
     wayland.enable = true;
   };
   programs.kdeconnect.enable = true;
