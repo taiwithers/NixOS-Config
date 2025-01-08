@@ -96,13 +96,11 @@
       fastfetch
       ghostscript # pdf creation
       jq
-      latex
       lavat
       libqalculate # provides qalc cmd
       lua
       pandoc
       parallel
-      pdf2svg # for eps file preview
       pdftk
       pond
       starfetch
