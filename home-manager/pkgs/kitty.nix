@@ -43,6 +43,8 @@
       "ctrl+shift+tab" = "previous_tab";
       "kitty_mod+q" = "close_tab";
 
+      "kitty_mod+l" = "next_layout";
+
       # fonts
       "kitty_mod+equal" = "change_font_size current +1.0";
       "kitty_mod+minus" = "change_font_size current -1.0";
@@ -60,6 +62,7 @@
       window_padding_width = 5; # inside border
       window_margin_width = 2; # outside border
       draw_minimal_borders = "no";
+      enabled_layouts = "splits,tall,fat,grid";
 
       # copy/paste behaviour
       copy_on_select = "clipboard";
