@@ -195,6 +195,7 @@
       file = "nix-search-wrapper";
     };
     starfetch = customDerivation "starfetch";
+    sublime4 = unstable.sublime4;
     vesktop = super.vesktop.overrideAttrs (oldAttrs: {
       srcs = [
         oldAttrs.src
