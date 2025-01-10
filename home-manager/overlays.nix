@@ -97,6 +97,7 @@
           hash = "sha256-B7nQVok/3uCskGykqEoaZcpzpIk15tT7qDPG3qCbn4Q=";
         };
       }); # customDerivation "klassy";
+      krohnkite = unstable.kdePackages.krohnkite;
     };
     nixfmt = super.nixfmt-rfc-style;
     nixshell = customScript rec {
