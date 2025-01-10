@@ -40,6 +40,15 @@
   in
   {
     agenix = flake-inputs.agenix.packages.${system}.default;
+    blesh = super.blesh.overrideAttrs (oldAttrs: rec {
+        version = "3d8f626";
+        source = super.fetchFromGitHub {
+            owner = "akinomyoga";
+            repo = "ble.sh";
+            rev = version;
+            hash = "sha256-dVvm089c9Qt5dzrk8n/Ow/y3WVFjAdT5G3hXAl5MghM=";
+          };
+      });
     brightness-control = customScript rec {
       name = "brightness-control";
       runtimeInputs = [ pkgs.brightnessctl ];

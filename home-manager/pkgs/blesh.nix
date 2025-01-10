@@ -16,89 +16,75 @@
   xdg.configFile."${config.common.configHome}/blesh/init.sh".text = with colours.hex-hash; ''
     # vim mode settings
     function my/vim-load-hook {
+
       # indicate normal just like insert
       bleopt keymap_vi_mode_string_nmap=$'\e[1m-- NORMAL --\e[m'
 
       # change cursor shape depending on mode
+      _ble_term_Ss=$'\e[@1 q'
       ble-bind -m vi_nmap --cursor 2
       ble-bind -m vi_imap --cursor 5
       ble-bind -m vi_omap --cursor 4
       ble-bind -m vi_xmap --cursor 2
       ble-bind -m vi_cmap --cursor 0
 
-      # make CTRL+c behave as in non-vim - discarding the current line
-      ble-bind -m vi_imap -f 'C-c' discard-line
-      ble-bind -m vi_nmap -f 'C-c' discard-line
+      # Ctrl-c: comment out current line
+      ble-bind -m vi_imap -f 'C-c' 'vi-rlfunc/insert-comment'
+      ble-bind -m vi_nmap -f 'C-c' 'vi-rlfunc/insert-comment'
+
+      ble-import lib/vim-surround # vim-surround
+      # ble-import lib/vim-airline
+
     }
     blehook/eval-after-load keymap_vi my/vim-load-hook
 
+    # completion settings 
+    function my/set-up-completion {
+      # generic
+      # C-x /,! : start menu completion of filenames,commands
+      bleopt complete_ambiguous= # Disable ambiguous completion
+      # bleopt complete_menu_filter= # Disable menu filtering (update on input)
+
+      # auto completion 
+      # keybinds:
+      # shift-enter, tab: accept
+      # C-right/alt-right: accept first cword/word
+      # C-j/C-enter: accept and run
+      # bleopt complete_auto_complete= # Disable auto-complete 
+      bleopt complete_auto_history= # Disable auto-complete based on the command history
+      bleopt complete_auto_delay=300 # millisecond delay for autocomplete
+      bleopt complete_auto_menu=1000 # delay for menu popup
+      ble-bind -m auto_complete -f C-i auto_complete/insert
+      ble-bind -m auto_complete -f TAB auto_complete/insert
+      
+      # menu completion
+      # keybinds: 
+      # C-m, return : accept
+      # C-g : cancel
+      # C-x a/d : go to modes align-nowrap/desc
+      # bleopt complete_menu_complete= # Disable menu-complete by TAB
+      bleopt complete_menu_maxlines=10
+      bleopt complete_menu_style=desc # use align-nowrap for the grid without descriptions
+
+    }
+    blehook/eval-after-load complete my/set-up-completion
+
     set -o vi # use vim mode for ble.sh
 
-    # disable all? features to build from ground up
-    # Disable syntax highlighting
-    # bleopt highlight_syntax=
+    # bleopt highlight_syntax= # Disable syntax highlighting
+    # bleopt highlight_filename= # Disable highlighting based on filenames
+    # bleopt highlight_variable= # Disable highlighting based on variable types
+    bleopt prompt_eol_mark="" # Disable EOF marker like "[ble: EOF]"
+    bleopt exec_errexit_mark= # Disable error exit marker like "[ble: exit %d]"
+    bleopt exec_elapsed_mark= # Disable elapsed-time marker like "[ble: elapsed 1.203s (CPU 0.4%)]"
+    # bleopt exec_exit_mark= # Disable exit marker like "[ble: exit]"
 
-    # Disable highlighting based on filenames
-    bleopt highlight_filename=
-
-    # Disable highlighting based on variable types
-    bleopt highlight_variable=
-
-    # Disable auto-complete (Note: auto-complete is enabled by default in bash-4.0+)
-    bleopt complete_auto_complete=
-    # Tip: you may instead specify the delay of auto-complete in millisecond
-    bleopt complete_auto_delay=300
-
-    # Disable auto-complete based on the command history
-    bleopt complete_auto_history=
-
-    # Disable ambiguous completion
-    bleopt complete_ambiguous=
-
-    # Disable menu-complete by TAB
-    bleopt complete_menu_complete=
-
-    # Disable menu filtering (Note: auto-complete is enabled by default in bash-4.0+)
-    bleopt complete_menu_filter=
-
-    # Disable EOF marker like "[ble: EOF]"
-    bleopt prompt_eol_mark=""
-
-    # Disable error exit marker like "[ble: exit %d]"
-    bleopt exec_errexit_mark=
-
-    # Disable elapsed-time marker like "[ble: elapsed 1.203s (CPU 0.4%)]"
-    bleopt exec_elapsed_mark=
-    # Tip: you may instead change the threshold of showing the mark
-    bleopt exec_elapsed_enabled='sys+usr>=10*60*1000' # e.g. ten minutes for total CPU usage
-
-    # Disable exit marker like "[ble: exit]"
-    # bleopt exec_exit_mark=
-
-    # Disable some other markers like "[ble: ...]"
-    # seem to cause errors
-    # bleopt edit_marker=
-    # bleopt edit_marker_error=
-
-    # some old things I had
-    # bleopt edit_line_type=graphical
-    # bleopt complete_auto_delay=300 # ms delay before completion popup
-    # bleopt history_share=1 # share history between bash sessions
-    # bleopt filename_ls_colors="$LS_COLORS"
-    # bleopt accept_line_threshold=-2
-    # bleopt exec_errexit_mark= # turn off exit status
-    # bleopt complete_menu_maxlines=4
-    # bleopt complete_menu_complete= # turn off menu completion
-
-    # bind 'set completion-ignore-case off' # make completion case-sensitive
-
-    # accept autocomplete with tab
-    # ble-bind -m auto_complete -f C-i auto_complete/insert
-    # ble-bind -m auto_complete -f TAB auto_complete/insert # accept autocomplete with tab
-    # ble-bind -m auto_complete -f 'C-c' auto_complete/cancel
 
     ble-import -d integration/fzf-completion
     ble-import -d integration/fzf-key-bindings
+
+    bleopt prompt_rps1_transient=1 # only show most recent right prompt
+    bleopt history_share=1 # share history between bash sessions
 
     # set up colors
     ble-face region='fg=${white},bg=${navy}' # selected text in editing line
@@ -169,5 +155,23 @@
     # ble-face vbell=
     # ble-face vbell_erase=
     # ble-face vbell_flash=
+
+    # some old things I had
+    # bleopt edit_line_type=graphical
+    # bleopt complete_auto_delay=300 # ms delay before completion popup
+    
+    # bleopt filename_ls_colors="$LS_COLORS"
+    # bleopt accept_line_threshold=-2
+    # bleopt exec_errexit_mark= # turn off exit status
+    # bleopt complete_menu_maxlines=4
+    # bleopt complete_menu_complete= # turn off menu completion
+
+    # bind 'set completion-ignore-case off' # make completion case-sensitive
+
+    # accept autocomplete with tab
+    # ble-bind -m auto_complete -f C-i auto_complete/insert
+    # ble-bind -m auto_complete -f TAB auto_complete/insert # accept autocomplete with tab
+    # ble-bind -m auto_complete -f 'C-c' auto_complete/cancel
+
   '';
 }
