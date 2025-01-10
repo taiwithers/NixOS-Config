@@ -86,7 +86,7 @@
         search
         nixshell
         nvd
-        diff-hm-generations
+        diff-nix-generations
 
         # utilities
         fd
@@ -118,17 +118,19 @@
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
         "rebuild" =
-          "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name} && diff-hm-generations";
+          "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name} && diff-hm-generations ";
         # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory} && nixfmt . )";
+        "diff-hm-generations" = "diff-nix-generations home";
       }
       // pkgs.lib.optionalAttrs (config.common.nixos) {
         "nixrebuild" =
           let
             nixconfig-name = pkgs.lib.lists.last (pkgs.lib.strings.splitString "-" config-name);
           in
-          "nixos-rebuild switch --show-trace --use-remote-sudo --flake ${nixConfigDirectory}/NixOS#${nixconfig-name}";
+          "nixos-rebuild switch --show-trace --use-remote-sudo --flake ${nixConfigDirectory}/NixOS#${nixconfig-name} && diff-nixos-generations ";
+        "diff-nixos-generations" = "diff-nix-generations nixos";
       };
 
     programs.bash.bashrcExtra = ''

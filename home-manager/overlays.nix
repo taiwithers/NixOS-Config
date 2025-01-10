@@ -58,14 +58,15 @@
     };
     codium = super.vscodium-fhs;
     color-oracle = customDerivation "color-oracle";
-    diff-hm-generations = customScript rec {
-      name = "diff-hm-generations";
+    diff-nix-generations = customScript rec {
+      name = "diff-nix-generations";
       runtimeInputs = with pkgs; [
         gnused
         home-manager
         nix
         sd
         nvd
+        jq
       ];
       file = "diff-generations";
     };

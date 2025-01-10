@@ -4,9 +4,24 @@ getNthHomeManagerProfile() {
 	home-manager generations | sed --quiet "$1,$1p" | sd --max-replacements=1 ".* /" "/"
 }
 
-currentGeneration=$(getNthHomeManagerProfile 1)
-previousGeneration=$(getNthHomeManagerProfile 2)
+currentHomeGeneration=$(getNthHomeManagerProfile 1)
+previousHomeGeneration=$(getNthHomeManagerProfile 2)
 
-nvd diff "$previousGeneration" "$currentGeneration"
+to_jq() {
+	echo "$1" | jq  -r "$2"
+}
+systemGenerationsJson="$(nixos-rebuild list-generations --json)"
 
-# nvd diff /nix/var/nix/profiles/system-{14,15}-link
+previousSystemGenerationID=$(to_jq "$systemGenerationsJson" "[.[] | select(.current | not) | .generation] | first")
+currentSystemGenerationID=$(to_jq "$systemGenerationsJson" ".[] | select(.current) | .generation")
+previousSystemGeneration="/nix/var/nix/profiles/system-$previousSystemGenerationID-link"
+currentSystemGeneration="/nix/var/nix/profiles/system-$currentSystemGenerationID-link"
+
+case "$1" in 
+	home) 
+		nvd diff "$previousHomeGeneration" "$currentHomeGeneration"
+		;;
+	nixos)
+		nvd diff "$previousSystemGeneration" "$currentSystemGeneration"
+		;;
+esac
