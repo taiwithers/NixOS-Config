@@ -123,6 +123,13 @@
       ];
       file = "nix-search-wrapper";
     };
+    select-browser = customScript rec {
+        name = "select-browser";
+        runtimeInputs = with pkgs; [
+          rofi
+        ];
+        file = name;
+    };
     starfetch = customDerivation "starfetch";
     sublime4 = unstable.sublime4;
     vesktop = super.vesktop.overrideAttrs (oldAttrs: {

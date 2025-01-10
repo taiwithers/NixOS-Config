@@ -267,6 +267,8 @@
       "${prefix}/Personal/${suffix}".source = ./debuggerUserContent.css;
     };
 
+  home.packages = [ pkgs.select-browser ];
+
   # firefox work profile desktop icon
   xdg.desktopEntries =
     builtins.mapAttrs
