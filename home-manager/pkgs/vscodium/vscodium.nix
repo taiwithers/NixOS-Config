@@ -2,11 +2,8 @@
 {
   config,
   pkgs,
-  colours,
   ...
 }:
-let
-in
 {
   nixpkgs.config.allowUnfreePredicate =
     pkg:

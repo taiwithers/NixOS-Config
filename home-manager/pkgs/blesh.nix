@@ -159,7 +159,7 @@
     # some old things I had
     # bleopt edit_line_type=graphical
     # bleopt complete_auto_delay=300 # ms delay before completion popup
-    
+
     # bleopt filename_ls_colors="$LS_COLORS"
     # bleopt accept_line_threshold=-2
     # bleopt exec_errexit_mark= # turn off exit status

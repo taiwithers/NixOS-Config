@@ -3,7 +3,7 @@ let
   locateDesktop = import ../../scripts/locate-desktop.nix;
   getDesktopFiles = list: map (p: "${locateDesktop p}") list;
 
-  defaults = builtins.mapAttrs (name: value: (getDesktopFiles value)) (
+  defaults = builtins.mapAttrs (_name: value: (getDesktopFiles value)) (
     with pkgs;
     {
       browsers = [

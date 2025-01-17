@@ -27,29 +27,6 @@
            type="proc"
            default = true
       '';
-
-      fancylayout = ''
-        [[row]]
-         ratio=1
-         [[row.child]]
-          type="cpu"
-          ratio=7
-         [[row.child]]
-          type="temp"
-          ratio = 3
-        [[row]]
-           ratio=3
-           [[row.child]]
-             ratio=1
-             [[row.child.child]]
-               type="mem"
-             [[row.child.child]]
-               type="net"
-           [[row.child]]
-             ratio=2
-             type="proc"
-             default = true
-      '';
     in
     # TOML
     ''

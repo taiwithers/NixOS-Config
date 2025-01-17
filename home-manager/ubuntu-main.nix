@@ -1,9 +1,6 @@
 {
   config,
   pkgs,
-  flake-inputs,
-  user,
-  pkgs-config,
   app-themes,
   colours,
   ...

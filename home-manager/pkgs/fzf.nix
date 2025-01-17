@@ -1,6 +1,4 @@
 {
-  config,
-  pkgs,
   ...
 }:
 let
@@ -11,9 +9,6 @@ let
     "--margin 0,3%"
     "--info inline"
     "--tabstop 4"
-  ];
-  fzfPreviewOptions = [
-    "--preview-window border-sharp"
   ];
 in
 {

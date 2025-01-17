@@ -34,7 +34,7 @@
 
     nur.url = "github:nix-community/NUR";
     # nur.inputs.flake-parts.follows = "flake-parts";
-    # nur.inputs.treefmt-nix.follows = "treefmt-nix";
+    nur.inputs.treefmt-nix.follows = "treefmt-nix";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
@@ -53,17 +53,29 @@
     stylix.inputs.systems.follows = "systems";
     stylix.inputs.tinted-foot.follows = "";
     stylix.inputs.tinted-tmux.follows = "";
-    stylix.inputs.tinted-zed.follows = "";
+    stylix.inputs.firefox-gnome-theme.follows = "";
+    # stylix.inputs.tinted-zed.follows = "";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     {
+      self,
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
       ...
     }@flake-inputs:
     let
+      # Small tool to iterate over each systems
+      eachSystem =
+        f: nixpkgs.lib.genAttrs (import flake-inputs.systems) (system: f nixpkgs.legacyPackages.${system});
+
+      # Eval the treefmt modules from ./treefmt.nix
+      treefmtEval = eachSystem (pkgs: flake-inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+
       pkgs-config = {
         allowUnfreePredicate =
           pkg:
@@ -114,7 +126,7 @@
             system = builtins.currentSystem;
           in
           [
-            (self: super: rec {
+            (_self: _super: rec {
               unstable = import nixpkgs-unstable {
                 system = system;
                 # putting nixpkgs.config = pkgs-config; in this file errors
@@ -158,8 +170,8 @@
             indigo = "351774";
             tan = "DEB887";
           };
-          hex-hash = mapAttrs (name: value: "#${value}") hex-hashless;
-          rgb255-commasep = mapAttrs (name: value: hexToRGBString "," value) hex-hashless;
+          hex-hash = mapAttrs (_name: value: "#${value}") hex-hashless;
+          rgb255-commasep = mapAttrs (_name: value: hexToRGBString "," value) hex-hashless;
         };
 
       fonts = with pkgs; [
@@ -184,6 +196,14 @@
       };
     in
     {
+      # nix fmt
+      formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+
+      # nix flake check
+      checks = eachSystem (pkgs: {
+        formatting = treefmtEval.${pkgs.system}.config.build.check self;
+      });
+
       homeConfigurations = builtins.mapAttrs (
         config-name: user:
         home-manager.lib.homeManagerConfiguration {

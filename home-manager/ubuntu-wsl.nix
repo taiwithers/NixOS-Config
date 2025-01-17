@@ -1,11 +1,9 @@
 {
   config,
   pkgs,
-  flake-inputs,
-  pkgs-config,
   app-themes,
   ...
-}@home-inputs:
+}:
 let
   shellApplications =
     map

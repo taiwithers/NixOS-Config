@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   latex = pkgs.texlive.combine {
     inherit (pkgs.texlive)

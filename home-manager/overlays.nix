@@ -40,15 +40,15 @@
   in
   {
     agenix = flake-inputs.agenix.packages.${system}.default;
-    blesh = super.blesh.overrideAttrs (oldAttrs: rec {
-        version = "3d8f626";
-        source = super.fetchFromGitHub {
-            owner = "akinomyoga";
-            repo = "ble.sh";
-            rev = version;
-            hash = "sha256-dVvm089c9Qt5dzrk8n/Ow/y3WVFjAdT5G3hXAl5MghM=";
-          };
-      });
+    blesh = super.blesh.overrideAttrs (_oldAttrs: rec {
+      version = "3d8f626";
+      source = super.fetchFromGitHub {
+        owner = "akinomyoga";
+        repo = "ble.sh";
+        rev = version;
+        hash = "sha256-dVvm089c9Qt5dzrk8n/Ow/y3WVFjAdT5G3hXAl5MghM=";
+      };
+    });
     brightness-control = customScript rec {
       name = "brightness-control";
       runtimeInputs = [ pkgs.brightnessctl ];
@@ -137,11 +137,11 @@
       file = "nix-search-wrapper";
     };
     select-browser = customScript rec {
-        name = "select-browser";
-        runtimeInputs = with pkgs; [
-          rofi
-        ];
-        file = name;
+      name = "select-browser";
+      runtimeInputs = with pkgs; [
+        rofi
+      ];
+      file = name;
     };
     starfetch = customDerivation "starfetch";
     sublime4 = unstable.sublime4;
@@ -172,7 +172,7 @@
       // {
         snacks-nvim = unstable.vimPlugins.snacks-nvim;
       }
-      // builtins.mapAttrs (name: value: (githubVimPlugin value)) {
+      // builtins.mapAttrs (_name: value: (githubVimPlugin value)) {
         f-string-toggle-nvim = {
           author = "roobert";
           repo = "f-string-toggle.nvim";
