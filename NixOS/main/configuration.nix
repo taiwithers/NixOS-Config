@@ -50,6 +50,10 @@
   # clean up $HOME (moves ~/.nix-* to $XDG_STATE_HOME/nix/*)
   nix.settings.use-xdg-base-directories = true;
 
+  # use community cache
+  nix.settings.substituters = [ "https://nix-community.cachix.org" ];
+  nix.settings.trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+
   # networking
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
