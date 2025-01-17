@@ -8,6 +8,7 @@ let
       aastex # Macros for Manuscript Preparation for AAS Journals
       astro # planetary symbols
       babel-english # Babel support for English
+      biber # biblatex backend
       cm-super # cm fonts
       derivative # Nice and easy derivatives
       dvipng # DVI to PNG converter
