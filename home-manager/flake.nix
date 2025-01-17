@@ -89,7 +89,7 @@
       treefmtEval = eachSystem (pkgs: flake-inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
 
       pkgs-config = {
-        allowUnfreePredicate = true;
+        allowUnfreePredicate = (pkg: true);
         permittedInsecurePackages = [ "openssl-1.1.1w" ];
       };
 
@@ -116,33 +116,7 @@
         with builtins;
         with flake-inputs.nix-colors.lib.conversions;
         rec {
-          hex-hashless = {
-            black = "000000";
-            navy = "171726";
-            dark-blue = "22273d";
-            dark-grey = "525866";
-            blue-grey = "444A8F";
-            grey = "878d96";
-            light-grey = "c8c8c8";
-            ivory = "FFEFD5";
-            white = "ffffff";
-            red = "fa7883";
-            peach = "ffc387";
-            salmon = "ff9470";
-            green = "98c379";
-            cyan = "8af5ff";
-            light-blue = "6bb8ff";
-            pink = "e799ff";
-            brown = "b3684f";
-            maroon = "673136";
-            yellow = "FFE492";
-            orange = "FF893D";
-            lime = "82C247";
-            purple = "9B81FF";
-            sky = "008CFF";
-            indigo = "351774";
-            tan = "DEB887";
-          };
+          hex-hashless = builtins.fromJSON (builtins.readFile ./colourscheme.json);
           hex-hash = mapAttrs (_name: value: "#${value}") hex-hashless;
           rgb255-commasep = mapAttrs (_name: value: hexToRGBString "," value) hex-hashless;
         };
@@ -154,7 +128,7 @@
         dejavu_fonts
         (nerdfonts.override {
           fonts = [
-            # "IntoneMono" # not available in nixpkgs nerdfont
+            # "InteloneMono" # not available in nixpkgs nerdfont
             "SpaceMono"
             "NerdFontsSymbolsOnly"
           ];
