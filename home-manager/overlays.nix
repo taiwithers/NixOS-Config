@@ -84,7 +84,7 @@
     };
     ds9 = customDerivation "ds9";
     gaia = customDerivation "gaia";
-    generations = customScript rec {
+    nixos-generations = customScript rec {
       name = "generations";
       runtimeInputs = with pkgs; [
         nix

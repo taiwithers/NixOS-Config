@@ -106,7 +106,7 @@
         curl
       ]
       ++ pkgs.lib.optionals config.common.nixos [
-        generations
+        nixos-generations
       ];
 
     home.shellAliases =
