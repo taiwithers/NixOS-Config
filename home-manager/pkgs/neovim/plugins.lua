@@ -1,9 +1,4 @@
 -- additional plugins
-require('auto-hlsearch').setup()
-require('better_escape').setup()
-require("block").setup({
-  percent = .7, -- .8=20% darker
-})
 require('bufferline').setup({options={
   right_mouse_command = false,
   middle_mouse_command = 'bdelete! %d',
@@ -20,8 +15,27 @@ require('bufferline').setup({options={
   show_tab_indicators = true,
   always_show_bufferline = true,
 } })
-require('f-string-toggle').setup({ key_binding = '<leader>fs' })
-require('flatten').setup({ window = 'alternate', })
+
+local cmp = require('cmp')
+local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+cmp.setup({
+  snippet = { expand = function(args)
+      vim.snippet.expand(args.body)
+    end,},
+  mapping = cmp.mapping.preset.insert({
+    ['<Tab>'] = cmp.mapping.confirm({select = false}), -- accept only explicitly selected item
+  }),
+  sources = cmp.config.sources({
+    { name = "spell" },
+    { name = 'render-markdown' },
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
+  },{{ name = 'buffer' },})    
+
+})
+
+-- require('f-string-toggle').setup({ key_binding = '<leader>fs' })
+-- require('flatten').setup({ window = 'alternate', })
 require('hardtime').setup({
   max_time = 1000, -- key repeat timer
   max_count = 3, -- number of repeats allowed within max_time
@@ -38,12 +52,41 @@ require('hardtime').setup({
     ['<Right>'] = {'n', 'x'},
   },
 })
-require('helpview').setup()
-require('hmts')
-require('lspconfig').bashls.setup({})
-require('lspconfig').nixd.setup({})
-require('lspconfig').lua_ls.setup({})
-require('lspconfig').ruff.setup({})
+
+require('lspconfig').bashls.setup({
+  capabilities = cmp_capabilities,
+})
+require('lspconfig').nixd.setup({
+  capabilities = cmp_capabilities,
+  cmd = { "nixd" },
+  settings = {
+    nixd = {
+       nixpkgs = {
+          expr = "import <nixpkgs> { }",
+       },
+       formatting = {
+          command = { "nixfmt" },
+       },
+       options = {
+          nixos = {
+             expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos-main.options',
+          },
+          home_manager = {
+             expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations.tai.options',
+          },
+       },
+       -- diagnostic = {
+       --  suppress = [],
+       -- },
+    },
+  },
+})
+require('lspconfig').lua_ls.setup({
+  capabilities = cmp_capabilities,
+})
+require('lspconfig').ruff.setup({
+  capabilities = cmp_capabilities,
+})
 require('lualine').setup({
   options = {
     theme = "moonfly",
@@ -62,21 +105,25 @@ require('lualine').setup({
   },
 })
 require('mini.animate').setup({scroll={enable=false}})
-require('mini.clue').setup({
-  triggers = {{ mode = 'i', keys = '<C-x>' }},
-  clues = {require('mini.clue').gen_clues.builtin_completion()}
-})
-require('mini.completion').setup()
+-- require('mini.clue').setup({
+--   triggers = {{ mode = 'i', keys = '<C-x>' }},
+--   clues = {require('mini.clue').gen_clues.builtin_completion()}
+-- })
+require('mini.comment').setup()
+-- require('mini.completion').setup({
+--   fallback_action = "<C-x><C-i>" -- fallback to keywords
+-- })
 require('mini.cursorword').setup()
--- require('mini.icons').setup() -- still in beta and therefore not on stable branch
+require('mini.icons').setup() -- still in beta and therefore not on stable branch
 require('mini.indentscope').setup({symbol='│'})
 require('mini.indentscope').gen_animation.none()
-require('mini.move').setup()
+require('mini.jump').setup() -- multiline fFtT
+-- require('mini.move').setup()
 require('mini.pairs').setup({
   modes = {insert=true, command=true, terminal=true},
   mappings = {
-    ['<'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].' },
-    ['>'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].' },
+    -- ['<'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].' },
+    -- ['>'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].' },
   }
 })
 require('mini.surround').setup()
@@ -84,33 +131,42 @@ require('modes').setup({
   line_opacity = 0.2,
   set_cursor = false,
 })
-require('noice').setup({
-  presets = {
-    long_message_to_split = true,
-    lsp_doc_border = true,
-    command_palette = false,
-  },
-  -- cmdline and popupmenu together, from noice wiki
-  views = {
-    cmdline_popup = {
-      position = {row=10, col='50%',},
-      size = {width=60, height='auto'},
-    },
-    popupmenu = { -- this is the completion menu
-      relative = 'editor',
-      position = {row=13, col='50%',}, -- row is cmdline_popup row + 3
-      size = {width=60, height=5,},
-      border = {style='rounded', padding={0,1},},
-      win_options = {winhighlight={Normal='Normal', FloatBorder='DiagnosticInfo',},},
-    },
-  },
-  lsp = {
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-    },
-  },
-})
+
+require("nvim-navic").setup {
+  highlight = true,
+  depth_limit = 3,
+  click = true,
+  lsp = { auto_attach = true }
+}
+
+-- require('noice').setup({
+--   presets = {
+--     long_message_to_split = true,
+--     lsp_doc_border = true,
+--     command_palette = false,
+--   },
+--   -- cmdline and popupmenu together, from noice wiki
+--   views = {
+--     cmdline_popup = {
+--       position = {row=10, col='50%',},
+--       size = {width=60, height='auto'},
+--     },
+--     popupmenu = { -- this is the completion menu
+--       relative = 'editor',
+--       position = {row=13, col='50%',}, -- row is cmdline_popup row + 3
+--       size = {width=60, height=5,},
+--       border = {style='rounded', padding={0,1},},
+--       win_options = {winhighlight={Normal='Normal', FloatBorder='DiagnosticInfo',},},
+--     },
+--   },
+--   lsp = {
+--     override = {
+--       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+--       ["vim.lsp.util.stylize_markdown"] = true,
+--       ["cmp.entry.get_documentation"] = true,
+--     },
+--   },
+-- })
 vim.notify = require('notify').setup({
   render = "wrapped-compact",
   stages = "static",
@@ -124,7 +180,9 @@ require('nvim-treesitter.configs').setup({
 require('treesitter-context').setup({
   multiline_threshold = 4,
 })
-require('nvim-web-devicons').setup({color_icons=true})
+-- require('nvim-web-devicons').setup({color_icons=true})
+
+-- require('otter').setup({})
 -- require('precognition').setup({
 --   showBlankVirtLine = false,
 --   hints = {
@@ -136,7 +194,6 @@ require('nvim-web-devicons').setup({color_icons=true})
 --     e = {prio=0},
 --   },
 -- })
-require('scrollview').setup()
 require('tabout').setup({
   tabkey = '<Tab>',
   backwards_tabkey = '<S-Tab>',
@@ -144,7 +201,7 @@ require('tabout').setup({
   act_as_shift_tab = true,
   default_tab = '<C-t>', -- line move action to take at beginning of a line
   default_shift_tab = '<C-d>',
-  completion = false, -- set this if tab is also used for completion selection disables tabout when pum is open(?)
+  completion = true, -- set this if tab is also used for completion selection disables tabout when pum is open(?)
   ignore_beginning = true, -- if at the beginning of brackets, tab out instead of indenting
   tabouts = {
     { open = "'", close = "'" },
@@ -166,12 +223,11 @@ require('telescope').setup({
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
-require('texpresso')
+
 require('toggleterm').setup({
   start_in_insert = true,
   persist_mode = false,
 })
--- require('vimtex')
 require('which-key').setup({
   preset="helix",
   win={no_overlap=false},

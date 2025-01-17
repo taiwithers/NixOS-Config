@@ -5,6 +5,9 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
+vim.g.editorconfig = true
+vim.cmd("syntax on")
+
 local opt = vim.o -- equivalent to :set 
 
 opt.autochdir = false
@@ -20,10 +23,11 @@ opt.cursorline = true -- highlight current line
 opt.expandtab = true -- use spaces not tabs
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.foldcolumn = 'auto' -- when/how to draw the fold column
-opt.foldenable = true
+opt.foldenable = false
 opt.foldlevelstart = 99 -- start editing with no folds closed
 opt.foldmethod = 'expr' -- manual, indent, expr, marker, syntax, diff
-opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- enable treesitter folding
+-- opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- enable treesitter folding
+opt.foldexpr = 'nvim_treesitter#foldexpr()' -- enable treesitter folding
 opt.foldminlines = 5 -- unsure exactly what this does
 opt.grepprg = 'batgrep' -- not sure if this will work....
 opt.guicursor='n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkon400'
@@ -52,12 +56,13 @@ opt.showbreak = '    ' -- string to print at start of wrapped lines
 opt.showmatch = true -- Highlight matching parentheses, etc
 opt.showmode = true -- indicate mode in statusline
 opt.showtabline = 2 -- 2: always show tabline
+opt.signcolumn = "yes"
 opt.smartcase = true -- override ignorecase if search string contains uppercase
 opt.smartindent = true -- smart indent when starting new line
 opt.smarttab = true -- use shiftwidth instead of tabstop when pressing tab at the start of a line
 opt.softtabstop = 2
 opt.spell = false -- spellchecking
-opt.spelllang = 'en'
+opt.spelllang = 'en_ca'
 opt.spelloptions = 'camel' 
 opt.splitbelow = true
 opt.splitright = true -- where to put new windows
@@ -66,6 +71,7 @@ opt.statusline = '' -- format for statusline
 opt.tabline = '' -- tabline content
 opt.tabstop = 8
 opt.termguicolors = true
+opt.tm = 500 -- ms timeout for mapped sequences
 opt.undofile = true
 opt.visualbell = true
 opt.wildignore = '__pycache__,*.pyc'
