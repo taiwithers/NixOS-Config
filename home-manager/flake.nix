@@ -8,6 +8,9 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # https://github.com/NixOS/nixpkgs/issues/322970
+    nixpkgs-zoom.url = "nixpkgs/24.05";
+
     # libraries for other inputs to follow
     systems.url = "github:nix-systems/default";
     nixpkgs-lib.url = "github:nix-community/nixpkgs.lib";

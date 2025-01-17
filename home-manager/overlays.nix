@@ -187,5 +187,18 @@
           hash = "sha256-z1XD0O+gG2/+g/skdWGC64Zv4dXvvhWesaK/8DcPF/E=";
         };
       };
+
+    pipewire-zoom = flake-inputs.nixpkgs-zoom.legacyPackages.${system}.pipewire;
+    zoom-us =
+      (super.zoom-us.override {
+        pipewire = self.pipewire-zoom;
+      }).overrideAttrs
+        (_oldAttrs: rec {
+          version = "6.0.2.4680";
+          src = super.fetchurl {
+            url = "https://zoom.us/client/${version}/zoom_x86_64.pkg.tar.xz";
+            hash = "sha256-027oAblhH8EJWRXKIEs9upNvjsSFkA0wxK1t8m8nwj8=";
+          };
+        });
   }
 )
