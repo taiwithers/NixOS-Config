@@ -53,6 +53,7 @@ rec {
       klassy
       kara
       krohnkite
+      kwin-forceblur
     ]
     ++ [ pkgs.where-is-my-sddm-theme ]
     ++ [ cursor.package ];

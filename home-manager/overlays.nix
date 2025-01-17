@@ -110,6 +110,7 @@
         };
       }); # customDerivation "klassy";
       krohnkite = unstable.kdePackages.krohnkite;
+      kwin-forceblur = flake-inputs.kwin-effects-forceblur.packages.${system}.default;
     };
     nixfmt = super.nixfmt-rfc-style;
     nixshell = customScript rec {

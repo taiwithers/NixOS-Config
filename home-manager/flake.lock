@@ -227,6 +227,29 @@
         "type": "github"
       }
     },
+    "kwin-effects-forceblur": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": [
+          "flake-utils"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737052390,
+        "narHash": "sha256-px/UOfTgr46ilEELRvx2f042u4UzcAU4JiH8+G+Rc6s=",
+        "owner": "taj-ny",
+        "repo": "kwin-effects-forceblur",
+        "rev": "f7bb683dde404f6df9858e2b6bb6bb7a9039751b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "taj-ny",
+        "repo": "kwin-effects-forceblur",
+        "type": "github"
+      }
+    },
     "nix-colors": {
       "inputs": {
         "base16-schemes": "base16-schemes",

@@ -57,8 +57,8 @@
       clear_all_shortcuts = "yes"; # clear defaults
       # appearance (excluding colours)
       tab_bar_edge = "top";
-      # background_opacity = "0.5";
-      background_blur = 1;
+      # background_opacity = 0.0; # set by stylix
+      # background_blur = 1;
       window_border_width = 5;
       window_padding_width = 5; # inside border
       window_margin_width = 2; # outside border

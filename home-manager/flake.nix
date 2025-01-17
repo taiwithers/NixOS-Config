@@ -25,6 +25,12 @@
     arc.url = "github:arcnmx/nixexprs";
     arc.inputs.nixpkgs.follows = "nixpkgs";
 
+    kwin-effects-forceblur = {
+      url = "github:taj-ny/kwin-effects-forceblur";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
+    };
+
     nix-colors.url = "github:misterio77/nix-colors";
     nix-colors.inputs.nixpkgs-lib.follows = "nixpkgs-lib";
 
