@@ -115,8 +115,9 @@
       kdePackages.ark # archive manager
       kdePackages.dolphin
       keepassxc
-      gaia
-      libreoffice-qt6-still
+      # gaia
+      # libreoffice-qt6-still
+      libreoffice-qt6-fresh
       masterpdfeditor
       obsidian
       onedrive
@@ -126,7 +127,7 @@
       qjournalctl
       signal-desktop
       shiori
-      sticky
+      # sticky
       teams-for-linux
       xournalpp
       zoom-us

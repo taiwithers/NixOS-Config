@@ -53,7 +53,7 @@
       applications = 0.8;
       desktop = 0.8;
       popups = 0.8;
-      terminal = 0.5;
+      terminal = 0.0;
     };
     targets = {
       bat.enable = true;
@@ -62,9 +62,14 @@
       kde.enable = false; # requires wallpaper to be set
       kitty.enable = true;
       lazygit.enable = true;
-      neovim.enable = true;
+      neovim = {
+        enable = false;
+        plugin = "base16-nvim";
+        transparentBackground.main = false;
+        transparentBackground.signColumn = false;
+      };
       rofi.enable = false; # conflicts with rofi layout styling
-      spicetify.enable = true;
+      spicetify.enable = false;
       vesktop.enable = true;
       vscode.enable = true;
       yazi.enable = true;

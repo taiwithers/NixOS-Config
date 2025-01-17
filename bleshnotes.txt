@@ -1,0 +1,4 @@
+ble-bind -m 'vi-imap' 	-x 					'C-t' 		   'fzf-filei-widget'
+________ in vi-i mode | bind to shell cmd | key sequence | shell command
+
+ble-bind -m 'vi_imap' -f 'C-x g' 'complete show_menu:context=glob'
