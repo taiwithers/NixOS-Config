@@ -25,3 +25,7 @@ case "$1" in
 		nvd diff "$previousSystemGeneration" "$currentSystemGeneration"
 		;;
 esac
+
+
+# use system.(user)activationScripts & home.activation instead of aliases
+# https://github.com/luishfonseca/nixos-config/blob/main/modules/upgrade-diff.nix
