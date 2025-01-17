@@ -65,6 +65,9 @@
     stylix.inputs.firefox-gnome-theme.follows = "";
     # stylix.inputs.tinted-zed.follows = "";
 
+    # nvf.url = "github:notashelf/nvf";
+    # nvf.inputs.nixpkgs.follows = "nixpkgs";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -86,46 +89,7 @@
       treefmtEval = eachSystem (pkgs: flake-inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
 
       pkgs-config = {
-        allowUnfreePredicate =
-          pkg:
-          builtins.elem (nixpkgs.lib.getName pkg) [
-            "tetrio-desktop"
-            "cuda-merged"
-            "cuda_cuobjdump"
-            "cuda_gdb"
-            "cuda_nvcc"
-            "cuda_nvdisasm"
-            "cuda_nvprune"
-            "cuda_cccl"
-            "cuda_cudart"
-            "cuda_cupti"
-            "cuda_cuxxfilt"
-            "cuda_nvml_dev"
-            "cuda_nvrtc"
-            "cuda_nvtx"
-            "cuda_profiler_api"
-            "cuda_sanitizer_api"
-            "libcublas"
-            "libcufft"
-            "libcurand"
-            "libcusolver"
-            "libnvjitlink"
-            "libcusparse"
-            "libnpp"
-            "dell-command-configure"
-            "discord"
-            "masterpdfeditor"
-            "obsidian"
-            "posy-cursors"
-            "realvnc-vnc-viewer"
-            "slack"
-            "spotify"
-            "sublimetext4"
-            "vivaldi"
-            "vscode-extension-MS-python-vscode-pylance"
-            "vscode-extension-ms-vscode-remote-remote-ssh"
-            "zoom"
-          ];
+        allowUnfreePredicate = true;
         permittedInsecurePackages = [ "openssl-1.1.1w" ];
       };
 
