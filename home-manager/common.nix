@@ -139,6 +139,8 @@
       complete -F _command nvidia-offload
     '';
 
+    programs.bash.sessionVariables."FIGNORE" = ".lock"; # don't include .lock files in filename completion
+
     xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''
       if !has('nvim') " Neovim has its own location which already complies with XDG specification
         set viminfofile=$XDG_STATE_HOME/viminfo

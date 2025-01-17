@@ -30,12 +30,11 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "ds9";
-  version = "8.6b1";
-  distribution = "ubuntu22x86";
-
+  version = "8.7b1";
+  distribution = "ubuntu24x86";
   src = fetchzip {
     url = "https://ds9.si.edu/download/${distribution}/ds9.${distribution}.${version}.tar.gz";
-    sha256 = "BFQfxIesSOCUI35mF5ADmV27TlO+WZvXjh1ULXcQlRA=";
+    sha256 = "lBRU+1pZ+PH5aQVwNPJgFGuJllwNATO/4Uu9vmXEpK8=";
   };
 
   nativeBuildInputs = [ copyDesktopItems ];
