@@ -20,7 +20,7 @@
       type = types.bool;
       description = ''
         Tell Nix and Home Manager to use XDG directories. 
-                              Requires manually adding 'use-xdg-base-directories = true' to /etc/nix/nix.conf'';
+        Requires manually adding 'use-xdg-base-directories = true' to /etc/nix/nix.conf on non-NixOS'';
     };
 
     nixos = mkOption {
