@@ -72,6 +72,7 @@
       TERMINFO_DIRS = "${dataHome}/terminfo:/usr/share/terminfo";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       USERXSESSIONRC = "${cacheHome}/x11/xsessionrc";
+      FIGNORE = ".lock"; # don't include .lock files in filename completion
 
       __HM_SESS_VARS_SOURCED = ""; # "unset" this
     };
@@ -138,8 +139,6 @@
       complete -F _command get-package-path
       complete -F _command nvidia-offload
     '';
-
-    programs.bash.sessionVariables."FIGNORE" = ".lock"; # don't include .lock files in filename completion
 
     xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''
       if !has('nvim') " Neovim has its own location which already complies with XDG specification
