@@ -62,6 +62,9 @@
         gnused
         home-manager
         nix
+        coreutils
+        trash-cli
+        sd
       ];
       file = name;
     };

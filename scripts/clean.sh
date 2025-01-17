@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set +o nounset # don't error out if you encounter an unset parameter 
+set +o pipefail # let trash-list result in non-zero exit code
 
 if [[ -z "$1" ]]; then
 	days="30"
@@ -13,9 +14,17 @@ deleteFrom="$(date --date="$days days ago" "+%Y-%m-%d %H:%M")"
 echo "Deleting material prior to $deleteFrom"
 echo 
 
-if [[ -n "$(trashy list --before "$days""d")" ]]; then 
+
+
+trash_files=$(yes | trash-empty --dry-run "$days")
+if [[ -n "$trash_files" ]]; then 
 	echo "Emptying trash"
-	trashy empty --before "$days""d"
+	yes | trash-empty --dry-run "$days" | grep -v ".trashinfo$" | sd "would remove $HOME/.local/share/Trash/files/" "" | sort
+	read -r -n 1 -p "Confirm removal? y/[n] " confirmation
+	echo
+	if [[ $confirmation == "y" ]]; then 
+		trash-empty "$days"
+	fi
 else
 	echo "No trash to delete"
 fi
@@ -48,14 +57,26 @@ echo
 # nix-collect-garbage --delete-older-than 14d --dry-run
 # nixrebuild # rebuild to update boot menu
 
-
-echo "Removing nixos generations"
-echo "To be deleted:"
+echo "Removing nixos non-root generations"
 nix-collect-garbage --delete-older-than "$days""d" --dry-run
 read -r -n 1 -p "Confirm removal? y/[n] " confirmation
 echo
 if [[ $confirmation == "y" ]]; then 
 	nix-collect-garbage --delete-older-than "$days""d"
+fi
+echo
+
+echo -e "Removing nixos ROOT generations\nCurrent nixos generations"
+generations
+echo
+echo "Enter sudo password to see generations to be cleaned"
+to_delete=$(sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$days""d" --dry-run)
+if [[ -n "$to_delete" ]]; then 
+	read -r -n 1 -p "Confirm removal? y/[n] " confirmation
+	echo
+	if [[ $confirmation == "y" ]]; then 
+		sudo --reset-timestamp nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$days""d"
+	fi
 fi
 echo
 
