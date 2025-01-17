@@ -1,14 +1,11 @@
 {
   config,
   pkgs,
-  lib,
-  user,
-  pkgs-config,
   config-name,
   ...
 }:
 {
-  options.common = with lib; {
+  options.common = with pkgs.lib; {
     nixConfigDirectory = mkOption {
       default = ../.;
       type = types.path;
@@ -29,7 +26,7 @@
     };
 
     # Reference options
-    userHome = mkOption { default = "/home/${user}"; };
+    userHome = mkOption { default = "/home/${config.home.username}"; };
     configHome = mkOption { default = config.xdg.configHome; };
     stateHome = mkOption { default = config.xdg.stateHome; };
     dataHome = mkOption { default = config.xdg.dataHome; };
@@ -45,7 +42,7 @@
       if config.common.useXDG then
         "~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh"
       else
-        "/etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh";
+        "/etc/profiles/per-user/${config.home.username}/etc/profile.d/hm-session-vars.sh";
 
     targets.genericLinux.enable = !config.common.nixos;
 
@@ -96,6 +93,19 @@
         zip
         trash-cli
         ripgrep
+
+        # fonts
+        cm_unicode
+        intel-one-mono
+        open-sans
+        dejavu_fonts
+        (nerdfonts.override {
+          fonts = [
+            # "InteloneMono" # not available in nixpkgs nerdfont
+            "SpaceMono"
+            "NerdFontsSymbolsOnly"
+          ];
+        })
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         busybox
@@ -119,23 +129,23 @@
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
         "rebuild" =
-          "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}/home-manager#${config-name} && diff-hm-generations ";
+          "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}#${config-name} && diff-hm-generations ";
         # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
-        "formatconfig" = "(cd ${nixConfigDirectory} && nixfmt . )";
+        "formatconfig" = "(cd ${nixConfigDirectory} && nix fmt)";
         "diff-hm-generations" = "diff-nix-generations home";
       }
-      // pkgs.lib.optionalAttrs (config.common.nixos) {
+      // pkgs.lib.optionalAttrs config.common.nixos {
         "nixrebuild" =
           let
             nixconfig-name = pkgs.lib.lists.last (pkgs.lib.strings.splitString "-" config-name);
           in
-          "nixos-rebuild switch --show-trace --use-remote-sudo --flake ${nixConfigDirectory}/NixOS#${nixconfig-name} && diff-nixos-generations ";
+          "nixos-rebuild switch --show-trace --impure -use-remote-sudo --flake ${nixConfigDirectory}#${nixconfig-name} && diff-nixos-generations ";
         "diff-nixos-generations" = "diff-nix-generations nixos";
       };
 
     programs.bash.bashrcExtra = ''
-      # add completion for get-package-path
+      # add completions
       complete -F _command get-package-path
       complete -F _command nvidia-offload
     '';
@@ -157,8 +167,7 @@
       "nix-command"
       "flakes"
     ];
-    nixpkgs.config = pkgs-config;
-    home.username = user;
+
     home.homeDirectory = config.common.userHome;
     programs.home-manager.enable = true;
   };

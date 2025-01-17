@@ -19,9 +19,6 @@
         let
           checkSettings =
             {
-              name,
-              command,
-              binding,
             }@this:
             this;
           aux =

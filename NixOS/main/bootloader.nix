@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  backgroundColor ? "#000000",
+  ...
+}:
 {
   # boot and dual-boot options
   time.hardwareClockInLocalTime = true;
@@ -19,7 +23,7 @@
     fontSize = 24;
 
     splashImage = ./background.png;
-    backgroundColor = "#171726";
+    inherit backgroundColor;
     splashMode = "normal";
   };
 

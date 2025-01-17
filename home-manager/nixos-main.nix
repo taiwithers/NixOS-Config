@@ -3,7 +3,6 @@
   pkgs,
   flake-inputs,
   colours,
-  fonts,
   ...
 }:
 {
@@ -80,60 +79,54 @@
       ]
     );
 
-  home.packages =
-    with pkgs;
-    [
-      # nix programs
-      deadnix
-      nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
-      nix-tree
+  home.packages = with pkgs; [
+    # nix programs
+    deadnix
+    nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
+    nix-tree
 
-      # cli programs
-      brightness-control
-      cbonsai
-      cloc
-      dconf
-      fastfetch
-      ghostscript # pdf creation
-      jq
-      lavat
-      libqalculate # provides qalc cmd
-      lua
-      pandoc
-      parallel
-      pdftk
-      pond
-      starfetch
-      unar
-      wl-clipboard
-      xdg-ninja
+    # cli programs
+    brightness-control
+    cbonsai
+    cloc
+    dconf
+    fastfetch
+    ghostscript # pdf creation
+    jq
+    lavat
+    libqalculate # provides qalc cmd
+    lua
+    pandoc
+    parallel
+    pdftk
+    pond
+    starfetch
+    unar
+    wl-clipboard
+    xdg-ninja
 
-      # gui programs
-      # color-oracle
-      ds9
-      imv
-      kdePackages.ark # archive manager
-      kdePackages.dolphin
-      keepassxc
-      # gaia
-      # libreoffice-qt6-still
-      libreoffice-qt6-fresh
-      masterpdfeditor
-      obsidian
-      onedrive
-      onedrivegui
-      karp
-      krita
-      qjournalctl
-      signal-desktop
-      shiori
-      # sticky
-      teams-for-linux
-      xournalpp
-      zoom-us
+    # gui programs
+    ds9
+    imv
+    kdePackages.ark # archive manager
+    kdePackages.dolphin
+    keepassxc
+    # gaia
+    # libreoffice-qt6-still
+    libreoffice-qt6-fresh
+    masterpdfeditor
+    obsidian
+    onedrivegui
+    karp
+    krita
+    qjournalctl
+    signal-desktop
+    shiori
+    teams-for-linux
+    zoom-us
+    okular
 
-    ]
-    ++ fonts;
+  ];
 
   programs.direnv = {
     enable = true;

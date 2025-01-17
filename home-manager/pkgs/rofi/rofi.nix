@@ -11,7 +11,7 @@
   programs.rofi = rec {
     enable = true;
     package = pkgs.rofi-wayland.override {
-      plugins = plugins;
+      inherit plugins;
     }; # rofi-wayland, rofi-wayland-unwrapped
     plugins = with pkgs; [
       rofi-calc

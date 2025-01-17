@@ -24,7 +24,7 @@ let
     mono = {
       name = "Liberation Mono";
       package = pkgs.liberation_ttf;
-      size = sans.size;
+      inherit (sans) size;
       weight = "regular";
     };
   };
@@ -91,9 +91,9 @@ rec {
     enable = true;
     gtk2.configLocation = "${config.common.configHome}/gtkrc-2.0";
     font = with fonts.sans; {
-      name = name;
-      package = package;
-      size = size;
+      inherit name;
+      inherit package;
+      inherit size;
     };
     cursorTheme = cursor;
     theme = gtk-theme;
@@ -150,7 +150,7 @@ rec {
     workspace.iconTheme = klassy-names.icon-theme;
     workspace.cursor = {
       theme = cursor.name;
-      size = cursor.size;
+      inherit (cursor) size;
     };
     workspace.soundTheme = "ocean";
     workspace.splashScreen.theme = "Magna-Splash-6"; # engine is KSplashQML
@@ -159,12 +159,12 @@ rec {
     fonts = rec {
       fixedWidth = {
         family = "";
-        pointSize = general.pointSize;
+        inherit (general) pointSize;
       };
       general = with fonts.sans; {
         family = name;
         pointSize = size;
-        weight = weight;
+        inherit weight;
       };
       small = general // {
         pointSize = 9;

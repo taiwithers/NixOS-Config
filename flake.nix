@@ -1,0 +1,203 @@
+{
+  description = "NixOS/Home Manager Configuration";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "";
+      inputs.home-manager.follows = "home-manager";
+      inputs.systems.follows = "nix-systems";
+    };
+
+    arc = {
+      url = "github:arcnmx/nixexprs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-compat.url = "github:edolstra/flake-compat";
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "nix-systems";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    kwin-effects-forceblur = {
+      url = "github:taj-ny/kwin-effects-forceblur";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
+    };
+
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+      inputs.nixpkgs-lib.follows = "nixpkgs-lib";
+    };
+
+    nix-systems.url = "github:nix-systems/default";
+
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
+
+    nixpkgs-lib.url = "github:nix-community/nixpkgs.lib";
+
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    nixpkgs-zoom.url = "nixpkgs/24.05"; # https://github.com/NixOS/nixpkgs/issues/322970
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager/trunk";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      # nur.inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+
+    stylix = {
+      url = "github:danth/stylix/release-24.11";
+      inputs.base16-fish.follows = "";
+      inputs.base16-helix.follows = "";
+      inputs.base16-vim.follows = "";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.gnome-shell.follows = "";
+      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "nix-systems";
+      inputs.tinted-foot.follows = "";
+      inputs.tinted-tmux.follows = "";
+      inputs.firefox-gnome-theme.follows = "";
+      # stylix.inputs.tinted-zed.follows = "";
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      ...
+    }@flake-inputs:
+    let
+      # Small tool to iterate over each systems
+      eachSystem =
+        f:
+        nixpkgs.lib.genAttrs (import flake-inputs.nix-systems) (system: f nixpkgs.legacyPackages.${system});
+
+      # Eval the treefmt modules from ./treefmt.nix
+      treefmtEval = eachSystem (pkgs: flake-inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+
+      pkgs-config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [ "openssl-1.1.1w" ];
+      };
+
+      pkgs-for-system =
+        system:
+        import nixpkgs {
+          inherit system;
+          config = pkgs-config;
+          overlays = [
+            (_self: _super: {
+              # unstable nixpkgs
+              unstable = import nixpkgs-unstable {
+                inherit system;
+                config = pkgs-config;
+              };
+
+              # packages from external flakes
+              agenix = flake-inputs.agenix.packages.${system}.default;
+              kdePackages = _super.kdePackages // {
+                kwin-forceblur = flake-inputs.kwin-effects-forceblur.packages.${system}.default;
+              };
+              pipewire-zoom = flake-inputs.nixpkgs-zoom.legacyPackages.${system}.pipewire;
+            })
+
+            #  other overlays
+            flake-inputs.nur.overlays.default
+            (import ./overlays.nix { })
+          ];
+        };
+
+      colours = with flake-inputs.nix-colors.lib.conversions; rec {
+        hex-hashless = builtins.fromJSON (builtins.readFile ./colourscheme.json);
+        hex-hash = builtins.mapAttrs (_name: value: "#${value}") hex-hashless;
+        rgb255-commasep = builtins.mapAttrs (_name: value: hexToRGBString "," value) hex-hashless;
+      };
+
+      home-configurations = {
+        nixos-main = "tai"; # linux partition
+        ubuntu-main = "twithers"; # group machine
+      };
+
+    in
+    {
+      # nix fmt
+      formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+
+      # nix flake check
+      checks = eachSystem (pkgs: {
+        formatting = treefmtEval.${pkgs.system}.config.build.check self;
+      });
+
+      nixosConfigurations."main" = nixpkgs.lib.nixosSystem {
+        pkgs = pkgs-for-system builtins.currentSystem;
+        specialArgs =
+          let
+            hostname = "nixos";
+          in
+          {
+            inherit hostname colours;
+          };
+        modules = [
+          ./NixOS/main/configuration.nix
+          flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
+        ];
+      };
+
+      homeConfigurations = builtins.mapAttrs (
+        config-name: username:
+        home-manager.lib.homeManagerConfiguration rec {
+          pkgs = pkgs-for-system builtins.currentSystem;
+          extraSpecialArgs = {
+            inherit
+              flake-inputs
+              colours
+              config-name
+              ;
+          };
+          modules = [
+            {
+              nixpkgs.config = pkgs-config;
+              home.username = username;
+            }
+            (./. + "/home-manager/${config-name}.nix")
+            ./home-manager/common.nix
+          ];
+        }
+      ) home-configurations;
+
+    };
+}

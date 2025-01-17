@@ -240,8 +240,8 @@
         path = "Profiles/Student";
         id = 1;
         extensions = profiles."Personal".extensions ++ [ extensions.zotero-connector ];
-        settings = profiles."Personal".settings;
-        search = profiles."Personal".search;
+        inherit (profiles."Personal") settings;
+        inherit (profiles."Personal") search;
         userChrome = builtins.readFile ./userChrome.css;
         userContent = builtins.readFile ./userContent.css;
       };

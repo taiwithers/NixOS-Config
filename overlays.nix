@@ -1,23 +1,18 @@
-{
-  pkgs,
-  flake-inputs,
-  system,
-  ...
-}:
+_:
 (
   self: super:
   let
-    customDerivation = fname: pkgs.callPackage (./. + "/../derivations/${fname}.nix") { };
+    customDerivation = fname: super.callPackage (./. + "/./derivations/${fname}.nix") { };
     customScript =
       {
         name,
         runtimeInputs ? [ ],
         file,
       }:
-      pkgs.writeShellApplication {
-        name = name;
-        runtimeInputs = runtimeInputs ++ [ pkgs.coreutils ];
-        text = builtins.readFile (../scripts + "/${file}.sh");
+      super.writeShellApplication {
+        inherit name;
+        runtimeInputs = runtimeInputs ++ [ super.coreutils ];
+        text = builtins.readFile (./scripts + "/${file}.sh");
       };
     githubVimPlugin =
       {
@@ -26,20 +21,19 @@
         rev,
         hash ? "",
       }:
-      (pkgs.vimUtils.buildVimPlugin {
+      (super.vimUtils.buildVimPlugin {
         pname = repo;
         version = rev;
-        src = pkgs.fetchFromGitHub {
+        src = super.fetchFromGitHub {
           owner = author;
-          repo = repo;
-          rev = rev;
-          hash = hash;
+          inherit repo;
+          inherit rev;
+          inherit hash;
         };
       });
-    unstable = self.unstable;
+    inherit (self) unstable;
   in
   {
-    agenix = flake-inputs.agenix.packages.${system}.default;
     blesh = super.blesh.overrideAttrs (_oldAttrs: rec {
       version = "3d8f626";
       source = super.fetchFromGitHub {
@@ -51,13 +45,13 @@
     });
     brightness-control = customScript rec {
       name = "brightness-control";
-      runtimeInputs = [ pkgs.brightnessctl ];
+      runtimeInputs = [ super.brightnessctl ];
       file = name;
     };
     cbonsai = customDerivation "cbonsai";
     clean = customScript rec {
       name = "clean";
-      runtimeInputs = with pkgs; [
+      runtimeInputs = with super; [
         gnugrep
         gnused
         home-manager
@@ -72,7 +66,7 @@
     color-oracle = customDerivation "color-oracle";
     diff-nix-generations = customScript rec {
       name = "diff-nix-generations";
-      runtimeInputs = with pkgs; [
+      runtimeInputs = with super; [
         gnused
         home-manager
         nix
@@ -86,7 +80,7 @@
     gaia = customDerivation "gaia";
     nixos-generations = customScript rec {
       name = "generations";
-      runtimeInputs = with pkgs; [
+      runtimeInputs = with super; [
         nix
         jq
       ];
@@ -94,12 +88,12 @@
     };
     get-package-path = customScript {
       name = "get-package-path";
-      runtimeInputs = [ pkgs.which ];
+      runtimeInputs = [ super.which ];
       file = "get-package-dir";
     };
-    karp = unstable.karp;
+    inherit (unstable) karp;
     kdePackages = super.kdePackages // {
-      kara = super.kara;
+      inherit (super) kara;
       klassy = super.nur.repos.shadowrz.klassy-qt6.overrideAttrs (oldAttrs: rec {
         version = "58c6ad5";
         src = super.fetchFromGitHub {
@@ -109,27 +103,25 @@
           hash = "sha256-B7nQVok/3uCskGykqEoaZcpzpIk15tT7qDPG3qCbn4Q=";
         };
       }); # customDerivation "klassy";
-      krohnkite = unstable.kdePackages.krohnkite;
-      kwin-forceblur = flake-inputs.kwin-effects-forceblur.packages.${system}.default;
+      inherit (unstable.kdePackages) krohnkite;
     };
     nixfmt = super.nixfmt-rfc-style;
     nixshell = customScript rec {
       name = "nixshell";
-      runtimeInputs = with pkgs; [
+      runtimeInputs = with super; [
         nix
         bash
       ];
       file = name;
     };
-
-    onedrive = unstable.onedrive;
+    inherit (unstable) onedrive;
     pond = customDerivation "pond";
     rofi-calc = super.rofi-calc.override {
       rofi-unwrapped = self.rofi-wayland-unwrapped;
     };
     search = customScript rec {
       name = "search";
-      runtimeInputs = with pkgs; [
+      runtimeInputs = with super; [
         nix-search-cli
         sd
         jq
@@ -139,22 +131,22 @@
     };
     select-browser = customScript rec {
       name = "select-browser";
-      runtimeInputs = with pkgs; [
+      runtimeInputs = with super; [
         rofi
       ];
       file = name;
     };
     starfetch = customDerivation "starfetch";
-    sublime4 = unstable.sublime4;
+    inherit (unstable) sublime4;
     vesktop = super.vesktop.overrideAttrs (oldAttrs: {
       srcs = [
         oldAttrs.src
-        ../derivations/vesktop/discord.tar.gz
+        ./derivations/vesktop/discord.tar.gz
       ];
       sourceRoot = "source"; # move into git repo
       patches = oldAttrs.patches ++ [
-        ../derivations/vesktop/shiggy.patch
-        ../derivations/vesktop/icon.patch
+        ./derivations/vesktop/shiggy.patch
+        ./derivations/vesktop/icon.patch
       ];
       postInstall = ''
         cp ../discord.png $out/opt/Vesktop/resources/
@@ -171,7 +163,7 @@
     vimPlugins =
       super.vimPlugins
       // {
-        snacks-nvim = unstable.vimPlugins.snacks-nvim;
+        inherit (unstable.vimPlugins) snacks-nvim;
       }
       // builtins.mapAttrs (_name: value: (githubVimPlugin value)) {
         f-string-toggle-nvim = {
@@ -188,7 +180,6 @@
         };
       };
 
-    pipewire-zoom = flake-inputs.nixpkgs-zoom.legacyPackages.${system}.pipewire;
     zoom-us =
       (super.zoom-us.override {
         pipewire = self.pipewire-zoom;

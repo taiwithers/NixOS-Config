@@ -19,18 +19,18 @@
         runScript = "bash --init-file ~/.config/NixOS-Config/home-manager/pkgs/python/shells/shellrc.sh";
       };
       qstar = {
-        name = fhs.name;
-        targetPkgs = fhs.targetPkgs;
+        inherit (fhs) name;
+        inherit (fhs) targetPkgs;
         profile = fhs.profile + "\n micromamba activate qstar";
       };
       ta = {
-        name = fhs.name;
-        targetPkgs = fhs.targetPkgs;
+        inherit (fhs) name;
+        inherit (fhs) targetPkgs;
         profile = fhs.profile + "\n micromamba activate ta";
       };
       ism = {
-        name = fhs.name;
-        targetPkgs = fhs.targetPkgs;
+        inherit (fhs) name;
+        inherit (fhs) targetPkgs;
         profile = fhs.profile + "\n micromamba activate ism";
       };
     in

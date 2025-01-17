@@ -8,19 +8,19 @@ pnames=()
 
 # Loop through all the arguments
 for p in "$@"; do
-    if [[ "$p" != --* ]]; then
-        # If not an option, add it to the package names array
-        ps+=("nixpkgs#$p")
-        pnames+=("$p")
-    else
-        # If it is an option, add it to the options array
-        os+=("$p")
-    fi
+  if [[ $p != --* ]]; then
+    # If not an option, add it to the package names array
+    ps+=("nixpkgs#$p")
+    pnames+=("$p")
+  else
+    # If it is an option, add it to the options array
+    os+=("$p")
+  fi
 done
 
 # Construct the command
-cmd_shell="SHELL=\$SHELL"
-cmd_type="IN_NIX_SHELL=\"impure\""
+cmd_shell="SHELL=$SHELL"
+cmd_type='IN_NIX_SHELL="impure"'
 cmd_pkgs="NIX_SHELL_PKGS=\"${pnames[*]}\""
 cmd_unfree="NIXPKGS_ALLOW_UNFREE=1"
 cmd_nix="nix shell --impure ${os[*]} ${ps[*]}"

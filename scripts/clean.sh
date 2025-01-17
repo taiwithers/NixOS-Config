@@ -1,34 +1,32 @@
 #!/usr/bin/env bash
 
-set +o nounset # don't error out if you encounter an unset parameter 
+set +o nounset  # don't error out if you encounter an unset parameter
 set +o pipefail # let trash-list result in non-zero exit code
 
-if [[ -z "$1" ]]; then
-	days="30"
-	echo "Using default period $days days"
+if [[ -z $1 ]]; then
+  days="30"
+  echo "Using default period $days days"
 else
-	days=$1
-	echo "Using selected period $days days"
+  days=$1
+  echo "Using selected period $days days"
 fi
 deleteFrom="$(date --date="$days days ago" "+%Y-%m-%d %H:%M")"
 echo "Deleting material prior to $deleteFrom"
-echo 
-
-
+echo
 
 trash_files=$(yes | trash-empty --dry-run "$days")
-if [[ -n "$trash_files" ]]; then 
-	echo "Emptying trash"
-	yes | trash-empty --dry-run "$days" | grep -v ".trashinfo$" | sd "would remove $HOME/.local/share/Trash/files/" "" | sort
-	read -r -n 1 -p "Confirm removal? y/[n] " confirmation
-	echo
-	if [[ $confirmation == "y" ]]; then 
-		trash-empty "$days"
-	fi
+if [[ -n $trash_files ]]; then
+  echo "Emptying trash"
+  yes | trash-empty --dry-run "$days" | grep -v ".trashinfo$" | sd "would remove $HOME/.local/share/Trash/files/" "" | sort
+  read -r -n 1 -p "Confirm removal? y/[n] " confirmation
+  echo
+  if [[ $confirmation == "y" ]]; then
+    trash-empty "$days"
+  fi
 else
-	echo "No trash to delete"
+  echo "No trash to delete"
 fi
-echo 
+echo
 
 generations="$(home-manager generations)\n$deleteFrom\n"
 generations=$(sort <(echo -e "$generations") --reverse)
@@ -39,19 +37,19 @@ generations="$(sed '1d' <(echo -e "$generations"))" # remove first line
 # generations="$(sed 's/->.*$//g' <(echo -e "$generations"))" # remove back of line
 # generations="$(echo "$generations" | tr '\n' ' ')" # remove newlines
 
-if [[ -n "$generations" ]]; then 
-	echo "Removing Home Manager generations"
-	echo "$generations"
-	read -r -n 1 -p "Confirm removal? y/[n] " confirmation
-	echo
-	if [[ $confirmation == "y" ]]; then 
-		home-manager expire-generations "-$days days"
-	fi
+if [[ -n $generations ]]; then
+  echo "Removing Home Manager generations"
+  echo "$generations"
+  read -r -n 1 -p "Confirm removal? y/[n] " confirmation
+  echo
+  if [[ $confirmation == "y" ]]; then
+    home-manager expire-generations "-$days days"
+  fi
 else
-	echo "No Home Manager generations to delete"
+  echo "No Home Manager generations to delete"
 fi
 echo
- 
+
 # nixos-rebuild list-generations --json
 # sudo nix profile wipe-history --profile /nix/var/profiles/system --older-than 14d --dry-run
 # nix-collect-garbage --delete-older-than 14d --dry-run
@@ -61,8 +59,8 @@ echo "Removing nixos non-root generations"
 nix-collect-garbage --delete-older-than "$days""d" --dry-run
 read -r -n 1 -p "Confirm removal? y/[n] " confirmation
 echo
-if [[ $confirmation == "y" ]]; then 
-	nix-collect-garbage --delete-older-than "$days""d"
+if [[ $confirmation == "y" ]]; then
+  nix-collect-garbage --delete-older-than "$days""d"
 fi
 echo
 
@@ -71,38 +69,38 @@ generations
 echo
 echo "Enter sudo password to see generations to be cleaned"
 to_delete=$(sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$days""d" --dry-run)
-if [[ -n "$to_delete" ]]; then 
-	read -r -n 1 -p "Confirm removal? y/[n] " confirmation
-	echo
-	if [[ $confirmation == "y" ]]; then 
-		sudo --reset-timestamp nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$days""d"
-	fi
+if [[ -n $to_delete ]]; then
+  read -r -n 1 -p "Confirm removal? y/[n] " confirmation
+  echo
+  if [[ $confirmation == "y" ]]; then
+    sudo --reset-timestamp nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$days""d"
+  fi
 fi
 echo
 
 read -r -n 1 -p "Clean nix store? y/[n] " confirmation
 echo
-if [[ $confirmation == "y" ]]; then 
-	nix-store --gc
+if [[ $confirmation == "y" ]]; then
+  nix-store --gc
 fi
 echo
 
 read -r -n 1 -p "Optimise nix store? y/[n] " confirmation
 echo
-if [[ $confirmation == "y" ]]; then 
-	nix-store --optimise
+if [[ $confirmation == "y" ]]; then
+  nix-store --optimise
 fi
 echo
 
 pycommands=(conda mamba micromamba)
 for pycommand in "${pycommands[@]}"; do
-	if [[ -n "$(builtin type -P "$pycommand")" ]]; then
-		read -r -n 1 -p "Clean $pycommand? y/[n] " confirmation
-		echo
-		if [[ $confirmation == "y" ]]; then 
-			$pycommand clean --all
-		fi
-	fi
+  if [[ -n "$(builtin type -P "$pycommand")" ]]; then
+    read -r -n 1 -p "Clean $pycommand? y/[n] " confirmation
+    echo
+    if [[ $confirmation == "y" ]]; then
+      $pycommand clean --all
+    fi
+  fi
 done
 
 echo

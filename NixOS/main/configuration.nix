@@ -1,26 +1,19 @@
 {
-  config,
   pkgs,
   hostname,
-  flake-inputs,
+  colours,
   ...
 }:
 {
   imports = [
     ./hardware-configuration.nix
 
-    (import ./bootloader.nix { inherit pkgs; })
+    (import ./bootloader.nix {
+      inherit pkgs;
+      inherit (colours.hex-hash) navy;
+    })
     ./desktopenvironments.nix
     ./programs.nix
-  ];
-
-  nixpkgs.overlays = [
-    (self: super: {
-      unstable = import flake-inputs.nixpkgs-unstable {
-        system = builtins.currentSystem;
-        config = config.nixpkgs.config;
-      };
-    })
   ];
 
   # use lix

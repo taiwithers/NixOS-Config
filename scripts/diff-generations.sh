@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 getNthHomeManagerProfile() {
-	home-manager generations | sed --quiet "$1,$1p" | sd --max-replacements=1 ".* /" "/"
+  home-manager generations | sed --quiet "$1,$1p" | sd --max-replacements=1 ".* /" "/"
 }
 
 currentHomeGeneration=$(getNthHomeManagerProfile 1)
 previousHomeGeneration=$(getNthHomeManagerProfile 2)
 
 to_jq() {
-	echo "$1" | jq  -r "$2"
+  echo "$1" | jq -r "$2"
 }
 systemGenerationsJson="$(nixos-rebuild list-generations --json)"
 
@@ -17,15 +17,14 @@ currentSystemGenerationID=$(to_jq "$systemGenerationsJson" ".[] | select(.curren
 previousSystemGeneration="/nix/var/nix/profiles/system-$previousSystemGenerationID-link"
 currentSystemGeneration="/nix/var/nix/profiles/system-$currentSystemGenerationID-link"
 
-case "$1" in 
-	home) 
-		nvd diff "$previousHomeGeneration" "$currentHomeGeneration"
-		;;
-	nixos)
-		nvd diff "$previousSystemGeneration" "$currentSystemGeneration"
-		;;
+case "$1" in
+home)
+  nvd diff "$previousHomeGeneration" "$currentHomeGeneration"
+  ;;
+nixos)
+  nvd diff "$previousSystemGeneration" "$currentSystemGeneration"
+  ;;
 esac
-
 
 # use system.(user)activationScripts & home.activation instead of aliases
 # https://github.com/luishfonseca/nixos-config/blob/main/modules/upgrade-diff.nix

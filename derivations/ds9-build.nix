@@ -9,7 +9,6 @@
   stdenv,
   makeDesktopItem,
   copyDesktopItems,
-  lib,
   libXft,
   libX11,
   autoconf,
