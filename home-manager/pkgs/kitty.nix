@@ -74,6 +74,7 @@
       visual_bell_duration = 0.5;
       scrollback_pager = "bat";
       allow_remote_control = "yes";
+      allow_hyperlinks = "ask";
       # dynamic_background_opacity = "yes";
       # notify_on_finish = "unfocused bell";
     };
