@@ -1,5 +1,4 @@
-_:
-{
+_: {
   projectRootFile = "flake.nix"; # how to find root
 
   settings.global.excludes = [

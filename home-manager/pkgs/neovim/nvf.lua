@@ -1660,7 +1660,10 @@ require("noice").setup({
 		["lsp_doc_border"] = true,
 	},
 	["routes"] = {
-		{ ["filter"] = { ["event"] = "msg_show", ["find"] = "written", ["kind"] = "" }, ["opts"] = { ["skip"] = true } },
+		{
+			["filter"] = { ["event"] = "msg_show", ["find"] = "written", ["kind"] = "" },
+			["opts"] = { ["skip"] = true },
+		},
 	},
 })
 
