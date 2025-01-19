@@ -101,13 +101,8 @@
       ...
     }@flake-inputs:
     let
-      # Small tool to iterate over each systems
-      eachSystem =
-        f:
-        nixpkgs.lib.genAttrs (import flake-inputs.nix-systems) (system: f nixpkgs.legacyPackages.${system});
-
-      # Eval the treefmt modules from ./treefmt.nix
-      treefmtEval = eachSystem (pkgs: flake-inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+      treefmt-for-system =
+        system: flake-inputs.treefmt-nix.lib.evalModule (nixpkgs-for-system system) ./treefmt.nix;
 
       pkgs-config = {
         allowUnfree = true;
@@ -147,6 +142,9 @@
         rgb255-commasep = builtins.mapAttrs (_name: value: hexToRGBString "," value) hex-hashless;
       };
 
+      system = flake-inputs.flake-utils.lib.system.x86_64-linux;
+      nixpkgs-for-system = sys: nixpkgs.legacyPackages.${sys};
+
       home-configurations = {
         nixos-main = "tai"; # linux partition
         ubuntu-main = "twithers"; # group machine
@@ -155,15 +153,15 @@
     in
     {
       # nix fmt
-      formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+      formatter.${system} = (treefmt-for-system system).config.build.wrapper;
 
       # nix flake check
-      checks = eachSystem (pkgs: {
-        formatting = treefmtEval.${pkgs.system}.config.build.check self;
-      });
+      checks.${system} = {
+        formatting = (treefmt-for-system system).config.build.check self;
+      };
 
       nixosConfigurations."main" = nixpkgs.lib.nixosSystem {
-        pkgs = pkgs-for-system builtins.currentSystem;
+        pkgs = pkgs-for-system system;
         specialArgs =
           let
             hostname = "nixos";
@@ -180,7 +178,7 @@
       homeConfigurations = builtins.mapAttrs (
         config-name: username:
         home-manager.lib.homeManagerConfiguration rec {
-          pkgs = pkgs-for-system builtins.currentSystem;
+          pkgs = pkgs-for-system system;
           extraSpecialArgs = {
             inherit
               flake-inputs
