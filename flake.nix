@@ -150,6 +150,8 @@
         ubuntu-main = "twithers"; # group machine
       };
 
+      home-module-args = { inherit flake-inputs colours; };
+
     in
     {
       # nix fmt
@@ -179,12 +181,8 @@
         config-name: username:
         home-manager.lib.homeManagerConfiguration rec {
           pkgs = pkgs-for-system system;
-          extraSpecialArgs = {
-            inherit
-              flake-inputs
-              colours
-              config-name
-              ;
+          extraSpecialArgs = home-module-args // {
+            inherit config-name;
           };
           modules = [
             {
