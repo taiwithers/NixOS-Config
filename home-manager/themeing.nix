@@ -9,7 +9,10 @@
 
   xdg.configFile."sublime-text/Packages/User/Base16/theme.tmTheme".source = config.lib.stylix.colors {
     template = builtins.readFile (
-      builtins.fetchurl "https://raw.githubusercontent.com/chriskempson/base16-textmate/refs/heads/master/templates/default.mustache"
+      builtins.fetchurl {
+        url = "https://raw.githubusercontent.com/chriskempson/base16-textmate/refs/heads/master/templates/default.mustache";
+        sha256 = "sha256:0a82c8xhk7909grdnsmm0q91kyhml7xcgmzx5jpav2y4k99q3gvx";
+      }
     );
     extension = ".tmTheme";
   };

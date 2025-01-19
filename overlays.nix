@@ -62,7 +62,16 @@ _:
       ];
       file = name;
     };
-    codium = super.vscodium-fhs;
+    codium = super.vscodium-fhs.overrideAttrs (_oldAttrs: {
+      pname = "codium";
+      desktopItems = super.makeDesktopItem rec {
+        name = "VSCodium";
+        desktopName = name;
+        exec = "codium %F";
+        icon = "vscodium";
+        startupWMClass = name;
+      };
+    });
     color-oracle = customDerivation "color-oracle";
     diff-nix-generations = customScript rec {
       name = "diff-nix-generations";

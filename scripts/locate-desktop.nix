@@ -1,8 +1,5 @@
 # requires --impure
-pkg:
-let
-  lib = import <nixpkgs/lib>;
-in
+{ pkg, lib }:
 if builtins.hasAttr "desktopItem" pkg then
   "${pkg.pname}.desktop"
 else

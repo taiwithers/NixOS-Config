@@ -14,7 +14,7 @@
         let
           autostart-pkgs = with pkgs; [ onedrivegui ];
         in
-        import ../scripts/autostart.nix { inherit config autostart-pkgs; }
+        import ../scripts/autostart.nix { inherit config pkgs autostart-pkgs; }
       )
 
       (import ./pkgs/agenix/agenix.nix {

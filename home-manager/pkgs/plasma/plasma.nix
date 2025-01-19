@@ -59,11 +59,25 @@ rec {
     ++ [ cursor.package ];
 
   xdg.dataFile."plasma/plasmoids/org.kde.plasma.shutdownorswitch".source =
-    (builtins.fetchGit "https://github.com/Davide-sd/shutdown_or_switch.git") + "/package";
+    (pkgs.fetchFromGitHub {
+      owner = "Davide-sd";
+      repo = "shutdown_or_switch";
+      rev = "ee2e597";
+      hash = "sha256-Q/rahjtryiXvzzwkjQiwL4cPTCfuYdjp6q4QkodrhZI=";
+    })
+    # (builtins.fetchGit "https://github.com/Davide-sd/shutdown_or_switch.git") + "/package";
+    + "/package";
 
   xdg.dataFile."plasma/look-and-feel/Magna-Splash-6".source =
-    (builtins.fetchGit "https://github.com/L4ki/Magna-Plasma-Themes.git")
-    + "/Magna-Splahscreen/Magna-Splash-6";
+    (pkgs.fetchFromGitHub {
+      owner = "L4ki";
+      repo = "Magna-Plasma-Themes";
+      rev = "cff6c2d";
+      hash = "sha256-yYQBtjDOWiu33fVvnv83At0nA5mOmYZldgV4VsMxd2M=";
+      sparseCheckout = [ "Magna-Splahscreen" ];
+    })
+    # (builtins.fetchGit "https://github.com/L4ki/Magna-Plasma-Themes.git")
+    + "/Magna-Splash-6";
 
   xdg.dataFile."plasma/plasmoids/Compact.Menu".source = ./Compact.Menu;
 

@@ -1,6 +1,7 @@
 # https://github.com/nix-community/home-manager/issues/3447#issuecomment-1328294558
 {
   config,
+  pkgs,
   autostart-pkgs,
 }:
 let
@@ -11,7 +12,11 @@ in
     map (pkg: {
       name = "${config.xdg.configHome}/autostart/${pkg.pname}.desktop";
       value = {
-        source = "${pkg}/share/applications/${locateDesktop pkg}";
+        source =
+          let
+            inherit (pkgs) lib;
+          in
+          "${pkg}/share/applications/${locateDesktop { inherit pkg lib; }}";
       };
       # if pkg ? desktopItem
       # then {

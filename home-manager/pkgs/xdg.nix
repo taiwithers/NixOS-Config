@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   locateDesktop = import ../../scripts/locate-desktop.nix;
-  getDesktopFiles = list: map (p: "${locateDesktop p}") list;
+  inherit (pkgs) lib;
+  getDesktopFiles = list: map (pkg: "${locateDesktop { inherit pkg lib; }}") list;
 
   defaults = builtins.mapAttrs (_name: value: (getDesktopFiles value)) (
     with pkgs;
@@ -17,7 +18,7 @@ let
 
       texteditors = [
         sublime4
-        vscodium-fhs
+        # codium
       ];
 
       filebrowsers = [ kdePackages.dolphin ];
