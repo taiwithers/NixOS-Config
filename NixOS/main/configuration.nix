@@ -1,6 +1,5 @@
 {
   pkgs,
-  hostname,
   colours,
   ...
 }:
@@ -57,7 +56,7 @@
   ];
 
   # networking
-  networking.hostName = hostname;
+  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
@@ -97,9 +96,8 @@
   };
 
   # user account
-  users.users.tai = {
+  users.users."tai" = {
     isNormalUser = true;
-    description = "Tai";
     extraGroups = [
       "networkmanager" # allow modifying network settings
       "wheel" # allow using sudo

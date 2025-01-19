@@ -81,9 +81,7 @@
 
   home.packages = with pkgs; [
     # nix programs
-    deadnix
     nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
-    nix-tree
 
     # cli programs
     brightness-control
@@ -120,12 +118,11 @@
     karp
     krita
     qjournalctl
-    signal-desktop
+    # signal-desktop
     shiori
     teams-for-linux
     zoom-us
     okular
-
   ];
 
   programs.direnv = {

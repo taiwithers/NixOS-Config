@@ -85,6 +85,7 @@
         nixshell
         nvd
         diff-nix-generations
+        nix-tree
 
         # utilities
         fd

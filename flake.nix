@@ -58,7 +58,7 @@
 
     nur = {
       url = "github:nix-community/NUR";
-      # nur.inputs.flake-parts.follows = "flake-parts";
+      # inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -96,8 +96,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-unstable,
-      home-manager,
       ...
     }@flake-inputs:
     let
@@ -117,7 +115,7 @@
           overlays = [
             (_self: _super: {
               # unstable nixpkgs
-              unstable = import nixpkgs-unstable {
+              unstable = import flake-inputs.nixpkgs-unstable {
                 inherit system;
                 config = pkgs-config;
               };
@@ -146,8 +144,8 @@
       nixpkgs-for-system = sys: nixpkgs.legacyPackages.${sys};
 
       home-configurations = {
-        nixos-main = "tai"; # linux partition
-        ubuntu-main = "twithers"; # group machine
+        nixos-main = "tai";
+        ubuntu-main = "twithers";
       };
 
       home-module-args = { inherit flake-inputs colours; };
@@ -164,13 +162,7 @@
 
       nixosConfigurations."main" = nixpkgs.lib.nixosSystem {
         pkgs = pkgs-for-system system;
-        specialArgs =
-          let
-            hostname = "nixos";
-          in
-          {
-            inherit hostname colours;
-          };
+        specialArgs = { inherit colours; };
         modules = [
           ./NixOS/main/configuration.nix
           flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
@@ -179,7 +171,7 @@
 
       homeConfigurations = builtins.mapAttrs (
         config-name: username:
-        home-manager.lib.homeManagerConfiguration rec {
+        flake-inputs.home-manager.lib.homeManagerConfiguration rec {
           pkgs = pkgs-for-system system;
           extraSpecialArgs = home-module-args // {
             inherit config-name;
