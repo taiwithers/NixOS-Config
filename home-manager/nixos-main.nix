@@ -122,12 +122,6 @@
     zoom-us
     okular
   ];
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
   # services.caffeine.enable = true;
 
   fonts.fontconfig.enable = true;
@@ -162,9 +156,9 @@
   '';
 
   programs.bash.bashrcExtra = ''
-      # add completions
-      complete -F _command get-package-path
-    '';
+    # add completions
+    complete -F _command get-package-path
+  '';
   xresources.path = "${config.common.configHome}/X11/xresources";
 
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";

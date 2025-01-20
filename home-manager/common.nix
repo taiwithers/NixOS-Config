@@ -161,6 +161,14 @@
       generateCaches = true; # slightly slows rebuild, but allows things like apropos to work
     };
 
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      config = {
+        global.hide_env_diff = true; # don't show big blob of environment variable changes
+      };
+    };
+
     news.display = "silent"; # no output about hm news during switch
     nix.package = pkgs.lix;
     nix.settings.experimental-features = [

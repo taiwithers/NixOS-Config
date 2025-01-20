@@ -57,11 +57,6 @@
     };
   };
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
   nix.gc = {
     automatic = true;
     frequency = "weekly";
