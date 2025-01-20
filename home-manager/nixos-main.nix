@@ -64,6 +64,7 @@
         "latex"
         "lazygit"
         "neovim/neovim"
+        "pdftools"
         "python/python"
         "ripgrep"
         "rofi/rofi" # uses colours
@@ -81,9 +82,7 @@
 
   home.packages = with pkgs; [
     # nix programs
-    deadnix
     nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
-    nix-tree
 
     # cli programs
     brightness-control
@@ -91,14 +90,11 @@
     cloc
     dconf
     fastfetch
-    ghostscript # pdf creation
     jq
     lavat
     libqalculate # provides qalc cmd
     lua
-    pandoc
     parallel
-    pdftk
     pond
     starfetch
     unar
@@ -120,12 +116,11 @@
     karp
     krita
     qjournalctl
-    signal-desktop
+    # signal-desktop
     shiori
     teams-for-linux
     zoom-us
     okular
-
   ];
 
   programs.direnv = {
@@ -133,7 +128,7 @@
     nix-direnv.enable = true;
   };
 
-  services.caffeine.enable = true;
+  # services.caffeine.enable = true;
 
   fonts.fontconfig.enable = true;
 
@@ -166,6 +161,10 @@
     qwebengine_login = False
   '';
 
+  programs.bash.bashrcExtra = ''
+      # add completions
+      complete -F _command get-package-path
+    '';
   xresources.path = "${config.common.configHome}/X11/xresources";
 
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";

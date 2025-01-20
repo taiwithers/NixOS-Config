@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  app-themes,
   colours,
   ...
 }:
@@ -14,7 +13,6 @@
           inherit
             config
             pkgs
-            app-themes
             colours
             ;
         }
@@ -31,18 +29,17 @@
         "eza"
         "fzf"
         "kitty" # use icat on remote
+        "latex"
         "lazygit"
         "neovim/neovim"
+        "pdftools"
         "python/python"
         "starship"
-        # "superfile"
         "zoxide"
       ];
   home.packages = with pkgs; [
     fastfetch
-    latex
     libqalculate
-    kitty # use icat on remote
     nix-output-monitor
     xdg-ninja
   ];
