@@ -94,6 +94,7 @@
         zip
         trash-cli
         ripgrep
+        bash-completion
 
         # fonts
         cm_unicode
@@ -109,7 +110,6 @@
         })
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
-        busybox
         coreutils
         xdg-utils
         diffutils
@@ -148,7 +148,6 @@
     programs.bash.bashrcExtra = ''
       # add completions
       complete -F _command get-package-path
-      complete -F _command nvidia-offload
     '';
 
     xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''

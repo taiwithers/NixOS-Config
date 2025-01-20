@@ -32,6 +32,7 @@
         "latex"
         "lazygit"
         "neovim/neovim"
+        "pdftools"
         "python/python"
         "starship"
         "zoxide"

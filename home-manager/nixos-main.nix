@@ -64,6 +64,7 @@
         "latex"
         "lazygit"
         "neovim/neovim"
+        "pdftools"
         "python/python"
         "ripgrep"
         "rofi/rofi" # uses colours
@@ -89,14 +90,11 @@
     cloc
     dconf
     fastfetch
-    ghostscript # pdf creation
     jq
     lavat
     libqalculate # provides qalc cmd
     lua
-    pandoc
     parallel
-    pdftk
     pond
     starfetch
     unar
@@ -130,7 +128,7 @@
     nix-direnv.enable = true;
   };
 
-  services.caffeine.enable = true;
+  # services.caffeine.enable = true;
 
   fonts.fontconfig.enable = true;
 
@@ -163,6 +161,10 @@
     qwebengine_login = False
   '';
 
+  programs.bash.bashrcExtra = ''
+      # add completions
+      complete -F _command get-package-path
+    '';
   xresources.path = "${config.common.configHome}/X11/xresources";
 
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";
