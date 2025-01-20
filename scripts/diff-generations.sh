@@ -4,7 +4,6 @@ getNthHomeManagerProfile() {
   home-manager generations | sed --quiet "$1,$1p" | sd --max-replacements=1 ".* /" "/"
 }
 
-
 to_jq() {
   echo "$1" | jq -r "$2"
 }
@@ -22,7 +21,7 @@ nixos)
   currentSystemGenerationID=$(to_jq "$systemGenerationsJson" ".[] | select(.current) | .generation")
   previousSystemGeneration="/nix/var/nix/profiles/system-$previousSystemGenerationID-link"
   currentSystemGeneration="/nix/var/nix/profiles/system-$currentSystemGenerationID-link"
-  
+
   nvd diff "$previousSystemGeneration" "$currentSystemGeneration"
   ;;
 esac
