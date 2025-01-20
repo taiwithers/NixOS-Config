@@ -33,7 +33,7 @@
         "lazygit"
         "neovim/neovim"
         "pdftools"
-        "python/python"
+        # "python/python"
         "starship"
         "zoxide"
       ];

@@ -68,8 +68,9 @@ echo -e "Removing nixos ROOT generations\nCurrent nixos generations"
 generations
 echo
 echo "Enter sudo password to see generations to be cleaned"
-to_delete=$(sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$days""d" --dry-run)
-if [[ -n $to_delete ]]; then
+to_delete=$(sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$days""d" --dry-run 2>&1)
+if [[ -n "$to_delete" ]]; then
+  sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$days""d" --dry-run
   read -r -n 1 -p "Confirm removal? y/[n] " confirmation
   echo
   if [[ $confirmation == "y" ]]; then

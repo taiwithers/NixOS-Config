@@ -65,7 +65,7 @@
         "lazygit"
         "neovim/neovim"
         "pdftools"
-        "python/python"
+        # "python/python"
         "ripgrep"
         "rofi/rofi" # uses colours
         "starship"
