@@ -40,7 +40,8 @@ _:
         owner = "akinomyoga";
         repo = "ble.sh";
         rev = version;
-        hash = "sha256-dVvm089c9Qt5dzrk8n/Ow/y3WVFjAdT5G3hXAl5MghM=";
+        hash = "sha256-0QnFFHkVIyXXoHQQfUKeRyLg3/2rb49MTMHydzAzq4A=";
+        # hash = "sha256-dVvm089c9Qt5dzrk8n/Ow/y3WVFjAdT5G3hXAl5MghM=";
       };
     });
     brightness-control = customScript rec {
