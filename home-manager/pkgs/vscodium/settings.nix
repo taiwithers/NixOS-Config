@@ -31,6 +31,7 @@ in
   "editor.guides.bracketPairsHorizontal" = false;
   "editor.linkedEditing" = true;
   "editor.minimap.autohide" = true;
+  "editor.minimap.enabled" = false;
   "editor.mouseWheelZoom" = true;
   "editor.renderLineHighlight" = "gutter";
   "editor.stickyScroll.enabled" = true;

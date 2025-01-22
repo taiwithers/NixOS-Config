@@ -65,17 +65,18 @@ require("lspconfig").nixd.setup({
 	settings = {
 		nixd = {
 			nixpkgs = {
-				expr = "import <nixpkgs> { }",
+				-- expr = "import <nixpkgs> { }",
+				expr = '(builtins.getFlake "github:taiwithers/NixOS-Config").inputs.nixpkgs {}',
 			},
 			formatting = {
 				command = { "nixfmt" },
 			},
 			options = {
 				nixos = {
-					expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos-main.options',
+					expr = '(builtins.getFlake "github:taiwithers/NixOS-Config").nixosConfigurations.nixos-main.options',
 				},
 				home_manager = {
-					expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations.tai.options',
+					expr = '(builtins.getFlake "github:taiwithers/NixOS-Config").homeConfigurations.tai.options',
 				},
 			},
 			-- diagnostic = {
