@@ -83,5 +83,5 @@ in
     ]
     ++ [ latex ];
 
-  home.shellAliases."compiletex" = "latexmk --auxdir=\"aux\" --gg --pdflatex --silent";
+  home.shellAliases."compiletex" = "latexmk --auxdir=\".aux\" --gg --pdflatex --silent";
 }

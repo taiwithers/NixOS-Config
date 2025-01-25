@@ -252,4 +252,7 @@ in
   "workbench.tree.enableStickyScroll" = true;
   "workbench.view.alwaysShowHeaderActions" = true;
   "workbench.welcomePage.walkthroughs.openOnInstall" = false;
+  "workbench.editorAssociations"=  {
+    "*.pdf"= "pdf.preview";
+  };
 }
