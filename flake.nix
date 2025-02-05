@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    darkly = {
+        url = "github:Bali10050/Darkly";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+
     flake-compat.url = "github:edolstra/flake-compat";
 
     flake-utils = {
@@ -123,6 +128,7 @@
               # packages from external flakes
               agenix = flake-inputs.agenix.packages.${system}.default;
               kdePackages = _super.kdePackages // {
+                darkly = flake-inputs.darkly.packages.${system}.darkly-qt6;
                 kwin-forceblur = flake-inputs.kwin-effects-forceblur.packages.${system}.default;
               };
               pipewire-zoom = flake-inputs.nixpkgs-zoom.legacyPackages.${system}.pipewire;

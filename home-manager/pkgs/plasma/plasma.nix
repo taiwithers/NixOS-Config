@@ -47,6 +47,10 @@ rec {
     plasma-manager.homeManagerModules.plasma-manager
   ];
 
+  qt.enable = true;
+  qt.style.package = pkgs.kdePackages.darkly;
+  # qt.platformTheme.name = "qtct";
+
   home.packages =
     with pkgs.kdePackages;
     [
