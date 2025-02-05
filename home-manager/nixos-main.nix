@@ -34,6 +34,10 @@
         inherit config pkgs colours;
         inherit (flake-inputs) plasma-manager;
       })
+      (import ./pkgs/vesktop/vesktop.nix {
+        inherit config pkgs colours;
+        inherit (flake-inputs) nixcord;
+      })
 
       ./gaming.nix
     ]
@@ -71,7 +75,6 @@
         "starship"
         "sublime-text/sublime-text"
         "tldr"
-        "vesktop/vesktop"
         "vscodium/vscodium"
         "xdg"
         "yazi"

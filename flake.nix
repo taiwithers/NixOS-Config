@@ -49,6 +49,14 @@
       inputs.nixpkgs-lib.follows = "nixpkgs-lib";
     };
 
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs.systems.follows = "nix-systems";
+    };
+
     nix-inspect = {
         url = "github:bluskript/nix-inspect";
       inputs.nixpkgs.follows = "nixpkgs";
