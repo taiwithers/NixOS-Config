@@ -34,6 +34,36 @@ in
   xdg = {
     enable = true;
 
+    # autostart = {
+    #   enable = true;
+    #   entries =
+    #     let
+    #       locateDesktop = import ./locate-desktop.nix;
+    #     in
+    #     map (pkg: {
+    #       name = "${config.xdg.configHome}/autostart/${pkg.pname}.desktop";
+    #       value = {
+    #         source =
+    #           let
+    #             inherit (pkgs) lib;
+    #           in
+    #           "${pkg}/share/applications/${locateDesktop { inherit pkg lib; }}";
+    #       };
+    #       # if pkg ? desktopItem
+    #       # then {
+    #       #   # Application has a desktopItem entry.
+    #       #   # Assume that it was made with makeDesktopEntry, which exposes a
+    #       #   # text attribute with the contents of the .desktop file
+    #       #   text = pkg.desktopItem.text;
+    #       # }
+    #       # else {
+    #       #   # Application does *not* have a desktopItem entry. Try to find a
+    #       #   # matching .desktop name in /share/applications
+    #       #   source = "${pkg}/share/applications/${pkg.pname}.desktop";
+    #       # };
+    #     }) [ pkgs.onedrivegui ];
+    # };
+
     desktopEntries = { };
 
     mimeApps = {
@@ -84,5 +114,6 @@ in
         "x-scheme-handler/zoom-mtg" = [ "zoom.desktop" ]; # not sure if correct
       };
     };
+
   };
 }
