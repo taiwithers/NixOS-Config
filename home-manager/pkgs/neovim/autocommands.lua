@@ -25,13 +25,13 @@ vim.api.nvim_create_autocmd("FileType", {
 -- format .nix files on save
 -- https://stackoverflow.com/questions/77466697/how-to-automatically-format-on-save
 -- potentially a better way, or some way to merge with above
-vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-        local mode = vim.api.nvim_get_mode().mode
-        local filetype = vim.bo.filetype
-        if vim.bo.modified == true and mode == 'n' and filetype == "nix" then
-            vim.cmd('lua vim.lsp.buf.format()')
-        else
-        end
-    end
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     callback = function()
+--         local mode = vim.api.nvim_get_mode().mode
+--         local filetype = vim.bo.filetype
+--         if vim.bo.modified == true and mode == 'n' and filetype == "nix" then
+--             vim.cmd('lua vim.lsp.buf.format()')
+--         else
+--         end
+--     end
+-- })
