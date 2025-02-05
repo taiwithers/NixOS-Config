@@ -44,6 +44,9 @@
             darkreader
             no-pdf-download
             keepassxc-browser
+            indie-wiki-buddy
+            privacy-badger
+            lovely-forks            
           ]
           ++ [ pkgs.nur.repos.pborzenkov.firefox-addons.shiori_ext ];
 
