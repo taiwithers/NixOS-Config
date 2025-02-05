@@ -29,6 +29,10 @@
       inputs.systems.follows = "nix-systems";
     };
 
+    flake-parts = {
+        url = "github:hercules-ci/flake-parts";
+      };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +49,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs-lib";
     };
 
+    nix-inspect = {
+        url = "github:bluskript/nix-inspect";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      };
     nix-systems.url = "github:nix-systems/default";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
@@ -63,7 +72,7 @@
 
     nur = {
       url = "github:nix-community/NUR";
-      # inputs.flake-parts.follows = "flake-parts";
+      inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -72,6 +81,7 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
+      inputs.systems.follows = "nix-systems";
     };
 
     stylix = {
@@ -131,6 +141,7 @@
                 darkly = flake-inputs.darkly.packages.${system}.darkly-qt6;
                 kwin-forceblur = flake-inputs.kwin-effects-forceblur.packages.${system}.default;
               };
+              nix-inspect = flake-inputs.nix-inspect.packages.${system}.default;
               pipewire-zoom = flake-inputs.nixpkgs-zoom.legacyPackages.${system}.pipewire;
             })
 

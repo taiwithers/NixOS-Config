@@ -83,13 +83,16 @@
   home.packages = with pkgs; [
     # nix programs
     nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
+    nix-search-tv
 
     # cli programs
     brightness-control
+    broot
     cbonsai
     cloc
     dconf
     fastfetch
+    jless # https://jless.io/user-guide
     jq
     lavat
     libqalculate # provides qalc cmd
@@ -97,6 +100,7 @@
     parallel
     pond
     starfetch
+    ugrep
     unar
     wl-clipboard
     xdg-ninja
@@ -110,8 +114,9 @@
     # gaia
     # libreoffice-qt6-still
     libreoffice-qt6-fresh
-    masterpdfeditor
+    # masterpdfeditor
     obsidian
+    onlyoffice-desktopeditors
     onedrivegui
     karp
     krita
@@ -121,6 +126,8 @@
     teams-for-linux
     zoom-us
     okular
+
+    # lightly-boehs
   ];
   # services.caffeine.enable = true;
 
