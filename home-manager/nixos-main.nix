@@ -118,12 +118,13 @@
     # libreoffice-qt6-still
     libreoffice-qt6-fresh
     # masterpdfeditor
-    obsidian
+    # obsidian
     onlyoffice-desktopeditors
     onedrivegui
     karp
     krita
     qjournalctl
+    qownnotes
     # signal-desktop
     shiori
     teams-for-linux

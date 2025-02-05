@@ -42,11 +42,11 @@
             ublock-origin
             clearurls
             darkreader
-            no-pdf-download
             keepassxc-browser
             indie-wiki-buddy
             privacy-badger
             lovely-forks
+            # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
           ]
           ++ [ pkgs.nur.repos.pborzenkov.firefox-addons.shiori_ext ];
 
