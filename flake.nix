@@ -18,9 +18,16 @@
     };
 
     darkly = {
-        url = "github:Bali10050/Darkly";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
+      url = "github:Bali10050/Darkly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dream2nix = {
+      # for nix-inspect
+      url = "github:nix-community/dream2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.purescript-overlay.follows = "purescript-overlay";
+    };
 
     flake-compat.url = "github:edolstra/flake-compat";
 
@@ -30,8 +37,9 @@
     };
 
     flake-parts = {
-        url = "github:hercules-ci/flake-parts";
-      };
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs-lib";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -42,6 +50,15 @@
       url = "github:taj-ny/kwin-effects-forceblur";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
+    };
+
+    nix-cargo-integration = {
+      # for nix-inspect
+      url = "github:yusdacra/nix-cargo-integration";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.parts.follows = "flake-parts";
+      inputs.treefmt.follows = "treefmt-nix";
+      inputs.dream2nix.follows = "dream2nix";
     };
 
     nix-colors = {
@@ -58,10 +75,12 @@
     };
 
     nix-inspect = {
-        url = "github:bluskript/nix-inspect";
+      url = "github:bluskript/nix-inspect";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-      };
+      inputs.parts.follows = "flake-parts";
+      inputs.nci.follows = "nix-cargo-integration";
+    };
+
     nix-systems.url = "github:nix-systems/default";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
@@ -76,6 +95,13 @@
       url = "github:nix-community/plasma-manager/trunk";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
+    };
+
+    purescript-overlay = {
+      # for nix-inspect
+      url = "github:thomashoneyman/purescript-overlay";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nur = {

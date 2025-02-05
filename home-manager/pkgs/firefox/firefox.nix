@@ -46,7 +46,7 @@
             keepassxc-browser
             indie-wiki-buddy
             privacy-badger
-            lovely-forks            
+            lovely-forks
           ]
           ++ [ pkgs.nur.repos.pborzenkov.firefox-addons.shiori_ext ];
 
