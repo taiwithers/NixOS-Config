@@ -145,25 +145,25 @@ rec {
   };
 
   programs.plasma = {
-    enable = false;
+    enable = true;
     resetFiles = [ ]; # files to delete on each generation, string paths relative to config home
     resetFilesExclude = [ ]; # files to NOT delete on each generation
     immutableByDefault = false;
-    overrideConfig = false; # read description before changing https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.overrideConfig
+    overrideConfig = true; # read description before changing https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.overrideConfig
 
     ###############################
     # Environment Aesthetics
     ###############################
     workspace.lookAndFeel = "org.kde.breezedark.desktop"; # global theme
     workspace.colorScheme = "custom";
-    workspace.wallpaper =
-      let
-        wallpaper-name = "Next"; # only one available in this kde package
-        wallpaper-folder = "images_dark"; # or "images"
-      in
-      "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
+    workspace.wallpaper = builtins.fetchurl {
+      url = "https://images.unsplash.com/photo-1487528699198-88d79d72479f";
+      sha256 = "sha256:0vy1g8qzllppk4zihwd6qjkbfj56y27pydv7r1c43hq1n5w2qccp";
+    };
     configFile.kdeglobals.General.AccentColor = colours.rgb255-commasep.blue-grey; # "146,110,228";
-    workspace.theme = "ActiveAccentDark"; # plasma style / desktop theme
+
+    workspace.theme = "Aritim-Dark-Flat-Blur"; # plasma style / desktop theme
+    
     workspace.windowDecorations = klassy-names.window-decorations;
     workspace.iconTheme = klassy-names.icon-theme;
     workspace.cursor = {
@@ -171,7 +171,8 @@ rec {
       inherit (cursor) size;
     };
     workspace.soundTheme = "ocean";
-    workspace.splashScreen.theme = "Magna-Splash-6"; # engine is KSplashQML
+    # workspace.splashScreen.theme = "Magna-Splash-6"; # engine is KSplashQML
+
     configFile.kwinrc.Xwayland.Scale = 1.25;
 
     fonts = rec {
@@ -250,19 +251,13 @@ rec {
     #     }
     # ];
 
-    kscreenlocker =
-      let
-        wallpaper-name = "Next"; # only one available in this kde package
-        wallpaper-folder = "images_dark"; # or "images"
-      in
-      {
+    kscreenlocker =      {
         appearance = {
           alwaysShowClock = true;
           showMediaControls = true;
-          wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/${wallpaper-name}/contents/${wallpaper-folder}/1080x1920.png";
-          # wallpaperPictureOfTheDay.provider = "apod";
+          wallpaper = "${config.common.nixConfigDirectory}/NixOS/main/background.png";
         };
-        passwordRequiredDelay = 60; # seconds after screen lock
+        passwordRequiredDelay = 300; # seconds after screen lock
         timeout = 5; # minutes until screen locks
       };
 
@@ -272,6 +267,27 @@ rec {
     # input.mice = {}; # https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.input.mice
     # input.touchpads = {}; # https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.input.touchpads
     input.keyboard.numlockOnStartup = "on";
+    input.mice = [
+      {
+        enable = true;
+        name = "LIFT MAC Mouse"; # LIFT MAC Mouse
+        productId = "b031";
+        vendorId = "046d";
+      }
+    ];
+    input.touchpads = [
+    {
+        enable = true;
+        disableWhileTyping = true;
+        naturalScroll = true;
+        rightClickMethod = "bottomRight";
+        scrollMethod = "twoFingers";
+        tapToClick = true;
+        name = "VEN_04F3:00 04F3:311C Touchpad";
+        productId = "311c";
+        vendorId = "04f3";
+      }];
+
     desktop.mouseActions = {
       leftClick = null;
       middleClick = "applicationLauncher";
@@ -281,15 +297,52 @@ rec {
 
     # hotkeys to run commands
     hotkeys.commands = {
-      launch-tofi = {
+      launch-rofi = {
         keys = [ "Ctrl+Space" ];
-        command = "tofi-drun";
-        comment = "Launch tofi in application mode.";
+        command = "rofi -show";
+        comment = "Launch rofi.";
+      };
+      open-settings = {
+        keys = ["Meta+I"];
+        command = "kcmshell6 kcm_screen";
       };
     };
 
     # Global keyboard shortcuts:
-    shortcuts = { };
+    shortcuts = { 
+      "kaccess"."Toggle Screen Reader On and Off" = [];
+      "kcm" = {
+        "Disable Touchpad" = [];
+        "Enable Touchpad" = [];
+        "Toggle Touchpad" = [];
+      };
+      "kmix" = {
+        "decrease_volume" = "Volume Down,Ctrl+Down";
+        "increase_volume" = "Volume Up,Ctrl+Up";
+      };
+      "kwin" = {
+        "KrohnkiteFocusDown" = "Meta+J";
+        "KrohnkiteFocusLeft" = "Meta+H";
+        "KrohnkiteFocusRight" = "Meta+L";
+        "KrohnkiteFocusUp" = "Meta+K";
+        "KrohnkiteFocusNext" = "Meta+N";
+        "KrohnkiteFocusPrev" = "Meta+P";
+        "KrohnkiteNextLayout" = "Meta+Shift+N";
+        "KrohnkitePrevLayout" = "Meta+Shift+P";
+        "KrohnkiteRotate" = "Meta+R";
+        "KrohnkiteShiftDown" = "Meta+Shift+J";
+        "KrohnkiteShiftLeft" = "Meta+Shift+H";
+        "KrohnkiteShiftRight" = "Meta+Shift+L";
+        "KrohnkiteShiftUp" = "Meta+Shift+K";
+        "KrohnkiteToggleFloat" = "Meta+F";
+        "Window Maximize" = "Meta+End";
+        "Window Minimize" = "Meta+Home";
+      };
+
+    "plasmashell" = {
+      "show-on-mouse-pos" = "Meta+V"; # clipboard history
+    };
+    };
 
     spectacle.shortcuts = {
       captureActiveWindow = [ ];
@@ -329,6 +382,25 @@ rec {
       location.longitude = "-78.49624060150377";
     };
 
+    configFile.kwinrc."Effect-blurplus" = {
+      "BlurDecorations"=true;
+"BlurDocks"=true;
+"BlurMatching"=false;
+"BlurMenus"=true;
+"BlurNonMatching"=true;
+"FakeBlur"=true;
+"NoiseStrength"=0;
+"WindowClasses"= builtins.concatStringsSep "\n" ["kdeconnectd" ];
+    };
+
+    configFile.kwinrc."Effect-translucency" = {
+"ComboboxPopups"=90;
+"Dialogs"=90;
+"Menus"=90;
+"MoveResize"=75;
+    };
+    
+
     kwin.titlebarButtons = {
       left = [ ];
       right = [
@@ -342,20 +414,37 @@ rec {
     # Power
     ###############################
     powerdevil = rec {
+      batteryLevels = {
+        lowLevel = 20;
+
+        criticalAction = "hibernate";
+        criticalLevel = 5;
+      };
+
       AC = {
         autoSuspend.action = "sleep";
         autoSuspend.idleTimeout = 300; # time to autoSuspend action
         dimDisplay.enable = false;
+
         powerButtonAction = "showLogoutScreen";
         turnOffDisplay.idleTimeout = null; # should let autoSuspend kick in instead
         turnOffDisplay.idleTimeoutWhenLocked = "whenLockedAndUnlocked"; # should let autoSuspend kick in instead
+        
         whenLaptopLidClosed = "sleep";
+        inhibitLidActionWhenExternalMonitorConnected = true;
+
+        whenSleepingEnter = "standbyThenHibernate";
       };
 
       battery = AC // {
         autoSuspend.idleTimeout = 120;
+        inhibitLidActionWhenExternalMonitorConnected = false;
+        powerProfile = "powerSaving";
       };
-      lowBattery = battery;
+
+      lowBattery = battery // {
+        displayBrightness = 10;
+      };
     };
 
     ###############################
@@ -363,12 +452,34 @@ rec {
     ###############################
     windows.allowWindowsToRememberPositions = false; # false since running tiling script
     workspace.clickItemTo = "select";
-    kwin.edgeBarrier = 20; # add some resistance to crossing screens
+
+    kwin = {
+      cornerBarrier = true;
+      edgeBarrier = 20; # add some resistance to crossing screens
+    };
     configFile.kwinrc.Windows = {
       AutoRaise = true;
-      BorderlessMaximizedWindows = false;
       Placement = "smart";
       SeparateScreenFocus = true;
+    };
+
+    configFile.kwinrc."Script-krohnkite" = {
+"debug"=true;
+"debugActiveWin"=true;
+"enableColumnsLayout"=false;
+"enableSpiralLayout"=false;
+"enableSpreadLayout"=false;
+"enableStairLayout"=false;
+"enableThreeColumnLayout"=false;
+"floatingTitle"="Picture-in-Picture";
+"ignoreClass"=null;
+"ignoreRole"=null;
+"ignoreTitle"=builtins.concatStringsSep "," ["OneDriveGUI v1.1.1" "Progress"];
+"maximizeSoleTile"=true;
+"monocleMaximize"=false;
+"newWindowPosition"=1;
+"preventProtrusion"=false;
+"tileLayoutGap"=3;  
     };
 
     window-rules = [
@@ -418,7 +529,7 @@ rec {
 
     [Colors:Button]
     BackgroundAlternate=${dark-blue}
-    BackgroundNormal=${navy}
+    BackgroundNormal=${dark-grey}
     DecorationFocus=${cyan}
     DecorationHover=${cyan}
     ForegroundActive=${ivory}
@@ -516,7 +627,7 @@ rec {
 
     [Colors:Window]
     BackgroundAlternate=${dark-blue}
-    BackgroundNormal=${navy}
+    BackgroundNormal=${dark-grey}
     DecorationFocus=${cyan}
     DecorationHover=${cyan}
     ForegroundActive=${ivory}
@@ -633,19 +744,6 @@ rec {
     Plugins=cursorthumbnail,djvuthumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs
   '';
 
-  xdg.configFile."kcminputrc".text = ''
-    [Keyboard]
-    NumLock=0
-
-    [Libinput][1267][12572][VEN_04F3:00 04F3:311C Touchpad]
-    NaturalScroll=true
-
-    [Mouse]
-    cursorSize=32
-    cursorTheme=Posy_Cursor_Black
-  '';
-
-  xdg.configFile."kglobalshortcutsrc".source = ./kglobalshortcutsrc;
 
   xdg.configFile."kiorc".text = ''
     [Confirmations]
@@ -666,39 +764,11 @@ rec {
     TaskbarButton=false
   '';
 
-  xdg.configFile."kscreenlockerrc".text = ''
-    [Daemon]
-    LockGrace=300
-
-    [Greeter][Wallpaper][org.kde.image][General]
-    Image=/home/tai/Nix/NixOS/main/background.png
-    PreviewImage=/home/tai/Nix/NixOS/main/background.png
-  '';
-
-  xdg.configFile."ksplashrc".text = ''
-    [KSplash]
-    Theme=Magna-Splash-6
-  '';
-
-  xdg.configFile."powerdevilrc".text = ''
-    [AC][SuspendAndShutdown]
-    InhibitLidActionWhenExternalMonitorPresent=false
-
-    [Battery][Performance]
-    PowerProfile=power-saver
-
-    [Battery][SuspendAndShutdown]
-    InhibitLidActionWhenExternalMonitorPresent=false
-
-    [LowBattery][Display]
-    DisplayBrightness=10
-
-    [LowBattery][Performance]
-    PowerProfile=power-saver
-
-    [LowBattery][SuspendAndShutdown]
-    InhibitLidActionWhenExternalMonitorPresent=false
-  '';
+  # removed due to not wanting it
+  # xdg.configFile."ksplashrc".text = ''
+  #   [KSplash]
+  #   Theme=Magna-Splash-6
+  # '';
 
   xdg.configFile."spectaclerc".text = ''
     [General]
@@ -712,97 +782,26 @@ rec {
 
     [ImageSave]
     imageCompressionQuality=100
-    lastImageSaveLocation=file:///home/tai/Pictures/Screenshots/Screenshot_20241204_100725.png
     translatedScreenshotsFolder=Screenshots
 
     [VideoSave]
     translatedScreencastsFolder=Screencasts
   '';
 
-  xdg.configFile."kded5rc".text = ''
-    [Module-appmenu]
-    autoload=true
-
-    [Module-audioshortcutsservice]
-    autoload=true
-
-    [Module-baloosearchmodule]
-    autoload=true
-
-    [Module-bluedevil]
-    autoload=true
-
-    [Module-browserintegrationreminder]
-    autoload=false
-
-    [Module-colorcorrectlocationupdater]
-    autoload=false
-
-    [Module-device_automounter]
-    autoload=false
-
-    [Module-devicenotifications]
-    autoload=true
-
-    [Module-donationmessage]
-    autoload=false
-
-    [Module-freespacenotifier]
-    autoload=true
-
-    [Module-gtkconfig]
-    autoload=false
-
-    [Module-inotify]
-    autoload=true
-
-    [Module-kameleon]
-    autoload=false
-
-    [Module-kded_bolt]
-    autoload=true
-
-    [Module-kded_touchpad]
-    autoload=true
-
-    [Module-keyboard]
-    autoload=false
-
-    [Module-kscreen]
-    autoload=true
-
-    [Module-ktimezoned]
-    autoload=true
-
-    [Module-mprisservice]
-    autoload=true
-
-    [Module-networkmanagement]
-    autoload=true
-
-    [Module-plasma-session-shortcuts]
-    autoload=true
-
-    [Module-plasma_accentcolor_service]
-    autoload=true
-
-    [Module-printmanager]
-    autoload=true
-
-    [Module-remotenotifier]
-    autoload=true
-
-    [Module-smbwatcher]
-    autoload=true
-
-    [Module-statusnotifierwatcher]
-    autoload=true
+  xdg.configFile."ktrashrc".text = ''
+    [${config.common.dataHome}/Trash]
+    Days=7
+    LimitReachedAction=0
+    Percent=10
+    UseSizeLimit=true
+    UseTimeLimit=false
   '';
 
   xdg.desktopEntries."KDE Background Services" = {
     exec = "kcmshell6 kcm_kded";
     name = "KDE Background Services";
   };
+
   # kdeglobals
   # kwinrc
   # kwinrulesrc
