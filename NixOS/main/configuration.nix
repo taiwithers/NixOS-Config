@@ -97,6 +97,7 @@
 
   # user account
   users.users."tai" = {
+    description = "Tai"; # SDDM name?
     isNormalUser = true;
     extraGroups = [
       "networkmanager" # allow modifying network settings
