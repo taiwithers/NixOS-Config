@@ -130,7 +130,7 @@
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
         "rebuild" =
-          "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}#${config-name} && diff-hm-generations ";
+          "home-manager switch --impure --show-trace --flake ${nixConfigDirectory}#${config-name} -b backup && diff-hm-generations ";
         # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory} && nix fmt)";
@@ -141,7 +141,7 @@
           let
             nixconfig-name = pkgs.lib.lists.last (pkgs.lib.strings.splitString "-" config-name);
           in
-          "nixos-rebuild switch --show-trace --impure --use-remote-sudo --flake ${nixConfigDirectory}#${nixconfig-name} && diff-nixos-generations ";
+          "nixos-rebuild switch --show-trace --use-remote-sudo --flake ${nixConfigDirectory}#${nixconfig-name} && diff-nixos-generations ";
         "diff-nixos-generations" = "diff-nix-generations nixos";
       };
 
