@@ -26,7 +26,7 @@
       init.defaultBranch = "main";
       pull.rebase = "true";
       rerere.enabled = true; # record conflict resolutions
-      rerere.autoUpdate = true; 
+      rerere.autoUpdate = true;
       status.relativePaths = false;
 
       diff.exiftool.textconv = "exiftool";
@@ -67,8 +67,10 @@
   home.shellAliases."gitstatus" = ''
     onefetch --no-art --no-color-palette --no-title --disabled-fields authors languages churn created project pending head commits && git status --short --branch
   '';
-  home.packages = with pkgs; [ onefetch exiftool ];
-
+  home.packages = with pkgs; [
+    onefetch
+    exiftool
+  ];
 
   xdg.configFile."git/attributes".text = ''
     *.png diff=exiftool

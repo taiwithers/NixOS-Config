@@ -10,12 +10,12 @@
   # nix run home-manager/release-24.11 -- switch --impure --flake ./path-to-flake#output-name
   imports =
     [
-      (
-        let
-          autostart-pkgs = with pkgs; [ onedrivegui ];
-        in
-        import ../scripts/autostart.nix { inherit config pkgs autostart-pkgs; }
-      )
+      # (
+      #   let
+      #     autostart-pkgs = with pkgs; [ onedrivegui ];
+      #   in
+      #   import ../scripts/autostart.nix { inherit config pkgs autostart-pkgs; }
+      # )
 
       (import ./pkgs/agenix/agenix.nix {
         inherit config pkgs;
@@ -131,7 +131,7 @@
     zoom-us
     okular
 
-    # lightly-boehs
+    prismlauncher
   ];
   # services.caffeine.enable = true;
 
