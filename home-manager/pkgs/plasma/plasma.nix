@@ -95,7 +95,8 @@ rec {
 
   xdg.dataFile."plasma/desktoptheme/Aritim-Dark-Flat-Blur/dialogs".source =
     aritim-dark-source + "/dialogs";
-  xdg.dataFile."plasma/desktoptheme/Aritim-Dark-Flat-Blur/widgets".source = aritim-dark-source + "/widgets";
+  xdg.dataFile."plasma/desktoptheme/Aritim-Dark-Flat-Blur/widgets".source =
+    aritim-dark-source + "/widgets";
   xdg.dataFile."plasma/desktoptheme/Aritim-Dark-Flat-Blur/metadata.desktop".source =
     aritim-dark-source + "/metadata.desktop";
 
@@ -170,7 +171,7 @@ rec {
     ###############################
     # Environment Aesthetics
     ###############################
-    workspace.lookAndFeel = "org.kde.breezedark.desktop"; # global theme
+    # workspace.lookAndFeel = "org.kde.breezedark.desktop"; # global theme
     workspace.colorScheme = "custom";
     workspace.wallpaper = builtins.fetchurl {
       url = "https://images.unsplash.com/photo-1487528699198-88d79d72479f";
@@ -226,7 +227,14 @@ rec {
             };
             config.type1.t1activeWidth = 30; # active pill width
             config.type2.fixedLen = 30;
+            config.appearance = {
+              defaultAltTextColors = false;
+              plasmaTxtColors = false;
+              altColor = colours.rgb255-commasep.cyan; # active pill colour
+              txtColor = colours.rgb255-commasep.blue-grey;
+            };
           };
+
           dateTimeClock = {
             digitalClock = {
               date.enable = true;
@@ -239,6 +247,7 @@ rec {
               };
             };
           };
+
           timeClock = {
             digitalClock = dateTimeClock.digitalClock // {
               date.enable = false;
@@ -248,6 +257,7 @@ rec {
           spacer = {
             panelSpacer.expanding = true;
           };
+
           taskbar = {
             iconTasks = {
               launchers = [ ];
@@ -279,6 +289,79 @@ rec {
               };
             };
           };
+
+          systemtray = {
+            systemTray = {
+              pin = false;
+              icons.spacing = "small";
+              icons.scaleToFit = false;
+              items.showAll = false;
+              items.hidden =
+                (map (x: "org.kde.plasma." + x) [
+                  "brightness" # main area -> dropdown
+                  "bluetooth"
+                  "clipboard"
+                  "networkmanagement"
+                  "printmanager"
+                ])
+                ++ [
+                  "org.kde.kdeconnect"
+                  "OneDriveGUI"
+                  "KeePassXC"
+                  "steam"
+                  "spotify-client"
+                ];
+              # items.shown = map (x: "org.kde.plasma." + x) [
+              #   ];
+              items.extra = map (x: "org.kde.plasma." + x) [
+                "volume"
+                "cameraindicator"
+                "devicenotifier"
+                "keyboardindicator" # lock keys status
+                "battery"
+                "mediacontroller"
+              ];
+              items.configs = {
+                battery.showPercentage = true;
+              };
+            };
+          };
+
+          colorizer = {
+            plasmaPanelColorizer = {
+              general.enable = true;
+              general.hideWidget = true;
+              widgetBackground = {
+                enable = true;
+                colorMode.mode = "static";
+                colors.source = "custom";
+                colors.customColor = colours.hex-hash.navy;
+                shape.opacity = 0.2;
+                shape.radius = 0;
+                shape.outline.colorSource = "custom";
+                shape.outline.customColor = colours.hex-hash.blue-grey;
+                shape.outline.width = 2;
+              };
+              textAndIcons = {
+                enable = true;
+                colorMode.mode = "static";
+                colors.source = "custom";
+                colors.customColor = colours.hex-hash.ivory;
+              };
+            };
+          };
+
+          startmenu = {
+            name = "Compact.Menu";
+            config.General = {
+              icon = "nix-snowflake-white";
+              alphaSort = true;
+              compactMode = true;
+              displayPosition = "Default";
+              favoritesPortedToKAstats = true;
+              systemFavorites = "suspend\\,hibernate\\,reboot\\,shutdown";
+            };
+          };
         };
       in
       [
@@ -293,6 +376,7 @@ rec {
           offset = 100; # ? from anchor
           screen = 0;
           widgets = [
+            plasmoids.colorizer
             plasmoids.kara
             plasmoids.timeClock
             "org.kde.plasma.notifications"
@@ -310,17 +394,8 @@ rec {
           offset = 100; # ? from anchor
           screen = 0;
           widgets = [
-            {
-              name = "Compact.Menu";
-              config.General = {
-                icon = "nix-snowflake-white";
-                alphaSort = true;
-                compactMode = true;
-                displayPosition = "Default";
-                favoritesPortedToKAstats = true;
-                systemFavorites = "suspend\\,hibernate\\,reboot\\,shutdown";
-              };
-            }
+            plasmoids.colorizer
+            plasmoids.startmenu
             (
               plasmoids.taskbar
               // {
@@ -347,37 +422,9 @@ rec {
           location = "top"; # or "floating"
           offset = 100; # ? from anchor
           screen = 0;
-          # widgets = ( map (x: "org.kde.plasma." + x) ["systemtray" "shutdownorswitch"] ) ++ ["luisbocanegra.panel.colorizer"];
           widgets = [
-            {
-              systemTray = {
-                pin = false;
-                icons.spacing = "small";
-                icons.scaleToFit = true;
-                items.showAll = false;
-                items.hidden =
-                  (map (x: "org.kde.plasma." + x) [
-                    "notifications" # remained in dropdown
-                    "brightness" # main area -> dropdown
-                    "bluetooth"
-                    "clipboard" # TODO: add keyboard shortcut
-                    "networkmanagement"
-                  ])
-                  ++ [
-                    "org.kde.kdeconnect"
-                    "OneDriveGUI"
-                    "KeePassXC"
-                    "steam"
-                    "spotify-client"
-                  ];
-                # items.shown = map (x: "org.kde.plasma." + x) [
-                #   ];
-                # items.extra = [ ];
-                items.configs = {
-                  battery.showPercentage = true;
-                };
-              };
-            }
+            plasmoids.colorizer
+            plasmoids.systemtray
             {
               name = "org.kde.plasma.shutdownorswitch";
               config.General.showHybernate = true;
@@ -396,43 +443,29 @@ rec {
           location = "bottom"; # or "floating"
           offset = 100; # ? from anchor
           screen = 1;
-          # widgets = ( map (x: "org.kde.plasma." + x) ["kara" "digitalclock" "spacer" "icontasks" "spacer" "systemtray"] ) ++ ["luisbocanegra.panel.colorizer"];
           widgets = [
+            plasmoids.colorizer
             plasmoids.kara
             { inherit ((plasmoids.dateTimeClock // { font.size = 12; })) digitalClock; } # I don't know, I'm sorry
             plasmoids.spacer
             plasmoids.taskbar
             plasmoids.spacer
-            {
-              systemTray = {
-                pin = false;
-                icons.spacing = "small";
-                icons.scaleToFit = true;
-                items.showAll = false;
-                items.hidden =
-                  (map (x: "org.kde.plasma." + x) [
-                    "notifications" # remained in dropdown
-                    "brightness" # main area -> dropdown
-                    "bluetooth"
-                    "clipboard" # TODO: add keyboard shortcut
-                    "networkmanagement"
-                  ])
-                  ++ [
-                    "org.kde.kdeconnect"
-                    "OneDriveGUI"
-                    "KeePassXC"
-                    "steam"
-                    "spotify-client"
-                  ];
-                items.extra = [ ];
-                items.configs = {
-                  battery.showPercentage = true;
-                };
-              };
-            }
+            plasmoids.systemtray
           ];
         }
       ];
+
+    # startup.desktopScript."set_desktop_folder_settings" = {
+    #   text = ''
+    #     let allDesktops = desktops();
+    #     for (const desktop of allDesktops) {
+    #       desktop.currentConfigGroup = ["General"];
+    #       desktop.writeConfig("url", "desktop:/Documents/Empty/");
+    #     }
+    #   '';
+    #   # activities:/current/
+    #   priority = 3;
+    # };
 
     kscreenlocker = {
       appearance = {
@@ -501,16 +534,21 @@ rec {
 
       "kcm_touchpad"."Disable Touchpad" = "none";
       "kcm_touchpad"."Enable Touchpad" = "none";
-      "kcm_touchpad"."Toggle Touchpad" = ["none"];
-
+      "kcm_touchpad"."Toggle Touchpad" = [ "none" ];
 
       "kmix"."decrease_microphone_volume" = "none";
-      "kmix"."decrease_volume" = ["Ctrl+Alt+Down" "Volume Down"]; #["Ctrl+Alt+Down" "Volume Down,Volume Down,Decrease Volume"];
+      "kmix"."decrease_volume" = [
+        "Ctrl+Alt+Down"
+        "Volume Down"
+      ]; # ["Ctrl+Alt+Down" "Volume Down,Volume Down,Decrease Volume"];
       "kmix"."decrease_volume_small" = "none";
       "kmix"."increase_microphone_volume" = "none";
-      "kmix"."increase_volume" = ["Ctrl+Alt+Up" "Volume Up"];
+      "kmix"."increase_volume" = [
+        "Ctrl+Alt+Up"
+        "Volume Up"
+      ];
       "kmix"."increase_volume_small" = "none";
-      "kmix"."mic_mute" = ["none"];
+      "kmix"."mic_mute" = [ "none" ];
       "kmix"."mute" = "Volume Mute";
       "mediacontrol"."mediavolumedown" = "none";
       "mediacontrol"."mediavolumeup" = "none";
@@ -521,10 +559,9 @@ rec {
       "mediacontrol"."previousmedia" = "Media Previous";
       "mediacontrol"."stopmedia" = "Media Stop";
 
-
       # power
       "ksmserver"."Halt Without Confirmation" = "none";
-      "ksmserver"."Lock Session" = ["none"];
+      "ksmserver"."Lock Session" = [ "none" ];
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
       "ksmserver"."Log Out Without Confirmation" = "none";
       "ksmserver"."LogOut" = "none";
@@ -543,7 +580,7 @@ rec {
       "org_kde_powerdevil"."Sleep" = "none";
       "org_kde_powerdevil"."Toggle Keyboard Backlight" = "Keyboard Light On/Off";
       "org_kde_powerdevil"."Turn Off Screen" = [ ];
-      "org_kde_powerdevil"."powerProfile" = ["none"];
+      "org_kde_powerdevil"."powerProfile" = [ "none" ];
 
       # windows
       "kwin"."Activate Window Demanding Attention" = "none";
@@ -552,7 +589,7 @@ rec {
       "kwin"."Decrease Opacity" = "none";
       "kwin"."Edit Tiles" = "none";
       "kwin"."Expose" = "none";
-      "kwin"."ExposeAll" = ["none"];
+      "kwin"."ExposeAll" = [ "none" ];
       "kwin"."ExposeClass" = "none";
       "kwin"."ExposeClassCurrentDesktop" = [ ];
       "kwin"."Grid View" = "none";
@@ -658,10 +695,16 @@ rec {
       "kwin"."Window Grow Horizontal" = "none";
       "kwin"."Window Grow Vertical" = "none";
       "kwin"."Window Lower" = "none";
-      "kwin"."Window Maximize" = ["Meta+End" "Meta+PgUp"];
+      "kwin"."Window Maximize" = [
+        "Meta+End"
+        "Meta+PgUp"
+      ];
       "kwin"."Window Maximize Horizontal" = "none";
       "kwin"."Window Maximize Vertical" = "none";
-      "kwin"."Window Minimize" = ["Meta+Home" "Meta+PgDown"];
+      "kwin"."Window Minimize" = [
+        "Meta+Home"
+        "Meta+PgDown"
+      ];
       "kwin"."Window Move" = "none";
       "kwin"."Window Move Center" = "none";
       "kwin"."Window No Border" = "none";
@@ -724,7 +767,7 @@ rec {
       "kwin"."Window to Screen 5" = "none";
       "kwin"."Window to Screen 6" = "none";
       "kwin"."Window to Screen 7" = "none";
-      "plasmashell"."activate application launcher" = ["Meta"];
+      "plasmashell"."activate application launcher" = [ "Meta" ];
       "plasmashell"."activate task manager entry 1" = "Meta+1";
       "plasmashell"."activate task manager entry 10" = "Meta+0";
       "plasmashell"."activate task manager entry 2" = "Meta+2";
@@ -735,7 +778,7 @@ rec {
       "plasmashell"."activate task manager entry 7" = "Meta+7";
       "plasmashell"."activate task manager entry 8" = "Meta+8";
       "plasmashell"."activate task manager entry 9" = "Meta+9";
-      
+
       "plasmashell"."clear-history" = "none";
       "plasmashell"."clipboard_action" = "none";
       "plasmashell"."cycle-panels" = "none";
@@ -773,7 +816,7 @@ rec {
     kwin.borderlessMaximizedWindows = false;
 
     kwin.effects = {
-      blur.enable = true;
+      blur.enable = false;
       blur.noiseStrength = 10;
       blur.strength = 5;
       desktopSwitching.animation = "slide";
@@ -794,13 +837,15 @@ rec {
 
     configFile.kwinrc."Effect-blurplus" = {
       "BlurDecorations" = true;
-      "BlurDocks" = true;
+      "BlurDocks" = false;
       "BlurMatching" = false;
       "BlurMenus" = true;
       "BlurNonMatching" = true;
       "FakeBlur" = true;
       "NoiseStrength" = 0;
-      "WindowClasses" = builtins.concatStringsSep "\n" [ "kdeconnectd" ];
+      "WindowClasses" = builtins.concatStringsSep "\n" [
+        "kdeconnectd"
+      ];
     };
 
     configFile.kwinrc."Effect-translucency" = {
@@ -932,8 +977,6 @@ rec {
     ];
   };
 
-  home.file."colortest".text = builtins.toJSON colours.rgb255-commasep;
-
   # colour scheme file
   # NOTE: setting colors:view:backgroundAlternate to the same as backgroundNormal gets ride of dolphin stripes
   xdg.dataFile."color-schemes/custom.colors".text = with colours.rgb255-commasep; ''
@@ -1057,7 +1100,7 @@ rec {
 
     [Colors:Window]
     BackgroundAlternate=${dark-blue}
-    BackgroundNormal=${dark-blue}
+    BackgroundNormal=${dark-blue},20
     DecorationFocus=${light-blue}
     DecorationHover=${sky}
     ForegroundActive=${cyan}
@@ -1089,29 +1132,18 @@ rec {
 
   xdg.configFile."klassy/klassyrc".text = ''
     [ButtonColors]
-    ButtonBackgroundOpacityActive=40
-    ButtonBackgroundOpacityInactive=40
-    ButtonIconOpacityActive=80
-    ButtonIconOpacityInactive=80
+    ButtonBackgroundOpacityActive=70
+    ButtonBackgroundOpacityInactive=70
+    CloseButtonIconColorActive=AsSelected
+    CloseButtonIconColorInactive=AsSelected
 
-    [Global]
-    LookAndFeelSet=org.kde.breezedark.desktop
-
-    [Style]
-    DockWidgetDrawFrame=true
-    FrameCornerRadius=FCR_Custom
-    MenuItemDrawStrongFocus=false
-    MenuOpacity=70
-    MnemonicsMode=MN_NEVER
-    ScrollBarAddLineButtons=0
-    ScrollBarSubLineButtons=0
-    SidePanelDrawFrame=true
-    SplitterProxyEnabled=true
-    WindowDragMode=WD_NONE
+    [ShadowStyle]
+    ShadowSize=ShadowNone
 
     [TitleBarOpacity]
-    ActiveTitleBarOpacity=80
-    InactiveTitleBarOpacity=80
+    ActiveTitleBarOpacity=40
+    BlurTransparentTitleBars=false
+    InactiveTitleBarOpacity=40
     OpaqueMaximizedTitleBars=false
 
     [TitleBarSpacing]
@@ -1123,17 +1155,15 @@ rec {
     ButtonIconStyle=StyleOxygen
     ButtonShape=ShapeSmallCircle
     ColorizeThinWindowOutlineWithButton=false
-    CornerRadius=0
     DrawBackgroundGradient=true
     DrawBorderOnMaximizedWindows=true
-    DrawTitleBarSeparator=true
     IconSize=IconMedium
     WindowCornerRadius=0
 
     [WindowOutlineStyle]
     ThinWindowOutlineStyleInactive=WindowOutlineNone
-    ThinWindowOutlineThickness=2.4999999999999982
-    WindowOutlineAccentColorOpacityActive=50
+    ThinWindowOutlineThickness=2.5
+    WindowOutlineAccentColorOpacityActive=80
   '';
 
   xdg.configFile."dolphinrc".text = ''
