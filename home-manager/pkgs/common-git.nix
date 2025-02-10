@@ -28,6 +28,7 @@
       rerere.enabled = true; # record conflict resolutions
       rerere.autoUpdate = true;
       status.relativePaths = false;
+      push.autoSetupRemote = true; # automatically create remote branches
 
       diff.exiftool.textconv = "exiftool";
 
