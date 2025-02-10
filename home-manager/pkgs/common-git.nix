@@ -54,6 +54,8 @@
       };
     };
     ignores = [
+      "__pycache__"
+      "*.ipynb_checkpoints"
       ".direnv"
     ];
 
