@@ -20,7 +20,7 @@
       diff.context = 1;
       diff.renames = true;
       filter.lfs = {
-        clean = "gid-lfs clean -- %f";
+        clean = "git-lfs clean -- %f";
       };
       gpg.format = "ssh";
       init.defaultBranch = "main";
