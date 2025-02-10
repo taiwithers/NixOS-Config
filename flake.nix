@@ -197,6 +197,7 @@
       home-configurations = {
         nixos-main = "tai";
         ubuntu-main = "twithers";
+        ubuntu-sidrat = "taiwithers";
       };
 
       home-module-args = { inherit flake-inputs colours; };
