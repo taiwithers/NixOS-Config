@@ -35,6 +35,10 @@
     aliases = {
       fpush = "push --force-with-lease"; # safer force push
     };
+    attributes = [
+      "*.png diff=exiftool"
+      "*.pdf diff=exiftool"
+    ];
     delta = {
       enable = true;
       options = {
@@ -47,6 +51,11 @@
         syntax-theme = "base16";
         hyperlinks = true;
       };
+    };
+    ignores = [];
+
+    maintenance = {
+      enable = true;
     };
   };
 
@@ -72,8 +81,4 @@
     exiftool
   ];
 
-  xdg.configFile."git/attributes".text = ''
-    *.png diff=exiftool
-    *.pdf diff=exiftool
-  '';
 }
