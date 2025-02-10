@@ -58,6 +58,8 @@
     maintenance = {
       enable = true;
     };
+
+    lfs.enable = true;
   };
 
   programs.ssh = {
