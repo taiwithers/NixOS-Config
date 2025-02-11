@@ -45,6 +45,9 @@
     libqalculate
     nix-output-monitor
     xdg-ninja
+
+    strace
+    ds9
   ];
 
   programs.git = {
