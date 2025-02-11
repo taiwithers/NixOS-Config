@@ -156,6 +156,10 @@
       endif
     '';
 
+    home.file = pkgs.lib.optionalAttrs (!config.common.nixos) {
+        ".hushlogin".text = "";
+      };
+
     programs.man = {
       enable = true; # default true
       generateCaches = true; # slightly slows rebuild, but allows things like apropos to work
