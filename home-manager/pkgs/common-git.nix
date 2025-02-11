@@ -53,7 +53,9 @@
         hyperlinks = true;
       };
     };
-    ignores = [];
+    ignores = [
+      ".direnv"
+    ];
 
     maintenance = {
       enable = true;
