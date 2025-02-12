@@ -20,6 +20,12 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ignoreboy = {
+        url = "github:ookiiboy/ignoreboy";
+        inputs.nixpkgs.follows = "nixpkgs";
+        inputs.systems.follows = "nix-systems";
+      };
   };
 
   outputs =
@@ -38,13 +44,11 @@
 
             # python
             mypy.enable = true; # static type checker
-            ruff-check.enable = true;
-            ruff-format.enable = true;
+            black.enable = true;
 
             # other
             nixfmt.enable = true;
             shellcheck.enable = true;
-
           };
         };
 
@@ -64,13 +68,31 @@
       devShells.${system}.default =
         let
           pkgs = nixpkgs-for-system system;
+
+          gitignore = flake-inputs.ignoreboy.lib.${system}.gitignore {
+              github.languages = [
+                "Python"
+                "community/Python/JupyterNotebooks"
+              ];
+
+              useSaneDefaults = true; # adds OS and Nix-specific entries
+
+              # extra custom entries
+              extraConfig = ''
+              '';
+            };
         in
         pkgs.mkShell {
+          # set library path for python packages
           LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+
+          shellHook = ''
+           ${gitignore} 
+          '';
+
           packages = with pkgs; [
-            zlib
+            zlib # python library stuff
             poetry
-            # hatch
           ];
         };
 
