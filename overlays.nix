@@ -88,7 +88,7 @@ _:
     };
     ds9 = customDerivation "ds9";
     gaia = customDerivation "gaia";
-    nix-search-tv = unstable.nix-search-tv;
+    inherit (unstable) nix-search-tv;
     nixos-generations = customScript rec {
       name = "generations";
       runtimeInputs = with super; [

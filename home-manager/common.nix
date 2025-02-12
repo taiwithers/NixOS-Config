@@ -157,8 +157,8 @@
     '';
 
     home.file = pkgs.lib.optionalAttrs (!config.common.nixos) {
-        ".hushlogin".text = "";
-      };
+      ".hushlogin".text = "";
+    };
 
     programs.man = {
       enable = true; # default true

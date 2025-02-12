@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# shellcheck disable=all
 set -x
 
 confirm() {
@@ -8,5 +8,5 @@ confirm() {
   # if [[ ]]
   # echo # print new line
   # echo "$input"
-  return $( test "$input" = "y" )
+  return $(test "$input" = "y")
 }

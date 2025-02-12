@@ -54,8 +54,8 @@
     extraConfig = {
       credential.credentialStore = "gpg";
     };
-      # signing.key = pkgs.lib.mkForce null;
-      # signing.signByDefault = pkgs.lib.mkForce false;
+    # signing.key = pkgs.lib.mkForce null;
+    # signing.signByDefault = pkgs.lib.mkForce false;
   };
 
   nix.gc = {
