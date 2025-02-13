@@ -22,10 +22,10 @@
     };
 
     ignoreboy = {
-        url = "github:ookiiboy/ignoreboy";
-        inputs.nixpkgs.follows = "nixpkgs";
-        inputs.systems.follows = "nix-systems";
-      };
+      url = "github:ookiiboy/ignoreboy";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "nix-systems";
+    };
   };
 
   outputs =
@@ -70,29 +70,38 @@
           pkgs = nixpkgs-for-system system;
 
           gitignore = flake-inputs.ignoreboy.lib.${system}.gitignore {
-              github.languages = [
-                "Python"
-                "community/Python/JupyterNotebooks"
-              ];
+            github.languages = [
+              "Python"
+              "community/Python/JupyterNotebooks"
+            ];
 
-              useSaneDefaults = true; # adds OS and Nix-specific entries
+            useSaneDefaults = true; # adds OS and Nix-specific entries
 
-              # extra custom entries
-              extraConfig = ''
-              '';
-            };
+            # extra custom entries
+            extraConfig = '''';
+          };
+          libraries = pkgs.lib.makeLibraryPath (
+            with pkgs;
+            [
+              stdenv.cc.cc.lib
+              zlib
+              libmysqlclient
+            ]
+          );
         in
         pkgs.mkShell {
+          name = "sherlock"; # name of dev env
+
           # set library path for python packages
-          LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+          LD_LIBRARY_PATH = "${libraries}";
 
           shellHook = ''
-           ${gitignore} 
+            ${gitignore} 
           '';
 
           packages = with pkgs; [
-            zlib # python library stuff
             poetry
+            pkg-config # for poetry to locate dependencies
           ];
         };
 
