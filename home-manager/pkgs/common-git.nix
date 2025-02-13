@@ -23,12 +23,15 @@
         clean = "git-lfs clean -- %f";
       };
       gpg.format = "ssh";
+      help.autocorrect = "prompt"; # check for typos in commands and offer to run the corrected version
       init.defaultBranch = "main";
       pull.rebase = "true";
       rerere.enabled = true; # record conflict resolutions
       rerere.autoUpdate = true;
       status.relativePaths = false;
       push.autoSetupRemote = true; # automatically create remote branches
+
+      "url \"git@github.com:\"".insteadOf = "https://github.com";
 
       diff.exiftool.textconv = "exiftool";
 

@@ -13,7 +13,7 @@
         + builtins.concatStringsSep "$" [
           "username"
           "hostname"
-          "conda"
+          "python"
           "directory"
           "git_branch"
           "git_state"
@@ -79,11 +79,10 @@
         show_notifications = true;
         min_time_to_notify = 60;
       };
-      conda = {
+      python = {
         disabled = false;
         style = "green";
-        format = ''\[[$symbol $environment]($style)\] '';
-        ignore_base = false;
+        format = ''\[[$symbol( $environment)]($style)\] '';
         symbol = "";
       };
       directory = {
