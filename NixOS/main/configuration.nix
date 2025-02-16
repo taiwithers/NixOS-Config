@@ -1,21 +1,13 @@
-{
-  pkgs,
-  colours,
-  ...
-}:
+{ pkgs, ... }:
+
 {
   imports = [
     ./hardware-configuration.nix
-
-    (import ./bootloader.nix {
-      inherit pkgs;
-      inherit (colours.hex-hash) navy;
-    })
+./bootloader.nix
     ./desktopenvironments.nix
     ./programs.nix
   ];
 
-  # use lix
   nix.package = pkgs.lix;
 
   # use flakes
@@ -55,12 +47,10 @@
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   ];
 
-  # networking
-  networking.hostName = "nixos";
+  networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
-  time.timeZone = "America/Toronto";
-  i18n.defaultLocale = "en_CA.UTF-8";
-  hardware.bluetooth.enable = true;
+  time.timeZone = "America/New_York";
+  i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -73,61 +63,58 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  hardware.bluetooth.enable = true;
+
   # limit cpu usage during build
   nix.settings.cores = 4; # cores per job
   nix.settings.max-jobs = 4;
 
-  # touchpad
-  # services.libinput.enable = true; # enabled by default for most desktopManagers
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
 
   services.dbus.packages = [ pkgs.dconf ];
-  services.xserver.enable = true; # can disable if only using Wayland
 
-  # keyboard layout
-  services.xserver.xkb.layout = "us";
+  # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
+  services.xserver.enable = true;
 
-  # sound
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  # Enable sound with pipewire.
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true; # sound card drivers
+    alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
   };
 
-  # user account
-  users.users."tai" = {
-    description = "Tai"; # SDDM name?
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.tai = {
     isNormalUser = true;
+    description = "Tai";
     extraGroups = [
-      "networkmanager" # allow modifying network settings
-      "wheel" # allow using sudo
+      "networkmanager"
+      "wheel"
     ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [
+    ];
   };
+
   nix.settings.trusted-users = [ "@wheel" ];
-
-  # graphics
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ]; # Load driver for Xorg and Wayland, set by nixos-hardware
-  hardware.nvidia = {
-    modesetting.enable = true; # required, set by nixos-hardware
-
-    # Use the NVidia open source kernel module - false for my gpu
-    open = false;
-
-    # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    # package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    # prime is the stuff for only using your gpu for certain tasks
-    prime.offload = {
-      enable = true; # set by nixos-hardware
-      enableOffloadCmd = true; # set by nixos-hardware
-    };
-  };
 
   # fingerprint reader
   services.fprintd = {
@@ -138,21 +125,22 @@
     };
   };
 
-  powerManagement.enable = true;
-
   services.hardware.bolt.enable = true; # handle thunderbolt devices
 
+  # Enable CUPS to print documents.
   services.printing.enable = true;
+  ###### 31
   services.printing.drivers = [
     pkgs.brlaser
     pkgs.hplip
   ];
   # allow printing without downloading drivers, https://nixos.wiki/wiki/Printing
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
+  # services.avahi = {
+  #   enable = true;
+  #   nssmdns4 = true;
+  #   openFirewall = true;
+  # };
+  ####### ^^
 
   fonts.enableDefaultPackages = true;
 
@@ -164,11 +152,29 @@
   documentation.nixos.includeAllModules = true;
   documentation.man.generateCaches = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  # graphics
+  hardware.graphics.enable = true;
+  powerManagement.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ]; # Load driver for Xorg and Wayland, set by nixos-hardware
+  hardware.nvidia = {
+    modesetting.enable = true; # required, set by nixos-hardware
+
+    # Use the NVidia open source kernel module - false for my gpu
+    open = false;
+
+    # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    # # package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    # prime is the stuff for only using your gpu for certain tasks
+    prime.offload = {
+      enable = true; # set by nixos-hardware
+      enableOffloadCmd = true; # set by nixos-hardware
+    };
+  };
+
 }

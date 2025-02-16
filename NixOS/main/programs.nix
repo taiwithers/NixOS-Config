@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
 
-  # Allow unfree packages
-  # nixpkgs.config.allowUnfree = true;
-
   # system packages
   environment.systemPackages = with pkgs; [
     man-pages
@@ -14,6 +11,10 @@
     bluez # bluetooth
     coreutils
     busybox
+
+    sublime4
+    duf
+    dust
 
     # sysinfo for kde
     clinfo
@@ -45,7 +46,7 @@
   ];
 
   # Install firefox.
-  # programs.firefox.enable = true;
+  programs.firefox.enable = true;
 
   # steam
   programs.steam = {

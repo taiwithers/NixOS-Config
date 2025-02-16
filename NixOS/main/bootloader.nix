@@ -1,6 +1,5 @@
 {
   pkgs,
-  backgroundColor ? "#000000",
   ...
 }:
 {
@@ -23,7 +22,6 @@
     fontSize = 24;
 
     splashImage = ./background.png;
-    inherit backgroundColor;
     splashMode = "normal";
   };
 
