@@ -1,4 +1,5 @@
-{pkgs, ...} : {
+{ pkgs, ... }:
+{
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
     historyFile = "$XDG_STATE_HOME/bash_history";

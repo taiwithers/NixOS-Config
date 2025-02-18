@@ -16,7 +16,7 @@
       default = true;
       type = types.bool;
       description = ''
-        Tell Nix and Home Manager to use XDG directories. 
+        Tell Nix and Home Manager to use XDG directories.
         Requires manually adding 'use-xdg-base-directories = true' to /etc/nix/nix.conf on non-NixOS'';
     };
 
@@ -181,6 +181,7 @@
       "nix-command"
       "flakes"
     ];
+    # nix.settings.trusted-users = [ "@wheel"]; # no effect i think, needs to be done in /etc/nix/nix.conf
 
     home.homeDirectory = config.common.userHome;
     programs.home-manager.enable = true;
