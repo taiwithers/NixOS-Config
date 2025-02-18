@@ -1,5 +1,5 @@
 {
-  description = "Template for Python Development";
+  description = "Project Description";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
@@ -25,6 +25,7 @@
       url = "github:ookiiboy/ignoreboy";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "nix-systems";
+      inputs.pre-commit-hooks.follows = "git-hooks";
     };
   };
 
@@ -48,6 +49,7 @@
 
             # other
             nixfmt.enable = true;
+            shfmt.enable = true;
             shellcheck.enable = true;
           };
         };
@@ -62,6 +64,12 @@
 
       # nix flake check
       checks.${system} = {
+        pre-commit-check = flake-inputs.git-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            pylint.enable = true;
+          };
+        };
         formatting = (treefmt-for-system system).config.build.check self;
       };
 
@@ -90,7 +98,7 @@
           );
         in
         pkgs.mkShell {
-          name = "sherlock"; # name of dev env
+          name = "environment-name"; # name of dev env
 
           # set library path for python packages
           LD_LIBRARY_PATH = "${libraries}";

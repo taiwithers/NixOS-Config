@@ -238,5 +238,35 @@
         }
       ) home-configurations;
 
+      templates.sidrat = {
+        path = ./devtemplate;
+        description = "Python development template";
+        welcomeText = ''
+          ```sh
+          # set up file structure
+          mkdir --parents $projname/{$projname,docs,tests}
+
+          # change description, dependencies, etc
+          # add necessary python version to shell packages
+          $EDITOR flake.nix 
+
+          # set up automatically activating shell
+          direnv allow
+
+          # for a new project
+          poetry init --name $projname
+          poetry add --group=dev black pytest pylint idb
+          poetry add <dependencies>
+
+          # for an existing project
+          poetry install
+
+          # finally
+          poetry env use ~/.cache/pypoetry/virtualenvs/$(poetry env list)/bin/python
+          direnv reload
+          ```
+        '';
+      };
+
     };
 }
