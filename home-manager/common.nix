@@ -95,6 +95,7 @@
         trash-cli
         ripgrep
         bash-completion
+        whichl
 
         # fonts
         cm_unicode
@@ -148,6 +149,7 @@
     programs.bash.bashrcExtra = ''
       # add completions
       complete -F _command get-package-path
+      complete -F _command whichl
     '';
 
     xdg.configFile."${config.common.configHome}/vim/vimrc".text = ''

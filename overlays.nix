@@ -190,7 +190,11 @@ _:
           hash = "sha256-z1XD0O+gG2/+g/skdWGC64Zv4dXvvhWesaK/8DcPF/E=";
         };
       };
-
+    whichl = customScript {
+      name = "whichl";
+      file = "whichl";
+      runtimeInputs = with super; [ which eza ];
+    };
     zoom-us =
       (super.zoom-us.override {
         pipewire = self.pipewire-zoom;
