@@ -176,5 +176,5 @@
       enableOffloadCmd = true; # set by nixos-hardware
     };
   };
-
+  environment.pathsToLink = [ "/share/bash-completion"]; # bash completion for system packages
 }
