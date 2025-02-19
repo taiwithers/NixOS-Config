@@ -33,7 +33,7 @@ in
       [
         # helpers - no additional setup done in plugins.lua
         nui-nvim
-        # plenary-nvim
+        plenary-nvim
         cmp-nvim-lsp
         cmp-nvim-lsp-signature-help
         vimtex
