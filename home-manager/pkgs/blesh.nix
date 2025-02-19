@@ -6,7 +6,9 @@
 }:
 {
   home.packages = [ pkgs.blesh ];
-  programs.bash.bashrcExtra = ''
+  programs.bash.bashrcExtra = pkgs.lib.mkAfter ''
+    source ${pkgs.bash-completion}/share/bash-completion/bash_completion
+
     if [[ -n "$(builtin type -P blesh-share)" ]]; then
       source $(blesh-share)/ble.sh
     else
