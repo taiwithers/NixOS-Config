@@ -29,7 +29,7 @@
         "eza"
         "fzf"
         "kitty" # use icat on remote
-        # "latex"
+        "latex"
         "lazygit"
         "neovim/neovim"
         "pdftools"
