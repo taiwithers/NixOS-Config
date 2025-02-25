@@ -3,7 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-./bootloader.nix
+    ./bootloader.nix
     ./desktopenvironments.nix
     ./programs.nix
   ];
@@ -38,6 +38,7 @@
     options = "--delete-older-than 14d";
   };
   nix.settings.auto-optimise-store = true;
+  
   # clean up $HOME (moves ~/.nix-* to $XDG_STATE_HOME/nix/*)
   nix.settings.use-xdg-base-directories = true;
 
@@ -129,7 +130,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  ###### 31
   services.printing.drivers = [
     pkgs.brlaser
     pkgs.hplip
@@ -140,7 +140,6 @@
   #   nssmdns4 = true;
   #   openFirewall = true;
   # };
-  ####### ^^
 
   fonts.enableDefaultPackages = true;
 
