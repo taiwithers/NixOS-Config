@@ -99,6 +99,7 @@ in
             query
             latex
             html
+            kdl # niri
           ]
         ))
       ]
