@@ -18,7 +18,7 @@
     };
 
     darkly = {
-      url = "github:Bali10050/Darkly";
+      url = "github:Bali10050/Darkly/be3bf78";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -152,7 +152,7 @@
 
       pkgs-config = {
         allowUnfree = true;
-        permittedInsecurePackages = [ "openssl-1.1.1w" ];
+        permittedInsecurePackages = [ "openssl-1.1.1w" "deskflow-1.19.0" ];
       };
 
       pkgs-for-system =

@@ -109,6 +109,7 @@
     xdg-ninja
 
     # gui programs
+    deskflow
     ds9
     imv
     kdePackages.ark # archive manager
@@ -116,7 +117,7 @@
     keepassxc
     # gaia
     # libreoffice-qt6-still
-    libreoffice-qt6-fresh
+    # libreoffice-qt6-fresh
     # masterpdfeditor
     # obsidian
     onlyoffice-desktopeditors
@@ -127,7 +128,7 @@
     qownnotes
     # signal-desktop
     shiori
-    teams-for-linux
+    # teams-for-linux
     zoom-us
     okular
 

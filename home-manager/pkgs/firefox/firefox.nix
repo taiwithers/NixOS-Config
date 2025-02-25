@@ -46,6 +46,7 @@
             indie-wiki-buddy
             privacy-badger
             lovely-forks
+            untrap-for-youtube
             # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
           ]
           ++ [ pkgs.nur.repos.pborzenkov.firefox-addons.shiori_ext ];

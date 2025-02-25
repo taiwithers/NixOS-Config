@@ -74,6 +74,9 @@ _:
       };
     });
     color-oracle = customDerivation "color-oracle";
+    deskflow = unstable.deskflow.override {
+        qt6 = self.qt6;
+      };
     diff-nix-generations = customScript rec {
       name = "diff-nix-generations";
       runtimeInputs = with super; [
