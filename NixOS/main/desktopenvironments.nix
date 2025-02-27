@@ -26,4 +26,6 @@
     kwalletmanager
     okular
   ];
+
+  programs.niri.enable = true;
 }

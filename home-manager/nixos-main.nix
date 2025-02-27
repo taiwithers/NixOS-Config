@@ -38,6 +38,12 @@
         inherit config pkgs colours;
         inherit (flake-inputs) nixcord;
       })
+      (import ./pkgs/niri.nix {
+        inherit config;
+        inherit pkgs;
+        inherit (flake-inputs) niri;
+      })
+
 
       ./gaming.nix
     ]
@@ -107,6 +113,7 @@
     unar
     wl-clipboard
     xdg-ninja
+    xwayland-satellite-stable
 
     # gui programs
     deskflow

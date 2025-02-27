@@ -52,6 +52,10 @@
       inputs.utils.follows = "flake-utils";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+    };
+
     nix-cargo-integration = {
       # for nix-inspect
       url = "github:yusdacra/nix-cargo-integration";
@@ -176,6 +180,7 @@
               };
               nix-inspect = flake-inputs.nix-inspect.packages.${system}.default;
               pipewire-zoom = flake-inputs.nixpkgs-zoom.legacyPackages.${system}.pipewire;
+              xwayland-satellite-stable = flake-inputs.niri.packages.${system}.xwayland-satellite-stable;
             })
 
             #  other overlays
@@ -217,6 +222,7 @@
         modules = [
           ./NixOS/main/configuration.nix
           flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
+          flake-inputs.niri.nixosModules.niri
         ];
       };
 
