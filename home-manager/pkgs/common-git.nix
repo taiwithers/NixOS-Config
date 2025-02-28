@@ -42,6 +42,7 @@
     attributes = [
       "*.png diff=exiftool"
       "*.pdf diff=exiftool"
+      "*.gif diff=exiftool"
     ];
     delta = {
       enable = true;
