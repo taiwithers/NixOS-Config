@@ -100,6 +100,7 @@ in
             latex
             html
             kdl # niri
+            tree-sitter-just
           ]
         ))
       ]
