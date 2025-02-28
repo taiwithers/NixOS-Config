@@ -49,6 +49,7 @@
 
     strace
     ds9
+    cloc
   ];
 
 
