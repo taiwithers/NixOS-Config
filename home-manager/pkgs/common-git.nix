@@ -38,6 +38,7 @@
     };
     aliases = {
       fpush = "push --force-with-lease"; # safer force push
+      lastcommit = "log --max-count=1 --format=%h --abbrev-commit"; # get the short hash of the last commit - for e.g., `cloc $(git lastcommit)`
     };
     attributes = [
       "*.png diff=exiftool"
