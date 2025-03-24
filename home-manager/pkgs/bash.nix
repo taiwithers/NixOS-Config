@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.bash = {
     enable = true; # apply home.shellAliases to bash
@@ -14,6 +14,10 @@
     initExtra = pkgs.lib.mkAfter ''
       source ${../../scripts/clean-path.sh}
       clean_path
+    '';
+
+    bashrcExtra = ''
+      source ${config.common.nixConfigDirectory}/scripts/backup.sh
     '';
   };
 }
