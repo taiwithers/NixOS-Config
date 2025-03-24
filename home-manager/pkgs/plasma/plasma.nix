@@ -404,6 +404,7 @@ rec {
                     "preferred://browser"
                     "preferred://filemanager"
                     "preferred://terminal"
+                    "applications:kitty.desktop"
                   ];
                 };
               }
@@ -473,8 +474,9 @@ rec {
         showMediaControls = true;
         wallpaper = "${config.common.nixConfigDirectory}/NixOS/main/background.png";
       };
-      passwordRequiredDelay = 300; # seconds after screen lock
-      timeout = 5; # minutes until screen locks
+      timeout = 15; # minutes until screen locks
+      lockOnResume = false;
+      passwordRequiredDelay = 900; # seconds after screen lock
     };
 
     ###############################
@@ -510,6 +512,10 @@ rec {
       middleClick = null;
       rightClick = "contextMenu";
       verticalScroll = null;
+    };
+
+    krunner = {
+      activateWhenTypingOnDesktop = false;
     };
 
     # hotkeys to run commands
@@ -848,6 +854,11 @@ rec {
       ];
     };
 
+    # turn off hot corner
+    configFile.kwinrc."Effect-overview" = {
+      "BorderActivate" = 9;
+    };
+
     configFile.kwinrc."Effect-translucency" = {
       "ComboboxPopups" = 90;
       "Dialogs" = 90;
@@ -884,14 +895,14 @@ rec {
         turnOffDisplay.idleTimeout = null; # should let autoSuspend kick in instead
         turnOffDisplay.idleTimeoutWhenLocked = "whenLockedAndUnlocked"; # should let autoSuspend kick in instead
 
-        whenLaptopLidClosed = "sleep";
-        inhibitLidActionWhenExternalMonitorConnected = true;
+        whenLaptopLidClosed = "hibernate";
+        inhibitLidActionWhenExternalMonitorConnected = false; # do same action regardless of monitor
 
         whenSleepingEnter = "standbyThenHibernate";
       };
 
       battery = AC // {
-        autoSuspend.idleTimeout = 120;
+        # autoSuspend.idleTimeout = 120;
         inhibitLidActionWhenExternalMonitorConnected = false;
         powerProfile = "powerSaving";
       };
