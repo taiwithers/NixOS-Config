@@ -36,6 +36,7 @@
       ...
     }@flake-inputs:
     let
+      # system-agnostic items
       treefmt-for-system =
         system:
         flake-inputs.treefmt-nix.lib.evalModule (nixpkgs-for-system system) {
@@ -54,64 +55,65 @@
           };
         };
 
-      system = flake-inputs.flake-utils.lib.system.x86_64-linux;
       nixpkgs-for-system = sys: nixpkgs.legacyPackages.${sys};
+      gitignore-for-system = sys: flake-inputs.ignoreboy.lib.${sys}.gitignore {
+            github.languages = [
+              "Python"
+              "community/Python/JupyterNotebooks"
+            ];
+            useSaneDefaults = true; # adds OS and Nix-specific entries
+            extraConfig = ''
+              *.py:Zone.Identifier
+            '';
+          };
+
+
+
+      # system-specific items
+      system = flake-inputs.flake-utils.lib.system.x86_64-linux;
+      gitignore = gitignore-for-system system;
+      pkgs = nixpkgs-for-system system;
+      libraries = pkgs.lib.makeLibraryPath (
+        with pkgs;
+        [
+          stdenv.cc.cc.lib
+          zlib
+        ]
+      );
+      extra-packages = with pkgs; [
+        # add any packages needed for the specific project
+      ];
+
 
     in
     {
       # nix fmt
       formatter.${system} = (treefmt-for-system system).config.build.wrapper;
 
-      # nix flake check
-      checks.${system} = {
-        pre-commit-check = flake-inputs.git-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            pylint.enable = true;
-          };
-        };
-        formatting = (treefmt-for-system system).config.build.check self;
-      };
+      devShells.${system} = {
+        # nix develop .#<shellname>
 
-      devShells.${system}.default =
-        let
-          pkgs = nixpkgs-for-system system;
-
-          gitignore = flake-inputs.ignoreboy.lib.${system}.gitignore {
-            github.languages = [
-              "Python"
-              "community/Python/JupyterNotebooks"
-            ];
-
-            useSaneDefaults = true; # adds OS and Nix-specific entries
-
-            # extra custom entries
-            extraConfig = '''';
-          };
-          libraries = pkgs.lib.makeLibraryPath (
-            with pkgs;
-            [
-              stdenv.cc.cc.lib
-              zlib
-              libmysqlclient
-            ]
-          );
-        in
-        pkgs.mkShell {
-          name = "environment-name"; # name of dev env
-
-          # set library path for python packages
+        python-poetry = pkgs.mkShell {
+          # git clone <repository>
+          # cd <repository>
+          # poetry install
+          # poetry run <executable>
+          name = "python-poetry";
+          shellHook = "${gitignore}";
           LD_LIBRARY_PATH = "${libraries}";
-
-          shellHook = ''
-            ${gitignore} 
-          '';
-
-          packages = with pkgs; [
-            poetry
-            pkg-config # for poetry to locate dependencies
-          ];
+          packages = [ pkgs.poetry ] ++ extra-packages;
         };
 
+        python = pkgs.mkShell {
+          # python -m venv .venv
+          # .venv/bin/pip install git+<repository>
+          # .venv/bin/<executable>
+          name = "python";
+          shellHook = "${gitignore}";
+          LD_LIBRARY_PATH = "${libraries}";
+          packages = [ pkgs.python3 ] ++ extra-packages;
+        };
+
+      };
     };
 }
