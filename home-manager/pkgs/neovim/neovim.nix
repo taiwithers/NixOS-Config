@@ -79,6 +79,7 @@ in
         # nvim-spectre
         # trouble
         # dashboard-nvim
+        vim-just # syntax highlighting for just
 
         (pkgs.vimPlugins.nvim-treesitter.withPlugins (
           p: with p; [
@@ -100,7 +101,7 @@ in
             latex
             html
             kdl # niri
-            tree-sitter-just
+            just
           ]
         ))
       ]
