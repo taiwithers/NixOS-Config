@@ -28,14 +28,14 @@
         "dust"
         "eza"
         "fzf"
-        "kitty" # use icat on remote
-        "latex"
+        # "kitty" # use icat on remote
+        # "latex"
         "lazygit"
         "neovim/neovim"
         "pdftools"
         # "python/python"
         "ripgrep"
-        "sublime-text/sublime-text"
+        # "sublime-text/sublime-text"
         "starship"
         "tldr"
         "zoxide"
