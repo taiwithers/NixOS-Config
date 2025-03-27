@@ -38,18 +38,26 @@
         extensions =
           with extensions;
           [
+            clearurls
+            consent-o-matic
+            darkreader
+            decentraleyes
+            enhancer-for-nebula
+            indie-wiki-buddy
+            keepassxc-browser
+            lovely-forks
+            privacy-badger
+            refined-github
+            search-by-image
+            snowflake # tor extension to let others use connection
+            # socialfocus, companion to untrap, not available in nur
+            sponsorblock
             tabliss
             ublock-origin
-            clearurls
-            darkreader
-            keepassxc-browser
-            indie-wiki-buddy
-            privacy-badger
-            lovely-forks
             untrap-for-youtube
+            vimium
             # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
-          ]
-          ++ [ pkgs.nur.repos.pborzenkov.firefox-addons.shiori_ext ];
+          ];
 
         search = rec {
           force = true;
