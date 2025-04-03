@@ -39,6 +39,7 @@
           with extensions;
           [
             clearurls
+            cookie-autodelete
             consent-o-matic
             darkreader
             decentraleyes
