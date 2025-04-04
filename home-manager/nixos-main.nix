@@ -108,6 +108,7 @@
     lua
     parallel
     pond
+    rogue
     starfetch
     ugrep
     unar
@@ -119,45 +120,22 @@
     deskflow
     ds9
     imv
+    karp
     kdePackages.ark # archive manager
     kdePackages.dolphin
     keepassxc
-    # gaia
-    # libreoffice-qt6-still
-    # libreoffice-qt6-fresh
-    # masterpdfeditor
-    # obsidian
-    onlyoffice-desktopeditors
-    onedrivegui
-    karp
     krita
+    okular
+    onedrivegui
+    onlyoffice-desktopeditors
+    prismlauncher
     qjournalctl
     qownnotes
-    # signal-desktop
-    shiori
-    # teams-for-linux
     zoom-us
-    okular
 
-    prismlauncher
   ];
-  # services.caffeine.enable = true;
 
   fonts.fontconfig.enable = true;
-
-  systemd.user.services.shiori = {
-    Unit = {
-      Description = "Shiori bookmark manager";
-    };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Service = {
-      Restart = "always";
-      ExecStart = "${pkgs.shiori}/bin/shiori serve";
-      Type = "exec";
-    };
-  };
 
   xdg.configFile."onedrive-gui/gui_settings".text = ''
     [SETTINGS]
@@ -177,6 +155,7 @@
   programs.bash.bashrcExtra = ''
     # add completions
     complete -F _command get-package-path
+    complete -F _command whichl
   '';
   xresources.path = "${config.common.configHome}/X11/xresources";
 
