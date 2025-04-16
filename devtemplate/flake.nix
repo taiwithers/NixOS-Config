@@ -16,11 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ignoreboy = {
       url = "github:ookiiboy/ignoreboy";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,43 +31,36 @@
       ...
     }@flake-inputs:
     let
-      # system-agnostic items
-      treefmt-for-system =
-        system:
-        flake-inputs.treefmt-nix.lib.evalModule (nixpkgs-for-system system) {
-          programs = {
-            # generic
-            dos2unix.enable = true;
-
-            # python
-            mypy.enable = true; # static type checker
-            black.enable = true;
-
-            # other
-            nixfmt.enable = true;
-            shfmt.enable = true;
-            shellcheck.enable = true;
-          };
-        };
 
       nixpkgs-for-system = sys: nixpkgs.legacyPackages.${sys};
-      gitignore-for-system = sys: flake-inputs.ignoreboy.lib.${sys}.gitignore {
-            github.languages = [
-              "Python"
-              "community/Python/JupyterNotebooks"
-            ];
-            useSaneDefaults = true; # adds OS and Nix-specific entries
-            extraConfig = ''
-              *.py:Zone.Identifier
-            '';
-          };
-
-
 
       # system-specific items
       system = flake-inputs.flake-utils.lib.system.x86_64-linux;
-      gitignore = gitignore-for-system system;
       pkgs = nixpkgs-for-system system;
+      gitignore-creator = language-list: flake-inputs.ignoreboy.lib.${system}.gitignore {
+          github.languages = language-list;
+            useSaneDefaults = true; # adds OS and Nix-specific entries
+            extraConfig = ''
+              *:Zone.Identifier # added when copying from windows to WSL via explorer
+            '';
+        };
+      # define wrapper for mkShell
+      mkDevShell = { name? "dev", required-packages ? [], gitignore-languages ? [] }: pkgs.mkShell {
+          inherit name;
+          shellHook = ''
+            if [[ ! -f ".envrc" ]]; then
+              cp .envrc-${name} ./.envrc
+            fi
+            if [[ -e .envrc-* ]]; then
+              rm .envrc-*
+            fi
+            ${gitignore-creator gitignore-languages}
+          '';
+          LD_LIBRARY_PATH = "${libraries}:$LD_LIBRARY_PATH";
+          packages = required-packages ++ extra-packages;
+        };
+
+      # edit on a per-project basis
       libraries = pkgs.lib.makeLibraryPath (
         with pkgs;
         [
@@ -81,38 +69,40 @@
         ]
       );
       extra-packages = with pkgs; [
-        # add any packages needed for the specific project
+        just
       ];
+
 
 
     in
     {
-      # nix fmt
-      formatter.${system} = (treefmt-for-system system).config.build.wrapper;
 
       devShells.${system} = {
         # nix develop .#<shellname>
 
-        python-poetry = pkgs.mkShell {
+        python = mkDevShell {
+          # python -m venv .venv
+          # .venv/bin/pip install git+<repository>
+          # .venv/bin/<executable>
+          name = "python";
+          required-packages = [pkgs.python3];
+          gitignore-languages = ["Python" "community/Python/JupyterNotebooks"];
+        };
+
+        python-poetry = mkDevShell {
           # git clone <repository>
           # cd <repository>
           # poetry install
           # poetry run <executable>
           name = "python-poetry";
-          shellHook = "${gitignore}";
-          LD_LIBRARY_PATH = "${libraries}";
-          packages = [ pkgs.poetry ] ++ extra-packages;
+          required-packages = [ pkgs.poetry ];
         };
 
-        python = pkgs.mkShell {
-          # python -m venv .venv
-          # .venv/bin/pip install git+<repository>
-          # .venv/bin/<executable>
-          name = "python";
-          shellHook = "${gitignore}";
-          LD_LIBRARY_PATH = "${libraries}";
-          packages = [ pkgs.python3 ] ++ extra-packages;
-        };
+        nodejs = mkDevShell {
+            name = "nodejs";
+            required-packages = [pkgs.nodejs_23];
+            gitignore-languages = ["Node"];
+          };
 
       };
     };

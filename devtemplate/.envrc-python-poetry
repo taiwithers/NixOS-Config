@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-use flake
+use flake .#python-poetry
 
 layout_poetry() {
   PYPROJECT_TOML="${PYPROJECT_TOML:-pyproject.toml}"
