@@ -74,6 +74,10 @@
 
   };
 
+  home.shellAliases = {
+      tbt = "ssh tai@timbuktu";
+    };
+
   xdg.configFile."${config.xdg.configHome}/python/pythonrc".text = ''
     def is_vanilla() -> bool:
         import sys
