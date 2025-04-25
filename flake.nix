@@ -1,4 +1,4 @@
-{
+
   description = "NixOS/Home Manager Configuration";
 
   inputs = {
@@ -88,6 +88,8 @@
     nix-systems.url = "github:nix-systems/default";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     nixpkgs-lib.url = "github:nix-community/nixpkgs.lib";
 
@@ -223,6 +225,20 @@
           ./NixOS/main/configuration.nix
           flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
           flake-inputs.niri.nixosModules.niri
+        ];
+      };
+
+      nixosConfigurations."sidrat" = nixpkgs.lib.nixosSystem {
+        pkgs = pkgs-for-system system;
+        specialArgs = { inherit colours; };
+        modules = [
+          ./NixOS/sidrat/configuration.nix
+          flake-inputs.nixos-wsl.nixosModules.default {
+              system.stateVersion = "24.05";
+              wsl.enable = true;
+            }
+          # flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
+          # flake-inputs.niri.nixosModules.niri
         ];
       };
 
