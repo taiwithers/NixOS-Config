@@ -1,6 +1,20 @@
 { pkgs, ... }:
 
 {
+  programs.nix-ld.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    git
+    neovim
+    wget
+    coreutils
+    busybox
+    duf
+    dust
+    man-pages
+    man-pages-posix
+  ];
+
   imports = [
     # ./hardware-configuration.nix
     # ./bootloader.nix
@@ -38,7 +52,7 @@
     options = "--delete-older-than 14d";
   };
   nix.settings.auto-optimise-store = true;
-  
+
   # clean up $HOME (moves ~/.nix-* to $XDG_STATE_HOME/nix/*)
   nix.settings.use-xdg-base-directories = true;
 
@@ -155,8 +169,8 @@
 
   # graphics
   hardware.graphics.enable = true;
-  powerManagement.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ]; # Load driver for Xorg and Wayland, set by nixos-hardware
+  # powerManagement.enable = true;
+  # services.xserver.videoDrivers = [ "nvidia" ]; # Load driver for Xorg and Wayland, set by nixos-hardware
   # hardware.nvidia = {
   #   modesetting.enable = true; # required, set by nixos-hardware
   #
@@ -175,6 +189,6 @@
   #     enableOffloadCmd = true; # set by nixos-hardware
   #   };
   # };
-  environment.pathsToLink = [ "/share/bash-completion"]; # bash completion for system packages
+  environment.pathsToLink = [ "/share/bash-completion" ]; # bash completion for system packages
   documentation.nixos.options.warningsAreErrors = false;
 }
