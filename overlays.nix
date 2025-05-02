@@ -75,8 +75,8 @@ _:
     });
     color-oracle = customDerivation "color-oracle";
     deskflow = unstable.deskflow.override {
-        qt6 = self.qt6;
-      };
+      inherit (self) qt6;
+    };
     diff-nix-generations = customScript rec {
       name = "diff-nix-generations";
       runtimeInputs = with super; [
@@ -196,7 +196,10 @@ _:
     whichl = customScript {
       name = "whichl";
       file = "whichl";
-      runtimeInputs = with super; [ which eza ];
+      runtimeInputs = with super; [
+        which
+        eza
+      ];
     };
     zoom-us =
       (super.zoom-us.override {

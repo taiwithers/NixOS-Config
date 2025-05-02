@@ -44,7 +44,6 @@
         inherit (flake-inputs) niri;
       })
 
-
       ./gaming.nix
     ]
     ++ (map

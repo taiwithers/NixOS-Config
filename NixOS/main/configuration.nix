@@ -38,7 +38,7 @@
     options = "--delete-older-than 14d";
   };
   nix.settings.auto-optimise-store = true;
-  
+
   # clean up $HOME (moves ~/.nix-* to $XDG_STATE_HOME/nix/*)
   nix.settings.use-xdg-base-directories = true;
 
@@ -175,6 +175,6 @@
       enableOffloadCmd = true; # set by nixos-hardware
     };
   };
-  environment.pathsToLink = [ "/share/bash-completion"]; # bash completion for system packages
+  environment.pathsToLink = [ "/share/bash-completion" ]; # bash completion for system packages
   documentation.nixos.options.warningsAreErrors = false;
 }

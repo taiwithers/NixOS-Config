@@ -1,4 +1,4 @@
-
+{
   description = "NixOS/Home Manager Configuration";
 
   inputs = {
@@ -158,7 +158,10 @@
 
       pkgs-config = {
         allowUnfree = true;
-        permittedInsecurePackages = [ "openssl-1.1.1w" "deskflow-1.19.0" ];
+        permittedInsecurePackages = [
+          "openssl-1.1.1w"
+          "deskflow-1.19.0"
+        ];
       };
 
       pkgs-for-system =
@@ -182,7 +185,7 @@
               };
               nix-inspect = flake-inputs.nix-inspect.packages.${system}.default;
               pipewire-zoom = flake-inputs.nixpkgs-zoom.legacyPackages.${system}.pipewire;
-              xwayland-satellite-stable = flake-inputs.niri.packages.${system}.xwayland-satellite-stable;
+              inherit (flake-inputs.niri.packages.${system}) xwayland-satellite-stable;
             })
 
             #  other overlays
@@ -234,10 +237,12 @@
         specialArgs = { inherit colours; };
         modules = [
           ./NixOS/sidrat/configuration.nix
-          flake-inputs.nixos-wsl.nixosModules.default {
-              system.stateVersion = "24.05";
-              wsl.enable = true;
-            }
+          flake-inputs.nixos-wsl.nixosModules.default
+          {
+            system.stateVersion = "24.05";
+            wsl.enable = true;
+            wsl.defaultUser = "tai";
+          }
           # flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
           # flake-inputs.niri.nixosModules.niri
         ];

@@ -143,33 +143,33 @@ require("nvim-navic").setup({
 	lsp = { auto_attach = true },
 })
 
-require('noice').setup({
-  presets = {
-    long_message_to_split = true,
-    lsp_doc_border = true,
-    command_palette = false,
-  },
-  -- cmdline and popupmenu together, from noice wiki
-  views = {
-    cmdline_popup = {
-      position = {row=10, col='50%',},
-      size = {width=60, height='auto'},
-    },
-    popupmenu = { -- this is the completion menu
-      relative = 'editor',
-      position = {row=13, col='50%',}, -- row is cmdline_popup row + 3
-      size = {width=60, height=5,},
-      border = {style='rounded', padding={0,1},},
-      win_options = {winhighlight={Normal='Normal', FloatBorder='DiagnosticInfo',},},
-    },
-  },
-  lsp = {
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    },
-  },
+require("noice").setup({
+	presets = {
+		long_message_to_split = true,
+		lsp_doc_border = true,
+		command_palette = false,
+	},
+	-- cmdline and popupmenu together, from noice wiki
+	views = {
+		cmdline_popup = {
+			position = { row = 10, col = "50%" },
+			size = { width = 60, height = "auto" },
+		},
+		popupmenu = { -- this is the completion menu
+			relative = "editor",
+			position = { row = 13, col = "50%" }, -- row is cmdline_popup row + 3
+			size = { width = 60, height = 5 },
+			border = { style = "rounded", padding = { 0, 1 } },
+			win_options = { winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" } },
+		},
+	},
+	lsp = {
+		override = {
+			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+			["vim.lsp.util.stylize_markdown"] = true,
+			["cmp.entry.get_documentation"] = true,
+		},
+	},
 })
 vim.notify = require("notify").setup({
 	render = "wrapped-compact",

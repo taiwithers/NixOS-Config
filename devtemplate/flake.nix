@@ -26,7 +26,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       ...
     }@flake-inputs:
@@ -37,15 +36,23 @@
       # system-specific items
       system = flake-inputs.flake-utils.lib.system.x86_64-linux;
       pkgs = nixpkgs-for-system system;
-      gitignore-creator = language-list: flake-inputs.ignoreboy.lib.${system}.gitignore {
+      gitignore-creator =
+        language-list:
+        flake-inputs.ignoreboy.lib.${system}.gitignore {
           github.languages = language-list;
-            useSaneDefaults = true; # adds OS and Nix-specific entries
-            extraConfig = ''
-              *:Zone.Identifier # added when copying from windows to WSL via explorer
-            '';
+          useSaneDefaults = true; # adds OS and Nix-specific entries
+          extraConfig = ''
+            *:Zone.Identifier # added when copying from windows to WSL via explorer
+          '';
         };
       # define wrapper for mkShell
-      mkDevShell = { name? "dev", required-packages ? [], gitignore-languages ? [] }: pkgs.mkShell {
+      mkDevShell =
+        {
+          name ? "dev",
+          required-packages ? [ ],
+          gitignore-languages ? [ ],
+        }:
+        pkgs.mkShell {
           inherit name;
           shellHook = ''
             if [[ ! -f ".envrc" ]]; then
@@ -72,8 +79,6 @@
         just
       ];
 
-
-
     in
     {
 
@@ -85,8 +90,11 @@
           # .venv/bin/pip install git+<repository>
           # .venv/bin/<executable>
           name = "python";
-          required-packages = [pkgs.python3];
-          gitignore-languages = ["Python" "community/Python/JupyterNotebooks"];
+          required-packages = [ pkgs.python3 ];
+          gitignore-languages = [
+            "Python"
+            "community/Python/JupyterNotebooks"
+          ];
         };
 
         python-poetry = mkDevShell {
@@ -99,10 +107,10 @@
         };
 
         nodejs = mkDevShell {
-            name = "nodejs";
-            required-packages = [pkgs.nodejs_23];
-            gitignore-languages = ["Node"];
-          };
+          name = "nodejs";
+          required-packages = [ pkgs.nodejs_23 ];
+          gitignore-languages = [ "Node" ];
+        };
 
       };
     };

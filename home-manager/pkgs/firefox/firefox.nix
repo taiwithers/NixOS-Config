@@ -35,30 +35,28 @@
         path = "Profiles/Personal";
         id = 0;
 
-        extensions =
-          with extensions;
-          [
-            clearurls
-            cookie-autodelete
-            consent-o-matic
-            darkreader
-            decentraleyes
-            enhancer-for-nebula
-            indie-wiki-buddy
-            keepassxc-browser
-            lovely-forks
-            privacy-badger
-            refined-github
-            search-by-image
-            snowflake # tor extension to let others use connection
-            # socialfocus, companion to untrap, not available in nur
-            sponsorblock
-            tabliss
-            ublock-origin
-            untrap-for-youtube
-            vimium
-            # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
-          ];
+        extensions = with extensions; [
+          clearurls
+          cookie-autodelete
+          consent-o-matic
+          darkreader
+          decentraleyes
+          enhancer-for-nebula
+          indie-wiki-buddy
+          keepassxc-browser
+          lovely-forks
+          privacy-badger
+          refined-github
+          search-by-image
+          snowflake # tor extension to let others use connection
+          # socialfocus, companion to untrap, not available in nur
+          sponsorblock
+          tabliss
+          ublock-origin
+          untrap-for-youtube
+          vimium
+          # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
+        ];
 
         search = rec {
           force = true;

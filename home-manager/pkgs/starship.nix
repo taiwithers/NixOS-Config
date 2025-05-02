@@ -91,8 +91,8 @@
         symbol = "";
 
         # only execute if a venv is activated, not based on presence of files
-        detect_extensions = [];
-        detect_files = [];
+        detect_extensions = [ ];
+        detect_files = [ ];
       };
       directory = {
         disabled = false;
