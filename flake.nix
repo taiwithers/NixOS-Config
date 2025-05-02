@@ -202,6 +202,7 @@
 
       home-configurations = {
         nixos-main = "tai";
+        nixos-wsl = "tai";
         ubuntu-main = "twithers";
         ubuntu-sidrat = "taiwithers";
       };
