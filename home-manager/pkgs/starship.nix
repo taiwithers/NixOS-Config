@@ -79,6 +79,11 @@
         show_notifications = true;
         min_time_to_notify = 60;
       };
+
+      conda = {
+        ignore_base = false;
+      };
+
       python = {
         disabled = false;
         style = "green";
