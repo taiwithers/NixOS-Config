@@ -229,7 +229,7 @@
         ];
       };
 
-      nixosConfigurations."sidrat" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations."wsl" = nixpkgs.lib.nixosSystem {
         pkgs = pkgs-for-system system;
         specialArgs = { inherit colours; };
         modules = [
