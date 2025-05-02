@@ -89,7 +89,11 @@
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixpkgs-lib.url = "github:nix-community/nixpkgs.lib";
 
