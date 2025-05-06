@@ -2,6 +2,7 @@
   config,
   pkgs,
   colours,
+  flake-inputs,
   ...
 }:
 {
@@ -40,7 +41,13 @@
         "tldr"
         "zellij"
         "zoxide"
-      ];
+      ] ++ [
+(import ./themeing.nix {
+        inherit config;
+        inherit pkgs;
+        inherit (flake-inputs) stylix;
+      })
+      ] ;
   home.packages = with pkgs; [
     fastfetch
     shfmt
