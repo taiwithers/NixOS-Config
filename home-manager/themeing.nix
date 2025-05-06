@@ -73,9 +73,11 @@
       };
       rofi.enable = false; # conflicts with rofi layout styling
       spicetify.enable = false;
+      starship.enable = false; # haven't investigated
       vesktop.enable = true;
       vscode.enable = true;
       yazi.enable = true;
+      zellij.enable = true;
     };
   };
 }

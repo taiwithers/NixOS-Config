@@ -38,6 +38,7 @@
         # "sublime-text/sublime-text"
         "starship"
         "tldr"
+        "zellij"
         "zoxide"
       ];
   home.packages = with pkgs; [
