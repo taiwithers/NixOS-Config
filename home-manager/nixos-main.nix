@@ -133,6 +133,8 @@
     zoom-us
 
   ];
+  
+  programs.ssh.enable = true;
 
   fonts.fontconfig.enable = true;
 
