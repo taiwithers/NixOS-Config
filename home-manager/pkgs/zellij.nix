@@ -3,6 +3,6 @@
         enable = true;
         # settings = {};
         # attachExistingSession = true;
-        enableBashIntegration = true;
+        enableBashIntegration = false;
       };
   }
