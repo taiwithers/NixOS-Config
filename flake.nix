@@ -216,6 +216,8 @@
         formatting = (treefmt-for-system system).config.build.check self;
       };
 
+      packages.${system}.default = (pkgs-for-system system).nullpomino;
+
       nixosConfigurations."main" = nixpkgs.lib.nixosSystem {
         pkgs = pkgs-for-system system;
         specialArgs = { inherit colours; };
