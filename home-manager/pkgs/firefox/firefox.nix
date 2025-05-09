@@ -58,6 +58,7 @@
             untrap-for-youtube
             vimium
             # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
+            # https://addons.mozilla.org/en-US/firefox/addon/mute-sites-by-default/
           ];
 
         search = rec {
