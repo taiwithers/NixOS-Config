@@ -8,6 +8,12 @@
     ./programs.nix
   ];
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 35413 ];
+    allowedUDPPorts = [ 35413 ];
+  };
+
   nix.package = pkgs.lix;
 
   # use flakes
