@@ -131,6 +131,7 @@
     prismlauncher
     qjournalctl
     qownnotes
+    vlc
     zoom-us
 
   ];
