@@ -12,27 +12,38 @@
     userName = "taiwithers";
     extraConfig = {
       branch.sort = "-committerdate";
+
       core.attributesfile = "${config.common.configHome}/git/attributes";
       core.autocrlf = "input";
       core.eol = "lf";
       core.fileMode = false;
       core.whitespace.trailing-space = false;
+      
       diff.context = 1;
       diff.renames = true;
-      filter.lfs = {
-        clean = "git-lfs clean -- %f";
-      };
+      
+      filter.lfs.clean = "git-lfs clean -- %f";
+      
       gpg.format = "ssh";
+      
+      grep.lineNumber = true;
+      grep.patternType = "perl";
+      
       help.autocorrect = "prompt"; # check for typos in commands and offer to run the corrected version
+      
       init.defaultBranch = "main";
+      
       pull.rebase = "true";
-      rerere.enabled = true; # record conflict resolutions
-      rerere.autoUpdate = true;
-      status.relativePaths = false;
+      
       push.autoSetupRemote = true; # automatically create remote branches
+      
+      rerere.autoUpdate = true;
+      rerere.enabled = true; # record conflict resolutions
+      
+      status.relativePaths = false;
+
 
       "url \"git@github.com:\"".insteadOf = "https://github.com";
-
       diff.exiftool.textconv = "exiftool";
 
     };
