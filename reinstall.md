@@ -8,3 +8,13 @@ home-manager switch --impure --show-trace --flake ./NixOS-Config/home-manager#ni
 export MAMBA_ROOT_PREFIX=~/.local/state/micromamba
 eval "$(micromamba shell hook --shell posix --root-prefix $MAMBA_ROOT_PREFIX)"
 micromamba create --file {ta.yml} --yes --root-prefix $MAMBA_ROOT_PREFIX
+
+
+nmcli --ask device wifi connect <SSID> 
+nmcli connection
+
+kitty -- env bash --norc --noprofile
+home-manager switch --flake ~/Nix#nixos-main
+
+
+ipp://192.168.0.12/ipp/print
