@@ -34,6 +34,11 @@
 
     vesktopConfig = {
       minimizeToTray = "on";
+      enabledThemes = [
+        "stylix.theme.css"
+        "thin.theme.css"
+        "hide-extras.theme.css"
+      ];
     };
   };
 
