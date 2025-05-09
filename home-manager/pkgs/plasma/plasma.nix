@@ -215,7 +215,7 @@ rec {
       let
         topPanelHeight = 36;
         bottomPanelHeight = 50;
-        hidingMode = "dodgewindows";
+        hidingMode = "autohide"; # "dodgewindows" breaks sometimes
 
         plasmoids = rec {
           kara = {
@@ -298,13 +298,14 @@ rec {
               items.showAll = false;
               items.hidden =
                 (map (x: "org.kde.plasma." + x) [
-                  "brightness" # main area -> dropdown
+                  # seem to be permanently hidden
                   "bluetooth"
                   "clipboard"
                   "networkmanagement"
                   "printmanager"
                 ])
                 ++ [
+                  # some of these show up in the dropdown
                   "org.kde.kdeconnect"
                   "OneDriveGUI"
                   "KeePassXC"
@@ -314,6 +315,7 @@ rec {
               # items.shown = map (x: "org.kde.plasma." + x) [
               #   ];
               items.extra = map (x: "org.kde.plasma." + x) [
+                "brightness" # main visible area
                 "volume"
                 "cameraindicator"
                 "devicenotifier"
