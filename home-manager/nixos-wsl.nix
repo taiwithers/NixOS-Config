@@ -82,6 +82,7 @@
 
   home.shellAliases = {
     tbt = "ssh tai@timbuktu";
+    exe = "explorer.exe .";
   };
 
   xdg.configFile."${config.xdg.configHome}/python/pythonrc".text = ''
