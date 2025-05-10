@@ -1,6 +1,6 @@
 { pkgs, nixcord, ... }:
 {
-  imports = [ nixcord.homeManagerModules.nixcord ];
+  imports = [ nixcord.homeModules.nixcord ];
   # home.packages = [ pkgs.vesktop ];
 
   programs.nixcord = {
