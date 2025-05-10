@@ -158,7 +158,16 @@
       endif
     '';
 
-    home.file = pkgs.lib.optionalAttrs (!config.common.nixos) {
+    home.file = {
+      "clean_bash.sh" = {
+        text = ''
+          #!/usr/bin/env bash
+
+          kitty -- bash --norc
+        '';
+        executable = true;
+      };
+    } // pkgs.lib.optionalAttrs (!config.common.nixos) {
       ".hushlogin".text = "";
     };
 
