@@ -98,15 +98,16 @@ _:
     inherit (unstable) karp;
     kdePackages = super.kdePackages // {
       inherit (super) kara;
-      klassy = super.nur.repos.shadowrz.klassy-qt6.overrideAttrs (oldAttrs: rec {
-        version = "58c6ad5";
-        src = super.fetchFromGitHub {
-          owner = "paulmcauley";
-          repo = oldAttrs.pname;
-          rev = version;
-          hash = "sha256-B7nQVok/3uCskGykqEoaZcpzpIk15tT7qDPG3qCbn4Q=";
-        };
-      }); # customDerivation "klassy";
+      klassy = customDerivation "klassy";
+      # klassy = super.nur.repos.shadowrz.klassy-qt6.overrideAttrs (oldAttrs: rec {
+      #   version = "58c6ad5";
+      #   src = super.fetchFromGitHub {
+      #     owner = "paulmcauley";
+      #     repo = oldAttrs.pname;
+      #     rev = version;
+      #     hash = "sha256-B7nQVok/3uCskGykqEoaZcpzpIk15tT7qDPG3qCbn4Q=";
+      #   };
+      # });
       inherit (unstable.kdePackages) krohnkite;
     };
     nixfmt = super.nixfmt-rfc-style;
