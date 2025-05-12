@@ -32,6 +32,7 @@
         # "kitty" # use icat on remote
         # "latex"
         "lazygit"
+        "micromamba"
         "neovim/neovim"
         "pdftools"
         # "python/python"
