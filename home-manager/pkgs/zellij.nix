@@ -1,8 +1,9 @@
-{ pkgs, ...} :{
-    programs.zellij = {
-        enable = true;
-        # settings = {};
-        # attachExistingSession = true;
-        enableBashIntegration = false;
-      };
-  }
+_:
+{
+  programs.zellij = {
+    enable = true;
+    # settings = {};
+    # attachExistingSession = true;
+    enableBashIntegration = false;
+  };
+}

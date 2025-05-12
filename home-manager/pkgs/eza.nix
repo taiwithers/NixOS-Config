@@ -1,5 +1,4 @@
-_:
-{
+_: {
   programs.eza = {
     enable = true; # aliases eza to eza-with-options, and adds ls & friends
     extraOptions = [

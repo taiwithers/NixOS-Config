@@ -13,6 +13,7 @@
         + builtins.concatStringsSep "$" [
           "username"
           "hostname"
+          "conda"
           "python"
           "directory"
           "git_branch"
