@@ -124,6 +124,7 @@
     home.shellAliases =
       with config.common;
       {
+        "rm" = "rm --interactive=always --verbose";
         "untar" = "tar -xvf";
         "printenv" = "printenv | sort";
         "wget" = "wget --hsts-file=${stateHome}/wget_hsts";
