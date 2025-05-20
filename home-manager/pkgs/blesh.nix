@@ -52,7 +52,7 @@
       # shift-enter, tab: accept
       # C-right/alt-right: accept first cword/word
       # C-j/C-enter: accept and run
-      # bleopt complete_auto_complete= # Disable auto-complete 
+      bleopt complete_auto_complete= # Disable auto-complete, default to menu if more than one option
       bleopt complete_auto_history= # Disable auto-complete based on the command history
       bleopt complete_auto_delay=300 # millisecond delay for autocomplete
       bleopt complete_auto_menu=1000 # delay for menu popup
