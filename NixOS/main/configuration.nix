@@ -162,7 +162,7 @@
   # graphics
   hardware.graphics.enable = true;
   powerManagement.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ]; # Load driver for Xorg and Wayland, set by nixos-hardware
+  services.xserver.videoDrivers = [ "nvidia" "displaylink"]; # Load driver for Xorg and Wayland, set by nixos-hardware
   hardware.nvidia = {
     modesetting.enable = true; # required, set by nixos-hardware
 
