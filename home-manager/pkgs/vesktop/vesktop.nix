@@ -1,45 +1,44 @@
 { pkgs, nixcord, ... }:
 {
   imports = [ nixcord.homeModules.nixcord ];
-  # home.packages = [ pkgs.vesktop ];
+  home.packages = [ pkgs.vesktop ];
 
   programs.nixcord = {
-    enable = true;
+    # enable = true;
 
     discord.enable = false;
 
     vesktop.enable = true;
     vesktop.package = pkgs.vesktop;
+    #
+    # config = {
+    #   useQuickCss = true;
+    #   enabledThemes = [ "stylix.theme.css" ];
+    #   frameless = false;
+    #   transparent = false;
+    #   disableMinSize = true;
+    #   plugins = {
+    #     biggerStreamPreview.enable = true;
+    #     callTimer.enable = true;
+    #     clearURLs.enable = true;
+    #     newGuildSettings.enable = true;
+    #     noDevtoolsWarning.enable = true;
+    #     noF1.enable = true;
+    #     pinDMs.enable = true;
+    #     volumeBooster.enable = true;
+    #     webScreenShareFixes.enable = true;
+    #     webRichPresence.enable = false;
+    #   };
+    # };
 
-    config = {
-      useQuickCss = true;
-      enabledThemes = [ "stylix.theme.css" ];
-      frameless = false;
-      transparent = false;
-      disableMinSize = true;
-      plugins = {
-        biggerStreamPreview.enable = true;
-        callTimer.enable = true;
-        clearURLs.enable = true;
-        newGuildSettings.enable = true;
-        noDevtoolsWarning.enable = true;
-        noF1.enable = true;
-        pinDMs.enable = true;
-        volumeBooster.enable = true;
-        webScreenShareFixes.enable = true;
-        webRichPresence.enable = false;
-      };
-
-    };
-
-    vesktopConfig = {
-      minimizeToTray = "on";
-      enabledThemes = [
-        "stylix.theme.css"
-        "thin.theme.css"
-        "hide-extras.theme.css"
-      ];
-    };
+    # vesktopConfig = {
+    #   minimizeToTray = "on";
+    #   enabledThemes = [
+    #     "stylix.theme.css"
+    #     "thin.theme.css"
+    #     "hide-extras.theme.css"
+    #   ];
+    # };
   };
 
   xdg.configFile."vesktop/themes/thin.theme.css".source = ./thin.theme.css;
