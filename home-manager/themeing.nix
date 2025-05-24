@@ -20,10 +20,7 @@
     # JSON
     ''
       {
-        "ignored_packages":
-        [
-          "Vintage",
-        ],
+        "ignored_packages": [],
         "font_size": 11,
         "color_scheme": "Packages/User/Base16/theme.tmTheme",
         "theme": "Adaptive.sublime-theme",
