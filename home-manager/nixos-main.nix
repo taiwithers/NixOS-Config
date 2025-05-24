@@ -133,6 +133,8 @@
     qownnotes
     vlc
     zoom-us
+    
+    kdePackages.kdialog
 
   ];
 
