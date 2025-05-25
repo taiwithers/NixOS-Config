@@ -74,6 +74,9 @@
       __HM_SESS_VARS_SOURCED = ""; # "unset" this
     };
 
+    programs.fd.enable = true;
+    programs.ripgrep.enable = true;
+
     home.packages =
       with pkgs;
       [
@@ -88,27 +91,20 @@
         nix-tree
 
         # utilities
-        fd
         rename
         sd
         zip
         trash-cli
-        ripgrep
-        bash-completion
         whichl
 
         # fonts
         cm_unicode
-        intel-one-mono
         open-sans
         dejavu_fonts
-        (nerdfonts.override {
-          fonts = [
-            # "InteloneMono" # not available in nixpkgs nerdfont
-            "SpaceMono"
-            "NerdFontsSymbolsOnly"
-          ];
-        })
+        nerd-fonts.space-mono
+        nerd-fonts.symbols-only
+        nerd-fonts.intone-mono
+        
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         coreutils
@@ -159,7 +155,16 @@
       endif
     '';
 
-    home.file = pkgs.lib.optionalAttrs (!config.common.nixos) {
+    home.file = {
+      "clean_bash.sh" = {
+        text = ''
+          #!/usr/bin/env bash
+
+          kitty -- bash --norc
+        '';
+        executable = true;
+      };
+    } // pkgs.lib.optionalAttrs (!config.common.nixos) {
       ".hushlogin".text = "";
     };
 

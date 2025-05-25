@@ -8,6 +8,12 @@
     ./programs.nix
   ];
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 35413 ];
+    allowedUDPPorts = [ 35413 ];
+  };
+
   nix.package = pkgs.lix;
 
   # use flakes
@@ -88,7 +94,7 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -156,7 +162,7 @@
   # graphics
   hardware.graphics.enable = true;
   powerManagement.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ]; # Load driver for Xorg and Wayland, set by nixos-hardware
+  services.xserver.videoDrivers = [ "nvidia" "displaylink"]; # Load driver for Xorg and Wayland, set by nixos-hardware
   hardware.nvidia = {
     modesetting.enable = true; # required, set by nixos-hardware
 

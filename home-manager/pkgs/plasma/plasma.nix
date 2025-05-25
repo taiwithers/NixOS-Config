@@ -81,15 +81,15 @@ rec {
     })
     + "/package";
 
-  xdg.dataFile."plasma/look-and-feel/Magna-Splash-6".source =
-    (pkgs.fetchFromGitHub {
-      owner = "L4ki";
-      repo = "Magna-Plasma-Themes";
-      rev = "cff6c2d";
-      hash = "sha256-yYQBtjDOWiu33fVvnv83At0nA5mOmYZldgV4VsMxd2M=";
-      sparseCheckout = [ "Magna-Splahscreen" ];
-    })
-    + "/Magna-Splash-6";
+  # xdg.dataFile."plasma/look-and-feel/Magna-Splash-6".source =
+  #   (pkgs.fetchFromGitHub {
+  #     owner = "L4ki";
+  #     repo = "Magna-Plasma-Themes";
+  #     rev = "cff6c2d";
+  #     hash = "sha256-yYQBtjDOWiu33fVvnv83At0nA5mOmYZldgV4VsMxd2M=";
+  #     sparseCheckout = [ "Magna-Splahscreen" ];
+  #   })
+  #   + "/Magna-Splash-6";
 
   xdg.dataFile."plasma/plasmoids/Compact.Menu".source = ./Compact.Menu;
 
@@ -118,9 +118,9 @@ rec {
   xdg.configFile."gtkrc-2.0".force = true;
 
   xdg.configFile."gtk-4.0/window_decorations.css".source =
-    "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
+    "${pkgs.kdePackages.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
   xdg.configFile."gtk-3.0/window_decorations.css".source =
-    "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
+    "${pkgs.kdePackages.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
 
   gtk = rec {
     enable = true;
@@ -215,7 +215,7 @@ rec {
       let
         topPanelHeight = 36;
         bottomPanelHeight = 50;
-        hidingMode = "dodgewindows";
+        hidingMode = "autohide"; # "dodgewindows" breaks sometimes
 
         plasmoids = rec {
           kara = {
@@ -298,13 +298,14 @@ rec {
               items.showAll = false;
               items.hidden =
                 (map (x: "org.kde.plasma." + x) [
-                  "brightness" # main area -> dropdown
+                  # seem to be permanently hidden
                   "bluetooth"
                   "clipboard"
                   "networkmanagement"
                   "printmanager"
                 ])
                 ++ [
+                  # some of these show up in the dropdown
                   "org.kde.kdeconnect"
                   "OneDriveGUI"
                   "KeePassXC"
@@ -314,6 +315,7 @@ rec {
               # items.shown = map (x: "org.kde.plasma." + x) [
               #   ];
               items.extra = map (x: "org.kde.plasma." + x) [
+                "brightness" # main visible area
                 "volume"
                 "cameraindicator"
                 "devicenotifier"
@@ -374,6 +376,7 @@ rec {
           lengthMode = "fit";
           location = "top"; # or "floating"
           offset = 100; # ? from anchor
+          opacity = "adaptive";
           screen = 0;
           widgets = [
             plasmoids.colorizer
@@ -392,6 +395,7 @@ rec {
           lengthMode = "fit";
           location = "bottom"; # or "floating"
           offset = 100; # ? from anchor
+          opacity = "adaptive";
           screen = 0;
           widgets = [
             plasmoids.colorizer
@@ -422,6 +426,7 @@ rec {
           lengthMode = "fit";
           location = "top"; # or "floating"
           offset = 100; # ? from anchor
+          opacity = "adaptive";
           screen = 0;
           widgets = [
             plasmoids.colorizer
@@ -443,6 +448,7 @@ rec {
           lengthMode = "fill";
           location = "bottom"; # or "floating"
           offset = 100; # ? from anchor
+          opacity = "adaptive";
           screen = 1;
           widgets = [
             plasmoids.colorizer
@@ -517,6 +523,8 @@ rec {
     krunner = {
       activateWhenTypingOnDesktop = false;
     };
+
+    workspace.enableMiddleClickPaste = false;
 
     # hotkeys to run commands
     hotkeys.commands = {
@@ -986,6 +994,29 @@ rec {
         apply.noborderrule.value = 2;
       }
     ];
+
+    ###################################
+    #          Program Configs
+    ###################################
+
+    configFile."spectaclerc" = {
+      General = {
+        autoSaveImage = true;
+        clipboardGroup = "PostScreenshotCopyImage";
+        launchAction = "DoNotTakeScreenshot";
+        rememberSelectionRect = "always";
+      };
+      GuiConfig = { captureMode = 0; };
+
+      ImageSave = {
+        imageCompressionQuality = 100;
+        translatedScreenshotsFoldre = "Screenshots";
+      };
+
+      VideoSave = {
+        translatedScreencastsFolder = "Screencasts";
+      };
+    };
   };
 
   # colour scheme file
@@ -1177,7 +1208,7 @@ rec {
     WindowOutlineAccentColorOpacityActive=80
   '';
 
-  xdg.configFile."dolphinrc".text = ''
+  xdg.configFile."dolphinrc_hm".text = ''
     [ContextMenu]
     ShowDuplicateHere=false
     ShowMoveToOtherSplitView=false
@@ -1190,12 +1221,14 @@ rec {
     [General]
     BrowseThroughArchives=true
     CloseActiveSplitView=false
+    ConfirmClosingMultipleTabs=false
     DoubleClickViewAction=none
+    EditableUrl=false
     OpenExternallyCalledFolderInNewTab=true
     OpenNewTabAfterLastTab=true
     ShowStatusBar=false
     Version=202
-    ViewPropsTimestamp=2024,11,30,17,35,37.881
+    ViewPropsTimestamp=2025,5,24,14,40,0.739
 
     [InformationPanel]
     previewsShown=false
@@ -1236,25 +1269,7 @@ rec {
   # xdg.configFile."ksplashrc".text = ''
   #   [KSplash]
   #   Theme=Magna-Splash-6
-  # '';
-
-  xdg.configFile."spectaclerc".text = ''
-    [General]
-    autoSaveImage=true
-    clipboardGroup=PostScreenshotCopyImage
-    rememberSelectionRect=Always
-
-    [GuiConfig]
-    captureMode=0
-    selectionRect=252,314,1034,553
-
-    [ImageSave]
-    imageCompressionQuality=100
-    translatedScreenshotsFolder=Screenshots
-
-    [VideoSave]
-    translatedScreencastsFolder=Screencasts
-  '';
+  # ''
 
   xdg.configFile."ktrashrc".text = ''
     [${config.common.dataHome}/Trash]
@@ -1291,6 +1306,8 @@ rec {
     exec = "kcmshell6 kcm_kded";
     name = "KDE Background Services";
   };
+
+  # kdeglobals [General] TerminalApplication=kitty
 
   # kdeglobals
   # kwinrc

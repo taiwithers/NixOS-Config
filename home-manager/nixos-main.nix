@@ -60,7 +60,7 @@
       [
         "bash"
         "bat"
-        "blesh" # uses colours
+        # "blesh" # uses colours
         "bottom"
         "cod"
         "duf"
@@ -124,13 +124,16 @@
     kdePackages.dolphin
     keepassxc
     krita
-    okular
+    kdePackages.okular
     onedrivegui
     onlyoffice-desktopeditors
     prismlauncher
     qjournalctl
     qownnotes
+    vlc
     zoom-us
+    
+    kdePackages.kdialog
 
   ];
   

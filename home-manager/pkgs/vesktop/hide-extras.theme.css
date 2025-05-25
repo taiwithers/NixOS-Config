@@ -5,23 +5,41 @@
 * @version 0.0.1
 */
 
-.footer_d71945, /* explore servers */
-.recentsIcon_ea0547, /* inbox */
-.searchBar_f0963d /* friends search bar */
-{
-     display: none;
+/* new dm header*/
+.privateChannelsHeaderContainer__99e7c, 
+/* friends/messages/shop/nitro buttons */ 
+.avatarWithText__972a0, 
+.channel__972a0:not(.dm__972a0),
+.sectionDivider__35e86,
+/* close dm button */
+.closeButton__972a0, 
+.closeButton__972a0:focus,
+.closeButton__972a0:hover,
+.closeIcons__972a0,
+/* text box buttons (gif, gift, etc) */
+.buttons__74017 {
+    display: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    padding: 0;
 }
 
-/* hide extra settings */
-[aria-label="Family Centre"], 
-[aria-label="Nitro"], 
-[aria-label="Billing"], 
-[aria-label="Gift Inventory"], 
-[aria-label="Subscriptions"], 
-[aria-label="Merch"], 
-[aria-controls="vencordcloud-tab"],
-/* hide extra other stuff */
-[area-label="Add Friends to DM"]
-{
-     display: none;
+.visual-refresh .header_f37cb1 {
+    padding: var(--space-8);
+}
+
+/* outside channel name box */
+.iconVisibility_c69b6d {
+    margin-left: 0;
+}
+
+/* server management (above channels) */
+.link__2ea32 {
+    padding: var(--space-xxs) 2px;
+}
+
+/* reduce gap between # and channel name */
+.linkTop__2ea32 {
+    gap: 1px;
 }

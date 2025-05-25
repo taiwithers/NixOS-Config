@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ stylix.homeManagerModules.stylix ];
+  imports = [ stylix.homeModules.stylix ];
 
   xdg.configFile."sublime-text/Packages/User/Base16/theme.tmTheme".source = config.lib.stylix.colors {
     template = builtins.readFile (
@@ -20,10 +20,7 @@
     # JSON
     ''
       {
-        "ignored_packages":
-        [
-          "Vintage",
-        ],
+        "ignored_packages": [],
         "font_size": 11,
         "color_scheme": "Packages/User/Base16/theme.tmTheme",
         "theme": "Adaptive.sublime-theme",

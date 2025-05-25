@@ -34,16 +34,6 @@ _:
     inherit (self) unstable;
   in
   {
-    blesh = super.blesh.overrideAttrs (_oldAttrs: rec {
-      version = "3d8f626";
-      source = super.fetchFromGitHub {
-        owner = "akinomyoga";
-        repo = "ble.sh";
-        rev = version;
-        hash = "sha256-0QnFFHkVIyXXoHQQfUKeRyLg3/2rb49MTMHydzAzq4A=";
-        # hash = "sha256-dVvm089c9Qt5dzrk8n/Ow/y3WVFjAdT5G3hXAl5MghM=";
-      };
-    });
     brightness-control = customScript rec {
       name = "brightness-control";
       runtimeInputs = [ super.brightnessctl ];
@@ -74,9 +64,9 @@ _:
       };
     });
     color-oracle = customDerivation "color-oracle";
-    deskflow = unstable.deskflow.override {
-      inherit (self) qt6;
-    };
+    # deskflow = unstable.deskflow.override {
+    #     qt6 = self.qt6;
+    #   };
     diff-nix-generations = customScript rec {
       name = "diff-nix-generations";
       runtimeInputs = with super; [
@@ -91,7 +81,7 @@ _:
     };
     ds9 = customDerivation "ds9";
     gaia = customDerivation "gaia";
-    inherit (unstable) nix-search-tv;
+    # inherit (unstable) nix-search-tv;
     nixos-generations = customScript rec {
       name = "generations";
       runtimeInputs = with super; [
@@ -105,18 +95,19 @@ _:
       runtimeInputs = [ super.which ];
       file = "get-package-dir";
     };
-    inherit (unstable) karp;
+    # inherit (unstable) karp;
     kdePackages = super.kdePackages // {
-      inherit (super) kara;
-      klassy = super.nur.repos.shadowrz.klassy-qt6.overrideAttrs (oldAttrs: rec {
-        version = "58c6ad5";
-        src = super.fetchFromGitHub {
-          owner = "paulmcauley";
-          repo = oldAttrs.pname;
-          rev = version;
-          hash = "sha256-B7nQVok/3uCskGykqEoaZcpzpIk15tT7qDPG3qCbn4Q=";
-        };
-      }); # customDerivation "klassy";
+      inherit (super) kara darkly;
+      klassy = customDerivation "klassy";
+      # klassy = super.nur.repos.shadowrz.klassy-qt6.overrideAttrs (oldAttrs: rec {
+      #   version = "58c6ad5";
+      #   src = super.fetchFromGitHub {
+      #     owner = "paulmcauley";
+      #     repo = oldAttrs.pname;
+      #     rev = version;
+      #     hash = "sha256-B7nQVok/3uCskGykqEoaZcpzpIk15tT7qDPG3qCbn4Q=";
+      #   };
+      # });
       inherit (unstable.kdePackages) krohnkite;
     };
     nixfmt = super.nixfmt-rfc-style;
@@ -128,7 +119,7 @@ _:
       ];
       file = name;
     };
-    inherit (unstable) onedrive;
+    # inherit (unstable) onedrive;
     pond = customDerivation "pond";
     rofi-calc = super.rofi-calc.override {
       rofi-unwrapped = self.rofi-wayland-unwrapped;
@@ -177,7 +168,7 @@ _:
     vimPlugins =
       super.vimPlugins
       // {
-        inherit (unstable.vimPlugins) snacks-nvim;
+        # inherit (unstable.vimPlugins) snacks-nvim;
       }
       // builtins.mapAttrs (_name: value: (githubVimPlugin value)) {
         f-string-toggle-nvim = {
@@ -201,16 +192,5 @@ _:
         eza
       ];
     };
-    zoom-us =
-      (super.zoom-us.override {
-        pipewire = self.pipewire-zoom;
-      }).overrideAttrs
-        (_oldAttrs: rec {
-          version = "6.0.2.4680";
-          src = super.fetchurl {
-            url = "https://zoom.us/client/${version}/zoom_x86_64.pkg.tar.xz";
-            hash = "sha256-027oAblhH8EJWRXKIEs9upNvjsSFkA0wxK1t8m8nwj8=";
-          };
-        });
   }
 )

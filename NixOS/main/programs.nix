@@ -6,7 +6,7 @@
     man-pages
     man-pages-posix
 
-    konsole # always have an editor and terminal!
+    kdePackages.konsole # always have an editor and terminal!
     git
     bluez # bluetooth
     coreutils

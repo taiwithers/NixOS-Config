@@ -17,8 +17,8 @@
     configurationLimit = 16;
 
     font = ''${
-      pkgs.nerdfonts.override { fonts = [ "SpaceMono" ]; }
-    }/share/fonts/truetype/NerdFonts/SpaceMonoNerdFont-Regular.ttf'';
+      pkgs.nerd-fonts.space-mono
+    }/share/fonts/truetype/NerdFonts/SpaceMono/SpaceMonoNerdFontPropo-Regular.ttf'';
     fontSize = 24;
 
     splashImage = ./background.png;
