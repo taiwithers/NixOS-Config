@@ -64,9 +64,9 @@ _:
       };
     });
     color-oracle = customDerivation "color-oracle";
-    deskflow = unstable.deskflow.override {
-        qt6 = self.qt6;
-      };
+    # deskflow = unstable.deskflow.override {
+    #     qt6 = self.qt6;
+    #   };
     diff-nix-generations = customScript rec {
       name = "diff-nix-generations";
       runtimeInputs = with super; [
@@ -81,7 +81,7 @@ _:
     };
     ds9 = customDerivation "ds9";
     gaia = customDerivation "gaia";
-    inherit (unstable) nix-search-tv;
+    # inherit (unstable) nix-search-tv;
     nixos-generations = customScript rec {
       name = "generations";
       runtimeInputs = with super; [
@@ -95,9 +95,9 @@ _:
       runtimeInputs = [ super.which ];
       file = "get-package-dir";
     };
-    inherit (unstable) karp;
+    # inherit (unstable) karp;
     kdePackages = super.kdePackages // {
-      inherit (super) kara;
+      inherit (super) kara darkly;
       klassy = customDerivation "klassy";
       # klassy = super.nur.repos.shadowrz.klassy-qt6.overrideAttrs (oldAttrs: rec {
       #   version = "58c6ad5";
@@ -119,7 +119,7 @@ _:
       ];
       file = name;
     };
-    inherit (unstable) onedrive;
+    # inherit (unstable) onedrive;
     pond = customDerivation "pond";
     rofi-calc = super.rofi-calc.override {
       rofi-unwrapped = self.rofi-wayland-unwrapped;
@@ -168,7 +168,7 @@ _:
     vimPlugins =
       super.vimPlugins
       // {
-        inherit (unstable.vimPlugins) snacks-nvim;
+        # inherit (unstable.vimPlugins) snacks-nvim;
       }
       // builtins.mapAttrs (_name: value: (githubVimPlugin value)) {
         f-string-toggle-nvim = {
@@ -189,16 +189,5 @@ _:
       file = "whichl";
       runtimeInputs = with super; [ which eza ];
     };
-    zoom-us =
-      (super.zoom-us.override {
-        pipewire = self.pipewire-zoom;
-      }).overrideAttrs
-        (_oldAttrs: rec {
-          version = "6.0.2.4680";
-          src = super.fetchurl {
-            url = "https://zoom.us/client/${version}/zoom_x86_64.pkg.tar.xz";
-            hash = "sha256-027oAblhH8EJWRXKIEs9upNvjsSFkA0wxK1t8m8nwj8=";
-          };
-        });
   }
 )
