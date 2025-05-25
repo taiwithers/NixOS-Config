@@ -86,7 +86,6 @@
       kb-row-up = "Up,Alt+k";
       kb-cancel = "Escape,Control+bracketleft";
     };
-    # font = "Liberation Mono 16";
     location = "center";
     theme = with config.lib.formats.rasi; {
       # Modified from
@@ -104,7 +103,7 @@
 
       ###         Global Properties
       "*" = with colours.hex-hash; {
-        font = "Space Mono Nerd Font 12";
+        # font = "SpaceMono Nerd Font Propo 12";
         background = mkLiteral navy;
         background-alt = mkLiteral dark-blue;
         foreground = mkLiteral ivory;
