@@ -77,8 +77,8 @@
     #     # requires https://marketplace.visualstudio.com/items?itemName=mxschmitt.postscript
     #   ];
 
-    keybindings = builtins.fromJSON (builtins.readFile ./vscodium-keybindings.json);
-    userSettings = import ./settings.nix { inherit pkgs; };
+    profiles.default.keybindings = ./vscodium-keybindings.json;
+    profiles.default.userSettings = import ./settings.nix { inherit pkgs; };
   };
 
   # workaround for remote-ssh wanting writable ssh config...
