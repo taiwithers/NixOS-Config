@@ -99,16 +99,12 @@
 
         # fonts
         cm_unicode
-        intel-one-mono
         open-sans
         dejavu_fonts
-        (nerdfonts.override {
-          fonts = [
-            # "InteloneMono" # not available in nixpkgs nerdfont
-            "SpaceMono"
-            "NerdFontsSymbolsOnly"
-          ];
-        })
+        nerd-fonts.space-mono
+        nerd-fonts.symbols-only
+        nerd-fonts.intone-mono
+        
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         coreutils
