@@ -12,7 +12,7 @@ let
       ];
 
       imageviewers = [
-        gwenview
+        kdePackages.gwenview
         firefox
       ];
 

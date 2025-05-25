@@ -118,9 +118,9 @@ rec {
   xdg.configFile."gtkrc-2.0".force = true;
 
   xdg.configFile."gtk-4.0/window_decorations.css".source =
-    "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
+    "${pkgs.kdePackages.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
   xdg.configFile."gtk-3.0/window_decorations.css".source =
-    "${pkgs.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
+    "${pkgs.kdePackages.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
 
   gtk = rec {
     enable = true;

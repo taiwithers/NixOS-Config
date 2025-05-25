@@ -125,7 +125,7 @@
     kdePackages.dolphin
     keepassxc
     krita
-    okular
+    kdePackages.okular
     onedrivegui
     onlyoffice-desktopeditors
     prismlauncher
