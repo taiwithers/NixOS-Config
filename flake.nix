@@ -2,7 +2,7 @@
   description = "NixOS/Home Manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -14,11 +14,6 @@
 
     arc = {
       url = "github:arcnmx/nixexprs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    darkly = {
-      url = "github:Bali10050/Darkly/be3bf78";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -42,7 +37,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -93,8 +88,6 @@
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixpkgs-zoom.url = "nixpkgs/24.05"; # https://github.com/NixOS/nixpkgs/issues/322970
-
     plasma-manager = {
       url = "github:nix-community/plasma-manager/trunk";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -122,20 +115,22 @@
     };
 
     stylix = {
-      url = "github:danth/stylix/release-24.11";
+      url = "github:danth/stylix/release-25.05";
       inputs.base16-fish.follows = "";
       inputs.base16-helix.follows = "";
       inputs.base16-vim.follows = "";
       inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-parts.follows = "flake-parts";
       inputs.gnome-shell.follows = "";
       inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nur.follows = "nur";
       inputs.systems.follows = "nix-systems";
       inputs.tinted-foot.follows = "";
       inputs.tinted-tmux.follows = "";
       inputs.firefox-gnome-theme.follows = "";
-      # stylix.inputs.tinted-zed.follows = "";
+      inputs.tinted-zed.follows = "";
+
     };
 
     treefmt-nix = {
@@ -175,7 +170,6 @@
               # packages from external flakes
               agenix = flake-inputs.agenix.packages.${system}.default;
               kdePackages = _super.kdePackages // {
-                darkly = flake-inputs.darkly.packages.${system}.darkly-qt6;
                 kwin-forceblur = flake-inputs.kwin-effects-forceblur.packages.${system}.default;
               };
               nix-inspect = flake-inputs.nix-inspect.packages.${system}.default;
