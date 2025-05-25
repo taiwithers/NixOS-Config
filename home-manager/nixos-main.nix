@@ -109,8 +109,10 @@
     pond
     rogue
     starfetch
+    tokei
     ugrep
     unar
+    wiki-tui
     wl-clipboard
     xdg-ninja
     xwayland-satellite-stable
