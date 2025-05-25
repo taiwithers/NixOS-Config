@@ -175,6 +175,7 @@ rec {
     workspace.colorScheme = "custom";
     workspace.wallpaper = builtins.fetchurl {
       url = "https://images.unsplash.com/photo-1487528699198-88d79d72479f";
+      name = "flowers.jpg";
       sha256 = "sha256:0vy1g8qzllppk4zihwd6qjkbfj56y27pydv7r1c43hq1n5w2qccp";
     };
     configFile.kdeglobals.General.AccentColor = colours.rgb255-commasep.blue-grey; # "146,110,228";
