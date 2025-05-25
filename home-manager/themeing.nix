@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ stylix.homeManagerModules.stylix ];
+  imports = [ stylix.homeModules.stylix ];
 
   xdg.configFile."sublime-text/Packages/User/Base16/theme.tmTheme".source = config.lib.stylix.colors {
     template = builtins.readFile (
