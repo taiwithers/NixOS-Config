@@ -35,41 +35,43 @@
         path = "Profiles/Personal";
         id = 0;
 
-        extensions =
-          with extensions;
-          [
-            clearurls
-            cookie-autodelete
-            consent-o-matic
-            darkreader
-            decentraleyes
-            enhancer-for-nebula
-            indie-wiki-buddy
-            keepassxc-browser
-            lovely-forks
-            privacy-badger
-            refined-github
-            search-by-image
-            snowflake # tor extension to let others use connection
-            # socialfocus, companion to untrap, not available in nur
-            sponsorblock
-            tabliss
-            ublock-origin
-            untrap-for-youtube
-            vimium
-            # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
-            # https://addons.mozilla.org/en-US/firefox/addon/mute-sites-by-default/
-          ];
+        extensions = {
+          packages =
+            with extensions;
+            [
+              clearurls
+              cookie-autodelete
+              consent-o-matic
+              darkreader
+              decentraleyes
+              enhancer-for-nebula
+              indie-wiki-buddy
+              keepassxc-browser
+              lovely-forks
+              privacy-badger
+              refined-github
+              search-by-image
+              snowflake # tor extension to let others use connection
+              # socialfocus, companion to untrap, not available in nur
+              sponsorblock
+              tabliss
+              ublock-origin
+              untrap-for-youtube
+              vimium
+              # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
+              # https://addons.mozilla.org/en-US/firefox/addon/mute-sites-by-default/
+            ];
+          };
 
         search = rec {
           force = true;
-          default = "DuckDuckGo";
+          default = "ddg";
           privateDefault = default;
           engines = {
-            "Google".metaData.hidden = false;
+            "google".metaData.hidden = false;
             "Wikipedia".metaData.hidden = false;
-            "Bing".metaData.hidden = true;
-            "eBay".metaData.hidden = true;
+            "bing".metaData.hidden = true;
+            "ebay".metaData.hidden = true;
             "Nix Packages" = {
               urls = [
                 {
@@ -249,26 +251,6 @@
         userChrome = builtins.readFile ./userChrome.css;
         userContent = builtins.readFile ./userContent.css;
       };
-
-      profiles."Student" = {
-        path = "Profiles/Student";
-        id = 1;
-        extensions = profiles."Personal".extensions ++ [ extensions.zotero-connector ];
-        inherit (profiles."Personal") settings;
-        inherit (profiles."Personal") search;
-        userChrome = builtins.readFile ./userChrome.css;
-        userContent = builtins.readFile ./userContent.css;
-      };
-
-      # profiles."Staff" = {
-      #   path = "Profiles/Staff";
-      #   id = 2;
-      #   extensions = profiles."Personal".extensions;
-      #   settings = profiles."Personal".settings;
-      #   search = profiles."Personal".search;
-      #   userChrome = builtins.readFile ./userChrome.css;
-      #   userContent = builtins.readFile ./userContent.css;
-      # };
 
     };
   home.file =
