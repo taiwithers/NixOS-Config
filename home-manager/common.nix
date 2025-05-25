@@ -74,6 +74,9 @@
       __HM_SESS_VARS_SOURCED = ""; # "unset" this
     };
 
+    programs.fd.enable = true;
+    programs.ripgrep.enable = true;
+
     home.packages =
       with pkgs;
       [
@@ -88,13 +91,10 @@
         nix-tree
 
         # utilities
-        fd
         rename
         sd
         zip
         trash-cli
-        ripgrep
-        bash-completion
         whichl
 
         # fonts
