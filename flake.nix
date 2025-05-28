@@ -242,6 +242,7 @@
             system.stateVersion = "24.05";
             wsl.enable = true;
             wsl.defaultUser = "tai";
+            wsl.docker-desktop.enable = true;
           }
           # flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
           # flake-inputs.niri.nixosModules.niri

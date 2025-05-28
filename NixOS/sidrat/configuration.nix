@@ -2,6 +2,13 @@
 
 {
   programs.nix-ld.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     git
@@ -122,6 +129,7 @@
     isNormalUser = true;
     description = "Tai";
     extraGroups = [
+      "docker"
       "networkmanager"
       "wheel"
     ];
