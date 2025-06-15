@@ -49,17 +49,27 @@
       name = "Posy_Cursor_Black";
       size = 32;
     };
+    image = builtins.fetchurl {
+      url = "https://images.unsplash.com/photo-1487528699198-88d79d72479f";
+      name = "flowers.jpg";
+      sha256 = "sha256:0vy1g8qzllppk4zihwd6qjkbfj56y27pydv7r1c43hq1n5w2qccp";
+    };
     opacity = {
       applications = 0.8;
       desktop = 0.8;
       popups = 0.8;
       terminal = 0.0;
     };
+    polarity = "dark";
     targets = {
       bat.enable = true;
       fzf.enable = true;
       gtk.enable = false; # doesn't follow breeze theme
-      kde.enable = false; # requires wallpaper to be set
+      kde = {
+        enable = false;
+        decorations = "org.kde.klassy"; # also set in plasma-manager
+        useWallpaper = true;
+      };
       kitty.enable = true;
       lazygit.enable = true;
       neovim = {
@@ -68,9 +78,12 @@
         transparentBackground.main = false;
         transparentBackground.signColumn = false;
       };
+      nixcord.enable = true;
+      # qt.enable = true;
       rofi.enable = false; # conflicts with rofi layout styling
       spicetify.enable = false;
-      # starship.enable = false; # haven't investigated
+      starship.enable = true; # haven't investigated
+      vencord.enable = true; # idk man
       vesktop.enable = true;
       vscode.enable = true;
       yazi.enable = true;
