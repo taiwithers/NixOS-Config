@@ -10,7 +10,7 @@ export MAMBA_ROOT_PREFIX=~/.local/state/micromamba
 eval "$(micromamba shell hook --shell posix --root-prefix $MAMBA_ROOT_PREFIX)"
 micromamba create --file {ta.yml} --yes --root-prefix $MAMBA_ROOT_PREFIX
 
-
+sudo systemctl restart NetworkManager
 nmcli --ask device wifi connect <SSID> 
 nmcli connection
 
