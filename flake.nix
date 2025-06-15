@@ -69,8 +69,7 @@
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-      inputs.systems.follows = "nix-systems";
+      inputs.flake-parts.follows = "flake-parts";
     };
 
     nix-inspect = {
