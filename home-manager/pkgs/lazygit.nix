@@ -2,6 +2,9 @@ _: {
   programs.lazygit = {
     enable = true;
     settings = {
+      git = {
+        overrideGpg = true;
+      };
       gui = {
         expandFocusedSidePanel = true;
         expandedSidePanelWeight = 2;
