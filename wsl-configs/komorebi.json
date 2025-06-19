@@ -1,0 +1,90 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.35/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
+  "mouse_follows_focus": false,
+  "window_hiding_behaviour": "Cloak",
+  "cross_boundary_behaviour": "Monitor",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_workspace_padding": 0,
+  "default_container_padding": 2,
+  "border": true,
+  "border_width": 6,
+  "border_offset": -1,
+  "border_style": "Square",
+  "theme": {
+    "palette": "Base16",
+    "name": "DaOneOcean",
+    "unfocused_border": "Base01",
+    "floating_border": "Base0B",
+    "single_border": "Base0D",
+    "bar_accent": "Base0D"
+  },
+  "stackbar": {
+    "height": 40,
+    "mode": "OnStack",
+    "tabs": {
+      "width": 300
+    }
+  },
+  "display_index_preferences": {
+    "0": "2237344", // laptop
+    "1": "S7LMYX000333", // vertical work monitor
+    "2": "0", // horizontal work monitor
+    "3": "AAPE59A000546" // home monitor
+  },
+  "monitor_index_preferences": {
+    "0": {
+      "bottom": 0,
+      "top": 1664,
+      "left": 0,
+      "right": 2496
+    },
+    "1": {
+      "bottom": 500,
+      "top": 3060,
+      "left": -1440,
+      "right": 0
+    },
+    "2": {
+      "bottom": 1500,
+      "top": 2940,
+      "left": 2496,
+      "right": 5056
+    },
+    "3":{
+      "bottom": 0,
+      "top": 1664,
+      "left": 2496,
+      "right": 5056
+    }
+  },
+  "monitors": [
+    // monitor 1 (index 0)
+    {
+      "workspaces": [
+        {
+          "name": "I",
+          "layout": "BSP"
+        }
+      ]
+    },
+    // monitor 2
+    {
+      "workspaces": [
+        {
+          "name": "A",
+          "layout": "HorizontalStack"
+        }
+      ]
+    },
+    // monitor 3 (horizontal work)
+    {
+      "workspaces": [
+        {
+          "name": "1",
+          "layout": "BSP"
+        }
+      ]
+    }
+  ]
+}
