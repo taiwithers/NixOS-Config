@@ -272,15 +272,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1750920366,
-        "narHash": "sha256-7wUVSodQ/in184+EX9pYLij+Op74AcLJ1ckO68TmQ+Q=",
+        "lastModified": 1745057346,
+        "narHash": "sha256-71cyYKUul9owRzbcObXkzhTBcmnXJsvmk1gq0RbP5PQ=",
         "owner": "taj-ny",
         "repo": "kwin-effects-forceblur",
-        "rev": "5feff4aacad648740504dc1c1d16af1b6992d016",
+        "rev": "fea9f80f27389aa8a62befb5babf40b28fed328d",
         "type": "github"
       },
       "original": {
         "owner": "taj-ny",
+        "ref": "fea9f80f",
         "repo": "kwin-effects-forceblur",
         "type": "github"
       }

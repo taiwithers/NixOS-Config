@@ -42,7 +42,7 @@
     };
 
     kwin-effects-forceblur = {
-      url = "github:taj-ny/kwin-effects-forceblur";
+      url = "github:taj-ny/kwin-effects-forceblur/fea9f80f";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
     };
