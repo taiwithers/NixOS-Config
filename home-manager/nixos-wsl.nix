@@ -150,6 +150,7 @@
   common.nixConfigDirectory = "${config.common.userHome}/Nix";
   common.useXDG = true;
   common.nixos = true;
+  common.wsl = true;
   # home.shellAliases."storagespace" =
   # "dust --no-percent-bars --depth 0 --no-colors --skip-total --full-paths /1-Data-Fast /2-Data-Medium /3-Data-Slow /home/$USER /nix";
   home.stateVersion = "24.11";

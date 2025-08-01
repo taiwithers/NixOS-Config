@@ -12,6 +12,10 @@ require("options")
 require("plugins")
 require("keymaps")
 require("autocommands")
+
+if io.open("wsl-clipboard") then
+  require("wsl-clipboard")
+end
 -- vim.g.colors_name = base16theme -- activate colour scheme?
 
 -- require("rose-pine").setup({

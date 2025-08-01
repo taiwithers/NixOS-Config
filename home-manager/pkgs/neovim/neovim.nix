@@ -45,6 +45,7 @@ in
         (loadPlugin hmts-nvim "hmts")
         (loadPlugin nvim-tree-lua "nvim-tree")
         (loadPlugin render-markdown-nvim "render-markdown")
+        (loadPlugin nvim-surround "nvim-surround")
 
         # in order of plugins.lua appearance
         bufferline-nvim # bufferline
@@ -128,4 +129,8 @@ in
         ln -s "$source" "$destination"
       done
     '';
+
+  xdg.configFile."nvim/lua/wsl-clipboard.lua" = pkgs.lib.mkIf config.common.wsl {
+      source = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim/wsl-clipboard.lua";
+    };
 }

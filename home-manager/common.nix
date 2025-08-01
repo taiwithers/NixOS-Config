@@ -25,6 +25,11 @@
       type = types.bool;
     };
 
+    wsl = mkOption {
+        default = false;
+        type = types.bool;
+      };
+
     # Reference options
     userHome = mkOption { default = "/home/${config.home.username}"; };
     configHome = mkOption { default = config.xdg.configHome; };

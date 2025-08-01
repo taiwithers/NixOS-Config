@@ -130,7 +130,7 @@ require("mini.pairs").setup({
 		-- ['>'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].' },
 	},
 })
-require("mini.surround").setup()
+-- require("mini.surround").setup()
 require("modes").setup({
 	line_opacity = 0.2,
 	set_cursor = false,
