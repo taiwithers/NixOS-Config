@@ -73,6 +73,7 @@
       "__pycache__"
       "*.ipynb_checkpoints"
       ".direnv"
+      "*:Zone.Identifier"
     ];
 
     maintenance = {
