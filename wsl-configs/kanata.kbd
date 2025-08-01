@@ -11,11 +11,14 @@
   retain-caps-word (0 1 2 3 4 5 6 7 8 9 bspc del up down left right - lsft rsft)
 )
 
+
 (defalias
   ;; layer management
   f1L (tap-hold $tap-repress-timeout $hold-timeout grv (layer-while-held layers))
   qwr (layer-switch qwerty)
   eng (layer-switch engram)
+  sym (layer-switch symbols)
+  sysp (tap-hold $tap-repress-timeout $hold-timeout spc (layer-while-held symbols))
 
   ;; function keys
   f3Cc (tap-hold $tap-repress-timeout $hold-timeout C-c f3)
@@ -25,6 +28,16 @@
   ;; caps
   capsw (caps-word-custom-toggle $caps-word-timeout $alphabet $retain-caps-word)
   CWesc (tap-hold $tap-repress-timeout $hold-timeout esc @capsw)	
+
+  ;; symbols
+  lpar S-9
+  rpar S-0
+  excl S-1
+  perc S-5
+  crat S-6
+  dllr S-4
+  hash S-3
+  asrk S-8
 )
 
 
@@ -44,13 +57,14 @@
 ;; Apart from the layer switching and live reload, all other keys are the
 ;; underscore _ which means "transparent". Transparent means the base layer
 ;; behaviour is used when pressing that key.
+
 (deflayer layers
   _    _    _    _    _    _    _    _    _    _    _    _
-  _    @qwr @eng lrld _    _    _    _    _    _    _    _    _    _
+  _    @qwr @eng @sym _    _    _    _    _    _    lrld _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _              _              _    _
+  _    _    _              _              _    _    
 )
 
 (deflayer qwerty
@@ -68,5 +82,14 @@
   tab    b    y     o     u     '    ;    l    d    w    v    z    grv  \
   @CWesc c    i     e     a     ,    .    h    t    s    n    q    ret
   lsft   g    x     j     k     -    /    r    m    f    p    rsft
-  lctl   lmet lalt              spc            ralt rctl
+  lctl   lmet lalt              @sysp          ralt rctl
+)
+
+(deflayer symbols
+  @f1L   f2    @f3Cc @f4Cv @f5Cx f6   f7   f8   f9    f10  f11  f12  
+  _      _     lsft  [     ]     lalt _    _    _     _    _    _    _    bspc
+  tab    @excl grv   @lpar @rpar     '    ;    bspc tab   spc  ret  _    _    _
+  @CWesc =     @perc @crat @dllr  ,    .    h    j     k    l    _    ret
+  lsft   _     \     @hash @asrk  -    /    del  S-tab esc  _    rsft
+  lctl   lmet  lalt              spc            ralt  rctl
 )
