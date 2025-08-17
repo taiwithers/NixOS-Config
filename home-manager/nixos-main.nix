@@ -34,10 +34,10 @@
         inherit config pkgs colours;
         inherit (flake-inputs) plasma-manager;
       })
-      (import ./pkgs/vesktop/vesktop.nix {
-        inherit config pkgs colours;
-        inherit (flake-inputs) nixcord;
-      })
+      # (import ./pkgs/vesktop/vesktop.nix {
+      #   inherit config pkgs colours;
+      #   inherit (flake-inputs) nixcord;
+      # })
       (import ./pkgs/niri.nix {
         inherit config;
         inherit pkgs;
@@ -134,8 +134,11 @@
     qownnotes
     vlc
     zoom-us
+    discord
+    sonic-pi
     
     kdePackages.kdialog
+heroic
 
   ];
   

@@ -81,6 +81,9 @@ _:
     };
     ds9 = customDerivation "ds9";
     gaia = customDerivation "gaia";
+    heroic = super.heroic.override {
+        extraPkgs = pkgs: [ super.gamemode];
+      };
     # inherit (unstable) nix-search-tv;
     nixos-generations = customScript rec {
       name = "generations";
@@ -168,20 +171,20 @@ _:
     vimPlugins =
       super.vimPlugins
       // {
-        # inherit (unstable.vimPlugins) snacks-nvim;
+        inherit (unstable.vimPlugins) nvim-tree-lua nui-nvim nvim-notify;
       }
       // builtins.mapAttrs (_name: value: (githubVimPlugin value)) {
         f-string-toggle-nvim = {
           author = "roobert";
           repo = "f-string-toggle.nvim";
-          rev = "4e2ad79";
-          hash = "sha256-IMMq4cklHxrhfHALcCamMWT4ekBqOMtkiAUXh8YlaM0=";
+          rev = "74545e6";
+          hash = "";
         };
         modes-nvim = {
           author = "mvllow";
           repo = "modes.nvim";
-          rev = "326cff3";
-          hash = "sha256-z1XD0O+gG2/+g/skdWGC64Zv4dXvvhWesaK/8DcPF/E=";
+          rev = "90d7abf";
+          hash = "sha256-cQWvug2K7Qr0V6TT0BmQVxTL09dxNBLDxz73yZVEEes=";
         };
       };
     whichl = customScript {
