@@ -39,6 +39,7 @@
           packages =
             with extensions;
             [
+              bitwarden
               clearurls
               cookie-autodelete
               consent-o-matic
@@ -51,6 +52,7 @@
               privacy-badger
               refined-github
               search-by-image
+              shinigami-eyes
               snowflake # tor extension to let others use connection
               # socialfocus, companion to untrap, not available in nur
               sponsorblock
@@ -58,6 +60,7 @@
               ublock-origin
               untrap-for-youtube
               vimium
+              wayback-machine
               # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
               # https://addons.mozilla.org/en-US/firefox/addon/mute-sites-by-default/
             ];
@@ -126,8 +129,9 @@
           "browser.formfill.enable" = false;
           "browser.helperApps.deleteTempFileOnExit" = true; # betterfox security
           "browser.menu.showViewImageInfo" = true; # betterfox
-          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false; # betterfox
-          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false; # betterfox
+          "browser.ml.enabled" = false;
+          "browser.ml.chat.enabled" = false;
+          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false; # betterfox "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false; # betterfox
           "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
           "browser.newtabpage.activity-stream.feeds.telemetry" = false; # betterfox
           "browser.newtabpage.activity-stream.feeds.topsites" = false;
