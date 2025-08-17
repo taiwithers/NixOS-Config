@@ -63,6 +63,7 @@ in
         otter-nvim
 
         precognition-nvim # precognition
+        render-markdown-nvim
         tabout-nvim # tabout
         telescope-nvim # telescope
         telescope-file-browser-nvim
@@ -74,7 +75,7 @@ in
         which-key-nvim # which-key
         nvim-window-picker # window-picker
 
-        legendary-nvim # loaded after which-key, change to unstable
+        # legendary-nvim # loaded after which-key, change to unstable
         nvim-spider # loaded in keymaps.lua
 
         # nvim-spectre

@@ -174,6 +174,7 @@ require("noice").setup({
 vim.notify = require("notify").setup({
 	render = "wrapped-compact",
 	stages = "static",
+	top_down = false
 })
 require("nvim-tree").setup()
 require("nvim-treesitter.configs").setup({
@@ -181,6 +182,8 @@ require("nvim-treesitter.configs").setup({
 	incremental_selection = { enable = true },
 	intentation = { enable = true },
 })
+
+require("render-markdown").setup({latex={enabled=false}})
 require("treesitter-context").setup({
 	multiline_threshold = 4,
 })
@@ -260,10 +263,10 @@ require("window-picker").setup({
 vim.g.vimtex_complete_close_braces = 1
 -- vim.g.vimtex_complete_bib.simple = 1 -- only match bibkeys for citations
 
-require("legendary").setup({ -- needs to be after which-key
-	extensions = { which_key = {
-		auto_register = true,
-		do_binding = false,
-		use_groups = true,
-	} },
-})
+-- require("legendary").setup({ -- needs to be after which-key
+-- 	extensions = { which_key = {
+-- 		auto_register = true,
+-- 		do_binding = false,
+-- 		use_groups = true,
+-- 	} },
+-- })
