@@ -109,7 +109,6 @@
     nur = {
       url = "github:nix-community/NUR";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -124,10 +123,8 @@
       inputs.base16-fish.follows = "";
       inputs.base16-helix.follows = "";
       inputs.base16-vim.follows = "";
-      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       inputs.gnome-shell.follows = "";
-      inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nur.follows = "nur";
       inputs.systems.follows = "nix-systems";
