@@ -887,6 +887,7 @@ rec {
     ###############################
     # Power
     ###############################
+    configFile.powerdevilrc."General"."pausePlayersOnSuspend" = false;
     powerdevil = rec {
       batteryLevels = {
         lowLevel = 20;
@@ -897,7 +898,7 @@ rec {
 
       AC = {
         autoSuspend.action = "sleep";
-        autoSuspend.idleTimeout = 300; # time to autoSuspend action
+        autoSuspend.idleTimeout = 60 * 30; # time to autoSuspend action
         dimDisplay.enable = false;
 
         powerButtonAction = "showLogoutScreen";
