@@ -138,6 +138,7 @@
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory} && nix fmt)";
         "diff-hm-generations" = "diff-nix-generations home";
+        "which" = "(alias; declare -f) | which --read-alias --read-functions --show-tilde --show-dot";
       }
       // pkgs.lib.optionalAttrs config.common.nixos {
         "nixrebuild" =
