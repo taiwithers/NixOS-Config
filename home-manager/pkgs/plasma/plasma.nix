@@ -54,7 +54,7 @@ let
 in
 rec {
   imports = [
-    plasma-manager.homeManagerModules.plasma-manager
+    plasma-manager.homeModules.plasma-manager
   ];
 
   qt.enable = true;
