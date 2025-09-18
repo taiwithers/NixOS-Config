@@ -61,6 +61,7 @@
               untrap-for-youtube
               vimium
               wayback-machine
+              xkit-rewritten
               # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
               # https://addons.mozilla.org/en-US/firefox/addon/mute-sites-by-default/
             ];
@@ -129,7 +130,7 @@
           "browser.formfill.enable" = false;
           "browser.helperApps.deleteTempFileOnExit" = true; # betterfox security
           "browser.menu.showViewImageInfo" = true; # betterfox
-          "browser.ml.enabled" = false;
+          "browser.ml.enable" = false;
           "browser.ml.chat.enabled" = false;
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false; # betterfox "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false; # betterfox
           "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
