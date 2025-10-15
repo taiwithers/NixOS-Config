@@ -138,7 +138,8 @@
     sonic-pi
     
     kdePackages.kdialog
-heroic
+    heroic
+    ventoy-full-qt
 
   ];
   
