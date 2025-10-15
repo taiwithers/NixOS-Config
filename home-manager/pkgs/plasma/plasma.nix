@@ -115,7 +115,7 @@ rec {
     gtk-theme-name="${gtk-theme.name}"
     gtk-toolbar-style=3
   '';
-  xdg.configFile."gtkrc-2.0".force = true;
+  # xdg.configFile."gtkrc-2.0".force = true;
 
   xdg.configFile."gtk-4.0/window_decorations.css".source =
     "${pkgs.kdePackages.kde-gtk-config}/share/themes/Breeze/window_decorations.css";
