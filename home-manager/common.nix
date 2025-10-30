@@ -127,8 +127,9 @@
       {
         "rm" = "rm --interactive=always --verbose";
         "untar" = "tar -xvf";
-        "printenv" = "printenv | sort";
+        "printenv" = "printenv | sort | bat --plain --language sh";
         "wget" = "wget --hsts-file=${stateHome}/wget_hsts";
+        "o"="xdg-open";
 
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
