@@ -22,9 +22,9 @@
         AutofillAddressEnabled = false;
         AutofillCreditCardEnabled = false;
         DisableFirefoxStudies = true;
-        DisablePocket = true;
         DisableTelemetry = true;
         NoDefaultBookmarks = true;
+        OfferToSaveLogins = false;
         OverrideFirstRunPage = "";
         OverridePostUpdatePage = "";
         PromptForDownloadLocation = true;
@@ -50,6 +50,7 @@
               keepassxc-browser
               lovely-forks
               privacy-badger
+              reddit-enhancement-suite
               refined-github
               search-by-image
               shinigami-eyes
@@ -76,6 +77,7 @@
             "Wikipedia".metaData.hidden = false;
             "bing".metaData.hidden = true;
             "ebay".metaData.hidden = true;
+            "perplexity".metaData.hidden = true;
             "Nix Packages" = {
               urls = [
                 {
@@ -125,13 +127,15 @@
           "browser.download.manager.addToRecentDocs" = false;
           "browser.download.open_pdf_attachments_inline" = true;
           "browser.download.start_downloads_in_tmp_dir" = true; # betterfox security
-          "browser.download.useDownloadDir" = false; # ask where to save files
+          # "browser.download.useDownloadDir" = false; # ask where to save files, done by PromptForDownloadLocation policy
           "browser.engagement.home-button.has-removed" = true;
           "browser.formfill.enable" = false;
           "browser.helperApps.deleteTempFileOnExit" = true; # betterfox security
           "browser.menu.showViewImageInfo" = true; # betterfox
           "browser.ml.enable" = false;
           "browser.ml.chat.enabled" = false;
+          # "browser.ml.linkPreview.enabled" = false; # off by default rn
+          # "browser.ml.linkPreview.optin" = false; # off by default rn
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false; # betterfox "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false; # betterfox
           "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
           "browser.newtabpage.activity-stream.feeds.telemetry" = false; # betterfox
@@ -149,6 +153,9 @@
           "browser.shell.checkDefaultBrowser" = false;
           "browser.startup.page" = 3; # always restore session
           "browser.tabs.crashReporting.sendReport" = false; # betterfox
+          "browser.tabs.groups.smart.enabled" = false; # ai bullshit
+          # "browser.tabs.groups.smart.optin" = false; # off by default
+          "browser.tabs.groups.smart.userEnabled" = false; # ai bullshit
           "browser.uitour.enabled" = false; # betterfox security
           "browser.urlbar.groupLabels.enabled" = false;
           "browser.urlbar.quicksuggest.enabled" = false;
@@ -176,6 +183,7 @@
           "extensions.getAddons.showPane" = false;
           "extensions.htmlaboutaddons.recommendations.enabled" = false;
           "extensions.pocket.enabled" = false;
+          "extensions.ml.enabled" = false;
           "findbar.highlightAll" = true; # betterfox
           "full-screen-api.transition-duration.enter" = "0 0"; # betterfox
           "full-screen-api.transition-duration.leave" = "0 0"; # betterfox
@@ -189,6 +197,7 @@
           "media.cache_resume_threshold" = 3600; # betterfox - fastfox
           "media.hardware-video-decoding.enabled" = true; # use gpu for video
           "media.memory_cache_max_size" = 65536; # betterfox - fastfox
+          "media.videocontrols.picture-in-picture.video-toggle.enabled" = true;
           "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = true;
           "network.auth.subresource-http-auth-allow" = 1;
           "network.captive-portal-service.enabled" = false; # betterfox
