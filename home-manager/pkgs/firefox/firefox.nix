@@ -51,6 +51,7 @@
               lovely-forks
               privacy-badger
               reddit-enhancement-suite
+              redirect-to-wiki-gg
               refined-github
               search-by-image
               shinigami-eyes
@@ -58,6 +59,7 @@
               # socialfocus, companion to untrap, not available in nur
               sponsorblock
               tabliss
+              ublacklist
               ublock-origin
               untrap-for-youtube
               vimium
