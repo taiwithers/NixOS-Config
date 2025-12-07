@@ -1,6 +1,6 @@
 {
-  "timeStamp": 1758584889567,
-  "version": "1.66.4",
+  "timeStamp": 1764893027588,
+  "version": "1.68.0",
   "userSettings": {
     "advancedUserEnabled": true,
     "cloudStorageEnabled": true,
@@ -42,9 +42,16 @@
   },
   "whitelist": [
     "192.168.0.1",
+    "accounts.pcid.ca",
     "chrome-extension-scheme",
+    "dmitrykremiansky.artstation.com",
+    "mail.google.com",
     "moreshowerspace.com",
     "moz-extension-scheme",
+    "mypharmacy.shoppersdrugmart.ca",
+    "www.canfar.net",
+    "www.payments.simplii.com",
+    "www.protondb.com",
     "www.thegoldenidol.com",
     "www.toronto.ca",
     "www.wayfair.ca",
@@ -52,6 +59,6 @@
   ],
   "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop",
   "urlFilteringString": "",
-  "hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-large-media: * true\nno-csp-reports: * true\nno-strict-blocking: hersincloyalty.pxf.io true\nno-strict-blocking: z-lib.id true\nno-large-media: www.youtube.com false\nno-large-media: www.tumblr.com false\nno-large-media: boardgamearena.com false\nno-large-media: careers.klick.com false\nno-large-media: nebula.tv false\nno-large-media: www.torontofoodnotbombs.ca false\nno-large-media: www.twitch.tv false\nno-large-media: hermitcraft.com false",
-  "userFilters": "twitch.tv##+js(twitch-videoad)\n\n! ai summary\nyoutube.com##div[id=\"expandable-metadata\"]\n\n! tumblr premium, and other unecessary button\ntumblr.com##div.FZkjV\ntumblr.com##div.gLEjz\ntumblr.com##li[title=\"TumblrMart\"]\ntumblr.com##li[title=\"Explore\"]\ntumblr.com##li[title=\"Communities\"]\n\n! reddit\nreddit.com##advertise-button\nreddit.com##div[id=\"right-sidebar-container\"]\nreddit.com##faceplate-tracker[noun=\"popular\"]\nreddit.com##faceplate-tracker[noun=\"explore\"]\nreddit.com##faceplate-tracker[noun=\"gen_guides_sidebar\"]"
+  "hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-large-media: * true\nno-csp-reports: * true\nno-strict-blocking: hersincloyalty.pxf.io true\nno-strict-blocking: z-lib.id true\nno-large-media: www.youtube.com false\nno-large-media: www.tumblr.com false\nno-large-media: boardgamearena.com false\nno-large-media: careers.klick.com false\nno-large-media: nebula.tv false\nno-large-media: www.torontofoodnotbombs.ca false\nno-large-media: www.twitch.tv false\nno-large-media: hermitcraft.com false\nno-large-media: www.overleaf.com false\nno-large-media: explore.org false\nno-large-media: www.hoopladigital.com false\nno-large-media: xkcd.com false\nno-large-media: questionablecontent.net false\nno-large-media: www.nofrills.ca false\nno-large-media: iwentwhereivebeen.tumblr.com false\nno-large-media: www.payments.simplii.com false\nno-large-media: www.reddit.com false",
+  "userFilters": "twitch.tv##+js(twitch-videoad)\n\n! ai summary\nyoutube.com##div[id=\"expandable-metadata\"]\nyoutube.com##div[id=\"flexible-item-buttons\"]\n\n! tumblr premium, and other unecessary button\ntumblr.com##div.FZkjV\ntumblr.com##div.gLEjz\ntumblr.com##li[title=\"TumblrMart\"]\ntumblr.com##li[title=\"Explore\"]\ntumblr.com##li[title=\"Communities\"]\n\n! reddit\nreddit.com##advertise-button\nreddit.com##div[id=\"right-sidebar-container\"]\nreddit.com##faceplate-tracker[noun=\"popular\"]\nreddit.com##faceplate-tracker[noun=\"explore\"]\nreddit.com##faceplate-tracker[noun=\"gen_guides_sidebar\"]\n\n\nreddit.com##div[id=\"sr-header-area\"]\n! reddit.com##ul.tabmenu\nreddit.com##div.listing-chooser.initialized\nreddit.com##div.sidebox.submit.submit-link\nreddit.com##div.sidebox.submit.submit-text\nreddit.com##div.sidebox.create"
 }
