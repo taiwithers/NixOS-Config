@@ -922,6 +922,14 @@ rec {
       };
     };
 
+    session = {
+      general.askForConfirmationOnLogout = true;
+      sessionRestore = {
+        excludeApplications = [ ];
+        restoreOpenApplicationsOnLogin = "startWithEmptySession";
+      };
+    };
+
     ###############################
     # Window Behaviour
     ###############################
