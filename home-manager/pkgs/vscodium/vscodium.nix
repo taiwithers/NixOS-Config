@@ -14,7 +14,7 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.codium;
+    # package = pkgs.codium;
     mutableExtensionsDir = true;
     # extensions = with pkgs.vscode-extensions;
     #   [
