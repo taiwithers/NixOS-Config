@@ -82,8 +82,8 @@ _:
     ds9 = customDerivation "ds9";
     gaia = customDerivation "gaia";
     heroic = super.heroic.override {
-        extraPkgs = pkgs: [ super.gamemode];
-      };
+      extraPkgs = _pkgs: [ super.gamemode ];
+    };
     # inherit (unstable) nix-search-tv;
     nixos-generations = customScript rec {
       name = "generations";

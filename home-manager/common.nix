@@ -26,9 +26,9 @@
     };
 
     wsl = mkOption {
-        default = false;
-        type = types.bool;
-      };
+      default = false;
+      type = types.bool;
+    };
 
     # Reference options
     userHome = mkOption { default = "/home/${config.home.username}"; };
@@ -109,7 +109,7 @@
         nerd-fonts.space-mono
         nerd-fonts.symbols-only
         nerd-fonts.intone-mono
-        
+
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         coreutils
@@ -129,7 +129,7 @@
         "untar" = "tar -xvf";
         "printenv" = "printenv | sort | bat --plain --language sh";
         "wget" = "wget --hsts-file=${stateHome}/wget_hsts";
-        "o"="xdg-open";
+        "o" = "xdg-open";
 
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
@@ -171,7 +171,8 @@
         '';
         executable = true;
       };
-    } // pkgs.lib.optionalAttrs (!config.common.nixos) {
+    }
+    // pkgs.lib.optionalAttrs (!config.common.nixos) {
       ".hushlogin".text = "";
     };
 

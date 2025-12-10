@@ -16,9 +16,7 @@
     useOSProber = true;
     configurationLimit = 16;
 
-    font = ''${
-      pkgs.nerd-fonts.space-mono
-    }/share/fonts/truetype/NerdFonts/SpaceMono/SpaceMonoNerdFontPropo-Regular.ttf'';
+    font = ''${pkgs.nerd-fonts.space-mono}/share/fonts/truetype/NerdFonts/SpaceMono/SpaceMonoNerdFontPropo-Regular.ttf'';
     fontSize = 24;
 
     splashImage = ./background.png;

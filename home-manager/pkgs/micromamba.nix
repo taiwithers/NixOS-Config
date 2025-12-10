@@ -1,5 +1,4 @@
-_:
-{
+_: {
 
   home.shellAliases = {
     mma = "micromamba activate";

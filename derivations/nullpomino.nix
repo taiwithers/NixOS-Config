@@ -1,6 +1,6 @@
 {
   fetchzip,
-  jre, 
+  jre,
   stdenv,
   makeWrapper,
   lib,
@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir --parents $out/bin
     # cp $src/play_swing $out/bin/nullpomino
-    
+
     install -Dm644 $src/NullpoMino.jar $out/share/nullpomino/NullpoMino.jar
 
     makeWrapper ${jre}/bin/java $out/bin/nullpomino --add-flags "-cp $out/share/nullpomino/NullpoMino.jar mu.nu.nullpo.gui.swing.NullpoMinoSwing"
@@ -35,6 +35,6 @@ stdenv.mkDerivation rec {
     description = "An action puzzle game";
     homepage = "https://github.com/nullpomino/nullpomino";
     license = lib.licenses.bsd3;
-    maintainers = with lib.maintainers; [  ];
+    maintainers = with lib.maintainers; [ ];
   };
 }

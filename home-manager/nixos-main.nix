@@ -8,85 +8,84 @@
 {
   # nixos-rebuild switch --install-bootloader --use-remote-sudo --flake ./path-to-flake#output-name
   # nix run home-manager/release-24.11 -- switch --impure --flake ./path-to-flake#output-name
-  imports =
+  imports = [
+    # (
+    #   let
+    #     autostart-pkgs = with pkgs; [ onedrivegui ];
+    #   in
+    #   import ../scripts/autostart.nix { inherit config pkgs autostart-pkgs; }
+    # )
+
+    (import ./pkgs/agenix/agenix.nix {
+      inherit config pkgs;
+      inherit (flake-inputs) agenix;
+    })
+    (import ./pkgs/spotify.nix {
+      inherit pkgs;
+      inherit (flake-inputs) spicetify-nix;
+    })
+    (import ./themeing.nix {
+      inherit config;
+      inherit pkgs;
+      inherit (flake-inputs) stylix;
+    })
+    (import ./pkgs/plasma/plasma.nix {
+      inherit config pkgs colours;
+      inherit (flake-inputs) plasma-manager;
+    })
+    # (import ./pkgs/vesktop/vesktop.nix {
+    #   inherit config pkgs colours;
+    #   inherit (flake-inputs) nixcord;
+    # })
+    (import ./pkgs/niri.nix {
+      inherit config;
+      inherit pkgs;
+      inherit (flake-inputs) niri;
+    })
+
+    ./gaming.nix
+  ]
+  ++ (map
+    (
+      fname:
+      import (./. + "/pkgs/${fname}.nix") {
+        inherit
+          config
+          pkgs
+          colours
+          ;
+      }
+    )
     [
-      # (
-      #   let
-      #     autostart-pkgs = with pkgs; [ onedrivegui ];
-      #   in
-      #   import ../scripts/autostart.nix { inherit config pkgs autostart-pkgs; }
-      # )
-
-      (import ./pkgs/agenix/agenix.nix {
-        inherit config pkgs;
-        inherit (flake-inputs) agenix;
-      })
-      (import ./pkgs/spotify.nix {
-        inherit pkgs;
-        inherit (flake-inputs) spicetify-nix;
-      })
-      (import ./themeing.nix {
-        inherit config;
-        inherit pkgs;
-        inherit (flake-inputs) stylix;
-      })
-      (import ./pkgs/plasma/plasma.nix {
-        inherit config pkgs colours;
-        inherit (flake-inputs) plasma-manager;
-      })
-      # (import ./pkgs/vesktop/vesktop.nix {
-      #   inherit config pkgs colours;
-      #   inherit (flake-inputs) nixcord;
-      # })
-      (import ./pkgs/niri.nix {
-        inherit config;
-        inherit pkgs;
-        inherit (flake-inputs) niri;
-      })
-
-      ./gaming.nix
+      "bash"
+      "bat"
+      # "blesh" # uses colours
+      "bottom"
+      "cod"
+      "duf"
+      "dust"
+      "eza"
+      "firefox/firefox"
+      "fzf"
+      "git" # also installed system-wide
+      "kitty"
+      "latex"
+      "lazygit"
+      "neovim/neovim"
+      "pdftools"
+      # "python/python"
+      "ripgrep"
+      "rofi/rofi" # uses colours
+      "starship"
+      "sublime-text/sublime-text"
+      "tldr"
+      "vscodium/vscodium"
+      "xdg"
+      "yazi"
+      "zotero/zotero"
+      "zoxide"
     ]
-    ++ (map
-      (
-        fname:
-        import (./. + "/pkgs/${fname}.nix") {
-          inherit
-            config
-            pkgs
-            colours
-            ;
-        }
-      )
-      [
-        "bash"
-        "bat"
-        # "blesh" # uses colours
-        "bottom"
-        "cod"
-        "duf"
-        "dust"
-        "eza"
-        "firefox/firefox"
-        "fzf"
-        "git" # also installed system-wide
-        "kitty"
-        "latex"
-        "lazygit"
-        "neovim/neovim"
-        "pdftools"
-        # "python/python"
-        "ripgrep"
-        "rofi/rofi" # uses colours
-        "starship"
-        "sublime-text/sublime-text"
-        "tldr"
-        "vscodium/vscodium"
-        "xdg"
-        "yazi"
-        "zotero/zotero"
-        "zoxide"
-      ]
-    );
+  );
 
   home.packages = with pkgs; [
     # nix programs
@@ -136,13 +135,13 @@
     zoom-us
     discord
     sonic-pi
-    
+
     kdePackages.kdialog
     heroic
     ventoy-full-qt
 
   ];
-  
+
   programs.ssh.enable = true;
 
   fonts.fontconfig.enable = true;

@@ -1008,7 +1008,9 @@ rec {
         launchAction = "DoNotTakeScreenshot";
         rememberSelectionRect = "always";
       };
-      GuiConfig = { captureMode = 0; };
+      GuiConfig = {
+        captureMode = 0;
+      };
 
       ImageSave = {
         imageCompressionQuality = 100;

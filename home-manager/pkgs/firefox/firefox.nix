@@ -36,39 +36,37 @@
         id = 0;
 
         extensions = {
-          packages =
-            with extensions;
-            [
-              bitwarden
-              clearurls
-              cookie-autodelete
-              consent-o-matic
-              darkreader
-              decentraleyes
-              enhancer-for-nebula
-              indie-wiki-buddy
-              keepassxc-browser
-              lovely-forks
-              privacy-badger
-              reddit-enhancement-suite
-              redirect-to-wiki-gg
-              refined-github
-              search-by-image
-              shinigami-eyes
-              snowflake # tor extension to let others use connection
-              # socialfocus, companion to untrap, not available in nur
-              sponsorblock
-              tabliss
-              ublacklist
-              ublock-origin
-              untrap-for-youtube
-              vimium
-              wayback-machine
-              xkit-rewritten
-              # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
-              # https://addons.mozilla.org/en-US/firefox/addon/mute-sites-by-default/
-            ];
-          };
+          packages = with extensions; [
+            bitwarden
+            clearurls
+            cookie-autodelete
+            consent-o-matic
+            darkreader
+            decentraleyes
+            enhancer-for-nebula
+            indie-wiki-buddy
+            keepassxc-browser
+            lovely-forks
+            privacy-badger
+            reddit-enhancement-suite
+            redirect-to-wiki-gg
+            refined-github
+            search-by-image
+            shinigami-eyes
+            snowflake # tor extension to let others use connection
+            # socialfocus, companion to untrap, not available in nur
+            sponsorblock
+            tabliss
+            ublacklist
+            ublock-origin
+            untrap-for-youtube
+            vimium
+            wayback-machine
+            xkit-rewritten
+            # no-pdf-download # https://addons.mozilla.org/en-US/firefox/addon/no-pdf-download-improved/
+            # https://addons.mozilla.org/en-US/firefox/addon/mute-sites-by-default/
+          ];
+        };
 
         search = rec {
           force = true;

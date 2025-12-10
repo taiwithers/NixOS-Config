@@ -174,7 +174,7 @@ require("noice").setup({
 vim.notify = require("notify").setup({
 	render = "wrapped-compact",
 	stages = "static",
-	top_down = false
+	top_down = false,
 })
 require("nvim-tree").setup()
 require("nvim-treesitter.configs").setup({
@@ -183,7 +183,7 @@ require("nvim-treesitter.configs").setup({
 	intentation = { enable = true },
 })
 
-require("render-markdown").setup({latex={enabled=false}})
+require("render-markdown").setup({ latex = { enabled = false } })
 require("treesitter-context").setup({
 	multiline_threshold = 4,
 })

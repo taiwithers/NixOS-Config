@@ -3,7 +3,6 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  fetchpatch,
   cmake,
   # extra-cmake-modules,
   # kdecoration,
@@ -16,9 +15,9 @@
   # kirigami,
   # wrapQtAppsHook,
   # qtsvg,
-  kdePackages
-  # kcmutils,
-  # frameworkintegration,
+  kdePackages,
+# kcmutils,
+# frameworkintegration,
 }:
 stdenv.mkDerivation rec {
   pname = "klassy";
@@ -54,8 +53,8 @@ stdenv.mkDerivation rec {
     frameworkintegration
     kcmutils
     qtsvg
-  ]; 
-  
+  ];
+
   meta = with lib; {
     description = "A highly customizable binary Window Decoration and Application Style plugin for recent versions of the KDE Plasma desktop";
     homepage = "https://github.com/paulmcauley/klassy";
