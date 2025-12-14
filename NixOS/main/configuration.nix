@@ -51,7 +51,7 @@
   # use community cache
   nix.settings.substituters = map (name: "https://${name}.cachix.org") [ "nix-community" ];
   nix.settings.trusted-public-keys = [
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" # nix-community.org
   ];
 
   networking.hostName = "nixos"; # Define your hostname.

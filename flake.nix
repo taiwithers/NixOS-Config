@@ -224,6 +224,10 @@
           ./NixOS/main/configuration.nix
           flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
           flake-inputs.niri.nixosModules.niri
+          {
+            niri-flake.cache.enable = false;
+            programs.niri.package = (pkgs-for-system system).niri;
+          }
         ];
       };
 
