@@ -2,7 +2,7 @@
   description = "NixOS/Home Manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -37,7 +37,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -119,7 +119,7 @@
     };
 
     stylix = {
-      url = "github:danth/stylix/release-25.05";
+      url = "github:danth/stylix/release-25.11";
       inputs.base16-fish.follows = "";
       inputs.base16-helix.follows = "";
       inputs.base16-vim.follows = "";
