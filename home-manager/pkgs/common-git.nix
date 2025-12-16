@@ -8,9 +8,10 @@
     enable = true;
     signing.key = "${config.common.userHome}/.ssh/id_ed25519_github.pub";
     signing.signByDefault = true;
-    userEmail = "59430904+taiwithers@users.noreply.github.com";
-    userName = "taiwithers";
-    extraConfig = {
+    settings = {
+    user.name = "taiwithers";
+    user.email = "59430904+taiwithers@users.noreply.github.com";
+
       branch.sort = "-committerdate";
 
       core.attributesfile = "${config.common.configHome}/git/attributes";
@@ -45,29 +46,17 @@
       # "url \"git@github.com:\"".insteadOf = "https://github.com";
       diff.exiftool.textconv = "exiftool";
 
-    };
-    aliases = {
+    alias = {
       fpush = "push --force-with-lease"; # safer force push
       lastcommit = "log --max-count=1 --format=%h --abbrev-commit"; # get the short hash of the last commit - for e.g., `cloc $(git lastcommit)`
+      };
     };
+
     attributes = [
       "*.png diff=exiftool"
       "*.pdf diff=exiftool"
       "*.gif diff=exiftool"
     ];
-    delta = {
-      enable = true;
-      options = {
-        dark = true;
-        side-by-side = true;
-        hunk-header-style = "omit";
-        line-numbers-left-format = "{nm}│"; # not pipes! taller!
-        line-numbers-right-format = "{np}│";
-        tabs = 4;
-        syntax-theme = "base16";
-        hyperlinks = true;
-      };
-    };
     ignores = [
       "__pycache__"
       "*.ipynb_checkpoints"
@@ -82,6 +71,19 @@
     lfs.enable = true;
   };
 
+    programs.delta = {
+      enable = true;
+      options = {
+        dark = true;
+        side-by-side = true;
+        hunk-header-style = "omit";
+        line-numbers-left-format = "{nm}│"; # not pipes! taller!
+        line-numbers-right-format = "{np}│";
+        tabs = 4;
+        syntax-theme = "base16";
+        hyperlinks = true;
+      };
+    };
   programs.ssh = {
     matchBlocks."github.com" = {
       hostname = "github.com";

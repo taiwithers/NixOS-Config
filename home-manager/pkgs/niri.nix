@@ -4,6 +4,7 @@
 }:
 {
   imports = [ niri.homeModules.niri ];
+  programs.niri.enable = false;
   programs.niri.settings = {
     binds = {
       "Mod+Space".action.spawn = "rofi -show";

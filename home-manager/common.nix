@@ -86,7 +86,7 @@
       with pkgs;
       [
         # nix
-        nixfmt
+        # nixfmt # broken on 25.11 - Dec 14
         clean
         get-package-path
         search
@@ -146,7 +146,7 @@
           let
             nixconfig-name = pkgs.lib.lists.last (pkgs.lib.strings.splitString "-" config-name);
           in
-          "nixos-rebuild switch --show-trace --use-remote-sudo --flake ${nixConfigDirectory}#${nixconfig-name} && diff-nixos-generations ";
+          "nixos-rebuild switch --show-trace --sudo --flake ${nixConfigDirectory}#${nixconfig-name} && diff-nixos-generations ";
         "diff-nixos-generations" = "diff-nix-generations nixos";
       };
 

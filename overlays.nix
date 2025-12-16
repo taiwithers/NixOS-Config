@@ -124,9 +124,6 @@ _:
     };
     # inherit (unstable) onedrive;
     pond = customDerivation "pond";
-    rofi-calc = super.rofi-calc.override {
-      rofi-unwrapped = self.rofi-wayland-unwrapped;
-    };
     search = customScript rec {
       name = "search";
       runtimeInputs = with super; [

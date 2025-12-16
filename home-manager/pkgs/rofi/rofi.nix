@@ -10,7 +10,7 @@
   ];
   programs.rofi = rec {
     enable = true;
-    package = pkgs.rofi-wayland.override {
+    package = pkgs.rofi.override {
       inherit plugins;
     }; # rofi-wayland, rofi-wayland-unwrapped
     plugins = with pkgs; [

@@ -46,10 +46,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
     };
-
-    niri = {
-      url = "github:sodiboo/niri-flake";
-    };
+    #
+    # niri = {
+    #   url = "github:sodiboo/niri-flake";
+    # };
 
     nix-cargo-integration = {
       # for nix-inspect
@@ -156,7 +156,7 @@
         permittedInsecurePackages = [
           "openssl-1.1.1w"
           "deskflow-1.19.0"
-          "ventoy-qt5-1.1.05"
+          "ventoy-qt5-1.1.07"
         ];
       };
 
@@ -180,7 +180,7 @@
               };
               nix-inspect = flake-inputs.nix-inspect.packages.${system}.default;
               pipewire-zoom = flake-inputs.nixpkgs-zoom.legacyPackages.${system}.pipewire;
-              inherit (flake-inputs.niri.packages.${system}) xwayland-satellite-stable;
+              # inherit (flake-inputs.niri.packages.${system}) xwayland-satellite-stable;
             })
 
             #  other overlays
@@ -223,10 +223,10 @@
         modules = [
           ./NixOS/main/configuration.nix
           flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
-          flake-inputs.niri.nixosModules.niri
+          # flake-inputs.niri.nixosModules.niri
           {
-            niri-flake.cache.enable = false;
-            programs.niri.package = (pkgs-for-system system).niri;
+            # niri-flake.cache.enable = false;
+            # programs.niri.package = (pkgs-for-system system).niri;
           }
         ];
       };

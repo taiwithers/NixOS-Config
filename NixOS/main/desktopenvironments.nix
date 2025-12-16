@@ -27,5 +27,6 @@
     okular
   ];
 
-  programs.niri.enable = true;
+  programs.niri.enable = false;
+  programs.niri.package = pkgs.niri;
 }

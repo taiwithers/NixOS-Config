@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     # tetrio-desktop
     mgba
-    protonup
     mindustry-wayland
     rare
   ];
@@ -16,7 +15,6 @@
   #       "Exec=nvidia-offload "
   #     ]
   #     (builtins.readFile /run/current-system/sw/share/applications/steam.desktop);
-  # protonup
   home.sessionVariables."STEAM_EXTRA_COMPAT_TOOLS_PATHS" =
     "\${HOME}/.steam/root/compatibilitytools.d";
 }

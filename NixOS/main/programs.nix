@@ -18,7 +18,7 @@
 
     # sysinfo for kde
     clinfo
-    glxinfo
+    mesa-demos
     gpu-viewer
     vulkan-tools
     wayland-utils
@@ -79,4 +79,15 @@
   xdg.terminal-exec.enable = true;
 
   programs.kdeconnect.enable = true;
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      gfortran.cc.lib
+      stdenv.cc.cc
+      xorg.libX11
+      xorg.libXext
+      zlib
+    ];
+  };
 }
