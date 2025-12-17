@@ -101,6 +101,7 @@
         zip
         trash-cli
         whichl
+        htop
 
         # fonts
         cm_unicode
