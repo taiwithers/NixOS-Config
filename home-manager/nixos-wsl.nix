@@ -63,7 +63,7 @@
   ];
 
   programs.git = {
-    extraConfig = {
+    settings = {
       credential.credentialStore = "gpg";
     };
     # signing.key = pkgs.lib.mkForce null;
@@ -143,7 +143,7 @@
 
   nix.gc = {
     automatic = true;
-    frequency = "weekly";
+    dates = "weekly";
     options = "--delete-older-than 7d";
   };
 
