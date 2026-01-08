@@ -20,12 +20,12 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "gaia";
-  version = "2023A";
-  distribution = "Ubuntu23";
+  version = "2025A";
+  distribution = "Ubuntu25";
 
   src = fetchzip {
     url = "https://ftp.eao.hawaii.edu/starlink/${version}/starlink-${version}-Linux-${distribution}.tar.gz";
-    sha256 = "LDbPeKFntZT/2Flw3bX+TPkso8NihmezLyEL6h+YN20=";
+    sha256 = "";
   };
 
   installPhase = ''
