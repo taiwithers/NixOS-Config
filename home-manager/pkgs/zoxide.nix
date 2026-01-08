@@ -4,7 +4,6 @@
     enable = true;
     options = [ "--cmd cd" ];
   };
-  home.shellAliases."cd" = "echo 'Consider using zoxide [z]'";
   home.sessionVariables = {
     _ZO_ECHO = 1; # print before cd
     _ZO_EXCLUDE_DIRS = "$HOME";
