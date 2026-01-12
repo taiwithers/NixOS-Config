@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
 
   src = fetchzip {
     url = "https://ftp.eao.hawaii.edu/starlink/${version}/starlink-${version}-Linux-${distribution}.tar.gz";
-    sha256 = "";
+    sha256 = "sha256-umaX0Rk/wxrqDZ6HlVxNIDE8jIrFr+Amt5ndlNsRbkw=";
   };
 
   installPhase = ''
