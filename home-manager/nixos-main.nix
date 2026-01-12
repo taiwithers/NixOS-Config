@@ -167,6 +167,9 @@
     complete -F _command whichl
   '';
   xresources.path = "${config.common.configHome}/X11/xresources";
+  home.shellAliases = {
+    "install-smapi" = "steam-run ./internal/linux/SMAPI.installer";
+  };
 
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";
   common.useXDG = true;
