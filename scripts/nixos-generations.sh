@@ -3,7 +3,7 @@
 headerlist='["Generation","Date","NixOS Version","Kernel Version"]'
 attrlist="[.generation, .date, .nixosVersion, .kernelVersion]"
 
-dateformat='[ .[] | .date=(.date|fromdate|strflocaltime("%d %B %Y - %I:%M %p"))]'
+dateformat='[ .[] | .date=(.date|strptime("%Y-%m-%d %H:%M:%S")|todate)]'
 currentstring='[ .[] | .generation = if .current then ( .generation| tostring ) + " *" else .generation end ]'
 
 jqstring="$headerlist, (.[] | $attrlist) | @tsv"
