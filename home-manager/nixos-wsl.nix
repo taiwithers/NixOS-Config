@@ -40,6 +40,7 @@
         # "sublime-text/sublime-text"
         "starship"
         "tldr"
+        "yazi"
         "zellij"
         "zoxide"
       ]
@@ -60,6 +61,8 @@
     strace
     ds9
     cloc
+    visidata
+    jq
   ];
 
   programs.git = {
