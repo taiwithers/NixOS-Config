@@ -46,7 +46,7 @@ in
         lualine-nvim # lualine
         mini-nvim # mini (animate, clue, completion, cursorword, indentscope, move, pairs, surround)
         nvim-surround
-        nvim-tree-lua
+        # nvim-tree-lua
         noice-nvim # noice
         which-key-nvim # which-key
         nvim-notify # notify
@@ -59,37 +59,29 @@ in
         telescope-fzf-native-nvim
         nvim-ts-autotag
         conform-nvim
+        modes-nvim
+        auto-hlsearch-nvim
+        highlight-undo-nvim
+        gitsigns-nvim
+        toggleterm-nvim
+        comment-nvim
 
         # helpers - no additional setup done in plugins.lua
         # nui-nvim
         # plenary-nvim
-        # cmp-nvim-lsp-signature-help
         # vimtex
-        # neo-tree-nvim
 
         # # simple plugins
-        # (loadPlugin auto-hlsearch-nvim "auto-hlsearch")
-        # (loadPlugin helpview-nvim "helpview")
-        # (loadPlugin highlight-undo-nvim "highlight-undo")
         # (loadPlugin hmts-nvim "hmts")
-        # (loadPlugin nvim-tree-lua "nvim-tree")
-        # (loadPlugin render-markdown-nvim "render-markdown")
-        # (loadPlugin nvim-surround "nvim-surround")
 
         # in order of plugins.lua appearance
-        # nvim-cmp
         # hardtime-nvim # hardtime
-        # nvim-lspconfig # lspconfig
-        # modes-nvim # modes
         # nvim-navic
-        # nvim-treesitter # nvim-treesitter
         # nvim-treesitter-context # treesitter-context
         # otter-nvim
 
         # precognition-nvim # precognition
-        # render-markdown-nvim
         # tabout-nvim # tabout
-        # telescope-nvim # telescope
         # telescope-file-browser-nvim
         # telescope-fzf-native-nvim
         # telescope-ui-select-nvim # required for legendary
@@ -99,7 +91,6 @@ in
         # nvim-window-picker # window-picker
 
         # legendary-nvim # loaded after which-key, change to unstable
-        # nvim-spider # loaded in keymaps.lua
 
         # nvim-spectre
         # trouble

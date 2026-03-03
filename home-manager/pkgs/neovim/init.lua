@@ -15,13 +15,24 @@ if io.open("wsl-clipboard") then
 end
 
 -- to add
--- mode-based line highlights? modes-nvim
 -- breadcrumbs? nvim-navic
--- markdown rendering
+-- markdown rendering?
 -- window picker
--- multi-file search/replace
 -- linting
--- view lsp issues
+-- markdown list continuation and syntax highlighting
+-- multi-file search/replace
+
+-- statuscolumn git indicators
+require("gitsigns").setup()
+
+-- change the colour of the line highlight based on current mode
+require("modes").setup()
+
+-- highlight text affected by "undo"
+require("highlight-undo").setup()
+
+-- turn off search highlight after you perform a non-search action
+require("auto-hlsearch").setup()
 
 -- bufferline makes the tab bar
 require("bufferline").setup({
@@ -29,14 +40,6 @@ require("bufferline").setup({
 		right_mouse_command = false,
 		middle_mouse_command = "bdelete! %d",
 		indicator = { style = "underline" },
-		offsets = {
-			{
-				filetype = "NvimTree",
-				text = "",
-				text_align = "center",
-				separator = true,
-			},
-		},
 		show_buffer_close_icons = true,
 		show_close_icon = true,
 		show_duplicate_prefix = true,
@@ -53,13 +56,13 @@ require("lualine").setup({
 		section_separators = { left = "", right = "" },
 		global_status = true,
 	},
-	extensions = { "fzf" },
+	extensions = { "fzf", "quickfix" }, -- understand additional filetypes
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { "filename", "echo nvim_treesitter#statusline(90)" },
-		lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_y = { "progress" },
+		lualine_c = { "filename" },
+		lualine_x = {},
+		lualine_y = { "lsp_status" },
 		lualine_z = { "location" },
 	},
 })
@@ -111,10 +114,26 @@ require("telescope").load_extension("fzf")
 local telescope = require("telescope.builtin")
 vim.keymap.set({ "n", "v" }, "<leader>ff", telescope.find_files, { desc = "Telescope files" })
 vim.keymap.set({ "n", "v" }, "<leader>fs", telescope.live_grep, { desc = "Find in folder" })
+vim.keymap.set({ "n", "v", "i" }, "<F12>", telescope.lsp_definitions, { desc = "Go to definition" })
+
+-- terminals
+-- vim.keymap.set({ "n" }, "<leader>tj", "<cmd>:horizontal terminal<cr><cmd>:startinsert<cr>")
+vim.keymap.set({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+require("toggleterm").setup()
+local toggleterminal = require("toggleterm.terminal").Terminal
+local shell = toggleterminal:new({ cmd = vim.o.shell })
+local lazygit = toggleterminal:new({ cmd = "lazygit", dir = "git_dir", direction = "float", close_on_exit = true })
+-- vim.keymap.set({ "n" }, "<leader>tt", "<cmd>:ToggleTerm<cr>", { desc = "Open terminal" })
+vim.keymap.set({ "n" }, "<leader>tt", function()
+	shell:toggle()
+end, { desc = "Open terminal" })
+vim.keymap.set({ "n" }, "<leader>lg", function()
+	lazygit:toggle()
+end, { desc = "Open lazygit" })
 
 -- yazi integration
 -- local yazi = require("yazi")
-vim.keymap.set({ "n", "v" }, "<leader>fe", "<cmd>Yazi<cr>", { desc = "Open yazi" })
+vim.keymap.set({ "n", "v" }, "<leader>yy", "<cmd>Yazi<cr>", { desc = "Open yazi" })
 
 -- swap wrapped and non-wrapped line movement
 vim.keymap.set({ "n", "v" }, "j", "gj", { desc = "Move down one visual line" })
@@ -126,8 +145,13 @@ vim.keymap.set({ "n", "v" }, "gk", "k", { desc = "Move up one real line" })
 vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
 
 -- comment with ctrl /
-vim.keymap.set("n", "<C-_>", "gcc", { desc = "Toggle comment", remap = true })
-vim.keymap.set("i", "<C-_>", "<C-o>gcc", { desc = "Toggle comment", remap = true })
+local toggle_comment = require("Comment.api").toggle.linewise.current
+vim.keymap.set("n", "<C-_>", toggle_comment, { desc = "Toggle comment", remap = true })
+vim.keymap.set("i", "<C-_>", toggle_comment, { desc = "Toggle comment" })
+
+-- "tab" between buffers
+vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to next buffer" })
+vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to previous buffer" })
 
 -- completion
 local cmp = require("cmp")
@@ -190,7 +214,12 @@ vim.lsp.config["lua_ls"] = {
 	cmd = { "lua-language-server" },
 	filetypes = { "lua" },
 	root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
-	settings = { Lua = { runtime = { version = "LuaJIT" } } },
+	settings = {
+		Lua = {
+			runtime = { version = "LuaJIT" },
+			diagnostics = { globals = { "vim" } }, -- ignore undefined `vim`
+		},
+	},
 	capabilities = capabilities,
 }
 vim.lsp.config["bash_ls"] = {
@@ -245,6 +274,13 @@ vim.notify = require("notify").setup({
 -- https://github.com/ntk148v/neovim-config/blob/master/lua/autocmds.lua
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
+autocmd("TextYankPost", {
+	-- highlight yanked text
+	callback = function()
+		vim.hl.on_yank({ timeout = 400 })
+	end,
+})
+
 -- enable supported lsp functionality
 autocmd("LspAttach", {
 	callback = function(args)
@@ -257,14 +293,15 @@ autocmd("LspAttach", {
 			"<cmd>lua vim.diagnostic.open_float()<cr>",
 			{ desc = "View LSP diagnostic for current line" }
 		)
-
-		-- -- enable completion
-		-- if client:supports_method("textDocument/completion") then
-		--   vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-		-- end
 	end,
 })
-vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls" })
+
+local function start_lsp()
+	vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls" })
+end
+
+start_lsp()
+vim.keymap.set({ "n" }, "<leader>ls", start_lsp, { desc = "Start LSP servers" })
 
 -- treesitter stuff
 autocmd("FileType", {
@@ -277,8 +314,6 @@ autocmd("FileType", {
 		vim.wo.foldmethod = expr
 		-- indentation (from nvim-treesitter plugin)
 		vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
-
-		vim.lsp.enable("lua_ls")
 
 		-- treesitter related plugins
 		require("nvim-ts-autotag").setup()
