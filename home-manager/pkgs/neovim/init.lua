@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 require("options")
 
 if io.open("wsl-clipboard") then
-	require("wsl-clipboard")
+  require("wsl-clipboard")
 end
 
 -- to add
@@ -32,35 +32,35 @@ require("auto-hlsearch").setup()
 
 -- bufferline makes the tab bar
 require("bufferline").setup({
-	options = {
-		right_mouse_command = false,
-		middle_mouse_command = "bdelete! %d",
-		indicator = { style = "underline" },
-		show_buffer_close_icons = true,
-		show_close_icon = true,
-		show_duplicate_prefix = true,
-		show_tab_indicators = true,
-		always_show_bufferline = true,
-	},
+  options = {
+    right_mouse_command = false,
+    middle_mouse_command = "bdelete! %d",
+    indicator = { style = "underline" },
+    show_buffer_close_icons = true,
+    show_close_icon = true,
+    show_duplicate_prefix = true,
+    show_tab_indicators = true,
+    always_show_bufferline = true,
+  },
 })
 
 -- lualine does the status bar at the bottom
 require("lualine").setup({
-	options = {
-		theme = "moonfly",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
-		global_status = true,
-	},
-	extensions = { "fzf", "quickfix" }, -- understand additional filetypes
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { "filename" },
-		lualine_x = {},
-		lualine_y = { "lsp_status" },
-		lualine_z = { "location" },
-	},
+  options = {
+    theme = "moonfly",
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    global_status = true,
+  },
+  extensions = { "fzf", "quickfix" }, -- understand additional filetypes
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { "branch", "diff", "diagnostics" },
+    lualine_c = { "filename" },
+    lualine_x = {},
+    lualine_y = { "lsp_status" },
+    lualine_z = { "location" },
+  },
 })
 
 -- autopairing
@@ -74,32 +74,32 @@ require("nvim-surround").setup()
 
 -- style the command line and notifications?
 require("noice").setup({
-	presets = {
-		long_message_to_split = true,
-		lsp_doc_border = true,
-		command_palette = false,
-	},
-	-- cmdline and popupmenu together, lower than `command_palette = true` from noice wiki
-	views = {
-		cmdline_popup = {
-			position = { row = 10, col = "50%" },
-			size = { width = 60, height = "auto" },
-		},
-		popupmenu = { -- this is the cmd completion menu
-			relative = "editor",
-			position = { row = 13, col = "50%" }, -- row is cmdline_popup row + 3
-			size = { width = 60, height = 5 },
-			border = { style = "rounded", padding = { 0, 1 } },
-			win_options = { winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" } },
-		},
-	},
-	lsp = {
-		override = {
-			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-			["vim.lsp.util.stylize_markdown"] = true,
-			["cmp.entry.get_documentation"] = true,
-		},
-	},
+  presets = {
+    long_message_to_split = true,
+    lsp_doc_border = true,
+    command_palette = false,
+  },
+  -- cmdline and popupmenu together, lower than `command_palette = true` from noice wiki
+  views = {
+    cmdline_popup = {
+      position = { row = 10, col = "50%" },
+      size = { width = 60, height = "auto" },
+    },
+    popupmenu = { -- this is the cmd completion menu
+      relative = "editor",
+      position = { row = 13, col = "50%" }, -- row is cmdline_popup row + 3
+      size = { width = 60, height = 5 },
+      border = { style = "rounded", padding = { 0, 1 } },
+      win_options = { winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" } },
+    },
+  },
+  lsp = {
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true,
+    },
+  },
 })
 
 -- whichkey
@@ -175,10 +175,10 @@ local shell = toggleterminal:new({ cmd = vim.o.shell })
 local lazygit = toggleterminal:new({ cmd = "lazygit", dir = "git_dir", direction = "float", close_on_exit = true })
 -- vim.keymap.set({ "n" }, "<leader>tt", "<cmd>:ToggleTerm<cr>", { desc = "Open terminal" })
 vim.keymap.set({ "n" }, "<leader>tt", function()
-	shell:toggle()
+  shell:toggle()
 end, { desc = "Open terminal" })
 vim.keymap.set({ "n" }, "<leader>lg", function()
-	lazygit:toggle()
+  lazygit:toggle()
 end, { desc = "Open lazygit" })
 
 -- yazi integration
@@ -206,30 +206,30 @@ vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to 
 -- completion
 local cmp = require("cmp")
 local completion_mapping = {
-	["<C-Space>"] = cmp.mapping.complete(), -- open menu if not already there
-	["<CR>"] = cmp.mapping.confirm({ select = true }), -- accept first option/selected option
-	["<Down>"] = cmp.mapping.select_next_item(),
-	["<Up>"] = cmp.mapping.select_prev_item(),
-	-- also bound by default (insert mode mapping), wrap the {} in cmp.mapping.preset.insert() to include these:
-	-- <C-n>: select next item, or open completion menu
-	-- <C-p>: select prev item, or open completion menu
-	-- <C-y>: accept selected option
-	-- <C-e>: close menu
+  ["<C-Space>"] = cmp.mapping.complete(), -- open menu if not already there
+  ["<CR>"] = cmp.mapping.confirm({ select = true }), -- accept first option/selected option
+  ["<Down>"] = cmp.mapping.select_next_item(),
+  ["<Up>"] = cmp.mapping.select_prev_item(),
+  -- also bound by default (insert mode mapping), wrap the {} in cmp.mapping.preset.insert() to include these:
+  -- <C-n>: select next item, or open completion menu
+  -- <C-p>: select prev item, or open completion menu
+  -- <C-y>: accept selected option
+  -- <C-e>: close menu
 }
 cmp.setup({
-	sources = cmp.config.sources({ { name = "nvim_lsp" } }),
-	mapping = completion_mapping,
+  sources = cmp.config.sources({ { name = "nvim_lsp" } }),
+  mapping = completion_mapping,
 })
 cmp.setup.cmdline(":", {
-	-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-	mapping = completion_mapping,
-	sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
-	matching = { disallow_symbol_nonprefix_matching = false },
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  mapping = completion_mapping,
+  sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+  matching = { disallow_symbol_nonprefix_matching = false },
 })
 cmp.setup.cmdline({ "/", "?" }, {
-	-- Use buffer source for '/' and '?' searches
-	mapping = completion_mapping,
-	sources = { { name = "buffer" } },
+  -- Use buffer source for '/' and '?' searches
+  mapping = completion_mapping,
+  sources = { { name = "buffer" } },
 })
 
 -- formatting
@@ -266,64 +266,64 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities() -- from nvim
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 vim.lsp.config["lua_ls"] = {
-	cmd = { "lua-language-server" },
-	filetypes = { "lua" },
-	root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
-	settings = {
-		Lua = {
-			runtime = { version = "LuaJIT" },
-			diagnostics = { globals = { "vim" } }, -- ignore undefined `vim`
-		},
-	},
-	capabilities = capabilities,
+  cmd = { "lua-language-server" },
+  filetypes = { "lua" },
+  root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT" },
+      diagnostics = { globals = { "vim" } }, -- ignore undefined `vim`
+    },
+  },
+  capabilities = capabilities,
 }
 vim.lsp.config["bash_ls"] = {
-	cmd = { "bash-language-server" },
-	filetypes = { "sh" },
-	capabilities = capabilities,
+  cmd = { "bash-language-server" },
+  filetypes = { "sh" },
+  capabilities = capabilities,
 }
 vim.lsp.config["nix_ls"] = {
-	cmd = { "nixd" },
-	filetypes = { "nix" },
-	root_markers = { "flake.nix", ".git" },
-	capabilities = capabilities,
+  cmd = { "nixd" },
+  filetypes = { "nix" },
+  root_markers = { "flake.nix", ".git" },
+  capabilities = capabilities,
 }
 vim.lsp.config["python_ls"] = {
-	cmd = { "ruff" },
-	filetypes = { "py" },
-	capabilities = capabilities,
+  cmd = { "ruff" },
+  filetypes = { "py" },
+  capabilities = capabilities,
 }
 vim.lsp.config["css_ls"] = {
-	capabilities = capabilities,
-	filetypes = { "css", "scss" },
-	cmd = { "vscode-css-language-server", "--stdio" },
-	settings = {
-		css = { validate = true },
-		scss = { validate = true },
-	},
+  capabilities = capabilities,
+  filetypes = { "css", "scss" },
+  cmd = { "vscode-css-language-server", "--stdio" },
+  settings = {
+    css = { validate = true },
+    scss = { validate = true },
+  },
 }
 vim.lsp.config["astro_ls"] = {
-	cmd = { "astro-ls", "--stdio" },
-	capabilities = capabilities,
-	filetypes = { "astro" },
-	root_markers = { "package.json", "tsconfig.json", ".git" },
-	init_options = { typescript = {} },
-	-- before_init = function(_, config)
-	-- if config.init_options and config.init_options.typescript and not config.init_options.typescript.tsdk then
-	-- config.init_options.typescript.tsdk =
+  cmd = { "astro-ls", "--stdio" },
+  capabilities = capabilities,
+  filetypes = { "astro" },
+  root_markers = { "package.json", "tsconfig.json", ".git" },
+  init_options = { typescript = {} },
+  -- before_init = function(_, config)
+  -- if config.init_options and config.init_options.typescript and not config.init_options.typescript.tsdk then
+  -- config.init_options.typescript.tsdk =
 }
 vim.lsp.config["ts_ls"] = {
-	cmd = { "typescript-language-server", "--stdio" },
-	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-	init_options = { hostInfo = "neovim" },
-	root_markers = { "package.json", "tsconfig.json", ".git" },
+  cmd = { "typescript-language-server", "--stdio" },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  init_options = { hostInfo = "neovim" },
+  root_markers = { "package.json", "tsconfig.json", ".git" },
 }
 
 -- use the noice style for generic notifications?
 vim.notify = require("notify").setup({
-	render = "wrapped-compact",
-	stages = "static",
-	top_down = false,
+  render = "wrapped-compact",
+  stages = "static",
+  top_down = false,
 })
 
 -- https://github.com/ntk148v/neovim-config/blob/master/lua/autocmds.lua
@@ -331,21 +331,21 @@ local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
 -- enable supported lsp functionality
 autocmd("LspAttach", {
-	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-		-- view diagnostic for current line
-		vim.keymap.set(
-			{ "n" },
-			"<leader>d",
-			"<cmd>lua vim.diagnostic.open_float()<cr>",
-			{ desc = "View LSP diagnostic for current line" }
-		)
-	end,
+    -- view diagnostic for current line
+    vim.keymap.set(
+      { "n" },
+      "<leader>d",
+      "<cmd>lua vim.diagnostic.open_float()<cr>",
+      { desc = "View LSP diagnostic for current line" }
+    )
+  end,
 })
 
 local function start_lsp()
-	vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls" })
+  vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls" })
 end
 
 start_lsp()
@@ -353,17 +353,17 @@ vim.keymap.set({ "n" }, "<leader>ls", start_lsp, { desc = "Start LSP servers" })
 
 -- treesitter stuff
 autocmd("FileType", {
-	pattern = { "lua", "nix", "python", "bash", "astro" },
-	callback = function()
-		-- syntax highlighting
-		vim.treesitter.start()
-		-- folds
-		vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-		vim.wo.foldmethod = expr
-		-- indentation (from nvim-treesitter plugin)
-		vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+  pattern = { "lua", "nix", "python", "bash", "astro" },
+  callback = function()
+    -- syntax highlighting
+    vim.treesitter.start()
+    -- folds
+    vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.wo[0][0].foldmethod = "expr"
+    -- indentation (from nvim-treesitter plugin)
+    vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
 
-		-- treesitter related plugins
-		require("nvim-ts-autotag").setup()
-	end,
+    -- treesitter related plugins
+    require("nvim-ts-autotag").setup()
+  end,
 })
