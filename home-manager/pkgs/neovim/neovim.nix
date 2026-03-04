@@ -32,12 +32,21 @@ in
       typescript-language-server
 
       # formatters
-      nixpkgs-fmt
+      nixpkgs-fmt # trying to import nixfmt gives infinite recursion?
       black
       isort
       prettier
       prettierd
       stylua
+      just
+      fixjson
+      dockerfmt
+      shfmt
+      yamlfmt
+      # potential latex formatters:
+      perlPackages.LatexIndent
+      bibtex-tidy
+
     ];
     plugins =
       with pkgs.vimPlugins;
@@ -46,7 +55,6 @@ in
         lualine-nvim # lualine
         mini-nvim # mini (animate, clue, completion, cursorword, indentscope, move, pairs, surround)
         nvim-surround
-        # nvim-tree-lua
         noice-nvim # noice
         which-key-nvim # which-key
         nvim-notify # notify
@@ -65,6 +73,7 @@ in
         gitsigns-nvim
         toggleterm-nvim
         comment-nvim
+        yanky-nvim
 
         # helpers - no additional setup done in plugins.lua
         # nui-nvim
@@ -82,12 +91,8 @@ in
 
         # precognition-nvim # precognition
         # tabout-nvim # tabout
-        # telescope-file-browser-nvim
-        # telescope-fzf-native-nvim
         # telescope-ui-select-nvim # required for legendary
-        # telescope-frecency-nvim
         # texpresso-vim # texpresso
-        # toggleterm-nvim # toggleterm
         # nvim-window-picker # window-picker
 
         # legendary-nvim # loaded after which-key, change to unstable

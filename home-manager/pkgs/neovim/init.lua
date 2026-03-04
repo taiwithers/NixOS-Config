@@ -1,12 +1,8 @@
-local cmd = vim.cmd -- vim api/builtins
-local fn = vim.fn -- user-functions https://neovim.io/doc/user/eval.html#user-function
-local opt = vim.o -- equivalent to :set
-local g = vim.g -- define global variables
-local map = vim.keymap.set
+-- local fn = vim.fn -- user-functions https://neovim.io/doc/user/eval.html#user-function
 
 -- <leader> key. Defaults to `\`. Some people prefer space.
-g.mapleader = " "
--- g.maplocalleader = ' '
+vim.g.mapleader = " "
+-- vim.g.maplocalleader = ' '
 
 require("options")
 
@@ -16,7 +12,7 @@ end
 
 -- to add
 -- breadcrumbs? nvim-navic
--- markdown rendering?
+-- markdown rendering? - I think this is just a bad default colour scheme
 -- window picker
 -- linting
 -- markdown list continuation and syntax highlighting
@@ -26,7 +22,7 @@ end
 require("gitsigns").setup()
 
 -- change the colour of the line highlight based on current mode
-require("modes").setup()
+require("modes").setup() -- currently not working in lua, but is in nix?
 
 -- highlight text affected by "undo"
 require("highlight-undo").setup()
@@ -112,9 +108,63 @@ require("which-key").setup({ preset = "helix" })
 -- telescope, automatically loads noice extension
 require("telescope").load_extension("fzf")
 local telescope = require("telescope.builtin")
-vim.keymap.set({ "n", "v" }, "<leader>ff", telescope.find_files, { desc = "Telescope files" })
-vim.keymap.set({ "n", "v" }, "<leader>fs", telescope.live_grep, { desc = "Find in folder" })
+
+local function is_git_repo()
+  vim.fn.system("git rev-parse --is-inside-work-tree")
+  return vim.v.shell_error == 0
+end
+local function get_git_root()
+  local dot_git_path = vim.fn.finddir(".git", ".;")
+  return vim.fn.fnamemodify(dot_git_path, ":h")
+end
+function vim.find_files_from_project_git_root()
+  local opts = {}
+  if is_git_repo() then
+    opts = { cwd = get_git_root() }
+  end
+  require("telescope.builtin").find_files(opts)
+end
+function live_grep_from_project_git_root()
+  local opts = {}
+  if is_git_repo() then
+    opts = { cwd = get_git_root() }
+  end
+  require("telescope.builtin").live_grep(opts)
+end
+vim.keymap.set({ "n", "v" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
+vim.keymap.set({ "n", "v" }, "<leader>fb", telescope.buffers, { desc = "Open buffers" })
+vim.keymap.set({ "n", "v" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
 vim.keymap.set({ "n", "v", "i" }, "<F12>", telescope.lsp_definitions, { desc = "Go to definition" })
+
+-- yank ring (clipboard history)
+local yanky_mapping = require("yanky.telescope.mapping")
+local yanky_telescope_mappings = {
+  default = yanky_mapping.put("p"),
+  i = {
+    ["<C-l>"] = yanky_mapping.put("p"),
+    ["<C-h>"] = yanky_mapping.put("P"),
+    ["<C-d>"] = yanky_mapping.delete(),
+  },
+  n = {
+    ["p"] = yanky_mapping.put("p"),
+    ["P"] = yanky_mapping.put("P"),
+    ["d"] = yanky_mapping.delete(),
+  },
+}
+require("yanky").setup({ -- adds highlight on yank (can be done natively w/ autcmds) and on put
+  ring = { permanent_wrapper = require("yanky.wrappers").remove_carriage_return }, -- wsl ^M fix
+  picker = { telescope = { use_default_mappings = false, mappings = yanky_telescope_mappings } },
+})
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Put after cursor" })
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Put before cursor" })
+vim.keymap.set(
+  { "n", "x" },
+  "<leader>p",
+  "<cmd>Telescope yank_history theme=cursor<cr>",
+  { desc = "Open yank history" }
+)
+-- vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)") -- change the pasted text after pasting
+-- vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)") -- change the pasted text after pasting
 
 -- terminals
 -- vim.keymap.set({ "n" }, "<leader>tj", "<cmd>:horizontal terminal<cr><cmd>:startinsert<cr>")
@@ -185,25 +235,30 @@ cmp.setup.cmdline({ "/", "?" }, {
 -- formatting
 local conform = require("conform")
 conform.setup({
-	formatters = {
-		isort = {
-			append_args = { "--profile", "black" },
-		},
-	},
-	formatters_by_ft = {
-		lua = { "stylua" },
-		nix = { "nixpkgs_fmt" },
-		python = { "isort", "black" },
-		javascript = { "prettierd", "prettier", stop_after_first = true },
-		typescript = { "prettierd", "prettier", stop_after_first = true },
-		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-		html = { "prettierd", "prettier", stop_after_first = true },
-		scss = { "prettierd", "prettier", stop_after_first = true },
-	},
-	format_on_save = {
-		lsp_format = "fallback",
-		timeout_ms = 500,
-	},
+  formatters = {
+    isort = { append_args = { "--profile", "black" } },
+    stylua = { append_args = { "--indent-type", "Spaces", "--indent-width", "2" } },
+  },
+  formatters_by_ft = {
+    lua = { "stylua" },
+    just = { "just" },
+    json = { "fixjson" },
+    docker = { "dockerfmt" },
+    sh = { "shfmt" },
+    yaml = { "yamlfmt" },
+    nix = { "nixpkgs_fmt" },
+    python = { "isort", "black" },
+    markdown = { "prettierd", "prettier", stop_after_first = true },
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+    typescript = { "prettierd", "prettier", stop_after_first = true },
+    typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+    html = { "prettierd", "prettier", stop_after_first = true },
+    scss = { "prettierd", "prettier", stop_after_first = true },
+  },
+  format_on_save = {
+    lsp_format = "fallback",
+    timeout_ms = 500,
+  },
 })
 
 -- lsp
@@ -273,13 +328,6 @@ vim.notify = require("notify").setup({
 
 -- https://github.com/ntk148v/neovim-config/blob/master/lua/autocmds.lua
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
-
-autocmd("TextYankPost", {
-	-- highlight yanked text
-	callback = function()
-		vim.hl.on_yank({ timeout = 400 })
-	end,
-})
 
 -- enable supported lsp functionality
 autocmd("LspAttach", {
