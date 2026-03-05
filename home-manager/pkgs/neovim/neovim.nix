@@ -17,6 +17,7 @@ let
   };
 in
 {
+  home.packages = [ pkgs.typescript-language-server ];
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim; # ensure the version we specify in flake.nix is used
@@ -29,6 +30,7 @@ in
       vscode-langservers-extracted
       ruff
       astro-language-server # needs prettier plugin for formatting
+      typescript
       typescript-language-server
 
       # formatters
@@ -43,6 +45,7 @@ in
       dockerfmt
       shfmt
       yamlfmt
+      prettier-plugin-astro
       # potential latex formatters:
       perlPackages.LatexIndent
       bibtex-tidy
@@ -109,6 +112,8 @@ in
             vim
             ssh_config
             bash
+            scss # for astro
+            typescript # for astro
             python
             regex
             ssh_config
@@ -151,6 +156,11 @@ in
   #     ln -s "$source" "$destination"
   #   done
   # '';
+
+  xdg.configFile."nvim/lua/nix-paths.lua".text = ''
+    vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"
+    vim.g.prettier_plugin_astro = "${pkgs.prettier-plugin-astro}/dist/index.js"
+  '';
 
   xdg.configFile."nvim/lua/wsl-clipboard.lua" = pkgs.lib.mkIf config.common.wsl {
     source = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim/wsl-clipboard.lua";

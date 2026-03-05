@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  stylix,
-  ...
+{ config
+, pkgs
+, stylix
+, ...
 }:
 {
   imports = [ stylix.homeModules.stylix ];
@@ -86,7 +85,7 @@
       vencord.enable = true; # idk man
       vesktop.enable = true;
       vscode.enable = true;
-      yazi.enable = true;
+      # yazi = { enable = true; colors.enable = true; };
       zellij.enable = true;
     };
   };

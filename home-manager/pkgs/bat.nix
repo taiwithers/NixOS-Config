@@ -1,7 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }:
 {
   programs.bat = {
@@ -14,6 +13,9 @@
       batwatch
       prettybat
     ];
+    config = {
+      "map-syntax" = "*.astro:TypeScriptReact";
+    };
   };
 
   home.shellAliases = {
@@ -45,6 +47,7 @@
         inherit rev;
         hash = "sha256-Ww3eOd+isu0M83xwKDA5v3iuZ8uFABqk5//GR2MrYN0=";
         sparseCheckout = [
+          # doesn't atually appear to do anything
           "/Syntax/Comments.tmPreferences"
           "/Syntax/Just.sublime-syntax"
         ];

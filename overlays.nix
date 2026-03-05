@@ -124,6 +124,7 @@ _:
     };
     # inherit (unstable) onedrive;
     pond = customDerivation "pond";
+    prettier-plugin-astro = customDerivation "prettier-plugin-astro";
     search = customScript rec {
       name = "search";
       runtimeInputs = with super; [

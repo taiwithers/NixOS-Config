@@ -1,5 +1,3 @@
--- local fn = vim.fn -- user-functions https://neovim.io/doc/user/eval.html#user-function
-
 -- <leader> key. Defaults to `\`. Some people prefer space.
 vim.g.mapleader = " "
 -- vim.g.maplocalleader = ' '
@@ -9,6 +7,7 @@ require("options")
 if io.open("wsl-clipboard") then
   require("wsl-clipboard")
 end
+require("nix-paths")
 
 -- to add
 -- breadcrumbs? nvim-navic
@@ -22,7 +21,7 @@ end
 require("gitsigns").setup()
 
 -- change the colour of the line highlight based on current mode
-require("modes").setup() -- currently not working in lua, but is in nix?
+require("modes").setup()
 
 -- highlight text affected by "undo"
 require("highlight-undo").setup()
@@ -117,6 +116,7 @@ local function get_git_root()
   local dot_git_path = vim.fn.finddir(".git", ".;")
   return vim.fn.fnamemodify(dot_git_path, ":h")
 end
+
 function vim.find_files_from_project_git_root()
   local opts = {}
   if is_git_repo() then
@@ -238,6 +238,14 @@ conform.setup({
   formatters = {
     isort = { append_args = { "--profile", "black" } },
     stylua = { append_args = { "--indent-type", "Spaces", "--indent-width", "2" } },
+    prettier = {
+      args = function(self, ctx)
+        if vim.endswith(ctx.filename, ".astro") then
+          return { "--stdin-filepath", "$FILENAME", "--plugin", vim.g.prettier_plugin_astro }
+        end
+        return { "--stdin-filepath", "$FILENAME" }
+      end,
+    },
   },
   formatters_by_ft = {
     lua = { "stylua" },
@@ -249,6 +257,7 @@ conform.setup({
     nix = { "nixpkgs_fmt" },
     python = { "isort", "black" },
     markdown = { "prettierd", "prettier", stop_after_first = true },
+    astro = { "prettier" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
     typescript = { "prettierd", "prettier", stop_after_first = true },
     typescriptreact = { "prettierd", "prettier", stop_after_first = true },
@@ -264,7 +273,16 @@ conform.setup({
 -- lsp
 local capabilities = require("cmp_nvim_lsp").default_capabilities() -- from nvim-cmp
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-
+vim.lsp.config("*", {
+  capabilities = capabilities,
+  root_markers = { ".git" },
+})
+vim.lsp.config["astro_ls"] = {
+  cmd = { "astro-ls", "--stdio" },
+  filetypes = { "astro" },
+  root_markers = { "package.json", "tsconfig.json", ".git" },
+  init_options = { typescript = { tsdk = vim.g.tsdk } },
+}
 vim.lsp.config["lua_ls"] = {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
@@ -275,42 +293,27 @@ vim.lsp.config["lua_ls"] = {
       diagnostics = { globals = { "vim" } }, -- ignore undefined `vim`
     },
   },
-  capabilities = capabilities,
 }
 vim.lsp.config["bash_ls"] = {
   cmd = { "bash-language-server" },
   filetypes = { "sh" },
-  capabilities = capabilities,
 }
 vim.lsp.config["nix_ls"] = {
   cmd = { "nixd" },
   filetypes = { "nix" },
   root_markers = { "flake.nix", ".git" },
-  capabilities = capabilities,
 }
 vim.lsp.config["python_ls"] = {
   cmd = { "ruff" },
   filetypes = { "py" },
-  capabilities = capabilities,
 }
 vim.lsp.config["css_ls"] = {
-  capabilities = capabilities,
   filetypes = { "css", "scss" },
   cmd = { "vscode-css-language-server", "--stdio" },
   settings = {
     css = { validate = true },
     scss = { validate = true },
   },
-}
-vim.lsp.config["astro_ls"] = {
-  cmd = { "astro-ls", "--stdio" },
-  capabilities = capabilities,
-  filetypes = { "astro" },
-  root_markers = { "package.json", "tsconfig.json", ".git" },
-  init_options = { typescript = {} },
-  -- before_init = function(_, config)
-  -- if config.init_options and config.init_options.typescript and not config.init_options.typescript.tsdk then
-  -- config.init_options.typescript.tsdk =
 }
 vim.lsp.config["ts_ls"] = {
   cmd = { "typescript-language-server", "--stdio" },
@@ -320,11 +323,11 @@ vim.lsp.config["ts_ls"] = {
 }
 
 -- use the noice style for generic notifications?
-vim.notify = require("notify").setup({
-  render = "wrapped-compact",
-  stages = "static",
-  top_down = false,
-})
+-- vim.notify = require("notify").setup({
+--   render = "wrapped-compact",
+--   stages = "static",
+--   top_down = false,
+-- })
 
 -- https://github.com/ntk148v/neovim-config/blob/master/lua/autocmds.lua
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
