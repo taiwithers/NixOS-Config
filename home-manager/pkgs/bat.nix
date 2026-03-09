@@ -1,6 +1,7 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }:
 {
   programs.bat = {
@@ -14,7 +15,10 @@
       prettybat
     ];
     config = {
-      "map-syntax" = "*.astro:TypeScriptReact";
+      "map-syntax" = [
+        "*.astro:TypeScriptReact"
+        "*.mdx:Markdown"
+      ];
     };
   };
 
@@ -51,8 +55,6 @@
           "/Syntax/Comments.tmPreferences"
           "/Syntax/Just.sublime-syntax"
         ];
-
       };
-
     };
 }
