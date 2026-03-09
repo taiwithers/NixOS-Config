@@ -12,6 +12,10 @@ _: {
         commitAuthorFormat = "short";
       };
       promptToReturnFromSubprocess = false;
+      keybinding.universal = {
+        quit = "Q";
+        quitWithoutChangingDirectory = "q";
+      };
     };
   };
   home.shellAliases = {
