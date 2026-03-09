@@ -1,6 +1,7 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }:
 let
   confdir = "${config.common.configHome}/nvim";
@@ -20,7 +21,6 @@ in
   home.packages = [ pkgs.typescript-language-server ];
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim; # ensure the version we specify in flake.nix is used
     defaultEditor = true;
     extraPackages = with pkgs; [
       # language servers
@@ -29,12 +29,13 @@ in
       nixd
       vscode-langservers-extracted
       ruff
-      astro-language-server # needs prettier plugin for formatting
+      astro-language-server
       typescript
       typescript-language-server
+      mdx-language-server
 
       # formatters
-      nixpkgs-fmt # trying to import nixfmt gives infinite recursion?
+      nixfmt-rfc-style
       black
       isort
       prettier
@@ -46,9 +47,7 @@ in
       shfmt
       yamlfmt
       prettier-plugin-astro
-      # potential latex formatters:
-      perlPackages.LatexIndent
-      bibtex-tidy
+      # potential latex formatters: perlPackages.LatexIndent bibtex-tidy
 
     ];
     plugins =
@@ -64,6 +63,7 @@ in
 
         nvim-cmp
         cmp-nvim-lsp
+        cmp-nvim-lua
 
         yazi-nvim
         telescope-nvim
@@ -77,6 +77,8 @@ in
         toggleterm-nvim
         comment-nvim
         yanky-nvim
+        flash-nvim
+        template-string-nvim
 
         # helpers - no additional setup done in plugins.lua
         # nui-nvim
@@ -92,13 +94,10 @@ in
         # nvim-treesitter-context # treesitter-context
         # otter-nvim
 
-        # precognition-nvim # precognition
         # tabout-nvim # tabout
         # telescope-ui-select-nvim # required for legendary
         # texpresso-vim # texpresso
         # nvim-window-picker # window-picker
-
-        # legendary-nvim # loaded after which-key, change to unstable
 
         # nvim-spectre
         # trouble
@@ -108,12 +107,14 @@ in
         (pkgs.vimPlugins.nvim-treesitter.withPlugins (
           p: with p; [
             nix
+            hmts-nvim
             lua
             vim
             ssh_config
             bash
             scss # for astro
             typescript # for astro
+            tsx
             python
             regex
             ssh_config
@@ -160,6 +161,7 @@ in
   xdg.configFile."nvim/lua/nix-paths.lua".text = ''
     vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"
     vim.g.prettier_plugin_astro = "${pkgs.prettier-plugin-astro}/dist/index.js"
+    vim.g.nixpkgs_expr = 'import (builtins.getFlake "${config.common.nixConfigDirectory}").inputs.nixpkgs {}'
   '';
 
   xdg.configFile."nvim/lua/wsl-clipboard.lua" = pkgs.lib.mkIf config.common.wsl {

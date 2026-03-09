@@ -113,7 +113,7 @@ _:
       # });
       inherit (unstable.kdePackages) krohnkite;
     };
-    nixfmt = super.nixfmt-rfc-style;
+    # nixfmt = super.nixfmt-rfc-style;
     nixshell = customScript rec {
       name = "nixshell";
       runtimeInputs = with super; [

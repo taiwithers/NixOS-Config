@@ -17,6 +17,12 @@ require("nix-paths")
 -- markdown list continuation and syntax highlighting
 -- multi-file search/replace
 
+-- show lsp diagnostics as virtual text at the end of the current line
+vim.diagnostic.config({ virtual_text = { current_line = true } })
+
+-- show inlay hints (currently used by nixd for versions)
+vim.lsp.inlay_hint.enable(true)
+
 -- statuscolumn git indicators
 require("gitsigns").setup()
 
@@ -65,6 +71,9 @@ require("lualine").setup({
 -- autopairing
 require("mini.pairs").setup()
 
+require("mini.bufremove").setup()
+vim.keymap.set({ "n" }, "<leader>dd", "<cmd>lua MiniBufremove.delete()<cr>", { desc = "Close buffer" })
+
 -- tpope-style surround
 require("nvim-surround").setup()
 
@@ -99,6 +108,24 @@ require("noice").setup({
       ["cmp.entry.get_documentation"] = true,
     },
   },
+})
+
+-- flash - fFtT motions and labelled search results
+require("flash").setup({
+  -- repeat fFtT motions with fFtT (as well as , ;)
+  -- fFtT travel across lines
+  labels = "aeichtsnuoybldwvkjxgrmfp", -- ordered by accessibility on based on keyboard layout
+  search = { multi_window = false },
+  label = { uppercase = false, min_pattern_length = 2 },
+  modes = {
+    search = { enabled = true }, -- three-character jumps during /? searches
+  },
+})
+
+-- template/f-string conversion (uses treesitter, so could move this inside the treesitter setup)
+require("template-string").setup({
+  remove_template_string = true,
+  restore_quotes = { normal = [["]] },
 })
 
 -- whichkey
@@ -151,20 +178,21 @@ local yanky_telescope_mappings = {
     ["d"] = yanky_mapping.delete(),
   },
 }
-require("yanky").setup({ -- adds highlight on yank (can be done natively w/ autcmds) and on put
-  ring = { permanent_wrapper = require("yanky.wrappers").remove_carriage_return }, -- wsl ^M fix
-  picker = { telescope = { use_default_mappings = false, mappings = yanky_telescope_mappings } },
-})
-vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Put after cursor" })
-vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Put before cursor" })
-vim.keymap.set(
-  { "n", "x" },
-  "<leader>p",
-  "<cmd>Telescope yank_history theme=cursor<cr>",
-  { desc = "Open yank history" }
-)
--- vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)") -- change the pasted text after pasting
--- vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)") -- change the pasted text after pasting
+
+-- require("yanky").setup({ -- adds highlight on yank (can be done natively w/ autcmds) and on put (can't)
+--   ring = { permanent_wrapper = require("yanky.wrappers").remove_carriage_return }, -- wsl ^M fix
+--   -- picker = { telescope = { use_default_mappings = false, mappings = yanky_telescope_mappings } },
+-- })
+-- vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Put after cursor" })
+-- vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Put before cursor" })
+-- vim.keymap.set(
+--   { "n", "x" },
+--   "<leader>p",
+--   "<cmd>Telescope yank_history theme=cursor<cr>",
+--   { desc = "Open yank history" }
+-- )
+-- -- -- vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)") -- change the pasted text after pasting
+-- -- -- vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)") -- change the pasted text after pasting
 
 -- terminals
 -- vim.keymap.set({ "n" }, "<leader>tj", "<cmd>:horizontal terminal<cr><cmd>:startinsert<cr>")
@@ -217,15 +245,19 @@ local completion_mapping = {
   -- <C-e>: close menu
 }
 cmp.setup({
-  sources = cmp.config.sources({ { name = "nvim_lsp" } }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "nvim_lua" },
+    { name = "buffer" },
+  }),
   mapping = completion_mapping,
 })
-cmp.setup.cmdline(":", {
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  mapping = completion_mapping,
-  sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
-  matching = { disallow_symbol_nonprefix_matching = false },
-})
+-- cmp.setup.cmdline(":", {
+--   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+--   mapping = completion_mapping,
+--   sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+--   matching = { disallow_symbol_nonprefix_matching = false },
+-- })
 cmp.setup.cmdline({ "/", "?" }, {
   -- Use buffer source for '/' and '?' searches
   mapping = completion_mapping,
@@ -254,7 +286,7 @@ conform.setup({
     docker = { "dockerfmt" },
     sh = { "shfmt" },
     yaml = { "yamlfmt" },
-    nix = { "nixpkgs_fmt" },
+    nix = { "nixfmt" },
     python = { "isort", "black" },
     markdown = { "prettierd", "prettier", stop_after_first = true },
     astro = { "prettier" },
@@ -299,9 +331,12 @@ vim.lsp.config["bash_ls"] = {
   filetypes = { "sh" },
 }
 vim.lsp.config["nix_ls"] = {
-  cmd = { "nixd" },
+  cmd = { "nixd", "--inlay-hints=true" },
   filetypes = { "nix" },
   root_markers = { "flake.nix", ".git" },
+  settings = { nixd = {
+    nixpkgs = { expr = vim.g.nixpkgs_expr },
+  } },
 }
 vim.lsp.config["python_ls"] = {
   cmd = { "ruff" },
@@ -321,6 +356,14 @@ vim.lsp.config["ts_ls"] = {
   init_options = { hostInfo = "neovim" },
   root_markers = { "package.json", "tsconfig.json", ".git" },
 }
+vim.lsp.config["mdx_ls"] = {
+  cmd = { "mdx-language-server", "--stdio" },
+  filetypes = { "mdx" },
+  root_markers = { "package.json", ".git" },
+  init_options = {
+    typescript = { enabled = true, tsdk = vim.g.tsdk },
+  },
+}
 
 -- use the noice style for generic notifications?
 -- vim.notify = require("notify").setup({
@@ -332,23 +375,34 @@ vim.lsp.config["ts_ls"] = {
 -- https://github.com/ntk148v/neovim-config/blob/master/lua/autocmds.lua
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
--- enable supported lsp functionality
-autocmd("LspAttach", {
-  callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-
-    -- view diagnostic for current line
-    vim.keymap.set(
-      { "n" },
-      "<leader>d",
-      "<cmd>lua vim.diagnostic.open_float()<cr>",
-      { desc = "View LSP diagnostic for current line" }
-    )
+-- restore cursor position when opening a file
+autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    local skipFileTypes = { "commit", "help" }
+    local line = vim.fn.line("'\"")
+    if
+      line > 1
+      and line <= vim.fn.line("$")
+      and not vim.list_contains({ skipFileTypes, vim.bo.filetype })
+      and vim.fn.line("$") < 2000
+    then
+      vim.cmd('normal! g`"')
+      vim.notify("Restored cursor to line " .. line)
+    end
   end,
 })
 
+-- enable supported lsp functionality
+-- diagnostics are now always shown when you're on a relevant line, so don't need to keymap
+-- autocmd("LspAttach", {
+--   callback = function(args)
+--     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+--   end,
+-- })
+
 local function start_lsp()
-  vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls" })
+  vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls", "mdx_ls" })
 end
 
 start_lsp()
@@ -356,7 +410,7 @@ vim.keymap.set({ "n" }, "<leader>ls", start_lsp, { desc = "Start LSP servers" })
 
 -- treesitter stuff
 autocmd("FileType", {
-  pattern = { "lua", "nix", "python", "bash", "astro" },
+  pattern = { "lua", "nix", "python", "bash", "astro", "typescript", "tsx", "typescriptreact" },
   callback = function()
     -- syntax highlighting
     vim.treesitter.start()
