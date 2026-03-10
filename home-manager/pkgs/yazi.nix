@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.yazi = {
     enable = true;
     enableBashIntegration = true;
@@ -25,29 +26,51 @@
           }
         ];
         prepend_previewers = [
-          { name = "*.astro"; run = "piper -- bat --plain --color=always \"$1\""; }
+          {
+            name = "*.astro";
+            run = "piper -- bat --plain --color=always \"$1\"";
+          }
+          # nbpreview
+          {
+            name = "*.ipynb";
+            run = "piper -- nbpreview --no-paging --nerd-font --decorated --no-files --unicode --color --images --theme=dark \"$1\"";
+          }
           # preview directory trees with eza
-          { name = "*/"; run = "piper -- eza --tree --level=3 --color=always --icons=always --group-directories-first --no-quotes \"$1\""; }
+          {
+            name = "*/";
+            run = "piper -- eza --tree --level=3 --color=always --icons=always --group-directories-first --no-quotes \"$1\"";
+          }
         ];
       };
     };
     keymap = {
-      mgr.prepend_keymap = [{
-        on = [ "g" "i" ];
-        run = "plugin lazygit";
-        desc = "run lazygit";
-      }
+      mgr.prepend_keymap = [
+        {
+          on = [
+            "g"
+            "i"
+          ];
+          run = "plugin lazygit";
+          desc = "run lazygit";
+        }
         {
           on = "<Esc>";
           run = "close";
           desc = "Close";
-        }];
+        }
+      ];
     };
     plugins = {
       piper = pkgs.yaziPlugins.piper;
       lazygit = pkgs.yaziPlugins.lazygit;
       git = pkgs.yaziPlugins.git;
-
+      # nbpreview = pkgs.fetchFromGitHub {
+      #   owner = "AnirudhG07";
+      #   repo = "nbpreview.yazi";
+      #   rev = "b504594";
+      #   hash = "";
+      #
+      # };
     };
     initLua = ''
       require("git"):setup()
@@ -55,6 +78,7 @@
     extraPackages = [
       pkgs.bat
       pkgs.eza
+      pkgs.nbpreview
     ];
   };
 }

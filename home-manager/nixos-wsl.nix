@@ -63,6 +63,7 @@
     cloc
     visidata
     jq
+    nbpreview
   ];
 
   programs.git = {
