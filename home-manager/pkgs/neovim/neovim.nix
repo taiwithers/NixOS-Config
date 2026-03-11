@@ -82,6 +82,7 @@ in
         flash-nvim
         template-string-nvim
         project-nvim
+        marks-nvim
 
         # helpers - no additional setup done in plugins.lua
         # nui-nvim

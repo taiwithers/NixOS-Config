@@ -32,7 +32,9 @@ vim.filetype.add({
 })
 
 -- statuscolumn git indicators
-require("gitsigns").setup()
+require("gitsigns").setup({
+  sign_priority = 1000, -- don't overlap marks
+})
 
 -- change the colour of the line highlight based on current mode
 require("modes").setup()
@@ -200,6 +202,13 @@ vim.keymap.set({ "n", "v" }, "<leader>ff", vim.find_files_from_project_git_root,
 vim.keymap.set({ "n", "v" }, "<leader>fb", require("telescope.builtin").buffers, { desc = "Open buffers" })
 vim.keymap.set({ "n", "v" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
 vim.keymap.set({ "n", "v", "i" }, "<F12>", require("telescope.builtin").lsp_definitions, { desc = "Go to definition" })
+vim.keymap.set(
+  { "n", "v" },
+  "<leader>fm",
+  "<cmd>Telescope marks theme=dropdown<cr>",
+  -- require("telescope.builtin").marks(require("telescope.themes").get_dropdown()),
+  { desc = "Marks" }
+)
 
 -- yank ring (clipboard history)
 local yanky_mapping = require("yanky.telescope.mapping")
