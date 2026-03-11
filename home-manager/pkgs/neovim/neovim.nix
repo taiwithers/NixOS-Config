@@ -50,7 +50,6 @@ in
       yamlfmt
       prettier-plugin-astro
       # potential latex formatters: perlPackages.LatexIndent bibtex-tidy
-
     ];
     plugins =
       with pkgs.vimPlugins;
@@ -78,7 +77,8 @@ in
         gitsigns-nvim
         toggleterm-nvim
         comment-nvim
-        yanky-nvim
+        nvim-neoclip-lua
+        sqlite-lua # for nvim-neoclip-lua
         flash-nvim
         template-string-nvim
         project-nvim

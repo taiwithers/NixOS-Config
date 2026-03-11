@@ -165,6 +165,7 @@ require("which-key").add({
 local telescope = require("telescope")
 telescope.setup({
   defaults = {
+    dynamic_preview_title = true, -- for neoclip
     mappings = {
       n = {
         ["q"] = require("telescope.actions").close,
@@ -211,35 +212,42 @@ vim.keymap.set(
 )
 
 -- yank ring (clipboard history)
-local yanky_mapping = require("yanky.telescope.mapping")
-local yanky_telescope_mappings = {
-  default = yanky_mapping.put("p"),
-  i = {
-    ["<C-l>"] = yanky_mapping.put("p"),
-    ["<C-h>"] = yanky_mapping.put("P"),
-    ["<C-d>"] = yanky_mapping.delete(),
+local function is_whitespace(line)
+  local trimmed = vim.trim(line)
+  return string.len(trimmed) > 0
+end
+require("neoclip").setup({
+  history = 50,
+  enable_persistent_history = true,
+  preview = true, -- show the type of paste in the telescope title (char/line wise)
+  dedent_picker_display = true,
+  filter = function(data)
+    local lines = vim.tbl_values(data.event.regcontents)
+    local all_whitespace = vim.iter(lines):all(is_whitespace)
+    return all_whitespace
+  end,
+  keys = {
+    telescope = {
+      i = {
+        select = {},
+        paste = { "<cr>", "<c-l>" },
+        paste_behind = "<c-h>",
+        replay = {}, -- replay macros
+        delete = "<c-d>",
+        edit = "<c-e>",
+      },
+      n = {
+        select = {},
+        paste = { "<cr>", "p" },
+        paste_behind = "P",
+        replay = {}, -- replay macros
+        delete = "d",
+        edit = "e",
+      },
+    },
   },
-  n = {
-    ["p"] = yanky_mapping.put("p"),
-    ["P"] = yanky_mapping.put("P"),
-    ["d"] = yanky_mapping.delete(),
-  },
-}
-
--- require("yanky").setup({ -- adds highlight on yank (can be done natively w/ autcmds) and on put (can't)
---   ring = { permanent_wrapper = require("yanky.wrappers").remove_carriage_return }, -- wsl ^M fix
---   -- picker = { telescope = { use_default_mappings = false, mappings = yanky_telescope_mappings } },
--- })
--- vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Put after cursor" })
--- vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Put before cursor" })
--- vim.keymap.set(
---   { "n", "x" },
---   "<leader>p",
---   "<cmd>Telescope yank_history theme=cursor<cr>",
---   { desc = "Open yank history" }
--- )
--- -- -- vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)") -- change the pasted text after pasting
--- -- -- vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)") -- change the pasted text after pasting
+})
+vim.keymap.set("n", "<leader>p", "<cmd>Telescope neoclip theme=cursor<cr>")
 
 -- terminals
 -- vim.keymap.set({ "n" }, "<leader>tj", "<cmd>:horizontal terminal<cr><cmd>:startinsert<cr>")
