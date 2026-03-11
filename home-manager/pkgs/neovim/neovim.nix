@@ -81,6 +81,7 @@ in
         yanky-nvim
         flash-nvim
         template-string-nvim
+        project-nvim
 
         # helpers - no additional setup done in plugins.lua
         # nui-nvim

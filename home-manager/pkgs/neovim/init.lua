@@ -136,8 +136,28 @@ require("template-string").setup({
   restore_quotes = { normal = [["]] },
 })
 
+-- project/workspace/session management
+require("project").setup({
+  silent_chdir = false,
+})
+vim.keymap.set("n", "<leader>fP", "<cmd>Project<cr>", { desc = "Manage projects" })
+vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects theme=dropdown<cr>", { desc = "Select project" })
+
+-- show marks on the left
+-- require("visual-marks")
+require("marks").setup({
+  builtin_marks = { ".", "<", ">", "^" },
+})
+
 -- whichkey
-require("which-key").setup({ preset = "helix" })
+require("which-key").setup({ preset = "helix", expand = 2 })
+require("which-key").add({
+  -- { "<leader>d", group = "Delete" },
+  { "<leader>f", group = "Find" },
+  -- { "<leader>l", group = "LSP" },
+  -- { "<leader>t", group = "Terminal" },
+  -- { "<leader>y", group = "Yazi" },
+})
 
 -- telescope, automatically loads noice extension
 local telescope = require("telescope")
@@ -177,9 +197,9 @@ local function live_grep_from_project_git_root()
   require("telescope.builtin").live_grep(opts)
 end
 vim.keymap.set({ "n", "v" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
-vim.keymap.set({ "n", "v" }, "<leader>fb", telescope.buffers, { desc = "Open buffers" })
+vim.keymap.set({ "n", "v" }, "<leader>fb", require("telescope.builtin").buffers, { desc = "Open buffers" })
 vim.keymap.set({ "n", "v" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
-vim.keymap.set({ "n", "v", "i" }, "<F12>", telescope.lsp_definitions, { desc = "Go to definition" })
+vim.keymap.set({ "n", "v", "i" }, "<F12>", require("telescope.builtin").lsp_definitions, { desc = "Go to definition" })
 
 -- yank ring (clipboard history)
 local yanky_mapping = require("yanky.telescope.mapping")
@@ -223,7 +243,7 @@ local lazygit = toggleterminal:new({ cmd = "lazygit", dir = "git_dir", direction
 vim.keymap.set({ "n" }, "<leader>tt", function()
   shell:toggle()
 end, { desc = "Open terminal" })
-vim.keymap.set({ "n" }, "<leader>lg", function()
+vim.keymap.set({ "n" }, "<leader>g", function()
   lazygit:toggle()
 end, { desc = "Open lazygit" })
 
