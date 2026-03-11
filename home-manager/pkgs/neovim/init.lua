@@ -290,12 +290,57 @@ local completion_mapping = {
   -- <C-y>: accept selected option
   -- <C-e>: close menu
 }
+local kind_icons = {
+  Text = "",
+  Method = "󰆧",
+  Function = "󰊕",
+  Constructor = "",
+  Field = "󰇽",
+  Variable = "󰂡",
+  Class = "󰠱",
+  Interface = "",
+  Module = "",
+  Property = "󰜢",
+  Unit = "",
+  Value = "󰎠",
+  Enum = "",
+  Keyword = "󰌋",
+  Snippet = "",
+  Color = "󰏘",
+  File = "󰈙",
+  Reference = "",
+  Folder = "󰉋",
+  EnumMember = "",
+  Constant = "󰏿",
+  Struct = "",
+  Event = "",
+  Operator = "󰆕",
+  TypeParameter = "󰅲",
+}
 cmp.setup({
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "buffer" },
   }),
+  formatting = {
+    format = function(entry, vim_item)
+      -- concatenate icon with type
+      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+      -- Source
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[LaTeX]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+  },
   mapping = completion_mapping,
 })
 -- cmp.setup.cmdline(":", {
