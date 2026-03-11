@@ -1,3 +1,6 @@
+-- https://github.com/ntk148v/neovim-config/blob/master/lua/autocmds.lua
+local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
+
 -- <leader> key. Defaults to `\`. Some people prefer space.
 vim.g.mapleader = " "
 -- vim.g.maplocalleader = ' '
@@ -16,12 +19,17 @@ require("nix-paths")
 -- linting
 -- markdown list continuation and syntax highlighting
 -- multi-file search/replace
+-- add <cmd><cr> as a lua snippet
 
 -- show lsp diagnostics as virtual text at the end of the current line
 vim.diagnostic.config({ virtual_text = { current_line = true } })
 
 -- show inlay hints (currently used by nixd for versions)
 vim.lsp.inlay_hint.enable(true)
+
+vim.filetype.add({
+  extension = { mdx = "mdx" },
+})
 
 -- statuscolumn git indicators
 require("gitsigns").setup()
@@ -132,8 +140,18 @@ require("template-string").setup({
 require("which-key").setup({ preset = "helix" })
 
 -- telescope, automatically loads noice extension
-require("telescope").load_extension("fzf")
-local telescope = require("telescope.builtin")
+local telescope = require("telescope")
+telescope.setup({
+  defaults = {
+    mappings = {
+      n = {
+        ["q"] = require("telescope.actions").close,
+        ["<leader>"] = require("telescope.actions").which_key,
+      },
+    },
+  },
+})
+telescope.load_extension("fzf")
 
 local function is_git_repo()
   vim.fn.system("git rev-parse --is-inside-work-tree")
@@ -151,7 +169,7 @@ function vim.find_files_from_project_git_root()
   end
   require("telescope.builtin").find_files(opts)
 end
-function live_grep_from_project_git_root()
+local function live_grep_from_project_git_root()
   local opts = {}
   if is_git_repo() then
     opts = { cwd = get_git_root() }
@@ -212,6 +230,14 @@ end, { desc = "Open lazygit" })
 -- yazi integration
 -- local yazi = require("yazi")
 vim.keymap.set({ "n", "v" }, "<leader>yy", "<cmd>Yazi<cr>", { desc = "Open yazi" })
+vim.g.loaded_netrwPlugin = 1 -- don't load native netrw
+autocmd("UIEnter", {
+  callback = function()
+    require("yazi").setup({
+      open_for_directories = true,
+    })
+  end,
+})
 
 -- swap wrapped and non-wrapped line movement
 vim.keymap.set({ "n", "v" }, "j", "gj", { desc = "Move down one visual line" })
@@ -371,9 +397,6 @@ vim.lsp.config["mdx_ls"] = {
 --   stages = "static",
 --   top_down = false,
 -- })
-
--- https://github.com/ntk148v/neovim-config/blob/master/lua/autocmds.lua
-local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
 -- restore cursor position when opening a file
 autocmd("BufReadPost", {

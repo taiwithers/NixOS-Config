@@ -33,6 +33,8 @@ in
       typescript
       typescript-language-server
       mdx-language-server
+      gcc13 # don't let project-specific gccs take over, not sure if this works
+      nodejs # same as gcc
 
       # formatters
       nixfmt-rfc-style
