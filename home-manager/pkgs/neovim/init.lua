@@ -30,6 +30,12 @@ vim.lsp.inlay_hint.enable(true)
 vim.filetype.add({
   extension = { mdx = "mdx" },
 })
+autocmd("TextYankPost", {
+  -- highlight yanked text
+  callback = function()
+    vim.hl.on_yank({ timeout = 400 })
+  end,
+})
 
 -- statuscolumn git indicators
 require("gitsigns").setup({
@@ -87,9 +93,6 @@ vim.keymap.set({ "n" }, "<leader>dd", "<cmd>lua MiniBufremove.delete()<cr>", { d
 -- tpope-style surround
 require("nvim-surround").setup()
 
--- filetree, neo-tree looks maybe nicer?
--- require("nvim-tree").setup()
-
 -- style the command line and notifications?
 require("noice").setup({
   presets = {
@@ -146,13 +149,14 @@ vim.keymap.set("n", "<leader>fP", "<cmd>Project<cr>", { desc = "Manage projects"
 vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects theme=dropdown<cr>", { desc = "Select project" })
 
 -- show marks on the left
--- require("visual-marks")
-require("marks").setup({
-  builtin_marks = { ".", "<", ">", "^" },
-})
+-- not working w/ whichkey is known issue https://github.com/chentoast/marks.nvim/issues/113
+require("marks").setup({})
 
 -- whichkey
-require("which-key").setup({ preset = "helix", expand = 2 })
+require("which-key").setup({
+  preset = "helix",
+  expand = 2, -- if a group has 2 or fewer keymaps, show them all
+})
 require("which-key").add({
   -- { "<leader>d", group = "Delete" },
   { "<leader>f", group = "Find" },
@@ -166,6 +170,10 @@ local telescope = require("telescope")
 telescope.setup({
   defaults = {
     dynamic_preview_title = true, -- for neoclip
+    path_display = { "smart" },
+    file_previewer = require("telescope.previewers").cat.new,
+    grep_previewer = require("telescope.previewers").vimgrep.new,
+    qflist_previewer = require("telescope.previewers").qflist.new,
     mappings = {
       n = {
         ["q"] = require("telescope.actions").close,
@@ -202,14 +210,19 @@ end
 vim.keymap.set({ "n", "v" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
 vim.keymap.set({ "n", "v" }, "<leader>fb", require("telescope.builtin").buffers, { desc = "Open buffers" })
 vim.keymap.set({ "n", "v" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
-vim.keymap.set({ "n", "v", "i" }, "<F12>", require("telescope.builtin").lsp_definitions, { desc = "Go to definition" })
 vim.keymap.set(
-  { "n", "v" },
-  "<leader>fm",
-  "<cmd>Telescope marks theme=dropdown<cr>",
-  -- require("telescope.builtin").marks(require("telescope.themes").get_dropdown()),
-  { desc = "Marks" }
+  { "n", "v", "i" },
+  "<F12>",
+  "<cmd>Telescope lsp_definitions theme=cursor<cr>",
+  { desc = "Go to definition" }
 )
+vim.keymap.set(
+  { "n", "v", "i" },
+  "<S-F12>",
+  "<cmd>Telescope lsp_references theme=cursor<cr>",
+  { desc = "Go to references" }
+)
+vim.keymap.set({ "n", "v" }, "<leader>fm", "<cmd>Telescope marks theme=dropdown<cr>", { desc = "Marks" })
 
 -- yank ring (clipboard history)
 local function is_whitespace(line)
@@ -250,13 +263,11 @@ require("neoclip").setup({
 vim.keymap.set("n", "<leader>p", "<cmd>Telescope neoclip theme=cursor<cr>")
 
 -- terminals
--- vim.keymap.set({ "n" }, "<leader>tj", "<cmd>:horizontal terminal<cr><cmd>:startinsert<cr>")
-vim.keymap.set({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }) -- causes problems w/ lazygit
 require("toggleterm").setup()
 local toggleterminal = require("toggleterm.terminal").Terminal
 local shell = toggleterminal:new({ cmd = vim.o.shell })
 local lazygit = toggleterminal:new({ cmd = "lazygit", dir = "git_dir", direction = "float", close_on_exit = true })
--- vim.keymap.set({ "n" }, "<leader>tt", "<cmd>:ToggleTerm<cr>", { desc = "Open terminal" })
 vim.keymap.set({ "n" }, "<leader>tt", function()
   shell:toggle()
 end, { desc = "Open terminal" })
