@@ -173,6 +173,12 @@ _:
         inherit (unstable.vimPlugins) nvim-tree-lua nui-nvim nvim-notify;
       }
       // builtins.mapAttrs (_name: value: (githubVimPlugin value)) {
+        darkvoid-nvim = {
+          author = "darkvoid-theme";
+          repo = "darkvoid.nvim";
+          rev = "45be993";
+          hash = "sha256-JiNuv1TAIHVL9tGNDYC0RdRPnI9l4zn+ZCU9B4wQ5Io=";
+        };
         f-string-toggle-nvim = {
           author = "roobert";
           repo = "f-string-toggle.nvim";
