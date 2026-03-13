@@ -30,6 +30,9 @@ vim.lsp.inlay_hint.enable(true)
 vim.filetype.add({
   extension = { mdx = "mdx" },
 })
+
+vim.treesitter.language.register("markdown", { "mdx" })
+
 autocmd("TextYankPost", {
   -- highlight yanked text
   callback = function()
@@ -144,6 +147,7 @@ require("template-string").setup({
 -- project/workspace/session management
 require("project").setup({
   silent_chdir = false,
+  patterns = { ">projects", "flake.nix" },
 })
 vim.keymap.set("n", "<leader>fP", "<cmd>Project<cr>", { desc = "Manage projects" })
 vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects theme=dropdown<cr>", { desc = "Select project" })
@@ -426,7 +430,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities() -- from nvim
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.config("*", {
   capabilities = capabilities,
-  root_markers = { ".git" },
+  root_markers = { "flake.nix", ".git" },
 })
 vim.lsp.config["astro_ls"] = {
   cmd = { "astro-ls", "--stdio" },
