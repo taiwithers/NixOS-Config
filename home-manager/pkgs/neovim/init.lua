@@ -446,8 +446,9 @@ vim.lsp.config["lua_ls"] = {
   },
 }
 vim.lsp.config["bash_ls"] = {
-  cmd = { "bash-language-server" },
-  filetypes = { "sh" },
+  cmd = { "bash-language-server", "start" },
+  filetypes = { "sh", "bash" },
+  settings = { bashIde = { globPattern = "*@(.sh|.inc|.bash|.command)" } },
 }
 vim.lsp.config["nix_ls"] = {
   cmd = { "nixd", "--inlay-hints=true" },
@@ -518,7 +519,7 @@ autocmd("BufReadPost", {
 -- })
 
 local function start_lsp()
-  vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls", "mdx_ls" })
+  vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls", "mdx_ls", "bash_ls" })
 end
 
 start_lsp()
