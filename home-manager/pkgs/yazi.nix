@@ -64,13 +64,6 @@
       piper = pkgs.yaziPlugins.piper;
       lazygit = pkgs.yaziPlugins.lazygit;
       git = pkgs.yaziPlugins.git;
-      # nbpreview = pkgs.fetchFromGitHub {
-      #   owner = "AnirudhG07";
-      #   repo = "nbpreview.yazi";
-      #   rev = "b504594";
-      #   hash = "";
-      #
-      # };
     };
     initLua = ''
       require("git"):setup()

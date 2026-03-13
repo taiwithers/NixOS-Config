@@ -188,8 +188,8 @@ _:
         modes-nvim = {
           author = "mvllow";
           repo = "modes.nvim";
-          rev = "90d7abf";
-          hash = "sha256-cQWvug2K7Qr0V6TT0BmQVxTL09dxNBLDxz73yZVEEes=";
+          rev = "0932ba4";
+          hash = "sha256-SXx1S/yBDTddb/oncHmfvpdO2oUNbgUjBItnudDAIE8=";
         };
       };
     whichl = customScript {

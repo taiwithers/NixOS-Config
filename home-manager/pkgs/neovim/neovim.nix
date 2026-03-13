@@ -50,6 +50,13 @@ in
       yamlfmt
       prettier-plugin-astro
       # potential latex formatters: perlPackages.LatexIndent bibtex-tidy
+
+      # plugin integrations and dependencies
+      yazi
+      lazygit
+      fd
+      bat
+      ripgrep
     ];
     plugins =
       with pkgs.vimPlugins;
