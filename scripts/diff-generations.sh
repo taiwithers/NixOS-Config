@@ -10,7 +10,7 @@ to_jq() {
 
 case "$1" in
 home)
-  currentHomeGeneration=$(getNthHomeManagerProfile 1)
+  currentHomeGeneration=$(getNthHomeManagerProfile 1 | sd " \(current\)" "")
   previousHomeGeneration=$(getNthHomeManagerProfile 2)
   nvd diff "$previousHomeGeneration" "$currentHomeGeneration"
   ;;
