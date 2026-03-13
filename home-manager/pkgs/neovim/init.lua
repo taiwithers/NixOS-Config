@@ -14,9 +14,7 @@ require("nix-paths")
 
 -- to add
 -- breadcrumbs? nvim-navic
--- markdown rendering? - I think this is just a bad default colour scheme
 -- window picker
--- linting
 -- markdown list continuation and syntax highlighting
 -- multi-file search/replace
 -- add <cmd><cr> as a lua snippet
@@ -154,6 +152,16 @@ vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects theme=dropdown<cr>", 
 -- not working w/ whichkey is known issue https://github.com/chentoast/marks.nvim/issues/113
 require("marks").setup({})
 
+-- configuration for the vimscript vim-table-mode plugin, which understands md and rst files, but not mdx
+autocmd("filetype", {
+  pattern = { "mdx" },
+  callback = function()
+    vim.g.table_mode_corner = "|"
+  end,
+})
+-- unlikely to use tableize (convert from csv) and it uses <leader>tt which overwrites my terminal mapping
+vim.g.table_mode_disable_tableize_mappings = 1
+
 -- whichkey
 require("which-key").setup({
   preset = "helix",
@@ -165,6 +173,9 @@ require("which-key").add({
   -- { "<leader>l", group = "LSP" },
   -- { "<leader>t", group = "Terminal" },
   -- { "<leader>y", group = "Yazi" },
+  --
+  -- better descriptions for table mode commands
+  { "<leader>tm", "<cmd>TableModeToggle<cr>", desc = "Toggle table mode" },
 })
 
 -- telescope, automatically loads noice extension

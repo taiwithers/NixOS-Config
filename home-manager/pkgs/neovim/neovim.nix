@@ -93,6 +93,7 @@ in
         darkvoid-nvim
         mdx-nvim
         otter-nvim
+        vim-table-mode
 
         # helpers - no additional setup done in plugins.lua
         # nui-nvim
