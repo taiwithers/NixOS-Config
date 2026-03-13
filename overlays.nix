@@ -179,6 +179,12 @@ _:
           rev = "45be993";
           hash = "sha256-JiNuv1TAIHVL9tGNDYC0RdRPnI9l4zn+ZCU9B4wQ5Io=";
         };
+        markdown-plus-nvim = {
+          author = "YousefHadder";
+          repo = "markdown-plus.nvim";
+          rev = "v2.0.0";
+          hash = "sha256-ovVbPXRmiY5hWgkCNCgW/zYdg/l3Fq4A/rXPHDYdu7U=";
+        };
         mdx-nvim = {
           author = "davidmh";
           repo = "mdx.nvim";

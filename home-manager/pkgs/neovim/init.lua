@@ -3,7 +3,7 @@ local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
 -- <leader> key. Defaults to `\`. Some people prefer space.
 vim.g.mapleader = " "
--- vim.g.maplocalleader = ' '
+vim.g.maplocalleader = " " -- used by markdown-plus
 
 require("options")
 
@@ -151,6 +151,44 @@ vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects theme=dropdown<cr>", 
 -- show marks on the left
 -- not working w/ whichkey is known issue https://github.com/chentoast/marks.nvim/issues/113
 require("marks").setup({})
+
+-- markdown (may also take over for table mode at some point)
+require("markdown-plus").setup({
+  features = {
+    thematic_break = false,
+    headers_toc = false,
+    callouts = false,
+    quotes = false,
+  },
+  list = {
+    checkbox_completion = { enabled = false },
+  },
+  -- disable the existence of the smart paste keymap??? <localleader>mp
+  -- :i narkdown-plus-plug-mappings for the ones i'd need to reset
+  keymaps = {
+    enabled = false,
+  },
+  filetypes = { "markdown", "mdx" },
+})
+-- require("markdown").setup({
+--   mappings = {
+--     inline_surround_toggle = false,
+--     inline_surround_toggle_line = false,
+--     inline_surround_delete = false,
+--     inline_surround_change = false,
+--     link_add = "gl",
+--     link_follow = "gx",
+--     go_curr_heading = "]c",
+--     go_parent_heading = "]p",
+--   },
+--   on_attach = function(bufnr)
+--     require("noice").redirect(function()
+--       print("hi")
+--     end)
+--     vim.keymap.set("i", "<C-n>", "<cmd>MDListItemBelow<cr>", { buffer = bufnr, desc = "Insert list item below" })
+--     vim.keymap.set("i", "<c-e>", "<cmd>MDListItemBelow<cr>", { buffer = bufnr, desc = "Insert list item below" })
+--   end,
+-- })
 
 -- configuration for the vimscript vim-table-mode plugin, which understands md and rst files, but not mdx
 autocmd("filetype", {

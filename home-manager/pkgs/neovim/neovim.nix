@@ -94,6 +94,7 @@ in
         mdx-nvim
         otter-nvim
         vim-table-mode
+        markdown-plus-nvim
 
         # helpers - no additional setup done in plugins.lua
         # nui-nvim
