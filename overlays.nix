@@ -179,11 +179,11 @@ _:
           rev = "45be993";
           hash = "sha256-JiNuv1TAIHVL9tGNDYC0RdRPnI9l4zn+ZCU9B4wQ5Io=";
         };
-        f-string-toggle-nvim = {
-          author = "roobert";
-          repo = "f-string-toggle.nvim";
-          rev = "74545e6";
-          hash = "";
+        mdx-nvim = {
+          author = "davidmh";
+          repo = "mdx.nvim";
+          rev = "3022299";
+          hash = "sha256-QaPYSTH59j8tUa5rTY8I9VdQWLkhy8SWhNigEXHFn1c=";
         };
         modes-nvim = {
           author = "mvllow";

@@ -31,8 +31,6 @@ vim.filetype.add({
   extension = { mdx = "mdx" },
 })
 
-vim.treesitter.language.register("markdown", { "mdx" })
-
 autocmd("TextYankPost", {
   -- highlight yanked text
   callback = function()
@@ -529,9 +527,15 @@ end
 start_lsp()
 vim.keymap.set({ "n" }, "<leader>ls", start_lsp, { desc = "Start LSP servers" })
 
+-- if in certain buffer types, activate otter
+autocmd("FileType", {
+  pattern = { "md", "mdx", "just", "tex", "nix" },
+  callback = require("otter").activate,
+})
+
 -- treesitter stuff
 autocmd("FileType", {
-  pattern = { "lua", "nix", "python", "bash", "astro", "typescript", "tsx", "typescriptreact" },
+  pattern = { "lua", "nix", "python", "bash", "astro", "typescript", "tsx", "typescriptreact", "mdx" },
   callback = function()
     -- syntax highlighting
     vim.treesitter.start()

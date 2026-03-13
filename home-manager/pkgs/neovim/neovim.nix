@@ -91,6 +91,8 @@ in
         project-nvim
         marks-nvim
         darkvoid-nvim
+        mdx-nvim
+        otter-nvim
 
         # helpers - no additional setup done in plugins.lua
         # nui-nvim
