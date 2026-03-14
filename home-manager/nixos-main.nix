@@ -135,6 +135,7 @@
     zoom-us
     discord
     sonic-pi
+    anki
 
     kdePackages.kdialog
     heroic
