@@ -61,64 +61,42 @@ in
     plugins =
       with pkgs.vimPlugins;
       [
-        bufferline-nvim # bufferline
-        lualine-nvim # lualine
-        mini-nvim # mini (animate, clue, completion, cursorword, indentscope, move, pairs, surround)
-        nvim-surround
-        noice-nvim # noice
+        bufferline-nvim # tab bar
+        lualine-nvim # status bar
+        mini-nvim # mini (autopairs, delete buffer without changing layout)
+        nvim-surround # actions on surrounding brackets
+        noice-nvim # pretty UI
         which-key-nvim # which-key
-        nvim-notify # notify
-
-        nvim-cmp
-        cmp-nvim-lsp
-        cmp-nvim-lua
-
-        yazi-nvim
-        telescope-nvim
-        telescope-fzf-native-nvim
-        nvim-ts-autotag
-        conform-nvim
-        modes-nvim
-        auto-hlsearch-nvim
-        highlight-undo-nvim
-        gitsigns-nvim
-        toggleterm-nvim
-        comment-nvim
-        nvim-neoclip-lua
+        nvim-notify # apply noice ui to notifications
+        nvim-cmp # completion
+        cmp-nvim-lsp # completion source - LSP
+        cmp-nvim-lua # completion source - vim.X lua api
+        yazi-nvim # integrate yazi
+        telescope-nvim # picker for files and much more
+        telescope-fzf-native-nvim # improve telescope's sorting and searching
+        nvim-ts-autotag # auto-close html tags
+        conform-nvim # configuration for formatters
+        modes-nvim # change the colour of the current line based on mode
+        auto-hlsearch-nvim # turn off search highlights automatically - change this is redundant w/ flash
+        highlight-undo-nvim # highlight the text changed by undoing
+        gitsigns-nvim # show git status of lines in the signcolumn
+        toggleterm-nvim # manage terminal windows
+        comment-nvim # fancy comment functionality
+        nvim-neoclip-lua # clipboard history
         sqlite-lua # for nvim-neoclip-lua
-        flash-nvim
-        template-string-nvim
-        project-nvim
-        marks-nvim
-        darkvoid-nvim
-        mdx-nvim
-        otter-nvim
-        vim-table-mode
-        markdown-plus-nvim
+        flash-nvim # improved FtTt motions
+        template-string-nvim # auto handle f-strings and js equiv
+        project-nvim # auto-cd
+        marks-nvim # show marks in signcolumn
+        darkvoid-nvim # colourscheme that doesn't work great
+        mdx-nvim # treesitter highlighting for mdx files
+        otter-nvim # LSP for embedded code blocks
+        vim-table-mode # table editing in markdown - redundant w/ markdown plus
+        markdown-plus-nvim # lots of markdown functionality (list continuation, table navigation, etc.)
 
-        # helpers - no additional setup done in plugins.lua
-        # nui-nvim
-        # plenary-nvim
         # vimtex
-
-        # # simple plugins
-        # (loadPlugin hmts-nvim "hmts")
-
-        # in order of plugins.lua appearance
-        # hardtime-nvim # hardtime
-        # nvim-navic
-        # nvim-treesitter-context # treesitter-context
-        # otter-nvim
-
-        # tabout-nvim # tabout
-        # telescope-ui-select-nvim # required for legendary
         # texpresso-vim # texpresso
         # nvim-window-picker # window-picker
-
-        # nvim-spectre
-        # trouble
-        # dashboard-nvim
-        # vim-just # syntax highlighting for just
 
         (pkgs.vimPlugins.nvim-treesitter.withPlugins (
           p: with p; [
