@@ -156,7 +156,7 @@
         permittedInsecurePackages = [
           "openssl-1.1.1w"
           "deskflow-1.19.0"
-          "ventoy-qt5-1.1.07"
+          "ventoy-qt5-1.1.10"
         ];
       };
 

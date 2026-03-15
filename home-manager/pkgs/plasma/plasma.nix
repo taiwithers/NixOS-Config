@@ -1185,6 +1185,8 @@ rec {
   '';
 
   xdg.configFile."klassy/klassyrc".text = ''
+    RefreshedConfig=6.5
+
     [ButtonColors]
     ButtonBackgroundOpacityActive=70
     ButtonBackgroundOpacityInactive=70
@@ -1201,8 +1203,8 @@ rec {
     OpaqueMaximizedTitleBars=false
 
     [TitleBarSpacing]
-    TitleBarLeftMargin=3
-    TitleBarRightMargin=3
+    TitleBarLeftMargin=6
+    TitleBarRightMargin=6
 
     [Windeco]
     BoldButtonIcons=BoldIconsFine
@@ -1216,7 +1218,7 @@ rec {
 
     [WindowOutlineStyle]
     ThinWindowOutlineStyleInactive=WindowOutlineNone
-    ThinWindowOutlineThickness=2.5
+    ThinWindowOutlineThickness=5
     WindowOutlineAccentColorOpacityActive=80
   '';
 
