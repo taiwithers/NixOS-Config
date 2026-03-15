@@ -91,7 +91,6 @@ in
         darkvoid-nvim # colourscheme that doesn't work great
         mdx-nvim # treesitter highlighting for mdx files
         otter-nvim # LSP for embedded code blocks
-        vim-table-mode # table editing in markdown - redundant w/ markdown plus
         markdown-plus-nvim # lots of markdown functionality (list continuation, table navigation, etc.)
 
         # vimtex

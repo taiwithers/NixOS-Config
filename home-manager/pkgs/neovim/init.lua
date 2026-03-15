@@ -15,7 +15,6 @@ require("nix-paths")
 -- to add
 -- breadcrumbs? nvim-navic
 -- window picker
--- markdown list continuation and syntax highlighting
 -- multi-file search/replace
 -- add <cmd><cr> as a lua snippet
 
@@ -167,50 +166,95 @@ require("marks").setup({})
 -- markdown (may also take over for table mode at some point)
 require("markdown-plus").setup({
   features = {
+    list_management = true,
+    text_formatting = false,
     thematic_break = false,
+    links = false,
+    images = false,
     headers_toc = false,
-    callouts = false,
     quotes = false,
+    callouts = false,
+    code_block = false,
+    html_block_awareness = true,
+    table = true,
+    footnotes = false,
   },
-  list = {
-    checkbox_completion = { enabled = false },
-  },
-  -- disable the existence of the smart paste keymap??? <localleader>mp
-  -- :i narkdown-plus-plug-mappings for the ones i'd need to reset
-  keymaps = {
-    enabled = false,
-  },
-  filetypes = { "markdown", "mdx" },
+  list = { checkbox_completion = { enabled = false } },
+  keymaps = { enabled = false },
+  filetypes = { "markdown", "mdx", "text" },
 })
--- require("markdown").setup({
---   mappings = {
---     inline_surround_toggle = false,
---     inline_surround_toggle_line = false,
---     inline_surround_delete = false,
---     inline_surround_change = false,
---     link_add = "gl",
---     link_follow = "gx",
---     go_curr_heading = "]c",
---     go_parent_heading = "]p",
---   },
---   on_attach = function(bufnr)
---     require("noice").redirect(function()
---       print("hi")
---     end)
---     vim.keymap.set("i", "<C-n>", "<cmd>MDListItemBelow<cr>", { buffer = bufnr, desc = "Insert list item below" })
---     vim.keymap.set("i", "<c-e>", "<cmd>MDListItemBelow<cr>", { buffer = bufnr, desc = "Insert list item below" })
---   end,
--- })
-
--- configuration for the vimscript vim-table-mode plugin, which understands md and rst files, but not mdx
-autocmd("filetype", {
-  pattern = { "mdx" },
+autocmd({ "BufEnter", "BufWinEnter" }, {
+  -- set keybindings for markdown plus
+  pattern = { "*.md", "*.mdx", "*.txt" },
   callback = function()
-    vim.g.table_mode_corner = "|"
+    -- navigation
+    vim.keymap.set({ "n" }, "gn", "<Plug>(MarkdownPlusNextHeader)", { desc = "Go to next header", buffer = true })
+    vim.keymap.set({ "n" }, "gp", "<Plug>(MarkdownPlusPrevHeader)", { desc = "Go to previous header", buffer = true })
+
+    -- tables
+    -- add keybind that opens a picker for the column/row manipulation keybinds?
+    vim.keymap.set(
+      { "n" },
+      "<leader>mtn",
+      "<Plug>(MarkdownPlusTableCreate)",
+      { desc = "Create markdown table", buffer = true }
+    )
+    vim.keymap.set(
+      { "n", "i" },
+      "<c-l>",
+      "<Plug>(MarkdownPlusTableNavRight)",
+      { desc = "Move to right cell", buffer = true }
+    )
+    vim.keymap.set(
+      { "n", "i" },
+      "<c-h>",
+      "<Plug>(MarkdownPlusTableNavLeft)",
+      { desc = "Move to left cell", buffer = true }
+    )
+    vim.keymap.set(
+      { "n", "i" },
+      "<c-j>",
+      "<Plug>(MarkdownPlusTableNavDown)",
+      { desc = "Move to below cell", buffer = true }
+    )
+    vim.keymap.set(
+      { "n", "i" },
+      "<c-k>",
+      "<Plug>(MarkdownPlusTableNavUp)",
+      { desc = "Move to above cell", buffer = true }
+    )
+
+    -- lists
+    vim.keymap.set({ "i" }, "<cr>", "<Plug>(MarkdownPlusListEnter)", { desc = "Add new list item", buffer = true })
+    vim.keymap.set(
+      { "i" },
+      "<s-cr>",
+      "<Plug>(MarkdownPlusListShiftEnter)",
+      { desc = "Continue list item on next line", buffer = true }
+    )
+    vim.keymap.set({ "i" }, "<tab>", "<Plug>(MarkdownPlusListIndent)", { desc = "Indent list item", buffer = true })
+    vim.keymap.set({ "i" }, "<s-tab>", "<Plug>(MarkdownPlusListOutdent)", { desc = "Outdent list item", buffer = true })
+    vim.keymap.set(
+      { "i" },
+      "<bs>",
+      "<Plug>(MarkdownPlusListBackspace)",
+      { desc = "Smart list backspace", buffer = true }
+    )
+    vim.keymap.set({ "n" }, "o", "<Plug>(MarkdownPlusNewListItemBelow)", { desc = "Add new list item", buffer = true })
+    vim.keymap.set(
+      { "n" },
+      "O",
+      "<Plug>(MarkdownPlusNewListItemAbove)",
+      { desc = "Add new list item above", buffer = true }
+    )
+    vim.keymap.set(
+      { "n" },
+      "<leader>mc",
+      "<Plug>(MarkdownPlusToggleCheckbox)",
+      { desc = "Toggle checkbox", buffer = true }
+    )
   end,
 })
--- unlikely to use tableize (convert from csv) and it uses <leader>tt which overwrites my terminal mapping
-vim.g.table_mode_disable_tableize_mappings = 1
 
 -- whichkey
 require("which-key").setup({

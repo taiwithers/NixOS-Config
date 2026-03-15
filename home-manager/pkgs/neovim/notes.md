@@ -2,7 +2,6 @@
 
 ## Things of Interest
 
-- roll personal keybinds for markdown-plus
 - [preview css colours](https://github.com/catgoose/nvim-colorizer.lua)
   - [mini.nvim alternative](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-hipatterns.md)
   - [other alternative](https://github.com/dinh-khuong/csscolor.nvim)
@@ -41,6 +40,9 @@
   - [mini.nvim alternative](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-indentscope.md)
 - [auto-add brackets on completions](github.com/windwp/nvim-autopairs#you-need-to-add-mapping-cr-on-nvim-cmp-setupcheck-readmemd-on-nvim-cmp-repo)
 - [potentially useful snippets?](https://github.com/rafamadriz/friendly-snippets)
+- something to insert (relative?) filepath at cursor location (for adding markdown images)
+- caplock warning?
+- markdown-plus - add a keybind that opens a telescope window with pickers for the markdown table commands
 
 ## LSP
 
