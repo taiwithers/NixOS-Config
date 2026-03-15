@@ -174,6 +174,19 @@ in
   #   done
   # '';
 
+  home.activation.linkNvimConfig =
+    let
+      source-directory = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim";
+    in
+    config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      fname=init
+      source="${source-directory}/$fname.lua"
+      destination="${confdir}/$fname.lua"
+
+      if [[ -L "$destination" ]]; then rm "$destination"; fi
+      ln -s "$source" "$destination"
+    '';
+
   xdg.configFile."nvim/lua/nix-paths.lua".text = ''
     vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"
     vim.g.prettier_plugin_astro = "${pkgs.prettier-plugin-astro}/dist/index.js"
