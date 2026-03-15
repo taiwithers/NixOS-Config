@@ -1186,20 +1186,11 @@ rec {
   '';
 
   xdg.configFile."klassy/klassyrc".text = ''
+    [Global]
     RefreshedConfig=6.5
-
-    [ButtonColors]
-    ButtonBackgroundOpacityActive=70
-    ButtonBackgroundOpacityInactive=70
-    CloseButtonIconColorActive=AsSelected
-    CloseButtonIconColorInactive=AsSelected
-
-    [ShadowStyle]
-    ShadowSize=ShadowNone
 
     [TitleBarOpacity]
     ActiveTitleBarOpacity=40
-    BlurTransparentTitleBars=false
     InactiveTitleBarOpacity=40
     OpaqueMaximizedTitleBars=false
 
@@ -1209,18 +1200,18 @@ rec {
 
     [Windeco]
     BoldButtonIcons=BoldIconsFine
+    BoldTitle=flase
     ButtonIconStyle=StyleOxygen
     ButtonShape=ShapeSmallCircle
     ColorizeThinWindowOutlineWithButton=false
-    DrawBackgroundGradient=true
     DrawBorderOnMaximizedWindows=true
-    IconSize=IconMedium
+    RoundAllCornersWhenNoBorders=false
     WindowCornerRadius=0
 
     [WindowOutlineStyle]
-    ThinWindowOutlineStyleInactive=WindowOutlineNone
-    ThinWindowOutlineThickness=5
-    WindowOutlineAccentColorOpacityActive=80
+    WindowOutlineShadowColorOpacity=80
+    WindowOutlineStyleInactive=WindowOutlineNone
+    WindowOutlineThickness=5
   '';
 
   xdg.configFile."dolphinrc_hm".text = ''
