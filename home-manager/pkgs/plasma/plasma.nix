@@ -409,7 +409,7 @@ rec {
                     "preferred://browser"
                     "preferred://filemanager"
                     "preferred://terminal"
-                    "applications:kitty.desktop"
+                    # "applications:kitty.desktop" # holdover from when preferred://terminal didn't work, I think
                   ];
                 };
               }
@@ -455,6 +455,7 @@ rec {
             plasmoids.colorizer
             plasmoids.kara
             { inherit ((plasmoids.dateTimeClock // { font.size = 12; })) digitalClock; } # I don't know, I'm sorry
+            "org.kde.plasma.notifications"
             plasmoids.spacer
             plasmoids.taskbar
             plasmoids.spacer
