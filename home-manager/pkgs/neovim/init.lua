@@ -136,6 +136,18 @@ require("flash").setup({
 
 -- template/f-string conversion (uses treesitter, so could move this inside the treesitter setup)
 require("template-string").setup({
+  filetypes = {
+    "html",
+    "typescript",
+    "javascript",
+    "typescriptreact",
+    "javascriptreact",
+    "vue",
+    "svelte",
+    "python",
+    "cs",
+    "astro",
+  },
   remove_template_string = true,
   restore_quotes = { normal = [["]] },
 })
@@ -459,6 +471,7 @@ conform.setup({
     nix = { "nixfmt" },
     python = { "isort", "black" },
     markdown = { "prettierd", "prettier", stop_after_first = true },
+    mdx = { "prettierd", "prettier", stop_after_first = true },
     astro = { "prettier" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
     typescript = { "prettierd", "prettier", stop_after_first = true },
@@ -575,6 +588,7 @@ end
 
 start_lsp()
 vim.keymap.set({ "n" }, "<leader>ls", start_lsp, { desc = "Start LSP servers" })
+vim.keymap.set("n", "grh", vim.lsp.buf.hover, { desc = "Show LSP hover information" })
 
 -- if in certain buffer types, activate otter
 autocmd("FileType", {
@@ -596,5 +610,16 @@ autocmd("FileType", {
 
     -- treesitter related plugins
     require("nvim-ts-autotag").setup()
+  end,
+})
+
+-- create directories when saving files (allow creating the file /nonexistent/parents/get/created.txt)
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    local file_path = vim.fn.expand("<afile>:p:h")
+    if vim.fn.isdirectory(file_path) == 0 then
+      vim.fn.mkdir(file_path, "p")
+    end
   end,
 })
