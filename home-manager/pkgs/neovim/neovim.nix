@@ -102,30 +102,30 @@ in
 
         (pkgs.vimPlugins.nvim-treesitter.withPlugins (
           p: with p; [
-            nix
-            hmts-nvim
-            lua
-            vim
-            ssh_config
-            bash
-            scss # for astro
-            typescript # for astro
-            tsx
-            python
-            regex
-            ssh_config
-            jsonc
             astro
-            # jq
+            bash
             comment
-            toml
             devicetree # zmk
-            vimdoc
-            query
-            latex
+            hmts-nvim
             html
-            kdl # niri
+            # jq
+            jsonc
             just
+            kdl # niri
+            latex
+            lua
+            nix
+            python
+            query
+            regex
+            scss # for astro
+            ssh_config
+            ssh_config
+            toml
+            tsx
+            typescript # for astro
+            vim
+            vimdoc
           ]
         ))
 
