@@ -35,6 +35,11 @@ autocmd("TextYankPost", {
   end,
 })
 
+-- tab out of brackets and pairs
+require("tabout").setup({
+  act_as_shift_tab = true, -- dedent if no pairs, indent is true by default
+})
+
 -- statuscolumn git indicators
 require("gitsigns").setup({
   sign_priority = 1000, -- don't overlap marks
