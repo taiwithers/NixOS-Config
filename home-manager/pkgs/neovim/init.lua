@@ -283,14 +283,11 @@ require("which-key").setup({
   expand = 2, -- if a group has 2 or fewer keymaps, show them all
 })
 require("which-key").add({
+  { "gr", group = "LSP" },
   -- { "<leader>d", group = "Delete" },
   { "<leader>f", group = "Find" },
-  -- { "<leader>l", group = "LSP" },
   -- { "<leader>t", group = "Terminal" },
   -- { "<leader>y", group = "Yazi" },
-  --
-  -- better descriptions for table mode commands
-  { "<leader>tm", "<cmd>TableModeToggle<cr>", desc = "Toggle table mode" },
 })
 
 -- telescope, automatically loads noice extension
@@ -311,6 +308,7 @@ telescope.setup({
   },
 })
 telescope.load_extension("fzf")
+telescope.load_extension("ui-select")
 
 local function is_git_repo()
   vim.fn.system("git rev-parse --is-inside-work-tree")
@@ -388,7 +386,7 @@ require("neoclip").setup({
     },
   },
 })
-vim.keymap.set("n", "<leader>p", "<cmd>Telescope neoclip theme=cursor<cr>")
+vim.keymap.set("n", "<leader>p", "<cmd>Telescope neoclip theme=cursor<cr>", { desc = "Yank history" })
 
 -- terminals
 vim.keymap.set({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }) -- causes problems w/ lazygit
@@ -652,8 +650,13 @@ local function start_lsp()
 end
 
 start_lsp()
-vim.keymap.set({ "n" }, "<leader>ls", start_lsp, { desc = "Start LSP servers" })
+vim.keymap.set({ "n" }, "grs", start_lsp, { desc = "Start LSP servers" })
+vim.keymap.set({ "n" }, "gr", function()
+  start_lsp()
+  require("which-key").show({ keys = "gr" })
+end, { desc = "Start LSP servers" })
 vim.keymap.set("n", "grh", vim.lsp.buf.hover, { desc = "Show LSP hover information" })
+vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 -- if in certain buffer types, activate otter
 autocmd("FileType", {

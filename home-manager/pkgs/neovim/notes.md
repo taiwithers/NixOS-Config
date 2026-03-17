@@ -22,7 +22,7 @@
 - [telescope icons? not sure where these would actually be used](https://github.com/nvim-tree/nvim-web-devicons)
 - figure out getting proper completion suggestions for cmdline
 - [~ substitution in telescope paths](https://github.com/mizlan/dots-nightly/blob/ccdde23447ba189b50a53a4df08e630f2e2d2b18/init.lua#L436) - may be outdated by my current telescope path setup
-- [send vim.ui.select to telescope](https://github.com/nvim-telescope/telescope-ui-select.nvim)
+- [snacks apparently has a good `vim.ui.input` (lsp rename)](https://github.com/folke/snacks.nvim)
 - quickfix improvements
   - [bqf (minor)](https://github.com/kevinhwang91/nvim-bqf)
   - [trouble (major)](https://github.com/folke/trouble.nvim)
