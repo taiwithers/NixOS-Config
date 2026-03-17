@@ -14,6 +14,7 @@
 - simpler options to display marks in the gutter
   - if marks.nvim ever gets which-key support i want that, but until then it's probably overkill
   - [guttermarks](https://github.com/dimtion/guttermarks.nvim)
+- [telescope integration w/ marks.nvim](https://github.com/chentoast/marks.nvim/issues/71) - not super necessary since which-key already shows marks
 - toggleterm
   - [fix toggleterm+lazygit](https://github.com/akinsho/toggleterm.nvim#custom-terminal-usage)
   - [change toggleterm default keybind](https://github.com/akinsho/toggleterm.nvim/wiki/Tips-and-Tricks#init-a-terminal-if-not-exist)
@@ -35,6 +36,7 @@
 - something to insert (relative?) filepath at cursor location (for adding markdown images)
 - caplock warning?
 - markdown-plus - add a keybind that opens a telescope window with pickers for the markdown table commands
+- [better lsp hoves for typescript](https://github.com/Sebastian-Nielsen/better-type-hover) - not sure to what extent I actually need this
 
 ## LSP
 
