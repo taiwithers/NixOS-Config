@@ -2,9 +2,6 @@
 
 ## Things of Interest
 
-- [preview css colours](https://github.com/catgoose/nvim-colorizer.lua)
-  - [mini.nvim alternative](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-hipatterns.md)
-  - [other alternative](https://github.com/dinh-khuong/csscolor.nvim)
 - [highlight the lines referenced in cmdline commands](https://github.com/winston0410/range-highlight.nvim)
 - [explore other features of already-installed comment.nvim](https://github.com/numToStr/Comment.nvim)
   - also fix insert mode toggling
@@ -36,9 +33,6 @@
 - [tabout](https://github.com/abecodes/tabout.nvim) - more stars but last committed 2 years ago
   - [alternative](https://github.com/kawre/neotab.nvim)
 - [goto-preview](https://github.com/rmagatti/goto-preview) - get similar functionality to this by removing telescope's LSP_definition keybind and only binding lsp_references? with a bigger window?
-- [indent guides](https://github.com/lukas-reineke/indent-blankline.nvim)
-  - [mini.nvim alternative](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-indentscope.md)
-- [auto-add brackets on completions](github.com/windwp/nvim-autopairs#you-need-to-add-mapping-cr-on-nvim-cmp-setupcheck-readmemd-on-nvim-cmp-repo)
 - [potentially useful snippets?](https://github.com/rafamadriz/friendly-snippets)
 - something to insert (relative?) filepath at cursor location (for adding markdown images)
 - caplock warning?

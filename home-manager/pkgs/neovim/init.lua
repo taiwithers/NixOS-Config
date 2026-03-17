@@ -88,6 +88,27 @@ require("mini.pairs").setup()
 require("mini.bufremove").setup()
 vim.keymap.set({ "n" }, "<leader>dd", "<cmd>lua MiniBufremove.delete()<cr>", { desc = "Close buffer" })
 
+require("mini.indentscope").setup({
+  draw = {
+    animation = require("mini.indentscope").gen_animation.none(),
+  },
+})
+vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#555555" }) -- globally set
+
+-- colourize hex, css, rgb colours
+-- mini.hipatterns doesn't quite match this functionality
+require("colorizer").setup({
+  lazy_load = true,
+  options = {
+    parsers = {
+      css = true,
+      css_color = { enable = true },
+      sass = { enable = true },
+      xcolor = { enable = true },
+    },
+  },
+})
+
 -- tpope-style surround
 require("nvim-surround").setup()
 

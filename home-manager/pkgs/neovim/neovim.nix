@@ -92,6 +92,7 @@ in
         mdx-nvim # treesitter highlighting for mdx files
         otter-nvim # LSP for embedded code blocks
         markdown-plus-nvim # lots of markdown functionality (list continuation, table navigation, etc.)
+        nvim-colorizer-lua # highlight hex, rgb, css colours
 
         # vimtex
         # texpresso-vim # texpresso
