@@ -25,22 +25,28 @@
             run = "git";
           }
         ];
-        prepend_previewers = [
-          {
-            name = "*.astro";
-            run = "piper -- bat --plain --color=always \"$1\"";
-          }
-          # nbpreview
-          {
-            name = "*.ipynb";
-            run = "piper -- nbpreview --no-paging --nerd-font --decorated --no-files --unicode --color --images --theme=dark \"$1\"";
-          }
-          # preview directory trees with eza
-          {
-            name = "*/";
-            run = "piper -- eza --tree --level=3 --color=always --icons=always --group-directories-first --no-quotes \"$1\"";
-          }
-        ];
+        prepend_previewers =
+          let
+            view-with-bat = name: {
+              inherit name;
+              run = "piper -- bat --plain --color=always \"$1\"";
+            };
+
+          in
+          [
+            (view-with-bat "*.astro")
+            (view-with-bat "*.mdx")
+            # nbpreview
+            {
+              name = "*.ipynb";
+              run = "piper -- nbpreview --no-paging --nerd-font --decorated --no-files --unicode --color --images --theme=dark \"$1\"";
+            }
+            # preview directory trees with eza
+            {
+              name = "*/";
+              run = "piper -- eza --tree --level=3 --color=always --icons=always --group-directories-first --no-quotes \"$1\"";
+            }
+          ];
       };
     };
     keymap = {
