@@ -58,12 +58,18 @@
           run = "close";
           desc = "Close";
         }
+        {
+          on = "p";
+          run = "plugin smartpaste";
+          desc = "Paste into current or hovered directory";
+        }
       ];
     };
     plugins = {
       piper = pkgs.yaziPlugins.piper;
       lazygit = pkgs.yaziPlugins.lazygit;
       git = pkgs.yaziPlugins.git;
+      smartpaste = pkgs.yaziPlugins.smart-paste;
     };
     initLua = ''
       require("git"):setup()
