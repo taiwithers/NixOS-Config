@@ -451,6 +451,9 @@ local completion_mapping = {
   ["<CR>"] = cmp.mapping.confirm({ select = true }), -- accept first option/selected option
   ["<Down>"] = cmp.mapping.select_next_item(),
   ["<Up>"] = cmp.mapping.select_prev_item(),
+  ["<C-n>"] = cmp.mapping.select_next_item(),
+  ["<C-p>"] = cmp.mapping.select_prev_item(),
+
   -- also bound by default (insert mode mapping), wrap the {} in cmp.mapping.preset.insert() to include these:
   -- <C-n>: select next item, or open completion menu
   -- <C-p>: select prev item, or open completion menu
