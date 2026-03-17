@@ -35,6 +35,8 @@ autocmd("TextYankPost", {
   end,
 })
 
+require("range-highlight").setup()
+
 -- tab out of brackets and pairs
 require("tabout").setup({
   act_as_shift_tab = true, -- dedent if no pairs, indent is true by default

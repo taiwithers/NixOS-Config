@@ -2,7 +2,6 @@
 
 ## Things of Interest
 
-- [highlight the lines referenced in cmdline commands](https://github.com/winston0410/range-highlight.nvim)
 - [explore other features of already-installed comment.nvim](https://github.com/numToStr/Comment.nvim)
   - also fix insert mode toggling
 - [consider adding new things to lualine?](https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets)
