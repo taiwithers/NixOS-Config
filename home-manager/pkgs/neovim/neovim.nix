@@ -95,6 +95,7 @@ in
         nvim-colorizer-lua # highlight hex, rgb, css colours
         telescope-ui-select-nvim # send vim.ui.select to telescope
         tabout-nvim # tab out of brackets and quotes
+        nvim-ts-context-commentstring # fix comments in jsx/tsx since comment.nvim doesn't support them
 
         # vimtex
         # texpresso-vim # texpresso

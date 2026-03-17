@@ -428,6 +428,12 @@ vim.keymap.set({ "n", "v" }, "gk", "k", { desc = "Move up one real line" })
 vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
 
 -- comment with ctrl /
+require("ts_context_commentstring").setup({
+  enable_autocmd = false,
+})
+require("Comment").setup({
+  pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+})
 local toggle_comment = require("Comment.api").toggle.linewise.current
 vim.keymap.set("n", "<C-_>", toggle_comment, { desc = "Toggle comment", remap = true })
 vim.keymap.set("i", "<C-_>", toggle_comment, { desc = "Toggle comment" })
