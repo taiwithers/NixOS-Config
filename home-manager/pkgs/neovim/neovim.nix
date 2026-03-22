@@ -97,6 +97,7 @@ in
         tabout-nvim # tab out of brackets and quotes
         nvim-ts-context-commentstring # fix comments in jsx/tsx since comment.nvim doesn't support them
         range-highlight-nvim # when running cmdline things on selected text, highlight those lines
+        nvim-web-devicons # icons for lualine
 
         # vimtex
         # texpresso-vim # texpresso

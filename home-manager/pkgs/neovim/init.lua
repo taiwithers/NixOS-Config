@@ -56,21 +56,7 @@ require("highlight-undo").setup()
 -- turn off search highlight after you perform a non-search action
 require("auto-hlsearch").setup()
 
--- bufferline makes the tab bar
-require("bufferline").setup({
-  options = {
-    right_mouse_command = false,
-    middle_mouse_command = "bdelete! %d",
-    indicator = { style = "underline" },
-    show_buffer_close_icons = true,
-    show_close_icon = true,
-    show_duplicate_prefix = true,
-    show_tab_indicators = true,
-    always_show_bufferline = true,
-  },
-})
-
--- lualine does the status bar at the bottom
+-- lualine does the status bar at the bottom and also the tab bar at the top
 require("lualine").setup({
   options = {
     theme = "moonfly",
@@ -78,15 +64,23 @@ require("lualine").setup({
     section_separators = { left = "", right = "" },
     global_status = true,
   },
-  extensions = { "fzf", "quickfix" }, -- understand additional filetypes
+  extensions = { "fzf", "quickfix", "toggleterm" }, -- understand additional filetypes
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", "diagnostics" },
-    lualine_c = { "filename" },
+    lualine_b = { "branch", "diagnostics" },
+    lualine_c = {
+      { "filetype", icon_only = true },
+      "filename",
+    },
     lualine_x = {},
     lualine_y = { "lsp_status" },
     lualine_z = { "location" },
   },
+  tabline = {
+    lualine_a = { { "buffers", use_mode_colors = true } },
+    lualine_z = { { "tabs", use_mode_colors = true } },
+  },
+  extensions = { "quickfix", "toggleterm" },
 })
 
 -- autopairing
