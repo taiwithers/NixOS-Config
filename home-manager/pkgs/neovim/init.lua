@@ -45,7 +45,14 @@ require("tabout").setup({
 -- statuscolumn git indicators
 require("gitsigns").setup({
   sign_priority = 1000, -- don't overlap marks
+  preview_config = {
+    border = "rounded",
+    title = "Git Blame",
+  },
 })
+vim.keymap.set({ "n" }, "<leader>gb", function()
+  require("gitsigns").blame_line({ ignore_whitespace = true, full = true })
+end, { desc = "View Git blame for current line" })
 
 -- change the colour of the line highlight based on current mode
 require("modes").setup()
@@ -287,6 +294,7 @@ require("which-key").add({
   { "gr", group = "LSP" },
   -- { "<leader>d", group = "Delete" },
   { "<leader>f", group = "Find" },
+  { "<leader>g", group = "Git" },
   -- { "<leader>t", group = "Terminal" },
   -- { "<leader>y", group = "Yazi" },
 })
@@ -398,7 +406,7 @@ local lazygit = toggleterminal:new({ cmd = "lazygit", dir = "git_dir", direction
 vim.keymap.set({ "n" }, "<leader>tt", function()
   shell:toggle()
 end, { desc = "Open terminal" })
-vim.keymap.set({ "n" }, "<leader>g", function()
+vim.keymap.set({ "n" }, "<leader>gg", function()
   lazygit:toggle()
 end, { desc = "Open lazygit" })
 
