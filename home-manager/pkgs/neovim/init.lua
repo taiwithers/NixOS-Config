@@ -106,7 +106,7 @@ require("mini.indentscope").setup({
     animation = require("mini.indentscope").gen_animation.none(),
   },
 })
-vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#555555" }) -- globally set
+vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#555555" })
 
 -- colourize hex, css, rgb colours
 -- mini.hipatterns doesn't quite match this functionality
@@ -640,13 +640,6 @@ vim.lsp.config["mdx_ls"] = {
   },
 }
 
--- use the noice style for generic notifications?
--- vim.notify = require("notify").setup({
---   render = "wrapped-compact",
---   stages = "static",
---   top_down = false,
--- })
-
 -- restore cursor position when opening a file
 autocmd("BufReadPost", {
   pattern = "*",
@@ -664,14 +657,6 @@ autocmd("BufReadPost", {
     end
   end,
 })
-
--- enable supported lsp functionality
--- diagnostics are now always shown when you're on a relevant line, so don't need to keymap
--- autocmd("LspAttach", {
---   callback = function(args)
---     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
---   end,
--- })
 
 local function start_lsp()
   vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls", "mdx_ls", "bash_ls" })

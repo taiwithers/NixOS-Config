@@ -19,8 +19,6 @@
   - [change toggleterm default keybind](https://github.com/akinsho/toggleterm.nvim/wiki/Tips-and-Tricks#init-a-terminal-if-not-exist)
   - [select which pre-existing terminal you want to open](https://github.com/akinsho/toggleterm.nvim#termselect) - probably good for when i switch which buffer the terminal window is showing
 - [project.nvim integration with mini.starter](http://github.com/DrKJeff16/project.nvim#ministarter)
-- [telescope icons? not sure where these would actually be used](https://github.com/nvim-tree/nvim-web-devicons)
-- figure out getting proper completion suggestions for cmdline
 - [~ substitution in telescope paths](https://github.com/mizlan/dots-nightly/blob/ccdde23447ba189b50a53a4df08e630f2e2d2b18/init.lua#L436) - may be outdated by my current telescope path setup
 - [snacks apparently has a good `vim.ui.input` (lsp rename)](https://github.com/folke/snacks.nvim)
 - quickfix improvements
