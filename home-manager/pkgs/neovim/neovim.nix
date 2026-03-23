@@ -67,9 +67,6 @@ in
         noice-nvim # pretty UI
         which-key-nvim # which-key
         nvim-notify # apply noice ui to notifications
-        nvim-cmp # completion
-        cmp-nvim-lsp # completion source - LSP
-        cmp-nvim-lua # completion source - vim.X lua api
         yazi-nvim # integrate yazi
         telescope-nvim # picker for files and much more
         telescope-fzf-native-nvim # improve telescope's sorting and searching
@@ -97,6 +94,15 @@ in
         nvim-ts-context-commentstring # fix comments in jsx/tsx since comment.nvim doesn't support them
         range-highlight-nvim # when running cmdline things on selected text, highlight those lines
         nvim-web-devicons # icons for lualine
+
+        # completion and sources
+        nvim-cmp
+        nvim-autopairs
+        cmp-nvim-lsp # completion source - LSP
+        cmp-nvim-lua # completion source - vim.X lua api
+        cmp-buffer
+        cmp-path
+        cmp-cmdline
 
         # vimtex
         # texpresso-vim # texpresso

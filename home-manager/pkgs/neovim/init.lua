@@ -523,12 +523,14 @@ cmp.setup({
   },
   mapping = completion_mapping,
 })
--- cmp.setup.cmdline(":", {
---   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
---   mapping = completion_mapping,
---   sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
---   matching = { disallow_symbol_nonprefix_matching = false },
--- })
+require("nvim-autopairs").setup()
+cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done()) -- add brackets after fn names
+
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+  matching = { disallow_symbol_nonprefix_matching = false },
+})
 cmp.setup.cmdline({ "/", "?" }, {
   -- Use buffer source for '/' and '?' searches
   mapping = cmp.mapping.preset.cmdline(),
