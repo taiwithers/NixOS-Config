@@ -705,7 +705,7 @@ autocmd("FileType", {
     vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
 
     -- treesitter related plugins
-    require("nvim-ts-autotag").setup({ aliases = { ["mdx"] = "markdown" } })
+    require("nvim-ts-autotag").setup({ aliases = { ["mdx"] = "html" } })
   end,
 })
 
