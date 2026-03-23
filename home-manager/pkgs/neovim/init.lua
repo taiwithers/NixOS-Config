@@ -64,6 +64,15 @@ require("highlight-undo").setup()
 require("auto-hlsearch").setup()
 
 -- lualine does the status bar at the bottom and also the tab bar at the top
+local function visually_selected_line_count()
+  local starts = vim.fn.line("v")
+  local ends = vim.fn.line(".")
+  local count = starts <= ends and ends - starts + 1 or starts - ends + 1
+  return count .. "V"
+end
+local function in_visual_mode()
+  return vim.fn.mode():find("[Vv]") ~= nil
+end
 require("lualine").setup({
   options = {
     theme = "moonfly",
@@ -74,20 +83,16 @@ require("lualine").setup({
   extensions = { "fzf", "quickfix", "toggleterm" }, -- understand additional filetypes
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "branch", "diagnostics" },
-    lualine_c = {
-      { "filetype", icon_only = true },
-      "filename",
-    },
+    lualine_b = { { "branch", icon = "" }, "diagnostics" },
+    lualine_c = {},
     lualine_x = {},
-    lualine_y = { "lsp_status" },
-    lualine_z = { "location" },
+    lualine_y = { { "filetype", icon_only = true }, "lsp_status" },
+    lualine_z = { "location", { visually_selected_line_count, cond = in_visual_mode } },
   },
   tabline = {
     lualine_a = { { "buffers", use_mode_colors = true } },
     lualine_z = { { "tabs", use_mode_colors = true } },
   },
-  extensions = { "quickfix", "toggleterm" },
 })
 
 -- autopairing
@@ -462,6 +467,9 @@ local completion_mapping = {
   -- <C-y>: accept selected option
   -- <C-e>: close menu
 }
+
+vim.g.test_icon = require("nvim-web-devicons").get_icon("nf-oct-code")
+vim.g.utf_icon = "\\uf44f"
 local kind_icons = {
   Text = "",
   Method = "󰆧",
@@ -523,7 +531,7 @@ cmp.setup({
 -- })
 cmp.setup.cmdline({ "/", "?" }, {
   -- Use buffer source for '/' and '?' searches
-  mapping = completion_mapping,
+  mapping = cmp.mapping.preset.cmdline(),
   sources = { { name = "buffer" } },
 })
 

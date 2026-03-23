@@ -61,7 +61,6 @@ in
     plugins =
       with pkgs.vimPlugins;
       [
-        bufferline-nvim # tab bar
         lualine-nvim # status bar
         mini-nvim # mini (autopairs, delete buffer without changing layout)
         nvim-surround # actions on surrounding brackets
