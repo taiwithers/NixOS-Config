@@ -306,6 +306,7 @@ require("which-key").add({
 
 -- telescope, automatically loads noice extension
 local telescope = require("telescope")
+local telescope_builtins = require("telescope.builtin")
 telescope.setup({
   defaults = {
     dynamic_preview_title = true, -- for neoclip
@@ -338,17 +339,17 @@ function vim.find_files_from_project_git_root()
   if is_git_repo() then
     opts = { cwd = get_git_root() }
   end
-  require("telescope.builtin").find_files(opts)
+  telescope_builtins.find_files(opts)
 end
 local function live_grep_from_project_git_root()
   local opts = {}
   if is_git_repo() then
     opts = { cwd = get_git_root() }
   end
-  require("telescope.builtin").live_grep(opts)
+  telescope_builtins.live_grep(opts)
 end
 vim.keymap.set({ "n", "v" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
-vim.keymap.set({ "n", "v" }, "<leader>fb", require("telescope.builtin").buffers, { desc = "Open buffers" })
+vim.keymap.set({ "n", "v" }, "<leader>fb", telescope_builtins.buffers, { desc = "Open buffers" })
 vim.keymap.set({ "n", "v" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
 vim.keymap.set(
   { "n", "v", "i" },
@@ -669,6 +670,10 @@ vim.keymap.set({ "n" }, "gr", function()
   require("which-key").show({ keys = "gr" })
 end, { desc = "Start LSP servers" })
 vim.keymap.set("n", "grh", vim.lsp.buf.hover, { desc = "Show LSP hover information" })
+vim.keymap.set("n", "grd", function()
+  vim.diagnostic.setqflist({ open = false })
+  telescope_builtins.quickfix()
+end, { desc = "Send diagnostics to the quickfix list" })
 vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 -- if in certain buffer types, activate otter
