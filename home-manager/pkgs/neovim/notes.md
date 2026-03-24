@@ -35,6 +35,13 @@
 - markdown-plus - add a keybind that opens a telescope window with pickers for the markdown table commands
 - [better lsp hoves for typescript](https://github.com/Sebastian-Nielsen/better-type-hover) - not sure to what extent I actually need this
 
+- use telescope more
+- yazi hidden files
+- fix cmp mappings in cmdline/search
+- add keybind for `vim.diagnostic.open_float()` - or maybe just telescope for all diagnostics
+- change <esc> in insert mode w/ cmp open to just close the cmp menu
+- use telescope to insert filepaths (for importing stuff?)
+
 ## LSP
 
 - Work through diagnostics: `:lua require("telescope.builtin").diagnostics() <cr> <C-q> <cr>`
