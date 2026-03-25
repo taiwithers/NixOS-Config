@@ -6,7 +6,7 @@
     theme.mgr.syntect_theme = "~/.config/bat/themes/base16-stylix.tmTheme";
     settings = {
       mgr = {
-        show_hidden = true;
+        show_hidden = false; # toggle with `.`
       };
       preview = {
         wrap = "yes";
