@@ -349,22 +349,12 @@ local function live_grep_from_project_git_root()
   end
   telescope_builtins.live_grep(opts)
 end
-vim.keymap.set({ "n", "v" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
-vim.keymap.set({ "n", "v" }, "<leader>fb", telescope_builtins.buffers, { desc = "Open buffers" })
-vim.keymap.set({ "n", "v" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
-vim.keymap.set(
-  { "n", "v", "i" },
-  "<F12>",
-  "<cmd>Telescope lsp_definitions theme=cursor<cr>",
-  { desc = "Go to definition" }
-)
-vim.keymap.set(
-  { "n", "v", "i" },
-  "<S-F12>",
-  "<cmd>Telescope lsp_references theme=cursor<cr>",
-  { desc = "Go to references" }
-)
-vim.keymap.set({ "n", "v" }, "<leader>fm", "<cmd>Telescope marks theme=dropdown<cr>", { desc = "Marks" })
+vim.keymap.set({ "n" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
+vim.keymap.set({ "n" }, "<leader>fb", telescope_builtins.buffers, { desc = "Open buffers" })
+vim.keymap.set({ "n" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
+vim.keymap.set({ "n", "i" }, "<F12>", "<cmd>Telescope lsp_definitions theme=cursor<cr>", { desc = "Go to definition" })
+vim.keymap.set({ "n", "i" }, "<S-F12>", "<cmd>Telescope lsp_references theme=cursor<cr>", { desc = "Go to references" })
+vim.keymap.set({ "n" }, "<leader>fm", "<cmd>Telescope marks theme=dropdown<cr>", { desc = "Marks" })
 
 -- yank ring (clipboard history)
 local function is_whitespace(line)
@@ -419,7 +409,7 @@ end, { desc = "Open lazygit" })
 
 -- yazi integration
 -- local yazi = require("yazi")
-vim.keymap.set({ "n", "v" }, "<leader>yy", "<cmd>Yazi<cr>", { desc = "Open yazi" })
+vim.keymap.set({ "n" }, "<leader>yy", "<cmd>Yazi<cr>", { desc = "Open yazi" })
 vim.g.loaded_netrwPlugin = 1 -- don't load native netrw
 autocmd("UIEnter", {
   callback = function()
