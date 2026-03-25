@@ -94,6 +94,7 @@ in
         nvim-ts-context-commentstring # fix comments in jsx/tsx since comment.nvim doesn't support them
         range-highlight-nvim # when running cmdline things on selected text, highlight those lines
         nvim-web-devicons # icons for lualine
+        nvim-treesitter-textobjects # work with functions, scopes, etc
 
         # completion and sources
         nvim-cmp

@@ -683,19 +683,38 @@ autocmd("FileType", {
 })
 
 -- treesitter stuff
-autocmd("FileType", {
-  pattern = { "lua", "nix", "python", "bash", "astro", "typescript", "tsx", "typescriptreact", "mdx" },
+autocmd({ "BufEnter", "BufWinEnter" }, {
   callback = function()
-    -- syntax highlighting
-    vim.treesitter.start()
-    -- folds
-    vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    vim.wo[0][0].foldmethod = "expr"
-    -- indentation (from nvim-treesitter plugin)
-    vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+    local ok, parsers = pcall(require, "nvim-treesitter.parsers")
+    if ok and parsers.has_parser() then
+      -- vim.cmd("colorscheme miniautumn") -- for some reason the easiest way to tell if this works
 
-    -- treesitter related plugins
-    require("nvim-ts-autotag").setup({ aliases = { ["mdx"] = "html" } })
+      -- syntax highlighting
+      vim.treesitter.start()
+      -- folds
+      vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.wo[0][0].foldmethod = "expr"
+      -- indentation (from nvim-treesitter plugin)
+      vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+
+      -- treesitter related plugins
+      require("nvim-ts-autotag").setup({ aliases = { ["mdx"] = "html" } })
+
+      vim.keymap.set({ "x", "o" }, "af", "<cmd>TSTextobjectSelect @function.outer<cr>", { desc = "Function" })
+      vim.keymap.set({ "x", "o" }, "if", "<cmd>TSTextobjectSelect @function.inner<cr>", { desc = "Function" })
+      vim.keymap.set(
+        { "n", "x", "o" },
+        "[f",
+        "<cmd>TSTextobjectGotoPreviousStart @function.outer<cr>",
+        { desc = "Go to start of previous function" }
+      )
+      vim.keymap.set(
+        { "n", "x", "o" },
+        "]f",
+        "<cmd>TSTextobjectGotoNextStart @function.outer<cr>",
+        { desc = "Go to start of next function" }
+      )
+    end
   end,
 })
 
