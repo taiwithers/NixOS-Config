@@ -27,6 +27,7 @@ vim.lsp.inlay_hint.enable(true)
 vim.filetype.add({
   extension = { mdx = "mdx" },
 })
+require("Comment.ft").set("mdx", { "{/*%s*/}", "{/**%s**/}" })
 
 autocmd("TextYankPost", {
   -- highlight yanked text
@@ -563,7 +564,7 @@ conform.setup({
     nix = { "nixfmt" },
     python = { "isort", "black" },
     markdown = { "prettierd", "prettier", stop_after_first = true },
-    mdx = { "prettierd", "prettier", stop_after_first = true },
+    -- mdx = { "prettierd", "prettier", stop_after_first = true },
     astro = { "prettier" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
     typescript = { "prettierd", "prettier", stop_after_first = true },
