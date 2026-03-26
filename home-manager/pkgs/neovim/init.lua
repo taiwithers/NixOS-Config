@@ -6,11 +6,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " " -- used by markdown-plus
 
 require("options")
+require("nix-paths")
 
 if io.open("wsl-clipboard") then
   require("wsl-clipboard")
 end
-require("nix-paths")
 
 -- to add
 -- breadcrumbs? nvim-navic
@@ -445,20 +445,24 @@ vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to 
 
 -- completion
 local cmp = require("cmp")
-local completion_mapping = {
+local insert_completion_mapping = cmp.mapping.preset.insert({
   ["<C-Space>"] = cmp.mapping.complete(), -- open menu if not already there
   ["<CR>"] = cmp.mapping.confirm({ select = true }), -- accept first option/selected option
   ["<Down>"] = cmp.mapping.select_next_item(),
   ["<Up>"] = cmp.mapping.select_prev_item(),
   ["<C-n>"] = cmp.mapping.select_next_item(),
   ["<C-p>"] = cmp.mapping.select_prev_item(),
-
-  -- also bound by default (insert mode mapping), wrap the {} in cmp.mapping.preset.insert() to include these:
-  -- <C-n>: select next item, or open completion menu
-  -- <C-p>: select prev item, or open completion menu
   -- <C-y>: accept selected option
   -- <C-e>: close menu
-}
+})
+local cmdline_completion_mapping = cmp.mapping.preset.cmdline({
+  ["<C-z>"] = cmp.config.disable,
+  ["<Tab>"] = cmp.config.disable, -- if i disable this (and shift-tab) they now open the native menu I think?
+  ["<S-Tab>"] = cmp.config.disable,
+  -- keep the C-n and C-p mappings and C-e to close
+  ["<C-y>"] = { c = cmp.mapping.confirm({ select = true }) }, -- same as insert mode <cr>
+  ["<cr>"] = { c = cmp.mapping.confirm({ select = false }) }, -- NOT same as insert mode
+})
 
 vim.g.test_icon = require("nvim-web-devicons").get_icon("nf-oct-code")
 vim.g.utf_icon = "\\uf44f"
@@ -490,6 +494,11 @@ local kind_icons = {
   TypeParameter = "󰅲",
 }
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.snippet.expand(args.body)
+    end,
+  },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
@@ -513,19 +522,19 @@ cmp.setup({
   window = {
     completion = cmp.config.window.bordered(),
   },
-  mapping = completion_mapping,
+  mapping = insert_completion_mapping,
 })
 require("nvim-autopairs").setup()
 cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done()) -- add brackets after fn names
 
 cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmdline_completion_mapping,
   sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
   matching = { disallow_symbol_nonprefix_matching = false },
 })
 cmp.setup.cmdline({ "/", "?" }, {
   -- Use buffer source for '/' and '?' searches
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmdline_completion_mapping,
   sources = { { name = "buffer" } },
 })
 
