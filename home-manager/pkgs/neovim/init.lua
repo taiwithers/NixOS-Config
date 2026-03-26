@@ -325,6 +325,9 @@ telescope.setup({
 })
 telescope.load_extension("fzf")
 telescope.load_extension("ui-select")
+local function telescope_cursor(opts)
+  return require("telescope.themes").get_cursor(opts)
+end
 
 local function is_git_repo()
   vim.fn.system("git rev-parse --is-inside-work-tree")
@@ -392,7 +395,10 @@ require("neoclip").setup({
     },
   },
 })
-vim.keymap.set("n", "<leader>p", "<cmd>Telescope neoclip theme=cursor<cr>", { desc = "Yank history" })
+
+vim.keymap.set("n", "<leader>p", function()
+  telescope.extensions.neoclip.default(telescope_cursor({ layout_config = { height = 15 } }))
+end, { desc = "Yank history" })
 
 -- terminals
 vim.keymap.set({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }) -- causes problems w/ lazygit
