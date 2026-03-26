@@ -197,6 +197,12 @@ _:
           rev = "0932ba4";
           hash = "sha256-SXx1S/yBDTddb/oncHmfvpdO2oUNbgUjBItnudDAIE8=";
         };
+        nvim-comment-frame = {
+          author = "s1n7ax";
+          repo = "nvim-comment-frame";
+          rev = "5719db5";
+          hash = "sha256-xrbQe0zp79K2GYtN3Pi96xywQEfIPjfPLZGscUXq1z0=";
+        };
       };
     whichl = customScript {
       name = "whichl";

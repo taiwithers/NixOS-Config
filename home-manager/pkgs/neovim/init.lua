@@ -458,6 +458,13 @@ local toggle_comment = require("Comment.api").toggle.linewise.current
 vim.keymap.set("n", "<C-_>", toggle_comment, { desc = "Toggle comment", remap = true })
 vim.keymap.set("i", "<C-_>", toggle_comment, { desc = "Toggle comment" })
 
+require("nvim-comment-frame").setup({
+  disable_default_keymap = true,
+  keymap = "",
+  multiline_keymap = "",
+})
+vim.keymap.set("n", "<leader>c", require("nvim-comment-frame").add_comment, { desc = "Create boxed comment" })
+
 -- "tab" between buffers
 vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to next buffer" })
 vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to previous buffer" })

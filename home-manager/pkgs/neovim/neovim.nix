@@ -96,6 +96,7 @@ in
         nvim-web-devicons # icons for lualine
         nvim-treesitter-textobjects # work with functions, scopes, etc
         goto-preview # floating window for view definition, and for renaming
+        nvim-comment-frame # create boxed comments
 
         # completion and sources
         nvim-cmp
