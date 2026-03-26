@@ -355,9 +355,22 @@ end
 vim.keymap.set({ "n" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
 vim.keymap.set({ "n" }, "<leader>fb", telescope_builtins.buffers, { desc = "Open buffers" })
 vim.keymap.set({ "n" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
-vim.keymap.set({ "n", "i" }, "<F12>", "<cmd>Telescope lsp_definitions theme=cursor<cr>", { desc = "Go to definition" })
-vim.keymap.set({ "n", "i" }, "<S-F12>", "<cmd>Telescope lsp_references theme=cursor<cr>", { desc = "Go to references" })
 vim.keymap.set({ "n" }, "<leader>fm", "<cmd>Telescope marks theme=dropdown<cr>", { desc = "Marks" })
+
+require("goto-preview").setup({
+  width = 100,
+  height = 12,
+  border = { "↖", "─", "╮", "│", "╯", "─", "╰", "│" }, -- Border characters from lua/telescope/themes.lua
+  focus_on_open = false,
+  dismiss_on_move = true,
+  vim_ui_input = true, -- pretty renaming window
+  references = {
+    telescope = telescope_cursor({ layout_config = { height = 20 } }),
+  },
+})
+vim.keymap.set({ "n", "i" }, "grD", "<cmd>Telescope lsp_definitions theme=cursor<cr>", { desc = "Jump to definition" })
+vim.keymap.set("n", "<F12>", require("goto-preview").goto_preview_definition, { desc = "Peek definition" })
+vim.keymap.set("n", "<S-F12>", require("goto-preview").goto_preview_references, { desc = "Peek references" })
 
 -- yank ring (clipboard history)
 local function is_whitespace(line)

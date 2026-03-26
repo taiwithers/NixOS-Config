@@ -95,6 +95,7 @@ in
         range-highlight-nvim # when running cmdline things on selected text, highlight those lines
         nvim-web-devicons # icons for lualine
         nvim-treesitter-textobjects # work with functions, scopes, etc
+        goto-preview # floating window for view definition, and for renaming
 
         # completion and sources
         nvim-cmp
