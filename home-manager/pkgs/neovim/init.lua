@@ -676,6 +676,15 @@ vim.keymap.set("n", "grd", function()
 end, { desc = "Send diagnostics to the quickfix list" })
 vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
+-- Descriptions for defaults
+vim.keymap.set({ "n", "v" }, "gra", vim.lsp.buf.code_action, { desc = "View available code actions in telescope" })
+vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { desc = "Send implementations to QF" })
+vim.keymap.del("n", "grn") -- rename
+vim.keymap.set("n", "grr", vim.lsp.buf.references, { desc = "Send references to QF" })
+vim.keymap.del("n", "grt") -- jump to definition of type of current object
+vim.keymap.set("n", "grx", vim.lsp.codelens.run, { desc = "Run codelens" })
+vim.keymap.del("n", "gO") -- list all symbols in document in the loc list
+
 -- if in certain buffer types, activate otter
 autocmd("FileType", {
   pattern = { "md", "mdx", "just", "tex", "nix" },
