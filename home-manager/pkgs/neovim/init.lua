@@ -483,8 +483,6 @@ local cmdline_completion_mapping = cmp.mapping.preset.cmdline({
   ["<cr>"] = { c = cmp.mapping.confirm({ select = false }) }, -- NOT same as insert mode
 })
 
-vim.g.test_icon = require("nvim-web-devicons").get_icon("nf-oct-code")
-vim.g.utf_icon = "\\uf44f"
 local kind_icons = {
   Text = "",
   Method = "󰆧",
@@ -564,7 +562,7 @@ conform.setup({
     isort = { append_args = { "--profile", "black" } },
     stylua = { append_args = { "--indent-type", "Spaces", "--indent-width", "2" } },
     prettier = {
-      args = function(self, ctx)
+      args = function(_, ctx)
         if vim.endswith(ctx.filename, ".astro") then
           return { "--stdin-filepath", "$FILENAME", "--plugin", vim.g.prettier_plugin_astro }
         end
