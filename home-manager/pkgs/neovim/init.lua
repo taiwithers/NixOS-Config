@@ -49,7 +49,7 @@ autocmd("BufReadPost", {
 })
 
 -- create directories when saving files (allow creating the file /nonexistent/parents/get/created.txt)
-vim.api.nvim_create_autocmd("BufWritePre", {
+autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
     local file_path = vim.fn.expand("<afile>:p:h")
@@ -164,6 +164,7 @@ local function live_grep_from_project_git_root()
 end
 vim.keymap.set({ "n" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
 vim.keymap.set({ "n" }, "<leader>fb", telescope_builtins.buffers, { desc = "Open buffers" })
+vim.keymap.set({ "n" }, "<leader>fq", telescope_builtins.quickfix, { desc = "Open quickfix" })
 vim.keymap.set({ "n" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
 vim.keymap.set({ "n" }, "<leader>fm", "<cmd>Telescope marks theme=dropdown<cr>", { desc = "Marks" })
 
@@ -351,7 +352,7 @@ require("nvim-comment-frame").setup({
   keymap = "",
   multiline_keymap = "",
 })
-vim.keymap.set("n", "<leader>c", require("nvim-comment-frame").add_comment, { desc = "Create boxed comment" })
+vim.keymap.set("n", "<leader>c", require("nvim-comment-frame").add_multiline_comment, { desc = "Create boxed comment" })
 
 -- tab out of brackets and pairs
 require("tabout").setup({
@@ -406,7 +407,7 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
     keyset({ "i" }, "<bs>", "<Plug>(MarkdownPlusListBackspace)", "Smart list backspace")
     keyset({ "n" }, "o", "<Plug>(MarkdownPlusNewListItemBelow)", "Add new list item below")
     keyset({ "n" }, "O", "<Plug>(MarkdownPlusNewListItemAbove)", "Add new list item above")
-    keyseu({ "n" }, "<leader>mc", "<Plug>(MarkdownPlusToggleCheckbox)", "Toggle checkbox")
+    keyset({ "n" }, "<leader>mc", "<Plug>(MarkdownPlusToggleCheckbox)", "Toggle checkbox")
   end,
 })
 

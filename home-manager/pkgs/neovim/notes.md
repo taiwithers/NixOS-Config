@@ -2,8 +2,6 @@
 
 ## Things of Interest
 
-- [explore other features of already-installed comment.nvim](https://github.com/numToStr/Comment.nvim)
-  - also fix insert mode toggling
 - [consider adding new things to lualine?](https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets)
 - can i fix paste to just work with ctrl-v in insert mode
 - colourschemes
@@ -20,15 +18,11 @@
   - [select which pre-existing terminal you want to open](https://github.com/akinsho/toggleterm.nvim#termselect) - probably good for when i switch which buffer the terminal window is showing
 - [project.nvim integration with mini.starter](http://github.com/DrKJeff16/project.nvim#ministarter)
 - [~ substitution in telescope paths](https://github.com/mizlan/dots-nightly/blob/ccdde23447ba189b50a53a4df08e630f2e2d2b18/init.lua#L436) - may be outdated by my current telescope path setup
-- [snacks apparently has a good `vim.ui.input` (lsp rename)](https://github.com/folke/snacks.nvim)
 - quickfix improvements
   - [bqf (minor)](https://github.com/kevinhwang91/nvim-bqf)
   - [trouble (major)](https://github.com/folke/trouble.nvim)
 - [remote development](https://github.com/nosduco/remote-sshfs.nvim)
   - there are probably alternatives to this that would be worth looking into
-- [pretty block comments](https://github.com/s1n7ax/nvim-comment-frame)
-- [mini.animate](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-animate.md)
-- [goto-preview](https://github.com/rmagatti/goto-preview) - get similar functionality to this by removing telescope's LSP_definition keybind and only binding lsp_references? with a bigger window?
 - [potentially useful snippets?](https://github.com/rafamadriz/friendly-snippets)
 - something to insert (relative?) filepath at cursor location (for adding markdown images)
 - caplock warning?
