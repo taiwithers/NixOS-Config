@@ -464,7 +464,12 @@ cmp.setup({
       vim.snippet.expand(args.body)
     end,
   },
-  sources = cmp.config.sources({ { name = "nvim_lsp" }, { name = "nvim_lua" }, { name = "buffer" } }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "nvim_lua" },
+    { name = "buffer" },
+    { name = "scss", option = { folders = { "src/styles" } } },
+  }),
   window = { completion = cmp.config.window.bordered() },
   mapping = insert_completion_mapping,
   formatting = {

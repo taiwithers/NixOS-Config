@@ -106,6 +106,7 @@ in
         cmp-buffer
         cmp-path
         cmp-cmdline
+        cmp-scss
 
         # vimtex
         # texpresso-vim # texpresso

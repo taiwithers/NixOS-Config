@@ -173,6 +173,12 @@ _:
         inherit (unstable.vimPlugins) nvim-tree-lua nui-nvim nvim-notify;
       }
       // builtins.mapAttrs (_name: value: (githubVimPlugin value)) {
+        cmp-scss = {
+          author = "mmolhoek";
+          repo = "cmp-scss";
+          rev = "fef96e1";
+          hash = "sha256-SzkK05yj5Ys0JSMb5Xow79YtwikUtTuRDurs8UfW1pc=";
+        };
         darkvoid-nvim = {
           author = "darkvoid-theme";
           repo = "darkvoid.nvim";
