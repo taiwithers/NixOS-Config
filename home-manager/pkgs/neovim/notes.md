@@ -20,14 +20,15 @@
 - [~ substitution in telescope paths](https://github.com/mizlan/dots-nightly/blob/ccdde23447ba189b50a53a4df08e630f2e2d2b18/init.lua#L436) - may be outdated by my current telescope path setup
 - quickfix improvements
   - [bqf (minor)](https://github.com/kevinhwang91/nvim-bqf)
+  - [quicker](https://github.com/stevearc/quicker.nvim)
   - [trouble (major)](https://github.com/folke/trouble.nvim)
 - [remote development](https://github.com/nosduco/remote-sshfs.nvim)
   - there are probably alternatives to this that would be worth looking into
 - [potentially useful snippets?](https://github.com/rafamadriz/friendly-snippets)
 - something to insert (relative?) filepath at cursor location (for adding markdown images)
 - caplock warning?
-- markdown-plus - add a keybind that opens a telescope window with pickers for the markdown table commands
 - [better lsp hoves for typescript](https://github.com/Sebastian-Nielsen/better-type-hover) - not sure to what extent I actually need this
+- [undotree](https://github.com/mbbill/undotree)
 
 - use telescope more
 - yazi hidden files

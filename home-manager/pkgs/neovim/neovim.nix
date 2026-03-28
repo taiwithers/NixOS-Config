@@ -171,12 +171,23 @@ in
       source-directory = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim";
     in
     config.lib.dag.entryAfter [ "writeBoundary" ] ''
-      fname=init
-      source="${source-directory}/$fname.lua"
-      destination="${confdir}/$fname.lua"
+      link(){
+        fname=$1
+        in_lua=$2
+        source="${source-directory}/$fname.lua"
 
-      if [[ -L "$destination" ]]; then rm "$destination"; fi
-      ln -s "$source" "$destination"
+        if [[ $in_lua ]]; then
+          destination="${confdir}/lua/$fname.lua"
+        else
+          destination="${confdir}/$fname.lua"
+        fi
+
+        if [[ -L "$destination" ]]; then rm "$destination"; fi
+        ln -s "$source" "$destination"
+      }
+
+      link "init" 0
+      link "markdown-plus-telescope" 1
     '';
 
   xdg.configFile."nvim/lua/nix-paths.lua".text = ''

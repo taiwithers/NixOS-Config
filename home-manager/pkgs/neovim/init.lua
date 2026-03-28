@@ -379,6 +379,7 @@ require("markdown-plus").setup({
   keymaps = { enabled = false },
   filetypes = { "markdown", "mdx", "text" },
 })
+
 autocmd({ "BufEnter", "BufWinEnter" }, {
   -- set keybindings for markdown plus
   pattern = { "*.md", "*.mdx", "*.txt" },
@@ -387,13 +388,18 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
       vim.keymap.set(modes, lhs, rhs, { desc = desc, buffer = true })
     end
 
+    -- code blocks
+    keyset("n", "<leader>C", "<Plug>(MarkdownPlusCodeBlockInsert)", "Insert code block")
+
     -- navigation
     keyset("n", "gn", "<Plug>(MarkdownPlusNextHeader)", "Go to next header")
     keyset({ "n" }, "gp", "<Plug>(MarkdownPlusPrevHeader)", "Go to previous header")
 
     -- tables
-    -- add keybind that opens a picker for the column/row manipulation keybinds?
-    keyset({ "n" }, "<leader>mtn", "<Plug>(MarkdownPlusTableCreate)", "Create markdown table")
+    keyset("n", "<leader>mt", function()
+      -- open a telescope picker for the more specific table functions
+      require("markdown-plus-telescope").table_commands(require("telescope.themes").get_dropdown())
+    end, "Table commands")
     keyset({ "n", "i" }, "<c-l>", "<Plug>(MarkdownPlusTableNavRight)", "Move to right cell")
     keyset({ "n", "i" }, "<c-h>", "<Plug>(MarkdownPlusTableNavLeft)", "Move to left cell")
     keyset({ "n", "i" }, "<c-j>", "<Plug>(MarkdownPlusTableNavDown)", "Move to below cell")
