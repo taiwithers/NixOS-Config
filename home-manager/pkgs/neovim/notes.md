@@ -36,6 +36,18 @@
 - add keybind for `vim.diagnostic.open_float()` - or maybe just telescope for all diagnostics
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
 - use telescope to insert filepaths (for importing stuff?)
+- spellcheck
+- fix tab completion in cmdline (stop tabs from bringing up the usual menu, this might mean turning off nvim's native completion)
+- change word boundaries to break on underscores
+- remove wrapped line keybinds
+
+## 0.12
+
+- [look at builtin `nohlsearch` and `undotree`](https://neovim.io/doc/user/plugins/)
+- [pumborder option](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L326)
+- [lsp-inline-completion](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L219)
+- [incremental selection](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L237)
+- [native autocomplete stuff](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L305)
 
 ## LSP
 
