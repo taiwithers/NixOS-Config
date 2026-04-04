@@ -7,7 +7,7 @@
     let
       extensions = pkgs.nur.repos.rycee.firefox-addons;
     in
-    rec {
+    {
       # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.enable
       enable = true;
       package = pkgs.firefox.override {
@@ -275,21 +275,4 @@
     {
       "${prefix}/Personal/${suffix}".source = ./debuggerUserContent.css;
     };
-
-  home.packages = [ pkgs.select-browser ];
-
-  # firefox work profile desktop icon
-  xdg.desktopEntries =
-    builtins.mapAttrs
-      (entryname: profile: rec {
-        name = "Firefox - ${entryname}";
-        exec = "firefox -P ${profile} %U --name ${name} --class ${name}";
-        settings.StartupWMClass = name;
-        icon = ./green.png;
-      })
-      {
-        # TA = "Staff";
-        Personal = "Personal";
-        Student = "Student";
-      };
 }
