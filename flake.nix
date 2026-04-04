@@ -46,10 +46,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
     };
-    #
-    # niri = {
-    #   url = "github:sodiboo/niri-flake";
-    # };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+    };
 
     nix-cargo-integration = {
       # for nix-inspect
@@ -203,6 +203,7 @@
         nixos-wsl = "tai";
         ubuntu-main = "twithers";
         ubuntu-sidrat = "taiwithers";
+        nixos-thinkpad = "tai";
       };
 
       home-module-args = { inherit flake-inputs colours; };
@@ -227,6 +228,20 @@
           {
             # niri-flake.cache.enable = false;
             # programs.niri.package = (pkgs-for-system system).niri;
+          }
+        ];
+      };
+
+      nixosConfigurations."thinkpad" = nixpkgs.lib.nixosSystem {
+        pkgs = pkgs-for-system system;
+        specialArgs = { inherit colours; };
+        modules = [
+          ./NixOS/thinkpad/configuration.nix
+          flake-inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t470s
+          flake-inputs.niri.nixosModules.niri
+          {
+            niri-flake.cache.enable = false;
+            programs.niri.package = (pkgs-for-system system).niri;
           }
         ];
       };
