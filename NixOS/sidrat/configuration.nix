@@ -38,6 +38,11 @@
     "no-url-literals" # quote urls
   ];
 
+  security.sudo.extraConfig = ''
+    Defaults pwfeedback
+    Defaults timestamp_timeout=0
+  '';
+
   # keep system up to date
   system.autoUpgrade = {
     enable = true;

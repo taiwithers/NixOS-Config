@@ -33,6 +33,10 @@
     ];
   };
 
+  security.sudo.extraConfig = ''
+    Defaults timestamp_timeout=0
+  '';
+
   # keep system clean :)
   nix.optimise = {
     automatic = true;
