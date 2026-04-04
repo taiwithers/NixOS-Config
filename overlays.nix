@@ -43,11 +43,11 @@ _:
     clean = customScript rec {
       name = "clean";
       runtimeInputs = with super; [
-        gnugrep
+        # gnugrep # seems to cause compiling
         gnused
         home-manager
         nix
-        coreutils
+        # coreutils # seems to cause compiling
         trash-cli
         sd
       ];
