@@ -24,7 +24,7 @@
 
   home.shellAliases = {
     "man" = "bman";
-    "cat" = "bat --plain";
+    "cat" = "bat --plain --paging=never";
     "bsession" = "bat ${config.common.hm-session-vars}";
   };
 
