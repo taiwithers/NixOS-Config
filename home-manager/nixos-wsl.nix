@@ -75,17 +75,17 @@
   };
 
   home.sessionVariables = {
-    AWS_SHARED_CREDENTIALS_FILE = "$XDG_CONFIG_HOME/aws/credentials";
-    AWS_CONFIG_FILE = "$XDG_CONFIG_HOME/aws/config";
-    AZURE_CONFIG_DIR = "$XDG_DATA_HOME/azure";
-    DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
-    DOTNET_CLI_HOME = "$XDG_DATA_HOME/dotnet";
-    PYTHONSTARTUP = "$XDG_CONFIG_HOME/python/pythonrc";
-    IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
-    JUPYTER_CONFIG_DIR = "$XDG_CONFIG_HOME/jupyter";
-    NODE_REPL_HISTORY = "$XDG_STATE_HOME/node_repl_history";
-    NPM_CONFIG_INIT_MODULE = "$XDG_CONFIG_HOME/npm/config/npm-init.js";
-    NPM_CONFIG_CACHE = "$XDG_CACHE_HOME/npm";
+    AWS_SHARED_CREDENTIALS_FILE = "${config.xdg.configHome}/aws/credentials";
+    AWS_CONFIG_FILE = "${config.xdg.configHome}/aws/config";
+    AZURE_CONFIG_DIR = "${config.xdg.dataHome}/azure";
+    DOCKER_CONFIG = "${config.xdg.configHome}/docker";
+    DOTNET_CLI_HOME = "${config.xdg.dataHome}/dotnet";
+    PYTHONSTARTUP = "${config.xdg.configHome}/python/pythonrc";
+    IPYTHONDIR = "${config.xdg.configHome}/ipython";
+    JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
+    NODE_REPL_HISTORY = "${config.xdg.stateHome}/node_repl_history";
+    NPM_CONFIG_INIT_MODULE = "${config.xdg.configHome}/npm/config/npm-init.js";
+    NPM_CONFIG_CACHE = "${config.xdg.cacheHome}/npm";
     NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
   };
 
