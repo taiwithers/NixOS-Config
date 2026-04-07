@@ -10,8 +10,7 @@ _:
         file,
       }:
       super.writeShellApplication {
-        inherit name;
-        runtimeInputs = runtimeInputs ++ [ super.coreutils ];
+        inherit name runtimeInputs;
         text = builtins.readFile (./scripts + "/${file}.sh");
       };
     githubVimPlugin =
