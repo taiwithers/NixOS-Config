@@ -605,7 +605,17 @@ vim.lsp.config["nix_ls"] = {
   root_markers = { "flake.nix", ".git" },
   settings = { nixd = { nixpkgs = { expr = vim.g.nixpkgs_expr } } },
 }
-vim.lsp.config["python_ls"] = { cmd = { "ruff" }, filetypes = { "py" } }
+vim.lsp.config["python_ls"] = {
+  cmd = { "basedpyright-langserver", "--stdio" },
+  filetypes = { "python" },
+  root_markers = { "pyproject.toml", "setup.py", "requirements.txt" },
+  settings = {
+    basedpyright = {
+      disableOrganizeImports = true,
+      analysis = { autoFormatStrings = false }, -- template-string does that
+    },
+  },
+}
 vim.lsp.config["css_ls"] = {
   filetypes = { "css", "scss" },
   cmd = { "vscode-css-language-server", "--stdio" },

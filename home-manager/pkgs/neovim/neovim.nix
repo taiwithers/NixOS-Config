@@ -28,7 +28,7 @@ in
       lua-language-server
       nixd
       vscode-langservers-extracted
-      ruff
+      basedpyright
       astro-language-server
       typescript
       typescript-language-server
