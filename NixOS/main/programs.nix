@@ -12,7 +12,6 @@
     coreutils
     busybox
 
-    sublime4
     duf
     dust
 
