@@ -77,5 +77,6 @@ opt.visualbell = true
 opt.wildignore = "__pycache__,*.pyc"
 opt.wildmode = "list:longest"
 opt.winblend = 0 -- transparency of floating windows
+opt.winborder = "rounded" -- for stuff like lsp hover window
 opt.wrap = true
 opt.wrapscan = true -- wrap searches

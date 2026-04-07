@@ -84,7 +84,7 @@ vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to 
 -- statuscolumn git indicators
 require("gitsigns").setup({
   sign_priority = 1000, -- don't overlap marks
-  preview_config = { border = "rounded", title = "Git Blame" },
+  preview_config = { title = "Git Blame" },
 })
 vim.keymap.set({ "n" }, "<leader>gb", function()
   require("gitsigns").blame_line({ ignore_whitespace = true, full = true })
