@@ -42,11 +42,9 @@ _:
     clean = customScript rec {
       name = "clean";
       runtimeInputs = with super; [
-        # gnugrep # seems to cause compiling
         gnused
         home-manager
         nix
-        # coreutils # seems to cause compiling
         trash-cli
         sd
       ];
@@ -83,8 +81,7 @@ _:
     heroic = super.heroic.override {
       extraPkgs = _pkgs: [ super.gamemode ];
     };
-    # inherit (unstable) nix-search-tv;
-    nixos-generations = customScript rec {
+    nixos-generations = customScript {
       name = "generations";
       runtimeInputs = with super; [
         nix
@@ -97,7 +94,6 @@ _:
       runtimeInputs = [ super.which ];
       file = "get-package-dir";
     };
-    # inherit (unstable) karp;
     kdePackages = super.kdePackages // {
       inherit (super) kara darkly;
       klassy = customDerivation "klassy";
@@ -113,7 +109,6 @@ _:
       inherit (unstable.kdePackages) krohnkite;
     };
     nbpreview = customDerivation "nbpreview";
-    # nixfmt = super.nixfmt-rfc-style;
     nixshell = customScript rec {
       name = "nixshell";
       runtimeInputs = with super; [
@@ -122,10 +117,9 @@ _:
       ];
       file = name;
     };
-    # inherit (unstable) onedrive;
     pond = customDerivation "pond";
     prettier-plugin-astro = customDerivation "prettier-plugin-astro";
-    search = customScript rec {
+    search = customScript {
       name = "search";
       runtimeInputs = with super; [
         nix-search-cli
