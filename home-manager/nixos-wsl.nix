@@ -29,6 +29,7 @@
         "dust"
         "eza"
         "fzf"
+        "glow"
         # "kitty" # use icat on remote
         # "latex"
         "lazygit"
