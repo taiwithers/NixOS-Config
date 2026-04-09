@@ -97,6 +97,7 @@ in
         nvim-treesitter-textobjects # work with functions, scopes, etc
         goto-preview # floating window for view definition, and for renaming
         nvim-comment-frame # create boxed comments
+        nvim-navic # breadcrumbs w/ lualine
 
         # completion and sources
         nvim-cmp

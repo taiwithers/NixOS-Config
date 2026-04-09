@@ -304,6 +304,7 @@ end
 local function in_visual_mode()
   return vim.fn.mode():find("[Vv]") ~= nil
 end
+require("nvim-navic").setup({ lsp = { auto_attach = true } }) -- breadcrumbs provider
 require("lualine").setup({
   options = {
     theme = "moonfly",
@@ -323,6 +324,9 @@ require("lualine").setup({
   tabline = {
     lualine_a = { { "buffers", use_mode_colors = true } },
     lualine_z = { { "tabs", use_mode_colors = true } },
+  },
+  winbar = {
+    lualine_a = { { "navic", navic_opts = { click = true } } },
   },
 })
 
