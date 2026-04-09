@@ -34,6 +34,7 @@ opt.hlsearch = true -- highlight matches from the last search
 opt.ignorecase = true -- ignore search case by default
 opt.incsearch = true -- show search matches while typing
 opt.infercase = true
+opt.iskeyword = "@,48-57,192-255" -- remove _ from the default list of word breaks
 opt.laststatus = 3 -- required for global lualine
 opt.linebreak = true -- don't wrap lines mid-word
 opt.matchpairs = "(:),{:},[:]" -- characters that form pairs
