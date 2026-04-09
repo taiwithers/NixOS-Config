@@ -76,12 +76,6 @@ autocmd("FileType", {
 --                       (not plugin related)                       --
 ----------------------------------------------------------------------
 
--- swap wrapped and non-wrapped line movement
-vim.keymap.set({ "n", "v" }, "j", "gj", { desc = "Move down one visual line" })
-vim.keymap.set({ "n", "v" }, "gj", "j", { desc = "Move down one real line" })
-vim.keymap.set({ "n", "v" }, "k", "gk", { desc = "Move up one visual line" })
-vim.keymap.set({ "n", "v" }, "gk", "k", { desc = "Move up one real line" })
-
 -- save with ctrl s
 vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
 

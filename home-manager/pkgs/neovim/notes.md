@@ -33,7 +33,6 @@
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
 - use telescope to insert filepaths (for importing stuff?)
 - fix tab completion in cmdline (stop tabs from bringing up the usual menu, this might mean turning off nvim's native completion)
-- remove wrapped line keybinds
 
 ## 0.12
 
