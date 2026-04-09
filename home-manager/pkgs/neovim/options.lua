@@ -25,9 +25,7 @@ opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.foldcolumn = "auto" -- when/how to draw the fold column
 opt.foldenable = false
 opt.foldlevelstart = 99 -- start editing with no folds closed
-opt.foldmethod = "expr" -- manual, indent, expr, marker, syntax, diff
--- opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- enable treesitter folding
-opt.foldexpr = "nvim_treesitter#foldexpr()" -- enable treesitter folding
+-- folding is handled by treesitter in init.lua
 opt.foldminlines = 5 -- unsure exactly what this does
 opt.grepprg = "batgrep" -- not sure if this will work....
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkon400"

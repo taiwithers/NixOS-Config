@@ -22,18 +22,14 @@
   - [bqf (minor)](https://github.com/kevinhwang91/nvim-bqf)
   - [quicker](https://github.com/stevearc/quicker.nvim)
   - [trouble (major)](https://github.com/folke/trouble.nvim)
-- [remote development](https://github.com/nosduco/remote-sshfs.nvim)
-  - there are probably alternatives to this that would be worth looking into
 - [potentially useful snippets?](https://github.com/rafamadriz/friendly-snippets)
 - something to insert (relative?) filepath at cursor location (for adding markdown images)
 - caplock warning?
 - [better lsp hoves for typescript](https://github.com/Sebastian-Nielsen/better-type-hover) - not sure to what extent I actually need this
-- [undotree](https://github.com/mbbill/undotree)
+- [undotree](https://github.com/mbbill/undotree) (built in to nvim 0.12)
 
 - use telescope more
-- yazi hidden files
 - fix cmp mappings in cmdline/search
-- add keybind for `vim.diagnostic.open_float()` - or maybe just telescope for all diagnostics
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
 - use telescope to insert filepaths (for importing stuff?)
 - spellcheck
