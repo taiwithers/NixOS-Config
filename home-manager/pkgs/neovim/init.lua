@@ -556,7 +556,7 @@ conform.setup({
 ----------------------------------------------------------------------
 
 -- show lsp diagnostics as virtual text at the end of the current line
-vim.diagnostic.config({ virtual_text = { current_line = true } })
+vim.diagnostic.config({ virtual_text = { current_line = true }, underline = false })
 
 -- show inlay hints (currently used by nixd for versions)
 vim.lsp.inlay_hint.enable(true)
@@ -616,7 +616,10 @@ vim.lsp.config["python_ls"] = {
   settings = {
     basedpyright = {
       disableOrganizeImports = true,
-      analysis = { autoFormatStrings = false }, -- template-string does that
+      analysis = {
+        autoFormatStrings = true, -- template-string *should* do that
+        inlayHints = { callArgumentNames = false },
+      },
     },
   },
 }
@@ -649,6 +652,7 @@ vim.keymap.set({ "n" }, "gr", function()
   require("which-key").show({ keys = "gr" })
 end, { desc = "Start LSP servers" })
 vim.keymap.set("n", "grh", vim.lsp.buf.hover, { desc = "Show LSP hover information" })
+vim.keymap.set("n", "grH", vim.diagnostic.open_float, { desc = "Show line diagnostic" })
 vim.keymap.set("n", "grd", function()
   vim.diagnostic.setqflist({ open = false })
   telescope_builtins.quickfix()
@@ -667,7 +671,7 @@ vim.keymap.del("n", "gO") -- list all symbols in document in the loc list
 
 -- if in certain buffer types, activate otter
 autocmd("FileType", {
-  pattern = { "md", "mdx", "just", "tex", "nix" },
+  pattern = { "markdown", "mdx", "just", "tex", "nix" },
   callback = require("otter").activate,
 })
 
