@@ -59,6 +59,18 @@ autocmd("BufWritePre", {
   end,
 })
 
+-- activate spellcheck in certain filetypes
+-- maybe change this so I can also activate/deactivate with a command or keybind
+autocmd("FileType", {
+  pattern = { "markdown", "mdx", "plaintex", "text", "gitcommit", "rst" },
+  callback = function()
+    vim.opt_local.spell = true
+    -- I  don't care about these types of issues
+    vim.cmd("highlight clear  SpellRare")
+    vim.cmd("highlight clear  SpellLocal")
+  end,
+})
+
 ----------------------------------------------------------------------
 --                             Keymaps                              --
 --                       (not plugin related)                       --
@@ -110,7 +122,11 @@ vim.keymap.set("n", "<leader>fP", "<cmd>Project<cr>", { desc = "Manage projects"
 vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects theme=dropdown<cr>", { desc = "Select project" })
 
 -- whichkey
-require("which-key").setup({ preset = "helix", expand = 2 })
+require("which-key").setup({
+  preset = "helix",
+  expand = 2,
+  plugins = { spelling = { suggestions = 8 } },
+})
 require("which-key").add({
   { "gr", group = "LSP" },
   { "<leader>f", group = "Find" },
@@ -671,7 +687,7 @@ vim.keymap.del("n", "gO") -- list all symbols in document in the loc list
 
 -- if in certain buffer types, activate otter
 autocmd("FileType", {
-  pattern = { "markdown", "mdx", "just", "tex", "nix" },
+  pattern = { "markdown", "mdx", "just", "plaintex", "nix" },
   callback = require("otter").activate,
 })
 

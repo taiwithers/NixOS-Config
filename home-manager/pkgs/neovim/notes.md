@@ -32,7 +32,6 @@
 - fix cmp mappings in cmdline/search
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
 - use telescope to insert filepaths (for importing stuff?)
-- spellcheck
 - fix tab completion in cmdline (stop tabs from bringing up the usual menu, this might mean turning off nvim's native completion)
 - change word boundaries to break on underscores
 - remove wrapped line keybinds
