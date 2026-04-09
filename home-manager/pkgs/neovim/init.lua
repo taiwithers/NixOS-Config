@@ -381,12 +381,12 @@ require("markdown-plus").setup({
   },
   list = { checkbox_completion = { enabled = false } },
   keymaps = { enabled = false },
-  filetypes = { "markdown", "mdx", "text" },
+  filetypes = { "markdown", "mdx" },
 })
 
 autocmd({ "BufEnter", "BufWinEnter" }, {
   -- set keybindings for markdown plus
-  pattern = { "*.md", "*.mdx", "*.txt" },
+  pattern = { "*.md", "*.mdx" },
   callback = function()
     local function keyset(modes, lhs, rhs, desc)
       vim.keymap.set(modes, lhs, rhs, { desc = desc, buffer = true })
