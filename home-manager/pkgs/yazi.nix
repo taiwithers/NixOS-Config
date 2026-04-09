@@ -60,6 +60,14 @@
           desc = "run lazygit";
         }
         {
+          on = [
+            "c"
+            "d"
+          ];
+          run = "plugin zoxide";
+          desc = "Jump to a directory with zoxide";
+        }
+        {
           on = "<Esc>";
           run = "close";
           desc = "Close";
