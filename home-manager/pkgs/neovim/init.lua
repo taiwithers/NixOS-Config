@@ -563,6 +563,9 @@ conform.setup({
         return { "--stdin-filepath", "$FILENAME" }
       end,
     },
+    yamlfmt = {
+      append_args = { "-formatter", "retain_line_breaks=true" },
+    },
   },
   formatters_by_ft = {
     lua = { "stylua" },
@@ -660,6 +663,14 @@ vim.lsp.config["python_ls"] = {
       analysis = {
         autoFormatStrings = true, -- template-string *should* do that
         inlayHints = { callArgumentNames = false },
+        diagnosticSeverityOverrides = {
+          -- terrible when working with pre-existing untyped code
+          reportUnknownVariableType = false,
+          reportUnknownMemberType = false,
+          reportUnknownParameterType = false,
+          reportUnknownArgumentType = false,
+          reportUnknownLambdaType = false,
+        },
       },
     },
   },
