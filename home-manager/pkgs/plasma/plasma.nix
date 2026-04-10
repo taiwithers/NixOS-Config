@@ -67,7 +67,7 @@ rec {
       klassy
       kara
       krohnkite
-      kwin-forceblur
+      kwin-effects-better-blur-dx
     ]
     ++ [ pkgs.where-is-my-sddm-theme ]
     ++ [ cursor.package ];
@@ -833,8 +833,8 @@ rec {
 
     kwin.effects = {
       blur.enable = false;
-      blur.noiseStrength = 10;
-      blur.strength = 5;
+      # blur.noiseStrength = 10;
+      # blur.strength = 5;
       desktopSwitching.animation = "slide";
       dimInactive.enable = false;
       minimization.animation = "off";
@@ -851,17 +851,17 @@ rec {
       location.longitude = "-78.49624060150377";
     };
 
-    configFile.kwinrc."Effect-blurplus" = {
-      "BlurDecorations" = true;
-      "BlurDocks" = false;
+    configFile.kwinrc."Effect-better-blur-dx" = {
+      # "BlurDecorations" = true;
+      # "BlurDocks" = false;
       "BlurMatching" = false;
       "BlurMenus" = true;
       "BlurNonMatching" = true;
-      "FakeBlur" = true;
-      "NoiseStrength" = 0;
-      "WindowClasses" = builtins.concatStringsSep "\n" [
-        "kdeconnectd"
-      ];
+      # "FakeBlur" = true;
+      # "NoiseStrength" = 0;
+      # "WindowClasses" = builtins.concatStringsSep "\n" [
+      #   "kdeconnectd"
+      # ];
     };
 
     # turn off hot corner

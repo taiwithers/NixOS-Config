@@ -41,8 +41,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kwin-effects-forceblur = {
-      url = "github:taj-ny/kwin-effects-forceblur/fea9f80f";
+    kwin-effects-better-blur-dx = {
+      url = "github:xarblu/kwin-effects-better-blur-dx";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
     };
@@ -176,7 +176,7 @@
               # packages from external flakes
               agenix = flake-inputs.agenix.packages.${system}.default;
               kdePackages = _super.kdePackages // {
-                kwin-forceblur = flake-inputs.kwin-effects-forceblur.packages.${system}.default;
+                kwin-effects-better-blur-dx = flake-inputs.kwin-effects-better-blur-dx.packages.${system}.default;
               };
               nix-inspect = flake-inputs.nix-inspect.packages.${system}.default;
               pipewire-zoom = flake-inputs.nixpkgs-zoom.legacyPackages.${system}.pipewire;
