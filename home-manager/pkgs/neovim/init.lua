@@ -83,6 +83,16 @@ vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
 vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to next buffer" })
 vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to previous buffer" })
 
+-- remove some defaults (more removed elsewhere, in LSP and whichkey)
+vim.keymap.del("n", "]a") -- next file
+vim.keymap.del("n", "]A") -- last file
+vim.keymap.del("n", "[a") -- previous file
+vim.keymap.del("n", "[A") -- first file
+vim.keymap.del("n", "[b") -- previous buffer
+vim.keymap.del("n", "[B") -- first buffer
+vim.keymap.del("n", "]b") -- next buffer
+vim.keymap.del("n", "]B") -- last buffer
+
 ----------------------------------------------------------------------
 --                         General Plugins                          --
 ----------------------------------------------------------------------
@@ -125,6 +135,23 @@ require("which-key").add({
   { "gr", group = "LSP" },
   { "<leader>f", group = "Find" },
   { "<leader>g", group = "Git" },
+  { "zA", "<nop>", hidden = true },
+  { "zb", "<nop>", hidden = true },
+  { "zc", "<nop>", hidden = true },
+  { "zC", "<nop>", hidden = true },
+  { "zd", "<nop>", hidden = true },
+  { "zD", "<nop>", hidden = true },
+  { "ze", "<nop>", hidden = true },
+  { "zE", "<nop>", hidden = true },
+  { "zf", "<nop>", hidden = true },
+  { "zH", "<nop>", hidden = true },
+  { "zL", "<nop>", hidden = true },
+  { "zo", "<nop>", hidden = true },
+  { "zs", "<nop>", hidden = true },
+  { "zt", "<nop>", hidden = true },
+  { "zv", "<nop>", hidden = true },
+  { "zx", "<nop>", hidden = true },
+  { "z<cr>", "<nop>", hidden = true },
 })
 
 -- telescope
