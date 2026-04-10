@@ -22,11 +22,12 @@ opt.copyindent = true -- when autoindenting, follow the tab/space convention of 
 opt.cursorline = true -- highlight current line
 opt.expandtab = true -- use spaces not tabs
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-opt.foldcolumn = "auto" -- when/how to draw the fold column
-opt.foldenable = false
-opt.foldlevelstart = 99 -- start editing with no folds closed
 -- folding is handled by treesitter in init.lua
-opt.foldminlines = 5 -- unsure exactly what this does
+opt.foldcolumn = "auto" -- when/how to draw the fold column
+opt.foldlevel = 99 -- start editing with no folds closed
+opt.foldlevelstart = 99 -- start editing with no folds closed
+opt.foldminlines = 5 -- only allow closing folds if they are X + 1 lines when open
+opt.foldnestmax = 5 -- don't nest folds too deeply
 opt.grepprg = "batgrep" -- not sure if this will work....
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkon400"
 opt.history = 100 -- how many : commands to store

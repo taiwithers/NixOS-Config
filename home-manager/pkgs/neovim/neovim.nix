@@ -98,6 +98,7 @@ in
         goto-preview # floating window for view definition, and for renaming
         nvim-comment-frame # create boxed comments
         nvim-navic # breadcrumbs w/ lualine
+        nvim-ufo # improves folding?
 
         # completion and sources
         nvim-cmp

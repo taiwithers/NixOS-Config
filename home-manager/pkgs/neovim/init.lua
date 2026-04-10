@@ -586,6 +586,10 @@ vim.keymap.set("n", "<S-F12>", require("goto-preview").goto_preview_references, 
 -- lsp
 local capabilities = require("cmp_nvim_lsp").default_capabilities() -- from nvim-cmp
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 vim.lsp.config("*", {
   capabilities = capabilities,
   root_markers = { "flake.nix", ".git" },
@@ -651,6 +655,12 @@ vim.lsp.config["mdx_ls"] = {
   init_options = { typescript = { enabled = true, tsdk = vim.g.tsdk } },
 }
 
+require("ufo").setup()
+vim.keymap.set("n", "z1", require("ufo").closeFoldsWith, { desc = "Fold level 1+" })
+vim.keymap.set("n", "z2", function()
+  require("ufo").closeFoldsWith(1)
+end, { desc = "Fold level 2+" })
+
 local function start_lsp()
   vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls", "mdx_ls", "bash_ls" })
 end
@@ -694,9 +704,9 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
 
       -- syntax highlighting
       vim.treesitter.start()
-      -- folds
-      vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      vim.wo[0][0].foldmethod = "expr"
+
+      -- folds are done with LSP and nvim-ufo
+
       -- indentation (from nvim-treesitter plugin)
       vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
 
