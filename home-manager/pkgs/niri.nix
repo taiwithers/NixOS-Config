@@ -5,8 +5,14 @@
   ...
 }:
 {
+  #--------------------------------------------------------------------#
+  #                              Battery
+  # With `upower` service enabled (NixOS config)
+  # upower --enumerate # to find batteries
+  # upower --show-info {battery name} | rg "percentage|state"
+  #--------------------------------------------------------------------#
+
   home.packages = with pkgs; [
-    beep
     brightnessctl
     sox # for notification beeps
     # play --null --no-show-progress synth 1 sin 200/300 sin 300/200 remix 1,2 channels 2
@@ -20,38 +26,23 @@
     };
     binds = with config.lib.niri.actions; {
       # niri management
-      "Super+Shift+Slash" = {
-        action = show-hotkey-overlay;
-        hotkey-overlay.title = "Show hotkey overlay";
-      };
-      "Super+Shift+E" = {
-        action = quit;
-        hotkey-overlay.title = "Quit Niri";
-      };
-      "Super+Tab" = {
-        action = toggle-overview;
-        hotkey-overlay.title = "Open overview";
-      };
+      "Super+Shift+Slash".action = show-hotkey-overlay;
+      "Super+Shift+E".action = quit;
+      "Super+Tab".action = toggle-overview;
 
       # Application launching
-      "Super+T" = {
-        action.spawn = "kitty";
-        hotkey-overlay.title = "Launch kitty";
-      };
+      "Super+T".action.spawn = "kitty";
       "Super+Space" = {
         action.spawn = [
           "rofi"
           "-show"
         ];
-        hotkey-overlay.title = "Launch rofi";
         repeat = false;
       };
 
       # Window focusing
-      "Alt+h" = {
-        action = focus-column-left;
-        hotkey-overlay.title = "Focus column left";
-      };
+      "Alt+h".action = focus-column-left;
+      "Alt+l".action = focus-column-right;
       "Alt+j" = {
         action = focus-window-down;
         hotkey-overlay.title = "Focus window down";
@@ -60,16 +51,10 @@
         action = focus-window-up;
         hotkey-overlay.title = "Focus window up";
       };
-      "Alt+l" = {
-        action = focus-column-right;
-        hotkey-overlay.title = "Focus column right";
-      };
 
       # Window moving
-      "Alt+Shift+h" = {
-        action = move-column-left;
-        hotkey-overlay.title = "Move column left";
-      };
+      "Alt+Shift+h".action = move-column-left;
+      "Alt+Shift+l".action = move-column-right;
       "Alt+Shift+j" = {
         action = move-window-down;
         hotkey-overlay.title = "Move window down";
@@ -78,24 +63,21 @@
         action = move-window-up;
         hotkey-overlay.title = "Move window up";
       };
-      "Alt+Shift+l" = {
-        action = move-column-right;
-        hotkey-overlay.title = "Move column right";
-      };
 
       # other window actions
+      "Alt+f".action = toggle-window-floating;
+      "Alt+Shift+q".action = close-window;
       "Alt+m" = {
-        action = maximize-window-to-edges;
+        action = maximize-column;
+        # action = maximize-window-to-edges; # no borders/gaps
         hotkey-overlay.title = "Maximize window";
-      };
-      "Alt+f" = {
-        action = toggle-window-floating;
-        hotkey-overlay.title = "Float window";
       };
       "Alt+t" = {
         action = toggle-column-tabbed-display;
         hotkey-overlay.title = "Toggle column as tabs";
       };
+
+      # close-window, center-window, switch-preset-column-width
 
       # scroll left/right on touchpad w/ three finger drag
       # open overview with four finger drag up
@@ -112,19 +94,14 @@
         action.screenshot = {
           show-pointer = false;
         };
-        hotkey-overlay.title = "Screenshot";
       };
       "XF86MonBrightnessUp" = {
         allow-when-locked = true;
-        action.spawn-sh = [
-          "brightnessctl --class=backlight set +10%"
-        ];
+        action.spawn-sh = "brightnessctl --class=backlight set +10%";
       };
       "XF86MonBrightnessDown" = {
         allow-when-locked = true;
-        action.spawn = [
-          "brightnessctl --class=backlight set 10%-"
-        ];
+        action.spawn-sh = "brightnessctl --class=backlight set 10%-";
       };
       "XF86AudioRaiseVolume" = {
         allow-when-locked = true;
