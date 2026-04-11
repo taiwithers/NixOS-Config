@@ -42,6 +42,14 @@
     };
   };
 
+  services.kanata = {
+    enable = true;
+    keyboards.default = {
+      extraDefCfg = "process-unmapped-keys yes";
+      config = builtins.readFile ./kanata.kbd;
+    };
+  };
+
   services.upower = {
     enable = true;
     percentageLow = 20;
