@@ -120,11 +120,6 @@ require("flash").setup({
   modes = { search = { enabled = true } }, -- three-character jumps during /? searches
 })
 
--- project/workspace/session management
-require("project").setup({ silent_chdir = false, patterns = { ">projects", "flake.nix" } })
-vim.keymap.set("n", "<leader>fP", "<cmd>Project<cr>", { desc = "Manage projects" })
-vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects theme=dropdown<cr>", { desc = "Select project" })
-
 -- whichkey
 require("which-key").setup({
   preset = "helix",
