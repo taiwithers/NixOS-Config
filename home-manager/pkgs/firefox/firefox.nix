@@ -10,12 +10,12 @@
     {
       # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.enable
       enable = true;
-      package = pkgs.firefox.override {
-        nativeMessagingHosts = [
-          pkgs.kdePackages.plasma-browser-integration
-          pkgs.keepassxc
-        ];
-      };
+      # package = pkgs.firefox.override {
+      #   nativeMessagingHosts = [
+      #     pkgs.kdePackages.plasma-browser-integration
+      #     pkgs.keepassxc
+      #   ];
+      # };
 
       policies = {
         # about:policies
