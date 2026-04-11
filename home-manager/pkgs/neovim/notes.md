@@ -27,7 +27,12 @@
 - caplock warning?
 - [better lsp hoves for typescript](https://github.com/Sebastian-Nielsen/better-type-hover) - not sure to what extent I actually need this
 - [undotree](https://github.com/mbbill/undotree) (built in to nvim 0.12)
+- [screenkey](https://github.com/NStefan002/screenkey.nvim)
+- [change how increment/decrement works](https://pawelgrzybek.com/vim-tip-more-intuitive-ctrl-a-adding-and-ctrl-x-subtracting/)
+- [native session management](https://neovim.io/doc/user/usr_21/#_sessions)
+- [eventual replacement of noice w/ native](https://www.reddit.com/r/neovim/comments/1sfmgkb/how_does_the_new_ui2_message_cmdline_replacement/)
 
+- add a keymap for `:helpclose`
 - use telescope more
 - fix cmp mappings in cmdline/search
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
