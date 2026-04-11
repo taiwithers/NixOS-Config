@@ -47,6 +47,7 @@
       "cod"
       "duf"
       "dust"
+      "dunst"
       "eza"
       "firefox/firefox"
       "fzf"
