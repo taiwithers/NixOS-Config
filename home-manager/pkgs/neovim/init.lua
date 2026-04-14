@@ -662,7 +662,7 @@ vim.lsp.config["python_ls"] = {
       disableOrganizeImports = true,
       analysis = {
         autoFormatStrings = true, -- template-string *should* do that
-        inlayHints = { callArgumentNames = false },
+        inlayHints = { callArgumentNames = false, variableTypes = false },
         diagnosticSeverityOverrides = {
           -- terrible when working with pre-existing untyped code
           reportUnknownVariableType = false,
@@ -670,9 +670,15 @@ vim.lsp.config["python_ls"] = {
           reportUnknownParameterType = false,
           reportUnknownArgumentType = false,
           reportUnknownLambdaType = false,
+          -- just not that useful
+          reportUnusedCallResult = false,
+          reportUntypedFunctionDecorator = false,
+          reportMissingTypeStubs = false,
+          reportOptionalMemberAccess = "warning", -- accessing obj.attr if obj could be None (originally error)
         },
       },
     },
+    -- python = { pythonPath = vim.fn.exepath("python") },
   },
 }
 vim.lsp.config["css_ls"] = {
