@@ -286,6 +286,7 @@ require("mini.indentscope").setup({
   draw = { animation = require("mini.indentscope").gen_animation.none() },
 })
 vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#555555" })
+vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#CCCCCC" })
 
 -- colourize hex, css, rgb colours
 -- mini.hipatterns doesn't quite match this functionality
