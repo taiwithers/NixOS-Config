@@ -5,7 +5,7 @@
 
 (defvar
   tap-repress-timeout 200
-  hold-timeout 300
+  hold-timeout 200
   caps-word-timeout 1500 ;; end caps word if no relevant keys are pressed
   alphabet (a b c d e f g h i j k l m n o p q r s t u v w x y z)
   retain-caps-word (0 1 2 3 4 5 6 7 8 9 bspc del up down left right - lsft rsft)
@@ -27,7 +27,19 @@
 
   ;; caps
   capsw (caps-word-custom-toggle $caps-word-timeout $alphabet $retain-caps-word)
-  CWesc (tap-hold $tap-repress-timeout $hold-timeout esc @capsw)	
+  CWesc (tap-hold $tap-repress-timeout $hold-timeout esc @capsw)
+
+  ;; home row mods
+  aAlt (tap-hold $tap-repress-timeout $hold-timeout a lalt)
+  hAlt (tap-hold $tap-repress-timeout $hold-timeout h lalt)
+  eSft (tap-hold $tap-repress-timeout $hold-timeout e lsft)
+  tSft (tap-hold $tap-repress-timeout $hold-timeout t lsft)
+  iCtl (tap-hold $tap-repress-timeout $hold-timeout i lctl)
+  sCtl (tap-hold $tap-repress-timeout $hold-timeout s lctl)
+  ;; aAlt (tap-hold-press-timeout $tap-repress-timeout $hold-timeout a lalt a)
+  ;; hAlt (tap-hold-press-timeout $tap-repress-timeout $hold-timeout h lalt h)
+  ;; eSft (tap-hold-press-timeout $tap-repress-timeout $hold-timeout e lsft e)
+  ;; tSft (tap-hold-press-timeout $tap-repress-timeout $hold-timeout t lsft t)
 
   ;; symbols
   lpar S-9
@@ -38,16 +50,18 @@
   dllr S-4
   hash S-3
   asrk S-8
+  lcur S-[
+  rcur S-]
 )
 
 
 (defsrc
-  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rctl
+  lctl lmet lalt                spc            ralt rctl
 )
 
 ;;
@@ -59,37 +73,37 @@
 ;; behaviour is used when pressing that key.
 
 (deflayer layers
-  _    _    _    _    _    _    _    _    _    _    _    _
-  _    @qwr @eng @sym _    _    _    _    _    _    lrld _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _              _              _    _    
+  _      _      _      _      _      _      _      _      _      _      _      _
+  _      @qwr   @eng   @sym   _      _      _      _      _      _      lrld   _      _      _
+  _      _      _      _      _      _      _      _      _      _      _      _      _      _
+  _      _      _      _      _      _      _      _      _      _      _      _      _
+  _      _      _      _      _      _      _      _      _      _      _      _
+  _      _      _                           _              	        _    _
 )
 
 (deflayer qwerty
-  @f1L f2   @f3Cc @f4Cv @f5Cx f6   f7   f8   f9   f10  f11  f12 
-  grv  1    2     3    4      5    6    7    8    9    0    -    =    bspc
-  tab  q    w     e    r      t    y    u    i    o    p    [    ]    \
-  caps a    s     d    f      g    h    j    k    l    ;    '    ret
-  lsft z    x     c    v      b    n    m    ,    .    /    rsft
-  lctl lmet lalt              spc            ralt rctl
+  @f1L   f2     @f3Cc  @f4Cv  @f5Cx  f6     f7     f8     f9     f10    f11    f12
+  grv    1      2      3      4      5      6      7      8      9      0      -      =      bspc
+  tab    q      w      e      r      t             y      u      i      o      p      [      ]      \
+  caps   a      s      d      f      g             h      j      k      l      ;      '      ret
+  lsft   z      x      c      v      b             n      m      ,      .      /      rsft
+  lctl   lmet   lalt                        spc                         ralt rctl
 )
 
 (deflayer engram
-  @f1L   f2   @f3Cc @f4Cv @f5Cx f6   f7   f8   f9   f10  f11  f12  
-  =      1    2     3     4     5    6    7    8    9    0    [    ]    bspc
-  tab    b    y     o     u     '    ;    l    d    w    v    z    grv  \
-  @CWesc c    i     e     a     ,    .    h    t    s    n    q    ret
-  lsft   g    x     j     k     -    /    r    m    f    p    rsft
-  lctl   lmet lalt              @sysp          ralt rctl
+  @f1L   f2     @f3Cc  @f4Cv  @f5Cx  f6     f7     f8     f9     f10    f11    f12
+  =      1      2      3      4      5      6      7      8      9      0      [      ]    bspc
+  tab    b      y      o      u      '             ;      l      d      w      v      z    grv    \
+  @CWesc c      @iCtl  @eSft  @aAlt  ,             .      @hAlt  @tSft  @sCtl  n      q    ret
+  lsft   g      x      j      k      -             /      r      m      f      p      rsft
+  lctl   lmet   lalt                        @sysp                       ralt  rctl
 )
 
 (deflayer symbols
-  @f1L   f2    @f3Cc @f4Cv @f5Cx f6   f7   f8   f9    f10  f11  f12  
-  _      _     lsft  [     ]     lalt _    _    _     _    _    _    _    bspc
-  tab    @excl grv   @lpar @rpar     '    ;    bspc tab   spc  ret  _    _    _
-  @CWesc =     @perc @crat @dllr  ,    .    h    j     k    l    _    ret
-  lsft   _     \     @hash @asrk  -    /    del  S-tab esc  _    rsft
-  lctl   lmet  lalt              spc            ralt  rctl
+  @f1L   f2     @f3Cc  @f4Cv  @f5Cx  f6     f7     f8     f9     f10    f11    f12
+  _      _      @lcur  [      ]      @rcur  _      _      _       _     _      _      _    bspc
+  tab    @excl  grv    @lpar  @rpar  '             ;      bspc   tab    spc    ret    _    _      _
+  @CWesc =      @perc  @crat  @dllr  ,             .      h      j      k      l      _    ret
+  lsft   _      \      @hash  @asrk  -             /      del    S-tab  esc    _      rsft
+  lctl   lmet   lalt                        spc                         ralt rctl
 )
