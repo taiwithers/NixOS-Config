@@ -4,70 +4,7 @@
   pkgs,
   ...
 }:
-let
 
-  brightness-change = pkgs.writeShellApplication {
-    name = "brightness-change";
-    runtimeInputs = [
-      pkgs.brightnessctl
-      pkgs.bc
-    ];
-    text = ''
-      set -euo pipefail
-
-      if [[ $# -eq 0 ]]; then 
-          echo "Missing argument \`up\` or \`down\`"
-          exit 1
-      else
-          echo "Parameter passed = $1"
-      fi
-
-
-      function current_brightness(){
-        value=$(bc <<< "$(brightnessctl get) * 100 / $(brightnessctl max)")
-        echo "$value"
-      }
-
-      # check for early exit
-      case $1 in
-        up|max)
-          if [[ $(current_brightness) -eq 100 ]]; then
-            notify-send "Brightness already at maximum"
-            exit 0
-          fi
-          ;;
-        down|min)
-          if [[ $(current_brightness) -le 10 ]]; then
-            notify-send "Brightness already at minimum"
-            exit 0
-          fi
-          ;;
-      esac
-
-      case $1 in 
-        up)
-          action="+10%"
-          ;;
-        down)
-          action="10%-"
-          ;;
-        min)
-          action="5%"
-          ;;
-        max)
-          action="100%"
-          ;;
-        *)
-          echo "Unknown command"
-          exit 1
-          ;;
-      esac
-
-      brightnessctl --class=backlight set $action
-      notify-send "Set brightness to $(current_brightness)"
-    '';
-  };
-in
 {
   #--------------------------------------------------------------------#
   #                              Battery
@@ -77,10 +14,9 @@ in
   #--------------------------------------------------------------------#
 
   home.packages = with pkgs; [
-    brightnessctl
+    brightness-control # custom script
     sox # for notification beeps
     # play --null --no-show-progress synth 1 sin 200/300 sin 300/200 remix 1,2 channels 2
-    brightness-change
   ];
   imports = [ niri.homeModules.niri ];
   programs.niri.enable = true;
@@ -166,11 +102,11 @@ in
         };
         "XF86MonBrightnessUp" = {
           allow-when-locked = true;
-          action.spawn-sh = "brightness-change up";
+          action.spawn-sh = "brightness-control up";
         };
         "XF86MonBrightnessDown" = {
           allow-when-locked = true;
-          action.spawn-sh = "brightness-change down";
+          action.spawn-sh = "brightness-control down";
         };
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;

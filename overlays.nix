@@ -35,7 +35,11 @@ _:
   {
     brightness-control = customScript rec {
       name = "brightness-control";
-      runtimeInputs = [ super.brightnessctl ];
+      runtimeInputs = [
+        self.brightnessctl
+        self.libnotify
+        self.gawk
+      ];
       file = name;
     };
     cbonsai = customDerivation "cbonsai";

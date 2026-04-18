@@ -93,7 +93,6 @@
     nix-search-tv
 
     # cli programs
-    brightness-control
     broot
     cbonsai
     cloc
