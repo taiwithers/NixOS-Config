@@ -23,6 +23,14 @@
   capsw (caps-word-custom-toggle $caps-word-timeout $alphabet $retain-caps-word)
   CWesc (tap-hold $tap-repress-timeout $hold-timeout esc @capsw)	
 
+  ;; home row mods, for qwerty
+  fAlt (tap-hold $tap-repress-timeout $hold-timeout f lalt)
+  jAlt (tap-hold $tap-repress-timeout $hold-timeout j lalt)
+  dSft (tap-hold $tap-repress-timeout $hold-timeout d lsft)
+  kSft (tap-hold $tap-repress-timeout $hold-timeout k lsft)
+  sCtl (tap-hold $tap-repress-timeout $hold-timeout s lctl)
+  lCtl (tap-hold $tap-repress-timeout $hold-timeout l lctl)
+
   ;; symbols
   lpar S-9
   rpar S-0
@@ -53,12 +61,12 @@
 ;; behaviour is used when pressing that key.
 
 (deflayer qwerty
-  f1     f2   @f3Cc @f4Cv @f5Cx f6   f7   f8   f9   f10  f11  f12 
-  grv    1    2     3    4      5    6    7    8    9    0    -    =    bspc
-  tab    q    w     e    r      t    y    u    i    o    p    [    ]    \
-  @CWesc a    s     d    f      g    h    j    k    l    ;    '    ret
-  lsft   z    x     c    v      b    n    m    ,    .    /    rsft
-  lctl   lmet lalt              spc            ralt 
+  f1     f2   @f3Cc @f4Cv @f5Cx  f6   f7   f8    f9    f10   f11  f12 
+  grv    1    2     3     4      5    6    7     8     9     0    -    =    bspc
+  tab    q    w     e     r      t    y    u     i     o     p    [    ]    \
+  @CWesc a    @sCtl @dSft @fAlt  g    h    @jAlt @kSft @lCtl ;    '    ret
+  lsft   z    x     c     v      b    n    m     ,     .     /    rsft
+  lctl   lmet lalt              spc              ralt 
 )
 
 (deflayer layers
