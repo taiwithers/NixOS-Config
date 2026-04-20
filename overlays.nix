@@ -33,6 +33,15 @@ _:
     inherit (self) unstable;
   in
   {
+    ac-power-monitor = customScript rec {
+      name = "ac-power-monitor";
+      runtimeInputs = [
+        self.acpi
+        self.jq
+        self.libnotify
+      ];
+      file = name;
+    };
     brightness-control = customScript rec {
       name = "brightness-control";
       runtimeInputs = [

@@ -127,10 +127,12 @@
     complete -F _command get-package-path
     complete -F _command whichl
   '';
-  #xresources.path = "${config.common.configHome}/X11/xresources";
-  #home.shellAliases = {
-  #"install-smapi" = "steam-run ./internal/linux/SMAPI.installer";
-  #};
+
+  systemd.user.services."ac-power-monitor" = {
+    Unit.Description = "Notify when charging cable is (dis)connected";
+    Install.WantedBy = [ "default.target" ]; # needed or else it  won't actually be started
+    Service.ExecStart = "${pkgs.ac-power-monitor}/bin/ac-power-monitor";
+  };
 
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";
   common.useXDG = true;
