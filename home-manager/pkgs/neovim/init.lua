@@ -338,9 +338,19 @@ local function in_visual_mode()
   return vim.fn.mode():find("[Vv]") ~= nil
 end
 require("nvim-navic").setup({ lsp = { auto_attach = true } }) -- breadcrumbs provider
+local lualine_theme = require("lualine.themes.auto")
+-- add contrast to normal mode
+lualine_theme.inactive.a.fg = "#f0f3fa"
+lualine_theme.inactive.b.fg = "#a7a9ae"
+-- fix the bright centre line
+lualine_theme.command.c.bg = lualine_theme.command.b.bg
+lualine_theme.inactive.c.bg = lualine_theme.inactive.b.bg
+lualine_theme.insert.c.bg = lualine_theme.insert.b.bg
+lualine_theme.replace.c.bg = lualine_theme.replace.b.bg
+lualine_theme.visual.c.bg = lualine_theme.visual.b.bg
 require("lualine").setup({
   options = {
-    theme = "moonfly",
+    theme = lualine_theme,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     global_status = true,
