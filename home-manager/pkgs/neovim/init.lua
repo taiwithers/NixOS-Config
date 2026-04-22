@@ -758,7 +758,8 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
       -- folds are done with LSP and nvim-ufo
 
       -- indentation (from nvim-treesitter plugin)
-      vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+      -- vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+      -- using `vim.o.smartindent = true` instead
 
       -- treesitter related plugins
       require("nvim-ts-autotag").setup({ aliases = { ["mdx"] = "html" } })
