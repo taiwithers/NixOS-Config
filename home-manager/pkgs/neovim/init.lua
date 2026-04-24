@@ -514,7 +514,7 @@ local insert_completion_mapping = cmp.mapping.preset.insert({
 })
 local cmdline_completion_mapping = cmp.mapping.preset.cmdline({
   ["<C-z>"] = cmp.config.disable,
-  ["<Tab>"] = cmp.config.disable, -- if i disable this (and shift-tab) they now open the native menu I think?
+  ["<Tab>"] = cmp.config.disable,
   ["<S-Tab>"] = cmp.config.disable,
   -- keep the C-n and C-p mappings and C-e to close
   ["<C-y>"] = { c = cmp.mapping.confirm({ select = true }) }, -- same as insert mode <cr>
@@ -800,7 +800,7 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
       -- treesitter related plugins
       require("nvim-ts-autotag").setup({ aliases = { ["mdx"] = "html" } })
 
-      -- template/f-string conversion (uses treesitter, so could move this inside the treesitter setup)
+      -- template/f-string conversion
       require("template-string").setup({
         filetypes = {
           "html",
