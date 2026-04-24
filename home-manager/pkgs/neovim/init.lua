@@ -157,7 +157,9 @@ require("which-key").add({
   { "zv", "<nop>", hidden = true },
   { "zx", "<nop>", hidden = true },
   { "z<cr>", "<nop>", hidden = true },
+  { "<Plug>(fzf-normal)", "<nop>", hidden = true }, -- clogs whichkey
 })
+vim.keymap.set("n", "<leader>H", require("which-key").show, { desc = "Open which-key" })
 
 -- telescope
 local telescope = require("telescope")
