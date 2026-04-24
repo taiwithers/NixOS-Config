@@ -280,7 +280,6 @@ autocmd("UIEnter", {
 ----------------------------------------------------------------------
 
 require("range-highlight").setup() -- highlight visual selection in cmdline
-require("modes").setup() -- colour line highlight based on current mode
 require("highlight-undo").setup() -- highlight text affected by "undo"
 require("auto-hlsearch").setup() -- turn off search highlight
 
@@ -337,6 +336,27 @@ require("noice").setup({
   },
 })
 
+local mode_colours = {
+  normal = { primary = "#303030", contrast = "#eeeeee" },
+  insert = { primary = "#9affff", contrast = "#303030" }, -- lualine auto uses this for visual mode
+  visual = { primary = "#ae81ff", contrast = "#303030" },
+  copy = { primary = "#fce094", contrast = "#303030" }, -- `IncSearch` highlight colour, used for TextYankPost
+  delete = { primary = "#ff5189", contrast = "#303030" }, -- lualine moonfly replace colour
+  command = { primary = "#245361", contrast = "#eeeeee" }, -- modes.nvim replace colour
+}
+
+-- colour line highlight based on current mode
+require("modes").setup({
+  colors = {
+    copy = mode_colours.copy.primary,
+    delete = mode_colours.delete.primary,
+    format = mode_colours.visual.primary,
+    insert = mode_colours.insert.primary,
+    replace = mode_colours.delete.primary,
+    visual = mode_colours.visual.primary,
+  },
+})
+
 -- lualine does the status bar at the bottom and also the tab bar at the top
 local function visually_selected_line_count()
   local starts = vim.fn.line("v")
@@ -347,20 +367,26 @@ end
 local function in_visual_mode()
   return vim.fn.mode():find("[Vv]") ~= nil
 end
+
+local function make_lualine_mode(colour_table)
+  return {
+    a = { bg = colour_table.primary, fg = colour_table.contrast, gui = "bold" },
+    b = { bg = mode_colours.normal.primary, fg = "#aaaaaa" },
+    c = { bg = mode_colours.normal.primary, fg = "#aaaaaa" },
+  }
+end
 require("nvim-navic").setup({ lsp = { auto_attach = true } }) -- breadcrumbs provider
-local lualine_theme = require("lualine.themes.auto")
--- add contrast to normal mode
-lualine_theme.inactive.a.fg = "#f0f3fa"
-lualine_theme.inactive.b.fg = "#a7a9ae"
--- fix the bright centre line
-lualine_theme.command.c.bg = lualine_theme.command.b.bg
-lualine_theme.inactive.c.bg = lualine_theme.inactive.b.bg
-lualine_theme.insert.c.bg = lualine_theme.insert.b.bg
-lualine_theme.replace.c.bg = lualine_theme.replace.b.bg
-lualine_theme.visual.c.bg = lualine_theme.visual.b.bg
 require("lualine").setup({
   options = {
-    theme = lualine_theme,
+    theme = {
+      command = make_lualine_mode(mode_colours.command),
+      inactive = make_lualine_mode(mode_colours.normal),
+      insert = make_lualine_mode(mode_colours.insert),
+      normal = make_lualine_mode(mode_colours.normal),
+      replace = make_lualine_mode(mode_colours.delete),
+      terminal = make_lualine_mode(mode_colours.command),
+      visual = make_lualine_mode(mode_colours.visual),
+    },
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     global_status = true,
