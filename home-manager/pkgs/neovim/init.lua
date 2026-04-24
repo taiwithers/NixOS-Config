@@ -98,9 +98,19 @@ vim.keymap.del("n", "]B") -- last buffer
 ----------------------------------------------------------------------
 
 -- statuscolumn git indicators
+local gitsigns_symbols = {
+  add = { text = "+" },
+  change = { text = "~" },
+  delete = { text = "-" },
+  topdelete = { text = "^" }, -- first line(s) of file was deleted
+  changedelete = { text = "&" }, -- first line(s) of file was deleted, AND this line was changed
+  untracked = { text = "┆" },
+}
 require("gitsigns").setup({
   sign_priority = 1000, -- don't overlap marks
   preview_config = { title = "Git Blame" },
+  signs = gitsigns_symbols,
+  signs_staged = gitsigns_symbols,
 })
 vim.keymap.set({ "n" }, "<leader>gb", function()
   require("gitsigns").blame_line({ ignore_whitespace = true, full = true })
