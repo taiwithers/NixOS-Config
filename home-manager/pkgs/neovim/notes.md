@@ -22,16 +22,14 @@
 - caplock warning?
 - [better lsp hovers for typescript](https://github.com/Sebastian-Nielsen/better-type-hover) - not sure to what extent I actually need this
 - [screenkey](https://github.com/NStefan002/screenkey.nvim)
-- [change how increment/decrement works](https://pawelgrzybek.com/vim-tip-more-intuitive-ctrl-a-adding-and-ctrl-x-subtracting/)
 - [native session management](https://neovim.io/doc/user/usr_21/#_sessions)
-- [eventual replacement of noice w/ native](https://www.reddit.com/r/neovim/comments/1sfmgkb/how_does_the_new_ui2_message_cmdline_replacement/)
+- [vimscript plugin for swapping line/charwise pastes](https://github.com/inkarkat/vim-UnconditionalPaste) - could potentially do some hacking to merge this with neoclip
 
 - add a keymap for `:helpclose`
 - use telescope more
 - fix cmp mappings in cmdline/search
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
 - use telescope to insert filepaths (for importing stuff?)
-- fix tab completion in cmdline (stop tabs from bringing up the usual menu, this might mean turning off nvim's native completion)
 
 ## 0.12
 
@@ -41,6 +39,15 @@
 - [incremental selection](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L237)
 - [native autocomplete stuff](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L305)
 - add foldinner from ufo readme
+- ui2 (noice replacement) stuff
+  - [tiny-cmdline](https://github.com/rachartier/tiny-cmdline.nvim)
+  - [notifications](https://www.reddit.com/r/neovim/comments/1sfmgkb/how_does_the_new_ui2_message_cmdline_replacement/oeyrgua/)
+- [highlights for undotree](https://www.reddit.com/r/neovim/comments/1sd7gqb/undotree_visual_feedback/)
+
+## Native completion
+
+- [starting point](https://justinhj.github.io/2026/04/06/refreshing-your-neovim-config-for-0-12-0.html#orgb35f839)
+- will want to just read docs
 
 ## LSP
 
