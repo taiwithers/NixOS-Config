@@ -76,13 +76,6 @@ autocmd("FileType", {
 --                       (not plugin related)                       --
 ----------------------------------------------------------------------
 
--- save with ctrl s
-vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
-
--- "tab" between buffers
-vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to next buffer" })
-vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to previous buffer" })
-
 -- remove some defaults (more removed elsewhere, in LSP and whichkey)
 vim.keymap.del("n", "]a") -- next file
 vim.keymap.del("n", "]A") -- last file
@@ -92,6 +85,13 @@ vim.keymap.del("n", "[b") -- previous buffer
 vim.keymap.del("n", "[B") -- first buffer
 vim.keymap.del("n", "]b") -- next buffer
 vim.keymap.del("n", "]B") -- last buffer
+
+-- save with ctrl s
+vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
+
+-- "tab" between buffers
+vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to next buffer" })
+vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to previous buffer" })
 
 ----------------------------------------------------------------------
 --                         General Plugins                          --
