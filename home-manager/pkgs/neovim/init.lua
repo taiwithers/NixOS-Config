@@ -374,7 +374,7 @@ local function make_lualine_mode(colour_table)
   return {
     a = { bg = colour_table.primary, fg = colour_table.contrast, gui = "bold" },
     b = { bg = mode_colours.normal.primary, fg = "#aaaaaa" },
-    c = { bg = mode_colours.normal.primary, fg = "#aaaaaa" },
+    c = { bg = mode_colours.normal.primary, fg = mode_colours.normal.contrast },
   }
 end
 require("nvim-navic").setup({ lsp = { auto_attach = true } }) -- breadcrumbs provider
@@ -407,7 +407,7 @@ require("lualine").setup({
     lualine_z = { { "tabs", use_mode_colors = true } },
   },
   winbar = {
-    lualine_a = { { "navic", navic_opts = { click = true } } },
+    lualine_c = { { "navic", navic_opts = { click = true } } },
   },
 })
 
