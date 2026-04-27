@@ -93,6 +93,11 @@ vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
 vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to next buffer" })
 vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to previous buffer" })
 
+
+-- emacs binds on command line
+vim.keymap.set("c", "<C-a>", "<Home>")
+vim.keymap.set("c", "<C-e>", "<End>")
+
 ----------------------------------------------------------------------
 --                         General Plugins                          --
 ----------------------------------------------------------------------
@@ -520,6 +525,7 @@ local cmdline_completion_mapping = cmp.mapping.preset.cmdline({
   ["<S-Tab>"] = cmp.config.disable,
   -- keep the C-n and C-p mappings and C-e to close
   ["<C-y>"] = { c = cmp.mapping.confirm({ select = true }) }, -- same as insert mode <cr>
+  ["<C-e>"] = { c = cmp.mapping.disable }, -- conflicts w/ emacs-style <End>
   ["<cr>"] = { c = cmp.mapping.confirm({ select = false }) }, -- NOT same as insert mode
 })
 local kind_icons = {
