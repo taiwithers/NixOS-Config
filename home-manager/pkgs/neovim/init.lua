@@ -93,6 +93,25 @@ vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
 vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to next buffer" })
 vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to previous buffer" })
 
+-- duplicate line, comment out original
+vim.keymap.set("n", "gyy", "yy<cmd>normal gcc<CR>p", { noremap = true, desc = "Duplicate line and comment original" })
+local function duplicate_and_comment()
+  -- Exit visual mode
+  local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
+  vim.api.nvim_feedkeys(esc, "x", false)
+
+  -- Get selection range
+  local start_line = vim.fn.line("'<")
+  local end_line = vim.fn.line("'>")
+
+  -- Yank and paste below
+  vim.cmd(start_line .. "," .. end_line .. "yank")
+  vim.cmd((end_line + 1) .. "put")
+
+  vim.api.nvim_feedkeys("gv", "n", false) -- Reselect pasted block
+  vim.api.nvim_feedkeys("gc", "v", false) -- Comment the original selection
+end
+vim.keymap.set("v", "gy", duplicate_and_comment, { noremap = true, desc = "Duplicate selection and comment original" })
 
 -- emacs binds on command line
 vim.keymap.set("c", "<C-a>", "<Home>")
