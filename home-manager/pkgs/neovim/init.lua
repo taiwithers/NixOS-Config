@@ -102,7 +102,7 @@ vim.keymap.del("n", "[t") -- previous tag
 vim.keymap.del("n", "&") -- repeat last `:s`
 
 -- save with ctrl s
-vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
+vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>", { desc = ":w" })
 
 -- "tab" between buffers
 vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to next buffer" })
@@ -131,6 +131,26 @@ vim.keymap.set("v", "gy", duplicate_and_comment, { noremap = true, desc = "Dupli
 -- emacs binds on command line
 vim.keymap.set("c", "<C-a>", "<Home>")
 vim.keymap.set("c", "<C-e>", "<End>")
+
+-- show/hide special windows
+vim.keymap.set("n", "<leader>wq", function()
+  -- stolen from lazyvim (config/keymaps.lua)
+  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = "Toggle QF" })
+vim.keymap.set("n", "<leader>wh", "<cmd>:helpclose<cr>", { desc = "`:helpclose`" })
+
+-- make direction of n/N absolute (not relative to whether /? was used)
+vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+vim.keymap.set({ "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
+vim.keymap.set({ "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+
+-- don't un-select when >'ing lines
+vim.keymap.set("x", "<", "<gv", { desc = "Dedent" })
+vim.keymap.set("x", ">", ">gv", { desc = "Indent" })
 
 ----------------------------------------------------------------------
 --                         General Plugins                          --
@@ -179,6 +199,7 @@ require("which-key").add({
   { "gr", group = "LSP" },
   { "<leader>f", group = "Find" },
   { "<leader>g", group = "Git" },
+  { "<leader>w", group = "Special [W]indows" },
   { "zA", "<nop>", hidden = true },
   { "zb", "<nop>", hidden = true },
   { "zc", "<nop>", hidden = true },
@@ -204,6 +225,7 @@ require("which-key").add({
   { "g<C-h>", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
   { "gq", "<nop>", hidden = true, mode = { "n", "v" } }, -- operator to format text
   { "gw", "<nop>", hidden = true, mode = { "n", "v" } }, -- operator to format text
+  { "K", "<nop>", hidden = true }, -- nvim creates this on LspAttach
 })
 vim.keymap.set("n", "<leader>H", require("which-key").show, { desc = "Open which-key" })
 
