@@ -77,14 +77,29 @@ autocmd("FileType", {
 ----------------------------------------------------------------------
 
 -- remove some defaults (more removed elsewhere, in LSP and whichkey)
-vim.keymap.del("n", "]a") -- next file
-vim.keymap.del("n", "]A") -- last file
-vim.keymap.del("n", "[a") -- previous file
 vim.keymap.del("n", "[A") -- first file
-vim.keymap.del("n", "[b") -- previous buffer
+vim.keymap.del("n", "]A") -- last file
+vim.keymap.del("n", "]a") -- next file
+vim.keymap.del("n", "[a") -- previous file
 vim.keymap.del("n", "[B") -- first buffer
-vim.keymap.del("n", "]b") -- next buffer
 vim.keymap.del("n", "]B") -- last buffer
+vim.keymap.del("n", "]b") -- next buffer
+vim.keymap.del("n", "[b") -- previous buffer
+vim.keymap.del("n", "]<C-l>") -- first item in next file in location list
+vim.keymap.del("n", "[<C-l>") -- first item in prev file in location list
+vim.keymap.del("n", "]<C-q>") -- first item in next file in QF
+vim.keymap.del("n", "[<C-q>") -- first item in prev file in QF
+vim.keymap.del("n", "]<C-t>") -- next tag in new window
+vim.keymap.del("n", "[<C-t>") -- previous tag in new window
+vim.keymap.del("n", "[L") -- first item in location list
+vim.keymap.del("n", "]L") -- last item in location list
+vim.keymap.del("n", "[Q") -- first item in QF
+vim.keymap.del("n", "]Q") -- last item in QF
+vim.keymap.del("n", "]T") -- first tag
+vim.keymap.del("n", "[T") -- last tag
+vim.keymap.del("n", "]t") -- next tag
+vim.keymap.del("n", "[t") -- previous tag
+vim.keymap.del("n", "&") -- repeat last `:s`
 
 -- save with ctrl s
 vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>")
@@ -182,6 +197,13 @@ require("which-key").add({
   { "zx", "<nop>", hidden = true },
   { "z<cr>", "<nop>", hidden = true },
   { "<Plug>(fzf-normal)", "<nop>", hidden = true }, -- clogs whichkey
+  { "[/", "<nop>", hidden = true }, -- jumping to C comments
+  { "]/", "<nop>", hidden = true }, -- jumping to C comments
+  { "gh", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
+  { "gH", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
+  { "g<C-h>", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
+  { "gq", "<nop>", hidden = true, mode = { "n", "v" } }, -- operator to format text
+  { "gw", "<nop>", hidden = true, mode = { "n", "v" } }, -- operator to format text
 })
 vim.keymap.set("n", "<leader>H", require("which-key").show, { desc = "Open which-key" })
 
@@ -801,6 +823,8 @@ vim.keymap.set("n", "grx", vim.lsp.codelens.run, { desc = "Run codelens" })
 vim.keymap.del("n", "grt") -- jump to definition of type of current object
 vim.keymap.del("n", "grn") -- rename
 vim.keymap.del("n", "gO") -- list all symbols in document in the loc list
+vim.keymap.del("n", "<C-w>d") -- open diagnostic in float
+vim.keymap.del("n", "<C-w><C-d>") -- open diagnostic in float
 
 -- if in certain buffer types, activate otter
 autocmd("FileType", {
