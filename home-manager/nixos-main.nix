@@ -171,6 +171,15 @@
     "install-smapi" = "steam-run ./internal/linux/SMAPI.installer";
   };
 
+  home.file."clean_bash.sh" = {
+    text = ''
+      #!/usr/bin/env bash
+
+      kitty -- bash --norc
+    '';
+    executable = true;
+  };
+
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";
   common.useXDG = true;
   common.nixos = true;
