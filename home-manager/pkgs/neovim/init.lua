@@ -674,6 +674,8 @@ conform.setup({
       args = function(_, ctx)
         if vim.endswith(ctx.filename, ".astro") then
           return { "--stdin-filepath", "$FILENAME", "--plugin", vim.g.prettier_plugin_astro }
+        elseif vim.endswith(ctx.filename, ".md") then
+          return { "--stdin-filepath", "$FILENAME", "--tab-width", "4" }
         end
         return { "--stdin-filepath", "$FILENAME" }
       end,
@@ -691,7 +693,7 @@ conform.setup({
     yaml = { "yamlfmt" },
     nix = { "nixfmt" },
     python = { "isort", "black" },
-    markdown = { "prettierd", "prettier", stop_after_first = true },
+    markdown = { "prettier" },
     -- mdx = { "prettierd", "prettier", stop_after_first = true },
     astro = { "prettier" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
