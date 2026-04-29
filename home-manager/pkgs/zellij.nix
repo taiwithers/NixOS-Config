@@ -1,27 +1,23 @@
 _: {
   programs.zellij = {
     enable = true;
-    # settings = { };
+    settings = {
+      default_mode = "locked"; # since many bindings conflict w/ other programs
+    };
     extraConfig = /* KDL */ ''
       keybinds {
-        unbind "Ctrl s"  "Ctrl t"  "Ctrl h" "Ctrl b"
-        // C-s conflicts w/ nvim save
-        // C-t conflicts w/ fzf
+        unbind "Ctrl s" "Ctrl h" "Ctrl b" "Ctrl n"
+        // C-s starts move mode which I don't need
         // C-h starts move mode which I don't need
         // C-b starts tmux mode which I don't need
+        // C-n starts resize mode which I have as C-p R
 
-
-        // Remap tabs mode from C-t (conflicts w/ fzf) to C-n
-        // this overrides the use of C-n for pane resize mode (which has been bound to C-p S-r)
-        shared_except "tab" "locked" {
-          bind "Ctrl n" { SwitchToMode "Tab"; }
-        }
-        tab {
-          bind "Ctrl n" { SwitchToMode "Normal"; }
+        resize {
+          bind "Esc" "Enter" { SwitchToMode "Locked"; }
         }
 
         pane clear-defaults=true {
-          bind "Ctrl p" "Esc" "Enter" { SwitchToMode "Normal"; } // exit
+          bind "Ctrl p" "Esc" "Enter" { SwitchToMode "Locked"; } // exit
 
           // switch focus
           bind "h" "Left" { MoveFocus "Left"; }
@@ -31,9 +27,9 @@ _: {
           bind "p" { SwitchFocus; }
 
           // create new panes (mnemonically follows :split :vsplit)
-          bind "s" { NewPane "Down"; SwitchToMode "Normal"; }
-          bind "Shift s" { NewPane "Right"; SwitchToMode "Normal"; }
-          // bind "s" { NewPane "stacked"; SwitchToMode "Normal"; }
+          bind "s" { NewPane "Down"; SwitchToMode "Locked"; }
+          bind "Shift s" { NewPane "Right"; SwitchToMode "Locked"; }
+          // bind "s" { NewPane "stacked"; SwitchToMode "Locked"; }
 
           // move panes
           bind "Shift h" { MovePane "Left"; }
@@ -42,18 +38,31 @@ _: {
           bind "Shift k" { MovePane "Up"; }
 
           // other pane actions
-          bind "x" { CloseFocus; SwitchToMode "Normal"; } // close
+          bind "x" { CloseFocus; SwitchToMode "Locked"; } // close
           bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; } // rename
-          bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; } // toggle fullscreen
+          bind "f" { ToggleFocusFullscreen; SwitchToMode "Locked"; } // toggle fullscreen
           bind "Shift r" { SwitchToMode "resize"; } // enter resize mode
-          bind "t" { BreakPane; SwitchToMode "Normal"; }
-          // bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; } // show/hide floating panes
+          bind "t" { BreakPane; SwitchToMode "Locked"; }
+          // bind "w" { ToggleFloatingPanes; SwitchToMode "Locked"; } // show/hide floating panes
         }
 
         tab {
-          unbind "s" "b" "[" "]"
+          unbind "s" "b" "[" "]" "Tab" "1" "2" "3" "4" "5" "6" "6" "7" "8" "9"
           // s: sync pane inputs
           // b/[/]: breaking panes into new tabs
+          // Tab: swaps between 2 tabs
+          // numeric: jump to tab
+          bind "Ctrl t" "Esc" "Enter" { SwitchToMode "Locked"; }
+          bind "n" { NewTab; SwitchToMode "Locked"; }
+          bind "x" { CloseTab; SwitchToMode "Locked"; }
+        }
+
+        renametab {
+          bind "Ctrl c" "Esc" { UndoRenameTab; SwitchToMode "Locked"; }
+        }
+
+        session {
+          bind "Ctrl o" { SwitchToMode "Locked"; }
         }
 
         shared_except "locked" {
