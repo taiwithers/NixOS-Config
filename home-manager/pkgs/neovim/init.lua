@@ -438,9 +438,11 @@ local function in_visual_mode()
   return vim.fn.mode():find("[Vv]") ~= nil
 end
 
-local function make_lualine_mode(colour_table)
+local function make_lualine_mode(colour_table, inactive)
+  local gui = inactive and "nocombine" or "bold" -- slightly odd ternary assignment
+  -- making "inactive" not bold gives differentiation in normal mode tabline buffers
   return {
-    a = { bg = colour_table.primary, fg = colour_table.contrast, gui = "bold" },
+    a = { bg = colour_table.primary, fg = colour_table.contrast, gui = gui },
     b = { bg = mode_colours.normal.primary, fg = "#aaaaaa" },
     c = { bg = mode_colours.normal.primary, fg = mode_colours.normal.contrast },
   }
@@ -450,7 +452,7 @@ require("lualine").setup({
   options = {
     theme = {
       command = make_lualine_mode(mode_colours.command),
-      inactive = make_lualine_mode(mode_colours.normal),
+      inactive = make_lualine_mode(mode_colours.normal, true),
       insert = make_lualine_mode(mode_colours.insert),
       normal = make_lualine_mode(mode_colours.normal),
       replace = make_lualine_mode(mode_colours.delete),
