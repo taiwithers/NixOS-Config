@@ -3,21 +3,31 @@ _: {
     enable = true;
     settings = {
       default_mode = "locked"; # since many bindings conflict w/ other programs
+      show_startup_tips = false;
     };
     extraConfig = /* KDL */ ''
-      keybinds {
-        unbind "Ctrl s" "Ctrl h" "Ctrl b" "Ctrl n"
-        // C-s starts move mode which I don't need
-        // C-h starts move mode which I don't need
-        // C-b starts tmux mode which I don't need
-        // C-n starts resize mode which I have as C-p R
+      keybinds  clear-defaults=true {
+        locked {
+          bind "Ctrl g" { SwitchToMode "Normal"; }
+        }
+
 
         resize {
           bind "Esc" "Enter" { SwitchToMode "Locked"; }
+          bind "h" "Left" { Resize "Increase Left"; }
+          bind "j" "Down" { Resize "Increase Down"; }
+          bind "k" "Up" { Resize "Increase Up"; }
+          bind "l" "Right" { Resize "Increase Right"; }
+          bind "H" { Resize "Decrease Left"; }
+          bind "J" { Resize "Decrease Down"; }
+          bind "K" { Resize "Decrease Up"; }
+          bind "L" { Resize "Decrease Right"; }
+          bind "=" "+" { Resize "Increase"; }
+          bind "-" { Resize "Decrease"; }
         }
 
-        pane clear-defaults=true {
-          bind "Ctrl p" "Esc" "Enter" { SwitchToMode "Locked"; } // exit
+        pane{
+          bind "p" "Esc" "Enter" { SwitchToMode "Locked"; } // exit
 
           // switch focus
           bind "h" "Left" { MoveFocus "Left"; }
@@ -47,30 +57,61 @@ _: {
         }
 
         tab {
-          unbind "s" "b" "[" "]" "Tab" "1" "2" "3" "4" "5" "6" "6" "7" "8" "9"
-          // s: sync pane inputs
-          // b/[/]: breaking panes into new tabs
-          // Tab: swaps between 2 tabs
-          // numeric: jump to tab
-          bind "Ctrl t" "Esc" "Enter" { SwitchToMode "Locked"; }
+          bind "t" "Esc" "Enter" { SwitchToMode "Locked"; }
           bind "n" { NewTab; SwitchToMode "Locked"; }
           bind "x" { CloseTab; SwitchToMode "Locked"; }
+          bind "r" {SwitchToMode "RenameTab"; TabNameInput 0;}
+          bind "h" "Left" "Up" "k" { GoToPreviousTab; }
+          bind "l" "Right" "Down" "j" { GoToNextTab; }
         }
 
         renametab {
           bind "Ctrl c" "Esc" { UndoRenameTab; SwitchToMode "Locked"; }
         }
 
+        renamepane {
+            bind "Ctrl c" "Esc"{ SwitchToMode "Locked"; }
+        }
+
         session {
-          bind "Ctrl o" { SwitchToMode "Locked"; }
+          bind "o" "Esc" "Enter"{ SwitchToMode "Locked"; }
+          bind "d" { Detach; }
+          bind "w" {
+              LaunchOrFocusPlugin "session-manager" { floating true; move_to_focused_tab true; };
+              SwitchToMode "Locked";
+          }
+          bind "p" {
+              LaunchOrFocusPlugin "plugin-manager" { floating true; move_to_focused_tab true; };
+              SwitchToMode "Locked";
+          }
+          bind "a" {
+              LaunchOrFocusPlugin "zellij:about" { floating true; move_to_focused_tab true; };
+              SwitchToMode "Locked";
+          }
+          bind "s" {
+              LaunchOrFocusPlugin "zellij:share" { floating true; move_to_focused_tab true; };
+              SwitchToMode "Locked";
+          }
+          bind "l" {
+              LaunchOrFocusPlugin "zellij:layout-manager" { floating true; move_to_focused_tab true; };
+              SwitchToMode "Locked";
+          }
         }
 
         shared_except "locked" {
-          // don't really want random shortcut bindings, and also don't want alt-based bindings
-          unbind "Alt f"  "Alt n"  "Alt i"  "Alt o"  "Alt h"  "Alt Left"  "Alt l"  "Alt Right"  "Alt j"  "Alt Down"  "Alt k"  "Alt Up"  "Alt ="  "Alt +"  "Alt -"  "Alt ["  "Alt ]"  "Alt p"  "Alt Shift p"  
+          bind "Ctrl g" { SwitchToMode "Locked"; }
+          bind "Ctrl q" { Quit; }
+        }
+        shared_except "normal" "locked" {
+            bind "Enter" "Esc" { SwitchToMode "Normal"; }
         }
 
-
+        normal {
+            bind "t" { SwitchToMode "Tab"; }
+            bind "o" { SwitchToMode "Session"; }
+            bind "p" { SwitchToMode "Pane"; }
+            bind "Esc" {SwitchToMode "Locked"; }
+       }
       }
     '';
     # attachExistingSession = true; # applied to autostarted session
