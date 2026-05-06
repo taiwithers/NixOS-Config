@@ -462,7 +462,7 @@ require("lualine").setup({
       terminal = make_lualine_mode(mode_colours.command),
       visual = make_lualine_mode(mode_colours.visual),
     },
-    component_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     global_status = true,
   },
@@ -480,6 +480,9 @@ require("lualine").setup({
     lualine_z = { { "tabs", use_mode_colors = true } },
   },
   winbar = {
+    lualine_c = { { "navic", navic_opts = { click = true } } },
+  },
+  inactive_winbar = {
     lualine_c = { { "navic", navic_opts = { click = true } } },
   },
 })
