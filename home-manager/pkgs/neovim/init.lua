@@ -776,7 +776,7 @@ vim.lsp.config["python_ls"] = {
         },
       },
     },
-    -- python = { pythonPath = vim.fn.exepath("python") },
+    python = { pythonPath = vim.fn.exepath("python") }, -- needed for basedpyright, even when starting nvim in a conda env
   },
 }
 vim.lsp.config["css_ls"] = {
