@@ -155,6 +155,9 @@ vim.keymap.set("x", ">", ">gv", { desc = "Indent" })
 ----------------------------------------------------------------------
 --                         General Plugins                          --
 ----------------------------------------------------------------------
+local mini_icons = require("mini.icons")
+mini_icons.setup()
+mini_icons.mock_nvim_web_devicons() -- required until lualine supports mini.icons
 
 -- statuscolumn git indicators
 local gitsigns_symbols = {
@@ -593,33 +596,6 @@ local cmdline_completion_mapping = cmp.mapping.preset.cmdline({
   ["<C-e>"] = { c = cmp.mapping.disable }, -- conflicts w/ emacs-style <End>
   ["<cr>"] = { c = cmp.mapping.confirm({ select = false }) }, -- NOT same as insert mode
 })
-local kind_icons = {
-  Text = "",
-  Method = "󰆧",
-  Function = "󰊕",
-  Constructor = "",
-  Field = "󰇽",
-  Variable = "󰂡",
-  Class = "󰠱",
-  Interface = "",
-  Module = "",
-  Property = "󰜢",
-  Unit = "",
-  Value = "󰎠",
-  Enum = "",
-  Keyword = "󰌋",
-  Snippet = "",
-  Color = "󰏘",
-  File = "󰈙",
-  Reference = "",
-  Folder = "󰉋",
-  EnumMember = "",
-  Constant = "󰏿",
-  Struct = "",
-  Event = "",
-  Operator = "󰆕",
-  TypeParameter = "󰅲",
-}
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -637,7 +613,9 @@ cmp.setup({
   formatting = {
     format = function(entry, vim_item)
       -- concatenate icon with type
-      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+      local icon, hl, _ = MiniIcons.get("lsp", vim_item.kind)
+      vim_item.kind = string.format("%s %s", icon, vim_item.kind)
+      vim_item.kind_hl_group = hl
       -- Source
       vim_item.menu = ({
         buffer = "[Buffer]",
