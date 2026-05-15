@@ -97,6 +97,7 @@ in
         nvim-comment-frame # create boxed comments
         nvim-navic # breadcrumbs w/ lualine
         nvim-ufo # improves folding?
+        neogen # for python autodocstrings
 
         # completion and sources
         nvim-cmp

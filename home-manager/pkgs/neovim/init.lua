@@ -408,6 +408,11 @@ require("noice").setup({
     },
   },
 })
+require("notify").setup({
+  render = "wrapped-default",
+  max_width = 60,
+  minimum_width = 30,
+})
 
 local mode_colours = {
   normal = { primary = "#303030", contrast = "#eeeeee" },
@@ -662,7 +667,7 @@ conform.setup({
       end,
     },
     yamlfmt = {
-      append_args = { "-formatter", "retain_line_breaks=true" },
+      prepend_args = { "-formatter", "retain_line_breaks=true" },
     },
   },
   formatters_by_ft = {
@@ -762,6 +767,8 @@ vim.lsp.config["python_ls"] = {
         autoFormatStrings = true, -- template-string *should* do that
         inlayHints = { callArgumentNames = false, variableTypes = false },
         diagnosticSeverityOverrides = {
+          reportUnusedVariable = "error",
+          reportUnusedExpression = "error",
           -- terrible when working with pre-existing untyped code
           reportUnknownVariableType = false,
           reportUnknownMemberType = false,
@@ -889,4 +896,9 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
       )
     end
   end,
+})
+
+-- https://github.com/danymat/neogen#default-cycling-support
+require("neogen").setup({
+  languages = { python = { template = { annotation_convention = "numpydoc" } } },
 })

@@ -102,7 +102,7 @@ in
     colors = { };
 
     # typing "fzf" as a command
-    defaultCommand = "fd --type file --type symlink";
+    defaultCommand = "fd --type file --type symlink --hidden";
     defaultOptions = fzfDefaultOptions;
 
     # ctrl-r

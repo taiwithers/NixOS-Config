@@ -4,20 +4,20 @@
 
 - [consider adding new things to lualine?](https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets)
 - colourschemes
-  - [green](https://github.com/jpwol/thorn.nvim)
+    - [green](https://github.com/jpwol/thorn.nvim)
 - [preview + execute code actions w/ telescope](https://github.com/rachartier/tiny-code-action.nvim)
 - simpler options to display marks in the gutter
-  - if marks.nvim ever gets which-key support i want that, but until then it's probably overkill
-  - [guttermarks](https://github.com/dimtion/guttermarks.nvim)
+    - if marks.nvim ever gets which-key support i want that, but until then it's probably overkill
+    - [guttermarks](https://github.com/dimtion/guttermarks.nvim)
 - [telescope integration w/ marks.nvim](https://github.com/chentoast/marks.nvim/issues/71) - not super necessary since which-key already shows marks
 - toggleterm
-  - [fix toggleterm+lazygit](https://github.com/akinsho/toggleterm.nvim#custom-terminal-usage)
-  - [change toggleterm default keybind](https://github.com/akinsho/toggleterm.nvim/wiki/Tips-and-Tricks#init-a-terminal-if-not-exist)
-  - [select which pre-existing terminal you want to open](https://github.com/akinsho/toggleterm.nvim#termselect) - probably good for when i switch which buffer the terminal window is showing
+    - [fix toggleterm+lazygit](https://github.com/akinsho/toggleterm.nvim#custom-terminal-usage)
+    - [change toggleterm default keybind](https://github.com/akinsho/toggleterm.nvim/wiki/Tips-and-Tricks#init-a-terminal-if-not-exist)
+    - [select which pre-existing terminal you want to open](https://github.com/akinsho/toggleterm.nvim#termselect) - probably good for when i switch which buffer the terminal window is showing
 - quickfix improvements
-  - [bqf (minor)](https://github.com/kevinhwang91/nvim-bqf)
-  - [quicker](https://github.com/stevearc/quicker.nvim)
-  - [trouble (major)](https://github.com/folke/trouble.nvim)
+    - [bqf (minor)](https://github.com/kevinhwang91/nvim-bqf)
+    - [quicker](https://github.com/stevearc/quicker.nvim)
+    - [trouble (major)](https://github.com/folke/trouble.nvim)
 - something to insert (relative?) filepath at cursor location (for adding markdown images)
 - caplock warning?
 - [better lsp hovers for typescript](https://github.com/Sebastian-Nielsen/better-type-hover) - not sure to what extent I actually need this
@@ -40,8 +40,8 @@
 - [native autocomplete stuff](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L305)
 - add foldinner from ufo readme
 - ui2 (noice replacement) stuff
-  - [tiny-cmdline](https://github.com/rachartier/tiny-cmdline.nvim)
-  - [notifications](https://www.reddit.com/r/neovim/comments/1sfmgkb/how_does_the_new_ui2_message_cmdline_replacement/oeyrgua/)
+    - [tiny-cmdline](https://github.com/rachartier/tiny-cmdline.nvim)
+    - [notifications](https://www.reddit.com/r/neovim/comments/1sfmgkb/how_does_the_new_ui2_message_cmdline_replacement/oeyrgua/)
 - [highlights for undotree](https://www.reddit.com/r/neovim/comments/1sd7gqb/undotree_visual_feedback/)
 
 ## Native completion
@@ -54,6 +54,7 @@
 - Work through diagnostics: `:lua require("telescope.builtin").diagnostics() <cr> <C-q> <cr>`
 - Show information about the symbol below the cursor: `:lua vim.lsp.bum.hover()<cr>`
 - LSP keymappings are under `gr` by default
+- `[d` and `]d` jump to previous/next diagnostic
 
 ## Quickfix
 
