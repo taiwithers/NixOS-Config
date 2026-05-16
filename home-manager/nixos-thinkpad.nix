@@ -66,7 +66,7 @@
       #"vscodium/vscodium"
       # "xdg"
       "yazi"
-      #"zotero/zotero"
+      "zellij"
       "zoxide"
     ]
   );
