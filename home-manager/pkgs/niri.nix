@@ -22,6 +22,10 @@
   programs.niri.enable = true;
   programs.niri.package = pkgs.niri;
   programs.niri.settings = {
+    xwayland-satellite = {
+      enable = true;
+      path = pkgs.lib.getExe pkgs.xwayland-satellite;
+    };
     layout = {
       gaps = 12;
     };

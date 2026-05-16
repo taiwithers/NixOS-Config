@@ -108,7 +108,7 @@
     #prismlauncher
     #qjournalctl
     #vlc
-    #discord
+    discord
     #sonic-pi
     #anki
 
