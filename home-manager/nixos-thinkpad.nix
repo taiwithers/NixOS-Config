@@ -14,11 +14,11 @@
     #   inherit (flake-inputs) agenix;
     # })
 
-    #(import ./themeing.nix {
-    #inherit config;
-    #inherit pkgs;
-    #inherit (flake-inputs) stylix;
-    #})
+    (import ./themeing.nix {
+      inherit config;
+      inherit pkgs;
+      inherit (flake-inputs) stylix;
+    })
 
     (import ./pkgs/niri.nix {
       inherit config;
