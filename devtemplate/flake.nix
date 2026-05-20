@@ -36,9 +36,12 @@
         name = "devshell";
         LD_LIBRARY_PATH = "${libraries}";
         packages = [
-          # micromamba-wrapped
-          # pkgs.poetry
           # pkgs.nodejs_latest
+          # micromamba-wrapped
+
+          # (pkgs.poetry.withPlugins (ps: [ pkgs.python313Packages.poetry-dynamic-versioning ]))
+          # OR
+          # pkgs.poetry
         ];
       };
     };
