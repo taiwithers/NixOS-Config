@@ -36,6 +36,7 @@
         name = "devshell";
         LD_LIBRARY_PATH = "${libraries}";
         packages = [
+          pkgs.just
           # pkgs.nodejs_latest
           # micromamba-wrapped
 

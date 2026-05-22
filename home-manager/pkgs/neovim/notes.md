@@ -31,6 +31,8 @@
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
 - use telescope to insert filepaths (for importing stuff?)
 
+- reduce width of number/status column for help windows
+
 ## 0.12
 
 - [look at builtin `nohlsearch` and `undotree`](https://neovim.io/doc/user/plugins/)

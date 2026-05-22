@@ -120,6 +120,7 @@ in
             astro
             bash
             comment
+            css
             devicetree # zmk
             hmts-nvim
             html
