@@ -16,7 +16,7 @@ end
 ----------------------------------------------------------------------
 
 vim.filetype.add({
-  extension = { mdx = "mdx" },
+  extension = { mdx = "mdx", jinja = "jinja" },
 })
 
 ----------------------------------------------------------------------
@@ -662,6 +662,8 @@ conform.setup({
           return { "--stdin-filepath", "$FILENAME", "--plugin", vim.g.prettier_plugin_astro }
         elseif vim.endswith(ctx.filename, ".md") then
           return { "--stdin-filepath", "$FILENAME", "--tab-width", "4" }
+        elseif vim.endswith(ctx.filename, ".jinja") then
+          return { "--stdin-filepath", "$FILENAME", "--plugin", vim.g.prettier_plugin_jinja }
         end
         return { "--stdin-filepath", "$FILENAME" }
       end,
@@ -682,6 +684,7 @@ conform.setup({
     markdown = { "prettier" },
     -- mdx = { "prettierd", "prettier", stop_after_first = true },
     astro = { "prettier" },
+    jinja = { "prettier" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
     typescript = { "prettierd", "prettier", stop_after_first = true },
     typescriptreact = { "prettierd", "prettier", stop_after_first = true },
@@ -803,6 +806,10 @@ vim.lsp.config["mdx_ls"] = {
   root_markers = { "package.json", ".git" },
   init_options = { typescript = { enabled = true, tsdk = vim.g.tsdk } },
 }
+vim.lsp.config["jinja-lsp"] = {
+  filetypes = { "jinja" },
+  cmd = { "jinja-lsp" },
+}
 
 require("ufo").setup()
 vim.keymap.set("n", "z1", require("ufo").closeFoldsWith, { desc = "Fold level 1+" })
@@ -811,7 +818,17 @@ vim.keymap.set("n", "z2", function()
 end, { desc = "Fold level 2+" })
 
 local function start_lsp()
-  vim.lsp.enable({ "lua_ls", "nix_ls", "python_ls", "css_ls", "astro_ls", "ts_ls", "mdx_ls", "bash_ls" })
+  vim.lsp.enable({
+    "lua_ls",
+    "nix_ls",
+    "python_ls",
+    "css_ls",
+    "astro_ls",
+    "ts_ls",
+    "mdx_ls",
+    "bash_ls",
+    "jinja-lsp",
+  })
 end
 start_lsp()
 
@@ -863,7 +880,7 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
       -- using `vim.o.smartindent = true` instead
 
       -- treesitter related plugins
-      require("nvim-ts-autotag").setup({ aliases = { ["mdx"] = "html" } })
+      require("nvim-ts-autotag").setup({ aliases = { ["mdx"] = "html", ["jinja"] = "html" } })
 
       -- template/f-string conversion
       require("template-string").setup({

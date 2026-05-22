@@ -35,6 +35,7 @@ in
       mdx-language-server
       gcc13 # don't let project-specific gccs take over, not sure if this works
       nodejs # same as gcc
+      jinja-lsp
 
       # formatters
       nixfmt-rfc-style
@@ -49,6 +50,7 @@ in
       shfmt
       yamlfmt
       prettier-plugin-astro
+      prettier-plugin-jinja-template
       # potential latex formatters: perlPackages.LatexIndent bibtex-tidy
 
       # plugin integrations and dependencies
@@ -121,6 +123,7 @@ in
             devicetree # zmk
             hmts-nvim
             html
+            jinja
             # jq
             jsonc
             just
@@ -194,6 +197,7 @@ in
   xdg.configFile."nvim/lua/nix-paths.lua".text = ''
     vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"
     vim.g.prettier_plugin_astro = "${pkgs.prettier-plugin-astro}/dist/index.js"
+    vim.g.prettier_plugin_jinja = "${pkgs.prettier-plugin-jinja-template}/lib/index.js"
     vim.g.nixpkgs_expr = 'import (builtins.getFlake "${config.common.nixConfigDirectory}").inputs.nixpkgs {}'
   '';
 

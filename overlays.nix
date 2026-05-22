@@ -132,6 +132,7 @@ _:
     };
     pond = customDerivation "pond";
     prettier-plugin-astro = customDerivation "prettier-plugin-astro";
+    prettier-plugin-jinja-template = customDerivation "prettier-plugin-jinja-template";
     search = customScript {
       name = "search";
       runtimeInputs = with super; [
