@@ -52,6 +52,7 @@ in
       prettier-plugin-astro
       prettier-plugin-jinja-template
       # potential latex formatters: perlPackages.LatexIndent bibtex-tidy
+      taplo
 
       # plugin integrations and dependencies
       yazi
