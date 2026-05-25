@@ -768,6 +768,12 @@ vim.lsp.config["ruff"] = {
     settings = {
       lineLength = 88,
       organizeImports = false, -- use isort
+      configuration = {
+        lint = {
+          pycodestyle = { ["ignore-overlong-task-comments"] = true },
+          pydocstyle = { convention = "numpy" },
+        },
+      },
       lint = {
         --  https://docs.astral.sh/ruff/rules
         select = {
@@ -788,6 +794,7 @@ vim.lsp.config["ruff"] = {
           "N",
           "E",
           "W",
+          "D",
           "DOC",
           "F",
           "PL",
@@ -800,7 +807,12 @@ vim.lsp.config["ruff"] = {
           "W293", -- blank line contains whitespace
           "W291", -- trailing whitespace
           "UP045", -- typing.Optional
+          "D401", -- numpydoc "imperative mood"
+          "D105", -- docstrings for dunder methods
+          "PLC0415", -- import not at top level
+          "RUF012", -- typing.ClassVar
         },
+        future_annotations = true,
       },
       -- https://docs.astral.sh/ruff/editors/settings/#__tabbed_2_2
     },
