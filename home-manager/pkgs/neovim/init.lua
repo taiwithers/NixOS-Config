@@ -732,13 +732,13 @@ vim.lsp.config("*", {
   root_markers = { "flake.nix", ".git" },
 })
 
-vim.lsp.config["astro_ls"] = {
+vim.lsp.config["astro-ls"] = {
   cmd = { "astro-ls", "--stdio" },
   filetypes = { "astro" },
   root_markers = { "package.json", "tsconfig.json", ".git" },
   init_options = { typescript = { tsdk = vim.g.tsdk } },
 }
-vim.lsp.config["lua_ls"] = {
+vim.lsp.config["lua-ls"] = {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
   root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
@@ -749,12 +749,12 @@ vim.lsp.config["lua_ls"] = {
     },
   },
 }
-vim.lsp.config["bash_ls"] = {
+vim.lsp.config["bash-ls"] = {
   cmd = { "bash-language-server", "start" },
   filetypes = { "sh", "bash" },
   settings = { bashIde = { globPattern = "*@(.sh|.inc|.bash|.command)" } },
 }
-vim.lsp.config["nix_ls"] = {
+vim.lsp.config["nixd"] = {
   cmd = { "nixd", "--inlay-hints=true" },
   filetypes = { "nix" },
   root_markers = { "flake.nix", ".git" },
@@ -807,7 +807,7 @@ vim.lsp.config["ruff"] = {
   },
 }
 
-vim.lsp.config["python_ls"] = {
+vim.lsp.config["basedpyright"] = {
   cmd = { "basedpyright-langserver", "--stdio" },
   filetypes = { "python" },
   root_markers = { "pyproject.toml", "setup.py", "requirements.txt" },
@@ -831,18 +831,18 @@ vim.lsp.config["python_ls"] = {
     python = { pythonPath = vim.fn.exepath("python") }, -- needed for basedpyright, even when starting nvim in a conda env
   },
 }
-vim.lsp.config["css_ls"] = {
+vim.lsp.config["css-ls"] = {
   filetypes = { "css", "scss" },
   cmd = { "vscode-css-language-server", "--stdio" },
   settings = { css = { validate = true }, scss = { validate = true } },
 }
-vim.lsp.config["ts_ls"] = {
+vim.lsp.config["ts-ls"] = {
   cmd = { "typescript-language-server", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   init_options = { hostInfo = "neovim" },
   root_markers = { "package.json", "tsconfig.json", ".git" },
 }
-vim.lsp.config["mdx_ls"] = {
+vim.lsp.config["mdx-ls"] = {
   cmd = { "mdx-language-server", "--stdio" },
   filetypes = { "mdx" },
   root_markers = { "package.json", ".git" },
@@ -861,14 +861,14 @@ end, { desc = "Fold level 2+" })
 
 local function start_lsp()
   vim.lsp.enable({
-    "lua_ls",
-    "nix_ls",
-    "python_ls",
-    "css_ls",
-    "astro_ls",
-    "ts_ls",
-    "mdx_ls",
-    "bash_ls",
+    "lua-ls",
+    "nixd",
+    "basedpyright",
+    "css-ls",
+    "astro-ls",
+    "ts-ls",
+    "mdx-ls",
+    "bash-ls",
     "ruff",
     "jinja-lsp",
   })
