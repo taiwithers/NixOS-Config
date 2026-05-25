@@ -34,6 +34,7 @@ in
       typescript-language-server
       mdx-language-server
       gcc13 # don't let project-specific gccs take over, not sure if this works
+      ruff
       nodejs # same as gcc
       jinja-lsp
 

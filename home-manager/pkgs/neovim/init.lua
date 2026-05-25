@@ -760,31 +760,72 @@ vim.lsp.config["nix_ls"] = {
   root_markers = { "flake.nix", ".git" },
   settings = { nixd = { nixpkgs = { expr = vim.g.nixpkgs_expr } } },
 }
+vim.lsp.config["ruff"] = {
+  cmd = { "ruff", "server" },
+  root_markers = { "pyproject.toml" },
+  capabilities = {},
+  init_options = {
+    settings = {
+      lineLength = 88,
+      organizeImports = false, -- use isort
+      lint = {
+        --  https://docs.astral.sh/ruff/rules
+        select = {
+          "ANN",
+          "BLE",
+          "A",
+          "C4",
+          "DTZ",
+          "EXE",
+          "FA",
+          "ISC",
+          "ICN",
+          "PT",
+          "SIM",
+          "ARG",
+          "PTH",
+          "NPY",
+          "N",
+          "E",
+          "W",
+          "DOC",
+          "F",
+          "PL",
+          "UP",
+          "RUF",
+          "FIX",
+        }, -- select rulesets, like "E", "F"
+        ignore = {
+          "ANN401", -- explicity Any
+          "W293", -- blank line contains whitespace
+          "W291", -- trailing whitespace
+          "UP045", -- typing.Optional
+        },
+      },
+      -- https://docs.astral.sh/ruff/editors/settings/#__tabbed_2_2
+    },
+  },
+}
+
 vim.lsp.config["python_ls"] = {
   cmd = { "basedpyright-langserver", "--stdio" },
   filetypes = { "python" },
   root_markers = { "pyproject.toml", "setup.py", "requirements.txt" },
+  on_init = function(client, _)
+    -- disable things that ruff is doing
+    -- keep completion, definition, documentHighlight, documentLink, documentSymbol, hover,  inlayHint, references, rename
+    if client.server_capabilities then
+      client.server_capabilities.codeActionProvider = false
+      client.server_capabilities.diagnosticProvider = false
+    end
+  end,
   settings = {
     basedpyright = {
-      disableOrganizeImports = true,
+      disableOrganizeImports = true, -- using isort
       analysis = {
+        ignore = { "*" },
         autoFormatStrings = true, -- template-string *should* do that
         inlayHints = { callArgumentNames = false, variableTypes = false },
-        diagnosticSeverityOverrides = {
-          reportUnusedVariable = "error",
-          reportUnusedExpression = "error",
-          -- terrible when working with pre-existing untyped code
-          reportUnknownVariableType = false,
-          reportUnknownMemberType = false,
-          reportUnknownParameterType = false,
-          reportUnknownArgumentType = false,
-          reportUnknownLambdaType = false,
-          -- just not that useful
-          reportUnusedCallResult = false,
-          reportUntypedFunctionDecorator = false,
-          reportMissingTypeStubs = false,
-          reportOptionalMemberAccess = "warning", -- accessing obj.attr if obj could be None (originally error)
-        },
       },
     },
     python = { pythonPath = vim.fn.exepath("python") }, -- needed for basedpyright, even when starting nvim in a conda env
@@ -828,6 +869,7 @@ local function start_lsp()
     "ts_ls",
     "mdx_ls",
     "bash_ls",
+    "ruff",
     "jinja-lsp",
   })
 end
