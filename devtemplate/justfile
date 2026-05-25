@@ -1,3 +1,9 @@
 # List recipes
 default:
     @just --list --explain --unsorted
+    just --completions bash > /tmp/comp-just
+    echo -e "\nsource /tmp/comp-just"
+
+# Delete Zone.Identifier files
+rmzone:
+    rm **/*Zone.Identifier
