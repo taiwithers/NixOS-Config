@@ -500,6 +500,7 @@ require("nvim-surround").setup() -- tpope-style surround
 
 -- comment with ctrl /
 require("Comment.ft").set("mdx", { "{/*%s*/}", "{/**%s**/}" })
+require("Comment.ft").set("jinja", require("Comment.ft").get("html"))
 local toggle_comment = require("Comment.api").toggle.linewise.current
 vim.keymap.set("n", "<C-_>", toggle_comment, { desc = "Toggle comment", remap = true })
 vim.keymap.set("i", "<C-_>", toggle_comment, { desc = "Toggle comment" })
@@ -663,7 +664,7 @@ conform.setup({
         elseif vim.endswith(ctx.filename, ".md") then
           return { "--stdin-filepath", "$FILENAME", "--tab-width", "4" }
         elseif vim.endswith(ctx.filename, ".jinja") then
-          return { "--stdin-filepath", "$FILENAME", "--plugin", vim.g.prettier_plugin_jinja }
+          return { "--stdin-filepath", "$FILENAME", "--plugin", vim.g.prettier_plugin_jinja, "--print-width", "100" }
         end
         return { "--stdin-filepath", "$FILENAME" }
       end,
