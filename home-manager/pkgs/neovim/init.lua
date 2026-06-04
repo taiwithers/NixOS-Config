@@ -721,6 +721,9 @@ require("goto-preview").setup({
 vim.keymap.set("n", "<F12>", require("goto-preview").goto_preview_definition, { desc = "Peek definition" })
 vim.keymap.set("n", "<S-F12>", require("goto-preview").goto_preview_references, { desc = "Peek references" })
 
+-- reference jumps
+require("refjump").setup()
+
 -- lsp
 local capabilities = require("cmp_nvim_lsp").default_capabilities() -- from nvim-cmp
 capabilities.textDocument.completion.completionItem.snippetSupport = true

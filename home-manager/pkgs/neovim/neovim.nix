@@ -102,6 +102,7 @@ in
         nvim-navic # breadcrumbs w/ lualine
         nvim-ufo # improves folding?
         neogen # for python autodocstrings
+        refjump-nvim # next/prev LSP reference with ]r
 
         # completion and sources
         nvim-cmp
