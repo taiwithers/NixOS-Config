@@ -23,7 +23,7 @@
       diff.context = 1;
       diff.renames = true;
 
-      filter.lfs.clean = "git-lfs clean -- %f";
+      # filter.lfs.clean = "git-lfs clean -- %f";
 
       gpg.format = "ssh";
 
@@ -85,12 +85,12 @@
     };
   };
   programs.ssh = {
-    matchBlocks."github.com" = {
+    settings."github.com" = {
       hostname = "github.com";
       user = "git";
       identityFile = "${config.home.homeDirectory}/.ssh/id_ed25519_github";
     };
-    matchBlocks."codeberg.org" = {
+    settings."codeberg.org" = {
       hostname = "codeberg.org";
       user = "git";
       identityFile = "${config.home.homeDirectory}/.ssh/id_ed25519_github";

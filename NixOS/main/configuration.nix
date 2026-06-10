@@ -20,7 +20,9 @@
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
-    "no-url-literals" # quote urls
+    # "no-url-literals" # quote urls
+    # currently broken in Lix
+    # https://git.lix.systems/lix-project/lix/issues/1214
   ];
 
   # keep system up to date
@@ -165,7 +167,7 @@
   };
 
   documentation.nixos.includeAllModules = true;
-  documentation.man.generateCaches = true;
+  documentation.man.cache.enable = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
 

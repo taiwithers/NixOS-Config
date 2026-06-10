@@ -1,9 +1,12 @@
 # https://github.com/thamenato/nvf/blob/9c75c2a199af39fc95fb203636ce97d070ca3973/flake/pkgs/by-name/prettier-plugin-astro/package.nix#L8
-{ fetchFromGitHub
-, stdenv
-, nodejs
-, pnpm_9
-}: stdenv.mkDerivation (finalAttrs: {
+{
+  fetchFromGitHub,
+  stdenv,
+  nodejs,
+  pnpmConfigHook,
+  fetchPnpmDeps,
+}:
+stdenv.mkDerivation (finalAttrs: {
   pname = "prettier-plugin-astro";
   version = "0.14.1";
 
@@ -16,15 +19,14 @@
 
   nativeBuildInputs = [
     nodejs
-    pnpm_9.configHook
+    pnpmConfigHook
   ];
 
-  pnpmDeps = pnpm_9.fetchDeps {
+  pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     fetcherVersion = 2;
     hash = "sha256-K7pIWLkIIbUKDIcysfEtcf/eVMX9ZgyFHdqcuycHCNE=";
   };
-
 
   buildPhase = ''
     runHook preBuild
@@ -42,4 +44,3 @@
     runHook postInstall
   '';
 })
-

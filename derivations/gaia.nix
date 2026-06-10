@@ -11,8 +11,8 @@ let
   libpath = lib.makeLibraryPath (
     with pkgs;
     [
-      xorg.libX11 # provides libX11.so.6
-      xorg.libXext # probides libXext.so.6
+      libX11 # provides libX11.so.6
+      libXext # probides libXext.so.6
       (lib.getLib gfortran.cc) # provides libgfortran.so.5 libstdc++.so.6
       zlib # provides libz.so.1
     ]

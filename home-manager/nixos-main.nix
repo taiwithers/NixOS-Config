@@ -117,7 +117,7 @@
 
     # gui programs
     deskflow
-    ds9
+    # ds9
     imv
     karp
     kdePackages.ark # archive manager
@@ -133,7 +133,7 @@
     vlc
     zoom-us
     discord
-    sonic-pi
+    # sonic-pi # reported as broken in 26.05
     anki
     dolphin-emu
 

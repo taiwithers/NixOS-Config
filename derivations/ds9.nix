@@ -1,7 +1,9 @@
 # build with nix-build --expr 'with import <nixpkgs> {}; callPackage ./ds9.nix {}'
 {
   fetchzip,
-  xorg,
+  libX11,
+  libXScrnSaver,
+  libXft,
   gcc,
   fontconfig,
   libxml2,
@@ -12,9 +14,9 @@
 }:
 let
   libPath = lib.makeLibraryPath [
-    xorg.libX11.out
-    xorg.libXScrnSaver
-    xorg.libXft.out
+    libX11.out
+    libXScrnSaver
+    libXft.out
     (lib.getLib gcc.cc)
     fontconfig.lib
     libxml2.out
@@ -40,9 +42,9 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ copyDesktopItems ];
 
   buildInputs = [
-    xorg.libX11.out
-    xorg.libXScrnSaver
-    xorg.libXft.out
+    libX11.out
+    libXScrnSaver
+    libXft.out
     (lib.getLib gcc.cc)
     fontconfig.lib
     libxml2.out

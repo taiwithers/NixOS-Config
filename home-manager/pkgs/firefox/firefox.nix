@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -10,6 +11,7 @@
     {
       # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.enable
       enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       # package = pkgs.firefox.override {
       #   nativeMessagingHosts = [
       #     pkgs.kdePackages.plasma-browser-integration

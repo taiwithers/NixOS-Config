@@ -24,13 +24,11 @@ in
   programs.ssh = {
     enable = true;
     includes = [ config.age.secrets.group_hostname.path ];
-    matchBlocks."group" = {
+    settings."group" = {
       identityFile = ssh-key;
       forwardX11 = true;
-      extraOptions = {
-        RequestTTY = "yes";
-        RemoteCommand = "cd /2-Data-Medium/QSTAR && bash --login";
-      };
+      RequestTTY = "yes";
+      RemoteCommand = "cd /2-Data-Medium/QSTAR && bash --login";
     };
   };
 

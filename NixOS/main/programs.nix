@@ -84,8 +84,8 @@
     libraries = with pkgs; [
       gfortran.cc.lib
       stdenv.cc.cc
-      xorg.libX11
-      xorg.libXext
+      libX11
+      libXext
       zlib
     ];
   };

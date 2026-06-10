@@ -16,12 +16,12 @@ python3Packages.buildPythonPackage rec {
     python3Packages.poetry-core
   ];
 
+  # https://github.com/paw-lu/nbpreview/blob/c37fe33c8a7ace26647e14b4fc47587802686fef/pyproject.toml
   postPatch = ''
     substituteInPlace pyproject.toml \
-      --replace 'ipython = "^9.6.0"' 'ipython = ">9.0.0"' \
-      --replace 'Pillow = ">=8.3.1,<11.0.0"' 'Pillow = ">=8.3.1"' \
-      --replace 'mdit-py-plugins = ">=0.5.0"' 'mdit-py-plugins = ">0.4.0"' \
-      --replace 'rich = ">=14.2.0"' 'rich = ">14.0.0"' 
+      --replace-fail 'Pillow = ">=8.3.1,<11.0.0"' 'Pillow = ">=8.3.1"' \
+      --replace-fail 'markdown-it-py = ">=3.0,<4.0"' 'markdown-it-py = ">=3.0"' \
+      --replace-fail 'typer = "^0.19.2"' 'typer = ">=0.19.2"' \
   '';
 
   dependencies =

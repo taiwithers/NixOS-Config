@@ -153,7 +153,8 @@
 
     programs.ssh = {
       enable = true;
-      matchBlock."*" = {
+      enableDefaultConfig = false;
+      settings."*" = {
         forwardAgent = false;
         serverAliveInterval = 0;
         serverAliveCountMax = 3;

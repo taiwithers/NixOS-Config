@@ -2,7 +2,7 @@
   description = "NixOS/Home Manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -37,7 +37,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -119,7 +119,7 @@
     };
 
     stylix = {
-      url = "github:danth/stylix/release-25.11";
+      url = "github:danth/stylix/release-26.05";
       inputs.base16-fish.follows = "";
       inputs.base16-helix.follows = "";
       inputs.base16-vim.follows = "";
@@ -128,7 +128,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nur.follows = "nur";
       inputs.systems.follows = "nix-systems";
-      inputs.tinted-foot.follows = "";
       inputs.tinted-tmux.follows = "";
       inputs.firefox-gnome-theme.follows = "";
       inputs.tinted-zed.follows = "";
@@ -156,7 +155,7 @@
         permittedInsecurePackages = [
           "openssl-1.1.1w"
           "deskflow-1.19.0"
-          "ventoy-qt5-1.1.10"
+          "ventoy-qt5-1.1.12"
         ];
       };
 
@@ -265,7 +264,7 @@
 
       homeConfigurations = builtins.mapAttrs (
         config-name: username:
-        flake-inputs.home-manager.lib.homeManagerConfiguration rec {
+        flake-inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = pkgs-for-system system;
           extraSpecialArgs = home-module-args // {
             inherit config-name;

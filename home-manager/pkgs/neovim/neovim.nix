@@ -5,22 +5,13 @@
 }:
 let
   confdir = "${config.common.configHome}/nvim";
-  # toLua = string: ''
-  #   lua << EOF
-  #   ${string}
-  #   EOF
-  # '';
-  requirePlugin = lua-name: "require('${lua-name}').setup()";
-  loadPlugin = nix-name: lua-name: {
-    plugin = nix-name;
-    type = "lua";
-    config = requirePlugin lua-name;
-  };
 in
 {
   home.packages = [ pkgs.typescript-language-server ];
   programs.neovim = {
     enable = true;
+    withRuby = false;
+    withPython3 = true;
     defaultEditor = true;
     extraPackages = with pkgs; [
       # language servers
@@ -50,7 +41,7 @@ in
       dockerfmt
       shfmt
       yamlfmt
-      prettier-plugin-astro
+      # prettier-plugin-astro
       prettier-plugin-jinja-template
       # potential latex formatters: perlPackages.LatexIndent bibtex-tidy
       taplo
@@ -129,7 +120,7 @@ in
             html
             jinja
             # jq
-            jsonc
+            json
             just
             kdl # niri
             latex
@@ -198,9 +189,9 @@ in
       link "markdown-plus-telescope" 1
     '';
 
+  # vim.g.prettier_plugin_astro = "${pkgs.prettier-plugin-astro}/dist/index.js"
   xdg.configFile."nvim/lua/nix-paths.lua".text = ''
     vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"
-    vim.g.prettier_plugin_astro = "${pkgs.prettier-plugin-astro}/dist/index.js"
     vim.g.prettier_plugin_jinja = "${pkgs.prettier-plugin-jinja-template}/lib/index.js"
     vim.g.nixpkgs_expr = 'import (builtins.getFlake "${config.common.nixConfigDirectory}").inputs.nixpkgs {}'
   '';
