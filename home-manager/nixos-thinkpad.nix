@@ -118,8 +118,6 @@
 
   ];
 
-  programs.ssh.enable = true;
-
   # fonts.fontconfig.enable = true;
 
   programs.bash.bashrcExtra = ''

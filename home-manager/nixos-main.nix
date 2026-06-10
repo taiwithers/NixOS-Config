@@ -143,8 +143,6 @@
 
   ];
 
-  programs.ssh.enable = true;
-
   fonts.fontconfig.enable = true;
 
   xdg.configFile."onedrive-gui/gui_settings".text = ''

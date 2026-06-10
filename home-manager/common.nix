@@ -151,6 +151,20 @@
         "diff-nixos-generations" = "diff-nix-generations nixos";
       };
 
+    programs.ssh = {
+      enable = true;
+      matchBlock."*" = {
+        forwardAgent = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
+      };
+    };
+
     programs.bash.bashrcExtra = ''
       # add completions
       complete -F _command get-package-path
