@@ -135,6 +135,7 @@
     discord
     sonic-pi
     anki
+    dolphin-emu
 
     kdePackages.kdialog
     heroic
