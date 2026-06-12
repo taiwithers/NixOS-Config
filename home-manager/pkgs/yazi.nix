@@ -16,20 +16,20 @@
         prepend_fetchers = [
           # no idea what's going on here but you need it for the git plugin
           {
-            id = "git";
             url = "*";
             run = "git";
+            group = "git";
           }
           {
-            id = "git";
             url = "*/";
             run = "git";
+            group = "git";
           }
         ];
         prepend_previewers =
           let
-            view-with-bat = name: {
-              inherit name;
+            view-with-bat = url: {
+              inherit url;
               run = "piper -- bat --plain --color=always \"$1\"";
             };
 
@@ -39,12 +39,12 @@
             (view-with-bat "*.mdx")
             # nbpreview
             {
-              name = "*.ipynb";
+              url = "*.ipynb";
               run = "piper -- nbpreview --no-paging --nerd-font --decorated --no-files --unicode --color --images --theme=dark \"$1\"";
             }
             # preview directory trees with eza
             {
-              name = "*/";
+              url = "*/";
               run = "piper -- eza --tree --level=3 --color=always --icons=always --group-directories-first --no-quotes \"$1\"";
             }
           ];
