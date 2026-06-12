@@ -13,6 +13,7 @@ in
     withRuby = false;
     withPython3 = true;
     defaultEditor = true;
+    initLua = "require('custom-init')";
     extraPackages = with pkgs; [
       # language servers
       bash-language-server
@@ -185,7 +186,7 @@ in
         ln -s "$source" "$destination"
       }
 
-      link "init" 0
+      link "custom-init" 0
       link "markdown-plus-telescope" 1
     '';
 
