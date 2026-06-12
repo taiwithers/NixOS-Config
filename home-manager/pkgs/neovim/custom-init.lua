@@ -926,7 +926,7 @@ autocmd("FileType", {
 autocmd({ "BufEnter", "BufWinEnter" }, {
   callback = function()
     local ok, parsers = pcall(require, "nvim-treesitter.parsers")
-    if ok and parsers.has_parser() then
+    if ok and parsers[vim.bo.filetype] then
       -- vim.cmd("colorscheme miniautumn") -- for some reason the easiest way to tell if this works
 
       -- syntax highlighting
