@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, stylix
-, ...
+{
+  config,
+  pkgs,
+  stylix,
+  ...
 }:
 {
   imports = [ stylix.homeModules.stylix ];
@@ -67,12 +68,13 @@
       kde = {
         enable = false;
         decorations = "org.kde.klassy"; # also set in plasma-manager
+        decorationTheme = "klassy";
         useWallpaper = true;
       };
       kitty.enable = true;
       lazygit.enable = true;
       neovim = {
-        enable = false;
+        enable = true;
         plugin = "base16-nvim";
         transparentBackground.main = false;
         transparentBackground.signColumn = false;
@@ -85,7 +87,7 @@
       vencord.enable = true; # idk man
       vesktop.enable = true;
       vscode.enable = true;
-      # yazi = { enable = true; colors.enable = true; };
+      yazi.enable = true;
       zellij.enable = true;
     };
   };
