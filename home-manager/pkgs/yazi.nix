@@ -52,6 +52,16 @@
     keymap = {
       mgr.prepend_keymap = [
         {
+          on = "q";
+          run = "quit --no-cwd-file";
+          desc = "Quit";
+        }
+        {
+          on = "Q";
+          run = "quit";
+          desc = "Quit, changing directory";
+        }
+        {
           on = [
             "g"
             "i"
