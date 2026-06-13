@@ -74,7 +74,7 @@
       kitty.enable = true;
       lazygit.enable = true;
       neovim = {
-        enable = true;
+        enable = false;
         plugin = "base16-nvim";
         transparentBackground.main = false;
         transparentBackground.signColumn = false;
