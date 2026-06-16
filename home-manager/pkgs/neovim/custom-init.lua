@@ -691,6 +691,7 @@ conform.setup({
     typescriptreact = { "prettierd", "prettier", stop_after_first = true },
     html = { "prettierd", "prettier", stop_after_first = true },
     scss = { "prettierd", "prettier", stop_after_first = true },
+    css = { "prettierd", "prettier", stop_after_first = true },
     toml = { "taplo" },
   },
   format_on_save = {
