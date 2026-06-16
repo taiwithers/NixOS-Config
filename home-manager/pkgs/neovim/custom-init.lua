@@ -655,6 +655,18 @@ cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm
 local conform = require("conform")
 conform.setup({
   formatters = {
+    black = {
+      append_args = {
+        "--target-version",
+        "py311",
+        "--target-version",
+        "py312",
+        "--target-version",
+        "py313",
+        "--target-version",
+        "py314",
+      },
+    },
     isort = { append_args = { "--profile", "black" } },
     stylua = { append_args = { "--indent-type", "Spaces", "--indent-width", "2" } },
     prettier = {
@@ -696,7 +708,7 @@ conform.setup({
   },
   format_on_save = {
     lsp_format = "fallback",
-    timeout_ms = 500,
+    timeout_ms = 1500,
   },
 })
 
