@@ -152,6 +152,10 @@ vim.keymap.set({ "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc =
 vim.keymap.set("x", "<", "<gv", { desc = "Dedent" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent" })
 
+-- text wrapping
+vim.keymap.set("v", "<leader>r", ":!fmt -w80<cr>", { desc = "Wrap selection to 80 characters" })
+vim.keymap.set("n", "<leader>R", "<C-v>:!fmt -w80<cr>", { desc = "Wrap line to 80 characters" })
+
 ----------------------------------------------------------------------
 --                         General Plugins                          --
 ----------------------------------------------------------------------
