@@ -253,6 +253,7 @@
           flake-inputs.nixos-wsl.nixosModules.default
           {
             system.stateVersion = "24.05";
+            networking.resolvconf.enable = false; # build failure after 26.05 upgrade
             wsl.enable = true;
             wsl.defaultUser = "tai";
             wsl.docker-desktop.enable = true;

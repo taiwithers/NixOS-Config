@@ -120,6 +120,7 @@ in
             hmts-nvim
             html
             jinja
+            javascript
             # jq
             json
             just

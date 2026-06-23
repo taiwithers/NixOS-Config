@@ -60,7 +60,7 @@
     xdg-ninja
 
     strace
-    ds9
+    # ds9
     cloc
     visidata
     jq

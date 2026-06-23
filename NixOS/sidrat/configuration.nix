@@ -35,7 +35,7 @@
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
-    "no-url-literals" # quote urls
+    # "no-url-literals" # quote urls
   ];
 
   security.sudo.extraConfig = ''
