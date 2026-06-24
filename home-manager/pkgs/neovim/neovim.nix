@@ -139,6 +139,7 @@ in
             typescript # for astro
             vim
             vimdoc
+            yaml
           ]
         ))
 
