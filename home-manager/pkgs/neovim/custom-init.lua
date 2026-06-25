@@ -71,6 +71,16 @@ autocmd("FileType", {
   end,
 })
 
+-- close neovim if the only open window is the quickfix list
+autocmd("BufEnter", {
+  pattern = { "*" },
+  callback = function()
+    if (vim.bo.filetype == "qf") and (#vim.api.nvim_list_wins() == 1) then
+      vim.cmd("quit")
+    end
+  end,
+})
+
 ----------------------------------------------------------------------
 --                             Keymaps                              --
 --                       (not plugin related)                       --
