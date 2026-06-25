@@ -366,7 +366,7 @@ autocmd("UIEnter", {
 
 require("range-highlight").setup() -- highlight visual selection in cmdline
 require("highlight-undo").setup() -- highlight text affected by "undo"
-require("auto-hlsearch").setup() -- turn off search highlight
+vim.cmd("packadd nohlsearch")
 
 require("marks").setup() -- show marks on the left
 -- not working w/ whichkey is known issue https://github.com/chentoast/marks.nvim/issues/113
@@ -690,6 +690,7 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "buffer" },
+    { name = "path" }, -- useful for markdown links etc
     { name = "scss", option = { folders = { "src/styles" } } },
   }),
   window = { completion = cmp.config.window.bordered() },

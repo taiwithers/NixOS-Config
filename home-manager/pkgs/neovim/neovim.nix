@@ -69,7 +69,6 @@ in
         nvim-ts-autotag # auto-close html tags
         conform-nvim # configuration for formatters
         modes-nvim # change the colour of the current line based on mode
-        auto-hlsearch-nvim # turn off search highlights automatically - change this is redundant w/ flash
         highlight-undo-nvim # highlight the text changed by undoing
         gitsigns-nvim # show git status of lines in the signcolumn
         toggleterm-nvim # manage terminal windows

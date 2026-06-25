@@ -18,18 +18,15 @@
     - [bqf (minor)](https://github.com/kevinhwang91/nvim-bqf)
     - [quicker](https://github.com/stevearc/quicker.nvim)
     - [trouble (major)](https://github.com/folke/trouble.nvim)
-- something to insert (relative?) filepath at cursor location (for adding markdown images)
 - caplock warning?
 - [better lsp hovers for typescript](https://github.com/Sebastian-Nielsen/better-type-hover) - not sure to what extent I actually need this
 - [screenkey](https://github.com/NStefan002/screenkey.nvim)
 - [native session management](https://neovim.io/doc/user/usr_21/#_sessions)
 - [vimscript plugin for swapping line/charwise pastes](https://github.com/inkarkat/vim-UnconditionalPaste) - could potentially do some hacking to merge this with neoclip
 
-- add a keymap for `:helpclose`
 - use telescope more
 - fix cmp mappings in cmdline/search
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
-- use telescope to insert filepaths (for importing stuff?)
 
 - reduce width of number/status column for help windows
 
@@ -42,12 +39,11 @@ vim.keymap.set("i", ";", ";<c-g>u")
 
 ## 0.12
 
-- [look at builtin `nohlsearch` and `undotree`](https://neovim.io/doc/user/plugins/)
+- [look at builtin `undotree`](https://neovim.io/doc/user/plugins/)
 - [pumborder option](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L326)
 - [lsp-inline-completion](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L219)
 - [incremental selection](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L237)
 - [native autocomplete stuff](https://github.com/neovim/neovim/blob/fc7e5cf6c93fef08effc183087a2c8cc9bf0d75a/runtime/doc/news.txt#L305)
-- add foldinner from ufo readme
 - ui2 (noice replacement) stuff
     - [tiny-cmdline](https://github.com/rachartier/tiny-cmdline.nvim)
     - [notifications](https://www.reddit.com/r/neovim/comments/1sfmgkb/how_does_the_new_ui2_message_cmdline_replacement/oeyrgua/)
