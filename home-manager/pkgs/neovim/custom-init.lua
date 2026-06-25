@@ -604,6 +604,68 @@ local cmdline_completion_mapping = cmp.mapping.preset.cmdline({
   ["<C-e>"] = { c = cmp.mapping.disable }, -- conflicts w/ emacs-style <End>
   ["<cr>"] = { c = cmp.mapping.confirm({ select = false }) }, -- NOT same as insert mode
 })
+
+local global_snippets = {
+  { trigger = "sheb", body = "#!/usr/bin/env $0" },
+  {
+    trigger = "lipsum",
+    body = "Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+  },
+}
+local custom_snippets = {
+  { ft = { "python" }, trigger = "def", body = "def ${1:name}(${2:args})->None:\n\t$0" },
+  { ft = { "python" }, trigger = "main", body = "def main()->None:\n\t$0" },
+  { ft = { "python" }, trigger = "ifmain", body = 'if __name__ == "__main__":\n\t${1:main()}' },
+  { ft = { "python" }, trigger = "match", body = "match ${1:test}:\n\tcase ${2:result}:\n\t\t$0" },
+  {
+    ft = { "html", "jinja", "astro" },
+    trigger = "doctype",
+    body = '<!doctype html>\n<html lang="en">\n\t<head>\n\t\t<meta charset="UTF-8">\n\t\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\nzt\t<title>${1:Document}</title>\n\t</head>\n\t<body>\n\t\t$0\n\t</body>\n</html>',
+  },
+  {
+    ft = { "css", "scss", "astro" },
+    trigger = "media",
+    body = "@media screen and (${1:max-width: 300px}) {\n\t$0\n}",
+  },
+}
+
+-- https://www.reddit.com/r/neovim/comments/1cxfhom/builtin_snippets_so_good_i_removed_luasnip/
+local function get_buf_snips()
+  local ft = vim.bo.filetype
+  local snips = vim.list_slice(global_snippets)
+  for _, snippet in ipairs(custom_snippets) do
+    if ft and vim.list_contains(snippet.ft, ft) then
+      vim.list_extend(snips, { snippet })
+    end
+  end
+  return snips
+end
+local function register_cmp_snippets()
+  local cmp_source = {}
+  local cache = {}
+  function cmp_source.complete(_, _, callback)
+    local bufnr = vim.api.nvim_get_current_buf()
+    if not cache[bufnr] then
+      local completion_items = vim.tbl_map(function(s)
+        local item = {
+          word = s.trigger,
+          label = s.trigger,
+          kind = vim.lsp.protocol.CompletionItemKind.Snippet,
+          insertText = s.body,
+          insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
+        }
+        return item
+      end, get_buf_snips())
+
+      cache[bufnr] = completion_items
+    end
+
+    callback(cache[bufnr])
+  end
+
+  require("cmp").register_source("custom_snippets", cmp_source)
+end
+register_cmp_snippets()
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -611,6 +673,7 @@ cmp.setup({
     end,
   },
   sources = cmp.config.sources({
+    { name = "custom_snippets" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "buffer" },
