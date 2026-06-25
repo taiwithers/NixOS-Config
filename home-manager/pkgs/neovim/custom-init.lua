@@ -525,11 +525,6 @@ require("nvim-comment-frame").setup({
 })
 vim.keymap.set("n", "<leader>c", require("nvim-comment-frame").add_multiline_comment, { desc = "Create boxed comment" })
 
--- tab out of brackets and pairs
-require("tabout").setup({
-  act_as_shift_tab = true, -- dedent if no pairs, indent is true by default
-})
-
 -- markdown
 require("markdown-plus").setup({
   features = {
