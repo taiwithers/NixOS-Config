@@ -504,6 +504,15 @@ require("lualine").setup({
   },
 })
 
+require("quicker").setup({
+  opts = { number = true }, -- nvim options to set in the qf window
+  keys = {
+    { ">", require("quicker").toggle_expand, desc = "Toggle context lines" },
+  }, -- keymaps for qf window only
+  edit = { enabled = false },
+  trim_leading_whitespace = "all",
+})
+
 ----------------------------------------------------------------------
 --                    Code/Text Editing Plugins                     --
 ----------------------------------------------------------------------

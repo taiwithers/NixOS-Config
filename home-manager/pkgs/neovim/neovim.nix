@@ -93,6 +93,7 @@ in
         nvim-ufo # improves folding?
         neogen # for python autodocstrings
         refjump-nvim # next/prev LSP reference with ]r
+        quicker-nvim # quickfix window improvements
 
         # completion and sources
         nvim-cmp
