@@ -156,6 +156,14 @@ vim.keymap.set("x", ">", ">gv", { desc = "Indent" })
 vim.keymap.set("v", "<leader>r", ":!fmt -w80<cr>", { desc = "Wrap selection to 80 characters" })
 vim.keymap.set("n", "<leader>R", "<C-v>:!fmt -w80<cr>", { desc = "Wrap line to 80 characters" })
 
+-- jump through snippet regions like the completion list
+vim.keymap.set({ "i", "s" }, "<c-n>", function()
+  return vim.snippet.active({ direction = 1 }) and vim.snippet.jump(1)
+end, { desc = "Jump to next snippet region" })
+vim.keymap.set({ "i", "s" }, "<c-p>", function()
+  return vim.snippet.active({ direction = -1 }) and vim.snippet.jump(-1)
+end, { desc = "Jump to previous snippet region" })
+
 ----------------------------------------------------------------------
 --                         General Plugins                          --
 ----------------------------------------------------------------------
@@ -627,6 +635,11 @@ local custom_snippets = {
     trigger = "media",
     body = "@media screen and (${1:max-width: 300px}) {\n\t$0\n}",
   },
+  {
+    ft = { "lua" },
+    trigger = "keymap",
+    body = 'vim.keymap.set({"${1:n}"}, "${2:<leader>}", ${3:rhs}, { desc = "${4:description}" })',
+  },
 }
 
 -- https://www.reddit.com/r/neovim/comments/1cxfhom/builtin_snippets_so_good_i_removed_luasnip/
@@ -1051,5 +1064,7 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
 
 -- https://github.com/danymat/neogen#default-cycling-support
 require("neogen").setup({
+  snippet_engine = "nvim",
   languages = { python = { template = { annotation_convention = "numpydoc" } } },
 })
+vim.keymap.set("n", "<leader>C", require("neogen").generate, { desc = "Generate docstring" })
