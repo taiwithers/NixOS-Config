@@ -31,7 +31,14 @@ opt.infercase = true
 -- ui/visuals
 -- opt.cmdheight = 2 -- how many lines to use for the command line when not in use, no effect w/ noice
 opt.cursorline = true -- highlight current line
-opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.fillchars = { -- use vim.opt to pass a table
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  foldinner = " ",
+  eob = " ",
+}
 opt.number = true -- print line numbers
 opt.relativenumber = true -- print relative line numbers
 opt.signcolumn = "yes:2" --always show 3 wide
@@ -43,6 +50,12 @@ opt.winblend = 0 -- transparency of floating windows
 opt.winborder = "rounded" -- for stuff like lsp hover window
 opt.showmode = true -- indicate mode in statusline
 opt.scrolloff = 10 -- minimum lines above/below cursor
+vim.opt.shortmess = {
+  c = true, -- don't give |ins-completion-menu| messages; for example, "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found", "Back at original", etc.
+  C = true, -- Don't show messages while scanning ins-completion items (scanning tags) - on by default
+  S = true, -- don't show "[1/5]" when searching
+  F = true, -- don't show notif about what file you're on
+}
 
 -- folding - handled by nvim-ufo in init.lua
 opt.foldcolumn = "auto" -- when/how to draw the fold column
