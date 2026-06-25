@@ -33,6 +33,13 @@
 
 - reduce width of number/status column for help windows
 
+```lua
+-- Add undo break-points
+vim.keymap.set("i", ",", ",<c-g>u")
+vim.keymap.set("i", ".", ".<c-g>u")
+vim.keymap.set("i", ";", ";<c-g>u")
+```
+
 ## 0.12
 
 - [look at builtin `nohlsearch` and `undotree`](https://neovim.io/doc/user/plugins/)
