@@ -973,7 +973,7 @@ vim.lsp.config["mdx-ls"] = {
   init_options = { typescript = { enabled = true, tsdk = vim.g.tsdk } },
 }
 vim.lsp.config["jinja-lsp"] = {
-  filetypes = { "jinja" },
+  filetypes = { "html.jinja", "python" },
   cmd = { "jinja-lsp" },
 }
 
@@ -1034,11 +1034,16 @@ autocmd("FileType", {
 autocmd({ "BufEnter", "BufWinEnter" }, {
   callback = function()
     local ok, parsers = pcall(require, "nvim-treesitter.parsers")
-    if ok and parsers[vim.bo.filetype] then
+    local ft_parts = vim.split(vim.bo.filetype, ".", { plain = true })
+    local ts_filetype = ft_parts[#ft_parts] -- ft: html.jinja has ts parser 'jinja'
+    if ok and parsers[ts_filetype] then
       -- vim.cmd("colorscheme miniautumn") -- for some reason the easiest way to tell if this works
 
       -- syntax highlighting
       vim.treesitter.start()
+      if ts_filetype == "jinja" then
+        vim.bo.syntax = "on" -- get both HTML (or other) AND jinja
+      end
 
       -- folds are done with LSP and nvim-ufo
 

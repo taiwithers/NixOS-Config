@@ -94,6 +94,7 @@ in
         neogen # for python autodocstrings
         refjump-nvim # next/prev LSP reference with ]r
         quicker-nvim # quickfix window improvements
+        jinja-vim # fixes jinja syntax highlighting, ftplugin, so no setup
 
         # completion and sources
         nvim-cmp
