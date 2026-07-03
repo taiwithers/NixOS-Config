@@ -477,7 +477,12 @@ local function make_lualine_mode(colour_table, inactive)
     c = { bg = mode_colours.normal.primary, fg = mode_colours.normal.contrast },
   }
 end
-require("nvim-navic").setup({ lsp = { auto_attach = true } }) -- breadcrumbs provider
+require("nvim-navic").setup({ -- breadcrumbs provider
+  lsp = {
+    auto_attach = true,
+    preference = { "basedpyright" }, -- use bpy over jinja
+  },
+})
 require("lualine").setup({
   options = {
     theme = {
