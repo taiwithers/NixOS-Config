@@ -50,6 +50,12 @@
         fpush = "push --force-with-lease"; # safer force push
         lastcommit = "log --max-count=1 --format=%h --abbrev-commit"; # get the short hash of the last commit - for e.g., `cloc $(git lastcommit)`
       };
+
+      # delta
+      core.pager = "delta";
+      interactive.diffFilter = "delta --color-only";
+      delta.navigate = true; # use n/N to go between hunks
+      merge.conflictStyle = "zdiff3";
     };
 
     attributes = [
