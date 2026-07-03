@@ -104,4 +104,7 @@ for pycommand in "${pycommands[@]}"; do
   fi
 done
 
+# docker system prune --volumes --all
+# npm cache verify # may also do some pruning
+
 echo
