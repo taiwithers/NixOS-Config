@@ -31,7 +31,7 @@ in
       jinja-lsp
 
       # formatters
-      nixfmt-rfc-style
+      nixfmt
       black
       isort
       prettier
