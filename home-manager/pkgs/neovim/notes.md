@@ -23,8 +23,17 @@
 - use telescope more
 - fix cmp mappings in cmdline/search
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
+- in addition to yanking file name from yazi, figure out how to do that with telescope
+- frecency sorting for telescope files
+    - probably don't want to use this: https://github.com/mollerhoj/telescope-recent-files.nvim/tree/5866846c84a5bc9077425bbd7557414f464123b1
 
 - reduce width of number/status column for help windows
+- `git mergetool` opens nvim in conflict resolution mode
+    - does nvim know it's in conflict resolution mode? if so, want to add ]c/[c to which-key (next/prev conflict), and also add branch names to winbars
+    - top left is main (assuming you have main checked out, and are merging in feature)
+    - top right is feature
+    - top centre is base (shared common ancestor)
+    - bottom is editable final (merged) version
 
 ```lua
 -- Add undo break-points
