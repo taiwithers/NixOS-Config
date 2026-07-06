@@ -636,7 +636,6 @@ local cmdline_completion_mapping = cmp.mapping.preset.cmdline({
   ["<C-e>"] = { c = cmp.mapping.disable }, -- conflicts w/ emacs-style <End>
   ["<cr>"] = { c = cmp.mapping.confirm({ select = false }) }, -- NOT same as insert mode
 })
-
 local global_snippets = {
   { trigger = "sheb", body = "#!/usr/bin/env $0" },
   {
@@ -735,6 +734,33 @@ cmp.setup({
       })[entry.source.name]
       return vim_item
     end,
+  },
+  sorting = {
+    comparators = {
+      cmp.config.compare.offset, -- smaller offset -> higher ranking
+      cmp.config.compare.exact, -- exact matches ?
+      cmp.config.compare.scopes, -- locals above globals
+      cmp.config.compare.score, -- higher score ??
+      function(entry1, entry2)
+        -- sort items starting w/ __ later in the list
+        -- https://github.com/lukas-reineke/cmp-under-comparator/blob/master/lua/cmp-under-comparator/init.lua
+        local _, entry1_under = entry1.completion_item.label:find("^_+")
+        local _, entry2_under = entry2.completion_item.label:find("^_+")
+        entry1_under = entry1_under or 0
+        entry2_under = entry2_under or 0
+        if entry1_under > entry2_under then
+          return false
+        elseif entry1_under < entry2_under then
+          return true
+        end
+      end,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality, -- used near cursor
+      cmp.config.compare.kind, -- sort by LSP kind ?
+      cmp.config.compare.sort_text, -- alphabetical
+      cmp.config.compare.length, -- short items first
+      cmp.config.compare.order, -- smaller id ??
+    },
   },
 })
 cmp.setup.cmdline(":", {
