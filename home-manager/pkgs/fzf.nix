@@ -102,7 +102,7 @@ in
     colors = { };
 
     # typing "fzf" as a command
-    defaultCommand = "fd --type file --type symlink --hidden";
+    defaultCommand = "fd --type file --type symlink --hidden --exclude \.git";
     defaultOptions = fzfDefaultOptions;
 
     # ctrl-r
