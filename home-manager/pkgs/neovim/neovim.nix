@@ -95,6 +95,7 @@ in
         refjump-nvim # next/prev LSP reference with ]r
         quicker-nvim # quickfix window improvements
         jinja-vim # fixes jinja syntax highlighting, ftplugin, so no setup
+        actions-preview-nvim # preview the results of code actions
 
         # completion and sources
         nvim-cmp

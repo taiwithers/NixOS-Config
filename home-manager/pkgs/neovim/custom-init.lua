@@ -870,6 +870,13 @@ vim.keymap.set("n", "z2", function()
   require("ufo").closeFoldsWith(1)
 end, { desc = "Fold level 2+" })
 
+-- preview code actions
+local preview_code_actions = require("actions-preview")
+preview_code_actions.setup({
+  diff = { ctxlen = 0 },
+})
+vim.keymap.set({ "n", "v" }, "gra", preview_code_actions.code_actions, { desc = "Preview available code actions" })
+
 -- lsp
 local capabilities = require("cmp_nvim_lsp").default_capabilities() -- from nvim-cmp
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -1046,7 +1053,6 @@ vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set({ "n", "i" }, "grD", "<cmd>Telescope lsp_definitions theme=cursor<cr>", { desc = "Jump to definition" })
 
 -- Descriptions for defaults
-vim.keymap.set({ "n", "v" }, "gra", vim.lsp.buf.code_action, { desc = "View available code actions in telescope" })
 vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { desc = "Send implementations to QF" })
 vim.keymap.set("n", "grr", vim.lsp.buf.references, { desc = "Send references to QF" })
 vim.keymap.set("n", "grx", vim.lsp.codelens.run, { desc = "Run codelens" })
