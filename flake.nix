@@ -81,7 +81,10 @@
 
     nix-systems.url = "github:nix-systems/default";
 
-    nixos-hardware.url = "github:nixos/nixos-hardware/master";
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";

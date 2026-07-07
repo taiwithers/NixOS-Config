@@ -77,7 +77,7 @@
       "ripgrep"
       "rofi/rofi" # uses colours
       "starship"
-      "sublime-text/sublime-text"
+      # "sublime-text/sublime-text"
       "tldr"
       "vscodium/vscodium"
       "xdg"

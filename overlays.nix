@@ -151,7 +151,7 @@ _:
       file = name;
     };
     starfetch = customDerivation "starfetch";
-    inherit (unstable) sublime4;
+    # inherit (unstable) sublime4;
     vesktop = super.vesktop.overrideAttrs (oldAttrs: {
       srcs = [
         oldAttrs.src
