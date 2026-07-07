@@ -81,7 +81,7 @@
     enable = true;
     options = {
       dark = true;
-      side-by-side = true;
+      # side-by-side = true;
       hunk-header-style = "omit";
       line-numbers-left-format = "{nm}│"; # not pipes! taller!
       line-numbers-right-format = "{np}│";
@@ -90,6 +90,8 @@
       hyperlinks = true;
     };
   };
+  home.shellAliases.delta-sbs = "delta --features side-by-side";
+
   programs.ssh = {
     settings."github.com" = {
       hostname = "github.com";
