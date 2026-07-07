@@ -863,6 +863,13 @@ vim.keymap.set("n", "<S-F12>", require("goto-preview").goto_preview_references, 
 -- reference jumps
 require("refjump").setup()
 
+-- folds
+require("ufo").setup()
+vim.keymap.set("n", "z1", require("ufo").closeFoldsWith, { desc = "Fold level 1+" })
+vim.keymap.set("n", "z2", function()
+  require("ufo").closeFoldsWith(1)
+end, { desc = "Fold level 2+" })
+
 -- lsp
 local capabilities = require("cmp_nvim_lsp").default_capabilities() -- from nvim-cmp
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -1007,12 +1014,6 @@ vim.lsp.config["jinja-lsp"] = {
   filetypes = { "html.jinja", "python" },
   cmd = { "jinja-lsp" },
 }
-
-require("ufo").setup()
-vim.keymap.set("n", "z1", require("ufo").closeFoldsWith, { desc = "Fold level 1+" })
-vim.keymap.set("n", "z2", function()
-  require("ufo").closeFoldsWith(1)
-end, { desc = "Fold level 2+" })
 
 local function start_lsp()
   vim.lsp.enable({
