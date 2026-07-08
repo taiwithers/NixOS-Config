@@ -35,6 +35,8 @@
     - top centre is base (shared common ancestor)
     - bottom is editable final (merged) version
 
+- [prioritized diagnostic jumps](https://github.com/5long/dotfiles/blob/b80eed21e03b5937c830bbeb092ffe9baad33f60/nvim/lua/config/prioritized_diagnostic.lua)
+
 ```lua
 -- Add undo break-points
 vim.keymap.set("i", ",", ",<c-g>u")
