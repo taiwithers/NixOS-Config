@@ -29,6 +29,7 @@ in
       ruff
       nodejs # same as gcc
       jinja-lsp
+      gh-actions-language-server
 
       # formatters
       nixfmt

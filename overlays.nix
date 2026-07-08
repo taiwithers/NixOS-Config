@@ -174,6 +174,7 @@ _:
         startupWMClass = name;
       };
     });
+    gh-actions-language-server = customDerivation "gh-actions-language-server";
     vimPlugins =
       super.vimPlugins
       // {

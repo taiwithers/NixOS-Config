@@ -17,6 +17,9 @@ end
 
 vim.filetype.add({
   extension = { mdx = "mdx", jinja = "jinja" },
+  pattern = {
+    [".*/%.github[%w/]+workflows[%w/]+.*%.ya?ml"] = "yaml.github",
+  },
 })
 
 ----------------------------------------------------------------------
@@ -1021,6 +1024,12 @@ vim.lsp.config["jinja-lsp"] = {
   filetypes = { "html.jinja", "python" },
   cmd = { "jinja-lsp" },
 }
+vim.lsp.config["gh-actions-ls"] = {
+  cmd = { "gh-actions-language-server", "--stdio" },
+  capabilities = { workspace = { didChangeWorkspaceFolders = { dynamicRegistration = true } } },
+  filetypes = { "yaml.github" },
+  init_options = {}, -- needs to be present https://github.com/neovim/nvim-lspconfig/pull/3713#issuecomment-2857394868
+}
 
 local function start_lsp()
   vim.lsp.enable({
@@ -1034,6 +1043,7 @@ local function start_lsp()
     "bash-ls",
     "ruff",
     "jinja-lsp",
+    "gh-actions-ls",
   })
 end
 start_lsp()
