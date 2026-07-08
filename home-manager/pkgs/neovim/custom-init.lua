@@ -19,6 +19,7 @@ vim.filetype.add({
   extension = { mdx = "mdx", jinja = "jinja" },
   pattern = {
     [".*/%.github[%w/]+workflows[%w/]+.*%.ya?ml"] = "yaml.github",
+    [".*%.html%.jinja"] = "html.jinja",
   },
 })
 
@@ -923,7 +924,6 @@ vim.lsp.config["nixd"] = {
 vim.lsp.config["ruff"] = {
   cmd = { "ruff", "server" },
   root_markers = { "pyproject.toml" },
-  capabilities = {},
   init_options = {
     settings = {
       lineLength = 88,
