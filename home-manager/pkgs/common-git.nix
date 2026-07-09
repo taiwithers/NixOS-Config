@@ -28,6 +28,8 @@
       help.autocorrect = "prompt"; # check for typos in commands and offer to run the corrected version
       init.defaultBranch = "main";
       merge.tool = "nvimdiff";
+      mergetool.nvimdiff.layout = "(LOCAL,REMOTE)/MERGED"; # don't care to see BASE (shared parent of local and remote)
+      mergetool.writeToTemp = true; # write tempfiles to /tmp instead of workdir
       pull.rebase = "true";
       push.autoSetupRemote = true; # automatically create remote branches
       rerere.autoUpdate = true;
