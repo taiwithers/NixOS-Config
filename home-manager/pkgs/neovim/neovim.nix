@@ -63,120 +63,91 @@ in
       bat
       ripgrep
     ];
-    plugins =
-      with pkgs.vimPlugins;
-      [
-        lualine-nvim # status bar
-        mini-nvim # mini (autopairs, delete buffer without changing layout)
-        nvim-surround # actions on surrounding brackets
-        noice-nvim # pretty UI
-        which-key-nvim # which-key
-        nvim-notify # apply noice ui to notifications
-        yazi-nvim # integrate yazi
-        telescope-nvim # picker for files and much more
-        telescope-fzf-native-nvim # improve telescope's sorting and searching
-        nvim-ts-autotag # auto-close html tags
-        conform-nvim # configuration for formatters
-        modes-nvim # change the colour of the current line based on mode
-        highlight-undo-nvim # highlight the text changed by undoing
-        gitsigns-nvim # show git status of lines in the signcolumn
-        toggleterm-nvim # manage terminal windows
-        comment-nvim # fancy comment functionality
-        nvim-neoclip-lua # clipboard history
-        sqlite-lua # for nvim-neoclip-lua
-        flash-nvim # improved FtTt motions
-        template-string-nvim # auto handle f-strings and js equiv
-        marks-nvim # show marks in signcolumn
-        darkvoid-nvim # colourscheme that doesn't work great
-        mdx-nvim # treesitter highlighting for mdx files
-        otter-nvim # LSP for embedded code blocks
-        markdown-plus-nvim # lots of markdown functionality (list continuation, table navigation, etc.)
-        nvim-colorizer-lua # highlight hex, rgb, css colours
-        telescope-ui-select-nvim # send vim.ui.select to telescope
-        nvim-ts-context-commentstring # fix comments in jsx/tsx since comment.nvim doesn't support them
-        range-highlight-nvim # when running cmdline things on selected text, highlight those lines
-        nvim-treesitter-textobjects # work with functions, scopes, etc
-        goto-preview # floating window for view definition, and for renaming
-        nvim-comment-frame # create boxed comments
-        nvim-navic # breadcrumbs w/ lualine
-        nvim-ufo # improves folding?
-        neogen # for python autodocstrings
-        refjump-nvim # next/prev LSP reference with ]r
-        quicker-nvim # quickfix window improvements
-        jinja-vim # fixes jinja syntax highlighting, ftplugin, so no setup
-        actions-preview-nvim # preview the results of code actions
+    plugins = with pkgs.vimPlugins; [
+      lualine-nvim # status bar
+      mini-nvim # mini (autopairs, delete buffer without changing layout)
+      nvim-surround # actions on surrounding brackets
+      noice-nvim # pretty UI
+      which-key-nvim # which-key
+      nvim-notify # apply noice ui to notifications
+      yazi-nvim # integrate yazi
+      telescope-nvim # picker for files and much more
+      telescope-fzf-native-nvim # improve telescope's sorting and searching
+      nvim-ts-autotag # auto-close html tags
+      conform-nvim # configuration for formatters
+      modes-nvim # change the colour of the current line based on mode
+      highlight-undo-nvim # highlight the text changed by undoing
+      gitsigns-nvim # show git status of lines in the signcolumn
+      toggleterm-nvim # manage terminal windows
+      comment-nvim # fancy comment functionality
+      nvim-neoclip-lua # clipboard history
+      sqlite-lua # for nvim-neoclip-lua
+      flash-nvim # improved FtTt motions
+      template-string-nvim # auto handle f-strings and js equiv
+      marks-nvim # show marks in signcolumn
+      darkvoid-nvim # colourscheme that doesn't work great
+      mdx-nvim # treesitter highlighting for mdx files
+      otter-nvim # LSP for embedded code blocks
+      markdown-plus-nvim # lots of markdown functionality (list continuation, table navigation, etc.)
+      nvim-colorizer-lua # highlight hex, rgb, css colours
+      telescope-ui-select-nvim # send vim.ui.select to telescope
+      nvim-ts-context-commentstring # fix comments in jsx/tsx since comment.nvim doesn't support them
+      range-highlight-nvim # when running cmdline things on selected text, highlight those lines
+      nvim-treesitter-textobjects # work with functions, scopes, etc
+      goto-preview # floating window for view definition, and for renaming
+      nvim-comment-frame # create boxed comments
+      nvim-navic # breadcrumbs w/ lualine
+      nvim-ufo # improves folding?
+      neogen # for python autodocstrings
+      refjump-nvim # next/prev LSP reference with ]r
+      quicker-nvim # quickfix window improvements
+      jinja-vim # fixes jinja syntax highlighting, ftplugin, so no setup
+      actions-preview-nvim # preview the results of code actions
 
-        # completion and sources
-        nvim-cmp
-        nvim-autopairs
-        cmp-nvim-lsp # completion source - LSP
-        cmp-nvim-lua # completion source - vim.X lua api
-        cmp-buffer
-        cmp-path
-        cmp-cmdline
-        cmp-scss
+      # completion and sources
+      nvim-cmp
+      nvim-autopairs
+      cmp-nvim-lsp # completion source - LSP
+      cmp-nvim-lua # completion source - vim.X lua api
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      cmp-scss
 
-        # vimtex
-        # texpresso-vim # texpresso
-        # nvim-window-picker # window-picker
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (
+        p: with p; [
+          astro
+          bash
+          comment
+          css
+          devicetree # zmk
+          hmts-nvim
+          html
+          jinja
+          javascript
+          # jq
+          json
+          just
+          kdl # niri
+          latex
+          lua
+          nix
+          python
+          query
+          regex
+          scss # for astro
+          ssh_config
+          toml
+          tsx
+          typescript # for astro
+          vim
+          vimdoc
+          yaml
+        ]
+      ))
 
-        (pkgs.vimPlugins.nvim-treesitter.withPlugins (
-          p: with p; [
-            astro
-            bash
-            comment
-            css
-            devicetree # zmk
-            hmts-nvim
-            html
-            jinja
-            javascript
-            # jq
-            json
-            just
-            kdl # niri
-            latex
-            lua
-            nix
-            python
-            query
-            regex
-            scss # for astro
-            ssh_config
-            ssh_config
-            toml
-            tsx
-            typescript # for astro
-            vim
-            vimdoc
-            yaml
-          ]
-        ))
-
-      ]
-      ++ [ pkgs.python312Packages.pylatexenc ];
-
-    # extraLuaConfig = builtins.readFile ./init.lua;
+    ];
   };
-
-  # symlink other files to avoid constant rebuilding
-  # home.activation.linkNvimConfig =
-  #   let
-  #     source-directory = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim";
-  #     lua-directory = "${confdir}/lua";
-  #   in
-  #   config.lib.dag.entryAfter [ "writeBoundary" ] ''
-  #     mkdir --parents ${lua-directory}/
-  #
-  #     files=("options" "plugins" "keymaps" "autocommands")
-  #     for fname in "''${files[@]}"; do
-  #       source="${source-directory}/$fname.lua"
-  #       destination="${lua-directory}/$fname.lua"
-  #
-  #     if [[ -L "$destination" ]]; then rm "$destination"; fi
-  #     ln -s "$source" "$destination"
-  #   done
-  # '';
 
   home.activation.linkNvimConfig =
     let
