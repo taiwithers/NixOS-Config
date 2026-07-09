@@ -7,10 +7,6 @@ vim.g.maplocalleader = " "
 require("options")
 require("nix-paths")
 
-if io.open("wsl-clipboard") then
-  require("wsl-clipboard")
-end
-
 ----------------------------------------------------------------------
 --                            Filetypes                             --
 ----------------------------------------------------------------------

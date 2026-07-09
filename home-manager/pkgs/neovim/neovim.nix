@@ -13,7 +13,15 @@ in
     withRuby = false;
     withPython3 = true;
     defaultEditor = true;
-    initLua = "require('custom-init')";
+    initLua =
+      if config.common.wsl then
+        ''
+          require('custom-init')
+          require('wsl-clipboard')
+          vim.g.wsl_clipboard_loaded = true
+        ''
+      else
+        "require('custom-init')";
     extraPackages = with pkgs; [
       # language servers
       bash-language-server
