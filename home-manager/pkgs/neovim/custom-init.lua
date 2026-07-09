@@ -7,6 +7,14 @@ vim.g.maplocalleader = " "
 require("options")
 require("nix-paths")
 
+local function is_git_repo()
+  vim.fn.system("git rev-parse --is-inside-work-tree")
+  return vim.v.shell_error == 0
+end
+local function get_git_root()
+  local dot_git_path = vim.fn.finddir(".git", ".;")
+  return vim.fn.fnamemodify(dot_git_path, ":h")
+end
 ----------------------------------------------------------------------
 --                            Filetypes                             --
 ----------------------------------------------------------------------
@@ -61,9 +69,30 @@ autocmd("BufWritePre", {
 
 -- activate spellcheck in certain filetypes
 -- maybe change this so I can also activate/deactivate with a command or keybind
-autocmd("FileType", {
-  pattern = { "markdown", "mdx", "plaintex", "text", "gitcommit", "rst" },
+autocmd("BufEnter", {
+  pattern = { "*" },
+
   callback = function()
+    local filetypesWithSpell = { "markdown", "mdx", "plaintex", "text", "gitcommit", "rst" }
+    if not vim.list_contains(filetypesWithSpell, vim.bo.filetype) then
+      return
+    end
+
+    local spellfile_name = ".nvim-spellfile.utf-8.add"
+
+    local cwd_spellfile = vim.fs.joinpath(vim.uv.cwd(), spellfile_name)
+    if vim.uv.fs_stat(cwd_spellfile) then
+      vim.opt_local.spellfile = vim.fs.abspath(cwd_spellfile)
+    elseif is_git_repo() then
+      local git_spellfile = vim.fs.joinpath(get_git_root(), spellfile_name)
+      local git_parent_spellfile = vim.fs.joinpath(vim.fs.dirname(get_git_root()), spellfile_name)
+      if vim.uv.fs_stat(git_parent_spellfile) then
+        vim.opt_local.spellfile = git_parent_spellfile
+      elseif vim.uv.fs_stat(git_spellfile) then
+        vim.opt_local.spellfile = git_spellfile
+      end
+    end
+
     vim.opt_local.spell = true
     -- I  don't care about these types of issues
     vim.cmd("highlight clear  SpellRare")
@@ -185,6 +214,10 @@ vim.keymap.set({ "i", "s" }, "<c-p>", function()
   return vim.snippet.active({ direction = -1 }) and vim.snippet.jump(-1)
 end, { desc = "Jump to previous snippet region" })
 
+-- skip rare words in spellcheck
+vim.keymap.set("n", "]s", "]S", { desc = "Next misspelling" })
+vim.keymap.set("n", "[s", "[S", { desc = "Previous misspelling" })
+
 ----------------------------------------------------------------------
 --                         General Plugins                          --
 ----------------------------------------------------------------------
@@ -287,14 +320,6 @@ telescope.load_extension("fzf")
 telescope.load_extension("ui-select")
 local function telescope_cursor(opts)
   return require("telescope.themes").get_cursor(opts)
-end
-local function is_git_repo()
-  vim.fn.system("git rev-parse --is-inside-work-tree")
-  return vim.v.shell_error == 0
-end
-local function get_git_root()
-  local dot_git_path = vim.fn.finddir(".git", ".;")
-  return vim.fn.fnamemodify(dot_git_path, ":h")
 end
 function vim.find_files_from_project_git_root()
   local opts = {}
