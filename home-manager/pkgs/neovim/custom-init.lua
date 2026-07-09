@@ -75,6 +75,17 @@ autocmd("FileType", {
   end,
 })
 
+-- change tab width to 4 in markdown
+-- doing this with filetype markdown didn't work
+autocmd("BufEnter", {
+  pattern = { "*.md" },
+  callback = function()
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+  end,
+})
+
 -- close neovim if the only open window is the quickfix list
 autocmd("BufEnter", {
   pattern = { "*" },
