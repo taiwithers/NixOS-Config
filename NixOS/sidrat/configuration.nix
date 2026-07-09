@@ -15,7 +15,6 @@
     neovim
     wget
     coreutils
-    busybox
     duf
     dust
     man-pages
