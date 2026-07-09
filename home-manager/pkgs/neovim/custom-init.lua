@@ -371,7 +371,8 @@ end, { desc = "Open lazygit" })
 
 -- yazi integration
 -- local yazi = require("yazi")
-vim.keymap.set({ "n" }, "<leader>yy", "<cmd>Yazi<cr>", { desc = "Open yazi" })
+vim.keymap.set({ "n" }, "<leader>yy", "<cmd>Yazi<cr>", { desc = "Open yazi at current file" })
+vim.keymap.set({ "n" }, "<leader>yY", "<cmd>Yazi<cr>", { desc = "Open yazi at cwd" })
 vim.g.loaded_netrwPlugin = 1 -- don't load native netrw
 autocmd("UIEnter", {
   callback = function()
