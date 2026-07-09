@@ -32,6 +32,6 @@ _: {
     "lla" = "eza --all --long";
 
     # new
-    "tree" = "eza --tree --git-ignore";
+    "etree" = "eza --tree --git-ignore";
   };
 }

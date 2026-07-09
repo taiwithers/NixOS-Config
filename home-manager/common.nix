@@ -102,6 +102,7 @@
         trash-cli
         whichl
         htop
+        tree
 
         # fonts
         cm_unicode
