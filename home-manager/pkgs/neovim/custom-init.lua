@@ -826,8 +826,6 @@ conform.setup({
         "py312",
         "--target-version",
         "py313",
-        "--target-version",
-        "py314",
       },
     },
     isort = { append_args = { "--profile", "black" } },
