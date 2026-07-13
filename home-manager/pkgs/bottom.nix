@@ -34,7 +34,6 @@
       # is also set here.
 
       [flags]
-      hide_avg_cpu = false # Whether to hide the average cpu entry.
       dot_marker = false # Whether to use dot markers rather than braille.
       rate = "1s" # The update rate of the application.
       left_legend = false # Whether to put the CPU legend to the left.
@@ -61,18 +60,28 @@
       tree = false # Show tree mode by default in the processes widget.
       show_table_scroll_position = true # Shows an indicator in table widgets tracking where in the list you are.
       process_command = false # Show processes as their commands by default in the process widget.
-      network_use_binary_prefix = false # Displays the network widget with binary prefixes.
-      network_use_bytes = false # Displays the network widget using bytes.
-      network_use_log = false # Displays the network widget with a log scale.
       disable_advanced_kill = true # Hides advanced options to stop a process on Unix-like systems.
       enable_gpu_memory = true # Shows GPU(s) memory
-      enable_cache_memory = false # Shows cache and buffer memory
       retention = "2m" # How much data is stored at once in terms of time.
+
+
+      [cpu]
+      hide_avg_cpu = false # Whether to hide the average cpu entry.
+
+      [memory_graph]
+      cache_memory = false # Shows cache and buffer memory
+      legend_position = "bottom-left"
+      short_gpu_names = true
+
+      [network_graph]
+      use_binary_prefix = false # Displays the network widget with binary prefixes.
+      use_bytes = false # Displays the network widget using bytes.
+      use_log = false # Displays the network widget with a log scale.
 
       # These are flags around the process widget.
 
       [processes]
-      columns = ["PID", "Name", "CPU%", "Mem%"]
+      columns = ["PID", "Name", "CPU%", "Mem%", "GPU%", "Time"]
 
       # These are all the components that support custom theming.  Note that colour support will depend on terminal support.
       [colors] # Uncomment if you want to use custom colors
