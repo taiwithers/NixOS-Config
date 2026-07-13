@@ -292,8 +292,6 @@ require("which-key").add({
   { "gh", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
   { "gH", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
   { "g<C-h>", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
-  { "gq", "<nop>", hidden = true, mode = { "n", "v" } }, -- operator to format text
-  { "gw", "<nop>", hidden = true, mode = { "n", "v" } }, -- operator to format text
   { "K", "<nop>", hidden = true }, -- nvim creates this on LspAttach
 })
 vim.keymap.set("n", "<leader>H", require("which-key").show, { desc = "Open which-key" })
@@ -816,6 +814,7 @@ cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm
 
 -- formatting
 local conform = require("conform")
+vim.opt.formatexpr = "v:lua.require('conform').formatexpr()"
 conform.setup({
   formatters = {
     black = {
