@@ -244,6 +244,11 @@ vim.keymap.set({ "n" }, "<leader>gb", function()
   require("gitsigns").blame_line({ ignore_whitespace = true, full = true })
 end, { desc = "View Git blame for current line" })
 
+require("headhunter").setup({ keys = false })
+vim.keymap.set("n", "[c", "<cmd>HeadhunterPrevious<cr>", { desc = "Previous Git conflict" })
+vim.keymap.set("n", "]c", "<cmd>HeadhunterNext<cr>", { desc = "Next Git conflict" })
+vim.keymap.set("n", "<leader>gc", "<cmd>HeadhunterQuickfix<cr>", { desc = "Send Git conflicts to QF" })
+
 -- close buffers without changing window layout
 require("mini.bufremove").setup()
 vim.keymap.set({ "n" }, "<leader>dd", "<cmd>lua MiniBufremove.delete()<cr>", { desc = "Close buffer" })
