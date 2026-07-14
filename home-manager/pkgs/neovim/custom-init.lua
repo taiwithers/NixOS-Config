@@ -999,13 +999,15 @@ vim.lsp.config["ruff"] = {
         }, -- select rulesets, like "E", "F"
         ignore = {
           "ANN401", -- explicity Any
-          "W293", -- blank line contains whitespace
-          "W291", -- trailing whitespace
-          "UP045", -- typing.Optional
-          "D401", -- numpydoc "imperative mood"
           "D105", -- docstrings for dunder methods
+          "D401", -- numpydoc "imperative mood"
           "PLC0415", -- import not at top level
+          "PLR2004", -- comparing against "magic" values
           "RUF012", -- typing.ClassVar
+          "RUF059", -- unused unpacked variable, overlaps with reportUnusedVariable
+          "UP045", -- typing.Optional
+          "W291", -- trailing whitespace
+          "W293", -- blank line contains whitespace
         },
         future_annotations = true,
       },
@@ -1031,6 +1033,16 @@ vim.lsp.config["basedpyright"] = {
       disableOrganizeImports = true, -- using isort
       analysis = {
         ignore = { "*" },
+        diagnosticSeverityOverrides = {
+          reportUnusedCallResult = "none",
+          reportUndefinedVariable = "none",
+          reportAny = "none",
+          reportUnknownMemberType = "none",
+          reportUnknownParameterType = "none",
+          reportUnknownArgumentType = "none",
+          reportMissingParameterType = "none",
+          reportUntypedFunctionDecorator = "none",
+        },
         autoFormatStrings = true, -- template-string *should* do that
         inlayHints = { callArgumentNames = false, variableTypes = false },
       },
