@@ -61,7 +61,7 @@ vim.opt.shortmess = {
 opt.foldcolumn = "auto" -- when/how to draw the fold column
 opt.foldlevel = 99 -- start editing with no folds closed
 opt.foldlevelstart = 99 -- start editing with no folds closed
-opt.foldminlines = 5 -- only allow closing folds if they are X + 1 lines when open
+opt.foldminlines = 1 -- only allow closing folds if they are X + 1 lines when open
 opt.foldnestmax = 5 -- don't nest folds too deeply
 
 -- pumwindow (window that appears on mouse click)
