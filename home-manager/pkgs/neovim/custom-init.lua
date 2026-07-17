@@ -725,9 +725,9 @@ local insert_completion_mapping = cmp.mapping.preset.insert({
 })
 local cmdline_completion_mapping = cmp.mapping.preset.cmdline({
   ["<C-z>"] = cmp.config.disable,
-  ["<Tab>"] = cmp.config.disable,
   ["<S-Tab>"] = cmp.config.disable,
   -- keep the C-n and C-p mappings and C-e to close
+  ["<Tab>"] = { c = cmp.mapping.confirm({ select = true }) }, -- same as insert mode <cr>
   ["<C-y>"] = { c = cmp.mapping.confirm({ select = true }) }, -- same as insert mode <cr>
   ["<C-e>"] = { c = cmp.mapping.disable }, -- conflicts w/ emacs-style <End>
   ["<cr>"] = { c = cmp.mapping.confirm({ select = false }) }, -- NOT same as insert mode

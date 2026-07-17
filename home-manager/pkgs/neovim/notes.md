@@ -21,7 +21,6 @@
 - [vimscript plugin for swapping line/charwise pastes](https://github.com/inkarkat/vim-UnconditionalPaste) - could potentially do some hacking to merge this with neoclip
 
 - use telescope more
-- fix cmp mappings in cmdline/search
 - change <esc> in insert mode w/ cmp open to just close the cmp menu
 - in addition to yanking file name from yazi, figure out how to do that with telescope
 - frecency sorting for telescope files
