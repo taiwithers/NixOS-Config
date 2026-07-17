@@ -38,6 +38,7 @@ in
       nodejs # same as gcc
       jinja-lsp
       gh-actions-language-server
+      rust-analyzer
 
       # formatters
       nixfmt
@@ -136,6 +137,7 @@ in
           python
           query
           regex
+          rust
           scss # for astro
           ssh_config
           toml
