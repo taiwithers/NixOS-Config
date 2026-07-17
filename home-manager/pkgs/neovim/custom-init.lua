@@ -1281,6 +1281,24 @@ vim.keymap.set("n", "grtd", function()
 end, { desc = "Send diagnostics to Telescope" })
 vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set({ "n", "i" }, "grD", "<cmd>Telescope lsp_definitions theme=cursor<cr>", { desc = "Jump to definition" })
+local function diagnostic_jump(count_multiplier)
+  vim.diagnostic.jump({
+    wrap = true,
+    count = count_multiplier * vim.v.count1,
+    on_jump = function(diagnostic, bufnr)
+      if diagnostic == nil then
+        return
+      end
+      vim.diagnostic.open_float({ bufnr = bufnr, scope = "line" })
+    end,
+  })
+end
+vim.keymap.set("n", "[d", function()
+  diagnostic_jump(-1)
+end, { desc = "Previous diagnostic" })
+vim.keymap.set("n", "]d", function()
+  diagnostic_jump(1)
+end, { desc = "Next diagnostic" })
 
 -- Descriptions for defaults
 vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { desc = "Send implementations to QF" })
