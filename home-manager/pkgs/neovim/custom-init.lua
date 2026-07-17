@@ -225,6 +225,34 @@ local mini_icons = require("mini.icons")
 mini_icons.setup()
 mini_icons.mock_nvim_web_devicons() -- required until lualine supports mini.icons
 
+-- close buffers without changing window layout
+require("mini.bufremove").setup()
+vim.keymap.set({ "n" }, "<leader>dd", "<cmd>lua MiniBufremove.delete()<cr>", { desc = "Close buffer" })
+
+-- jumps and yank history with mini.bracketed
+local mini_bracketed = require("mini.bracketed").setup({
+  comment = { suffix = "" }, -- linewise comment
+  diagnostic = { suffix = "" }, -- already exists
+  file = { suffix = "" }, -- file on disk
+  indent = { suffix = "" }, -- done by mini.indentscope
+  location = { suffix = "" }, -- already exists
+  oldfile = { suffix = "" },
+  quickfix = { suffix = "" }, -- already exists
+  treesitter = { suffix = "" },
+  undo = { suffix = "" },
+  yank = { suffix = "" }, -- not actually a jump, but replaces your last paste with the previous entry in paste history
+  buffer = { suffix = "b" }, -- replace <leader><tab>
+  conflict = { suffix = "gc" }, -- git conflict
+  jump = { suffix = "j" }, -- current buffer jumplist
+  window = { suffix = "w" },
+})
+vim.keymap.set("n", "<leader>p[", function()
+  MiniBracketed.yank("backward")
+end, { desc = "Swap last [p]ut with older yank" })
+vim.keymap.set("n", "<leader>p]", function()
+  MiniBracketed.yank("forward")
+end, { desc = "Swap last [p]ut with newer yank" })
+
 -- statuscolumn git indicators
 local gitsigns_symbols = {
   add = { text = "+" },
@@ -244,14 +272,9 @@ vim.keymap.set({ "n" }, "<leader>gb", function()
   require("gitsigns").blame_line({ ignore_whitespace = true, full = true })
 end, { desc = "View Git blame for current line" })
 
+-- git conflicts to quickfix
 require("headhunter").setup({ keys = false })
-vim.keymap.set("n", "[c", "<cmd>HeadhunterPrevious<cr>", { desc = "Previous Git conflict" })
-vim.keymap.set("n", "]c", "<cmd>HeadhunterNext<cr>", { desc = "Next Git conflict" })
 vim.keymap.set("n", "<leader>gc", "<cmd>HeadhunterQuickfix<cr>", { desc = "Send Git conflicts to QF" })
-
--- close buffers without changing window layout
-require("mini.bufremove").setup()
-vim.keymap.set({ "n" }, "<leader>dd", "<cmd>lua MiniBufremove.delete()<cr>", { desc = "Close buffer" })
 
 -- flash - fFtT motions and labelled search results
 -- repeat fFtT motions with fFtT (as well as , ;)
@@ -380,7 +403,7 @@ require("neoclip").setup({
     },
   },
 })
-vim.keymap.set("n", "<leader>p", function()
+vim.keymap.set("n", "<leader>P", function()
   telescope.extensions.neoclip.default(telescope_cursor({ layout_config = { height = 15 } }))
 end, { desc = "Yank history" })
 
