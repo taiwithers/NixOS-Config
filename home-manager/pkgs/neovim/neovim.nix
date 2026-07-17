@@ -67,7 +67,6 @@ in
     plugins = with pkgs.vimPlugins; [
       lualine-nvim # status bar
       mini-nvim # mini (autopairs, delete buffer without changing layout)
-      nvim-surround # actions on surrounding brackets
       noice-nvim # pretty UI
       which-key-nvim # which-key
       nvim-notify # apply noice ui to notifications

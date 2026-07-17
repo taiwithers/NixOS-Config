@@ -608,7 +608,27 @@ require("quicker").setup({
 --                    Code/Text Editing Plugins                     --
 ----------------------------------------------------------------------
 
-require("nvim-surround").setup() -- tpope-style surround
+require("mini.surround").setup({
+  mappings = {
+    add = "ys",
+    delete = "ds",
+    find = "",
+    find_left = "",
+    highlight = "",
+    replace = "cs",
+    suffix_last = "",
+    suffix_next = "",
+  },
+  search_method = "cover_or_next",
+})
+-- Remap adding surrounding to Visual mode selection
+vim.keymap.del("x", "ys")
+vim.keymap.set(
+  "x",
+  "S",
+  [[:<C-u>lua MiniSurround.add('visual')<CR>]],
+  { silent = true, desc = "Add surrounding pair around visual selection" }
+)
 
 -- comment with ctrl /
 require("Comment.ft").set("mdx", { "{/*%s*/}", "{/**%s**/}" })
