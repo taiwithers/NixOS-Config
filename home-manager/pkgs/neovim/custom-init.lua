@@ -450,6 +450,19 @@ require("mini.indentscope").setup({
 vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#555555" })
 vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#CCCCCC" })
 
+-- highlight git conflict markers
+local mini_hipatterns = require("mini.hipatterns")
+local function make_conflict_highlighter(text, hex)
+  return { pattern = "^" .. text .. "$", group = mini_hipatterns.compute_hex_color_group(hex, "bg") }
+end
+mini_hipatterns.setup({
+  highlighters = {
+    git_conflict_start = make_conflict_highlighter("<<<<<<.*", "#f38ba8"),
+    git_conflict_middle = make_conflict_highlighter("======*", "#555555"),
+    git_conflict_end = make_conflict_highlighter(">>>>>>.*", "#f9e2af"),
+  },
+})
+
 -- colourize hex, css, rgb colours
 -- mini.hipatterns doesn't quite match this functionality
 require("colorizer").setup({
