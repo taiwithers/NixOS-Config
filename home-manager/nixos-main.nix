@@ -143,6 +143,19 @@
 
   ];
 
+  # could set this up to read filenames out of some custom config item so they can be populated next to the relevant locations
+  home.activation.removeBackups = config.lib.dag.entryBefore [ "checkLinkTargets" ] /* bash */ ''
+    remove() {
+      backup="$1.backup"
+      if [[ -f "$backup" ]]; then
+        rm "$backup"
+        echo "$backup removed"
+      fi
+    }
+    run remove ~/.config/gtkrc-2.0
+    run remove  ~/.config/mimeapps.list
+  '';
+
   fonts.fontconfig.enable = true;
 
   xdg.configFile."onedrive-gui/gui_settings".text = ''

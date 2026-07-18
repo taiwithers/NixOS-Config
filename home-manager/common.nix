@@ -137,7 +137,7 @@
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
         "rebuild" =
-          "trash ~/.config/gtkrc-2.0.backup; home-manager switch --impure --show-trace --flake ${nixConfigDirectory}#${config-name} -b backup && diff-hm-generations ";
+          "home-manager switch --flake ${nixConfigDirectory}#${config-name} -b backup && diff-hm-generations ";
         # "nomrebuild" = "rebuild |& nom";
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory} && nix fmt)";
