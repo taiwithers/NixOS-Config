@@ -93,7 +93,7 @@
   home.sessionVariables."TERMINAL" = "kitty";
 
   home.activation.kitty-keybinds = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    ${pkgs.bat}/bin/bat ~/.config/kitty/kitty.conf | grep "map" | sed "s/^map //" | ${pkgs.gawk}/bin/awk '{$1 = sprintf("%-20s",$1)} 1' > ~/.local/state/kitty-keybinds.txt
+    run ${pkgs.bat}/bin/bat ~/.config/kitty/kitty.conf | grep "map" | sed "s/^map //" | ${pkgs.gawk}/bin/awk '{$1 = sprintf("%-20s",$1)} 1' > ~/.local/state/kitty-keybinds.txt
   '';
 
   programs.bash.bashrcExtra = ''

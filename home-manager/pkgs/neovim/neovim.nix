@@ -171,8 +171,8 @@ in
         ln -s "$source" "$destination"
       }
 
-      link "custom-init" 0
-      link "markdown-plus-telescope" 1
+      run link "custom-init" 0
+      run link "markdown-plus-telescope" 1
     '';
 
   # vim.g.prettier_plugin_astro = "${pkgs.prettier-plugin-astro}/dist/index.js"
