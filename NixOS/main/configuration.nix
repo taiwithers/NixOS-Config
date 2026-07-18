@@ -45,6 +45,14 @@
     Defaults timestamp_timeout=0
   '';
 
+  # drivers for new xbox controllers over bluetooth
+  # note: you also need to update the firmware on the controller via the
+  # windows-only xbox accessories app
+  # if the computer says the controller is connected (but doesn't see any input)
+  # while the controller is still searching for a connection, this is the problem
+  # wired should work fine regardless
+  hardware.xpadneo.enable = true;
+
   # keep system clean :)
   nix.optimise = {
     automatic = true;
@@ -129,8 +137,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-    ];
+    packages = [ ];
   };
 
   nix.settings.trusted-users = [ "@wheel" ];
