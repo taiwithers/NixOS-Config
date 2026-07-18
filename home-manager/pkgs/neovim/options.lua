@@ -89,7 +89,8 @@ opt.showbreak = "    " -- string to print at start of wrapped lines
 opt.wrap = true
 
 -- other
-opt.clipboard = "unnamedplus" -- use system clipboard if available ?
+-- opt.clipboard = "unnamedplus" -- use system clipboard if available ?
+-- Seems to be making `p` really really slow on wsl after a windows update
 opt.confirm = true -- raise dialog instead of failing if say :q fails
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkon400"
 opt.history = 100 -- how many : commands to store
@@ -99,6 +100,7 @@ opt.matchpairs = "(:),{:},[:]" -- characters that form pairs
 opt.mouse = "a" -- mouse support in all modes
 opt.mousemodel = "popup" -- action for mouse presses
 opt.nrformats = "unsigned" -- number formats to recognize for increment/decrement
+
 opt.path = vim.o.path .. "**" -- Search down into subfolders
 opt.previewwindow = true -- "identifies the preview window"
 opt.showmatch = true -- Highlight matching parentheses, etc
