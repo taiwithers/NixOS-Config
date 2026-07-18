@@ -218,6 +218,12 @@ end, { desc = "Jump to previous snippet region" })
 vim.keymap.set("n", "]s", "]S", { desc = "Next misspelling" })
 vim.keymap.set("n", "[s", "[S", { desc = "Previous misspelling" })
 
+-- add descriptions
+vim.keymap.set("n", "]q", "<cmd>cnext<cr>", { desc = "Next QF entry" })
+vim.keymap.set("n", "[q", "<cmd>cnext<cr>", { desc = "Previous QF entry" })
+vim.keymap.set("n", "]l", "<cmd>cnext<cr>", { desc = "Next loclist entry" })
+vim.keymap.set("n", "[l", "<cmd>cnext<cr>", { desc = "Previous loclist entry" })
+
 ----------------------------------------------------------------------
 --                         General Plugins                          --
 ----------------------------------------------------------------------
