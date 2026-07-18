@@ -153,6 +153,7 @@ rec {
       @import 'window_decorations.css';
     '';
 
+    gtk4.theme = config.gtk.theme;
     gtk4.extraConfig = gtk3.extraConfig;
     gtk4.extraCss = ''
       @import url("file://${gtk-theme.package}/share/themes/${gtk-theme.name}/gtk-4.0/gtk.css");
