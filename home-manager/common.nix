@@ -128,11 +128,12 @@
       with config.common;
       {
         "rm" = "rm --interactive=always --verbose";
+        "mv" = "mv --interactive";
+        "lsblk" = "lsblk | bat --language=conf --plain";
         "untar" = "tar -xvf";
         "printenv" = "printenv | sort | bat --plain --language sh";
         "wget" = "wget --hsts-file=${stateHome}/wget_hsts";
         "o" = "xdg-open";
-
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
         "rebuild" =
