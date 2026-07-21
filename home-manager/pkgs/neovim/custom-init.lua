@@ -1165,13 +1165,10 @@ vim.lsp.config["gh-actions-ls"] = {
 vim.lsp.config["rust-analyzer"] = {
   cmd = { "rust-analyzer" },
   filetypes = { "rust" },
-  -- root_markers = { "cargo.toml", ".git" },
   root_dir = function(bufnr, on_dir)
     local fname = vim.api.nvim_buf_get_name(bufnr)
-
     local cargo_crate_dir = vim.fs.root(fname, { "Cargo.toml" })
     local cargo_workspace_root
-
     if cargo_crate_dir == nil then
       on_dir(
         vim.fs.root(fname, { "rust-project.json" })
@@ -1189,7 +1186,6 @@ vim.lsp.config["rust-analyzer"] = {
       "--manifest-path",
       cargo_crate_dir .. "/Cargo.toml",
     }
-
     vim.system(cmd, { text = true }, function(output)
       if output.code == 0 then
         if output.stdout then
@@ -1198,26 +1194,18 @@ vim.lsp.config["rust-analyzer"] = {
             cargo_workspace_root = vim.fs.normalize(result["workspace_root"])
           end
         end
-
         on_dir(cargo_workspace_root or cargo_crate_dir)
       else
         vim.schedule(function()
-          vim.notify(("[rust_analyzer] cmd failed with code %d: %s\n%s"):format(output.code, cmd, output.stderr))
+          vim.notify(("[rust-analyzer] cmd failed with code %d: %s\n%s"):format(output.code, cmd, output.stderr))
         end)
       end
     end)
   end,
-  capabilities = {
-    experimental = {
-      serverStatusNotification = true,
-      commands = {
-        commands = { "rust-analyzer.showReferences", "rust-analyzer.runSingle", "rust-analyzer.debugSingle" },
-      },
-    },
-  },
   settings = {
     ["rust-analyzer"] = {
       diagnostics = { enable = true },
+      check = { command = "clippy" },
       lens = {
         debug = { enable = true },
         enable = true,
@@ -1238,7 +1226,6 @@ vim.lsp.config["rust-analyzer"] = {
     if config.settings and config.settings["rust-analyzer"] then
       init_params.initializationOptions = config.settings["rust-analyzer"]
     end
-    ---@param command table{ title: string, command: string, arguments: any[] }
     vim.lsp.commands["rust-analyzer.runSingle"] = function(command)
       local r = command.arguments[1]
       local cmd = { "cargo", unpack(r.args.cargoArgs) }
@@ -1247,7 +1234,6 @@ vim.lsp.config["rust-analyzer"] = {
       end
 
       local proc = vim.system(cmd, { cwd = r.args.cwd, env = r.args.environment })
-
       local result = proc:wait()
 
       if result.code == 0 then
@@ -1256,24 +1242,6 @@ vim.lsp.config["rust-analyzer"] = {
         vim.notify(result.stderr, vim.log.levels.ERROR)
       end
     end
-  end,
-  on_attach = function(_, bufnr)
-    vim.api.nvim_buf_create_user_command(bufnr, "LspCargoReload", function()
-      local function reload_workspace(workspace_bufnr)
-        local clients = vim.lsp.get_clients({ bufnr = workspace_bufnr, name = "rust_analyzer" })
-        for _, client in ipairs(clients) do
-          vim.notify("Reloading Cargo Workspace")
-          ---@diagnostic disable-next-line:param-type-mismatch
-          client:request("rust-analyzer/reloadWorkspace", nil, function(err)
-            if err then
-              error(tostring(err))
-            end
-            vim.notify("Cargo workspace reloaded")
-          end, 0)
-        end
-      end
-      reload_workspace(bufnr)
-    end, { desc = "Reload current cargo workspace" })
   end,
 }
 
