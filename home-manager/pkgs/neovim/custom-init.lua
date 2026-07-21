@@ -942,11 +942,21 @@ conform.setup({
     css = { "prettierd", "prettier", stop_after_first = true },
     toml = { "taplo" },
   },
-  format_on_save = {
-    lsp_format = "fallback",
-    timeout_ms = 1500,
-  },
+  format_on_save = function(bufnr)
+    -- Disable with a buffer-local variable
+    if vim.b[bufnr].disable_autoformat then
+      vim.notify("Saving without formatting", vim.log.levels.INFO)
+      return
+    end
+    return { timeout_ms = 1500, lsp_format = "fallback" }
+  end,
 })
+vim.api.nvim_create_user_command("ConformBufferDisable", function()
+  vim.b.disable_autoformat = true
+end, { desc = "Disable autoformat for buffer" })
+vim.api.nvim_create_user_command("ConformBufferEnable", function()
+  vim.b.disable_autoformat = false
+end, { desc = "Re-enable autoformat for buffer" })
 
 ----------------------------------------------------------------------
 --                        LSP and Treesitter                        --
