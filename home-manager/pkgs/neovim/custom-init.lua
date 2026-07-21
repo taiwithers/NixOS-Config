@@ -1079,13 +1079,12 @@ vim.lsp.config["ruff"] = {
           "FIX",
         }, -- select rulesets, like "E", "F"
         ignore = {
-          "ANN401", -- explicity Any
+          "ANN401", -- explicit Any
           "D105", -- docstrings for dunder methods
           "D401", -- numpydoc "imperative mood"
           "PLC0415", -- import not at top level
           "PLR2004", -- comparing against "magic" values
           "RUF012", -- typing.ClassVar
-          "RUF059", -- unused unpacked variable, overlaps with reportUnusedVariable
           "UP045", -- typing.Optional
           "W291", -- trailing whitespace
           "W293", -- blank line contains whitespace
@@ -1115,9 +1114,14 @@ vim.lsp.config["basedpyright"] = {
       analysis = {
         ignore = { "*" },
         diagnosticSeverityOverrides = {
+          reportMissingTypeStubs = "none",
           reportUnusedCallResult = "none",
+          reportUnusedImport = "none",
+          reportUnusedVariable = "none",
+          reportUnusedParameter = "none",
           reportUndefinedVariable = "none",
           reportAny = "none",
+          reportExplicitAny = "none",
           reportUnknownMemberType = "none",
           reportUnknownParameterType = "none",
           reportUnknownArgumentType = "none",
