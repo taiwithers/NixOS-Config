@@ -159,7 +159,7 @@ vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to ne
 vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to previous buffer" })
 
 -- duplicate line, comment out original
-vim.keymap.set("n", "gyy", "yy<cmd>normal gcc<CR>p", { noremap = true, desc = "Duplicate line and comment original" })
+vim.keymap.set("n", "gcy", "yy<cmd>normal gcc<CR>p", { noremap = true, desc = "Duplicate line and comment original" })
 local function duplicate_and_comment()
   -- Exit visual mode
   local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
@@ -223,6 +223,10 @@ vim.keymap.set("n", "]q", "<cmd>cnext<cr>", { desc = "Next QF entry" })
 vim.keymap.set("n", "[q", "<cmd>cnext<cr>", { desc = "Previous QF entry" })
 vim.keymap.set("n", "]l", "<cmd>cnext<cr>", { desc = "Next loclist entry" })
 vim.keymap.set("n", "[l", "<cmd>cnext<cr>", { desc = "Previous loclist entry" })
+
+-- modify fold keybinds
+vim.keymap.set("n", "zA", "zO", { desc = "Open all folds under cursor" }) -- default `zO`
+vim.keymap.set("n", "z0", "zR", { desc = "Open all folds" }) -- default `zR`
 
 ----------------------------------------------------------------------
 --                         General Plugins                          --
@@ -303,10 +307,10 @@ require("which-key").add({
   { "<leader>f", group = "Find" },
   { "<leader>g", group = "Git" },
   { "<leader>w", group = "Special [W]indows" },
-  { "zA", "<nop>", hidden = true },
   { "zb", "<nop>", hidden = true },
   { "zc", "<nop>", hidden = true },
   { "zC", "<nop>", hidden = true },
+  { "z<cr>", "<nop>", hidden = true },
   { "zd", "<nop>", hidden = true },
   { "zD", "<nop>", hidden = true },
   { "ze", "<nop>", hidden = true },
@@ -314,12 +318,16 @@ require("which-key").add({
   { "zf", "<nop>", hidden = true },
   { "zH", "<nop>", hidden = true },
   { "zL", "<nop>", hidden = true },
+  { "zm", "<nop>", hidden = true },
+  { "zM", "<nop>", hidden = true },
   { "zo", "<nop>", hidden = true },
+  { "zO", "zO", hidden = true }, -- rebound to zA
+  { "zr", "<nop>", hidden = true },
+  { "zR", "zR", hidden = true }, -- rebound to z0
   { "zs", "<nop>", hidden = true },
   { "zt", "<nop>", hidden = true },
   { "zv", "<nop>", hidden = true },
   { "zx", "<nop>", hidden = true },
-  { "z<cr>", "<nop>", hidden = true },
   { "<Plug>(fzf-normal)", "<nop>", hidden = true }, -- clogs whichkey
   { "[/", "<nop>", hidden = true }, -- jumping to C comments
   { "]/", "<nop>", hidden = true }, -- jumping to C comments
