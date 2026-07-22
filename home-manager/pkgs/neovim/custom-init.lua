@@ -929,7 +929,7 @@ conform.setup({
     yaml = { "yamlfmt" },
     nix = { "nixfmt" },
     python = { "isort", "black" },
-    markdown = { "prettier" },
+    markdown = { "prettier", "injected" },
     -- mdx = { "prettierd", "prettier", stop_after_first = true },
     astro = { "prettier" },
     jinja = { "prettier" },
