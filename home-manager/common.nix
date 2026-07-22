@@ -137,8 +137,8 @@
         "confdir" = "cd ${nixConfigDirectory}";
         "nvdir" = "cd ${nixConfigDirectory}/home-manager/pkgs/neovim";
         "rebuild" =
-          "home-manager switch --flake ${nixConfigDirectory}#${config-name} -b backup && diff-hm-generations ";
-        # "nomrebuild" = "rebuild |& nom";
+          "home-manager switch --flake ${nixConfigDirectory}#${config-name} -b backup --impure && diff-hm-generations ";
+        # note we need `--impure` in order to symlink wsl-clipboard.lua
         "pullconfig" = "(cd ${nixConfigDirectory} && git pull)";
         "formatconfig" = "(cd ${nixConfigDirectory} && nix fmt)";
         "diff-hm-generations" = "diff-nix-generations home";
