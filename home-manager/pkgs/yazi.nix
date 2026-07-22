@@ -87,6 +87,13 @@
           run = "plugin smartpaste";
           desc = "Paste into current or hovered directory";
         }
+        {
+          # use the same keybind and options as fzf <c-t>
+          # would be nice to actuall grab the options from the fzf config
+          on = "<C-t>";
+          run = "search --via=fd --args='--type=file --type=symlink --hidden --exclude=.git'";
+          desc = "Search filenames with `fd`";
+        }
       ];
     };
     plugins = {
