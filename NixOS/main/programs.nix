@@ -10,7 +10,6 @@
     git
     bluez # bluetooth
     coreutils
-    busybox
 
     duf
     dust
