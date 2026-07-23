@@ -93,8 +93,8 @@
   hardware.bluetooth.enable = true;
 
   # limit cpu usage during build
-  nix.settings.cores = 4; # cores per job
-  nix.settings.max-jobs = 4;
+  # nix.settings.cores = 4; # cores per job
+  # nix.settings.max-jobs = 4;
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
