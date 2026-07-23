@@ -6,15 +6,8 @@ vim.g.maplocalleader = " "
 
 require("options")
 require("nix-paths")
+u = require("utils")
 
-local function is_git_repo()
-  vim.fn.system("git rev-parse --is-inside-work-tree")
-  return vim.v.shell_error == 0
-end
-local function get_git_root()
-  local dot_git_path = vim.fn.finddir(".git", ".;")
-  return vim.fn.fnamemodify(dot_git_path, ":h")
-end
 ----------------------------------------------------------------------
 --                            Filetypes                             --
 ----------------------------------------------------------------------
@@ -78,21 +71,7 @@ autocmd("BufEnter", {
       return
     end
 
-    local spellfile_name = ".nvim-spellfile.utf-8.add"
-
-    local cwd_spellfile = vim.fs.joinpath(vim.uv.cwd(), spellfile_name)
-    if vim.uv.fs_stat(cwd_spellfile) then
-      vim.opt_local.spellfile = vim.fs.abspath(cwd_spellfile)
-    elseif is_git_repo() then
-      local git_spellfile = vim.fs.joinpath(get_git_root(), spellfile_name)
-      local git_parent_spellfile = vim.fs.joinpath(vim.fs.dirname(get_git_root()), spellfile_name)
-      if vim.uv.fs_stat(git_parent_spellfile) then
-        vim.opt_local.spellfile = git_parent_spellfile
-      elseif vim.uv.fs_stat(git_spellfile) then
-        vim.opt_local.spellfile = git_spellfile
-      end
-    end
-
+    vim.opt_local.spellfile = u.get_spellfile()
     vim.opt_local.spell = true
     -- I  don't care about these types of issues
     vim.cmd("highlight clear  SpellRare")
@@ -160,36 +139,19 @@ vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to 
 
 -- duplicate line, comment out original
 vim.keymap.set("n", "gcy", "yy<cmd>normal gcc<CR>p", { noremap = true, desc = "Duplicate line and comment original" })
-local function duplicate_and_comment()
-  -- Exit visual mode
-  local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
-  vim.api.nvim_feedkeys(esc, "x", false)
-
-  -- Get selection range
-  local start_line = vim.fn.line("'<")
-  local end_line = vim.fn.line("'>")
-
-  -- Yank and paste below
-  vim.cmd(start_line .. "," .. end_line .. "yank")
-  vim.cmd((end_line + 1) .. "put")
-
-  vim.api.nvim_feedkeys("gv", "n", false) -- Reselect pasted block
-  vim.api.nvim_feedkeys("gc", "v", false) -- Comment the original selection
-end
-vim.keymap.set("v", "gy", duplicate_and_comment, { noremap = true, desc = "Duplicate selection and comment original" })
+vim.keymap.set(
+  "v",
+  "gy",
+  u.duplicate_and_comment_visual_lines,
+  { noremap = true, desc = "Duplicate selection and comment original" }
+)
 
 -- emacs binds on command line
 vim.keymap.set("c", "<C-a>", "<Home>")
 vim.keymap.set("c", "<C-e>", "<End>")
 
 -- show/hide special windows
-vim.keymap.set("n", "<leader>wq", function()
-  -- stolen from lazyvim (config/keymaps.lua)
-  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
-end, { desc = "Toggle QF" })
+vim.keymap.set("n", "<leader>wq", u.toggle_qf_window, { desc = "Toggle QF" })
 vim.keymap.set("n", "<leader>wh", "<cmd>:helpclose<cr>", { desc = "`:helpclose`" })
 
 -- make direction of n/N absolute (not relative to whether /? was used)
@@ -363,15 +325,15 @@ local function telescope_cursor(opts)
 end
 function vim.find_files_from_project_git_root()
   local opts = {}
-  if is_git_repo() then
-    opts = { cwd = get_git_root() }
+  if u.is_git_repo() then
+    opts = { cwd = u.get_git_root() }
   end
   telescope_builtins.find_files(opts)
 end
 local function live_grep_from_project_git_root()
   local opts = {}
-  if is_git_repo() then
-    opts = { cwd = get_git_root() }
+  if u.is_git_repo() then
+    opts = { cwd = u.get_git_root() }
   end
   telescope_builtins.live_grep(opts)
 end
@@ -547,17 +509,6 @@ require("modes").setup({
   },
 })
 
--- lualine does the status bar at the bottom and also the tab bar at the top
-local function visually_selected_line_count()
-  local starts = vim.fn.line("v")
-  local ends = vim.fn.line(".")
-  local count = starts <= ends and ends - starts + 1 or starts - ends + 1
-  return count .. "V"
-end
-local function in_visual_mode()
-  return vim.fn.mode():find("[Vv]") ~= nil
-end
-
 local function make_lualine_mode(colour_table, inactive)
   local gui = inactive and "nocombine" or "bold" -- slightly odd ternary assignment
   -- making "inactive" not bold gives differentiation in normal mode tabline buffers
@@ -595,7 +546,7 @@ require("lualine").setup({
     lualine_c = {},
     lualine_x = {},
     lualine_y = { { "filetype", icon_only = true }, "lsp_status" },
-    lualine_z = { "location", { visually_selected_line_count, cond = in_visual_mode } },
+    lualine_z = { "location", { u.visually_selected_line_count, cond = u.in_visual_mode } },
   },
   tabline = {
     lualine_a = { { "buffers", use_mode_colors = true } },
@@ -775,43 +726,7 @@ local custom_snippets = {
   },
 }
 
--- https://www.reddit.com/r/neovim/comments/1cxfhom/builtin_snippets_so_good_i_removed_luasnip/
-local function get_buf_snips()
-  local ft = vim.bo.filetype
-  local snips = vim.list_slice(global_snippets)
-  for _, snippet in ipairs(custom_snippets) do
-    if ft and vim.list_contains(snippet.ft, ft) then
-      vim.list_extend(snips, { snippet })
-    end
-  end
-  return snips
-end
-local function register_cmp_snippets()
-  local cmp_source = {}
-  local cache = {}
-  function cmp_source.complete(_, _, callback)
-    local bufnr = vim.api.nvim_get_current_buf()
-    if not cache[bufnr] then
-      local completion_items = vim.tbl_map(function(s)
-        local item = {
-          word = s.trigger,
-          label = s.trigger,
-          kind = vim.lsp.protocol.CompletionItemKind.Snippet,
-          insertText = s.body,
-          insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
-        }
-        return item
-      end, get_buf_snips())
-
-      cache[bufnr] = completion_items
-    end
-
-    callback(cache[bufnr])
-  end
-
-  require("cmp").register_source("custom_snippets", cmp_source)
-end
-register_cmp_snippets()
+cmp.register_source("custom_snippets", u.custom_cmp_snippets(global_snippets, custom_snippets))
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -1278,23 +1193,11 @@ vim.keymap.set("n", "grtd", function()
 end, { desc = "Send diagnostics to Telescope" })
 vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set({ "n", "i" }, "grD", "<cmd>Telescope lsp_definitions theme=cursor<cr>", { desc = "Jump to definition" })
-local function diagnostic_jump(count_multiplier)
-  vim.diagnostic.jump({
-    wrap = true,
-    count = count_multiplier * vim.v.count1,
-    on_jump = function(diagnostic, bufnr)
-      if diagnostic == nil then
-        return
-      end
-      vim.diagnostic.open_float({ bufnr = bufnr, scope = "line" })
-    end,
-  })
-end
 vim.keymap.set("n", "[d", function()
-  diagnostic_jump(-1)
+  u.diagnostic_jump(-1)
 end, { desc = "Previous diagnostic" })
 vim.keymap.set("n", "]d", function()
-  diagnostic_jump(1)
+  u.diagnostic_jump(1)
 end, { desc = "Next diagnostic" })
 
 -- Descriptions for defaults

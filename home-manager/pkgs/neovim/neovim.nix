@@ -173,6 +173,7 @@ in
 
       run link "custom-init" 0
       run link "markdown-plus-telescope" 1
+      run link "utils" 1
     '';
 
   # vim.g.prettier_plugin_astro = "${pkgs.prettier-plugin-astro}/dist/index.js"
