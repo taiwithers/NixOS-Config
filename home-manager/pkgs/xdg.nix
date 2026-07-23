@@ -17,7 +17,7 @@ let
       ];
 
       texteditors = [
-        sublime4
+        # sublime4
         # codium
       ];
 
