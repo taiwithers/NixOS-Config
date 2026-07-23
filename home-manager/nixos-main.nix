@@ -143,6 +143,12 @@
 
   ];
 
+  xdg.desktopEntries."MarioKartWii" = {
+    name = "Mario Kart Wii";
+    exec = "nvidia-offload dolphin-emu-nogui --exec \"Downloads/Mario Kart Wii.nkit.iso\"";
+    prefersNonDefaultGPU = true;
+  };
+
   # could set this up to read filenames out of some custom config item so they can be populated next to the relevant locations
   home.activation.removeBackups = config.lib.dag.entryBefore [ "checkLinkTargets" ] /* bash */ ''
     remove() {
