@@ -32,12 +32,13 @@ getChannelSearchResults() {
   local results
   results="$(nix-search --channel="$1" --json "${@:2}")"
 
-  # remove newlines and add commas
-  results=$(echo "$results" | sd "\n\{" ",{")
+  # add commas
+  results=$(echo "$results" | sd "$" ",")
 
   # wrap with square brackets
   # shellcheck disable=SC2116
-  results="[$(echo "$results")]" # ignore shellcheck SC2116
+  results="[$(echo "$results")]"
+  results=$(echo "$results" | sd ",]" "]") # remove trailing comma
 
   # extract information with jq
   results=$(echo "$results" | jq "[.[] | select(.package_platforms | contains([\"$system\"])) | {
@@ -60,16 +61,15 @@ echo "$(getChannelSearchResults "$stable" "$@")" >$stableResultsFile
 echo "$(getChannelSearchResults "$unstable" "$@")" >$unstableResultsFile
 
 # merge results from search
-merged=$(jq '. + (input | .) | group_by(.name) | 
-				foreach .[] as $i (0; 
-					if ($i | length == 2) then 
-						($i.[0]*$i.[1]) 
-					else 
-						$i.[0] 
+merged=$(jq '. + (input | .) | group_by(.name) |
+				foreach .[] as $i (0;
+					if ($i | length == 2) then
+						($i.[0]*$i.[1])
+					else
+						$i.[0]
 					end)' $stableResultsFile $unstableResultsFile)
 
-# echo $merged | jq
-# # run through each result
+# run through each result
 (echo "$merged" | jq -c "[.]") | while read -r item; do
 
   # extract information
