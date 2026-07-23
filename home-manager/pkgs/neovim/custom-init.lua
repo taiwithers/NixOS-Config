@@ -1008,17 +1008,20 @@ vim.lsp.config("*", {
   capabilities = capabilities,
   root_markers = { "flake.nix", ".git" },
 })
+local function lsp_root_markers(lsp_specific)
+  return { lsp_specific, vim.lsp.config["*"].root_markers }
+end
 
 vim.lsp.config["astro-ls"] = {
   cmd = { "astro-ls", "--stdio" },
   filetypes = { "astro" },
-  root_markers = { "package.json", "tsconfig.json", ".git" },
+  root_markers = lsp_root_markers({ "package.json", "tsconfig.json" }),
   init_options = { typescript = { tsdk = vim.g.tsdk } },
 }
 vim.lsp.config["lua-ls"] = {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
-  root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
+  root_markers = lsp_root_markers({ ".luarc.json", ".luarc.jsonc" }),
   settings = {
     Lua = {
       runtime = { version = "LuaJIT" },
@@ -1034,12 +1037,11 @@ vim.lsp.config["bash-ls"] = {
 vim.lsp.config["nixd"] = {
   cmd = { "nixd", "--inlay-hints=true" },
   filetypes = { "nix" },
-  root_markers = { "flake.nix", ".git" },
   settings = { nixd = { nixpkgs = { expr = vim.g.nixpkgs_expr } } },
 }
 vim.lsp.config["ruff"] = {
   cmd = { "ruff", "server" },
-  root_markers = { "pyproject.toml" },
+  root_markers = lsp_root_markers({ "pyproject.toml" }),
   init_options = {
     settings = {
       lineLength = 88,
@@ -1099,7 +1101,7 @@ vim.lsp.config["ruff"] = {
 vim.lsp.config["basedpyright"] = {
   cmd = { "basedpyright-langserver", "--stdio" },
   filetypes = { "python" },
-  root_markers = { "pyproject.toml", "setup.py", "requirements.txt" },
+  root_markers = vim.lsp.config["ruff"].root_markers,
   on_init = function(client, _)
     -- disable things that ruff is doing
     -- keep completion, definition, documentHighlight, documentLink, documentSymbol, hover,  inlayHint, references, rename
@@ -1144,12 +1146,11 @@ vim.lsp.config["ts-ls"] = {
   cmd = { "typescript-language-server", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   init_options = { hostInfo = "neovim" },
-  root_markers = { "package.json", "tsconfig.json", ".git" },
+  root_markers = lsp_root_markers({ "package.json", "tsconfig.json" }),
 }
 vim.lsp.config["mdx-ls"] = {
   cmd = { "mdx-language-server", "--stdio" },
   filetypes = { "mdx" },
-  root_markers = { "package.json", ".git" },
   init_options = { typescript = { enabled = true, tsdk = vim.g.tsdk } },
 }
 vim.lsp.config["jinja-lsp"] = {
