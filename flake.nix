@@ -272,7 +272,8 @@
         nixpkgs.lib.nixosSystem {
           system = armsystem;
           modules = [
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            # for building initial sd card image only:
+            # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             flake-inputs.nixos-hardware.nixosModules.raspberry-pi-3
             ({ lib, ... }: {
               # The pinned Raspberry Pi kernel does not build the ZFS module.
