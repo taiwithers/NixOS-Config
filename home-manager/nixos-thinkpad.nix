@@ -26,7 +26,6 @@
       inherit (flake-inputs) niri;
     })
 
-    #./gaming.nix
   ]
   ++ (map
     (
@@ -53,18 +52,12 @@
       "fzf"
       "git" # also installed system-wide
       "kitty"
-      #"latex"
       "lazygit"
       "neovim/neovim"
-      #"pdftools"
-      # "python/python"
       "ripgrep"
       "rofi/rofi" # uses colours
       "starship"
-      #"sublime-text/sublime-text"
       "tldr"
-      #"vscodium/vscodium"
-      # "xdg"
       "yazi"
       "zellij"
       "zoxide"
@@ -75,50 +68,14 @@
     nix-output-monitor # sudo nixos-rebuild [usual options] |& nom
     nix-search-tv
 
-    # cli programs
-    broot
-    #cbonsai
     cloc
     dconf
     fastfetch
-    #jless # https://jless.io/user-guide
     jq
-    #lavat
-    #libqalculate # provides qalc cmd
-    #lua
-    #parallel
-    #pond
-    #rogue
-    #starfetch
-    #tokei
-    #ugrep
-    #unar
-    #wiki-tui
-    #wl-clipboard
-    #xdg-ninja
-    # xwayland-satellite-stable # niri
+    bluetui
 
-    # gui programs
-    #deskflow
-    #imv
-    #karp
-    #kdePackages.ark # archive manager
-    #kdePackages.dolphin
-    #keepassxc
-    #prismlauncher
-    #qjournalctl
-    #vlc
     discord
-    #sonic-pi
-    #anki
-
-    #kdePackages.kdialog
-    #heroic
-    #ventoy-full-qt
-
   ];
-
-  # fonts.fontconfig.enable = true;
 
   programs.bash.bashrcExtra = ''
     # add completions
