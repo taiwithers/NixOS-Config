@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
   ];
 
+
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
@@ -67,20 +68,18 @@
 
   # hardware.bluetooth.enable = true;
 
-  services.openssh = {
-    enable = true;
-    openFirewall = true;
-    settings = {
-      # PasswordAuthentication = false;
-      # KbdInteractiveAuthentication = false;
-      PermitRootLogin = "no";
-      AllowUsers = [
-        "tai"
-      ];
-      MaxAuthTries = 3;
-      PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
-    };
+services.openssh = {
+  enable = true;
+  openFirewall = true;
+  settings = {
+    # PasswordAuthentication = false;
+    # KbdInteractiveAuthentication = false;
+    PermitRootLogin = "no";
+    AllowUsers = [ "tai" ];
+    MaxAuthTries = 3;
+    PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
   };
+};
 
   # limit cpu usage during build
   nix.settings.cores = 4; # cores per job
