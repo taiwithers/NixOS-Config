@@ -8,6 +8,7 @@ let
       file
       chafa
       bat
+      fzf
     ];
     text = ''
       # Not entirely sure what this section is
@@ -86,6 +87,28 @@ let
       fi
     '';
   };
+  fzf-edit = pkgs.writeShellApplication {
+    name = "fzf-edit";
+    runtimeInputs = with pkgs; [
+      fzf
+      bat
+      ripgrep
+    ];
+    text = ''
+      # 1. Search for text in files using Ripgrep
+      # 2. Interactively restart Ripgrep with reload action
+      # 3. Open the file in $EDITOR
+      RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+      INITIAL_QUERY="''${*:-}"
+      fzf --ansi --multi --disabled --query  "$INITIAL_QUERY" \
+        --bind "start:reload:$RG_PREFIX {q} || true" \
+        --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
+        --delimiter : \
+        --preview 'bat --color=always {1} --highlight-line {2} --style=numbers' \
+        --preview-window 'noinfo,+{2}+3/3' \
+        --bind "enter:become($EDITOR {1} +{2})"
+    '';
+  };
   fzfDefaultOptions = [
     "--layout reverse"
     "--height '~60%'"
@@ -98,7 +121,11 @@ let
   ];
 in
 {
-  home.packages = [ fzf-preview ];
+  home.packages = [
+    fzf-preview
+    fzf-edit
+  ];
+  home.shellAliases.nvif = "fzf-edit";
   programs.fzf = rec {
     enable = true;
     colors = { };
