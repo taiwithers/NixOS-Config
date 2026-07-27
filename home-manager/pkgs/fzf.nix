@@ -93,6 +93,8 @@ let
     "--margin 0,3%"
     "--info inline"
     "--tabstop 4"
+    "--cycle"
+    "--preview-border sharp"
   ];
 in
 {
