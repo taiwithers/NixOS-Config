@@ -40,15 +40,6 @@
   # nix.settings.cores = 4; # cores per job
   # nix.settings.max-jobs = 4;
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  #  services.dbus.packages = [ pkgs.dconf ];
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = false;
 
   # Enable sound with pipewire.
@@ -59,12 +50,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # fingerprint reader - `fprintd-enroll`
@@ -78,8 +63,6 @@
   };
 
   # services.hardware.bolt.enable = true; # handle thunderbolt devices
-
-  # fonts.enableDefaultPackages = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
 
