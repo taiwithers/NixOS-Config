@@ -6,7 +6,7 @@ vim.g.maplocalleader = " "
 
 require("options")
 require("nix-paths")
-u = require("utils")
+local u = require("utils")
 
 ----------------------------------------------------------------------
 --                            Filetypes                             --
@@ -96,6 +96,24 @@ autocmd("BufEnter", {
   callback = function()
     if (vim.bo.filetype == "qf") and (#vim.api.nvim_list_wins() == 1) then
       vim.cmd("quit")
+    end
+  end,
+})
+
+-- set cwd from LSP root
+-- this does mess with :restart if the current root is not the same as the initial root
+-- but that might actually be an issue with :restart and relative file paths...
+-- https://github.com/neovim/neovim/issues/39239
+autocmd({ "BufWinEnter", "LspAttach" }, {
+  pattern = "*",
+  callback = function()
+    local lsp_clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })[1]
+    if lsp_clients == nil then
+      return
+    end
+    vim.cmd.lcd(lsp_clients["root_dir"])
+    if vim.g.initial_directory == nil then
+      vim.g.initial_directory = lsp_clients["root_dir"]
     end
   end,
 })
@@ -397,9 +415,8 @@ vim.keymap.set({ "n" }, "<leader>gg", function()
 end, { desc = "Open lazygit" })
 
 -- yazi integration
--- local yazi = require("yazi")
 vim.keymap.set({ "n" }, "<leader>yy", "<cmd>Yazi<cr>", { desc = "Open yazi at current file" })
-vim.keymap.set({ "n" }, "<leader>yY", "<cmd>Yazi<cr>", { desc = "Open yazi at cwd" })
+vim.keymap.set({ "n" }, "<leader>yY", "<cmd>Yazi cwd<cr>", { desc = "Open yazi at cwd" })
 vim.g.loaded_netrwPlugin = 1 -- don't load native netrw
 autocmd("UIEnter", {
   callback = function()
