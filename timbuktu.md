@@ -1,38 +1,39 @@
 Download into ~/opt, unpack and symlink binary into ~/.local/bin
 https://github.com/[replace]/releases/latest
+
 - eza - eza-community/eza
-	- add bash aliases
+    - add bash aliases
 - fzf - junegunn/fzf
-	- shell hook
-	- add session variables
+    - shell hook
+    - add session variables
 - starship - starship/starship/releases
-	- shell hook
-	- scp ~/.config/starship.toml
+    - shell hook
+    - scp ~/.config/starship.toml
 - zoxide - ajeetdsouza/zoxide
-	- shell hook
-	- session variables
+    - shell hook
+    - session variables
 - ripgrep - BurntSushi/ripgrep
 - fd - sharkdp/fd (used for fzf and zoxide)
 - delta - dandavison/delta
 - nvim - neovim/neovim
-	- scp ~/.config/nvim/lua/options.lua as ~/.config/nvim/init.lua
+    - scp ~/.config/nvim/lua/options.lua as ~/.config/nvim/init.lua
 - miniforge3 (conda/mamba manager) conda-forge/miniforge
-	- yes shell hook
-	- no symlink
-	- `conda config --set auto_activate_base false`
-	
+    - yes shell hook
+    - no symlink
+    - `conda config --set auto_activate_base false`
+
 Special install instructions
+
 - trash-cli - andreafrancia/trash-cli - pip install trash-cli
 - blesh - akinomyoga/ble.sh
-	- scp -r ~/.config/blesh
+    - scp -r ~/.config/blesh
 - git
-	- scp -r ~/.config/git
-	- chmod a+w ~/.config/git/*
-	- nvim ~/.config/git/config
+    - scp -r ~/.config/git
+    - chmod a+w ~/.config/git/\*
+    - nvim ~/.config/git/config
 
 mkdir ~/.ssh
-scp ~/.ssh/id_* ~/.ssh
-
+scp ~/.ssh/id\_\* ~/.ssh
 
 mamba self-update
 ble-update
@@ -45,7 +46,6 @@ delta --version (no update script)
 nvim --version (no update script)
 trash --version (no update script)
 
-
 - create and activate project-specific mamba environment
 - inside mamba environment `pip install poetry=1.8`
 - clone the various repos into ~/gjw/morse
@@ -53,4 +53,3 @@ trash --version (no update script)
 - copy a config file from morse-pipeline/config to ~/gjw/data
 - edit the config file to do things relative to ~/gjw/data
 - `poetry run morse_pipeline config=<configpath>` from the morse-pipeline directory
-
