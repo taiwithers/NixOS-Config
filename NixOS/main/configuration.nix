@@ -1,7 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
+    ./common.nix
     ./hardware-configuration.nix
     ./bootloader.nix
     ./desktopenvironments.nix
@@ -14,17 +15,6 @@
     allowedUDPPorts = [ 35413 ];
   };
 
-  nix.package = pkgs.lix;
-
-  # use flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-    # "no-url-literals" # quote urls
-    # currently broken in Lix
-    # https://git.lix.systems/lix-project/lix/issues/1214
-  ];
-
   # keep system up to date
   system.autoUpgrade = {
     enable = true;
@@ -34,12 +24,6 @@
       "--commit-lock-file"
     ];
   };
-
-  # force upgrade kernel (copyfail)
-  # https://github.com/theori-io/copy-fail-CVE-2026-31431/issues/48#issuecomment-4352886628
-  boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "6.18.22") (
-    lib.mkDefault pkgs.linuxPackages_6_18
-  );
 
   security.sudo.extraConfig = ''
     Defaults timestamp_timeout=0
@@ -53,65 +37,18 @@
   # wired should work fine regardless
   hardware.xpadneo.enable = true;
 
-  # keep system clean :)
-  nix.optimise = {
-    automatic = true;
-    dates = [ "weekly" ];
-  };
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
-  };
-  nix.settings.auto-optimise-store = true;
-
-  # clean up $HOME (moves ~/.nix-* to $XDG_STATE_HOME/nix/*)
-  nix.settings.use-xdg-base-directories = true;
-
-  # use community cache
-  nix.settings.substituters = map (name: "https://${name}.cachix.org") [ "nix-community" ];
-  nix.settings.trusted-public-keys = [
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" # nix-community.org
-  ];
-
   networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
-  time.timeZone = "America/New_York";
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  hardware.bluetooth.enable = true;
 
   # limit cpu usage during build
-  # nix.settings.cores = 4; # cores per job
-  # nix.settings.max-jobs = 4;
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  nix.settings.cores = 4; # cores per job
+  nix.settings.max-jobs = 4;
 
   services.dbus.packages = [ pkgs.dconf ];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
+  # TODO: check if disabling this retains xwayland for games
   services.xserver.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -121,26 +58,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.tai = {
-    isNormalUser = true;
-    description = "Tai";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = [ ];
-  };
-
-  nix.settings.trusted-users = [ "@wheel" ];
 
   # fingerprint reader
   services.fprintd = {
@@ -169,7 +87,6 @@
   fonts.enableDefaultPackages = true;
 
   environment.shellAliases = {
-    rm = "rm --interactive=always --verbose";
     nvidia-settings = "nvidia-settings --config=\"$XDG_CONFIG_HOME\"/nvidia/settings";
   };
 
@@ -187,15 +104,8 @@
   ]; # Load driver for Xorg and Wayland, set by nixos-hardware
   hardware.nvidia = {
     modesetting.enable = true; # required, set by nixos-hardware
-
-    # Use the NVidia open source kernel module - false for my gpu
-    open = false;
-
-    # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    # # package = config.boot.kernelPackages.nvidiaPackages.stable;
+    open = false; # Use the NVidia open source kernel module - false for my gpu
+    nvidiaSettings = true; # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
 
     # prime is the stuff for only using your gpu for certain tasks
     prime.offload = {
@@ -203,6 +113,4 @@
       enableOffloadCmd = true; # set by nixos-hardware
     };
   };
-  environment.pathsToLink = [ "/share/bash-completion" ]; # bash completion for system packages
-  documentation.nixos.options.warningsAreErrors = false;
 }
