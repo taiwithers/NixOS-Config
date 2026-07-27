@@ -55,6 +55,11 @@ rec {
     rm = "rm --interactive=always --verbose";
   };
 
+  programs.vim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   environment.pathsToLink = [ "/share/bash-completion" ]; # bash completion for system packages
   documentation.nixos.options.warningsAreErrors = false;
 
