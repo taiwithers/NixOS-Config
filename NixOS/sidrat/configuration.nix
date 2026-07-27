@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.nix-ld.enable = true;
@@ -95,7 +95,7 @@
   nix.settings.cores = 4; # cores per job
   nix.settings.max-jobs = 4;
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = lib.mkForce false; # Enables wireless support via wpa_supplicant.
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
