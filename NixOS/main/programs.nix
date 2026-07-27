@@ -3,16 +3,8 @@
 
   # system packages
   environment.systemPackages = with pkgs; [
-    man-pages
-    man-pages-posix
-
     kdePackages.konsole # always have an editor and terminal!
-    git
     bluez # bluetooth
-    coreutils
-
-    duf
-    dust
 
     # sysinfo for kde
     clinfo
@@ -70,22 +62,10 @@
   users.users.tai.extraGroups = [ "gamemode" ];
 
   # program configurations
-  programs.vim.enable = true;
-  programs.vim.defaultEditor = true;
   programs.dconf.enable = true;
 
   xdg.terminal-exec.enable = true;
 
   programs.kdeconnect.enable = true;
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      gfortran.cc.lib
-      stdenv.cc.cc
-      libX11
-      libXext
-      zlib
-    ];
-  };
 }

@@ -4,15 +4,6 @@
     ./hardware-configuration.nix
   ];
 
-  users.users.tai.packages = with pkgs; [
-    git
-    duf
-    dust
-    wget
-    curl
-    coreutils
-  ];
-
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf

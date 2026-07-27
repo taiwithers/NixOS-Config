@@ -46,6 +46,8 @@
   # TODO: check if disabling this retains xwayland for games
   services.xserver.enable = true;
 
+  hardware.bluetooth.enable = true;
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
