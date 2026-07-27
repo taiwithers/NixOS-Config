@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./common.nix
+    ../common.nix
     ./hardware-configuration.nix
     ./bootloader.nix
     ./desktopenvironments.nix
@@ -24,10 +24,6 @@
       "--commit-lock-file"
     ];
   };
-
-  security.sudo.extraConfig = ''
-    Defaults timestamp_timeout=0
-  '';
 
   # drivers for new xbox controllers over bluetooth
   # note: you also need to update the firmware on the controller via the
