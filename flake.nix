@@ -270,6 +270,7 @@
           armsystem = flake-inputs.flake-utils.lib.system.aarch64-linux;
         in
         nixpkgs.lib.nixosSystem {
+          # nixos-rebuild switch --flake .#raspberry-pi --target-host tai@<ip> --build-host localhost --sudo --ask-sudo-password
           system = armsystem;
           modules = [
             # for building initial sd card image only:
