@@ -20,9 +20,9 @@ function M.get_spellfile()
   local cwd_spellfile = vim.fs.joinpath(vim.uv.cwd(), spellfile_name)
   if vim.uv.fs_stat(cwd_spellfile) then
     return vim.fs.abspath(cwd_spellfile)
-  elseif u.is_git_repo() then
-    local git_spellfile = vim.fs.joinpath(u.get_git_root(), spellfile_name)
-    local git_parent_spellfile = vim.fs.joinpath(vim.fs.dirname(u.get_git_root()), spellfile_name)
+  elseif M.is_git_repo() then
+    local git_spellfile = vim.fs.joinpath(M.get_git_root(), spellfile_name)
+    local git_parent_spellfile = vim.fs.joinpath(vim.fs.dirname(M.get_git_root()), spellfile_name)
     if vim.uv.fs_stat(git_parent_spellfile) then
       return git_parent_spellfile
     elseif vim.uv.fs_stat(git_spellfile) then
