@@ -149,6 +149,11 @@
     prefersNonDefaultGPU = true;
   };
 
+  programs.ssh.settings."rpi3" = {
+    identityFile = "~/.ssh/id_ed25519_rpi";
+    hostname = "192.168.1.31";
+  };
+
   # could set this up to read filenames out of some custom config item so they can be populated next to the relevant locations
   home.activation.removeBackups = config.lib.dag.entryBefore [ "checkLinkTargets" ] /* bash */ ''
     remove() {

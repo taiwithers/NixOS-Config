@@ -77,6 +77,11 @@
     discord
   ];
 
+  programs.ssh.settings."rpi3" = {
+    identityFile = "~/.ssh/id_ed25519_rpi";
+    hostname = "192.168.1.31";
+  };
+
   programs.bash.bashrcExtra = ''
     # add completions
     complete -F _command get-package-path
