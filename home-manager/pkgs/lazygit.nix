@@ -16,6 +16,15 @@ _: {
         quit = "Q";
         quitWithoutChangingDirectory = "q";
       };
+      customCommands = [
+        {
+          key = "M";
+          command = "git mergetool {{ .SelectedFile.Name }}";
+          context = "files";
+          loadingText = "opening git mergetool";
+          output = "terminal";
+        }
+      ];
     };
   };
 }
