@@ -192,6 +192,8 @@
   xresources.path = "${config.common.configHome}/X11/xresources";
   home.shellAliases = {
     "install-smapi" = "steam-run ./internal/linux/SMAPI.installer";
+    "rebuild-rpi" =
+      "nixos-rebuild switch --flake ${config.common.nixConfigDirectory}#raspberry-pi --target-host tai@192.168.1.31 --build-host localhost --sudo --ask-sudo-password";
   };
 
   home.file."clean_bash.sh" = {
