@@ -1243,7 +1243,8 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
       -- vim.cmd("colorscheme miniautumn") -- for some reason the easiest way to tell if this works
 
       -- syntax highlighting
-      vim.treesitter.start()
+      vim.treesitter.start(vim.api.nvim_get_current_buf(), ts_filetype)
+      -- needed to add arguments to treesitter.start because jinja filetype changed?
       if ts_filetype == "jinja" then
         vim.bo.syntax = "on" -- get both HTML (or other) AND jinja
       end
