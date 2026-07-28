@@ -151,10 +151,6 @@ vim.keymap.del("n", "&") -- repeat last `:s`
 -- save with ctrl s
 vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>:w<cr>", { desc = ":w" })
 
--- "tab" between buffers
-vim.keymap.set({ "n", "i" }, "<leader><TAB>", "<cmd>:bn<cr>", { desc = "Go to next buffer" })
-vim.keymap.set({ "n", "i" }, "<leader><S-TAB>", "<cmd>:bp<cr>", { desc = "Go to previous buffer" })
-
 -- duplicate line, comment out original
 vim.keymap.set("n", "gcy", "yy<cmd>normal gcc<CR>p", { noremap = true, desc = "Duplicate line and comment original" })
 vim.keymap.set(
@@ -231,7 +227,7 @@ local mini_bracketed = require("mini.bracketed").setup({
   treesitter = { suffix = "" },
   undo = { suffix = "" },
   yank = { suffix = "" }, -- not actually a jump, but replaces your last paste with the previous entry in paste history
-  buffer = { suffix = "b" }, -- replace <leader><tab>
+  buffer = { suffix = "<leader>" }, -- replace <leader><tab>
   conflict = { suffix = "gc" }, -- git conflict
   jump = { suffix = "j" }, -- current buffer jumplist
   window = { suffix = "w" },
