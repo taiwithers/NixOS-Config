@@ -95,9 +95,21 @@
   };
 
   # dumbass way to get some level of monitoring without configuring a bar by launching stuff with rofi
-  xdg.desktopEntries."battery-status" = {
-    name = "Battery Status";
-    exec = "${pkgs.battery-scripts}/bin/battery-scripts --report-current-charge";
+  xdg.desktopEntries = {
+    "battery-status" = {
+      name = "Battery Status";
+      exec = "${pkgs.battery-scripts}/bin/battery-scripts --report-current-charge";
+    };
+    "datetime" = {
+      name = "datetime";
+      exec =
+        let
+          # some wacky business with what can nicely go into a desktop exec, so just bundle this into a script
+          dtFormatted = "date '+%l:%M%p     %A %d %B'";
+          dtNotification = pkgs.writeShellScript "dtNotification" ''notify-send "$(${dtFormatted})"'';
+        in
+        "${dtNotification}";
+    };
   };
 
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";
