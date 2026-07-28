@@ -41,7 +41,7 @@
     [
       "bash"
       "bat"
-      # "blesh" # uses colours
+      "blesh" # uses colours
       "bottom"
       "cod"
       "duf"
