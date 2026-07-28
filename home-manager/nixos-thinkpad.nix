@@ -91,7 +91,13 @@
   systemd.user.services."ac-power-monitor" = {
     Unit.Description = "Notify when charging cable is (dis)connected";
     Install.WantedBy = [ "default.target" ]; # needed or else it  won't actually be started
-    Service.ExecStart = "${pkgs.ac-power-monitor}/bin/ac-power-monitor";
+    Service.ExecStart = "${pkgs.battery-scripts}/bin/battery-scripts --monitor-ac-power";
+  };
+
+  # dumbass way to get some level of monitoring without configuring a bar by launching stuff with rofi
+  xdg.desktopEntries."battery-status" = {
+    name = "Battery Status";
+    exec = "${pkgs.battery-scripts}/bin/battery-scripts --report-current-charge";
   };
 
   common.nixConfigDirectory = "${config.home.homeDirectory}/Nix";

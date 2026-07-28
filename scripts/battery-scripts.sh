@@ -30,7 +30,7 @@ function get_total_charge() {
   echo "$avg"
 }
 
-function notify_if_changed() {
+function notify_if_charging_status_changed() {
   previous_status=$1
   current_status=$(get_status)
   current_charge=$(get_total_charge)
@@ -42,8 +42,38 @@ function notify_if_changed() {
   echo "$current_status"
 }
 
-previous=0
+function help() {
+  echo "Tai's crappy battery-related bash functions"
+  echo
+  echo "Options:"
+  echo "--help                  print this help"
+  echo "--monitor-ac-power      background service: send a notification whenever the charging cable is (un)plugged"
+  echo "--report-current-charge notify the current battery charge"
+}
+
+parsed=$(getopt --options "" --longoptions "help,monitor-ac-power,report-current-charge" -- "$@")
+
+echo "$parsed"
+
 while true; do
-  previous=$(notify_if_changed "$previous")
-  sleep 1
+  case "$1" in
+  --help)
+    help
+    exit 0
+    ;;
+
+  --monitor-ac-power)
+    previous=0
+    while true; do
+      previous=$(notify_if_charging_status_changed "$previous")
+      sleep 1
+    done
+    ;;
+
+  --report-current-charge)
+    notify-send "Battery 1: $(get_single_charge 1)%; Battery 2: $(get_single_charge 2)%"
+    exit 0
+    ;;
+
+  esac
 done

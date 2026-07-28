@@ -33,8 +33,8 @@ _:
     inherit (self) unstable;
   in
   {
-    ac-power-monitor = customScript rec {
-      name = "ac-power-monitor";
+    battery-scripts = customScript rec {
+      name = "battery-scripts";
       runtimeInputs = [
         self.acpi
         self.jq
