@@ -1019,6 +1019,7 @@ vim.lsp.config["ruff"] = {
           "UP045", -- typing.Optional
           "W291", -- trailing whitespace
           "W293", -- blank line contains whitespace
+          "E731", -- use of lambda functions
         },
         future_annotations = true,
       },
