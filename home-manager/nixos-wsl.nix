@@ -59,6 +59,7 @@
     nix-output-monitor
     xdg-ninja
 
+    traceroute
     strace
     # ds9
     cloc
