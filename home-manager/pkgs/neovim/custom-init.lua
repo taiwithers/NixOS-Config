@@ -15,6 +15,7 @@ local u = require("utils")
 vim.filetype.add({
   extension = { mdx = "mdx", jinja = "jinja" },
   pattern = {
+    [".*%.sh"] = "bash", -- default to bash rather than sh
     [".*/%.github[%w/]+workflows[%w/]+.*%.ya?ml"] = "yaml.github",
     [".*%.html%.jinja"] = "html.jinja",
   },
