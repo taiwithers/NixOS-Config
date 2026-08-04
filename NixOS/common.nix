@@ -81,6 +81,7 @@ rec {
   };
 
   programs.nix-ld = {
+    # interestingly this seems to be required to run devshell-micromamba-precommithook python
     enable = true;
     libraries = with pkgs; [
       gfortran.cc.lib
