@@ -17,7 +17,7 @@ vim.filetype.add({
   pattern = {
     [".*%.sh"] = "bash", -- default to bash rather than sh
     [".*/%.github[%w/]+workflows[%w/]+.*%.ya?ml"] = "yaml.github",
-    [".*%.html%.jinja"] = "html.jinja",
+    [".*%.html%.jinja"] = "jinja", -- doesn't add functionality but does fix the ft icon
   },
 })
 

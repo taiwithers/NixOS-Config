@@ -122,6 +122,8 @@ in
           comment
           css
           devicetree # zmk
+          dockerfile
+          gitignore
           hmts-nvim
           html
           jinja
