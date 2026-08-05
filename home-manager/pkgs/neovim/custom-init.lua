@@ -167,6 +167,7 @@ vim.keymap.set("c", "<C-e>", "<End>")
 
 -- show/hide special windows
 vim.keymap.set("n", "<leader>wq", u.toggle_qf_window, { desc = "Toggle QF" })
+vim.keymap.set("n", "<leader>wl", u.toggle_loclist_window, { desc = "Toggle loclist" })
 vim.keymap.set("n", "<leader>wh", "<cmd>:helpclose<cr>", { desc = "`:helpclose`" })
 
 -- make direction of n/N absolute (not relative to whether /? was used)

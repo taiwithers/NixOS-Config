@@ -57,6 +57,14 @@ function M.toggle_qf_window()
   end
 end
 
+function M.toggle_loclist_window()
+  -- stolen from lazyvim (config/keymaps.lua)
+  local success, err = pcall(vim.fn.getloclist({ winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end
+
 function M.diagnostic_jump(count_multiplier)
   vim.diagnostic.jump({
     wrap = true,
