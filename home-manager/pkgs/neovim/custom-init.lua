@@ -730,6 +730,11 @@ local custom_snippets = {
     body = '<!doctype html>\n<html lang="en">\n\t<head>\n\t\t<meta charset="UTF-8">\n\t\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\nzt\t<title>${1:Document}</title>\n\t</head>\n\t<body>\n\t\t$0\n\t</body>\n</html>',
   },
   {
+    ft = { "html", "jinja", "astro" },
+    trigger = "table",
+    body = "<table>\n\t<caption>${1:Caption}</caption>\n\t<thead>\n\t\t<tr>\n\t\t\t<th>${2:Header Cell}</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>${3:Body Cell}</td>\n\t\t</tr>\n\t</tbody></table>",
+  },
+  {
     ft = { "css", "scss", "astro" },
     trigger = "media",
     body = "@media screen and (${1:max-width: 300px}) {\n\t$0\n}",
@@ -1085,7 +1090,7 @@ vim.lsp.config["mdx-ls"] = {
   init_options = { typescript = { enabled = true, tsdk = vim.g.tsdk } },
 }
 vim.lsp.config["jinja-lsp"] = {
-  filetypes = { "html.jinja", "python" },
+  filetypes = { "markdown.jinja", "html.jinja", "python" },
   cmd = { "jinja-lsp" },
 }
 vim.lsp.config["gh-actions-ls"] = {

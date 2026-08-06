@@ -121,6 +121,7 @@ in
           bash
           comment
           css
+          csv
           devicetree # zmk
           dockerfile
           gitignore
@@ -187,5 +188,13 @@ in
 
   xdg.configFile."nvim/lua/wsl-clipboard.lua" = pkgs.lib.mkIf config.common.wsl {
     source = "${config.common.nixConfigDirectory}/home-manager/pkgs/neovim/wsl-clipboard.lua";
+  };
+
+  # installing the jinja.vim plugin doesn't actually set up all of the files
+  xdg.configFile = {
+    "nvim/autoload/jinja.vim".source = "${pkgs.vimPlugins.jinja-vim}/autoload/jinja.vim";
+    "nvim/ftdetect/jinja.vim".source = "${pkgs.vimPlugins.jinja-vim}/ftdetect/jinja.vim";
+    "nvim/ftplugin/jinja.vim".source = "${pkgs.vimPlugins.jinja-vim}/ftplugin/jinja.vim";
+    "nvim/syntax/jinja.vim".source = "${pkgs.vimPlugins.jinja-vim}/syntax/jinja.vim";
   };
 }
