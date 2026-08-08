@@ -146,7 +146,7 @@
 
   xdg.desktopEntries."MarioKartWii" = {
     name = "Mario Kart Wii";
-    exec = "nvidia-offload dolphin-emu-nogui --exec \"Downloads/Mario Kart Wii.nkit.iso\"";
+    exec = "nvidia-offload dolphin-emu-nogui --exec \"${config.common.userHome}/Games/Mario Kart Wii.nkit.iso\"";
     prefersNonDefaultGPU = true;
   };
 
