@@ -138,7 +138,11 @@ vim.keymap.del("n", "[<C-l>") -- first item in prev file in location list
 vim.keymap.del("n", "]<C-q>") -- first item in next file in QF
 vim.keymap.del("n", "[<C-q>") -- first item in prev file in QF
 vim.keymap.del("n", "]<C-t>") -- next tag in new window
-vim.keymap.del("n", "[<C-t>") -- previous tag in new window
+vim.kmeymap.del("n", "[<C-t>") -- previous tag in new window
+vim.keymap.del("n", "]m") -- next method start (intended for Java-like langs)
+vim.keymap.del("n", "]M") -- next method end
+vim.keymap.del("n", "[m") -- previous method start
+vim.keymap.del("n", "[M") -- previous method end
 vim.keymap.del("n", "[L") -- first item in location list
 vim.keymap.del("n", "]L") -- last item in location list
 vim.keymap.del("n", "[Q") -- first item in QF
@@ -353,6 +357,7 @@ local function live_grep_from_project_git_root()
   end
   telescope_builtins.live_grep(opts)
 end
+vim.keymap.set({ "n", "v" }, "<leader>fw", telescope_builtins.grep_string, { desc = "Current word" })
 vim.keymap.set({ "n" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
 vim.keymap.set({ "n" }, "<leader>fb", telescope_builtins.buffers, { desc = "Open buffers" })
 vim.keymap.set({ "n" }, "<leader>fq", telescope_builtins.quickfix, { desc = "Open quickfix" })
@@ -898,7 +903,19 @@ end, { desc = "Re-enable autoformat for buffer" })
 ----------------------------------------------------------------------
 
 -- show lsp diagnostics as virtual text at the end of the current line
-vim.diagnostic.config({ virtual_text = { current_line = true }, underline = false })
+vim.diagnostic.config({
+  virtual_text = { current_line = true },
+  underline = false,
+  jump = {
+    on_jump = function(_, bufnr)
+      vim.diagnostic.open_float({
+        bufnr = bufnr,
+        scope = "cursor",
+        focus = false,
+      })
+    end,
+  },
+})
 
 -- show inlay hints (currently used by nixd for versions)
 vim.lsp.inlay_hint.enable(true)
@@ -977,6 +994,7 @@ vim.lsp.config["nixd"] = {
 vim.lsp.config["ruff"] = {
   cmd = { "ruff", "server" },
   root_markers = lsp_root_markers({ "pyproject.toml" }),
+  filetypes = { "python" },
   init_options = {
     settings = {
       lineLength = 88,
@@ -1277,20 +1295,24 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
         restore_quotes = { normal = [["]] },
       })
 
-      vim.keymap.set({ "x", "o" }, "af", "<cmd>TSTextobjectSelect @function.outer<cr>", { desc = "Function" })
-      vim.keymap.set({ "x", "o" }, "if", "<cmd>TSTextobjectSelect @function.inner<cr>", { desc = "Function" })
-      vim.keymap.set(
-        { "n", "x", "o" },
-        "[f",
-        "<cmd>TSTextobjectGotoPreviousStart @function.outer<cr>",
-        { desc = "Go to start of previous function" }
-      )
-      vim.keymap.set(
-        { "n", "x", "o" },
-        "]f",
-        "<cmd>TSTextobjectGotoNextStart @function.outer<cr>",
-        { desc = "Go to start of next function" }
-      )
+      vim.keymap.set({ "x", "o" }, "if", function()
+        require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+      end, { desc = "Function definition" })
+      vim.keymap.set({ "x", "o" }, "af", function()
+        require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+      end, { desc = "Function definition" })
+      vim.keymap.set({ "n", "x", "o" }, "[f", function()
+        require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+      end, { desc = "Jump to start of previous function" })
+      vim.keymap.set({ "n", "x", "o" }, "[F", function()
+        require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer", "textobjects")
+      end, { desc = "Jump to end of previous function" })
+      vim.keymap.set({ "n", "x", "o" }, "]f", function()
+        require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+      end, { desc = "Jump to start of next function" })
+      vim.keymap.set({ "n", "x", "o" }, "]F", function()
+        require("nvim-treesitter-textobjects.move").goto_next_end("@function.outer", "textobjects")
+      end, { desc = "Jump to end of next function" })
     end
   end,
 })

@@ -69,12 +69,6 @@ function M.diagnostic_jump(count_multiplier)
   vim.diagnostic.jump({
     wrap = true,
     count = count_multiplier * vim.v.count1,
-    on_jump = function(diagnostic, bufnr)
-      if diagnostic == nil then
-        return
-      end
-      vim.diagnostic.open_float({ bufnr = bufnr, scope = "line" })
-    end,
   })
 end
 

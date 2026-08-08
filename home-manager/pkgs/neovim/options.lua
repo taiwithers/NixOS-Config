@@ -41,10 +41,9 @@ vim.opt.fillchars = { -- use vim.opt to pass a table
 }
 opt.number = true -- print line numbers
 opt.relativenumber = true -- print relative line numbers
-opt.signcolumn = "yes:2" --always show 3 wide
-opt.statusline = "%<%f %h%m%r %= %(%l,%c%V%)" -- format for statusline
-opt.statusline = "" -- format for statusline
-opt.tabline = "" -- tabline content
+opt.signcolumn = "auto:1-2" -- choose between 1 and 2 wide as req
+opt.statusline = "" -- format for statusline (lualine overrides)
+opt.tabline = "" -- tabline content (lualine overrides)
 opt.termguicolors = true
 opt.winblend = 0 -- transparency of floating windows
 opt.winborder = "rounded" -- for stuff like lsp hover window
@@ -56,6 +55,8 @@ vim.opt.shortmess = {
   S = true, -- don't show "[1/5]" when searching
   F = true, -- don't show notif about what file you're on
 }
+vim.o.list = true -- w/ listchars, determine how whitespace chars are shown
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- folding - handled by nvim-ufo in init.lua
 opt.foldcolumn = "auto" -- when/how to draw the fold column
