@@ -73,11 +73,7 @@ _:
         startupWMClass = name;
       };
     });
-    color-oracle = customDerivation "color-oracle";
-    # deskflow = unstable.deskflow.override {
-    #     qt6 = self.qt6;
-    #   };
-    diff-nix-generations = customScript rec {
+    diff-nix-generations = customScript {
       name = "diff-nix-generations";
       runtimeInputs = with super; [
         gnused
@@ -110,15 +106,6 @@ _:
     kdePackages = super.kdePackages // {
       inherit (super) kara darkly;
       klassy = customDerivation "klassy";
-      # klassy = super.nur.repos.shadowrz.klassy-qt6.overrideAttrs (oldAttrs: rec {
-      #   version = "58c6ad5";
-      #   src = super.fetchFromGitHub {
-      #     owner = "paulmcauley";
-      #     repo = oldAttrs.pname;
-      #     rev = version;
-      #     hash = "sha256-B7nQVok/3uCskGykqEoaZcpzpIk15tT7qDPG3qCbn4Q=";
-      #   };
-      # });
       inherit (unstable.kdePackages) krohnkite;
     };
     nbpreview = customDerivation "nbpreview";
@@ -143,15 +130,7 @@ _:
       ];
       file = "nix-search-wrapper";
     };
-    select-browser = customScript rec {
-      name = "select-browser";
-      runtimeInputs = with super; [
-        rofi
-      ];
-      file = name;
-    };
     starfetch = customDerivation "starfetch";
-    # inherit (unstable) sublime4;
     vesktop = super.vesktop.overrideAttrs (oldAttrs: {
       srcs = [
         oldAttrs.src
@@ -178,7 +157,13 @@ _:
     vimPlugins =
       super.vimPlugins
       // {
-        inherit (unstable.vimPlugins) nvim-tree-lua nui-nvim nvim-notify;
+        nvim-navic = super.vimPlugins.nvim-navic.overrideAttrs {
+          dependencies = [ ];
+        };
+        otter-nvim = super.vimPlugins.otter-nvim.overrideAttrs {
+          dependencies = [ ];
+
+        };
       }
       // builtins.mapAttrs (_name: value: (githubVimPlugin value)) {
         cmp-scss = {
@@ -186,12 +171,6 @@ _:
           repo = "cmp-scss";
           rev = "fef96e1";
           hash = "sha256-SzkK05yj5Ys0JSMb5Xow79YtwikUtTuRDurs8UfW1pc=";
-        };
-        darkvoid-nvim = {
-          author = "darkvoid-theme";
-          repo = "darkvoid.nvim";
-          rev = "45be993";
-          hash = "sha256-JiNuv1TAIHVL9tGNDYC0RdRPnI9l4zn+ZCU9B4wQ5Io=";
         };
         markdown-plus-nvim = {
           author = "YousefHadder";

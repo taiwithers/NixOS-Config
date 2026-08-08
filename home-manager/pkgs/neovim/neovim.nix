@@ -85,7 +85,6 @@ in
       flash-nvim # improved FtTt motions
       template-string-nvim # auto handle f-strings and js equiv
       marks-nvim # show marks in signcolumn
-      darkvoid-nvim # colourscheme that doesn't work great
       mdx-nvim # treesitter highlighting for mdx files
       otter-nvim # LSP for embedded code blocks
       markdown-plus-nvim # lots of markdown functionality (list continuation, table navigation, etc.)
