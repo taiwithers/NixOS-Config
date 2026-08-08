@@ -127,6 +127,9 @@
     home.shellAliases =
       with config.common;
       {
+        ".." = "cd ..";
+        "chx" = "chmod +x";
+        "aliases" = "alias | bat --language sh --plain";
         "rm" = "rm --interactive=always --verbose";
         "mv" = "mv --interactive";
         "lsblk" = "lsblk | bat --language=conf --plain";
