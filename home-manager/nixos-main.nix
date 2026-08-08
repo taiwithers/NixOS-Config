@@ -140,6 +140,7 @@
     kdePackages.kdialog
     heroic
     ventoy-full-qt
+    darktable
 
   ];
 
