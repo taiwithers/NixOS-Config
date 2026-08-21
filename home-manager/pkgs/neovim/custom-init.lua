@@ -138,11 +138,7 @@ vim.keymap.del("n", "[<C-l>") -- first item in prev file in location list
 vim.keymap.del("n", "]<C-q>") -- first item in next file in QF
 vim.keymap.del("n", "[<C-q>") -- first item in prev file in QF
 vim.keymap.del("n", "]<C-t>") -- next tag in new window
-vim.kmeymap.del("n", "[<C-t>") -- previous tag in new window
-vim.keymap.del("n", "]m") -- next method start (intended for Java-like langs)
-vim.keymap.del("n", "]M") -- next method end
-vim.keymap.del("n", "[m") -- previous method start
-vim.keymap.del("n", "[M") -- previous method end
+vim.keymap.del("n", "[<C-t>") -- previous tag in new window
 vim.keymap.del("n", "[L") -- first item in location list
 vim.keymap.del("n", "]L") -- last item in location list
 vim.keymap.del("n", "[Q") -- first item in QF
@@ -313,6 +309,10 @@ require("which-key").add({
   { "<Plug>(fzf-normal)", "<nop>", hidden = true }, -- clogs whichkey
   { "[/", "<nop>", hidden = true }, -- jumping to C comments
   { "]/", "<nop>", hidden = true }, -- jumping to C comments
+  { "]m", "<nop>", hidden = true }, -- next method start (intended for Java-like langs)
+  { "]M", "<nop>", hidden = true }, -- next method end
+  { "[m", "<nop>", hidden = true }, -- previous method start
+  { "[M", "<nop>", hidden = true }, -- previous method end
   { "gh", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
   { "gH", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
   { "g<C-h>", "<nop>", hidden = true }, -- enter select mode (: h Select-mode)
