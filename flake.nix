@@ -204,6 +204,7 @@
         ubuntu-main = "twithers";
         ubuntu-sidrat = "taiwithers";
         nixos-thinkpad = "tai";
+        rpi = "tai";
       };
 
       home-module-args = { inherit flake-inputs colours; };
@@ -263,31 +264,6 @@
           # flake-inputs.niri.nixosModules.niri
         ];
       };
-
-      nixosConfigurations."raspberry-pi" =
-        let
-          armsystem = flake-inputs.flake-utils.lib.system.aarch64-linux;
-        in
-        nixpkgs.lib.nixosSystem {
-          # nixos-rebuild switch --flake .#raspberry-pi --target-host tai@<ip> --build-host localhost --sudo --ask-sudo-password
-          system = armsystem;
-          modules = [
-            # for building initial sd card image only:
-            # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            flake-inputs.nixos-hardware.nixosModules.raspberry-pi-3
-            ({ lib, ... }: {
-              # The pinned Raspberry Pi kernel does not build the ZFS module.
-              boot.supportedFilesystems.zfs = lib.mkForce false;
-              hardware.raspberry-pi.firmware.uboot.enable = true;
-
-              nixpkgs.config.allowUnsupportedSystem = true;
-              nixpkgs.hostPlatform.system = armsystem;
-              nixpkgs.buildPlatform.system = "x86_64-linux";
-            })
-            ./NixOS/raspberry-pi/configuration.nix
-          ];
-        };
-      images.raspberry-pi = nixosConfigurations.raspberry-pi.config.system.build.sdImage;
 
       homeConfigurations = builtins.mapAttrs (
         config-name: username:
