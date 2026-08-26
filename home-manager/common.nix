@@ -104,14 +104,6 @@
         htop
         tree
 
-        # fonts
-        cm_unicode
-        open-sans
-        dejavu_fonts
-        nerd-fonts.space-mono
-        nerd-fonts.symbols-only
-        nerd-fonts.intone-mono
-
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         coreutils
@@ -122,6 +114,14 @@
       ]
       ++ pkgs.lib.optionals config.common.nixos [
         nixos-generations
+
+        # fonts
+        cm_unicode
+        open-sans
+        dejavu_fonts
+        nerd-fonts.space-mono
+        nerd-fonts.symbols-only
+        nerd-fonts.intone-mono
       ];
 
     home.shellAliases =
