@@ -206,6 +206,14 @@
         nixos-thinkpad = "tai";
         rpi = "tai";
       };
+      systems = {
+        nixos-main = system;
+        nixos-wsl = system;
+        ubuntu-main = system;
+        ubuntu-sidrat = system;
+        nixos-thinkpad = system;
+        rpi = flake-inputs.flake-utils.lib.system.arm64-linux;
+      };
 
       home-module-args = { inherit flake-inputs colours; };
 
@@ -268,7 +276,7 @@
       homeConfigurations = builtins.mapAttrs (
         config-name: username:
         flake-inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgs-for-system system;
+          pkgs = pkgs-for-system systems."${config-name}";
           extraSpecialArgs = home-module-args // {
             inherit config-name;
           };
