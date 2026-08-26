@@ -1011,6 +1011,12 @@ rec {
     #          Program Configs
     ###################################
 
+    # .config/gwenviewrc
+    # added [General]BlackListedExtensions=nef,new
+    # To stop gwenview from trying to preview .NEF files (nikon raws)
+    # https://userbase.kde.org/Gwenview/Hidden_Configuration_Options
+    # Didn't nix-ify this config bc it contains mutable stuff like recently viewed files
+
     configFile."spectaclerc" = {
       General = {
         autoSaveImage = true;
