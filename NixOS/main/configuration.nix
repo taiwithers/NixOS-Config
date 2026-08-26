@@ -46,6 +46,10 @@
   # TODO: check if disabling this retains xwayland for games
   services.xserver.enable = true;
 
+  # maybe fixes for touchpad going wonky sometimes?
+  services.xserver.libinput.enable = true;
+  services.xserver.libinput.touchpad.accelProfile = "flat";
+
   hardware.bluetooth.enable = true;
 
   # Enable sound with pipewire.
