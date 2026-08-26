@@ -212,7 +212,7 @@
         ubuntu-main = system;
         ubuntu-sidrat = system;
         nixos-thinkpad = system;
-        rpi = flake-inputs.flake-utils.lib.system.arm64-linux;
+        rpi = flake-inputs.flake-utils.lib.system.aarch64-linux;
       };
 
       home-module-args = { inherit flake-inputs colours; };
