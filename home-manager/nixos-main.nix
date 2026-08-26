@@ -141,6 +141,7 @@
     heroic
     ventoy-full-qt
     darktable
+    bitwarden-desktop
 
   ];
 
