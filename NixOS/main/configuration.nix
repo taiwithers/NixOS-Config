@@ -47,8 +47,8 @@
   services.xserver.enable = true;
 
   # maybe fixes for touchpad going wonky sometimes?
-  services.xserver.libinput.enable = true;
-  services.xserver.libinput.touchpad.accelProfile = "flat";
+  services.libinput.enable = true;
+  services.libinput.touchpad.accelProfile = "flat";
 
   hardware.bluetooth.enable = true;
 
