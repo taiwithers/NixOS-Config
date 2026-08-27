@@ -617,7 +617,7 @@ vim.keymap.set(
 
 -- comment with ctrl /
 require("Comment.ft").set("mdx", { "{/*%s*/}", "{/**%s**/}" })
-require("Comment.ft").set("jinja", require("Comment.ft").get("html"))
+require("Comment.ft").set("jinja", { "{#%s#}" })
 local toggle_comment = require("Comment.api").toggle.linewise.current
 vim.keymap.set("n", "<C-_>", toggle_comment, { desc = "Toggle comment", remap = true })
 vim.keymap.set("i", "<C-_>", toggle_comment, { desc = "Toggle comment" })
@@ -679,6 +679,7 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
       -- open a telescope picker for the more specific table functions
       require("markdown-plus-telescope").table_commands(require("telescope.themes").get_dropdown())
     end, "Table commands")
+    keyset({ "n" }, "cic", "<Plug>(MarkdownPlusTableClearCell)i", "table [c]ell")
     keyset({ "n", "i" }, "<c-l>", "<Plug>(MarkdownPlusTableNavRight)", "Move to right cell")
     keyset({ "n", "i" }, "<c-h>", "<Plug>(MarkdownPlusTableNavLeft)", "Move to left cell")
     keyset({ "n", "i" }, "<c-j>", "<Plug>(MarkdownPlusTableNavDown)", "Move to below cell")
@@ -735,7 +736,7 @@ local custom_snippets = {
     body = '<!doctype html>\n<html lang="en">\n\t<head>\n\t\t<meta charset="UTF-8">\n\t\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\nzt\t<title>${1:Document}</title>\n\t</head>\n\t<body>\n\t\t$0\n\t</body>\n</html>',
   },
   {
-    ft = { "html", "jinja", "astro" },
+    ft = { "html", "jinja", "astro", "markdown" },
     trigger = "table",
     body = "<table>\n\t<caption>${1:Caption}</caption>\n\t<thead>\n\t\t<tr>\n\t\t\t<th>${2:Header Cell}</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>${3:Body Cell}</td>\n\t\t</tr>\n\t</tbody></table>",
   },
@@ -848,13 +849,26 @@ conform.setup({
       args = function(_, ctx)
         if vim.endswith(ctx.filename, ".astro") then
           return { "--stdin-filepath", "$FILENAME", "--plugin", vim.g.prettier_plugin_astro }
-        elseif vim.endswith(ctx.filename, ".md") then
-          return { "--stdin-filepath", "$FILENAME", "--tab-width", "4" }
         elseif vim.endswith(ctx.filename, ".jinja") then
           return { "--stdin-filepath", "$FILENAME", "--plugin", vim.g.prettier_plugin_jinja, "--print-width", "100" }
         end
         return { "--stdin-filepath", "$FILENAME" }
       end,
+    },
+    rumdl = {
+      append_args = {
+        -- format tables
+        "--config",
+        "MD060.enabled=true",
+        "--config",
+        "MD060.style='aligned'",
+        -- let the last column get long
+        "--config",
+        "MD060.loose-last-column=true",
+        -- don't require blank lines before tables
+        "--config",
+        "MD058.minimum-before=0",
+      },
     },
     yamlfmt = {
       prepend_args = { "-formatter", "retain_line_breaks=true" },
@@ -869,8 +883,8 @@ conform.setup({
     yaml = { "yamlfmt" },
     nix = { "nixfmt" },
     python = { "isort", "black" },
-    markdown = { "prettier", "injected" },
-    -- mdx = { "prettierd", "prettier", stop_after_first = true },
+    markdown = { "rumdl", "injected" },
+    mdx = { "rumdl" },
     astro = { "prettier" },
     jinja = { "prettier" },
     javascript = { "prettierd", "prettier", stop_after_first = true },

@@ -92,7 +92,8 @@ end
 
 -- https://www.reddit.com/r/neovim/comments/1cxfhom/builtin_snippets_so_good_i_removed_luasnip/
 local function get_buf_snips(global_snippets, ft_snippets)
-  local ft = vim.bo.filetype
+  local ft_parts = vim.split(vim.bo.filetype, ".", { plain = true })
+  local ft = ft_parts[0] or ft_parts[1]
   local snips = vim.list_slice(global_snippets)
   for _, snippet in ipairs(ft_snippets) do
     if ft and vim.list_contains(snippet.ft, ft) then

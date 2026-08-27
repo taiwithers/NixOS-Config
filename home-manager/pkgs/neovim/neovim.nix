@@ -56,6 +56,7 @@ in
       prettier-plugin-jinja-template
       # potential latex formatters: perlPackages.LatexIndent bibtex-tidy
       taplo
+      rumdl
 
       # plugin integrations and dependencies
       yazi
