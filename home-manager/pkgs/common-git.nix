@@ -59,6 +59,8 @@
       "*.ipynb_checkpoints"
       ".direnv"
       "*:Zone.Identifier"
+      ".poetry"
+      ".rumdl_cache"
     ];
 
     maintenance = {
