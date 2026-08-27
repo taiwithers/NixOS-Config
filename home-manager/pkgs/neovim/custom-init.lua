@@ -622,7 +622,9 @@ vim.keymap.set(
 
 -- comment with ctrl /
 require("Comment.ft").set("mdx", { "{/*%s*/}", "{/**%s**/}" })
-require("Comment.ft").set("jinja", { "{#%s#}" })
+-- Comment.nvim uses the earlier part of the dotted filetype first, so  HTML-style commentstrings will always win out over Jinja style
+-- Might be possible to make some buffer-local change where if the filetype ends with Jinja, use the Jinja commentstring
+require("Comment.ft").set("jinja", "{#%s#}")
 local toggle_comment = require("Comment.api").toggle.linewise.current
 vim.keymap.set("n", "<C-_>", toggle_comment, { desc = "Toggle comment", remap = true })
 vim.keymap.set("i", "<C-_>", toggle_comment, { desc = "Toggle comment" })
@@ -741,7 +743,7 @@ local custom_snippets = {
     body = '<!doctype html>\n<html lang="en">\n\t<head>\n\t\t<meta charset="UTF-8">\n\t\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\nzt\t<title>${1:Document}</title>\n\t</head>\n\t<body>\n\t\t$0\n\t</body>\n</html>',
   },
   {
-    ft = { "html", "jinja", "astro", "markdown" },
+    ft = { "html", "astro", "markdown" },
     trigger = "table",
     body = "<table>\n\t<caption>${1:Caption}</caption>\n\t<thead>\n\t\t<tr>\n\t\t\t<th>${2:Header Cell}</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>${3:Body Cell}</td>\n\t\t</tr>\n\t</tbody></table>",
   },
@@ -755,6 +757,16 @@ local custom_snippets = {
     trigger = "keymap",
     body = 'vim.keymap.set({"${1:n}"}, "${2:<leader>}", ${3:rhs}, { desc = "${4:description}" })',
   },
+  { ft = { "jinja" }, trigger = "for", body = "{% for ${1:item} in ${2:iterable} %}\n\t$0\n{% endfor %}" },
+  {
+    ft = { "jinja" },
+    trigger = "if",
+    body = "{% if ${1:test} %}\n\t$0\n{% elif ${2:next_test} %}\n\t$3\n{% else %}\n\t$4\n{% endif %}",
+  },
+  { ft = { "jinja" }, trigger = "macro", body = "{% macro ${1:name}(${2:args}) -%}\n\t$0\n{%- endmacro %}" },
+  { ft = { "jinja" }, trigger = "set-line", body = "{% set ${1:lhs} = $0 %}" },
+  { ft = { "jinja" }, trigger = "set-block", body = "{% set ${1:lhs} %}\n\t$0\n{% endset %}" },
+  { ft = { "jinja" }, trigger = "include", body = '{% include "$0" %}' },
 }
 
 cmp.register_source("custom_snippets", u.custom_cmp_snippets(global_snippets, custom_snippets))

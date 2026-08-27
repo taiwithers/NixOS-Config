@@ -91,15 +91,23 @@ end
 ----------------------------------------------------------------------
 
 -- https://www.reddit.com/r/neovim/comments/1cxfhom/builtin_snippets_so_good_i_removed_luasnip/
-local function get_buf_snips(global_snippets, ft_snippets)
-  local ft_parts = vim.split(vim.bo.filetype, ".", { plain = true })
-  local ft = ft_parts[0] or ft_parts[1]
-  local snips = vim.list_slice(global_snippets)
+local function get_ft_snips(ft, ft_snippets)
+  local ft_snips = {}
   for _, snippet in ipairs(ft_snippets) do
     if ft and vim.list_contains(snippet.ft, ft) then
-      vim.list_extend(snips, { snippet })
+      vim.list_extend(ft_snips, { snippet })
     end
   end
+  return ft_snips
+end
+local function get_buf_snips(global_snippets, ft_snippets)
+  local ft_parts = vim.split(vim.bo.filetype, ".", { plain = true })
+  local snips = vim.list_slice(global_snippets)
+  for _, ft in ipairs(ft_parts) do
+    local ft_snips = get_ft_snips(ft, ft_snippets)
+    vim.list_extend(snips, ft_snips)
+  end
+  vim.list.unique(snips)
   return snips
 end
 function M.custom_cmp_snippets(global_snippets, ft_snippets)
