@@ -1081,6 +1081,9 @@ vim.lsp.config["basedpyright"] = {
   settings = {
     basedpyright = {
       disableOrganizeImports = true, -- using isort
+    },
+    python = {
+      pythonPath = vim.fn.exepath("python"), -- needed for basedpyright, even when starting nvim in a conda env
       analysis = {
         ignore = { "*" },
         diagnosticSeverityOverrides = {
@@ -1102,7 +1105,6 @@ vim.lsp.config["basedpyright"] = {
         inlayHints = { callArgumentNames = false, variableTypes = false },
       },
     },
-    python = { pythonPath = vim.fn.exepath("python") }, -- needed for basedpyright, even when starting nvim in a conda env
   },
 }
 vim.lsp.config["css-ls"] = {
