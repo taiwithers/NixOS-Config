@@ -206,6 +206,9 @@ vim.keymap.set("n", "[l", "<cmd>cnext<cr>", { desc = "Previous loclist entry" })
 vim.keymap.set("n", "zA", "zO", { desc = "Open all folds under cursor" }) -- default `zO`
 vim.keymap.set("n", "z0", "zR", { desc = "Open all folds" }) -- default `zR`
 
+-- join lines - but from previous
+vim.keymap.set("n", "<leader>J", "kddpkJ", { desc = "Append previous line to this one" })
+
 ----------------------------------------------------------------------
 --                         General Plugins                          --
 ----------------------------------------------------------------------
@@ -255,15 +258,22 @@ local gitsigns_symbols = {
   changedelete = { text = "&" }, -- first line(s) of file was deleted, AND this line was changed
   untracked = { text = "┆" },
 }
-require("gitsigns").setup({
+local gitsigns = require("gitsigns")
+gitsigns.setup({
   sign_priority = 1000, -- don't overlap marks
   preview_config = { title = "Git Blame" },
   signs = gitsigns_symbols,
   signs_staged = gitsigns_symbols,
 })
 vim.keymap.set({ "n" }, "<leader>gb", function()
-  require("gitsigns").blame_line({ ignore_whitespace = true, full = true })
+  gitsigns.blame_line({ ignore_whitespace = true, full = true })
 end, { desc = "View Git blame for current line" })
+vim.keymap.set({ "n", "v" }, "]gh", function()
+  gitsigns.nav_hunk("next")
+end, { desc = "Next Git hunk" })
+vim.keymap.set({ "n", "v" }, "[gh", function()
+  gitsigns.nav_hunk("prev")
+end, { desc = "Previous Git hunk" })
 
 -- git conflicts to quickfix
 require("headhunter").setup({ keys = false })
@@ -570,7 +580,7 @@ require("lualine").setup({
     lualine_b = { { "branch", icon = "" }, "diagnostics" },
     lualine_c = {},
     lualine_x = {},
-    lualine_y = { { "filetype", icon_only = true }, "lsp_status" },
+    lualine_y = { { "filetype", icon_only = false }, "lsp_status" },
     lualine_z = { "location", { u.visually_selected_line_count, cond = u.in_visual_mode } },
   },
   tabline = {
@@ -1369,7 +1379,7 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
       end, { desc = "Jump to rhs of next assignment" })
       vim.keymap.set({ "n" }, "<leader>sp", function()
         require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
-      end)
+      end, { desc = "Swap current and next parameter" })
     end
   end,
 })

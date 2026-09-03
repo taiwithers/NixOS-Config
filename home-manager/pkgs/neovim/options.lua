@@ -41,7 +41,7 @@ vim.opt.fillchars = { -- use vim.opt to pass a table
 }
 opt.number = true -- print line numbers
 opt.relativenumber = true -- print relative line numbers
-opt.signcolumn = "auto:1-2" -- choose between 1 and 2 wide as req
+opt.signcolumn = "yes:2" -- choose between 1 and 2 wide as req
 opt.statusline = "" -- format for statusline (lualine overrides)
 opt.tabline = "" -- tabline content (lualine overrides)
 opt.termguicolors = true
