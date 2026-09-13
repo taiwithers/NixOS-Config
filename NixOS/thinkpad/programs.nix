@@ -6,6 +6,9 @@
     # if running niri, need terminal emulator and launcher
     rofi
     kitty
+
+    rpi-imager
+    xhost # needed for rpi-imager?
   ];
 
   programs.niri.enable = true;
