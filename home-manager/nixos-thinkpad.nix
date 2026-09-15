@@ -89,6 +89,11 @@
     Install.WantedBy = [ "default.target" ]; # needed or else it  won't actually be started
     Service.ExecStart = "${pkgs.battery-scripts}/bin/battery-scripts --monitor-ac-power";
   };
+  systemd.user.services."battery-level-monitor" = {
+    Unit.Description = "Notify when battery level is low";
+    Install.WantedBy = [ "default.target" ]; # needed or else it  won't actually be started
+    Service.ExecStart = "${pkgs.battery-scripts}/bin/battery-scripts --monitor-for-low-battery";
+  };
 
   # dumbass way to get some level of monitoring without configuring a bar by launching stuff with rofi
   xdg.desktopEntries = {

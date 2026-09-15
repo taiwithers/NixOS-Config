@@ -42,16 +42,28 @@ function notify_if_charging_status_changed() {
   echo "$current_status"
 }
 
+function notify_if_battery_low() {
+  previous_charge=$1
+  current_charge=$(get_total_charge)
+  discharging=$(echo "$current_charge < $previous_charge" | bc --mathlib)
+  battery_low=$(echo "$current_charge < 20" | bc --mathlib)
+  if [[ $discharging -eq "1" && $battery_low -eq "1" ]]; then
+    notify-send "Current battery charge is: $current_charge%. Connect charger"
+  fi
+  echo "$current_charge"
+}
+
 function help() {
   echo "Tai's crappy battery-related bash functions"
   echo
   echo "Options:"
-  echo "--help                  print this help"
-  echo "--monitor-ac-power      background service: send a notification whenever the charging cable is (un)plugged"
-  echo "--report-current-charge notify the current battery charge"
+  echo "--help                      print this help"
+  echo "--monitor-ac-power          background service: send a notification whenever the charging cable is (un)plugged"
+  echo "--monitor-for-low-battery   background service: send a notification if the battery drops below 20%"
+  echo "--report-current-charge     notify the current battery charge"
 }
 
-parsed=$(getopt --options "" --longoptions "help,monitor-ac-power,report-current-charge" -- "$@")
+parsed=$(getopt --options "" --longoptions "help,monitor-ac-power,monitor-for-low-battery,report-current-charge" -- "$@")
 
 echo "$parsed"
 
@@ -66,6 +78,14 @@ while true; do
     previous=0
     while true; do
       previous=$(notify_if_charging_status_changed "$previous")
+      sleep 1
+    done
+    ;;
+
+  --monitor-for-low-battery)
+    previous=100
+    while true; do
+      previous=$(notify_if_battery_low "$previous")
       sleep 1
     done
     ;;

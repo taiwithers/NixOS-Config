@@ -39,6 +39,7 @@ _:
         self.acpi
         self.jq
         self.libnotify
+        self.bc
       ];
       file = name;
     };
