@@ -24,7 +24,7 @@
 
       clear_password = true; # empty field on failure
       hide_version_string = true;
-      session_log = "~/.local/state/ly-session.log"; # default is ".local/state/ly-session.log" which ends up as ~/ly-session.log for some reason
+      session_log = "/home/tai/.local/state/ly-session.log"; # default is ".local/state/ly-session.log" which ends up as ~/ly-session.log for some reason
       xinitrc = "null"; # i don't know what this is, but I don't use it
 
       # deal with nix paths
