@@ -884,6 +884,9 @@ conform.setup({
     },
     rumdl = {
       append_args = {
+        -- shared cache
+        "--cache-dir",
+        "/tmp/rumdl-cache",
         -- format tables
         "--config",
         "MD060.enabled=true",
@@ -1076,15 +1079,16 @@ vim.lsp.config["ruff"] = {
         }, -- select rulesets, like "E", "F"
         ignore = {
           "ANN401", -- explicit Any
+          "BLE001", -- except Exception
           "D105", -- docstrings for dunder methods
           "D401", -- numpydoc "imperative mood"
+          "E731", -- use of lambda functions
           "PLC0415", -- import not at top level
           "PLR2004", -- comparing against "magic" values
           "RUF012", -- typing.ClassVar
           "UP045", -- typing.Optional
           "W291", -- trailing whitespace
           "W293", -- blank line contains whitespace
-          "E731", -- use of lambda functions
         },
         future_annotations = true,
       },
