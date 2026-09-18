@@ -1167,8 +1167,15 @@ vim.lsp.config["mdx-ls"] = {
   init_options = { typescript = { enabled = true, tsdk = vim.g.tsdk } },
 }
 vim.lsp.config["jinja-lsp"] = {
+  root_markers = vim.lsp.config["ruff"].root_markers,
   filetypes = { "markdown.jinja", "html.jinja", "python" },
   cmd = { "jinja-lsp" },
+  settings = {
+    templates = { "./templates", "./includes", "./includes/templates" },
+    backend = { "./src" },
+    lang = "python",
+    hide_undefined = true,
+  },
 }
 vim.lsp.config["gh-actions-ls"] = {
   cmd = { "gh-actions-language-server", "--stdio" },
@@ -1271,7 +1278,7 @@ local function start_lsp()
     "mdx-ls",
     "bash-ls",
     "ruff",
-    "jinja-lsp",
+    -- "jinja-lsp",
     "gh-actions-ls",
     "rust-analyzer",
   })
