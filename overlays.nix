@@ -156,6 +156,7 @@ _:
       };
     });
     gh-actions-language-server = customDerivation "gh-actions-language-server";
+    ty = unstable.ty;
     vimPlugins =
       super.vimPlugins
       // {

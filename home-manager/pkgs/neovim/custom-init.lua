@@ -1097,6 +1097,18 @@ vim.lsp.config["ruff"] = {
   },
 }
 
+vim.lsp.config["ty"] = {
+  cmd = { "ty", "server" },
+  filetypes = { "python" },
+  root_markers = vim.lsp.config["ruff"].root_markers,
+  settings = {
+    ty = {
+      configuration = { rules = { ["unresolved-reference"] = "ignore" } },
+      diagnosticMode = "off",
+      inlayHints = { variableTypes = false, callArgumentNames = false },
+    },
+  },
+}
 vim.lsp.config["basedpyright"] = {
   cmd = { "basedpyright-langserver", "--stdio" },
   filetypes = { "python" },
@@ -1251,7 +1263,8 @@ local function start_lsp()
   vim.lsp.enable({
     "lua-ls",
     "nixd",
-    "basedpyright",
+    "ty",
+    -- "basedpyright",
     "css-ls",
     "astro-ls",
     "ts-ls",

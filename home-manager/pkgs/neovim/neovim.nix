@@ -39,6 +39,7 @@ in
       jinja-lsp
       gh-actions-language-server
       rust-analyzer
+      ty
 
       # formatters
       nixfmt
