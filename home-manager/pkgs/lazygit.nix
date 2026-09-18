@@ -10,11 +10,19 @@ _: {
         expandedSidePanelWeight = 2;
         nerdFontsVersion = 3;
         commitAuthorFormat = "short";
+        shrinkSidePanelsToContent = true;
       };
       promptToReturnFromSubprocess = false;
       keybinding.universal = {
         quit = "Q";
         quitWithoutChangingDirectory = "q";
+        # set the "open" command to the same as "edit"
+        # stops files from opening in vscode on wsl
+        edit = [
+          "e"
+          "o"
+        ];
+        openFile = "<disabled>";
       };
       customCommands = [
         {

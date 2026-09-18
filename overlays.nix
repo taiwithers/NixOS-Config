@@ -109,6 +109,7 @@ _:
       klassy = customDerivation "klassy";
       inherit (unstable.kdePackages) krohnkite;
     };
+    lazygit = unstable.lazygit; # >=0.62 for improved keybindings
     nbpreview = customDerivation "nbpreview";
     nixshell = customScript rec {
       name = "nixshell";
