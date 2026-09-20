@@ -89,6 +89,7 @@ rec {
       libX11
       libXext
       zlib
+      libGL
     ];
   };
 
