@@ -17,6 +17,7 @@ let
       ];
 
       texteditors = [
+        neovim
         # sublime4
         # codium
       ];
@@ -69,7 +70,7 @@ in
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "image/x-nikon-nef" = getDesktopFiles [pkgs.darktable];
+        "image/x-nikon-nef" = getDesktopFiles [ pkgs.darktable ];
         "application/gzip" = defaults.archivemanagers; # .gz , .tgz
         "application/json" = defaults.texteditors; # .json
         "application/pdf" = defaults.browsers;
