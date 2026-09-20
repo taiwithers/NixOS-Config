@@ -31,7 +31,7 @@
         "eza"
         "fzf"
         # "lazygit"
-        "neovim/neovim"
+        # "neovim/neovim"
         "ripgrep"
         # "starship"
         "tldr"

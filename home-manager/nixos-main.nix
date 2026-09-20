@@ -143,7 +143,7 @@
     ventoy-full-qt
     darktable
     bitwarden-desktop
-
+    sshfs
   ];
 
   xdg.desktopEntries."MarioKartWii" = {
@@ -152,9 +152,8 @@
     prefersNonDefaultGPU = true;
   };
 
-  programs.ssh.settings."rpi3" = {
-    identityFile = "~/.ssh/id_ed25519_rpi";
-    hostname = "192.168.1.31";
+  programs.ssh.settings."rpi" = {
+    hostname = "rpi.home.arpa";
   };
 
   # could set this up to read filenames out of some custom config item so they can be populated next to the relevant locations
@@ -167,7 +166,7 @@
       fi
     }
     run remove ~/.config/gtkrc-2.0
-    run remove  ~/.config/mimeapps.list
+    run remove ~/.config/mimeapps.list
   '';
 
   fonts.fontconfig.enable = true;
