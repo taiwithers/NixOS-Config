@@ -136,6 +136,7 @@
     # sonic-pi # reported as broken in 26.05
     anki
     dolphin-emu
+    kdePackages.skanlite
 
     kdePackages.kdialog
     heroic

@@ -233,6 +233,7 @@
         modules = [
           ./NixOS/main/configuration.nix
           flake-inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
+          "${flake-inputs.nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"
           # flake-inputs.niri.nixosModules.niri
           {
             # niri-flake.cache.enable = false;

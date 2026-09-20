@@ -86,6 +86,20 @@
   #   openFirewall = true;
   # };
 
+  hardware.sane = {
+    enable = true;
+    brscan4 = {
+      enable = true;
+      netDevices = {
+        home = {
+          model = "HL-L2390DW";
+          ip = "192.168.0.3";
+        };
+      };
+    };
+  }; # SANE scanners
+  users.users.tai.extraGroups = [ "scanner" ];
+
   fonts.enableDefaultPackages = true;
 
   environment.shellAliases = {
