@@ -554,6 +554,7 @@ require("nvim-navic").setup({ -- breadcrumbs provider
     preference = { "basedpyright" }, -- use bpy over jinja
   },
 })
+local lualine_git_branch = require("lualine.components.branch.git_branch").get_branch
 require("lualine").setup({
   options = {
     theme = {
@@ -572,7 +573,19 @@ require("lualine").setup({
   extensions = { "fzf", "quickfix", "toggleterm" }, -- understand additional filetypes
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { { "branch", icon = "" }, "diagnostics" },
+    lualine_b = {
+      {
+        "branch",
+        color = function(_)
+          return {
+            fg = vim.list_contains({ "main", "master" }, lualine_git_branch()) and mode_colours.normal.contrast
+              or mode_colours.visual.primary,
+          }
+        end,
+        icon = "",
+      },
+      "diagnostics",
+    },
     lualine_c = {},
     lualine_x = {},
     lualine_y = { { "filetype", icon_only = false }, "lsp_status" },
