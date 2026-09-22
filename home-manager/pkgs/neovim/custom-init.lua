@@ -244,11 +244,6 @@ vim.keymap.set("n", "<leader>p]", function()
   MiniBracketed.yank("forward")
 end, { desc = "Swap last [p]ut with newer yank" })
 
--- repeat ]r (refjump.nvim) and ]d, ]p, etc. with ;,
-require("demicolon").setup({
-  repeat_motions = "stateful", -- remember original direction
-})
-
 -- statuscolumn git indicators
 local gitsigns_symbols = {
   add = { text = "+" },
