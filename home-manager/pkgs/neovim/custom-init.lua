@@ -758,7 +758,7 @@ local custom_snippets = {
   {
     ft = { "html", "jinja", "astro" },
     trigger = "doctype",
-    body = '<!doctype html>\n<html lang="en">\n\t<head>\n\t\t<meta charset="UTF-8">\n\t\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\nzt\t<title>${1:Document}</title>\n\t</head>\n\t<body>\n\t\t$0\n\t</body>\n</html>',
+    body = '<!doctype html>\n<html lang="en">\n\t<head>\n\t\t<meta charset="UTF-8">\n\t\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n\t\t<title>${1:Document}</title>\n\t</head>\n\t<body>\n\t\t$0\n\t</body>\n</html>',
   },
   {
     ft = { "html", "astro", "markdown" },
