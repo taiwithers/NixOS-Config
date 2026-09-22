@@ -40,7 +40,16 @@
       ]
     );
 
-  home.packages = [ ];
+  home.packages = [
+    (pkgs.buildFHSEnv {
+      name = "micromamba"; # executable inside env
+      LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+        pkgs.stdenv.cc.cc.lib
+        pkgs.zlib
+      ];
+      runScript = "${pkgs.micromamba}/bin/micromamba";
+    })
+  ];
 
   programs.bash.bashrcExtra = ''
     # add completions
