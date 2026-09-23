@@ -103,6 +103,8 @@
         whichl
         htop
         tree
+        whois
+        nmap
 
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
