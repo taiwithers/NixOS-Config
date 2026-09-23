@@ -76,6 +76,7 @@
 
     discord
     sshfs
+    cambium
   ];
 
   programs.bash.bashrcExtra = ''

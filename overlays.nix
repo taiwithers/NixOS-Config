@@ -46,6 +46,7 @@ _:
       ];
       file = name;
     };
+    cambium = customDerivation "cambium";
     cbonsai = customDerivation "cbonsai";
     clean = customScript rec {
       name = "clean";
