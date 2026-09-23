@@ -1,11 +1,8 @@
 # build with nix-build --expr 'with import <nixpkgs> {}; callPackage ./cambium.nix {}'
 {
-  lib,
-  stdenv,
   fetchPypi,
   fetchFromGitHub,
   python3Packages,
-  poetry,
   pagefind,
 }:
 
@@ -20,23 +17,20 @@ python3Packages.buildPythonPackage rec {
     rev = commit;
     hash = "sha256-83W0rSs1VA9IQNQBi1xfJWy2p6xJvr4moh2ocHZSrcE=";
   };
-  # src = fetchPypi {
-  #   inherit pname version;
-  #   hash = "sha256-n0feM5maDsVnHF0jIU3pb6BrtDmLkKRgvD1tymotMuQ=";
-  # };
 
-  # do not run tests
-  # doCheck = false;
-
-  postPatch = ''
-    substituteInPlace pyproject.toml \
-      --replace-fail 'pydantic>=2.13.4,<3' 'pydantic>=2.12,<3' \
-      --replace-fail 'typer>=0.25.1,<0.26' 'typer>=0.24,<0.26' \
-  '';
+  postPatch =
+    let
+      nixpkgs_pydantic = "2.12.5";
+      nixpkgs_typer = "0.24.0";
+    in
+    ''
+      substituteInPlace pyproject.toml \
+        --replace-fail 'pydantic>=2.13.4,<3' 'pydantic==${nixpkgs_pydantic}' \
+        --replace-fail 'typer>=0.25.1,<0.26' 'typer==${nixpkgs_typer}' \
+    '';
 
   pyproject = true;
   build-system = [
-    # (poetry.withPlugins (ps: [ python3Packages.poetry-dynamic-versioning ]))
     python3Packages.poetry-core
     python3Packages.poetry-dynamic-versioning
   ];
@@ -45,7 +39,6 @@ python3Packages.buildPythonPackage rec {
     with python3Packages;
     let
       pagefind-python = buildPythonPackage rec {
-
         pname = "pagefind";
         version = "1.5.2";
         src = fetchPypi {
@@ -57,13 +50,13 @@ python3Packages.buildPythonPackage rec {
       };
     in
     [
+      jinja2
       marko
       pagefind
+      pagefind-python
       pydantic
       python-slugify
       pyyaml
       typer
-      pagefind-python
-      jinja2
     ];
 }

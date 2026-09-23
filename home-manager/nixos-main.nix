@@ -144,16 +144,13 @@
     darktable
     bitwarden-desktop
     sshfs
+    cambium
   ];
 
   xdg.desktopEntries."MarioKartWii" = {
     name = "Mario Kart Wii";
     exec = "nvidia-offload dolphin-emu-nogui --exec \"${config.common.userHome}/Games/Mario Kart Wii.nkit.iso\"";
     prefersNonDefaultGPU = true;
-  };
-
-  programs.ssh.settings."rpi" = {
-    hostname = "rpi.home.arpa";
   };
 
   # could set this up to read filenames out of some custom config item so they can be populated next to the relevant locations
