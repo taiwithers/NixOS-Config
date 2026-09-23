@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-# Requirements: acpi, notify-send, jq
+#!/usr/bin/env -S nix shell nixpkgs#acpi nixpkgs#jq nixpkgs#libnotify nixpkgs#bc --command bash
 
 set -euo pipefail
 
@@ -66,6 +64,11 @@ function help() {
 parsed=$(getopt --options "" --longoptions "help,monitor-ac-power,monitor-for-low-battery,report-current-charge" -- "$@")
 
 echo "$parsed"
+
+if [[ -z ${1+""} ]]; then
+  help
+  exit 0
+fi
 
 while true; do
   case "$1" in
