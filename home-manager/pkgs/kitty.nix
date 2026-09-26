@@ -90,7 +90,11 @@
 
   xdg.configFile."KDE-xdg-terminals.list".text = config.xdg.configFile."xdg-terminals.list".text;
 
-  home.sessionVariables."TERMINAL" = "kitty";
+  home.sessionVariables = with config.common; {
+    TERMINAL = "kitty";
+    TERMINFO = "${dataHome}/terminfo";
+    TERMINFO_DIRS = "${dataHome}/terminfo:/usr/share/terminfo";
+  };
 
   home.activation.kitty-keybinds = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     run ${pkgs.bat}/bin/bat ~/.config/kitty/kitty.conf | grep "map" | sed "s/^map //" | ${pkgs.gawk}/bin/awk '{$1 = sprintf("%-20s",$1)} 1' > ~/.local/state/kitty-keybinds.txt

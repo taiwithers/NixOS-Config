@@ -70,8 +70,6 @@
       PARALLEL_HOME = "${configHome}/parallel";
       PASSWORD_STORE_DIR = "${dataHome}/pass";
       SQLITE_HISTORY = "${cacheHome}/sqlite_history";
-      TERMINFO = "${dataHome}/terminfo";
-      TERMINFO_DIRS = "${dataHome}/terminfo:/usr/share/terminfo";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       USERXSESSIONRC = "${cacheHome}/x11/xsessionrc";
       FIGNORE = ".lock"; # don't include .lock files in filename completion
