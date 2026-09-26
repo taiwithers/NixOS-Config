@@ -1,4 +1,4 @@
-#!/usr/bin/env -S nix shell nixpkgs#acpi nixpkgs#jq nixpkgs#libnotify nixpkgs#bc --command bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -63,12 +63,13 @@ function help() {
 
 parsed=$(getopt --options "" --longoptions "help,monitor-ac-power,monitor-for-low-battery,report-current-charge" -- "$@")
 
-echo "$parsed"
-
-if [[ -z ${1+""} ]]; then
+if [[ -z ${1+x} ]]; then
+  echo "No option given"
   help
   exit 0
 fi
+
+eval set -- "$parsed"
 
 while true; do
   case "$1" in

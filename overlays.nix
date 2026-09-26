@@ -35,6 +35,12 @@ _:
   {
     battery-scripts = customScript rec {
       name = "battery-scripts";
+      runtimeInputs = [
+        self.acpi
+        self.bc
+        self.jq
+        self.libnotify
+      ];
       file = name;
     };
     brightness-control = customScript rec {
