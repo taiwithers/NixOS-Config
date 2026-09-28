@@ -66,6 +66,11 @@
     visidata
     jq
     nbpreview
+
+    cambium
+
+    file
+    hexyl
   ];
 
   programs.git = {
