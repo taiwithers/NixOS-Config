@@ -18,7 +18,7 @@ python3Packages.buildPythonPackage rec {
     hash = "sha256-V1BVpcW4yVt9/+9Dwr2apYFPm9Z/tWgpzNK6CA3MhIQ=";
   };
 
-  postPatch =
+  prePatch =
     let
       nixpkgs_pydantic = "2.12.5";
       nixpkgs_typer = "0.24.0";

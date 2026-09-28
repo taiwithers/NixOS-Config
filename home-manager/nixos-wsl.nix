@@ -67,7 +67,7 @@
     jq
     nbpreview
 
-    cambium
+    cambium-nix
 
     file
     hexyl

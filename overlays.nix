@@ -128,6 +128,12 @@ _:
       file = "nix-search-wrapper";
     };
     starfetch = customDerivation "starfetch";
+    cambium-nix = self.cambium.overrideAttrs (oldAttrs: {
+      postPatch = ''
+        substituteInPlace pyproject.toml \
+          --replace-fail 'scripts.cambium' 'scripts.cambium-nix'
+      '';
+    });
     vesktop = super.vesktop.overrideAttrs (oldAttrs: {
       srcs = [
         oldAttrs.src
