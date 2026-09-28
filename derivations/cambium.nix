@@ -8,14 +8,14 @@
 
 python3Packages.buildPythonPackage rec {
   pname = "cambium";
-  commit = "5946d82";
+  commit = "abedb8c";
   version = "0.6.0.dev0";
 
   src = fetchFromGitHub {
     owner = "sidratresearch";
     repo = pname;
     rev = commit;
-    hash = "sha256-83W0rSs1VA9IQNQBi1xfJWy2p6xJvr4moh2ocHZSrcE=";
+    hash = "sha256-V1BVpcW4yVt9/+9Dwr2apYFPm9Z/tWgpzNK6CA3MhIQ=";
   };
 
   postPatch =
