@@ -1,5 +1,6 @@
 # build with nix-build --expr 'with import <nixpkgs> {}; callPackage ./cambium.nix {}'
 {
+  lib,
   fetchPypi,
   fetchFromGitHub,
   python3Packages,
@@ -8,20 +9,29 @@
 
 python3Packages.buildPythonPackage rec {
   pname = "cambium";
-  commit = "abedb8c";
+  commit = "e6ecbf0";
   version = "0.6.0.dev0";
 
   src = fetchFromGitHub {
     owner = "sidratresearch";
     repo = pname;
     rev = commit;
-    hash = "sha256-V1BVpcW4yVt9/+9Dwr2apYFPm9Z/tWgpzNK6CA3MhIQ=";
+    hash = "sha256-fgCus7CnNiXOQ8/iK02zgSYpaCwmYRbUpBVugQtNzlU=";
   };
 
   prePatch =
     let
-      nixpkgs_pydantic = "2.12.5";
-      nixpkgs_typer = "0.24.0";
+      nixpkgs_pydantic =
+        if (lib.versionAtLeast python3Packages.pydantic.version "2.13") then
+          throw "Remove Pydantic version constraint"
+        else
+          python3Packages.pydantic.version;
+
+      nixpkgs_typer =
+        if (lib.versionAtLeast python3Packages.typer.version "0.25.1") then
+          throw "Remove typer version constraint"
+        else
+          python3Packages.typer.version;
     in
     ''
       substituteInPlace pyproject.toml \
