@@ -104,6 +104,7 @@
         whois
         nmap
         unzip
+        python-http-server
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         coreutils

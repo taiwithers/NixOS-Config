@@ -117,6 +117,10 @@ _:
     pond = customDerivation "pond";
     prettier-plugin-astro = customDerivation "prettier-plugin-astro";
     prettier-plugin-jinja-template = customDerivation "prettier-plugin-jinja-template";
+    python-http-server = self.buildFHSEnv {
+      name = "serve";
+      runScript = "${self.python3}/bin/python -m http.server";
+    };
     search = customScript {
       name = "search";
       runtimeInputs = with super; [
