@@ -103,7 +103,7 @@
         tree
         whois
         nmap
-
+        unzip
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         coreutils
