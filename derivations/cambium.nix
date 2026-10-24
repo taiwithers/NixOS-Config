@@ -4,19 +4,18 @@
   fetchPypi,
   fetchFromGitHub,
   python3Packages,
-  pagefind,
+  pagefind, # using nixpkgs pagefind, which is not pagefind-extended
 }:
 
 python3Packages.buildPythonPackage rec {
   pname = "cambium";
-  commit = "e6ecbf0";
-  version = "0.6.0.dev0";
+  version = "1.0.0-rc.2";
 
   src = fetchFromGitHub {
     owner = "sidratresearch";
     repo = pname;
-    rev = commit;
-    hash = "sha256-fgCus7CnNiXOQ8/iK02zgSYpaCwmYRbUpBVugQtNzlU=";
+    tag = "v${version}";
+    hash = "sha256-nIZ0+Ku/LVYiRPCAlN0gnlOh7HpIMM1Nu+nxR4R2vuU=";
   };
 
   prePatch =
@@ -49,6 +48,7 @@ python3Packages.buildPythonPackage rec {
     with python3Packages;
     let
       pagefind-python = buildPythonPackage rec {
+        # just the python wrapper, does not include the binary
         pname = "pagefind";
         version = "1.5.2";
         src = fetchPypi {
