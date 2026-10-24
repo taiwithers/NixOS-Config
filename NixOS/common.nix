@@ -1,5 +1,5 @@
 { pkgs, lib, ... }:
-rec {
+{
   #--------------------------------------------------------------------#
   #                            Nix Settings                            #
   #--------------------------------------------------------------------#
@@ -10,9 +10,6 @@ rec {
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
-    (lib.mkIf (lib.versionAtLeast nix.package.version "2.94.3") (
-      (lib.warn "Remove no-url-literals guard!") "no-url-literals"
-    ))
   ];
 
   # keep system clean :)
