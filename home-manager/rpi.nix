@@ -30,8 +30,6 @@
         "dust"
         "eza"
         "fzf"
-        # "lazygit"
-        # "neovim/neovim"
         "ripgrep"
         # "starship"
         "tldr"
@@ -40,15 +38,8 @@
       ]
     );
 
-  home.packages = [
-    (pkgs.buildFHSEnv {
-      name = "micromamba"; # executable inside env
-      LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-        pkgs.stdenv.cc.cc.lib
-        pkgs.zlib
-      ];
-      runScript = "${pkgs.micromamba}/bin/micromamba";
-    })
+  home.packages = with pkgs; [
+    cambium
   ];
 
   programs.bash.bashrcExtra = ''
