@@ -157,12 +157,13 @@
   home.activation.removeBackups = config.lib.dag.entryBefore [ "checkLinkTargets" ] /* bash */ ''
     remove() {
       backup="$1.backup"
+      
       if [[ -f "$backup" ]]; then
         rm "$backup"
         echo "$backup removed"
       fi
     }
-    run remove ~/.config/gtkrc-2.0
+    run remove /home/tai/.config/gtkrc-2.0
     run remove ~/.config/mimeapps.list
   '';
 
