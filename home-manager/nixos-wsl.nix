@@ -71,6 +71,7 @@
 
     file
     hexyl
+    gh
   ];
 
   programs.git = {
@@ -98,6 +99,7 @@
   home.shellAliases = {
     tbt = "ssh tai@timbuktu";
     exe = "explorer.exe .";
+    docker-ubuntu = "docker run --interactive --tty --rm ubuntu:latest bash -c 'apt update && bash'";
   };
 
   xdg.configFile."${config.xdg.configHome}/python/pythonrc".text = ''
