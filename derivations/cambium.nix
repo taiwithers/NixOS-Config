@@ -9,13 +9,13 @@
 
 python3Packages.buildPythonPackage rec {
   pname = "cambium";
-  version = "1.0.0-rc.2";
+  version = "1.0.0";
 
   src = fetchFromGitHub {
     owner = "sidratresearch";
     repo = pname;
     tag = "v${version}";
-    hash = "sha256-nIZ0+Ku/LVYiRPCAlN0gnlOh7HpIMM1Nu+nxR4R2vuU=";
+    hash = "sha256-CxAsytQmDbGBagaDxrwo6koy9AjB8AnIo+4G2Tp3y78=";
   };
 
   prePatch =
