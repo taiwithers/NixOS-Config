@@ -170,6 +170,7 @@
         controlPath = "~/.ssh/master-%r@%n:%p";
         controlPersist = "no";
       };
+      includes = [ "extras/*" ];
     };
 
     programs.bash.bashrcExtra = ''

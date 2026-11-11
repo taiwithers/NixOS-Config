@@ -72,6 +72,7 @@
     file
     hexyl
     gh
+    sshfs
   ];
 
   programs.git = {
