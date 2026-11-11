@@ -114,6 +114,7 @@ in
       cmp-buffer
       cmp-path
       cmp-cmdline
+      cmp-cmdline-history
       cmp-scss
 
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (

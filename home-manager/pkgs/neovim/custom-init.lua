@@ -586,7 +586,23 @@ require("lualine").setup({
       },
       "diagnostics",
     },
-    lualine_c = {},
+    lualine_c = {
+      {
+        -- Add the macro recording status
+        "macro",
+        fmt = function()
+          local reg = vim.fn.reg_recording()
+          -- If a macro is being recorded, show "Recording @<register>"
+          if reg ~= "" then
+            return "Recording macro to register " .. reg
+          else
+            return ""
+          end
+        end,
+        color = { fg = mode_colours.copy.primary },
+        draw_empty = false,
+      },
+    },
     lualine_x = {},
     lualine_y = { { "filetype", icon_only = false }, "lsp_status" },
     lualine_z = { "location", { u.visually_selected_line_count, cond = u.in_visual_mode } },
@@ -851,13 +867,13 @@ cmp.setup({
 })
 cmp.setup.cmdline(":", {
   mapping = cmdline_completion_mapping,
-  sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+  sources = { { name = "path" }, { name = "cmdline" }, { name = "cmdline_history" } },
   matching = { disallow_symbol_nonprefix_matching = false },
 })
 cmp.setup.cmdline({ "/", "?" }, {
   -- Use buffer source for '/' and '?' searches
   mapping = cmdline_completion_mapping,
-  sources = { { name = "buffer" } },
+  sources = { { name = "buffer" }, { name = "cmdline_history" } },
 })
 
 require("nvim-autopairs").setup()
@@ -1369,17 +1385,6 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
         remove_template_string = true,
         restore_quotes = { normal = [["]] },
       })
-      local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
-
-      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-
-      -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-      vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
-      vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
-      vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
-      vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
-
       local ts_select = require("nvim-treesitter-textobjects.select").select_textobject
       local ts_jump = require("nvim-treesitter-textobjects.move")
 
