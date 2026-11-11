@@ -145,6 +145,7 @@
           "browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled" = true; # betterfox
           "browser.newtabpage.activity-stream.showWeather" = false;
           "browser.newtabpage.activity-stream.telemetry" = false; # betterfox
+          "browser.nova.enabled" = false; # opt out of firefox redesign
           "browser.preferences.moreFromMozilla" = false;
           "browser.privatebrowsing.vpnpromourl" = ""; # betterfox
           "browser.profiles.enabled" = true;
