@@ -110,7 +110,6 @@ _:
       klassy = customDerivation "klassy";
       inherit (unstable.kdePackages) krohnkite;
     };
-    lazygit = unstable.lazygit; # >=0.62 for improved keybindings
     nbpreview = customDerivation "nbpreview";
     nixshell = customScript rec {
       name = "nixshell";
@@ -189,20 +188,20 @@ _:
         markdown-plus-nvim = {
           author = "YousefHadder";
           repo = "markdown-plus.nvim";
-          rev = "v2.0.0";
-          hash = "sha256-ovVbPXRmiY5hWgkCNCgW/zYdg/l3Fq4A/rXPHDYdu7U=";
+          rev = "v2.2.0";
+          hash = "sha256-V5z790nHpWaCIjTg9hd1gt+qfrFJ3NxieZHN8zbsipI=";
         };
         mdx-nvim = {
           author = "davidmh";
           repo = "mdx.nvim";
-          rev = "3022299";
-          hash = "sha256-QaPYSTH59j8tUa5rTY8I9VdQWLkhy8SWhNigEXHFn1c=";
+          rev = "e165ee4"; # following commit adds a mimimal config which breaks somehow
+          hash = "sha256-WChsEzRBFv8Z1LlhMol8eUKgmg20zIxtSQtvI78mC2g=";
         };
         modes-nvim = {
           author = "mvllow";
           repo = "modes.nvim";
-          rev = "0932ba4";
-          hash = "sha256-SXx1S/yBDTddb/oncHmfvpdO2oUNbgUjBItnudDAIE8=";
+          rev = "ace5186";
+          hash = "sha256-0xi7t0zmpNHMRXfYpqG15VKeMoa25db2/a3JboNOHo8=";
         };
         nvim-comment-frame = {
           author = "s1n7ax";
