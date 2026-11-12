@@ -767,10 +767,13 @@ local global_snippets = {
   },
 }
 local custom_snippets = {
-  { ft = { "python" }, trigger = "def", body = "def ${1:name}(${2:args})->None:\n\t$0" },
+  { ft = { "python" }, trigger = "def", body = "def ${1:name}(${2:args})->${3:None}:\n\t$0" },
   { ft = { "python" }, trigger = "main", body = "def main()->None:\n\t$0" },
   { ft = { "python" }, trigger = "ifmain", body = 'if __name__ == "__main__":\n\t${1:main()}' },
   { ft = { "python" }, trigger = "match", body = "match ${1:test}:\n\tcase ${2:result}:\n\t\t$0" },
+  { ft = { "python" }, trigger = "multiline", body = '"""$0"""' },
+  { ft = { "python" }, trigger = "from...import", body = "from ${1:pathlib} import ${2:Path}" },
+  { ft = { "html", "jinja", "astro" }, trigger = "stylesheet", body = '<link rel="stylesheet" href="$0"/>' },
   {
     ft = { "html", "jinja", "astro" },
     trigger = "doctype",
@@ -787,6 +790,11 @@ local custom_snippets = {
     body = "@media screen and (${1:max-width: 300px}) {\n\t$0\n}",
   },
   {
+    ft = { "css", "scss", "astro" },
+    trigger = "margin-padding-all-sides",
+    body = "${1|padding,margin|}: ${2:top} ${3:right} ${4:bottom} ${5:left};",
+  },
+  {
     ft = { "lua" },
     trigger = "keymap",
     body = 'vim.keymap.set({"${1:n}"}, "${2:<leader>}", ${3:rhs}, { desc = "${4:description}" })',
@@ -801,6 +809,9 @@ local custom_snippets = {
   { ft = { "jinja" }, trigger = "set-line", body = "{% set ${1:lhs} = $0 %}" },
   { ft = { "jinja" }, trigger = "set-block", body = "{% set ${1:lhs} %}\n\t$0\n{% endset %}" },
   { ft = { "jinja" }, trigger = "include", body = '{% include "$0" %}' },
+  { ft = { "bash", "sh" }, trigger = "if", body = "if [[ ${1:condition} ]]; then\n\t${0}\nfi" },
+  { ft = { "bash", "sh" }, trigger = "while", body = "while [[ ${1:condition} ]]; do\n\t${0}\ndone\n" },
+  { ft = { "bash", "sh" }, trigger = "function", body = "${1:name} ()\n{\n\t${0}\n}" },
 }
 
 cmp.register_source("custom_snippets", u.custom_cmp_snippets(global_snippets, custom_snippets))
