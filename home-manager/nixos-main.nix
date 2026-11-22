@@ -79,7 +79,7 @@
       "starship"
       # "sublime-text/sublime-text"
       "tldr"
-      "vscodium/vscodium"
+      # "vscodium/vscodium"
       "xdg"
       "yazi"
       "zotero/zotero"
