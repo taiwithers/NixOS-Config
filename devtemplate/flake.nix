@@ -4,7 +4,7 @@
   inputs = {
     # issues with 26.05+ for micromamba
     # https://discourse.nixos.org/t/how-to-properly-use-micromamba-mamba-cpp-in-nix-develop-shell/78127
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.zst";
 
     flake-utils = {
       url = "github:numtide/flake-utils";
