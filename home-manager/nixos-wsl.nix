@@ -74,6 +74,17 @@
     gh
     sshfs
     lazydocker
+
+    (pkgs.writeShellApplication {
+      name = "docker-fzf-container";
+      runtimeInputs = with pkgs; [ fzf ];
+      text = ''
+        containers=$(docker ps --all --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.CreatedAt}}\t{{.Names}}\t{{.Ports}}"| sed 1d)
+        selected_id=$(echo "$containers" | fzf --select-1 --query "''${1:-}")
+        id=$(echo "$selected_id" | awk '{print $1}')
+        echo "$id"
+      '';
+    })
   ];
 
   programs.git = {
