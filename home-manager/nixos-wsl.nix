@@ -73,6 +73,7 @@
     hexyl
     gh
     sshfs
+    lazydocker
   ];
 
   programs.git = {

@@ -43,6 +43,7 @@ _:
       ];
       file = name;
     };
+    blesh = unstable.blesh;
     brightness-control = customScript rec {
       name = "brightness-control";
       runtimeInputs = [

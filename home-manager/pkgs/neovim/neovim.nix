@@ -105,6 +105,7 @@ in
       jinja-vim # fixes jinja syntax highlighting, ftplugin, so no setup
       actions-preview-nvim # preview the results of code actions
       headhunter-nvim # keymaps for git conflicts
+      vimtex
 
       # completion and sources
       nvim-cmp

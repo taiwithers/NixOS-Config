@@ -105,6 +105,7 @@
         nmap
         unzip
         python-http-server
+        sysz # fzf on systemctl objects
       ]
       ++ pkgs.lib.optionals (!config.common.nixos) [
         coreutils

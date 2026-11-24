@@ -109,6 +109,20 @@ let
         --bind "enter:become($EDITOR {1} +{2})"
     '';
   };
+  fzf-manpage-search = pkgs.writeShellApplication {
+    name = "fzf-manpage-search";
+    runtimeInputs = with pkgs; [
+      fzf
+      bat
+    ];
+    text = ''
+      fman() {
+          man -k . | fzf -q "$@" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r -I % sh -c 'echo "man %"; man %'
+      }
+      # Get the colors in the opened man page itself
+      MANPAGER="bat -l man -p --paging always" fman ""
+    '';
+  };
   fzfDefaultOptions = [
     "--layout reverse"
     "--height '~60%'"
@@ -124,6 +138,7 @@ in
   home.packages = [
     fzf-preview
     fzf-edit
+    fzf-manpage-search
   ];
   home.shellAliases.nvif = "fzf-edit";
   programs.fzf = rec {
