@@ -84,6 +84,7 @@
 
     ble-import -d integration/fzf-completion
     ble-import -d integration/fzf-key-bindings
+    ble-import -d integration/fzf-menu
 
     bleopt prompt_rps1_transient=1 # only show most recent right prompt
     bleopt history_share=1 # share history between bash sessions

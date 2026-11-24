@@ -812,6 +812,7 @@ local custom_snippets = {
   { ft = { "bash", "sh" }, trigger = "if", body = "if [[ ${1:condition} ]]; then\n\t${0}\nfi" },
   { ft = { "bash", "sh" }, trigger = "while", body = "while [[ ${1:condition} ]]; do\n\t${0}\ndone\n" },
   { ft = { "bash", "sh" }, trigger = "function", body = "${1:name} ()\n{\n\t${0}\n}" },
+  { ft = { "bash", "sh" }, trigger = "set", body = "set -euo pipefail" },
 }
 
 cmp.register_source("custom_snippets", u.custom_cmp_snippets(global_snippets, custom_snippets))
@@ -1076,6 +1077,7 @@ vim.lsp.config["ruff"] = {
   filetypes = { "python" },
   init_options = {
     settings = {
+      configurationPreference = "filesystemFirst",
       lineLength = 88,
       organizeImports = false, -- use isort
       configuration = {
@@ -1327,7 +1329,13 @@ vim.keymap.set({ "n" }, "gr", function()
 end, { desc = "Start LSP servers" })
 vim.keymap.set("n", "grh", vim.lsp.buf.hover, { desc = "Show LSP hover information" })
 vim.keymap.set("n", "grH", vim.diagnostic.open_float, { desc = "Show line diagnostic" })
-vim.keymap.set("n", "grd", vim.diagnostic.setqflist, { desc = "Send diagnostics to QF" })
+vim.keymap.set("n", "grd", function()
+  vim.diagnostic.setqflist({
+    format = function(diagnostic)
+      return diagnostic.message .. " [" .. diagnostic.code .. "]"
+    end,
+  })
+end, { desc = "Send diagnostics to QF" })
 vim.keymap.set("n", "grtd", function()
   vim.diagnostic.setqflist({ open = false })
   telescope_builtins.quickfix()
