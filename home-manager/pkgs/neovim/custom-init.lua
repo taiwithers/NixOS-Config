@@ -349,30 +349,32 @@ telescope.setup({
   },
 })
 telescope.load_extension("fzf")
-telescope.load_extension("ui-select")
+-- telescope.load_extension("ui-select")
 local function telescope_cursor(opts)
   return require("telescope.themes").get_cursor(opts)
 end
-function vim.find_files_from_project_git_root()
-  local opts = {}
-  if u.is_git_repo() then
-    opts = { cwd = u.get_git_root() }
+local fzf_lua = require("fzf-lua")
+local function find_files_from_git_or_cwd(opts)
+  -- https://github.com/ibhagwan/fzf-lua/issues/140#issuecomment-920966786
+  if not opts then
+    opts = {}
   end
-  telescope_builtins.find_files(opts)
+  opts.cwd = require("fzf-lua.path").git_root(vim.loop.cwd(), true) or vim.loop.cwd()
+  opts.fzf_cli_args = ('--header="cwd = %s"'):format(vim.fn.shellescape(opts.cwd))
+  fzf_lua.files(opts)
 end
 local function live_grep_from_project_git_root()
   local opts = {}
   if u.is_git_repo() then
     opts = { cwd = u.get_git_root() }
   end
-  telescope_builtins.live_grep(opts)
+  fzf_lua.live_grep(opts)
 end
-vim.keymap.set({ "n", "v" }, "<leader>fw", telescope_builtins.grep_string, { desc = "Current word" })
-vim.keymap.set({ "n" }, "<leader>ff", vim.find_files_from_project_git_root, { desc = "Telescope files" })
-vim.keymap.set({ "n" }, "<leader>fb", telescope_builtins.buffers, { desc = "Open buffers" })
-vim.keymap.set({ "n" }, "<leader>fq", telescope_builtins.quickfix, { desc = "Open quickfix" })
-vim.keymap.set({ "n" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Find in folder" })
-vim.keymap.set({ "n" }, "<leader>fm", "<cmd>Telescope marks theme=dropdown<cr>", { desc = "Marks" })
+vim.keymap.set({ "n" }, "<leader>ff", find_files_from_git_or_cwd, { desc = "Files in project" })
+vim.keymap.set({ "n" }, "<leader>fb", fzf_lua.buffers, { desc = "Buffers" })
+vim.keymap.set({ "n" }, "<leader>fq", fzf_lua.quickfix, { desc = "Quickfix" })
+vim.keymap.set({ "n" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Grep in project" })
+vim.keymap.set({ "n" }, "<leader>fm", fzf_lua.marks, { desc = "Marks" })
 
 -- yank ring (clipboard history)
 local function is_whitespace(line)
@@ -390,6 +392,11 @@ require("neoclip").setup({
     return all_whitespace
   end,
   keys = {
+    fzf = {
+      select = "default",
+      paste = { "<cr>", "<c-l>" },
+      paste_behind = "<c-h>",
+    },
     telescope = {
       i = {
         select = {},
@@ -410,9 +417,13 @@ require("neoclip").setup({
     },
   },
 })
-vim.keymap.set("n", "<leader>P", function()
-  telescope.extensions.neoclip.default(telescope_cursor({ layout_config = { height = 15 } }))
-end, { desc = "Yank history" })
+-- vim.keymap.set("n", "<leader>P", function()
+-- telescope.extensions.neoclip.default(telescope_cursor({ layout_config = { height = 15 } }))
+-- end, { desc = "Yank history" })
+-- vim.keymap.set("n", "<leader>P", require("neoclip.fzf"), { desc = "Yank history" })
+fzf_lua.register_ui_select()
+require("yanky").setup()
+vim.keymap.set("n", "<leader>P", "<cmd>YankyRingHistory<cr>", { desc = "Yank history" })
 
 -- terminals
 require("toggleterm").setup()

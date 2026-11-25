@@ -106,6 +106,8 @@ in
       actions-preview-nvim # preview the results of code actions
       headhunter-nvim # keymaps for git conflicts
       vimtex
+      fzf-lua
+      yanky-nvim
 
       # completion and sources
       nvim-cmp
