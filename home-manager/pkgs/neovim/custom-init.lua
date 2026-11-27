@@ -221,7 +221,7 @@ require("mini.bufremove").setup()
 vim.keymap.set({ "n" }, "<leader>dd", "<cmd>lua MiniBufremove.delete()<cr>", { desc = "Close buffer" })
 
 -- jumps and yank history with mini.bracketed
-local mini_bracketed = require("mini.bracketed").setup({
+require("mini.bracketed").setup({
   comment = { suffix = "" }, -- linewise comment
   diagnostic = { suffix = "" }, -- already exists
   file = { suffix = "" }, -- file on disk
@@ -330,30 +330,22 @@ require("which-key").add({
 })
 vim.keymap.set("n", "<leader>H", require("which-key").show, { desc = "Open which-key" })
 
--- telescope
-local telescope = require("telescope")
-local telescope_builtins = require("telescope.builtin")
-telescope.setup({
-  defaults = {
-    dynamic_preview_title = true, -- for neoclip
-    path_display = { "smart" },
-    file_previewer = require("telescope.previewers").cat.new,
-    grep_previewer = require("telescope.previewers").vimgrep.new,
-    qflist_previewer = require("telescope.previewers").qflist.new,
-    mappings = {
-      n = {
-        ["q"] = require("telescope.actions").close,
-        ["<leader>"] = require("telescope.actions").which_key,
-      },
-    },
+-- fzf-lua as picker
+local fzf_lua = require("fzf-lua")
+fzf_lua.setup({
+  ui_select = true,
+  file_icons = true,
+  git_icons = true,
+  winopts = {
+    border = "rounded",
+  },
+  files = {
+    cwd_prompt = false,
+  },
+  oldfiles = {
+    include_current_session = true,
   },
 })
-telescope.load_extension("fzf")
--- telescope.load_extension("ui-select")
-local function telescope_cursor(opts)
-  return require("telescope.themes").get_cursor(opts)
-end
-local fzf_lua = require("fzf-lua")
 local function find_files_from_git_or_cwd(opts)
   -- https://github.com/ibhagwan/fzf-lua/issues/140#issuecomment-920966786
   if not opts then
@@ -371,58 +363,37 @@ local function live_grep_from_project_git_root()
   fzf_lua.live_grep(opts)
 end
 vim.keymap.set({ "n" }, "<leader>ff", find_files_from_git_or_cwd, { desc = "Files in project" })
+vim.keymap.set({ "n" }, "<leader>fo", fzf_lua.oldfiles, { desc = "Oldfiles" })
 vim.keymap.set({ "n" }, "<leader>fb", fzf_lua.buffers, { desc = "Buffers" })
 vim.keymap.set({ "n" }, "<leader>fq", fzf_lua.quickfix, { desc = "Quickfix" })
 vim.keymap.set({ "n" }, "<leader>fs", live_grep_from_project_git_root, { desc = "Grep in project" })
 vim.keymap.set({ "n" }, "<leader>fm", fzf_lua.marks, { desc = "Marks" })
+vim.keymap.set({ "n" }, "<leader>j", function()
+  local recipes = vim.split(vim.fn.system("just --list --explain"), "\n")
+  return require("fzf-lua").fzf_exec(recipes, {
+    fzf_opts = { ["--header-lines"] = 1 },
+    actions = {
+      default = function(selection)
+        for _, sel in ipairs(selection) do
+          local recipe_name = vim.trim(vim.split(sel, "#")[1])
+          vim.system({ "just", recipe_name }, { text = true }, function(_)
+            vim.notify(string.format("Finished `just %s`", recipe_name), vim.log.levels.INFO)
+          end)
+        end
+      end,
+    },
+  })
+end, { desc = "Run `just` command" })
 
 -- yank ring (clipboard history)
-local function is_whitespace(line)
-  local trimmed = vim.trim(line)
-  return string.len(trimmed) > 0
-end
-require("neoclip").setup({
-  history = 50,
-  enable_persistent_history = true,
-  preview = true, -- show the type of paste in the telescope title (char/line wise)
-  dedent_picker_display = true,
-  filter = function(data)
-    local lines = vim.tbl_values(data.event.regcontents)
-    local all_whitespace = vim.iter(lines):all(is_whitespace)
-    return all_whitespace
-  end,
-  keys = {
-    fzf = {
-      select = "default",
-      paste = { "<cr>", "<c-l>" },
-      paste_behind = "<c-h>",
-    },
-    telescope = {
-      i = {
-        select = {},
-        paste = { "<cr>", "<c-l>" },
-        paste_behind = "<c-h>",
-        replay = {}, -- replay macros
-        delete = "<c-d>",
-        edit = "<c-e>",
-      },
-      n = {
-        select = {},
-        paste = { "<cr>", "p" },
-        paste_behind = "P",
-        replay = {}, -- replay macros
-        delete = "d",
-        edit = "e",
-      },
-    },
+require("yanky").setup({
+  ring = {
+    filter = function(entry, _)
+      -- ignore whitespace-only yanks
+      return vim.trim(entry.regcontents) ~= ""
+    end,
   },
 })
--- vim.keymap.set("n", "<leader>P", function()
--- telescope.extensions.neoclip.default(telescope_cursor({ layout_config = { height = 15 } }))
--- end, { desc = "Yank history" })
--- vim.keymap.set("n", "<leader>P", require("neoclip.fzf"), { desc = "Yank history" })
-fzf_lua.register_ui_select()
-require("yanky").setup()
 vim.keymap.set("n", "<leader>P", "<cmd>YankyRingHistory<cr>", { desc = "Yank history" })
 
 -- terminals
@@ -727,10 +698,55 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
     keyset({ "n" }, "gp", "<Plug>(MarkdownPlusPrevHeader)", "Go to previous header")
 
     -- tables
-    keyset("n", "<leader>mt", function()
-      -- open a telescope picker for the more specific table functions
-      require("markdown-plus-telescope").table_commands(require("telescope.themes").get_dropdown())
-    end, "Table commands")
+
+    -- open a picker for the more specific table functions
+    vim.keymap.set({ "n" }, "<leader>mt", function()
+      local commands = {
+        { desc = "Create table", cmd = "lua require('markdown-plus.table.creator').create_table_interactive()" },
+        { desc = "Format table", cmd = "lua require('markdown-plus.table.format').format_table()" },
+        { desc = "Insert row below", cmd = "lua require('markdown-plus.table.manipulation').insert_row(false)" },
+        { desc = "Insert column left", cmd = "lua require('markdown-plus.table.manipulation').insert_column(true)" },
+        { desc = "Insert column right", cmd = "lua require('markdown-plus.table.manipulation').insert_column(false)" },
+        { desc = "Delete column", cmd = "lua require('markdown-plus.table.manipulation').delete_column(false)" },
+        { desc = "Duplicate column", cmd = "lua require('markdown-plus.table.manipulation').duplicate_column(false)" },
+        { desc = "Move column left", cmd = "lua require('markdown-plus.table.manipulation').move_column_left()" },
+        { desc = "Move column right", cmd = "lua require('markdown-plus.table.manipulation').move_column_right()" },
+        { desc = "Clear cell", cmd = "lua require('markdown-plus.table.manipulation').clear_cell()" },
+        { desc = "Sort by column", cmd = "lua require('markdown-plus.table.calculator').sort_by_column()" },
+        {
+          desc = "Sort by column (descending)",
+          cmd = "lua require('markdown-plus.table.calculator').sort_by_column(false)",
+        },
+      }
+
+      -- formatting function
+      local separator = "|"
+      local function format(item)
+        return string.format("%-30s %s %s", item.desc, separator, item.cmd)
+      end
+
+      -- build command table
+      local entries = {}
+      for _, v in pairs(commands) do
+        table.insert(entries, format(v))
+      end
+
+      -- sort and add header
+      table.sort(entries)
+      table.insert(entries, 1, format({ desc = "Description", cmd = "Command" }))
+
+      return require("fzf-lua").fzf_exec(entries, {
+        fzf_opts = { ["--header-lines"] = 1 },
+        actions = {
+          default = function(selection)
+            for _, sel in ipairs(selection) do
+              vim.cmd(vim.split(sel, separator)[2])
+            end
+          end,
+        },
+      })
+    end, { desc = "Table commands" })
+
     keyset({ "n" }, "cic", "<Plug>(MarkdownPlusTableClearCell)i", "table [c]ell")
     keyset({ "n", "i" }, "<c-l>", "<Plug>(MarkdownPlusTableNavRight)", "Move to right cell")
     keyset({ "n", "i" }, "<c-h>", "<Plug>(MarkdownPlusTableNavLeft)", "Move to left cell")
@@ -1018,10 +1034,11 @@ require("goto-preview").setup({
   focus_on_open = false,
   dismiss_on_move = true,
   vim_ui_input = true, -- pretty renaming window
-  references = { telescope = telescope_cursor({ layout_config = { height = 20 } }) },
+  references = { provider = "fzf_lua" },
 })
 vim.keymap.set("n", "<F12>", require("goto-preview").goto_preview_definition, { desc = "Peek definition" })
 vim.keymap.set("n", "<S-F12>", require("goto-preview").goto_preview_references, { desc = "Peek references" })
+-- TODO: replace references peek with fzf_lua.lsp_references?
 
 -- reference jumps
 require("refjump").setup()
@@ -1032,13 +1049,6 @@ vim.keymap.set("n", "z1", require("ufo").closeFoldsWith, { desc = "Fold level 1+
 vim.keymap.set("n", "z2", function()
   require("ufo").closeFoldsWith(1)
 end, { desc = "Fold level 2+" })
-
--- preview code actions
-local preview_code_actions = require("actions-preview")
-preview_code_actions.setup({
-  diff = { ctxlen = 0 },
-})
-vim.keymap.set({ "n", "v" }, "gra", preview_code_actions.code_actions, { desc = "Preview available code actions" })
 
 -- lsp
 local capabilities = require("cmp_nvim_lsp").default_capabilities() -- from nvim-cmp
@@ -1348,17 +1358,19 @@ vim.keymap.set("n", "grd", function()
   })
 end, { desc = "Send diagnostics to QF" })
 vim.keymap.set("n", "grtd", function()
-  vim.diagnostic.setqflist({ open = false })
-  telescope_builtins.quickfix()
-end, { desc = "Send diagnostics to Telescope" })
+  fzf_lua.diagnostics_document({ winopts = { preview = { layout = "vertical", vertical = "up:30%" } } })
+end, { desc = "Send diagnostics to fzf" })
 vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })
-vim.keymap.set({ "n", "i" }, "grD", "<cmd>Telescope lsp_definitions theme=cursor<cr>", { desc = "Jump to definition" })
+vim.keymap.set({ "n", "i" }, "grD", fzf_lua.lsp_definitions, { desc = "Jump to definition" })
 vim.keymap.set("n", "[d", function()
   u.diagnostic_jump(-1)
 end, { desc = "Previous diagnostic" })
 vim.keymap.set("n", "]d", function()
   u.diagnostic_jump(1)
 end, { desc = "Next diagnostic" })
+vim.keymap.set({ "n", "v" }, "gra", function()
+  fzf_lua.lsp_code_actions({ winopts = { preview = { layout = "vertical", vertical = "up:30%" } } })
+end, { desc = "Preview available code actions" })
 
 -- Descriptions for defaults
 vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { desc = "Send implementations to QF" })

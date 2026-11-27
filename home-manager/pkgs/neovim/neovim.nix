@@ -73,8 +73,7 @@ in
       which-key-nvim # which-key
       nvim-notify # apply noice ui to notifications
       yazi-nvim # integrate yazi
-      telescope-nvim # picker for files and much more
-      telescope-fzf-native-nvim # improve telescope's sorting and searching
+      fzf-lua # fzf-based picker
       nvim-ts-autotag # auto-close html tags
       conform-nvim # configuration for formatters
       modes-nvim # change the colour of the current line based on mode
@@ -82,8 +81,8 @@ in
       gitsigns-nvim # show git status of lines in the signcolumn
       toggleterm-nvim # manage terminal windows
       comment-nvim # fancy comment functionality
-      nvim-neoclip-lua # clipboard history
-      sqlite-lua # for nvim-neoclip-lua
+      yanky-nvim # clipboard functions
+      sqlite-lua # for yanky
       flash-nvim # improved FtTt motions
       template-string-nvim # auto handle f-strings and js equiv
       marks-nvim # show marks in signcolumn
@@ -91,7 +90,6 @@ in
       otter-nvim # LSP for embedded code blocks
       markdown-plus-nvim # lots of markdown functionality (list continuation, table navigation, etc.)
       nvim-colorizer-lua # highlight hex, rgb, css colours
-      telescope-ui-select-nvim # send vim.ui.select to telescope
       nvim-ts-context-commentstring # fix comments in jsx/tsx since comment.nvim doesn't support them
       range-highlight-nvim # when running cmdline things on selected text, highlight those lines
       nvim-treesitter-textobjects # work with functions, scopes, etc
@@ -103,11 +101,8 @@ in
       refjump-nvim # next/prev LSP reference with ]r
       quicker-nvim # quickfix window improvements
       jinja-vim # fixes jinja syntax highlighting, ftplugin, so no setup
-      actions-preview-nvim # preview the results of code actions
       headhunter-nvim # keymaps for git conflicts
       vimtex
-      fzf-lua
-      yanky-nvim
 
       # completion and sources
       nvim-cmp
@@ -180,7 +175,6 @@ in
       }
 
       run link "custom-init" 0
-      run link "markdown-plus-telescope" 1
       run link "utils" 1
     '';
 
