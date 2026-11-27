@@ -765,6 +765,78 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
   end,
 })
 
+-- vimtex
+autocmd("FileType", {
+  pattern = { "tex" },
+  callback = function()
+    require("which-key").add({
+      { "<localleader>l", group = "VimTeX", icon = { icon = "" }, mode = "nxo" },
+    })
+    local function keyset(modes, lhs, rhs, desc)
+      vim.keymap.set(modes, lhs, rhs, { desc = desc, buffer = true })
+    end
+    keyset("n", "<localleader>ll", "<plug>(vimtex-compile)", "Compile")
+    keyset("n", "<localleader>lI", "<plug>(vimtex-info-full)", "Full information")
+    keyset("n", "<localleader>lt", "<plug>(vimtex-toc-open)", "Table of Contents")
+    keyset("n", "<localleader>lm", "<plug>(vimtex-imaps-list)", "Input mappings")
+    keyset("n", "<localleader>la", "<plug>(vimtex-context-menu)", "Context menu")
+    keyset("n", "dse", "<plug>(vimtex-env-delete)", "environment")
+    keyset("n", "dsc", "<plug>(vimtex-cmd-delete)", "command")
+    keyset("n", "ds$", "<plug>(vimtex-env-delete-math)", "math")
+    keyset("n", "dsd", "<plug>(vimtex-delim-delete)", "delimiter")
+    keyset("n", "cse", "<plug>(vimtex-env-change)", "environment")
+    keyset("n", "csc", "<plug>(vimtex-cmd-change)", "command")
+    keyset("n", "cs$", "<plug>(vimtex-env-change-math)", "math environment")
+    keyset("n", "csd", "<plug>(vimtex-delim-change-math)", "delimiter")
+    keyset("n", "tsf", "<plug>(vimtex-cmd-toggle-frac)", "fraction")
+    keyset("n", "tsc", "<plug>(vimtex-cmd-toggle-star)", "command")
+    keyset("n", "tse", "<plug>(vimtex-env-toggle-star)", "environment")
+    keyset("n", "ts$", "<plug>(vimtex-env-toggle-math)", "math environment")
+    keyset("n", "tsb", "<plug>(vimtex-env-toggle-break)", "break")
+    keyset("n", "tsd", "<plug>(vimtex-delim-toggle-modifier)", "delimiter")
+    keyset("n", "<leader>lad", "<plug>(vimtex-delim-add-modifiers)", "Add \\left and \\right")
+    keyset("n", "K", "<plug>(vimtex-doc-package)", "See package documentation")
+
+    keyset({ "x", "o" }, "ac", "<plug>(vimtex-ac)", "command")
+    keyset({ "x", "o" }, "ic", "<plug>(vimtex-ic)", "command")
+    keyset({ "x", "o" }, "ad", "<plug>(vimtex-ad)", "delimiter")
+    keyset({ "x", "o" }, "id", "<plug>(vimtex-id)", "delimiter")
+    keyset({ "x", "o" }, "ae", "<plug>(vimtex-ae)", "environment")
+    keyset({ "x", "o" }, "ie", "<plug>(vimtex-ie)", "environment")
+    keyset({ "x", "o" }, "a$", "<plug>(vimtex-a$)", "math")
+    keyset({ "x", "o" }, "i$", "<plug>(vimtex-i$)", "math")
+    keyset({ "x", "o" }, "aP", "<plug>(vimtex-aP)", "section")
+    keyset({ "x", "o" }, "iP", "<plug>(vimtex-iP)", "section")
+    keyset({ "x", "o" }, "am", "<plug>(vimtex-am)", "item")
+    keyset({ "x", "o" }, "im", "<plug>(vimtex-im)", "item")
+
+    keyset({ "n", "x", "o" }, "%", "<plug>(vimtex-%)", "Matching pair")
+    keyset({ "n", "x", "o" }, "]]", "<plug>(vimtex-]])", "Next end of a section")
+    keyset({ "n", "x", "o" }, "][", "<plug>(vimtex-][)", "Next beginning of a section")
+    keyset({ "n", "x", "o" }, "[]", "<plug>(vimtex-[])", "Previous end of a section")
+    keyset({ "n", "x", "o" }, "[[", "<plug>(vimtex-[[)", "Previous beginning of a section")
+    keyset({ "n", "x", "o" }, "]m", "<plug>(vimtex-]m)", "Next start of an environment")
+    keyset({ "n", "x", "o" }, "]M", "<plug>(vimtex-]M)", "Next end of an environment")
+    keyset({ "n", "x", "o" }, "[m", "<plug>(vimtex-[m)", "Previous start of an environment")
+    keyset({ "n", "x", "o" }, "[M", "<plug>(vimtex-[M)", "Previous end of an environment")
+    keyset({ "n", "x", "o" }, "]n", "<plug>(vimtex-]n)", "Next start of math")
+    keyset({ "n", "x", "o" }, "]N", "<plug>(vimtex-]N)", "Next end of math")
+    keyset({ "n", "x", "o" }, "[n", "<plug>(vimtex-[n)", "Previous start of math")
+    keyset({ "n", "x", "o" }, "[N", "<plug>(vimtex-[N)", "Previous end of math")
+    keyset({ "n", "x", "o" }, "]r", "<plug>(vimtex-]r)", "Next start of frame environment")
+    keyset({ "n", "x", "o" }, "]R", "<plug>(vimtex-]R)", "Next end of frame environment")
+    keyset({ "n", "x", "o" }, "[r", "<plug>(vimtex-[r)", "Previous start of frame environment")
+    keyset({ "n", "x", "o" }, "[R", "<plug>(vimtex-[R)", "Previous end of frame environment")
+    keyset({ "n", "x", "o" }, "]/", "<plug>(vimtex-]/)", "Next start of a comment")
+    keyset({ "n", "x", "o" }, "]*", "<plug>(vimtex-]star)", "Next end of a comment")
+    keyset({ "n", "x", "o" }, "[/", "<plug>(vimtex-[/)", "Previous start of a comment")
+    keyset({ "n", "x", "o" }, "[*", "<plug>(vimtex-[star)", "Previous end of a comment")
+
+    keyset("i", "]]", "<plug>(vimtex-delim-close)", "Close environment/delimiter")
+    keyset("x", "<leader>lse", "<plug>(vimtex-env-surround-visual)", "Surround selection with environment")
+  end,
+})
+
 -- completion
 local cmp = require("cmp")
 local insert_completion_mapping = cmp.mapping.preset.insert({
@@ -851,6 +923,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = "custom_snippets" },
+    { name = "vimtex" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "buffer" },
@@ -867,6 +940,7 @@ cmp.setup({
       vim_item.kind_hl_group = hl
       -- Source
       vim_item.menu = ({
+        vimtex = "[VimTeX]" .. (vim_item.menu ~= nil and vim_item.menu or ""),
         buffer = "[Buffer]",
         nvim_lsp = "[LSP]",
         luasnip = "[LuaSnip]",

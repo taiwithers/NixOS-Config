@@ -102,7 +102,7 @@ in
       quicker-nvim # quickfix window improvements
       jinja-vim # fixes jinja syntax highlighting, ftplugin, so no setup
       headhunter-nvim # keymaps for git conflicts
-      vimtex
+      vimtex # latex keymaps
 
       # completion and sources
       nvim-cmp
@@ -114,6 +114,7 @@ in
       cmp-cmdline
       cmp-cmdline-history
       cmp-scss
+      cmp-vimtex
 
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (
         p: with p; [
@@ -195,5 +196,6 @@ in
     "nvim/ftdetect/jinja.vim".source = "${pkgs.vimPlugins.jinja-vim}/ftdetect/jinja.vim";
     "nvim/ftplugin/jinja.vim".source = "${pkgs.vimPlugins.jinja-vim}/ftplugin/jinja.vim";
     "nvim/syntax/jinja.vim".source = "${pkgs.vimPlugins.jinja-vim}/syntax/jinja.vim";
+    "nvim/ftplugin/tex.vim".text = "let g:vimtex_mappings_enabled = 0";
   };
 }
